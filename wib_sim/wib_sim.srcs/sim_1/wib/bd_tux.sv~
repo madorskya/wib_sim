@@ -1,0 +1,43 @@
+-
+`timescale 1 ps / 1 ps
+
+module design_1_wrapper
+(
+    output clk62p5,
+    output [0:0]gpo_0,
+    output i2c0_scln,
+    output i2c0_sclp,
+    input  i2c0_sda_inn,
+    input  i2c0_sda_inp,
+    output i2c0_sda_outn,
+    output i2c0_sda_outp
+);
+    
+  wire clk62p5;
+  wire [0:0]gpo_0;
+  wire i2c0_scl_i;
+  wire i2c0_scl_io;
+  wire i2c0_scl_o;
+  wire i2c0_scl_t;
+  wire i2c0_sda_i;
+  wire i2c0_sda_io;
+  wire i2c0_sda_o;
+  wire i2c0_sda_t;
+
+  design_1 design_1_i
+    (
+        .clk62p5    (clk62p5),
+        .gpo_0      (gpo_0),
+        .i2c0_scl_i (i2c0_scl_i),
+        .i2c0_scl_o (i2c0_scl_o),
+        .i2c0_scl_t (i2c0_scl_t),
+        .i2c0_sda_i (i2c0_sda_i),
+        .i2c0_sda_o (i2c0_sda_o),
+        .i2c0_sda_t (i2c0_sda_t)
+    );
+    
+    OBUFDS obuf_scl (.I(i2c0_scl_o), .O(i2c0_sclp), .OB(i2c0_scln));
+    OBUFDS obuf_sda (.I(i2c0_sda_o), .O(i2c0_sda_outp), .OB(i2c0_sda_outn));
+    IBUFDS ibuf_sda (.I(i2c0_sda_inp), .IB(i2c0_sda_inn), .O(i2c0_sda_i));
+    
+endmodule
