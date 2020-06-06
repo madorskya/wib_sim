@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="test_bench_coldata_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_colData_IO_Misc_sv " />
+            <top_module name="\$unit_wib_tf_sv " />
+            <top_module name="axi_cdma_pkg" />
+            <top_module name="axi_vip_pkg" />
+            <top_module name="glbl" />
+            <top_module name="lib_pkg" />
+            <top_module name="std" />
+            <top_module name="test_bench_coldata" />
+            <top_module name="xil_common_vip_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="133458229fs"></ZoomStartTime>
+      <ZoomEndTime time="133504480fs"></ZoomEndTime>
+      <Cursor1Time time="63892889fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="342"></NameColumnWidth>
+      <ValueColumnWidth column_width="251"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="50" />
+   <wave_markers>
+      <marker label="" time="43887353" />
+      <marker label="" time="30073500" />
+      <marker label="" time="63908489" />
+   </wave_markers>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_ARADDR">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_ARADDR[39:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_ARADDR[39:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_ARREADY">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_ARREADY</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_ARREADY</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_ARVALID">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_ARVALID</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_ARVALID</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_AWADDR">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_AWADDR[39:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_AWADDR[39:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_AWREADY">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_AWREADY</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_AWREADY</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_AWVALID">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_AWVALID</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_AWVALID</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_BREADY">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_BREADY</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_BREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_BRESP">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_BRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_BRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_BVALID">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_BVALID</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_BVALID</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_RDATA">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_RDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_RDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_RREADY">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_RREADY</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_RREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_RRESP">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_RRESP[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_RRESP[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_RVALID">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_RVALID</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_RVALID</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_WDATA">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_WDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_WDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_WREADY">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_WREADY</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_WREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_WSTRB">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_WSTRB[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_WSTRB[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/ps8_0_axi_periph_M01_AXI_WVALID">
+      <obj_property name="ElementShortName">ps8_0_axi_periph_M01_AXI_WVALID</obj_property>
+      <obj_property name="ObjectShortName">ps8_0_axi_periph_M01_AXI_WVALID</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
+      <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
+      <obj_property name="ObjectShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/PAD_RESET">
+      <obj_property name="ElementShortName">PAD_RESET</obj_property>
+      <obj_property name="ObjectShortName">PAD_RESET</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/clk62p5">
+      <obj_property name="ElementShortName">clk62p5</obj_property>
+      <obj_property name="ObjectShortName">clk62p5</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_scln">
+      <obj_property name="ElementShortName">i2c0_scln</obj_property>
+      <obj_property name="ObjectShortName">i2c0_scln</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sclp">
+      <obj_property name="ElementShortName">i2c0_sclp</obj_property>
+      <obj_property name="ObjectShortName">i2c0_sclp</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_outn">
+      <obj_property name="ElementShortName">i2c0_sda_outn</obj_property>
+      <obj_property name="ObjectShortName">i2c0_sda_outn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_outp">
+      <obj_property name="ElementShortName">i2c0_sda_outp</obj_property>
+      <obj_property name="ObjectShortName">i2c0_sda_outp</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_inn">
+      <obj_property name="ElementShortName">i2c0_sda_inn</obj_property>
+      <obj_property name="ObjectShortName">i2c0_sda_inn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_inp">
+      <obj_property name="ElementShortName">i2c0_sda_inp</obj_property>
+      <obj_property name="ObjectShortName">i2c0_sda_inp</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN1">
+      <obj_property name="ElementShortName">SEROUTN1</obj_property>
+      <obj_property name="ObjectShortName">SEROUTN1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTP1">
+      <obj_property name="ElementShortName">SEROUTP1</obj_property>
+      <obj_property name="ObjectShortName">SEROUTP1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN2">
+      <obj_property name="ElementShortName">SEROUTN2</obj_property>
+      <obj_property name="ObjectShortName">SEROUTN2</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTP2">
+      <obj_property name="ElementShortName">SEROUTP2</obj_property>
+      <obj_property name="ObjectShortName">SEROUTP2</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/LOCK">
+      <obj_property name="ElementShortName">LOCK</obj_property>
+      <obj_property name="ObjectShortName">LOCK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/colData_IO_I2C_0/I2C_LVDS_SDA_C2W_internal">
+      <obj_property name="ElementShortName">I2C_LVDS_SDA_C2W_internal</obj_property>
+      <obj_property name="ObjectShortName">I2C_LVDS_SDA_C2W_internal</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/myChipID">
+      <obj_property name="ElementShortName">myChipID[3:0]</obj_property>
+      <obj_property name="ObjectShortName">myChipID[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/capturedChipID">
+      <obj_property name="ElementShortName">capturedChipID[3:0]</obj_property>
+      <obj_property name="ObjectShortName">capturedChipID[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/local_SDA_C2W">
+      <obj_property name="ElementShortName">local_SDA_C2W</obj_property>
+      <obj_property name="ObjectShortName">local_SDA_C2W</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/capturedPageAddr">
+      <obj_property name="ElementShortName">capturedPageAddr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">capturedPageAddr[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/pageAddr">
+      <obj_property name="ElementShortName">pageAddr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pageAddr[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/validCapPageAddr">
+      <obj_property name="ElementShortName">validCapPageAddr</obj_property>
+      <obj_property name="ObjectShortName">validCapPageAddr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/currentState">
+      <obj_property name="ElementShortName">currentState[4:0]</obj_property>
+      <obj_property name="ObjectShortName">currentState[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/valid_chipID">
+      <obj_property name="ElementShortName">valid_chipID</obj_property>
+      <obj_property name="ObjectShortName">valid_chipID</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/state">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/tx_start">
+      <obj_property name="ElementShortName">tx_start</obj_property>
+      <obj_property name="ObjectShortName">tx_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/tx_start_r">
+      <obj_property name="ElementShortName">tx_start_r</obj_property>
+      <obj_property name="ObjectShortName">tx_start_r</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/wr_reg[0]">
+      <obj_property name="ElementShortName">[0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/wr_reg[1]">
+      <obj_property name="ElementShortName">[1][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/bit_count">
+      <obj_property name="ElementShortName">bit_count[4:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_count[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/bit_phase">
+      <obj_property name="ElementShortName">bit_phase[8:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_phase[8:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/sda_out">
+      <obj_property name="ElementShortName">sda_out</obj_property>
+      <obj_property name="ObjectShortName">sda_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/rd_reg[1]">
+      <obj_property name="ElementShortName">[1][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/clk_1p28g">
+      <obj_property name="ElementShortName">clk_1p28g</obj_property>
+      <obj_property name="ObjectShortName">clk_1p28g</obj_property>
+   </wvobject>
+</wave_config>

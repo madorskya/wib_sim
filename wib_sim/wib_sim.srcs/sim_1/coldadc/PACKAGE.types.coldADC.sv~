@@ -1,0 +1,67 @@
+`ifndef COLDADC_TYPES
+`define COLDADC_TYPES
+
+
+//***************************
+//***
+//***	Special Enumerated Types
+//***
+//***************************
+
+typedef	enum	{
+			PHASE_STATE_ADC_0,
+			PHASE_STATE_ADC_1,
+			PHASE_STATE_ADC_2,
+			PHASE_STATE_ADC_3
+		}	backEndStates_t_ADC;
+
+typedef	enum	{
+			S0_I2C_ADC_IDLE_ADC,
+			S1_WORD1_BIT_ADC7,
+			S2_WORD1_BIT_ADC6,
+			S3_WORD1_BIT_ADC5,
+			S4_WORD1_BIT_ADC4,
+			S5_WORD1_BIT_ADC3,
+			S6_WORD1_BIT_ADC2,
+			S7_WORD1_BIT_ADC1,
+			S8_WORD1_RW_ADC,
+			S9_ACK1_ADC,
+			S10_WORD2_BIT_ADC8,
+			S11_WORD2_BIT_ADC7,
+			S12_WORD2_BIT_ADC6,
+			S13_WORD2_BIT_ADC5,
+			S14_WORD2_BIT_ADC4,
+			S15_WORD2_BIT_ADC3,
+			S16_WORD2_BIT_ADC2,
+			S17_WORD2_BIT_ADC1,
+			S18_ACK2_ADC,
+			S19_WORD3_BIT_ADC8,
+			S20_WORD3_BIT_ADC7,
+			S21_WORD3_BIT_ADC6,
+			S22_WORD3_BIT_ADC5,
+			S23_WORD3_BIT_ADC4,
+			S24_WORD3_BIT_ADC3,
+			S25_WORD3_BIT_ADC2,
+			S26_WORD3_BIT_ADC1,
+			S27_ACK3_WRITE_ADC,
+			S28_ACK3_READ_ADC,
+			S29_UNUSED_ADC,
+			S30_UNUSED_ADC,
+			S31_UNUSED_ADC
+		}	I2C_ADC_States_adc;
+
+typedef	enum	{	I2C_ADC_Idle_ADC,
+			I2C_ADC_Word1_ADC,
+			I2C_ADC_Word2_ADC,
+			I2C_ADC_Word3_ADC,
+			I2C_ADC_Bad_ADC
+		} 	I2C_ADC_Monitor_States_ADC;
+
+typedef	enum	{
+			S0_STANDBY_ADC,
+			S1_COUNT_ADC,
+			S2_RESET_ADC,
+			S3_UNUSED_ADC
+		}	I2C_ADC_Rst_States_t_ADC;
+
+`endif
