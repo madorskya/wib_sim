@@ -2,7 +2,8 @@
 
 module coldata_rx_tux
 (
-    input  [3 : 0] gtrefclk00_in       , // reference clocks, 128M
+    input  [3 : 0] gtrefclk00p_in       , // reference clocks, 128M
+    input  [3 : 0] gtrefclk00n_in       , // reference clocks, 128M
     input [15 : 0] gthrxn_in           , // RX diff lines
     input [15 : 0] gthrxp_in           ,
 
@@ -34,13 +35,34 @@ module coldata_rx_tux
     wire [127 : 0] rxctrl3_out;
 
     wire [255:0] data_rx_out; // RX data combined into one word
+    wire  [3 : 0] gtrefclk00_in;
     genvar gi;
-    // split the giant data word into array for convenience
     generate
+        // split the giant data word into array for convenience
         for (gi = 0; gi < 16; gi++)
         begin
             assign rx_data[gi] = data_rx_out[gi*16 +: 16];
         end
+        
+        // refclk buffers
+        for (gi = 0; gi < 4; gi++)
+        begin
+            IBUFDS_GTE4 
+            #(
+                .REFCLK_EN_TX_PATH  (1'b0),
+                .REFCLK_HROW_CK_SEL (2'b00),
+                .REFCLK_ICNTL_RX    (2'b00)
+            ) 
+            IBUFDS_GTE4_MGTREFCLK0_X0Y3_INST 
+            (
+                .I     (gtrefclk00p_in [gi]),
+                .IB    (gtrefclk00n_in [gi]),
+                .CEB   (1'b0),
+                .O     (gtrefclk00_in [gi]),
+                .ODIV2 ()
+            );
+        end            
+            
     endgenerate
 
 coldata_rx crx 

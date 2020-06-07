@@ -18,7 +18,8 @@ wire clk62p5;
 reg [31:0] clk62_cnt;
 reg clk_1p28g;
 
-reg  [3 : 0] gtrefclk00_in = 4'b0; // reference clocks; 128M
+reg  [3 : 0] gtrefclk00p_in = 4'b0000; // reference clocks; 128M
+reg  [3 : 0] gtrefclk00n_in = 4'b1111; // reference clocks; 128M
 wire [15 : 0] gthrxn_in    ; // RX diff lines
 wire [15 : 0] gthrxp_in    ;
 
@@ -438,13 +439,13 @@ begin
     #3906 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G
     if (refclk_cnt == 4'd9)
     begin
-        gtrefclk00_in = ~gtrefclk00_in;
+        gtrefclk00p_in = ~gtrefclk00p_in;
+        gtrefclk00n_in = ~gtrefclk00p_in;
         refclk_cnt = 4'd0;
     end
     else
         refclk_cnt++;
 end
-//always #39060 gtrefclk00_in = ~gtrefclk00_in; // reference clocks for Coldata RX MGTs, 128M
 
 always @(posedge clk62p5) 
 begin
@@ -607,7 +608,7 @@ begin
     $display ("read data: %h", read_data128[31:0]);
 
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b001100000_000000110_000101000, 1, 16'h000F, 4, resp); // write reg 0x3 = 0b00010100 (PRBS15 both links)
+            128'b001100000_000000110_001111000, 1, 16'h000F, 4, resp); // write reg 0x3 = 0b00111100 (data from COLDADC)
 
     // start command
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
@@ -648,6 +649,7 @@ end
    assign temp_clk = tb_ACLK;
    assign temp_rstn = tb_ARESETn;
   
+// duplicate single COLDATA outputs to occupy all WIB inputs  
 assign gthrxn_in[7:0]  = {8{SEROUTN1}};
 assign gthrxp_in[7:0]  = {8{SEROUTP1}};
 assign gthrxn_in[15:8] = {8{SEROUTN2}};
@@ -666,9 +668,10 @@ assign gthrxp_in[15:8] = {8{SEROUTP2}};
         .i2c0_sda_outn (i2c0_sda_outn),
         .i2c0_sda_outp (i2c0_sda_outp),
 
-        .gtrefclk00_in (gtrefclk00_in), // reference clocks(), 128M
-        .gthrxn_in     (gthrxn_in    ), // RX diff lines
-        .gthrxp_in     (gthrxp_in    )    
+        .gtrefclk00p_in (gtrefclk00p_in), // reference clocks(), 128M
+        .gtrefclk00n_in (gtrefclk00n_in), // reference clocks(), 128M
+        .gthrxn_in      (gthrxn_in    ), // RX diff lines
+        .gthrxp_in      (gthrxp_in    )    
     );
 
 
