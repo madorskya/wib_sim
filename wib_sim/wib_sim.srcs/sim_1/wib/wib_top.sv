@@ -9,7 +9,8 @@ module wib_top
     output i2c0_sda_outn,
     output i2c0_sda_outp,
     
-    input  [3 : 0] gtrefclk00_in, // reference clocks; 128M
+    input  [3 : 0] gtrefclk00p_in, // reference clocks; 128M
+    input  [3 : 0] gtrefclk00n_in, // reference clocks; 128M
     input [15 : 0] gthrxn_in    , // RX diff lines
     input [15 : 0] gthrxp_in    
 );
@@ -47,7 +48,8 @@ module wib_top
     
     coldata_rx_tux coldata_rx
     (
-        .gtrefclk00_in       (gtrefclk00_in      ), // reference clocks(), 128M
+        .gtrefclk00p_in      (gtrefclk00p_in      ), // reference clocks(), 128M
+        .gtrefclk00n_in      (gtrefclk00n_in      ), // reference clocks(), 128M
         .gthrxn_in           (gthrxn_in          ), // RX diff lines
         .gthrxp_in           (gthrxp_in          ),    
         .reset_clk_64M_in    (reset_clk_64M_in   ), // 64 M clock for reset circuits
