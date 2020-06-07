@@ -5,11 +5,11 @@
    <db_ref_list>
       <db_ref path="test_bench_coldata_behav.wdb" id="1">
          <top_modules>
-            <top_module name="\$unit_colData_IO_Misc_sv " />
-            <top_module name="\$unit_wib_tf_sv " />
+            <top_module name="\$unit_COLDADCP1_sv " />
             <top_module name="axi_cdma_pkg" />
             <top_module name="axi_vip_pkg" />
             <top_module name="glbl" />
+            <top_module name="ipif_pkg" />
             <top_module name="lib_pkg" />
             <top_module name="std" />
             <top_module name="test_bench_coldata" />
@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="133458229fs"></ZoomStartTime>
-      <ZoomEndTime time="133504480fs"></ZoomEndTime>
-      <Cursor1Time time="63892889fs"></Cursor1Time>
+      <ZoomStartTime time="36624386000fs"></ZoomStartTime>
+      <ZoomEndTime time="36658286001fs"></ZoomEndTime>
+      <Cursor1Time time="36649994000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="342"></NameColumnWidth>
-      <ValueColumnWidth column_width="251"></ValueColumnWidth>
+      <ValueColumnWidth column_width="239"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="50" />
+   <WVObjectSize size="62" />
    <wave_markers>
       <marker label="" time="43887353" />
       <marker label="" time="30073500" />
@@ -231,5 +231,56 @@
    <wvobject type="logic" fp_name="/test_bench_coldata/clk_1p28g">
       <obj_property name="ElementShortName">clk_1p28g</obj_property>
       <obj_property name="ObjectShortName">clk_1p28g</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/gtrefclk00_in">
+      <obj_property name="ElementShortName">gtrefclk00_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">gtrefclk00_in[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/gtrefclk00_in">
+      <obj_property name="ElementShortName">gtrefclk00_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">gtrefclk00_in[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/gthrxn_in">
+      <obj_property name="ElementShortName">gthrxn_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">gthrxn_in[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/gthrxp_in">
+      <obj_property name="ElementShortName">gthrxp_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">gthrxp_in[15:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_data">
+      <obj_property name="ElementShortName">rx_data[15:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data[15:0][15:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
+      <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_usrclk2_out[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_active_out">
+      <obj_property name="ElementShortName">rx_active_out[0:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_active_out[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rxbyteisaligned_out">
+      <obj_property name="ElementShortName">rxbyteisaligned_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxbyteisaligned_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rxbyterealign_out">
+      <obj_property name="ElementShortName">rxbyterealign_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxbyterealign_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rxcommadet_out">
+      <obj_property name="ElementShortName">rxcommadet_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxcommadet_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_cdr_stable_out">
+      <obj_property name="ElementShortName">rx_cdr_stable_out[0:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_cdr_stable_out[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/reset_all_in">
+      <obj_property name="ElementShortName">reset_all_in[0:0]</obj_property>
+      <obj_property name="ObjectShortName">reset_all_in[0:0]</obj_property>
    </wvobject>
 </wave_config>

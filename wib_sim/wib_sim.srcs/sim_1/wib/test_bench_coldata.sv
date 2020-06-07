@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ps / 1ps
 `define ZYNQ_VIP_0 test_bench_coldata.mpsoc_sys.wrp.design_1_i.zynq_ultra_ps_e_0.inst
 
 module test_bench_coldata;
@@ -17,6 +17,10 @@ reg [31:0] dst_data;
 wire clk62p5;
 reg [31:0] clk62_cnt;
 reg clk_1p28g;
+
+reg  [3 : 0] gtrefclk00_in = 4'b0; // reference clocks; 128M
+wire [15 : 0] gthrxn_in    ; // RX diff lines
+wire [15 : 0] gthrxp_in    ;
 
 int cdma_tb_pass = 1;
   
@@ -427,8 +431,20 @@ end
 // Simple Clock Generator
 //------------------------------------------------------------------------
 
-always #10 tb_ACLK = !tb_ACLK;
-always #0.390625 clk_1p28g = !clk_1p28g; // simulated PLL output
+always #10000 tb_ACLK = !tb_ACLK;
+reg [3:0] refclk_cnt = 4'b0;
+always
+begin 
+    #3906 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G
+    if (refclk_cnt == 4'd9)
+    begin
+        gtrefclk00_in = ~gtrefclk00_in;
+        refclk_cnt = 4'd0;
+    end
+    else
+        refclk_cnt++;
+end
+//always #39060 gtrefclk00_in = ~gtrefclk00_in; // reference clocks for Coldata RX MGTs, 128M
 
 always @(posedge clk62p5) 
 begin
@@ -477,7 +493,7 @@ begin
     //Reset the PL zynq_ultra_ps_e_0   Base_Zynq_MPSoC_zynq_ultra_ps_e_0_0
     `ZYNQ_VIP_0.por_srstb_reset(1'b0);
     `ZYNQ_VIP_0.fpga_soft_reset(32'h1);   
-    #200;  // This delay depends on your clock frequency. It should be at least 16 clock cycles. 
+    #200000;  // This delay depends on your clock frequency. It should be at least 16 clock cycles. 
     `ZYNQ_VIP_0.por_srstb_reset(1'b1);
     `ZYNQ_VIP_0.fpga_soft_reset(32'h0);
     
@@ -560,6 +576,19 @@ begin
     if(cdma_tb_pass) $display("SUCCESS: Data compare passed");
 //	repeat(6000) @(posedge tb_ACLK); // wait for 2MHz clk to start
 
+    // reset coldata_rx module
+    // configure gpio as outputs
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    // reset
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove reset
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+    
+
     // trying to work with I2C
     // data, all 3 bytes + ack bits placeholders
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
@@ -572,7 +601,7 @@ begin
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
-    #40000; // give I2C time 
+    #40000000; // give I2C time 
 
     `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
     $display ("read data: %h", read_data128[31:0]);
@@ -587,7 +616,7 @@ begin
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
-    #40000; // tive I2C time
+    #40000000; // tive I2C time
 
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b001100010_000000110_000000000, 1, 16'h000F, 4, resp); // read reg 3 back
@@ -599,12 +628,12 @@ begin
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
-    #40000;
+    #40000000;
 
     `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
     $display ("read data: %h", read_data128[31:0]);
     
-    #10000;
+    #10000000;
     
     $display ("clk62_cnt: %d", clk62_cnt);
     $display ("clock 2M count: %d", counter_2M);
@@ -618,6 +647,13 @@ end
 
    assign temp_clk = tb_ACLK;
    assign temp_rstn = tb_ARESETn;
+  
+assign gthrxn_in[7:0]  = {8{SEROUTN1}};
+assign gthrxp_in[7:0]  = {8{SEROUTP1}};
+assign gthrxn_in[15:8] = {8{SEROUTN2}};
+assign gthrxp_in[15:8] = {8{SEROUTP2}};
+
+
         
     wib_top mpsoc_sys
     (
@@ -628,119 +664,13 @@ end
         .i2c0_sda_inn  (i2c0_sda_inn ),
         .i2c0_sda_inp  (i2c0_sda_inp ),
         .i2c0_sda_outn (i2c0_sda_outn),
-        .i2c0_sda_outp (i2c0_sda_outp)
+        .i2c0_sda_outp (i2c0_sda_outp),
+
+        .gtrefclk00_in (gtrefclk00_in), // reference clocks(), 128M
+        .gthrxn_in     (gthrxn_in    ), // RX diff lines
+        .gthrxp_in     (gthrxp_in    )    
     );
 
 
 endmodule
 
-/*
-    // write soft reset
-    `ZYNQ_VIP_0.write_data (32'ha0001040, 4, 32'h0000000a, resp); // 
-    // RX fifo depth
-    `ZYNQ_VIP_0.write_data (32'ha0001120, 1, 32'h0000000f, resp); // 
-    // reset TX fifo
-    `ZYNQ_VIP_0.write_data (32'ha0001100, 1, 32'h00000002, resp); // 
-    // remove TX fifo reset, enable I2C
-    `ZYNQ_VIP_0.write_data (32'ha0001100, 1, 32'h00000001, resp); // 
-    $display ("I2C reset done");
-
-    // read status register
-    `ZYNQ_VIP_0.read_data  (32'ha0001104, 1,    rd_data, resp);
-    if (rd_data & 32'h4 != 32'h0) 
-        $display ("BUS BUSY ####################");
-//    for (rd_addr = 32'ha0001128; rd_addr <= 32'ha0001144; rd_addr += 32'h4)
-//    begin
-//        `ZYNQ_VIP_0.read_data  (rd_addr, 4,    rd_data, resp);
-//        $display ("timing reg: %h %h", rd_addr, rd_data);
-//    end
-
-    `ZYNQ_VIP_0.write_data (32'ha0001124, 4, 32'h00000001, resp); //
-    $display ("GPIO: %b", gpo_0); 
-    `ZYNQ_VIP_0.write_data (32'ha0001124, 4, 32'h00000000, resp); // 
-    $display ("GPIO: %b", gpo_0); 
-    `ZYNQ_VIP_0.write_data (32'ha0001124, 4, 32'h00000001, resp); //
-    $display ("GPIO: %b", gpo_0); 
-    `ZYNQ_VIP_0.write_data (32'ha0001124, 4, 32'h00000000, resp); // 
-    $display ("GPIO: %b", gpo_0); 
-
-    // read status register
-    `ZYNQ_VIP_0.read_data  (32'ha0001104, 4,    rd_data, resp);
-    $display ("I2C status reg: %b resp: %b", rd_data, resp);
-
-//    `ZYNQ_VIP_0.read_data  (32'hB0000000, 4,    read_data, resp);
-
-    // write soft reset
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001040, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h0000000000000000000000000000000a, 1, 16'h000F, 4, resp);
-
-        
-    $display ("i2c0_sda_inp: %b", i2c0_sda_inp);
-
-    // ######################### start #################################        
-    // write_burst_strb         (addr,           len,   size,  burst, lock,  cache, prot,  data, strb_en, strb, datasize, resp);
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001020, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h0000000000000000000000000000000d, 1, 16'h000F, 4, resp);
-
-    // write RD command and address into TX fifo in I2C
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001108, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h00000000000000000000000000000031, 1, 16'h000F, 4, resp); // {chip_id, reg, 1'b1}
-
-    // this write into CR should start transmission
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001100, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h0000000000000000000000000000000d, 1, 16'h000F, 4, resp);
-
-    // ######################### end #################################        
-
-    #14000; // wait for first byte to be sent
-    
-    // ######################### start #################################        
-    // write_burst_strb         (addr,           len,   size,  burst, lock,  cache, prot,  data, strb_en, strb, datasize, resp);
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001020, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h0000000000000000000000000000000d, 1, 16'h000F, 4, resp);
-
-    // write RD command and address into TX fifo in I2C
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001108, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h00000000000000000000000000000031, 1, 16'h000F, 4, resp); // {chip_id, reg, 1'b1}
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001108, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h00000000000000000000000000000025, 1, 16'h000F, 4, resp);
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001108, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h00000000000000000000000000000000, 1, 16'h000F, 4, resp);
-
-    // write RX_DATA_PIRQ
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001120, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h00000000000000000000000000000002, 1, 16'h000F, 4, resp);
-
-    // read status register
-    `ZYNQ_VIP_0.read_burst(40'h00A0001104, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("status: %h", read_data128[31:0]);
-    if (read_data128[31:0] & 32'h4 != 32'h0) 
-        $display ("BUS BUSY ####################");
-
-
-    // this write into CR should start transmission
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0001100, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'h0000000000000000000000000000000d, 1, 16'h000F, 4, resp);
-
-    // ######################### end #################################        
-    $display ("before I2C waiting: %d", counter_tbclk);
-    while (counter_tbclk < 99000)
-    begin
-        if (!i2c0_scl_r && i2c0_sclp)
-        begin
-           $write ("%d ###########i2c scl up\n", counter_tbclk);
-        end
-        if (i2c0_scl_r && !i2c0_sclp)
-        begin
-           $write ("%d ###########i2c scl down\n", counter_tbclk);
-        end
-        #20;
-    end
-    $display ("after I2C waiting: %d", counter_tbclk);
-
-
-//    `ZYNQ_VIP_0.read_data  (32'ha0001114, 1,    rd_data, resp);
-    `ZYNQ_VIP_0.read_burst(40'h00A0001114, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("TX fifo ocy: %d resp: %b", read_data128[31:0], resp);
-    
-*/
