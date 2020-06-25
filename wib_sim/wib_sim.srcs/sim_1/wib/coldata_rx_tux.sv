@@ -16,7 +16,12 @@ module coldata_rx_tux
     output [15 :0] rx_data [15:0]      ,
     output [15 :0] rxbyteisaligned_out ,
     output [15 :0] rxbyterealign_out   ,
-    output [15 :0] rxcommadet_out      ,             
+    output [15 :0] rxcommadet_out      ,
+    output [1:0]   rx_k,
+    output [1:0]   rx_comma,
+    output [1:0]   rx_notvalid,
+    output [1:0]   rx_disp,
+                 
 
     output [0 : 0] rx_cdr_stable_out   , 
     output [15 :0] gtpowergood_out     
@@ -33,6 +38,12 @@ module coldata_rx_tux
     wire [255 : 0] rxctrl1_out;
     wire [127 : 0] rxctrl2_out;
     wire [127 : 0] rxctrl3_out;
+
+    assign rx_k        = rxctrl0_out[1:0];
+    assign rx_disp     = rxctrl1_out[1:0];
+    assign rx_comma    = rxctrl2_out[1:0];
+    assign rx_notvalid = rxctrl3_out[1:0];
+
 
     wire [255:0] data_rx_out; // RX data combined into one word
     wire  [3 : 0] gtrefclk00_in;

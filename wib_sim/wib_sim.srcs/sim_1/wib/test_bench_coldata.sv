@@ -56,8 +56,9 @@ end
    reg  CLK_64MHZ_SYS_P;
    reg  CLK_64MHZ_SYS_N;
    //FastCommand Input (2 pads)
-   wire  FASTCOMMAND_IN_P = 0;
-   wire  FASTCOMMAND_IN_N = 1;
+   reg fast_command = 1;
+   wire  FASTCOMMAND_IN_P; // = fast_command;
+   wire  FASTCOMMAND_IN_N; // = !fast_command;
    //SPI-like Interface for LARASIC
    // All 4 (1 pad)
    wire LARASIC_RESET ;
@@ -351,7 +352,7 @@ end
 
 	 generate
 			for (genvar gi = 0; gi < 4; gi++)
-			begin
+			begin:adc_loop
 	 
 				 COLDADCP1 coldadc
 				 (
@@ -388,7 +389,7 @@ end
 					.DIG_OUTG_N (ADC_DIG_OUTG_N [gi]), //
 					.DIG_OUTH_P (ADC_DIG_OUTH_P [gi]), //
 					.DIG_OUTH_N (ADC_DIG_OUTH_N [gi]), //
-					.MASTER_RESET (MASTER_RESET),
+					.MASTER_RESET (ADC_MASTER_RESET),
 					.MOSI (MOSI [gi]),
 					.MISO (),
 					.DIGITAL_MUX_OUT_N (),
@@ -436,7 +437,7 @@ always #10000 tb_ACLK = !tb_ACLK;
 reg [3:0] refclk_cnt = 4'b0;
 always
 begin 
-    #3906 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G
+    #390.6 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G
     if (refclk_cnt == 4'd9)
     begin
         gtrefclk00p_in = ~gtrefclk00p_in;
@@ -506,6 +507,182 @@ begin
     `ZYNQ_VIP_0.S_AXI_HP0_FPD.set_verbosity(32'd0);
 
 
+    // reset coldata_rx module
+    // configure gpio as outputs
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    // reset
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove reset
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+    
+
+    // trying to work with I2C
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b010000001_001000000_000001010, 1, 16'h000F, 4, resp); // read COLDATA from address 20, which should fail
+
+    // start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    #40000000; // give I2C time 
+
+
+    // data, all 3 bytes + ack bits placeholders
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b001100001_101000000_000001010, 1, 16'h000F, 4, resp); // read from address A0, which should actually address ADC
+
+    // start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    #40000000; // give I2C time 
+
+    // data, all 3 bytes + ack bits placeholders
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b010000000_001000000_000001010, 1, 16'h000F, 4, resp); // write FASTACT command = 00000101 = ADC RESET, wrong chip
+
+    // start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    #40000000; // give I2C time 
+
+
+    // data, all 3 bytes + ack bits placeholders
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b001100000_001000000_000001010, 1, 16'h000F, 4, resp); // write FASTACT command = 00000101 = ADC RESET
+
+    // start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    #40000000; // give I2C time 
+
+    // FAST command FSM reset and align
+    fast_command = 1;
+    repeat(4)@(posedge clk62p5);     
+    fast_command = 0;
+    repeat(4)@(posedge clk62p5);      
+
+    // issue FASTACT = ADC RESET
+    // FAST command sequence: 11100100 
+    fast_command = 1;
+    repeat(3)@(posedge clk62p5);     
+    fast_command = 0;
+    repeat(2)@(posedge clk62p5);      
+    fast_command = 1;
+    repeat(1)@(posedge clk62p5);      
+    fast_command = 0;
+    repeat(2)@(posedge clk62p5);    
+    fast_command = 1;
+    
+    // generate FAST command using the fast command module
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0030000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b100000, 1, 16'h000F, 4, resp); // tell FAST command module to send ACT command
+    
+
+    `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
+    $display ("read data: %h", read_data128[31:0]);
+
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b001100000_000000110_001111000, 1, 16'h000F, 4, resp); // write reg 0x3 = 0b00111100 (data from COLDADC)
+
+    // start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    #40000000; // tive I2C time
+
+    // backdoor settings to coldadc, to output test pattern
+    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 1;
+    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 1;
+    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 1;
+    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 1;
+
+    // backdoor COLDATA to output ADC data in FRAME14 format, register: FRAMECONFIGREG
+    test_bench_coldata.coldata.ADC_Configure_Reg_0.storedData = 8'b1; 
+
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b001100010_000000110_000000000, 1, 16'h000F, 4, resp); // read reg 3 back
+
+    // start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
+    // remove start command
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
+
+    #40000000;
+
+    `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
+    $display ("read data: %h", read_data128[31:0]);
+    
+    #10000000;
+    
+    $display ("clk62_cnt: %d", clk62_cnt);
+    $display ("clock 2M count: %d", counter_2M);
+    $display ("clock tb count: %d", counter_tbclk);
+    $display ("test changes");
+    $display ("Testbench finished %t", $time);   
+    
+    $finish;
+
+end
+
+   assign temp_clk = tb_ACLK;
+   assign temp_rstn = tb_ARESETn;
+  
+// duplicate single COLDATA outputs to occupy all WIB inputs  
+assign gthrxn_in[7:0]  = {8{SEROUTN1}};
+assign gthrxp_in[7:0]  = {8{SEROUTP1}};
+assign gthrxn_in[15:8] = {8{SEROUTN2}};
+assign gthrxp_in[15:8] = {8{SEROUTP2}};
+
+    wib_top mpsoc_sys
+    (
+        .clk62p5       (clk62p5      ),
+        .gpo_0         (gpo_0        ),
+        .i2c0_scln     (i2c0_scln    ),
+        .i2c0_sclp     (i2c0_sclp    ),
+        .i2c0_sda_inn  (i2c0_sda_inn ),
+        .i2c0_sda_inp  (i2c0_sda_inp ),
+        .i2c0_sda_outn (i2c0_sda_outn),
+        .i2c0_sda_outp (i2c0_sda_outp),
+
+        .clk_adc_2mhz      (1'b0),
+        .fastcommand_out_n (FASTCOMMAND_IN_N),
+        .fastcommand_out_p (FASTCOMMAND_IN_P),
+
+        .gtrefclk00p_in (gtrefclk00p_in), // reference clocks(), 128M
+        .gtrefclk00n_in (gtrefclk00n_in), // reference clocks(), 128M
+        .gthrxn_in      (gthrxn_in    ), // RX diff lines
+        .gthrxp_in      (gthrxp_in    )    
+    );
+
+
+endmodule
+
+/*
+    // CDMA transfer from example design, keeping here for reference
       
     //Fill the source data area
     `ZYNQ_VIP_0.pre_load_mem(2'b00, 32'h00010000, 4096); // Write Random
@@ -576,104 +753,4 @@ begin
    
     if(cdma_tb_pass) $display("SUCCESS: Data compare passed");
 //	repeat(6000) @(posedge tb_ACLK); // wait for 2MHz clk to start
-
-    // reset coldata_rx module
-    // configure gpio as outputs
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
-
-    // reset
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
-    // remove reset
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0020000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
-    
-
-    // trying to work with I2C
-    // data, all 3 bytes + ack bits placeholders
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b001100010_001001010_000000000, 1, 16'h000F, 4, resp); // read reg 0x25
-
-    // start command
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
-    // remove start command
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
-
-    #40000000; // give I2C time 
-
-    `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("read data: %h", read_data128[31:0]);
-
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b001100000_000000110_001111000, 1, 16'h000F, 4, resp); // write reg 0x3 = 0b00111100 (data from COLDADC)
-
-    // start command
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
-    // remove start command
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
-
-    #40000000; // tive I2C time
-
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b001100010_000000110_000000000, 1, 16'h000F, 4, resp); // read reg 3 back
-
-    // start command
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000001, 1, 16'h000F, 4, resp);
-    // remove start command
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
-
-    #40000000;
-
-    `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("read data: %h", read_data128[31:0]);
-    
-    #10000000;
-    
-    $display ("clk62_cnt: %d", clk62_cnt);
-    $display ("clock 2M count: %d", counter_2M);
-    $display ("clock tb count: %d", counter_tbclk);
-    $display ("test changes");
-    $display ("Testbench finished %t", $time);   
-    
-    $finish;
-
-end
-
-   assign temp_clk = tb_ACLK;
-   assign temp_rstn = tb_ARESETn;
-  
-// duplicate single COLDATA outputs to occupy all WIB inputs  
-assign gthrxn_in[7:0]  = {8{SEROUTN1}};
-assign gthrxp_in[7:0]  = {8{SEROUTP1}};
-assign gthrxn_in[15:8] = {8{SEROUTN2}};
-assign gthrxp_in[15:8] = {8{SEROUTP2}};
-
-
-        
-    wib_top mpsoc_sys
-    (
-        .clk62p5       (clk62p5      ),
-        .gpo_0         (gpo_0        ),
-        .i2c0_scln     (i2c0_scln    ),
-        .i2c0_sclp     (i2c0_sclp    ),
-        .i2c0_sda_inn  (i2c0_sda_inn ),
-        .i2c0_sda_inp  (i2c0_sda_inp ),
-        .i2c0_sda_outn (i2c0_sda_outn),
-        .i2c0_sda_outp (i2c0_sda_outp),
-
-        .gtrefclk00p_in (gtrefclk00p_in), // reference clocks(), 128M
-        .gtrefclk00n_in (gtrefclk00n_in), // reference clocks(), 128M
-        .gthrxn_in      (gthrxn_in    ), // RX diff lines
-        .gthrxp_in      (gthrxp_in    )    
-    );
-
-
-endmodule
-
+*/
