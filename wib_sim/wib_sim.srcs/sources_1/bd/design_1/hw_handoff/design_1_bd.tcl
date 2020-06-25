@@ -168,6 +168,9 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.FREQ_HZ {63988095} \
  ] $clk64
+  set clk_adc_2mhz_0 [ create_bd_port -dir I clk_adc_2mhz_0 ]
+  set fastcommand_out_n_0 [ create_bd_port -dir O fastcommand_out_n_0 ]
+  set fastcommand_out_p_0 [ create_bd_port -dir O fastcommand_out_p_0 ]
   set scl_n_0 [ create_bd_port -dir O scl_n_0 ]
   set scl_p_0 [ create_bd_port -dir O scl_p_0 ]
   set sda_in_n_0 [ create_bd_port -dir I sda_in_n_0 ]
@@ -216,13 +219,16 @@ proc create_root_design { parentCell } {
    CONFIG.USE_PHASE_ALIGNMENT {true} \
  ] $clk_wiz_0
 
+  # Create instance: coldata_fast_cmd_0, and set properties
+  set coldata_fast_cmd_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_fast_cmd:1.0 coldata_fast_cmd_0 ]
+
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
 
   # Create instance: ps8_0_axi_periph, and set properties
   set ps8_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps8_0_axi_periph ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {3} \
+   CONFIG.NUM_MI {4} \
  ] $ps8_0_axi_periph
 
   # Create instance: rst_ps8_0_99M, and set properties
@@ -1770,22 +1776,26 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins axi_cdma_0/S_AXI_LITE] [get_bd_intf_pins ps8_0_axi_periph/M00_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins coldata_i2c_0/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M01_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M02_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M02_AXI]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M03_AXI [get_bd_intf_pins coldata_fast_cmd_0/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M03_AXI]
   connect_bd_intf_net -intf_net zynq_ultra_ps_e_0_M_AXI_HPM0_FPD [get_bd_intf_pins ps8_0_axi_periph/S00_AXI] [get_bd_intf_pins zynq_ultra_ps_e_0/M_AXI_HPM0_FPD]
 
   # Create port connections
   connect_bd_net -net axi_cdma_0_cdma_introut [get_bd_pins axi_cdma_0/cdma_introut] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
-  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_ports clk62p5] [get_bd_pins clk_wiz_0/clk_out1]
+  connect_bd_net -net clk_adc_2mhz_0_1 [get_bd_ports clk_adc_2mhz_0] [get_bd_pins coldata_fast_cmd_0/clk_adc_2mhz]
+  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_ports clk62p5] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins coldata_fast_cmd_0/clk62p5]
   connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_ports clk64] [get_bd_pins clk_wiz_0/clk_out2]
+  connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_n [get_bd_ports fastcommand_out_n_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_n]
+  connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_p [get_bd_ports fastcommand_out_p_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_p]
   connect_bd_net -net coldata_i2c_0_scl_n [get_bd_ports scl_n_0] [get_bd_pins coldata_i2c_0/scl_n]
   connect_bd_net -net coldata_i2c_0_scl_p [get_bd_ports scl_p_0] [get_bd_pins coldata_i2c_0/scl_p]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_ports sda_out_n_0] [get_bd_pins coldata_i2c_0/sda_out_n]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_ports sda_out_p_0] [get_bd_pins coldata_i2c_0/sda_out_p]
   connect_bd_net -net rst_ps8_0_99M_interconnect_aresetn [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins rst_ps8_0_99M/interconnect_aresetn]
-  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_pins axi_cdma_0/s_axi_lite_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins coldata_i2c_0/s00_axi_aresetn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn]
+  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_pins axi_cdma_0/s_axi_lite_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_0/s00_axi_aresetn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn]
   connect_bd_net -net sda_in_n_0_1 [get_bd_ports sda_in_n_0] [get_bd_pins coldata_i2c_0/sda_in_n]
   connect_bd_net -net sda_in_p_0_1 [get_bd_ports sda_in_p_0] [get_bd_pins coldata_i2c_0/sda_in_p]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins axi_cdma_0/m_axi_aclk] [get_bd_pins axi_cdma_0/s_axi_lite_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins coldata_i2c_0/s00_axi_aclk] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0] [get_bd_pins zynq_ultra_ps_e_0/saxihp0_fpd_aclk]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins coldata_fast_cmd_0/cmd_act] [get_bd_pins coldata_fast_cmd_0/cmd_adc_reset] [get_bd_pins coldata_fast_cmd_0/cmd_edge] [get_bd_pins coldata_fast_cmd_0/cmd_idle] [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins axi_cdma_0/m_axi_aclk] [get_bd_pins axi_cdma_0/s_axi_lite_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_0/s00_axi_aclk] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0] [get_bd_pins zynq_ultra_ps_e_0/saxihp0_fpd_aclk]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_99M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 
   # Create address segments
@@ -1794,6 +1804,7 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0xC0000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces axi_cdma_0/Data] [get_bd_addr_segs zynq_ultra_ps_e_0/SAXIGP2/HP0_QSPI] -force
   assign_bd_address -offset 0xA0000000 -range 0x00001000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_cdma_0/S_AXI_LITE/Reg] -force
   assign_bd_address -offset 0xA0020000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] -force
+  assign_bd_address -offset 0xA0030000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs coldata_fast_cmd_0/S00_AXI/S00_AXI_reg] -force
   assign_bd_address -offset 0xA0010000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs coldata_i2c_0/S00_AXI/S00_AXI_reg] -force
 
   # Exclude Address Segments

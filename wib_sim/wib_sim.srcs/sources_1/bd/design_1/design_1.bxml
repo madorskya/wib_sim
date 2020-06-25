@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="design_1" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1591473323"/>
-    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1591473323"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1591473327"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1591473327"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1592783889"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1592783889"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1592783889"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1592783889"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci" Type="IP">
         <Instance HierarchyPath="zynq_ultra_ps_e_0"/>
@@ -79,19 +79,16 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="synth/design_1.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+      <File Name="ip/design_1_axi_gpio_0_0/design_1_axi_gpio_0_0.xci" Type="IP">
+        <Instance HierarchyPath="axi_gpio_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
-      </File>
-      <File Name="sim/design_1.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_axi_gpio_0_0/design_1_axi_gpio_0_0.xci" Type="IP">
-        <Instance HierarchyPath="axi_gpio_0"/>
+      <File Name="ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0.xci" Type="IP">
+        <Instance HierarchyPath="coldata_fast_cmd_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -112,6 +109,17 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="synth/design_1.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim/design_1.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="design_1_ooc.xdc" Type="XDC">

@@ -13,11 +13,14 @@ module bd_tux
     output i2c0_sda_outp,
     
     output [7:0] gp_out,
-    output clk64
+    output clk64,
+
+    input  clk_adc_2mhz,
+    output fastcommand_out_n,
+    output fastcommand_out_p
 );
     
-  wire clk62p5;
-  
+ 
     design_1 design_1_i
     (
         .clk62p5      (clk62p5      ),
@@ -28,6 +31,9 @@ module bd_tux
         .sda_out_n_0  (i2c0_sda_outn),
         .sda_out_p_0  (i2c0_sda_outp),
         .gp_out_tri_o (gp_out),
-        .clk64        (clk64)
+        .clk64        (clk64),
+        .clk_adc_2mhz_0      (clk_adc_2mhz),
+        .fastcommand_out_n_0 (fastcommand_out_n),
+        .fastcommand_out_p_0 (fastcommand_out_p)
     );
 endmodule

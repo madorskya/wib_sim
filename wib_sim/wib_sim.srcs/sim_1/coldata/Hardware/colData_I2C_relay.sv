@@ -79,12 +79,16 @@ module	coldADC_I2C_relay	( input   logic       I2C_S_LVDS_SCL,         //(Source
 
 //*** First, capture the CHIP_ID
 // Madorsky: rework to prevent race condition in simulator
-//  always @(posedge valid_chipID or negedge CORE_Reset_ACTIVE_LOW)
-//    if( CORE_Reset_ACTIVE_LOW == ZERO)
-//      capturedChipID  <=  4'b0000;
-//    else
-    always_comb
+  always @(posedge valid_chipID or negedge CORE_Reset_ACTIVE_LOW)
+    if( CORE_Reset_ACTIVE_LOW == ZERO)
+      capturedChipID  <=  4'b0000;
+    else
       capturedChipID  <=  rcvChipID;
+
+// Madorsky: reworked code disabled for tests
+//    always_comb
+//      capturedChipID  <=  rcvChipID;
+
 
 //***   Taken from "PACKAGE.constants.colData.sv"
 //***

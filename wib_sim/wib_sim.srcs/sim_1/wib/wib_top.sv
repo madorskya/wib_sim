@@ -9,6 +9,10 @@ module wib_top
     output i2c0_sda_outn,
     output i2c0_sda_outp,
     
+    input  clk_adc_2mhz,
+    output fastcommand_out_n,
+    output fastcommand_out_p,
+
     input  [3 : 0] gtrefclk00p_in, // reference clocks; 128M
     input  [3 : 0] gtrefclk00n_in, // reference clocks; 128M
     input [15 : 0] gthrxn_in    , // RX diff lines
@@ -42,8 +46,17 @@ module wib_top
         .i2c0_sda_outp (i2c0_sda_outp),
         
         .gp_out        (gp_out),
-        .clk64         (reset_clk_64M_in) 
+        .clk64         (reset_clk_64M_in), 
+
+        .clk_adc_2mhz      (clk_adc_2mhz),
+        .fastcommand_out_n (fastcommand_out_n),
+        .fastcommand_out_p (fastcommand_out_p)
     );
+
+    wire [1:0]   rx_k;
+    wire [1:0]   rx_comma;
+    wire [1:0]   rx_notvalid;
+    wire [1:0]   rx_disp;
 
     
     coldata_rx_tux coldata_rx
@@ -62,7 +75,11 @@ module wib_top
         .rxbyteisaligned_out (rxbyteisaligned_out),
         .rxbyterealign_out   (rxbyterealign_out  ),
         .rxcommadet_out      (rxcommadet_out     ),             
-    
+        .rx_k                (rx_k       ),
+        .rx_comma            (rx_comma   ),
+        .rx_notvalid         (rx_notvalid),
+        .rx_disp             (rx_disp    ),
+
         .rx_cdr_stable_out   (rx_cdr_stable_out  ), 
         .gtpowergood_out     (gtpowergood_out    )
     );

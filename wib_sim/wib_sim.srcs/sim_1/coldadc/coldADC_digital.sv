@@ -45,11 +45,11 @@ module	coldADC_digital	(
 						//*** Clock for FrontEnd
 						//	ALTERED BY CARL
 						//		output 	logic					Clk_16MHz,
-			    output logic Clk_16MHz_cu0,     // dries cal_unit0
+			    output logic Clk_16MHz_cu0,     // dries cal_unit0 // Madorsky: ADC data clock
           output logic Clk_16MHz_cu1,     // drives cal_unit1
           output logic Clk_16MHz_adc,     // drives ADC
 						//*** Sample Signal for FrontEnd
-					output 	logic					frontEndSample,
+					output 	logic					frontEndSample, // Madorsky: channel 0 and 8 marker
 					//***
 					//*** Connections for cal_core_wrapper
 					//***
@@ -264,7 +264,7 @@ module	coldADC_digital	(
 			// external inputs from UART_ADC (external to cal core)
 			    input logic 					PAD_mosi,                   // input to UART_ADC on current chip
 			// inputs from ADCs
-			    input logic 	[15:0] 	synced_adc_cal_0,  // synced adc word w calibration
+			    input logic 	[15:0] 	synced_adc_cal_0,  // synced adc word w calibration // Madorsky: drop data here at 16 MHz clock rising
 			    input logic 	[15:0] 	synced_adc_cal_1,  // synced adc word w calibration
 			    input logic 	[15:0] 	synced_adc_nocal_0,// synced adc word w/o calib
 			    input logic 	[15:0] 	synced_adc_nocal_1,// synced adc word w/o calib

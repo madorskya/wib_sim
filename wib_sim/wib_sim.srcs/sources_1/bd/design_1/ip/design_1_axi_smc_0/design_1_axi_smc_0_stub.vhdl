@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
--- Date        : Wed Jun  3 18:15:04 2020
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
--- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_axi_smc_0 -prefix
---               design_1_axi_smc_0_ design_1_axi_smc_0_stub.vhdl
+-- Date        : Sun Jun 21 20:05:43 2020
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/design_1_axi_smc_0_stub.vhdl
 -- Design      : design_1_axi_smc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu9eg-ffvb1156-2-e
