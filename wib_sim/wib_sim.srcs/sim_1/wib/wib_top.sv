@@ -9,7 +9,6 @@ module wib_top
     output i2c0_sda_outn,
     output i2c0_sda_outp,
     
-    input  clk_adc_2mhz,
     output fastcommand_out_n,
     output fastcommand_out_p,
 
@@ -48,7 +47,6 @@ module wib_top
         .gp_out        (gp_out),
         .clk64         (reset_clk_64M_in), 
 
-        .clk_adc_2mhz      (clk_adc_2mhz),
         .fastcommand_out_n (fastcommand_out_n),
         .fastcommand_out_p (fastcommand_out_p)
     );
