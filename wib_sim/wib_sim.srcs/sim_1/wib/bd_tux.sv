@@ -15,7 +15,6 @@ module bd_tux
     output [7:0] gp_out,
     output clk64,
 
-    input  clk_adc_2mhz,
     output fastcommand_out_n,
     output fastcommand_out_p
 );
@@ -32,7 +31,6 @@ module bd_tux
         .sda_out_p_0  (i2c0_sda_outp),
         .gp_out_tri_o (gp_out),
         .clk64        (clk64),
-        .clk_adc_2mhz_0      (clk_adc_2mhz),
         .fastcommand_out_n_0 (fastcommand_out_n),
         .fastcommand_out_p_0 (fastcommand_out_p)
     );

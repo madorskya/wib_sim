@@ -16,7 +16,6 @@
 	(
 		// Users to add ports here
         input clk62p5, // main clock input
-        input clk_adc_2mhz, // 2MHz clk feeding ADC, for reset command synchronization 
         output fastcommand_out_p, 
         output fastcommand_out_n,
         
@@ -29,6 +28,7 @@
         // special input for ACT command programmed as coldADC master reset
         // this command results into a special coldADC reset synchronization as required by coldADC V1
         input cmd_adc_reset, 
+        output reg ready,
 
 		// User ports ends
 		// Do not modify the ports beyond this line
@@ -479,7 +479,9 @@
     
     always @(posedge S_AXI_ACLK)
     begin
-        if (slv_reg_wren) cmd_req = 1'b1; // register was written, set request for FSM
+        if (slv_reg_wren && 
+            axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 3'b0) 
+                cmd_req = 1'b1; // register 0 was written, set request for FSM
         
         if (cmd_rsp_r[3]) cmd_req = 1'b0; // received response, remove request
         cmd_rsp_r = {cmd_rsp_r[2:0], cmd_rsp};
@@ -488,12 +490,84 @@
     localparam IDLE  = 2'b00;
     localparam WAIT  = 2'b01;
     localparam SHIFT = 2'b10;
+    localparam SHIFT_EDGE = 2'b11;
     
     reg [1:0] state = IDLE;
     reg [17:0] sh_mark;
+    reg [7:0] wait_cnt;
 
     always @(posedge clk62p5)
     begin
+    
+        // FSM
+        cmd_rsp = 1'b0;
+        ready = 1'b0;
+        case (state)
+            IDLE: 
+            begin
+                if (cmd_req_r[4] == 1'b1) // command request came
+                begin
+                    state = SHIFT;
+                    // put command code into shifter
+                    // alert first, then command itself
+                    case (cmd_code[3])
+                        6'b000001: begin shr = {1'b0, code_alert, code_reset, 1'b0}; end
+                        6'b000010: begin shr = {1'b0, code_alert, code_act  , 1'b0}; end
+                        6'b000100: begin shr = {1'b0, code_alert, code_sync , 1'b0}; end
+                        6'b001000: begin shr = {1'b0, code_alert, code_edge , 1'b0}; end
+                        6'b010000: begin shr = {1'b0, code_alert, code_idle , 1'b0}; end
+                        // special command, EDGE+ACT. COLDADC rev 1 requires the following reset procedure:
+                        // first EDGE command, then after a delay, ACT command programmed as COLDADC reset
+                        // COLDADC reset must end (rise) between 62.5 and 125 ns after 2M clock rising edge
+                        // see message from David 2020-06-17
+                        6'b100000: begin shr = {1'b0, code_alert, code_edge  , 1'b0}; state = SHIFT_EDGE; end
+                        default:   begin shr = 18'b0; end // no command if more than one bit or no bits set
+                    endcase
+            
+                    cmd_rsp = 1'b1;
+                    sh_mark = 17'b1; // this is shift marker, used to count bits shifted out
+                end
+                else ready = 1'b1;
+            end
+            
+            SHIFT, SHIFT_EDGE:
+            begin
+                shr     = {shr    [16:0], 1'b0}; // shift command out
+                sh_mark = {sh_mark[16:0], 1'b0}; // shift marker
+                if (sh_mark[17] == 1'b1) // last bit is out now
+                begin
+                    wait_cnt = slv_reg1[7:0]; // take wait time from register 1
+                    if (state == SHIFT_EDGE) state = WAIT;
+                    else state = IDLE;
+                end
+            end
+            
+            WAIT:
+            begin
+                shr = {1'b0, code_alert, code_act  , 1'b0}; // prepare act command
+                sh_mark = 17'b1; // this is shift marker, used to count bits shifted out
+                // pause between EDGE and ACT in case of EDGE+ACT
+                if (wait_cnt == 8'h0) state = SHIFT;
+                else wait_cnt = wait_cnt - 8'h1;
+            end
+            
+        endcase    
+    
+    
+        cmd_code[3] = cmd_code[2];
+        cmd_code[2] = cmd_code[1];
+        cmd_code[1] = cmd_code[0];
+        cmd_code[0] = slv_reg0[5:0];
+        
+        cmd_req_r = {cmd_req_r[3:0], cmd_req};
+        // add requests arriving via pins
+        cmd_req_r[4] = cmd_req_r[4] | ( cmd_adc_reset |  
+                                        cmd_idle |
+                                        cmd_edge |
+                                        cmd_sync |
+                                        cmd_act |
+                                        cmd_reset);
+
         // OR firmware commands with ZYNQ commands
         // firmware commands don't need demetastabbing since they are synchronous to 62.5M clock
         cmd_code[3] = cmd_code[3] | 
@@ -505,50 +579,6 @@
             cmd_act, 
             cmd_reset
         };
-    
-        // FSM
-        cmd_rsp = 1'b0;
-        case (state)
-            IDLE: 
-            begin
-                if (cmd_req_r[4] == 1'b1) // command request came
-                begin
-                    // put command code into shifter
-                    // alert first, then command itself
-                    case (cmd_code[3])
-                        6'b000001: begin shr = {1'b0, code_alert, code_reset, 1'b0}; end
-                        6'b000010: begin shr = {1'b0, code_alert, code_act  , 1'b0}; end
-                        6'b000100: begin shr = {1'b0, code_alert, code_sync , 1'b0}; end
-                        6'b001000: begin shr = {1'b0, code_alert, code_edge , 1'b0}; end
-                        6'b010000: begin shr = {1'b0, code_alert, code_idle , 1'b0}; end
-                        6'b100000: begin shr = {1'b0, code_alert, code_act  , 1'b0}; end
-                        default:   begin shr = 18'b0; end // no command if more than one bit or no bits set
-                    endcase
-            
-                    cmd_rsp = 1'b1;
-                    sh_mark = 17'b1; // this is shift marker, used to count bits shifted out
-                    state = SHIFT;
-                end
-            end
-            
-            SHIFT:
-            begin
-                shr     = {shr    [16:0], 1'b0}; // shift command out
-                sh_mark = {sh_mark[16:0], 1'b0}; // shift marker
-                if (sh_mark[17] == 1'b1) // last bit is out now
-                begin
-                    state = IDLE;
-                end
-            end
-        endcase    
-    
-    
-        cmd_code[3] = cmd_code[2];
-        cmd_code[2] = cmd_code[1];
-        cmd_code[1] = cmd_code[0];
-        cmd_code[0] = slv_reg0[5:0];
-        
-        cmd_req_r = {cmd_req_r[3:0], cmd_req};
         
     end
 

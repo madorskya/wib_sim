@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-//Date        : Sun Jun 21 19:58:03 2020
+//Date        : Sat Jun 27 18:17:03 2020
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -13,7 +13,6 @@
 module design_1
    (clk62p5,
     clk64,
-    clk_adc_2mhz_0,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     gp_out_tri_o,
@@ -25,7 +24,6 @@ module design_1
     sda_out_p_0);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK62P5 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK62P5, CLK_DOMAIN /clk_wiz_0_clk_out1, FREQ_HZ 62500000, INSERT_VIP 0, PHASE 0.0" *) output clk62p5;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK64 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK64, CLK_DOMAIN /clk_wiz_0_clk_out1, FREQ_HZ 63988095, INSERT_VIP 0, PHASE 0.0" *) output clk64;
-  input clk_adc_2mhz_0;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gp_out TRI_O" *) output [7:0]gp_out_tri_o;
@@ -100,7 +98,6 @@ module design_1
   wire axi_smc_M00_AXI_WREADY;
   wire [15:0]axi_smc_M00_AXI_WSTRB;
   wire axi_smc_M00_AXI_WVALID;
-  wire clk_adc_2mhz_0_1;
   wire clk_wiz_0_clk_out1;
   wire clk_wiz_0_clk_out2;
   wire coldata_fast_cmd_0_fastcommand_out_n;
@@ -227,7 +224,6 @@ module design_1
 
   assign clk62p5 = clk_wiz_0_clk_out1;
   assign clk64 = clk_wiz_0_clk_out2;
-  assign clk_adc_2mhz_0_1 = clk_adc_2mhz_0;
   assign fastcommand_out_n_0 = coldata_fast_cmd_0_fastcommand_out_n;
   assign fastcommand_out_p_0 = coldata_fast_cmd_0_fastcommand_out_p;
   assign gp_out_tri_o[7:0] = axi_gpio_0_GPIO_TRI_O;
@@ -384,7 +380,6 @@ module design_1
         .reset(xlconstant_0_dout));
   design_1_coldata_fast_cmd_0_0 coldata_fast_cmd_0
        (.clk62p5(clk_wiz_0_clk_out1),
-        .clk_adc_2mhz(clk_adc_2mhz_0_1),
         .cmd_act(xlconstant_0_dout),
         .cmd_adc_reset(xlconstant_0_dout),
         .cmd_edge(xlconstant_0_dout),

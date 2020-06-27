@@ -437,10 +437,11 @@ always #10000 tb_ACLK = !tb_ACLK;
 reg [3:0] refclk_cnt = 4'b0;
 always
 begin 
-    #390.6 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G
+    // disable for faster simulation
+    #390.6; // clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G 
     if (refclk_cnt == 4'd9)
     begin
-        gtrefclk00p_in = ~gtrefclk00p_in;
+        gtrefclk00p_in = ~gtrefclk00p_in; // 128 M ref clk
         gtrefclk00n_in = ~gtrefclk00p_in;
         refclk_cnt = 4'd0;
     end
@@ -575,27 +576,38 @@ begin
     #40000000; // give I2C time 
 
     // FAST command FSM reset and align
-    fast_command = 1;
-    repeat(4)@(posedge clk62p5);     
-    fast_command = 0;
-    repeat(4)@(posedge clk62p5);      
+//    fast_command = 1;
+//    repeat(4)@(posedge clk62p5);     
+//    fast_command = 0;
+//    repeat(4)@(posedge clk62p5);      
 
-    // issue FASTACT = ADC RESET
-    // FAST command sequence: 11100100 
-    fast_command = 1;
-    repeat(3)@(posedge clk62p5);     
-    fast_command = 0;
-    repeat(2)@(posedge clk62p5);      
-    fast_command = 1;
-    repeat(1)@(posedge clk62p5);      
-    fast_command = 0;
-    repeat(2)@(posedge clk62p5);    
-    fast_command = 1;
+//    // issue FASTACT = ADC RESET
+//    // FAST command sequence: 11100100 
+//    fast_command = 1;
+//    repeat(3)@(posedge clk62p5);     
+//    fast_command = 0;
+//    repeat(2)@(posedge clk62p5);      
+//    fast_command = 1;
+//    repeat(1)@(posedge clk62p5);      
+//    fast_command = 0;
+//    repeat(2)@(posedge clk62p5);    
+//    fast_command = 1;
     
     // generate FAST command using the fast command module
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0030000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b100000, 1, 16'h000F, 4, resp); // tell FAST command module to send ACT command
+//    `ZYNQ_VIP_0.write_burst_strb(40'h00A0030000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+//            128'b100000, 1, 16'h000F, 4, resp); // tell FAST command module to send ACT command
     
+
+    // write delay between EDGE and ACT command for correct ADC reset    
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0030004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'd19, 1, 16'h000F, 4, resp); //
+
+
+    // generate FAST command using the fast command module
+    `ZYNQ_VIP_0.write_burst_strb(40'h00A0030000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
+            128'b100000, 1, 16'h000F, 4, resp); // tell FAST command module to send EDGE+ACT command to reset ADC with correct timing
+    
+    #1000000; // fast command + ADC reset pulse
 
     `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
     $display ("read data: %h", read_data128[31:0]);
@@ -668,7 +680,6 @@ assign gthrxp_in[15:8] = {8{SEROUTP2}};
         .i2c0_sda_outn (i2c0_sda_outn),
         .i2c0_sda_outp (i2c0_sda_outp),
 
-        .clk_adc_2mhz      (1'b0),
         .fastcommand_out_n (FASTCOMMAND_IN_N),
         .fastcommand_out_p (FASTCOMMAND_IN_P),
 

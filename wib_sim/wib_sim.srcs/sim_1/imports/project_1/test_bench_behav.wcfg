@@ -18,19 +18,22 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="182172999000fs"></ZoomStartTime>
-      <ZoomEndTime time="189852999001fs"></ZoomEndTime>
-      <Cursor1Time time="189802999000fs"></Cursor1Time>
+      <ZoomStartTime time="190568999000fs"></ZoomStartTime>
+      <ZoomEndTime time="191660999001fs"></ZoomEndTime>
+      <Cursor1Time time="190874999000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="342"></NameColumnWidth>
-      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="81" />
+   <WVObjectSize size="85" />
    <wave_markers>
       <marker label="" time="43887353" />
       <marker label="" time="30073500" />
       <marker label="" time="63908489" />
+      <marker label="" time="186939999000" />
+      <marker label="" time="190385000000" />
+      <marker label="" time="190875999000" />
    </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -155,10 +158,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/rd_reg[1]">
       <obj_property name="ElementShortName">[1][31:0]</obj_property>
       <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/clk62p5">
-      <obj_property name="ElementShortName">clk62p5</obj_property>
-      <obj_property name="ObjectShortName">clk62p5</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/test_bench_coldata/clk_1p28g">
       <obj_property name="ElementShortName">clk_1p28g</obj_property>
@@ -356,5 +355,26 @@
    <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp">
       <obj_property name="ElementShortName">cmd_rsp</obj_property>
       <obj_property name="ObjectShortName">cmd_rsp</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/ADC_CLK_2MHZ_P">
+      <obj_property name="ElementShortName">ADC_CLK_2MHZ_P[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ADC_CLK_2MHZ_P[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/clk62p5">
+      <obj_property name="ElementShortName">clk62p5</obj_property>
+      <obj_property name="ObjectShortName">clk62p5</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code">
+      <obj_property name="ElementShortName">cmd_code[3:0][5:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_code[3:0][5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg0">
+      <obj_property name="ElementShortName">slv_reg0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_reg0[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg_wren">
+      <obj_property name="ElementShortName">slv_reg_wren</obj_property>
+      <obj_property name="ObjectShortName">slv_reg_wren</obj_property>
    </wvobject>
 </wave_config>

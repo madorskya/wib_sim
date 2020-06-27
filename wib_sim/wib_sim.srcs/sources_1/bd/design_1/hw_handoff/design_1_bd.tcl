@@ -168,7 +168,6 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.FREQ_HZ {63988095} \
  ] $clk64
-  set clk_adc_2mhz_0 [ create_bd_port -dir I clk_adc_2mhz_0 ]
   set fastcommand_out_n_0 [ create_bd_port -dir O fastcommand_out_n_0 ]
   set fastcommand_out_p_0 [ create_bd_port -dir O fastcommand_out_p_0 ]
   set scl_n_0 [ create_bd_port -dir O scl_n_0 ]
@@ -1781,7 +1780,6 @@ proc create_root_design { parentCell } {
 
   # Create port connections
   connect_bd_net -net axi_cdma_0_cdma_introut [get_bd_pins axi_cdma_0/cdma_introut] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
-  connect_bd_net -net clk_adc_2mhz_0_1 [get_bd_ports clk_adc_2mhz_0] [get_bd_pins coldata_fast_cmd_0/clk_adc_2mhz]
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_ports clk62p5] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins coldata_fast_cmd_0/clk62p5]
   connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_ports clk64] [get_bd_pins clk_wiz_0/clk_out2]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_n [get_bd_ports fastcommand_out_n_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_n]

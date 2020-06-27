@@ -27,7 +27,6 @@ register 49[4:0] and page 2 register 1[4:0]."
 	(
 		// Users to add ports here
         input clk62p5, // main clock input
-        input clk_adc_2mhz, // 2MHz clk feeding ADC, for reset command synchronization 
         output fastcommand_out_p, 
         output fastcommand_out_n,
         
@@ -39,9 +38,9 @@ register 49[4:0] and page 2 register 1[4:0]."
         input cmd_reset, // = 1110_1000 (Resets COLDATA)		// User ports ends
         // special input for ACT command programmed as coldADC master reset
         // this command results into a special coldADC synchronization as required by coldADC V1
-        input cmd_adc_reset, 
+        input cmd_adc_reset,
+        output ready, 
 		// Do not modify the ports beyond this line
-
 
 		// Ports of Axi Slave Bus Interface S00_AXI
 		input wire  s00_axi_aclk,
@@ -73,7 +72,6 @@ register 49[4:0] and page 2 register 1[4:0]."
 	) coldata_fast_cmd_v1_0_S00_AXI_inst (
 
         .clk62p5           (clk62p5          ),
-        .clk_adc_2mhz      (clk_adc_2mhz     ), 
         .fastcommand_out_p (fastcommand_out_p), 
         .fastcommand_out_n (fastcommand_out_n),
 
@@ -83,6 +81,7 @@ register 49[4:0] and page 2 register 1[4:0]."
         .cmd_act       (cmd_act      ),
         .cmd_reset     (cmd_reset    ),
         .cmd_adc_reset (cmd_adc_reset), 
+        .ready         (ready        ),
 
 		.S_AXI_ACLK(s00_axi_aclk),
 		.S_AXI_ARESETN(s00_axi_aresetn),
