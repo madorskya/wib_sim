@@ -426,7 +426,7 @@
 	      case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
 	        3'h0   : reg_data_out <= slv_reg0;
 	        3'h1   : reg_data_out <= slv_reg1;
-	        3'h2   : reg_data_out <= slv_reg2;
+	        3'h2   : reg_data_out <= ready; // read ready signal out of reg2
 	        3'h3   : reg_data_out <= slv_reg3;
 	        3'h4   : reg_data_out <= slv_reg4;
 	        3'h5   : reg_data_out <= slv_reg5;
@@ -483,7 +483,12 @@
             axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 3'b0) 
                 cmd_req = 1'b1; // register 0 was written, set request for FSM
         
-        if (cmd_rsp_r[3]) cmd_req = 1'b0; // received response, remove request
+        if (cmd_rsp_r[3])
+        begin 
+            cmd_req = 1'b0; // received response, remove request
+            slv_reg0 = 0; // remove the command code when it's picked up by FSM
+            // so it doesn't interfere with firmware commands
+        end
         cmd_rsp_r = {cmd_rsp_r[2:0], cmd_rsp};
     end
 

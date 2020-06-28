@@ -1,3 +1,11 @@
+2020.1:
+ * Version 1.7 (Rev. 8)
+ * Feature Enhancement: Added new transceiver configuration preset options for GTY-100GAUI_4/ GTY-50GAUI_2
+
+2019.2.2:
+ * Version 1.7 (Rev. 7)
+ * No changes
+
 2019.2.1:
  * Version 1.7 (Rev. 7)
  * No changes
@@ -253,7 +261,7 @@
  * Version 1.0
  * Initial release
 
-(c) Copyright 2013 - 2019 Xilinx, Inc. All rights reserved.
+(c) Copyright 2013 - 2020 Xilinx, Inc. All rights reserved.
 
 This file contains confidential and proprietary information
 of Xilinx, Inc. and is protected under U.S. and

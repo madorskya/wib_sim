@@ -172,6 +172,7 @@ class zynq_ultra_ps_e_tlm : public sc_core::sc_module   {
     // xtlm initiator sockets of zynq_ultra_ps_e_tlm and tlm simple initiator 
     // socket with xilinx_zynqmp's target socket
     xtlm::xaximm_xtlm2tlm_t<128,32> S_AXI_HP0_FPD_xtlm_brdg;
+    zynqmp_tlm::xsc_xtlm_aximm_tran_buffer *S_AXI_HP0_FPD_buff;
 
     // This Bridges converts b_transport to nb_transports and also
     // Converts tlm transactions to xtlm transactions.

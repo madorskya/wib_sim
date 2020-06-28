@@ -46,6 +46,7 @@
 // 
 // DO NOT MODIFY THIS FILE.
 
+
 #include "design_1_axi_smc_0_sc.h"
 
 #include "smartconnect.h"
@@ -59,8 +60,10 @@ design_1_axi_smc_0_sc::design_1_axi_smc_0_sc(const sc_core::sc_module_name& nm) 
   xsc::utils::xsc_sim_manager::addInstance("design_1_axi_smc_0", this);
 
   // initialize module
-  xsc::common_cpp::properties model_param_props;
-  model_param_props.addString("TLM_COMPONENT_NAME", "design_1_axi_smc_0");
+    xsc::common_cpp::properties model_param_props;
+    model_param_props.addLong("HAS_RESET", "1");
+    model_param_props.addString("TLM_COMPONENT_NAME", "design_1_axi_smc_0");
+
   mp_impl = new smartconnect("inst", model_param_props);
 
   // initialize sockets

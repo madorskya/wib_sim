@@ -18,22 +18,23 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="190568999000fs"></ZoomStartTime>
-      <ZoomEndTime time="191660999001fs"></ZoomEndTime>
-      <Cursor1Time time="190874999000fs"></Cursor1Time>
+      <ZoomStartTime time="231993152015fs"></ZoomStartTime>
+      <ZoomEndTime time="232692652016fs"></ZoomEndTime>
+      <Cursor1Time time="232042999000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="342"></NameColumnWidth>
-      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="85" />
+   <WVObjectSize size="80" />
    <wave_markers>
       <marker label="" time="43887353" />
       <marker label="" time="30073500" />
       <marker label="" time="63908489" />
       <marker label="" time="186939999000" />
-      <marker label="" time="190385000000" />
+      <marker label="" time="250985000000" />
       <marker label="" time="190875999000" />
+      <marker label="" time="190385000000" />
    </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -212,73 +213,37 @@
       <obj_property name="ElementShortName">ADC_DIG_OUTA_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTA_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTA_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTA_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTA_N[3:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTB_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTB_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTB_P[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTB_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTB_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTB_N[3:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTC_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTC_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTC_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTC_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTC_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTC_N[3:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTD_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTD_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTD_P[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTD_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTD_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTD_N[3:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTE_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTE_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTE_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTE_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTE_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTE_N[3:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTF_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTF_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTF_P[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTF_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTF_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTF_N[3:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTG_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTG_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTG_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTG_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTG_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTG_N[3:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTH_P">
       <obj_property name="ElementShortName">ADC_DIG_OUTH_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTH_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTH_N">
-      <obj_property name="ElementShortName">ADC_DIG_OUTH_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_OUTH_N[3:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_FRAME_P">
       <obj_property name="ElementShortName">ADC_DIG_FRAME_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_FRAME_P[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_FRAME_N">
-      <obj_property name="ElementShortName">ADC_DIG_FRAME_N[3:0]</obj_property>
-      <obj_property name="ObjectShortName">ADC_DIG_FRAME_N[3:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/test_bench_coldata/ADC_MASTER_RESET">
       <obj_property name="ElementShortName">ADC_MASTER_RESET</obj_property>
@@ -376,5 +341,21 @@
    <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg_wren">
       <obj_property name="ElementShortName">slv_reg_wren</obj_property>
       <obj_property name="ObjectShortName">slv_reg_wren</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/startNumber">
+      <obj_property name="ElementShortName">startNumber[4:0]</obj_property>
+      <obj_property name="ObjectShortName">startNumber[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/holdFrameCnt">
+      <obj_property name="ElementShortName">holdFrameCnt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">holdFrameCnt[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/predictFrameSt">
+      <obj_property name="ElementShortName">predictFrameSt</obj_property>
+      <obj_property name="ObjectShortName">predictFrameSt</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND_STARTNUMREG_ADC_1/storedData">
+      <obj_property name="ElementShortName">storedData[7:0]</obj_property>
+      <obj_property name="ObjectShortName">storedData[7:0]</obj_property>
    </wvobject>
 </wave_config>

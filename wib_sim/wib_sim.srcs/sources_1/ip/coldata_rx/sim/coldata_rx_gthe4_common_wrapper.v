@@ -146,7 +146,7 @@ module coldata_rx_gthe4_common_wrapper (
 
 
 
-gtwizard_ultrascale_v1_7_7_gthe4_common #(
+gtwizard_ultrascale_v1_7_8_gthe4_common #(
   .GTHE4_COMMON_AEN_QPLL0_FBDIV                 (1'b1),
   .GTHE4_COMMON_AEN_QPLL1_FBDIV                 (1'b1),
   .GTHE4_COMMON_AEN_SDM0TOGGLE                  (1'b0),

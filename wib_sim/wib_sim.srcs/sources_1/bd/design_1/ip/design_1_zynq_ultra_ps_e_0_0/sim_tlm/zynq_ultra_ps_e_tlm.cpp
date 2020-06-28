@@ -170,8 +170,11 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
 
         //instantiating XTLM2TLM bridge and stiching it between 
         //S_AXI_HP0_FPD_wr_socket/rd_socket sockets to s_axi_hp_fpd[0] target socket of Zynqmp Qemu tlm wrapper
-        S_AXI_HP0_FPD_wr_socket->bind(*S_AXI_HP0_FPD_xtlm_brdg.wr_socket);
-        S_AXI_HP0_FPD_rd_socket->bind(*S_AXI_HP0_FPD_xtlm_brdg.rd_socket);
+        S_AXI_HP0_FPD_buff = new zynqmp_tlm::xsc_xtlm_aximm_tran_buffer("S_AXI_HP0_FPD_buff");
+        S_AXI_HP0_FPD_rd_socket->bind(*S_AXI_HP0_FPD_buff->in_rd_socket);
+        S_AXI_HP0_FPD_wr_socket->bind(*S_AXI_HP0_FPD_buff->in_wr_socket);
+        S_AXI_HP0_FPD_buff->out_wr_socket->bind(*S_AXI_HP0_FPD_xtlm_brdg.wr_socket);
+        S_AXI_HP0_FPD_buff->out_rd_socket->bind(*S_AXI_HP0_FPD_xtlm_brdg.rd_socket);
         m_zynqmp_tlm_model->s_axi_hp_fpd[0]->bind(S_AXI_HP0_FPD_xtlm_brdg.initiator_socket);
 
         
@@ -203,6 +206,7 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
         //deleteing dynamically created objects 
         delete S_AXI_HP0_FPD_wr_socket;
         delete S_AXI_HP0_FPD_rd_socket;
+        delete S_AXI_HP0_FPD_buff;
         delete M_AXI_HPM0_FPD_wr_socket;
         delete M_AXI_HPM0_FPD_rd_socket;
     }

@@ -53,15 +53,13 @@
 #ifndef _bd_afc3_one_0_H_
 #define _bd_afc3_one_0_H_
 
-#include "xlconstant_v1_1_6.h"
+#include "xlconstant_v1_1_7.h"
 #include "systemc.h"
 class bd_afc3_one_0 : public sc_module {
   public:
-xlconstant_v1_1_6<1,1> mod;
+xlconstant_v1_1_7<1,1> mod;
   sc_out< sc_bv<1> > dout;
-bd_afc3_one_0 (sc_core::sc_module_name name) :sc_module(name), mod("mod") {
-    mod.dout(dout);
-  }
-};
+bd_afc3_one_0 (sc_core::sc_module_name name);
+  };
 
 #endif

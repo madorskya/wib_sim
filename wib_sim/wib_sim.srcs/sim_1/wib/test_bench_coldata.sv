@@ -438,7 +438,7 @@ reg [3:0] refclk_cnt = 4'b0;
 always
 begin 
     // disable for faster simulation
-    #390.6; // clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G 
+    #390.6 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G 
     if (refclk_cnt == 4'd9)
     begin
         gtrefclk00p_in = ~gtrefclk00p_in; // 128 M ref clk
@@ -600,7 +600,7 @@ begin
 
     // write delay between EDGE and ACT command for correct ADC reset    
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0030004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'd19, 1, 16'h000F, 4, resp); //
+            128'd19, 1, 16'h000F, 4, resp); // value of 19 is found experimentally
 
 
     // generate FAST command using the fast command module
@@ -630,8 +630,14 @@ begin
     test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 1;
     test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 1;
 
-    // backdoor COLDATA to output ADC data in FRAME14 format, register: FRAMECONFIGREG
-    test_bench_coldata.coldata.ADC_Configure_Reg_0.storedData = 8'b1; 
+    // frame marker delay, register config_start_number[4:0], according to slide sent by David on 2020-06-17
+    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.coldADC_DigitalBlock_0.BEND_STARTNUMREG_ADC_1.storedData = 8'h0c;
+    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Digital_1.coldADC_DigitalBlock_0.BEND_STARTNUMREG_ADC_1.storedData = 8'h0c;
+    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Digital_1.coldADC_DigitalBlock_0.BEND_STARTNUMREG_ADC_1.storedData = 8'h0c;
+    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.coldADC_DigitalBlock_0.BEND_STARTNUMREG_ADC_1.storedData = 8'h0c;
+
+    // backdoor COLDATA to output ADC data in FRAME12 format, register: FRAMECONFIGREG
+    test_bench_coldata.coldata.ADC_Configure_Reg_0.storedData = 8'b0; 
 
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b001100010_000000110_000000000, 1, 16'h000F, 4, resp); // read reg 3 back
@@ -644,6 +650,12 @@ begin
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
     #40000000;
+
+    // backdoor settings to coldADC, output ADC data
+//    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
+//    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
+//    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
+//    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
 
     `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
     $display ("read data: %h", read_data128[31:0]);
