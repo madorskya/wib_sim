@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="231993152015fs"></ZoomStartTime>
-      <ZoomEndTime time="232692652016fs"></ZoomEndTime>
-      <Cursor1Time time="232042999000fs"></Cursor1Time>
+      <ZoomStartTime time="281745835800fs"></ZoomStartTime>
+      <ZoomEndTime time="282027235801fs"></ZoomEndTime>
+      <Cursor1Time time="281742500000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="342"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <NameColumnWidth column_width="340"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="80" />
+   <WVObjectSize size="82" />
    <wave_markers>
       <marker label="" time="43887353" />
       <marker label="" time="30073500" />
@@ -181,6 +181,19 @@
       <obj_property name="ObjectShortName">rx_data[15:0][15:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_k">
+      <obj_property name="ElementShortName">rx_k[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_k[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/FIFO1_D">
+      <obj_property name="ElementShortName">FIFO1_D[7:0]</obj_property>
+      <obj_property name="ObjectShortName">FIFO1_D[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FIFO1_K">
+      <obj_property name="ElementShortName">FIFO1_K</obj_property>
+      <obj_property name="ObjectShortName">FIFO1_K</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
       <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk2_out[0:0]</obj_property>
@@ -264,10 +277,6 @@
    <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FAST_CMD_ACT">
       <obj_property name="ElementShortName">FAST_CMD_ACT</obj_property>
       <obj_property name="ObjectShortName">FAST_CMD_ACT</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_k">
-      <obj_property name="ElementShortName">rx_k[1:0]</obj_property>
-      <obj_property name="ObjectShortName">rx_k[1:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_comma">
       <obj_property name="ElementShortName">rx_comma[1:0]</obj_property>

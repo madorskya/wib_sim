@@ -14,7 +14,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:440b8dfe</spirit:value>
+            <spirit:value>9:abb8dd7b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -29,11 +29,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:31:52 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:07:50 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c9e5d26</spirit:value>
+            <spirit:value>9:cdb8cbd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -49,11 +49,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:48:57 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:07:54 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c9e5d26</spirit:value>
+            <spirit:value>9:cdb8cbd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -64,7 +64,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c9e5d26</spirit:value>
+            <spirit:value>9:cdb8cbd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -80,11 +80,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:48:57 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:07:54 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c9e5d26</spirit:value>
+            <spirit:value>9:cdb8cbd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -100,11 +100,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:49:02 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:07:59 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:4d1a5441</spirit:value>
+            <spirit:value>9:703842d7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -120,11 +120,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:49:02 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:07:59 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:4d1a5441</spirit:value>
+            <spirit:value>9:703842d7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -139,11 +139,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:49:02 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:07:59 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c9e5d26</spirit:value>
+            <spirit:value>9:cdb8cbd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -157,11 +157,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jun 27 23:55:11 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 19:13:14 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c9e5d26</spirit:value>
+            <spirit:value>9:cdb8cbd9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14892,11 +14892,11 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_RX_COMMA_M_ENABLE</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_RX_COMMA_M_ENABLE">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_RX_COMMA_M_ENABLE">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_RX_COMMA_M_VAL</spirit:name>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_RX_COMMA_M_VAL" spirit:bitStringLength="10">&quot;1010000011&quot;</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_RX_COMMA_M_VAL" spirit:bitStringLength="10">&quot;0110000011&quot;</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_RX_COMMA_P_ENABLE</spirit:name>
@@ -14904,7 +14904,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_RX_COMMA_P_VAL</spirit:name>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_RX_COMMA_P_VAL" spirit:bitStringLength="10">&quot;0101111100&quot;</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_RX_COMMA_P_VAL" spirit:bitStringLength="10">&quot;1001111100&quot;</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_RX_DATA_DECODING</spirit:name>
@@ -16652,7 +16652,7 @@
     <spirit:parameter>
       <spirit:name>RX_COMMA_PRESET</spirit:name>
       <spirit:displayName>Comma value preset</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_PRESET" spirit:choiceRef="choice_pairs_85f99b7f" spirit:order="57">K28.5</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_PRESET" spirit:choiceRef="choice_pairs_85f99b7f" spirit:order="57">K28.1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_VALID_ONLY</spirit:name>
@@ -16670,45 +16670,31 @@
       <spirit:name>RX_COMMA_M_ENABLE</spirit:name>
       <spirit:displayName>Detect minus comma</spirit:displayName>
       <spirit:description>Indicate whether or not the specified bit pattern is detected as a minus comma</spirit:description>
-      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_M_ENABLE" spirit:order="60">false</spirit:value>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_M_ENABLE" spirit:order="60">true</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_DOUBLE_ENABLE</spirit:name>
       <spirit:displayName>Detect combined plus/minus (double-length) comma</spirit:displayName>
       <spirit:description>Indicate whether or not the comma detection block searches for the specified plus comma and minus comma bit patterns together in sequence</spirit:description>
       <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_DOUBLE_ENABLE" spirit:order="61">false</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.RX_COMMA_DOUBLE_ENABLE">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_P_VAL</spirit:name>
       <spirit:displayName>Plus comma value</spirit:displayName>
       <spirit:description>Specify the bit pattern for plus comma detection, where the rightmost bit is the first bit received</spirit:description>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_P_VAL" spirit:order="62" spirit:bitStringLength="10">0101111100</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_P_VAL" spirit:order="62" spirit:bitStringLength="10">1001111100</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_M_VAL</spirit:name>
       <spirit:displayName>Minus comma value</spirit:displayName>
       <spirit:description>Specify the bit pattern for minus comma detection, where the rightmost bit is the first bit received</spirit:description>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_M_VAL" spirit:order="63" spirit:bitStringLength="10">1010000011</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.RX_COMMA_M_VAL">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_M_VAL" spirit:order="63" spirit:bitStringLength="10">0110000011</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_MASK</spirit:name>
       <spirit:displayName>Mask</spirit:displayName>
       <spirit:description>Set any bit in the mask field to 0 to make the corresponding bit of the specified plus and minus comma values a &quot;don&apos;t care&quot;</spirit:description>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_MASK" spirit:order="64" spirit:bitStringLength="10">1111111111</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_MASK" spirit:order="64" spirit:bitStringLength="10">0011111111</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_ALIGN_WORD</spirit:name>
@@ -17869,7 +17855,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>INTERNAL_PORT_ENABLEMENT_UPDATED</spirit:name>
-      <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="PARAM_VALUE.INTERNAL_PORT_ENABLEMENT_UPDATED" spirit:order="165">14</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="PARAM_VALUE.INTERNAL_PORT_ENABLEMENT_UPDATED" spirit:order="165">15</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -17902,7 +17888,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>INTERNAL_RX_COMMA_PRESET_UPDATE</spirit:name>
-      <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="PARAM_VALUE.INTERNAL_RX_COMMA_PRESET_UPDATE" spirit:order="168">7</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="PARAM_VALUE.INTERNAL_RX_COMMA_PRESET_UPDATE" spirit:order="168">9</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -23940,8 +23926,11 @@
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_CB_MAX_LEVEL" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_ALIGN_WORD" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_MASK" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_M_ENABLE" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_M_VAL" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_PRESET" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_P_ENABLE" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_COMMA_P_VAL" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_DATA_DECODING" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_INT_DATA_WIDTH" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.RX_JTOL_FC" xilinx:valueSource="user"/>
