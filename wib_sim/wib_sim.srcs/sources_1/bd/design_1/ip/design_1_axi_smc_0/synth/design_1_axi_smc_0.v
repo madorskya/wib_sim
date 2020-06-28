@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:ip:smartconnect:1.0
-// IP Revision: 12
+// IP Revision: 13
 
-(* X_CORE_INFO = "bd_afc3,Vivado 2019.2.1" *)
+(* X_CORE_INFO = "bd_afc3,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_axi_smc_0,bd_afc3,{}" *)
-(* CORE_GENERATION_INFO = "design_1_axi_smc_0,bd_afc3,{x_ipProduct=Vivado 2019.2.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=smartconnect,x_ipVersion=1.0,x_ipCoreRevision=12,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "design_1_axi_smc_0,bd_afc3,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=smartconnect,x_ipVersion=1.0,x_ipCoreRevision=13,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_axi_smc_0 (
   aclk,
@@ -125,7 +125,7 @@ module design_1_axi_smc_0 (
   M00_AXI_rready
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.aclk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, ASSOCIATED_BUSIF M00_AXI:S00_AXI, INSERT_VIP 0, ASSOCIATED_CLKEN s_sc_aclken" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.aclk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, ASSOCIATED_BUSIF M00_AXI:S00_AXI, INSERT_VIP 0, ASSOCIATED_CLKEN s_sc_aclken" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.aclk CLK" *)
 input wire aclk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)

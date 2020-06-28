@@ -1,10 +1,10 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-// Date        : Sun Jun 21 20:05:37 2020
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Sat Jun 27 23:38:31 2020
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode synth_stub -rename_top design_1_axi_smc_0 -prefix
-//               design_1_axi_smc_0_ design_1_axi_smc_0_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_axi_smc_0/design_1_axi_smc_0_stub.v
 // Design      : design_1_axi_smc_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu9eg-ffvb1156-2-e
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "bd_afc3,Vivado 2019.2.1" *)
+(* X_CORE_INFO = "bd_afc3,Vivado 2020.1" *)
 module design_1_axi_smc_0(aclk, aresetn, S00_AXI_awaddr, S00_AXI_awlen, 
   S00_AXI_awsize, S00_AXI_awburst, S00_AXI_awlock, S00_AXI_awcache, S00_AXI_awprot, 
   S00_AXI_awqos, S00_AXI_awvalid, S00_AXI_awready, S00_AXI_wdata, S00_AXI_wstrb, 

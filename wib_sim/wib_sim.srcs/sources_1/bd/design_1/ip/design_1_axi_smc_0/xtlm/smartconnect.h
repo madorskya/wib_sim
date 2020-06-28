@@ -8,6 +8,8 @@
 #include <map>
 #include <string>
 #include "smartconnect_xtlm.h"
+#include "report_handler.h"
+#include<sstream>
 
 #define si_socket(idx) \
         xtlm::xtlm_aximm_target_socket* S##idx##_AXI_tlm_aximm_read_socket; \
@@ -90,7 +92,10 @@ class smartconnect :  public sc_module {
         smartconnect_xtlm* core_model;
 
         std::string filename;
-
+        std::stringstream m_ss;
+	    xsc::common_cpp::report_handler* m_report_handler;
+        
+        sc_core::sc_signal<bool> aresetn_signal;
 };
 
 

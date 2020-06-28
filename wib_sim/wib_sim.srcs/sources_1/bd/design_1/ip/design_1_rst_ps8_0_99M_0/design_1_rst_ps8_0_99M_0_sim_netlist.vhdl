@@ -1,8 +1,8 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
--- Date        : Sun May 31 11:05:38 2020
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Sat Jun 27 23:37:33 2020
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0_sim_netlist.vhdl
 -- Design      : design_1_rst_ps8_0_99M_0
@@ -1063,7 +1063,7 @@ entity design_1_rst_ps8_0_99M_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_rst_ps8_0_99M_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of design_1_rst_ps8_0_99M_0 : entity is "proc_sys_reset,Vivado 2019.2.1";
+  attribute x_core_info of design_1_rst_ps8_0_99M_0 : entity is "proc_sys_reset,Vivado 2020.1";
 end design_1_rst_ps8_0_99M_0;
 
 architecture STRUCTURE of design_1_rst_ps8_0_99M_0 is

@@ -298,7 +298,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>9d0a5536</spirit:value>
+            <spirit:value>8ae7a080</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -314,7 +314,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>9d0a5536</spirit:value>
+            <spirit:value>8ae7a080</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -972,8 +972,8 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>coldata_fast_cmd_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>8</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2020-06-27T22:16:12Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>9</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2020-06-28T03:28:45Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1164a235_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6d66cf76_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
@@ -1100,13 +1100,24 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@32545e8d_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7956e9e0_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@35e2e856_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ad67447_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27a28ac1_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@361c985c_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@276cdffc_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63432929_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6de2b96c_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17de0c38_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d45888f_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@267dde88_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36dd62c2_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@560ba5f6_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2019.2.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4a44d28b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="23ffcc17"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="5cc5b84d"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="2e657dad"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2e811c89"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="7b0fa59f"/>

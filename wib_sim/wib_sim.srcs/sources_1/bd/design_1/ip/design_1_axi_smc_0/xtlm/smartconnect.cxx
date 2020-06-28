@@ -67,23 +67,38 @@ smartconnect::smartconnect(sc_module_name nm, xsc::common_cpp::properties& prope
 aclk("aclk"), aclk1("aclk1"), aclk2("aclk2"), aclk3("aclk3"), aclk4("aclk4"), aclk5("aclk5"),
 aclk6("aclk6"), aclk7("aclk7"), aclk8("aclk8"), aclk9("aclk9"), aclk10("aclk10"), aclk11("aclk11"),
 aclk12("aclk12"), aclk13("alck13"), aclk14("aclk14"), aclk15("aclk15") { 
+    
+  m_report_handler = new xsc::common_cpp::report_handler("smartconnect");
 
-  cerr<<"Constructing " << nm << "\n";
 
   // TODO: need the component name of the IP instance
 
   // TODO: acquire SC config from file handoff (sc_xtlm.rtd file)
   filename = "";
   if (properties.hasParameter("TLM_COMPONENT_NAME")) {
-   cout << "TLM_COMPONENT_NAME is " << properties.getString("TLM_COMPONENT_NAME");
+	if (m_report_handler->get_verbosity_level()
+			== xsc::common_cpp::VERBOSITY::DEBUG) {
+		m_ss.str("");
+		m_ss << this->name() << "TLM_COMPONENT_NAME is " << properties.getString("TLM_COMPONENT_NAME")<< "\n";
+		XSC_REPORT_INFO_VERB((*m_report_handler), "1", m_ss.str().c_str(),
+				DEBUG);
+	}
    filename = "sc_xtlm_" + properties.getString("TLM_COMPONENT_NAME") + ".mem";
   }
 
   ifstream rtd_file(filename);
   if (rtd_file.is_open()) {
-    cout << "Opened " << filename << "\n";
+	if (m_report_handler->get_verbosity_level()
+			== xsc::common_cpp::VERBOSITY::DEBUG) {
+		m_ss.str("");
+		m_ss << this->name() <<"Opened " << filename  << std::endl;
+		XSC_REPORT_INFO_VERB((*m_report_handler), "1", m_ss.str().c_str(),
+				DEBUG);
+	}
   } else {
-    cerr << "Failed to open " << filename << "\n";
+	    m_ss.str("");
+	    m_ss << this->name()<<" Failed to open "<<std::endl;
+	    XSC_REPORT_ERROR((*m_report_handler), "1", m_ss.str().c_str());
   }
 
 //  ifstream rtd_file("sc_xtlm.mem");
@@ -100,12 +115,17 @@ aclk12("aclk12"), aclk13("alck13"), aclk14("aclk14"), aclk15("aclk15") {
     string param_value;
     ss >> param_name;
     ss >> param_value;
-    cout << "Loaded: " << param_name << " :: " << param_value << "\n";
+	if (m_report_handler->get_verbosity_level()
+			== xsc::common_cpp::VERBOSITY::DEBUG) {
+		m_ss.str("");
+		m_ss << this->name() << "Loaded: " << param_name << " :: " << param_value << std::endl;
+		XSC_REPORT_INFO_VERB((*m_report_handler), "1", m_ss.str().c_str(),
+				DEBUG);
+	}
     smartconnect_config[param_name] = param_value;
     properties.addString(param_name, param_value);
   }
 
-  cerr << "File readback complete\n";
 
   int num_si = stoi(smartconnect_config["NUM_SI"]);
   int num_mi = stoi(smartconnect_config["NUM_MI"]);
@@ -144,8 +164,7 @@ aclk12("aclk12"), aclk13("alck13"), aclk14("aclk14"), aclk15("aclk15") {
   __socket_inst(num_mi, initiator, M14, 14)
   __socket_inst(num_mi, initiator, M15, 15)
 
-  cerr << "Create core model \n";
-  core_model = new smartconnect_xtlm("smartconnect_xtlm", properties, smartconnect_config);
+  core_model = new smartconnect_xtlm("smartconnect_xtlm", properties, smartconnect_config,m_report_handler);
 
   for (int i = 0; i < num_si; i++) {
     target_rd_sockets[i]->bind(*(core_model->saxi_rd_socket[i]));
@@ -157,17 +176,21 @@ aclk12("aclk12"), aclk13("alck13"), aclk14("aclk14"), aclk15("aclk15") {
     core_model->maxi_wr_socket[i]->bind(*(initiator_wr_sockets[i]));
   }
 
+  //Stub Reset Signal if not connected
+  if(properties.getLongLong("HAS_RESET") == 0)
+  {
+      aresetn.bind(aresetn_signal);
+      aresetn_signal.write(1);
+  }
 }
 
 #define __clk_tieoff(i) \
   if (num_clks < i+1) { \
-      cerr <<"Tie off aclk"<<i<<"\n"; \
       clk_tieoff = new sc_signal<bool>; \
       aclk##i(*clk_tieoff); \
   }
 
 void smartconnect::before_end_of_elaboration() {
-  cerr<<"end_of_elaboration\n";
 
   int num_clks = stoi(smartconnect_config["NUM_CLKS"]);
 

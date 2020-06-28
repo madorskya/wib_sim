@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-// Date        : Thu Jun  4 00:17:03 2020
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Sat Jun 27 23:37:23 2020
+// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode synth_stub
 //               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0_stub.v
 // Design      : design_1_coldata_i2c_0_0
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2019.2.1" *)
+(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *)
 module design_1_coldata_i2c_0_0(scl_p, scl_n, sda_out_p, sda_out_n, sda_in_p, 
   sda_in_n, s00_axi_aclk, s00_axi_aresetn, s00_axi_awaddr, s00_axi_awprot, s00_axi_awvalid, 
   s00_axi_awready, s00_axi_wdata, s00_axi_wstrb, s00_axi_wvalid, s00_axi_wready, 

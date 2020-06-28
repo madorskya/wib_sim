@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Jun 27 18:17:08 2020" VIVADOVERSION="2019.2.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Jun 27 23:30:12 2020" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" BOARD="xilinx.com:zcu102:part0:3.1" DEVICE="xczu9eg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-2"/>
 
@@ -70,7 +70,7 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE COREREVISION="20" FULLNAME="/axi_cdma_0" HWVERSION="4.1" INSTANCE="axi_cdma_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_cdma" VLNV="xilinx.com:ip:axi_cdma:4.1">
+    <MODULE COREREVISION="21" FULLNAME="/axi_cdma_0" HWVERSION="4.1" INSTANCE="axi_cdma_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_cdma" VLNV="xilinx.com:ip:axi_cdma:4.1">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_cdma;v=v4_1;d=pg034-axi-cdma.pdf"/>
       </DOCUMENTS>
@@ -555,7 +555,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axi_lite_aresetn" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+        <PORT DIR="I" NAME="s_axi_lite_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -917,7 +917,7 @@
         <PERIPHERAL INSTANCE="zynq_ultra_ps_e_0"/>
       </PERIPHERALS>
     </MODULE>
-    <MODULE COREREVISION="22" FULLNAME="/axi_gpio_0" HWVERSION="2.0" INSTANCE="axi_gpio_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
+    <MODULE COREREVISION="23" FULLNAME="/axi_gpio_0" HWVERSION="2.0" INSTANCE="axi_gpio_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_gpio;v=v2_0;d=pg144-axi-gpio.pdf"/>
       </DOCUMENTS>
@@ -1117,7 +1117,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axi_aresetn" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+        <PORT DIR="I" NAME="s_axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -1236,8 +1236,8 @@
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
-          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
-          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="2"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_zynq_ultra_ps_e_0_0_pl_clk0"/>
@@ -1273,12 +1273,13 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE BD="design_1_axi_smc_0" BDTYPE="SBD" COREREVISION="12" DRIVERMODE="CORE" FULLNAME="/axi_smc" HWVERSION="1.0" INSTANCE="axi_smc" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="smartconnect" SIM_BD="design_1_axi_smc_0" VLNV="xilinx.com:ip:smartconnect:1.0">
+    <MODULE BD="design_1_axi_smc_0" BDTYPE="SBD" COREREVISION="13" DRIVERMODE="CORE" FULLNAME="/axi_smc" HWVERSION="1.0" INSTANCE="axi_smc" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="smartconnect" SIM_BD="design_1_axi_smc_0" VLNV="xilinx.com:ip:smartconnect:1.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=smartconnect;v=v1_0;d=pg247-smartconnect.pdf"/>
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="TLM_COMPONENT_NAME" VALUE="design_1_axi_smc_0"/>
+        <PARAMETER NAME="HAS_RESET" VALUE="1"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_axi_smc_0"/>
         <PARAMETER NAME="NUM_MI" VALUE="1"/>
         <PARAMETER NAME="NUM_SI" VALUE="1"/>
@@ -1293,7 +1294,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="aresetn" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+        <PORT DIR="I" NAME="aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -1752,7 +1753,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="4" FULLNAME="/clk_wiz_0" HWVERSION="6.0" INSTANCE="clk_wiz_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:6.0">
+    <MODULE COREREVISION="5" FULLNAME="/clk_wiz_0" HWVERSION="6.0" INSTANCE="clk_wiz_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:6.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v6_0;d=pg065-clk-wiz.pdf"/>
       </DOCUMENTS>
@@ -2330,7 +2331,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="xlconstant_0_dout">
+        <PORT DIR="I" NAME="reset" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="xlconstant_0_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
           </CONNECTIONS>
@@ -2355,7 +2356,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="8" FULLNAME="/coldata_fast_cmd_0" HWVERSION="1.0" INSTANCE="coldata_fast_cmd_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_fast_cmd" VLNV="user.org:user:coldata_fast_cmd:1.0">
+    <MODULE COREREVISION="9" FULLNAME="/coldata_fast_cmd_0" HWVERSION="1.0" INSTANCE="coldata_fast_cmd_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_fast_cmd" VLNV="user.org:user:coldata_fast_cmd:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -2404,12 +2405,12 @@
             <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="cmd_reset" SIGIS="rst" SIGNAME="xlconstant_0_dout">
+        <PORT DIR="I" NAME="cmd_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="xlconstant_0_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="cmd_adc_reset" SIGIS="rst" SIGNAME="xlconstant_0_dout">
+        <PORT DIR="I" NAME="cmd_adc_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="xlconstant_0_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
           </CONNECTIONS>
@@ -2420,7 +2421,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s00_axi_aresetn" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+        <PORT DIR="I" NAME="s00_axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -2546,8 +2547,8 @@
           <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
-          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
-          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="2"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_zynq_ultra_ps_e_0_0_pl_clk0"/>
@@ -2633,7 +2634,7 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s00_axi_aresetn" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+        <PORT DIR="I" NAME="s00_axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -2793,7 +2794,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="21" FULLNAME="/ps8_0_axi_periph" HWVERSION="2.1" INSTANCE="ps8_0_axi_periph" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axi_interconnect" VLNV="xilinx.com:ip:axi_interconnect:2.1">
+    <MODULE COREREVISION="22" FULLNAME="/ps8_0_axi_periph" HWVERSION="2.1" INSTANCE="ps8_0_axi_periph" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axi_interconnect" VLNV="xilinx.com:ip:axi_interconnect:2.1">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_interconnect;v=v2_1;d=pg059-axi-interconnect.pdf"/>
       </DOCUMENTS>
@@ -3176,11 +3177,6 @@
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awid"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="39" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awaddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awaddr"/>
@@ -3216,7 +3212,6 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_AXI_awregion" SIGIS="undef"/>
         <PORT DIR="I" LEFT="3" NAME="S00_AXI_awqos" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awqos">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awqos"/>
@@ -3257,11 +3252,6 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="15" NAME="S00_AXI_bid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bid"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bresp">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bresp"/>
@@ -3275,11 +3265,6 @@
         <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_arid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="39" NAME="S00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_araddr">
@@ -3317,7 +3302,6 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_AXI_arregion" SIGIS="undef"/>
         <PORT DIR="I" LEFT="3" NAME="S00_AXI_arqos" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arqos">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arqos"/>
@@ -3331,11 +3315,6 @@
         <PORT DIR="O" NAME="S00_AXI_arready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="S00_AXI_rid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="127" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rdata">
@@ -3368,7 +3347,14 @@
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_awaddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M00_AXI_awlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awcache" SIGIS="undef"/>
         <PORT DIR="O" NAME="M00_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awqos" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="M00_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_cdma_0_s_axi_lite_awvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_awvalid"/>
@@ -3385,6 +3371,7 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="M00_AXI_wstrb" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_wlast" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="M00_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_cdma_0_s_axi_lite_wvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_wvalid"/>
@@ -3415,7 +3402,14 @@
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_araddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M00_AXI_arlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arcache" SIGIS="undef"/>
         <PORT DIR="O" NAME="M00_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arqos" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="M00_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_cdma_0_s_axi_lite_arvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_arvalid"/>
@@ -3436,6 +3430,7 @@
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_rresp"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="M00_AXI_rlast" SIGIS="undef"/>
         <PORT DIR="I" LEFT="0" NAME="M00_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_cdma_0_s_axi_lite_rvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_rvalid"/>
@@ -3451,17 +3446,24 @@
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_awaddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M01_AXI_awlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_awsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_awburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_awlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_awcache" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="M01_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_awprot">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_awprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M01_AXI_awvalid" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_awvalid">
+        <PORT DIR="O" NAME="M01_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_awqos" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_awvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_AXI_awready" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_awready">
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_awready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_awready"/>
           </CONNECTIONS>
@@ -3476,12 +3478,13 @@
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M01_AXI_wvalid" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_wvalid">
+        <PORT DIR="O" NAME="M01_AXI_wlast" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_wvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_AXI_wready" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_wready">
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_wready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_wready"/>
           </CONNECTIONS>
@@ -3491,12 +3494,12 @@
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_AXI_bvalid" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_bvalid">
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_bvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M01_AXI_bready" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_bready">
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_bready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_bready"/>
           </CONNECTIONS>
@@ -3506,17 +3509,24 @@
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_araddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M01_AXI_arlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_arsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_arburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_arlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_arcache" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="M01_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_arprot">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M01_AXI_arvalid" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_arvalid">
+        <PORT DIR="O" NAME="M01_AXI_arregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M01_AXI_arqos" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_arvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_AXI_arready" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_arready">
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_arready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_arready"/>
           </CONNECTIONS>
@@ -3531,12 +3541,13 @@
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_AXI_rvalid" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_rvalid">
+        <PORT DIR="I" NAME="M01_AXI_rlast" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_rvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M01_AXI_rready" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_rready">
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_0_s00_axi_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_rready"/>
           </CONNECTIONS>
@@ -3546,13 +3557,20 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awaddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M02_AXI_awlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_awsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_awburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_awlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_awcache" SIGIS="undef"/>
         <PORT DIR="O" NAME="M02_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M02_AXI_awvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awvalid">
+        <PORT DIR="O" NAME="M02_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_awqos" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M02_AXI_awready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awready">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_awready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_awready"/>
           </CONNECTIONS>
@@ -3567,12 +3585,13 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M02_AXI_wvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wvalid">
+        <PORT DIR="O" NAME="M02_AXI_wlast" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M02_AXI_wready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wready">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_wready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_wready"/>
           </CONNECTIONS>
@@ -3582,12 +3601,12 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M02_AXI_bvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bvalid">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M02_AXI_bready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bready">
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_bready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_bready"/>
           </CONNECTIONS>
@@ -3597,13 +3616,20 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_araddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M02_AXI_arlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_arsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_arburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_arlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_arcache" SIGIS="undef"/>
         <PORT DIR="O" NAME="M02_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M02_AXI_arvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arvalid">
+        <PORT DIR="O" NAME="M02_AXI_arregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M02_AXI_arqos" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M02_AXI_arready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arready">
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_arready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_arready"/>
           </CONNECTIONS>
@@ -3618,12 +3644,13 @@
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M02_AXI_rvalid" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rvalid">
+        <PORT DIR="I" NAME="M02_AXI_rlast" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="M02_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M02_AXI_rready" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rready">
+        <PORT DIR="O" LEFT="0" NAME="M02_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_s_axi_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_rready"/>
           </CONNECTIONS>
@@ -3633,17 +3660,24 @@
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_awaddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M03_AXI_awlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_awsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_awburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_awlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_awcache" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="M03_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_awprot">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_awprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M03_AXI_awvalid" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_awvalid">
+        <PORT DIR="O" NAME="M03_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_awqos" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M03_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_awvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M03_AXI_awready" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_awready">
+        <PORT DIR="I" LEFT="0" NAME="M03_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_awready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_awready"/>
           </CONNECTIONS>
@@ -3658,12 +3692,13 @@
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M03_AXI_wvalid" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_wvalid">
+        <PORT DIR="O" NAME="M03_AXI_wlast" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M03_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_wvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M03_AXI_wready" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_wready">
+        <PORT DIR="I" LEFT="0" NAME="M03_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_wready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_wready"/>
           </CONNECTIONS>
@@ -3673,12 +3708,12 @@
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M03_AXI_bvalid" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_bvalid">
+        <PORT DIR="I" LEFT="0" NAME="M03_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_bvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M03_AXI_bready" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_bready">
+        <PORT DIR="O" LEFT="0" NAME="M03_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_bready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_bready"/>
           </CONNECTIONS>
@@ -3688,17 +3723,24 @@
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_araddr"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="M03_AXI_arlen" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_arsize" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_arburst" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_arlock" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_arcache" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="M03_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_arprot">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M03_AXI_arvalid" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_arvalid">
+        <PORT DIR="O" NAME="M03_AXI_arregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M03_AXI_arqos" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M03_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_arvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M03_AXI_arready" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_arready">
+        <PORT DIR="I" LEFT="0" NAME="M03_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_arready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_arready"/>
           </CONNECTIONS>
@@ -3713,21 +3755,41 @@
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M03_AXI_rvalid" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_rvalid">
+        <PORT DIR="I" NAME="M03_AXI_rlast" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="0" NAME="M03_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_rvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M03_AXI_rready" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_rready">
+        <PORT DIR="O" LEFT="0" NAME="M03_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_s00_axi_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_arid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="S00_AXI_bid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="S00_AXI_rid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rid"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="zynq_ultra_ps_e_0_M_AXI_HPM0_FPD" DATAWIDTH="128" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
-            <PORTMAP LOGICAL="AWID" PHYSICAL="S00_AXI_awid"/>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="S00_AXI_awaddr"/>
             <PORTMAP LOGICAL="AWLEN" PHYSICAL="S00_AXI_awlen"/>
             <PORTMAP LOGICAL="AWSIZE" PHYSICAL="S00_AXI_awsize"/>
@@ -3735,7 +3797,6 @@
             <PORTMAP LOGICAL="AWLOCK" PHYSICAL="S00_AXI_awlock"/>
             <PORTMAP LOGICAL="AWCACHE" PHYSICAL="S00_AXI_awcache"/>
             <PORTMAP LOGICAL="AWPROT" PHYSICAL="S00_AXI_awprot"/>
-            <PORTMAP LOGICAL="AWREGION" PHYSICAL="S00_AXI_awregion"/>
             <PORTMAP LOGICAL="AWQOS" PHYSICAL="S00_AXI_awqos"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="S00_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="S00_AXI_awready"/>
@@ -3744,11 +3805,9 @@
             <PORTMAP LOGICAL="WLAST" PHYSICAL="S00_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="S00_AXI_wvalid"/>
             <PORTMAP LOGICAL="WREADY" PHYSICAL="S00_AXI_wready"/>
-            <PORTMAP LOGICAL="BID" PHYSICAL="S00_AXI_bid"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="S00_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="S00_AXI_bvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="S00_AXI_bready"/>
-            <PORTMAP LOGICAL="ARID" PHYSICAL="S00_AXI_arid"/>
             <PORTMAP LOGICAL="ARADDR" PHYSICAL="S00_AXI_araddr"/>
             <PORTMAP LOGICAL="ARLEN" PHYSICAL="S00_AXI_arlen"/>
             <PORTMAP LOGICAL="ARSIZE" PHYSICAL="S00_AXI_arsize"/>
@@ -3756,37 +3815,55 @@
             <PORTMAP LOGICAL="ARLOCK" PHYSICAL="S00_AXI_arlock"/>
             <PORTMAP LOGICAL="ARCACHE" PHYSICAL="S00_AXI_arcache"/>
             <PORTMAP LOGICAL="ARPROT" PHYSICAL="S00_AXI_arprot"/>
-            <PORTMAP LOGICAL="ARREGION" PHYSICAL="S00_AXI_arregion"/>
             <PORTMAP LOGICAL="ARQOS" PHYSICAL="S00_AXI_arqos"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="S00_AXI_arvalid"/>
             <PORTMAP LOGICAL="ARREADY" PHYSICAL="S00_AXI_arready"/>
-            <PORTMAP LOGICAL="RID" PHYSICAL="S00_AXI_rid"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="S00_AXI_rdata"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="S00_AXI_rresp"/>
             <PORTMAP LOGICAL="RLAST" PHYSICAL="S00_AXI_rlast"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="S00_AXI_rvalid"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="S00_AXI_rready"/>
+            <PORTMAP LOGICAL="ARID" PHYSICAL="S00_AXI_arid"/>
+            <PORTMAP LOGICAL="AWID" PHYSICAL="S00_AXI_awid"/>
+            <PORTMAP LOGICAL="BID" PHYSICAL="S00_AXI_bid"/>
+            <PORTMAP LOGICAL="RID" PHYSICAL="S00_AXI_rid"/>
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="ps8_0_axi_periph_M00_AXI" DATAWIDTH="32" NAME="M00_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="M00_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWLEN" PHYSICAL="M00_AXI_awlen"/>
+            <PORTMAP LOGICAL="AWSIZE" PHYSICAL="M00_AXI_awsize"/>
+            <PORTMAP LOGICAL="AWBURST" PHYSICAL="M00_AXI_awburst"/>
+            <PORTMAP LOGICAL="AWLOCK" PHYSICAL="M00_AXI_awlock"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="M00_AXI_awcache"/>
             <PORTMAP LOGICAL="AWPROT" PHYSICAL="M00_AXI_awprot"/>
+            <PORTMAP LOGICAL="AWREGION" PHYSICAL="M00_AXI_awregion"/>
+            <PORTMAP LOGICAL="AWQOS" PHYSICAL="M00_AXI_awqos"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="M00_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="M00_AXI_awready"/>
             <PORTMAP LOGICAL="WDATA" PHYSICAL="M00_AXI_wdata"/>
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="M00_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WLAST" PHYSICAL="M00_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M00_AXI_wvalid"/>
             <PORTMAP LOGICAL="WREADY" PHYSICAL="M00_AXI_wready"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="M00_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="M00_AXI_bvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="M00_AXI_bready"/>
             <PORTMAP LOGICAL="ARADDR" PHYSICAL="M00_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARLEN" PHYSICAL="M00_AXI_arlen"/>
+            <PORTMAP LOGICAL="ARSIZE" PHYSICAL="M00_AXI_arsize"/>
+            <PORTMAP LOGICAL="ARBURST" PHYSICAL="M00_AXI_arburst"/>
+            <PORTMAP LOGICAL="ARLOCK" PHYSICAL="M00_AXI_arlock"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="M00_AXI_arcache"/>
             <PORTMAP LOGICAL="ARPROT" PHYSICAL="M00_AXI_arprot"/>
+            <PORTMAP LOGICAL="ARREGION" PHYSICAL="M00_AXI_arregion"/>
+            <PORTMAP LOGICAL="ARQOS" PHYSICAL="M00_AXI_arqos"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="M00_AXI_arvalid"/>
             <PORTMAP LOGICAL="ARREADY" PHYSICAL="M00_AXI_arready"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="M00_AXI_rdata"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="M00_AXI_rresp"/>
+            <PORTMAP LOGICAL="RLAST" PHYSICAL="M00_AXI_rlast"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="M00_AXI_rvalid"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="M00_AXI_rready"/>
           </PORTMAPS>
@@ -3794,22 +3871,38 @@
         <BUSINTERFACE BUSNAME="ps8_0_axi_periph_M01_AXI" DATAWIDTH="32" NAME="M01_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="M01_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWLEN" PHYSICAL="M01_AXI_awlen"/>
+            <PORTMAP LOGICAL="AWSIZE" PHYSICAL="M01_AXI_awsize"/>
+            <PORTMAP LOGICAL="AWBURST" PHYSICAL="M01_AXI_awburst"/>
+            <PORTMAP LOGICAL="AWLOCK" PHYSICAL="M01_AXI_awlock"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="M01_AXI_awcache"/>
             <PORTMAP LOGICAL="AWPROT" PHYSICAL="M01_AXI_awprot"/>
+            <PORTMAP LOGICAL="AWREGION" PHYSICAL="M01_AXI_awregion"/>
+            <PORTMAP LOGICAL="AWQOS" PHYSICAL="M01_AXI_awqos"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="M01_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="M01_AXI_awready"/>
             <PORTMAP LOGICAL="WDATA" PHYSICAL="M01_AXI_wdata"/>
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="M01_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WLAST" PHYSICAL="M01_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M01_AXI_wvalid"/>
             <PORTMAP LOGICAL="WREADY" PHYSICAL="M01_AXI_wready"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="M01_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="M01_AXI_bvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="M01_AXI_bready"/>
             <PORTMAP LOGICAL="ARADDR" PHYSICAL="M01_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARLEN" PHYSICAL="M01_AXI_arlen"/>
+            <PORTMAP LOGICAL="ARSIZE" PHYSICAL="M01_AXI_arsize"/>
+            <PORTMAP LOGICAL="ARBURST" PHYSICAL="M01_AXI_arburst"/>
+            <PORTMAP LOGICAL="ARLOCK" PHYSICAL="M01_AXI_arlock"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="M01_AXI_arcache"/>
             <PORTMAP LOGICAL="ARPROT" PHYSICAL="M01_AXI_arprot"/>
+            <PORTMAP LOGICAL="ARREGION" PHYSICAL="M01_AXI_arregion"/>
+            <PORTMAP LOGICAL="ARQOS" PHYSICAL="M01_AXI_arqos"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="M01_AXI_arvalid"/>
             <PORTMAP LOGICAL="ARREADY" PHYSICAL="M01_AXI_arready"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="M01_AXI_rdata"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="M01_AXI_rresp"/>
+            <PORTMAP LOGICAL="RLAST" PHYSICAL="M01_AXI_rlast"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="M01_AXI_rvalid"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="M01_AXI_rready"/>
           </PORTMAPS>
@@ -3817,22 +3910,38 @@
         <BUSINTERFACE BUSNAME="ps8_0_axi_periph_M02_AXI" DATAWIDTH="32" NAME="M02_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="M02_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWLEN" PHYSICAL="M02_AXI_awlen"/>
+            <PORTMAP LOGICAL="AWSIZE" PHYSICAL="M02_AXI_awsize"/>
+            <PORTMAP LOGICAL="AWBURST" PHYSICAL="M02_AXI_awburst"/>
+            <PORTMAP LOGICAL="AWLOCK" PHYSICAL="M02_AXI_awlock"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="M02_AXI_awcache"/>
             <PORTMAP LOGICAL="AWPROT" PHYSICAL="M02_AXI_awprot"/>
+            <PORTMAP LOGICAL="AWREGION" PHYSICAL="M02_AXI_awregion"/>
+            <PORTMAP LOGICAL="AWQOS" PHYSICAL="M02_AXI_awqos"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="M02_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="M02_AXI_awready"/>
             <PORTMAP LOGICAL="WDATA" PHYSICAL="M02_AXI_wdata"/>
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="M02_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WLAST" PHYSICAL="M02_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M02_AXI_wvalid"/>
             <PORTMAP LOGICAL="WREADY" PHYSICAL="M02_AXI_wready"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="M02_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="M02_AXI_bvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="M02_AXI_bready"/>
             <PORTMAP LOGICAL="ARADDR" PHYSICAL="M02_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARLEN" PHYSICAL="M02_AXI_arlen"/>
+            <PORTMAP LOGICAL="ARSIZE" PHYSICAL="M02_AXI_arsize"/>
+            <PORTMAP LOGICAL="ARBURST" PHYSICAL="M02_AXI_arburst"/>
+            <PORTMAP LOGICAL="ARLOCK" PHYSICAL="M02_AXI_arlock"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="M02_AXI_arcache"/>
             <PORTMAP LOGICAL="ARPROT" PHYSICAL="M02_AXI_arprot"/>
+            <PORTMAP LOGICAL="ARREGION" PHYSICAL="M02_AXI_arregion"/>
+            <PORTMAP LOGICAL="ARQOS" PHYSICAL="M02_AXI_arqos"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="M02_AXI_arvalid"/>
             <PORTMAP LOGICAL="ARREADY" PHYSICAL="M02_AXI_arready"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="M02_AXI_rdata"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="M02_AXI_rresp"/>
+            <PORTMAP LOGICAL="RLAST" PHYSICAL="M02_AXI_rlast"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="M02_AXI_rvalid"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="M02_AXI_rready"/>
           </PORTMAPS>
@@ -3840,22 +3949,38 @@
         <BUSINTERFACE BUSNAME="ps8_0_axi_periph_M03_AXI" DATAWIDTH="32" NAME="M03_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="M03_AXI_awaddr"/>
+            <PORTMAP LOGICAL="AWLEN" PHYSICAL="M03_AXI_awlen"/>
+            <PORTMAP LOGICAL="AWSIZE" PHYSICAL="M03_AXI_awsize"/>
+            <PORTMAP LOGICAL="AWBURST" PHYSICAL="M03_AXI_awburst"/>
+            <PORTMAP LOGICAL="AWLOCK" PHYSICAL="M03_AXI_awlock"/>
+            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="M03_AXI_awcache"/>
             <PORTMAP LOGICAL="AWPROT" PHYSICAL="M03_AXI_awprot"/>
+            <PORTMAP LOGICAL="AWREGION" PHYSICAL="M03_AXI_awregion"/>
+            <PORTMAP LOGICAL="AWQOS" PHYSICAL="M03_AXI_awqos"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="M03_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="M03_AXI_awready"/>
             <PORTMAP LOGICAL="WDATA" PHYSICAL="M03_AXI_wdata"/>
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="M03_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WLAST" PHYSICAL="M03_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M03_AXI_wvalid"/>
             <PORTMAP LOGICAL="WREADY" PHYSICAL="M03_AXI_wready"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="M03_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="M03_AXI_bvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="M03_AXI_bready"/>
             <PORTMAP LOGICAL="ARADDR" PHYSICAL="M03_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARLEN" PHYSICAL="M03_AXI_arlen"/>
+            <PORTMAP LOGICAL="ARSIZE" PHYSICAL="M03_AXI_arsize"/>
+            <PORTMAP LOGICAL="ARBURST" PHYSICAL="M03_AXI_arburst"/>
+            <PORTMAP LOGICAL="ARLOCK" PHYSICAL="M03_AXI_arlock"/>
+            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="M03_AXI_arcache"/>
             <PORTMAP LOGICAL="ARPROT" PHYSICAL="M03_AXI_arprot"/>
+            <PORTMAP LOGICAL="ARREGION" PHYSICAL="M03_AXI_arregion"/>
+            <PORTMAP LOGICAL="ARQOS" PHYSICAL="M03_AXI_arqos"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="M03_AXI_arvalid"/>
             <PORTMAP LOGICAL="ARREADY" PHYSICAL="M03_AXI_arready"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="M03_AXI_rdata"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="M03_AXI_rresp"/>
+            <PORTMAP LOGICAL="RLAST" PHYSICAL="M03_AXI_rlast"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="M03_AXI_rvalid"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="M03_AXI_rready"/>
           </PORTMAPS>
@@ -3887,31 +4012,31 @@
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ext_reset_in" SIGIS="rst" SIGNAME="zynq_ultra_ps_e_0_pl_resetn0">
+        <PORT DIR="I" NAME="ext_reset_in" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="zynq_ultra_ps_e_0_pl_resetn0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_resetn0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="aux_reset_in" SIGIS="rst"/>
-        <PORT DIR="I" NAME="mb_debug_sys_rst" SIGIS="rst"/>
+        <PORT DIR="I" NAME="aux_reset_in" POLARITY="ACTIVE_LOW" SIGIS="rst"/>
+        <PORT DIR="I" NAME="mb_debug_sys_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst"/>
         <PORT DIR="I" NAME="dcm_locked" SIGIS="undef"/>
-        <PORT DIR="O" NAME="mb_reset" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="peripheral_reset" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps8_0_99M_interconnect_aresetn">
+        <PORT DIR="O" NAME="mb_reset" POLARITY="ACTIVE_HIGH" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps8_0_99M_interconnect_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="ARESETN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
+        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps8_0_99M_peripheral_aresetn">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_aresetn"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="axi_smc" PORT="aresetn"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M01_ARESETN"/>
-            <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_aresetn"/>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M02_ARESETN"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M03_ARESETN"/>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_aresetn"/>
@@ -3920,7 +4045,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="6" FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+    <MODULE COREREVISION="7" FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
@@ -3943,13 +4068,10 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE CONFIGURABLE="TRUE" COREREVISION="1" FULLNAME="/zynq_ultra_ps_e_0" HWVERSION="3.3" INSTANCE="zynq_ultra_ps_e_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" IS_PL="FALSE" MODTYPE="zynq_ultra_ps_e" VLNV="xilinx.com:ip:zynq_ultra_ps_e:3.3">
+    <MODULE CONFIGURABLE="TRUE" COREREVISION="2" FULLNAME="/zynq_ultra_ps_e_0" HWVERSION="3.3" INSTANCE="zynq_ultra_ps_e_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" IS_PL="FALSE" MODTYPE="zynq_ultra_ps_e" VLNV="xilinx.com:ip:zynq_ultra_ps_e:3.3">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=zynq_ultra_ps_e;v=v3_3;d=pg201-zynq-ultrascale-plus-processing-system.pdf"/>
       </DOCUMENTS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
-      </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_PCIE_LOW" RANGE="0x10000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
@@ -3957,7 +4079,7 @@
         <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_QSPI" RANGE="0x20000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_LPS_OCM" RANGE="0x1000000" USAGE="register"/>
+        <ADDRESSBLOCK ACCESS="" INTERFACE="SAXIGP2" NAME="HP0_DDR_LOW" RANGE="0x80000000" USAGE="memory"/>
       </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="C_DP_USE_AUDIO" VALUE="0"/>
@@ -4211,9 +4333,9 @@
         <PARAMETER NAME="PSU__PROTECTION__DDR_SEGMENTS" VALUE="NONE"/>
         <PARAMETER NAME="PSU__PROTECTION__OCM_SEGMENTS" VALUE="NONE"/>
         <PARAMETER NAME="PSU__PROTECTION__LPD_SEGMENTS" VALUE="SA:0xFF980000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF5E0000 ;SIZE:2560;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFFCC0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF180000 ;SIZE:768;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF410000 ;SIZE:640;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFFA70000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF9A0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware"/>
-        <PARAMETER NAME="PSU__PROTECTION__FPD_SEGMENTS" VALUE="SA:0xFD1A0000 ;SIZE:1280;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD000000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD010000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD020000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD030000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD040000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD050000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD610000 ;SIZE:512;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware | SA:0xFD5D0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware"/>
+        <PARAMETER NAME="PSU__PROTECTION__FPD_SEGMENTS" VALUE="SA:0xFD1A0000 ;SIZE:1280;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD000000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD010000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD020000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD030000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD040000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD050000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD610000 ;SIZE:512;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware  |  SA:0xFD5D0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware"/>
         <PARAMETER NAME="PSU__PROTECTION__DEBUG" VALUE="0"/>
-        <PARAMETER NAME="PSU__PROTECTION__SLAVES" VALUE="LPD;USB3_1_XHCI;FE300000;FE3FFFFF;0|LPD;USB3_1;FF9E0000;FF9EFFFF;0|LPD;USB3_0_XHCI;FE200000;FE2FFFFF;1|LPD;USB3_0;FF9D0000;FF9DFFFF;1|LPD;UART1;FF010000;FF01FFFF;1|LPD;UART0;FF000000;FF00FFFF;1|LPD;TTC3;FF140000;FF14FFFF;1|LPD;TTC2;FF130000;FF13FFFF;1|LPD;TTC1;FF120000;FF12FFFF;1|LPD;TTC0;FF110000;FF11FFFF;1|FPD;SWDT1;FD4D0000;FD4DFFFF;1|LPD;SWDT0;FF150000;FF15FFFF;1|LPD;SPI1;FF050000;FF05FFFF;0|LPD;SPI0;FF040000;FF04FFFF;0|FPD;SMMU_REG;FD5F0000;FD5FFFFF;1|FPD;SMMU;FD800000;FDFFFFFF;1|FPD;SIOU;FD3D0000;FD3DFFFF;1|FPD;SERDES;FD400000;FD47FFFF;1|LPD;SD1;FF170000;FF17FFFF;1|LPD;SD0;FF160000;FF16FFFF;0|FPD;SATA;FD0C0000;FD0CFFFF;1|LPD;RTC;FFA60000;FFA6FFFF;1|LPD;RSA_CORE;FFCE0000;FFCEFFFF;1|LPD;RPU;FF9A0000;FF9AFFFF;1|LPD;R5_TCM_RAM_GLOBAL;FFE00000;FFE3FFFF;1|LPD;R5_1_Instruction_Cache;FFEC0000;FFECFFFF;1|LPD;R5_1_Data_Cache;FFED0000;FFEDFFFF;1|LPD;R5_1_BTCM_GLOBAL;FFEB0000;FFEBFFFF;1|LPD;R5_1_ATCM_GLOBAL;FFE90000;FFE9FFFF;1|LPD;R5_0_Instruction_Cache;FFE40000;FFE4FFFF;1|LPD;R5_0_Data_Cache;FFE50000;FFE5FFFF;1|LPD;R5_0_BTCM_GLOBAL;FFE20000;FFE2FFFF;1|LPD;R5_0_ATCM_GLOBAL;FFE00000;FFE0FFFF;1|LPD;QSPI_Linear_Address;C0000000;DFFFFFFF;1|LPD;QSPI;FF0F0000;FF0FFFFF;1|LPD;PMU_RAM;FFDC0000;FFDDFFFF;1|LPD;PMU_GLOBAL;FFD80000;FFDBFFFF;1|FPD;PCIE_MAIN;FD0E0000;FD0EFFFF;1|FPD;PCIE_LOW;E0000000;EFFFFFFF;1|FPD;PCIE_HIGH2;8000000000;BFFFFFFFFF;1|FPD;PCIE_HIGH1;600000000;7FFFFFFFF;1|FPD;PCIE_DMA;FD0F0000;FD0FFFFF;1|FPD;PCIE_ATTRIB;FD480000;FD48FFFF;1|LPD;OCM_XMPU_CFG;FFA70000;FFA7FFFF;1|LPD;OCM_SLCR;FF960000;FF96FFFF;1|OCM;OCM;FFFC0000;FFFFFFFF;1|LPD;NAND;FF100000;FF10FFFF;0|LPD;MBISTJTAG;FFCF0000;FFCFFFFF;1|LPD;LPD_XPPU_SINK;FF9C0000;FF9CFFFF;1|LPD;LPD_XPPU;FF980000;FF98FFFF;1|LPD;LPD_SLCR_SECURE;FF4B0000;FF4DFFFF;1|LPD;LPD_SLCR;FF410000;FF4AFFFF;1|LPD;LPD_GPV;FE100000;FE1FFFFF;1|LPD;LPD_DMA_7;FFAF0000;FFAFFFFF;1|LPD;LPD_DMA_6;FFAE0000;FFAEFFFF;1|LPD;LPD_DMA_5;FFAD0000;FFADFFFF;1|LPD;LPD_DMA_4;FFAC0000;FFACFFFF;1|LPD;LPD_DMA_3;FFAB0000;FFABFFFF;1|LPD;LPD_DMA_2;FFAA0000;FFAAFFFF;1|LPD;LPD_DMA_1;FFA90000;FFA9FFFF;1|LPD;LPD_DMA_0;FFA80000;FFA8FFFF;1|LPD;IPI_CTRL;FF380000;FF3FFFFF;1|LPD;IOU_SLCR;FF180000;FF23FFFF;1|LPD;IOU_SECURE_SLCR;FF240000;FF24FFFF;1|LPD;IOU_SCNTRS;FF260000;FF26FFFF;1|LPD;IOU_SCNTR;FF250000;FF25FFFF;1|LPD;IOU_GPV;FE000000;FE0FFFFF;1|LPD;I2C1;FF030000;FF03FFFF;1|LPD;I2C0;FF020000;FF02FFFF;1|FPD;GPU;FD4B0000;FD4BFFFF;1|LPD;GPIO;FF0A0000;FF0AFFFF;1|LPD;GEM3;FF0E0000;FF0EFFFF;1|LPD;GEM2;FF0D0000;FF0DFFFF;0|LPD;GEM1;FF0C0000;FF0CFFFF;0|LPD;GEM0;FF0B0000;FF0BFFFF;0|FPD;FPD_XMPU_SINK;FD4F0000;FD4FFFFF;1|FPD;FPD_XMPU_CFG;FD5D0000;FD5DFFFF;1|FPD;FPD_SLCR_SECURE;FD690000;FD6CFFFF;1|FPD;FPD_SLCR;FD610000;FD68FFFF;1|FPD;FPD_GPV;FD700000;FD7FFFFF;1|FPD;FPD_DMA_CH7;FD570000;FD57FFFF;1|FPD;FPD_DMA_CH6;FD560000;FD56FFFF;1|FPD;FPD_DMA_CH5;FD550000;FD55FFFF;1|FPD;FPD_DMA_CH4;FD540000;FD54FFFF;1|FPD;FPD_DMA_CH3;FD530000;FD53FFFF;1|FPD;FPD_DMA_CH2;FD520000;FD52FFFF;1|FPD;FPD_DMA_CH1;FD510000;FD51FFFF;1|FPD;FPD_DMA_CH0;FD500000;FD50FFFF;1|LPD;EFUSE;FFCC0000;FFCCFFFF;1|FPD;Display Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD050000;FD05FFFF;1|FPD;DDR_XMPU4_CFG;FD040000;FD04FFFF;1|FPD;DDR_XMPU3_CFG;FD030000;FD03FFFF;1|FPD;DDR_XMPU2_CFG;FD020000;FD02FFFF;1|FPD;DDR_XMPU1_CFG;FD010000;FD01FFFF;1|FPD;DDR_XMPU0_CFG;FD000000;FD00FFFF;1|FPD;DDR_QOS_CTRL;FD090000;FD09FFFF;1|FPD;DDR_PHY;FD080000;FD08FFFF;1|DDR;DDR_LOW;0;7FFFFFFF;1|DDR;DDR_HIGH;800000000;87FFFFFFF;1|FPD;DDDR_CTRL;FD070000;FD070FFF;1|LPD;Coresight;FE800000;FEFFFFFF;1|LPD;CSU_DMA;FFC80000;FFC9FFFF;1|LPD;CSU;FFCA0000;FFCAFFFF;0|LPD;CRL_APB;FF5E0000;FF85FFFF;1|FPD;CRF_APB;FD1A0000;FD2DFFFF;1|FPD;CCI_REG;FD5E0000;FD5EFFFF;1|FPD;CCI_GPV;FD6E0000;FD6EFFFF;1|LPD;CAN1;FF070000;FF07FFFF;1|LPD;CAN0;FF060000;FF06FFFF;0|FPD;APU;FD5C0000;FD5CFFFF;1|LPD;APM_INTC_IOU;FFA20000;FFA2FFFF;1|LPD;APM_FPD_LPD;FFA30000;FFA3FFFF;1|FPD;APM_5;FD490000;FD49FFFF;1|FPD;APM_0;FD0B0000;FD0BFFFF;1|LPD;APM2;FFA10000;FFA1FFFF;1|LPD;APM1;FFA00000;FFA0FFFF;1|LPD;AMS;FFA50000;FFA5FFFF;1|FPD;AFI_5;FD3B0000;FD3BFFFF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380000;FD38FFFF;1|FPD;AFI_1;FD370000;FD37FFFF;1|FPD;AFI_0;FD360000;FD36FFFF;1|LPD;AFIFM6;FF9B0000;FF9BFFFF;1|FPD;ACPU_GIC;F9010000;F907FFFF;1"/>
+        <PARAMETER NAME="PSU__PROTECTION__SLAVES" VALUE="LPD;USB3_1_XHCI;FE300000;FE3FFFFF;0|LPD;USB3_1;FF9E0000;FF9EFFFF;0|LPD;USB3_0_XHCI;FE200000;FE2FFFFF;1|LPD;USB3_0;FF9D0000;FF9DFFFF;1|LPD;UART1;FF010000;FF01FFFF;1|LPD;UART0;FF000000;FF00FFFF;1|LPD;TTC3;FF140000;FF14FFFF;1|LPD;TTC2;FF130000;FF13FFFF;1|LPD;TTC1;FF120000;FF12FFFF;1|LPD;TTC0;FF110000;FF11FFFF;1|FPD;SWDT1;FD4D0000;FD4DFFFF;1|LPD;SWDT0;FF150000;FF15FFFF;1|LPD;SPI1;FF050000;FF05FFFF;0|LPD;SPI0;FF040000;FF04FFFF;0|FPD;SMMU_REG;FD5F0000;FD5FFFFF;1|FPD;SMMU;FD800000;FDFFFFFF;1|FPD;SIOU;FD3D0000;FD3DFFFF;1|FPD;SERDES;FD400000;FD47FFFF;1|LPD;SD1;FF170000;FF17FFFF;1|LPD;SD0;FF160000;FF16FFFF;0|FPD;SATA;FD0C0000;FD0CFFFF;1|LPD;RTC;FFA60000;FFA6FFFF;1|LPD;RSA_CORE;FFCE0000;FFCEFFFF;1|LPD;RPU;FF9A0000;FF9AFFFF;1|LPD;R5_TCM_RAM_GLOBAL;FFE00000;FFE3FFFF;1|LPD;R5_1_Instruction_Cache;FFEC0000;FFECFFFF;1|LPD;R5_1_Data_Cache;FFED0000;FFEDFFFF;1|LPD;R5_1_BTCM_GLOBAL;FFEB0000;FFEBFFFF;1|LPD;R5_1_ATCM_GLOBAL;FFE90000;FFE9FFFF;1|LPD;R5_0_Instruction_Cache;FFE40000;FFE4FFFF;1|LPD;R5_0_Data_Cache;FFE50000;FFE5FFFF;1|LPD;R5_0_BTCM_GLOBAL;FFE20000;FFE2FFFF;1|LPD;R5_0_ATCM_GLOBAL;FFE00000;FFE0FFFF;1|LPD;QSPI_Linear_Address;C0000000;DFFFFFFF;1|LPD;QSPI;FF0F0000;FF0FFFFF;1|LPD;PMU_RAM;FFDC0000;FFDDFFFF;1|LPD;PMU_GLOBAL;FFD80000;FFDBFFFF;1|FPD;PCIE_MAIN;FD0E0000;FD0EFFFF;1|FPD;PCIE_LOW;E0000000;EFFFFFFF;1|FPD;PCIE_HIGH2;8000000000;BFFFFFFFFF;1|FPD;PCIE_HIGH1;600000000;7FFFFFFFF;1|FPD;PCIE_DMA;FD0F0000;FD0FFFFF;1|FPD;PCIE_ATTRIB;FD480000;FD48FFFF;1|LPD;OCM_XMPU_CFG;FFA70000;FFA7FFFF;1|LPD;OCM_SLCR;FF960000;FF96FFFF;1|OCM;OCM;FFFC0000;FFFFFFFF;1|LPD;NAND;FF100000;FF10FFFF;0|LPD;MBISTJTAG;FFCF0000;FFCFFFFF;1|LPD;LPD_XPPU_SINK;FF9C0000;FF9CFFFF;1|LPD;LPD_XPPU;FF980000;FF98FFFF;1|LPD;LPD_SLCR_SECURE;FF4B0000;FF4DFFFF;1|LPD;LPD_SLCR;FF410000;FF4AFFFF;1|LPD;LPD_GPV;FE100000;FE1FFFFF;1|LPD;LPD_DMA_7;FFAF0000;FFAFFFFF;1|LPD;LPD_DMA_6;FFAE0000;FFAEFFFF;1|LPD;LPD_DMA_5;FFAD0000;FFADFFFF;1|LPD;LPD_DMA_4;FFAC0000;FFACFFFF;1|LPD;LPD_DMA_3;FFAB0000;FFABFFFF;1|LPD;LPD_DMA_2;FFAA0000;FFAAFFFF;1|LPD;LPD_DMA_1;FFA90000;FFA9FFFF;1|LPD;LPD_DMA_0;FFA80000;FFA8FFFF;1|LPD;IPI_CTRL;FF380000;FF3FFFFF;1|LPD;IOU_SLCR;FF180000;FF23FFFF;1|LPD;IOU_SECURE_SLCR;FF240000;FF24FFFF;1|LPD;IOU_SCNTRS;FF260000;FF26FFFF;1|LPD;IOU_SCNTR;FF250000;FF25FFFF;1|LPD;IOU_GPV;FE000000;FE0FFFFF;1|LPD;I2C1;FF030000;FF03FFFF;1|LPD;I2C0;FF020000;FF02FFFF;1|FPD;GPU;FD4B0000;FD4BFFFF;1|LPD;GPIO;FF0A0000;FF0AFFFF;1|LPD;GEM3;FF0E0000;FF0EFFFF;1|LPD;GEM2;FF0D0000;FF0DFFFF;0|LPD;GEM1;FF0C0000;FF0CFFFF;0|LPD;GEM0;FF0B0000;FF0BFFFF;0|FPD;FPD_XMPU_SINK;FD4F0000;FD4FFFFF;1|FPD;FPD_XMPU_CFG;FD5D0000;FD5DFFFF;1|FPD;FPD_SLCR_SECURE;FD690000;FD6CFFFF;1|FPD;FPD_SLCR;FD610000;FD68FFFF;1|FPD;FPD_GPV;FD700000;FD7FFFFF;1|FPD;FPD_DMA_CH7;FD570000;FD57FFFF;1|FPD;FPD_DMA_CH6;FD560000;FD56FFFF;1|FPD;FPD_DMA_CH5;FD550000;FD55FFFF;1|FPD;FPD_DMA_CH4;FD540000;FD54FFFF;1|FPD;FPD_DMA_CH3;FD530000;FD53FFFF;1|FPD;FPD_DMA_CH2;FD520000;FD52FFFF;1|FPD;FPD_DMA_CH1;FD510000;FD51FFFF;1|FPD;FPD_DMA_CH0;FD500000;FD50FFFF;1|LPD;EFUSE;FFCC0000;FFCCFFFF;1|FPD;Display Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD050000;FD05FFFF;1|FPD;DDR_XMPU4_CFG;FD040000;FD04FFFF;1|FPD;DDR_XMPU3_CFG;FD030000;FD03FFFF;1|FPD;DDR_XMPU2_CFG;FD020000;FD02FFFF;1|FPD;DDR_XMPU1_CFG;FD010000;FD01FFFF;1|FPD;DDR_XMPU0_CFG;FD000000;FD00FFFF;1|FPD;DDR_QOS_CTRL;FD090000;FD09FFFF;1|FPD;DDR_PHY;FD080000;FD08FFFF;1|DDR;DDR_LOW;0;7FFFFFFF;1|DDR;DDR_HIGH;800000000;87FFFFFFF;1|FPD;DDDR_CTRL;FD070000;FD070FFF;1|LPD;Coresight;FE800000;FEFFFFFF;1|LPD;CSU_DMA;FFC80000;FFC9FFFF;1|LPD;CSU;FFCA0000;FFCAFFFF;1|LPD;CRL_APB;FF5E0000;FF85FFFF;1|FPD;CRF_APB;FD1A0000;FD2DFFFF;1|FPD;CCI_REG;FD5E0000;FD5EFFFF;1|FPD;CCI_GPV;FD6E0000;FD6EFFFF;1|LPD;CAN1;FF070000;FF07FFFF;1|LPD;CAN0;FF060000;FF06FFFF;0|FPD;APU;FD5C0000;FD5CFFFF;1|LPD;APM_INTC_IOU;FFA20000;FFA2FFFF;1|LPD;APM_FPD_LPD;FFA30000;FFA3FFFF;1|FPD;APM_5;FD490000;FD49FFFF;1|FPD;APM_0;FD0B0000;FD0BFFFF;1|LPD;APM2;FFA10000;FFA1FFFF;1|LPD;APM1;FFA00000;FFA0FFFF;1|LPD;AMS;FFA50000;FFA5FFFF;1|FPD;AFI_5;FD3B0000;FD3BFFFF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380000;FD38FFFF;1|FPD;AFI_1;FD370000;FD37FFFF;1|FPD;AFI_0;FD360000;FD36FFFF;1|LPD;AFIFM6;FF9B0000;FF9BFFFF;1|FPD;ACPU_GIC;F9010000;F907FFFF;1"/>
         <PARAMETER NAME="PSU__PROTECTION__PRESUBSYSTEMS" VALUE="NONE"/>
         <PARAMETER NAME="PSU__PROTECTION__ENABLE" VALUE="0"/>
         <PARAMETER NAME="PSU__DDR_SW_REFRESH_ENABLED" VALUE="0"/>
@@ -6053,28 +6175,28 @@
             <CONNECTION INSTANCE="axi_cdma_0" PORT="cdma_introut"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="pl_resetn0" SIGIS="rst" SIGNAME="zynq_ultra_ps_e_0_pl_resetn0">
+        <PORT DIR="O" NAME="pl_resetn0" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="zynq_ultra_ps_e_0_pl_resetn0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="ext_reset_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="pl_clk0" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk0">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="slowest_sync_clk"/>
+            <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="m_axi_aclk"/>
             <CONNECTION INSTANCE="axi_cdma_0" PORT="s_axi_lite_aclk"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="axi_smc" PORT="aclk"/>
             <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_in1"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="ACLK"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M01_ACLK"/>
-            <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="slowest_sync_clk"/>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxihpm0_fpd_aclk"/>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="saxihp0_fpd_aclk"/>
-            <CONNECTION INSTANCE="coldata_i2c_0" PORT="s00_axi_aclk"/>
-            <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M02_ACLK"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M03_ACLK"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxihpm0_fpd_aclk"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="saxihp0_fpd_aclk"/>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_aclk"/>
           </CONNECTIONS>
         </PORT>

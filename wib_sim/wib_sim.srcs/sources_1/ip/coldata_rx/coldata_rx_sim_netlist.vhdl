@@ -1,8 +1,8 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
--- Date        : Fri Jun  5 22:15:00 2020
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Sat Jun 27 19:55:08 2020
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_sim_netlist.vhdl
 -- Design      : coldata_rx
@@ -14,17 +14,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -105,17 +105,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -196,17 +196,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -287,17 +287,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -378,17 +378,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -469,17 +469,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -560,17 +560,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -651,17 +651,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -742,7 +742,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -750,10 +750,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28 is
     \FSM_sequential_sm_reset_rx[2]_i_5\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : STD_LOGIC_VECTOR ( 13 to 13 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -846,7 +846,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -854,10 +854,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29 is
     \FSM_sequential_sm_reset_tx[2]_i_4\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : STD_LOGIC_VECTOR ( 13 to 13 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -950,17 +950,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1041,17 +1041,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1132,17 +1132,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1223,17 +1223,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1314,7 +1314,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -1322,10 +1322,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34 is
     \FSM_sequential_sm_reset_rx[2]_i_5\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : STD_LOGIC_VECTOR ( 1 to 1 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -1418,7 +1418,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -1426,10 +1426,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35 is
     \FSM_sequential_sm_reset_tx[2]_i_4\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : STD_LOGIC_VECTOR ( 1 to 1 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -1522,17 +1522,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1613,17 +1613,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1704,17 +1704,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1795,17 +1795,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1886,17 +1886,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1977,17 +1977,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2068,7 +2068,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2076,10 +2076,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42 is
     \FSM_sequential_sm_reset_rx[2]_i_5\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : STD_LOGIC_VECTOR ( 5 to 5 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -2172,7 +2172,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2180,10 +2180,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43 is
     \FSM_sequential_sm_reset_tx[2]_i_4\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : STD_LOGIC_VECTOR ( 5 to 5 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -2276,17 +2276,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2367,17 +2367,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2458,17 +2458,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2549,17 +2549,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47 is
   port (
     i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2640,17 +2640,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2731,17 +2731,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -2822,7 +2822,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2830,10 +2830,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50 is
     \FSM_sequential_sm_reset_rx[2]_i_5\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : STD_LOGIC_VECTOR ( 9 to 9 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -2926,7 +2926,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51 is
   port (
     i_in_out_reg_0 : out STD_LOGIC;
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2934,10 +2934,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51 is
     \FSM_sequential_sm_reset_tx[2]_i_4\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51 is
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : STD_LOGIC_VECTOR ( 9 to 9 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -3030,7 +3030,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52 is
   port (
     E : out STD_LOGIC_VECTOR ( 0 to 0 );
     in0 : in STD_LOGIC;
@@ -3040,10 +3040,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52 is
     \FSM_sequential_sm_reset_all_reg[0]_0\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52 is
   signal gtpowergood_sync : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -3138,17 +3138,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53 is
   port (
     gtwiz_reset_rx_datapath_dly : out STD_LOGIC;
     in0 : in STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -3229,7 +3229,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54 is
   port (
     D : out STD_LOGIC_VECTOR ( 1 downto 0 );
     sm_reset_rx_pll_timer_sat_reg : out STD_LOGIC;
@@ -3242,10 +3242,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54 is
     gtwiz_reset_rx_datapath_dly : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54 is
   signal gtwiz_reset_rx_pll_and_datapath_dly : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -3366,17 +3366,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55 is
   port (
     gtwiz_reset_tx_datapath_dly : out STD_LOGIC;
     in0 : in STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55 is
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -3457,7 +3457,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56 is
   port (
     sm_reset_tx_pll_timer_sat_reg : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -3469,10 +3469,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56 is
     gtwiz_reset_tx_datapath_dly : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56 is
   signal gtwiz_reset_tx_pll_and_datapath_dly : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -3591,7 +3591,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57 is
   port (
     \FSM_sequential_sm_reset_rx_reg[1]\ : out STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[0]\ : out STD_LOGIC;
@@ -3609,10 +3609,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57 is
     GTHE4_CHANNEL_RXUSERRDY : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57 is
   signal gtwiz_reset_userclk_rx_active_sync : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -3760,7 +3760,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58 is
   port (
     \sm_reset_tx_timer_clr0__0\ : out STD_LOGIC;
     \FSM_sequential_sm_reset_tx_reg[1]\ : out STD_LOGIC;
@@ -3777,10 +3777,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58 is
     GTHE4_CHANNEL_TXUSERRDY : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58 is
   signal gtwiz_reset_userclk_tx_active_sync : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -3914,7 +3914,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59 is
   port (
     E : out STD_LOGIC_VECTOR ( 0 to 0 );
     i_in_out_reg_0 : out STD_LOGIC;
@@ -3934,10 +3934,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59 is
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59 is
   signal \FSM_sequential_sm_reset_rx[2]_i_3_n_0\ : STD_LOGIC;
   signal \^fsm_sequential_sm_reset_rx_reg[1]\ : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
@@ -4093,7 +4093,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60 is
   port (
     E : out STD_LOGIC_VECTOR ( 0 to 0 );
     i_in_out_reg_0 : out STD_LOGIC;
@@ -4112,10 +4112,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60 is
     GTHE4_CHANNEL_GTTXRESET : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60 is
   signal \FSM_sequential_sm_reset_tx[2]_i_3_n_0\ : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -4275,7 +4275,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61 is
   port (
     gtwiz_reset_rx_cdr_stable_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     \FSM_sequential_sm_reset_rx_reg[1]\ : out STD_LOGIC;
@@ -4290,10 +4290,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61 is
     GTHE4_CHANNEL_RXPROGDIVRESET : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61 : entity is "gtwizard_ultrascale_v1_7_7_bit_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61 is
   signal \^gtwiz_reset_rx_cdr_stable_out\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -4412,7 +4412,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel is
   port (
     gthrxn_in_3_sp_1 : out STD_LOGIC;
     GTHE4_CHANNEL_GTPOWERGOOD : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -4767,10 +4767,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel is
     lopt_7 : out STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel : entity is "gtwizard_ultrascale_v1_7_7_gthe4_channel";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel : entity is "gtwizard_ultrascale_v1_7_8_gthe4_channel";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel is
   signal \^gthe4_channel_gtpowergood\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal gthrxn_in_0_sn_1 : STD_LOGIC;
   signal gthrxn_in_1_sn_1 : STD_LOGIC;
@@ -8263,7 +8263,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73 is
   port (
     \gthrxn_in[15]\ : out STD_LOGIC;
     GTHE4_CHANNEL_GTPOWERGOOD : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -8610,10 +8610,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73 is
     drpaddr_in : in STD_LOGIC_VECTOR ( 39 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_channel";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_channel";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73 is
   signal \^gthe4_channel_gtpowergood\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST\ : label is "PRIMITIVE";
@@ -12063,7 +12063,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74 is
   port (
     \gthrxn_in[11]\ : out STD_LOGIC;
     GTHE4_CHANNEL_GTPOWERGOOD : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -12410,10 +12410,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74 is
     drpaddr_in : in STD_LOGIC_VECTOR ( 39 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_channel";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_channel";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74 is
   signal \^gthe4_channel_gtpowergood\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST\ : label is "PRIMITIVE";
@@ -15863,7 +15863,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75 is
   port (
     \gthrxn_in[7]\ : out STD_LOGIC;
     GTHE4_CHANNEL_GTPOWERGOOD : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -16210,10 +16210,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75 is
     drpaddr_in : in STD_LOGIC_VECTOR ( 39 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_channel";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_channel";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75 is
   signal \^gthe4_channel_gtpowergood\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST\ : label is "PRIMITIVE";
@@ -19663,7 +19663,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common is
   port (
     drprdy_common_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     qpll0fbclklost_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -19754,10 +19754,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common is
     tcongpi_in : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common : entity is "gtwizard_ultrascale_v1_7_7_gthe4_common";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common : entity is "gtwizard_ultrascale_v1_7_8_gthe4_common";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common is
   signal qpll0outclk_out_0_sn_1 : STD_LOGIC;
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_common_gen.GTHE4_COMMON_PRIM_INST\ : label is "PRIMITIVE";
@@ -19942,7 +19942,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70 is
   port (
     drprdy_common_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     qpll0fbclklost_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -20033,10 +20033,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70 is
     tcongpi_in : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_common";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_common";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70 is
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_common_gen.GTHE4_COMMON_PRIM_INST\ : label is "PRIMITIVE";
 begin
@@ -20219,7 +20219,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71 is
   port (
     drprdy_common_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     qpll0fbclklost_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -20312,10 +20312,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71 is
     rst_in_out_reg : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_common";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_common";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71 is
   signal \^qpll0lock_out\ : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_common_gen.GTHE4_COMMON_PRIM_INST\ : label is "PRIMITIVE";
@@ -20511,7 +20511,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72 is
   port (
     drprdy_common_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     qpll0fbclklost_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -20602,10 +20602,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72 is
     tcongpi_in : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_common";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_common";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72 is
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of \gthe4_common_gen.GTHE4_COMMON_PRIM_INST\ : label is "PRIMITIVE";
 begin
@@ -20788,7 +20788,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -20803,10 +20803,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -21131,7 +21131,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -21146,10 +21146,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -21474,7 +21474,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -21489,10 +21489,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -21817,7 +21817,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -21832,10 +21832,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -22160,7 +22160,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -22175,10 +22175,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -22503,7 +22503,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -22518,10 +22518,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -22846,7 +22846,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -22861,10 +22861,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -23189,7 +23189,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -23204,10 +23204,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -23532,7 +23532,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -23550,10 +23550,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17 is
     gtpowergood_out : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -23891,7 +23891,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -23906,10 +23906,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -24234,7 +24234,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -24249,10 +24249,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -24577,7 +24577,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -24592,10 +24592,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -24920,7 +24920,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -24935,10 +24935,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -25263,7 +25263,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -25278,10 +25278,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -25606,7 +25606,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -25625,10 +25625,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8 is
     i_in_meta_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -25980,7 +25980,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9 is
   port (
     \out\ : out STD_LOGIC;
     GTHE4_CHANNEL_RXPD : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -25995,10 +25995,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9 is
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9 : entity is "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9 : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9 is
   signal \gen_powergood_delay.int_pwr_on_fsm\ : STD_LOGIC;
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of \gen_powergood_delay.int_pwr_on_fsm\ : signal is "true";
@@ -26323,7 +26323,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx is
   port (
     gtwiz_userclk_rx_usrclk2_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_userclk_rx_active_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -26334,10 +26334,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx is
     lopt_2 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx : entity is "gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx : entity is "gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx is
   signal \<const1>\ : STD_LOGIC;
   signal \gen_gtwiz_userclk_rx_main.gtwiz_userclk_rx_active_meta\ : STD_LOGIC;
   attribute async_reg : string;
@@ -26408,7 +26408,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx is
   port (
     gtwiz_userclk_tx_usrclk2_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_userclk_tx_active_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -26419,10 +26419,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx is
     lopt_2 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx : entity is "gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx : entity is "gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx is
   signal \<const1>\ : STD_LOGIC;
   signal \gen_gtwiz_userclk_tx_main.gtwiz_userclk_tx_active_meta\ : STD_LOGIC;
   attribute async_reg : string;
@@ -26493,17 +26493,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer is
   port (
     gtwiz_reset_rx_done_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_userclk_rx_usrclk2_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     rst_in_sync2_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer : entity is "gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer is
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of rst_in_meta : signal is "true";
@@ -26593,17 +26593,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68 is
   port (
     gtwiz_reset_tx_done_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_userclk_tx_usrclk2_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     rst_in_sync2_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68 : entity is "gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68 : entity is "gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68 is
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of rst_in_meta : signal is "true";
@@ -26693,17 +26693,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer is
   port (
     gtwiz_reset_all_sync : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_all_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer is
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of rst_in_meta : signal is "true";
@@ -26784,7 +26784,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62 is
   port (
     gtwiz_reset_rx_any_sync : out STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[1]\ : out STD_LOGIC;
@@ -26797,10 +26797,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62 is
     rst_in_out_reg_1 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62 is
   signal gtwiz_reset_rx_any : STD_LOGIC;
   signal \^gtwiz_reset_rx_any_sync\ : STD_LOGIC;
   signal rst_in_meta : STD_LOGIC;
@@ -26907,7 +26907,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63 is
   port (
     in0 : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -26915,10 +26915,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63 is
     rst_in_out_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63 is
   signal rst_in0_2 : STD_LOGIC;
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -27009,7 +27009,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64 is
   port (
     in0 : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -27017,10 +27017,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64 is
     gtwiz_reset_rx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64 is
   signal p_0_in_1 : STD_LOGIC;
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -27111,7 +27111,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65 is
   port (
     gtwiz_reset_tx_any_sync : out STD_LOGIC;
     \FSM_sequential_sm_reset_tx_reg[1]\ : out STD_LOGIC;
@@ -27123,10 +27123,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65 is
     rst_in_out_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65 is
   signal gtwiz_reset_tx_any : STD_LOGIC;
   signal \^gtwiz_reset_tx_any_sync\ : STD_LOGIC;
   signal rst_in_meta : STD_LOGIC;
@@ -27232,17 +27232,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66 is
   port (
     in0 : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_tx_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66 is
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of rst_in_meta : signal is "true";
@@ -27323,7 +27323,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67 is
   port (
     in0 : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -27331,10 +27331,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67 is
     gtwiz_reset_tx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67 is
   signal p_1_in_0 : STD_LOGIC;
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -27425,17 +27425,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69 is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69 is
   port (
     GTHE4_CHANNEL_TXPROGDIVRESET : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     rst_in0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69 : entity is "gtwizard_ultrascale_v1_7_7_reset_synchronizer";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69 is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69 is
   signal rst_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of rst_in_meta : signal is "true";
@@ -27868,7 +27868,7 @@ end coldata_rx_coldata_rx_gthe4_channel_wrapper;
 
 architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_channel_wrapper is
 begin
-channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75
+channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
      port map (
       GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0) => GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0),
       GTHE4_CHANNEL_GTRXRESET(3 downto 0) => GTHE4_CHANNEL_GTRXRESET(3 downto 0),
@@ -28571,7 +28571,7 @@ end coldata_rx_coldata_rx_gthe4_channel_wrapper_0;
 
 architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_channel_wrapper_0 is
 begin
-channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74
+channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
      port map (
       GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0) => GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0),
       GTHE4_CHANNEL_GTRXRESET(3 downto 0) => GTHE4_CHANNEL_GTRXRESET(3 downto 0),
@@ -29274,7 +29274,7 @@ end coldata_rx_coldata_rx_gthe4_channel_wrapper_1;
 
 architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_channel_wrapper_1 is
 begin
-channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73
+channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
      port map (
       GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0) => GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0),
       GTHE4_CHANNEL_GTRXRESET(3 downto 0) => GTHE4_CHANNEL_GTRXRESET(3 downto 0),
@@ -29993,7 +29993,7 @@ begin
   gthrxn_in_1_sp_1 <= gthrxn_in_1_sn_1;
   gthrxn_in_2_sp_1 <= gthrxn_in_2_sn_1;
   gthrxn_in_3_sp_1 <= gthrxn_in_3_sn_1;
-channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel
+channel_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
      port map (
       GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0) => GTHE4_CHANNEL_GTPOWERGOOD(3 downto 0),
       GTHE4_CHANNEL_GTRXRESET(3 downto 0) => GTHE4_CHANNEL_GTRXRESET(3 downto 0),
@@ -30448,7 +30448,7 @@ end coldata_rx_coldata_rx_gthe4_common_wrapper;
 
 architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_common_wrapper is
 begin
-common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72
+common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72
      port map (
       bgbypassb_in(0) => bgbypassb_in(0),
       bgmonitorenb_in(0) => bgmonitorenb_in(0),
@@ -30641,7 +30641,7 @@ end coldata_rx_coldata_rx_gthe4_common_wrapper_3;
 
 architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_common_wrapper_3 is
 begin
-common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71
+common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71
      port map (
       bgbypassb_in(0) => bgbypassb_in(0),
       bgmonitorenb_in(0) => bgmonitorenb_in(0),
@@ -30834,7 +30834,7 @@ end coldata_rx_coldata_rx_gthe4_common_wrapper_4;
 
 architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_common_wrapper_4 is
 begin
-common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70
+common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70
      port map (
       bgbypassb_in(0) => bgbypassb_in(0),
       bgmonitorenb_in(0) => bgmonitorenb_in(0),
@@ -31027,7 +31027,7 @@ architecture STRUCTURE of coldata_rx_coldata_rx_gthe4_common_wrapper_5 is
   signal qpll0outclk_out_0_sn_1 : STD_LOGIC;
 begin
   qpll0outclk_out_0_sn_1 <= qpll0outclk_out_0_sp_1;
-common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common
+common_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common
      port map (
       bgbypassb_in(0) => bgbypassb_in(0),
       bgmonitorenb_in(0) => bgmonitorenb_in(0),
@@ -31122,7 +31122,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset is
+entity coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset is
   port (
     GTHE4_CHANNEL_TXPROGDIVRESET : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_tx_done_out : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -31160,10 +31160,10 @@ entity coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset is
     gtwiz_reset_rx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset : entity is "gtwizard_ultrascale_v1_7_7_gtwiz_reset";
-end coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset;
+  attribute ORIG_REF_NAME of coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset : entity is "gtwizard_ultrascale_v1_7_8_gtwiz_reset";
+end coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset;
 
-architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset is
+architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset is
   signal \FSM_sequential_sm_reset_all[2]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_sequential_sm_reset_all[2]_i_4_n_0\ : STD_LOGIC;
   signal \FSM_sequential_sm_reset_rx[2]_i_2_n_0\ : STD_LOGIC;
@@ -31332,10 +31332,10 @@ architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset is
   signal \NLW_sm_reset_rx_cdr_to_ctr_reg[24]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 1 );
   signal \NLW_sm_reset_rx_cdr_to_ctr_reg[24]_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 2 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[1]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_2\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_3\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_4\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[1]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_2\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_3\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_4\ : label is "soft_lutpair11";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_all_reg[0]\ : label is "ST_RESET_ALL_BRANCH:000,ST_RESET_ALL_TX_PLL_WAIT:010,ST_RESET_ALL_RX_WAIT:101,ST_RESET_ALL_TX_PLL:001,ST_RESET_ALL_RX_PLL:100,ST_RESET_ALL_RX_DP:011,ST_RESET_ALL_INIT:111,iSTATE:110";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_all_reg[1]\ : label is "ST_RESET_ALL_BRANCH:000,ST_RESET_ALL_TX_PLL_WAIT:010,ST_RESET_ALL_RX_WAIT:101,ST_RESET_ALL_TX_PLL:001,ST_RESET_ALL_RX_PLL:100,ST_RESET_ALL_RX_DP:011,ST_RESET_ALL_INIT:111,iSTATE:110";
@@ -31346,48 +31346,53 @@ architecture STRUCTURE of coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset is
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_tx_reg[0]\ : label is "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_tx_reg[1]\ : label is "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_tx_reg[2]\ : label is "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__0\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__2\ : label is "soft_lutpair26";
   attribute SOFT_HLUTNM of gtwiz_reset_rx_datapath_int_i_1 : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of gtwiz_reset_tx_pll_and_datapath_int_i_1 : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \sm_reset_all_timer_ctr[1]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \sm_reset_all_timer_ctr[2]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[1]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \sm_reset_rx_timer_ctr[1]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \sm_reset_rx_timer_ctr[2]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[1]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of sm_reset_tx_timer_clr_i_4 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \sm_reset_tx_timer_ctr[1]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \sm_reset_tx_timer_ctr[2]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of sm_reset_tx_timer_sat_i_1 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sm_reset_all_timer_ctr[1]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \sm_reset_all_timer_ctr[2]_i_1\ : label is "soft_lutpair19";
+  attribute ADDER_THRESHOLD : integer;
+  attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[0]_i_2\ : label is 16;
+  attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[16]_i_1\ : label is 16;
+  attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[24]_i_1\ : label is 16;
+  attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[8]_i_1\ : label is 16;
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[1]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \sm_reset_rx_timer_ctr[1]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \sm_reset_rx_timer_ctr[2]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[1]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of sm_reset_tx_timer_clr_i_4 : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \sm_reset_tx_timer_ctr[1]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \sm_reset_tx_timer_ctr[2]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of sm_reset_tx_timer_sat_i_1 : label is "soft_lutpair9";
 begin
   GTHE4_CHANNEL_GTTXRESET(0) <= \^gthe4_channel_gttxreset\(0);
   GTHE4_CHANNEL_RXPROGDIVRESET(0) <= \^gthe4_channel_rxprogdivreset\(0);
@@ -31593,7 +31598,7 @@ begin
       Q => sm_reset_tx(2),
       R => gtwiz_reset_tx_any_sync
     );
-bit_synchronizer_gtpowergood_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52
+bit_synchronizer_gtpowergood_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52
      port map (
       E(0) => bit_synchronizer_gtpowergood_inst_n_0,
       \FSM_sequential_sm_reset_all_reg[0]\ => \FSM_sequential_sm_reset_all[2]_i_3_n_0\,
@@ -31602,13 +31607,13 @@ bit_synchronizer_gtpowergood_inst: entity work.coldata_rx_gtwizard_ultrascale_v1
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       in0 => in0
     );
-bit_synchronizer_gtwiz_reset_rx_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53
+bit_synchronizer_gtwiz_reset_rx_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_datapath_dly => gtwiz_reset_rx_datapath_dly,
       in0 => gtwiz_reset_rx_datapath_sync
     );
-bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54
+bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54
      port map (
       D(1 downto 0) => \sm_reset_rx__0\(1 downto 0),
       \FSM_sequential_sm_reset_rx[2]_i_3\ => sm_reset_rx_pll_timer_clr_reg_n_0,
@@ -31620,13 +31625,13 @@ bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst: entity work.coldata_r
       sm_reset_rx_pll_timer_sat => sm_reset_rx_pll_timer_sat,
       sm_reset_rx_pll_timer_sat_reg => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2
     );
-bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55
+bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_tx_datapath_dly => gtwiz_reset_tx_datapath_dly,
       in0 => gtwiz_reset_tx_datapath_sync
     );
-bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56
+bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56
      port map (
       D(1 downto 0) => \sm_reset_tx__0\(1 downto 0),
       \FSM_sequential_sm_reset_tx[2]_i_3\ => sm_reset_tx_pll_timer_clr_reg_n_0,
@@ -31637,7 +31642,7 @@ bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst: entity work.coldata_r
       sm_reset_tx_pll_timer_sat => sm_reset_tx_pll_timer_sat,
       sm_reset_tx_pll_timer_sat_reg => bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst_n_0
     );
-bit_synchronizer_gtwiz_reset_userclk_rx_active_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57
+bit_synchronizer_gtwiz_reset_userclk_rx_active_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57
      port map (
       \FSM_sequential_sm_reset_rx_reg[0]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1,
       \FSM_sequential_sm_reset_rx_reg[0]_0\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2,
@@ -31654,7 +31659,7 @@ bit_synchronizer_gtwiz_reset_userclk_rx_active_inst: entity work.coldata_rx_gtwi
       sm_reset_rx_timer_clr_reg_0 => bit_synchronizer_plllock_rx_inst_n_1,
       sm_reset_rx_timer_sat => sm_reset_rx_timer_sat
     );
-bit_synchronizer_gtwiz_reset_userclk_tx_active_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58
+bit_synchronizer_gtwiz_reset_userclk_tx_active_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58
      port map (
       \FSM_sequential_sm_reset_tx_reg[1]\ => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1,
       \FSM_sequential_sm_reset_tx_reg[2]\ => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2,
@@ -31670,7 +31675,7 @@ bit_synchronizer_gtwiz_reset_userclk_tx_active_inst: entity work.coldata_rx_gtwi
       sm_reset_tx_timer_clr_reg_0 => bit_synchronizer_plllock_tx_inst_n_1,
       sm_reset_tx_timer_sat => sm_reset_tx_timer_sat
     );
-bit_synchronizer_plllock_rx_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59
+bit_synchronizer_plllock_rx_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59
      port map (
       E(0) => bit_synchronizer_plllock_rx_inst_n_0,
       \FSM_sequential_sm_reset_rx_reg[0]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0,
@@ -31689,7 +31694,7 @@ bit_synchronizer_plllock_rx_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_
       \p_0_in11_out__0\ => \p_0_in11_out__0\,
       sm_reset_rx_timer_sat => sm_reset_rx_timer_sat
     );
-bit_synchronizer_plllock_tx_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60
+bit_synchronizer_plllock_tx_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60
      port map (
       E(0) => bit_synchronizer_plllock_tx_inst_n_0,
       \FSM_sequential_sm_reset_tx_reg[0]\ => bit_synchronizer_plllock_tx_inst_n_2,
@@ -31707,7 +31712,7 @@ bit_synchronizer_plllock_tx_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_
       \sm_reset_tx_timer_clr0__0\ => \sm_reset_tx_timer_clr0__0\,
       sm_reset_tx_timer_sat => sm_reset_tx_timer_sat
     );
-bit_synchronizer_rxcdrlock_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61
+bit_synchronizer_rxcdrlock_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61
      port map (
       \FSM_sequential_sm_reset_rx_reg[1]\ => bit_synchronizer_rxcdrlock_inst_n_1,
       \FSM_sequential_sm_reset_rx_reg[2]\ => bit_synchronizer_rxcdrlock_inst_n_2,
@@ -32022,13 +32027,13 @@ pllreset_tx_out_reg: unisim.vcomponents.FDRE
       Q => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int\,
       R => '0'
     );
-reset_synchronizer_gtwiz_reset_all_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer
+reset_synchronizer_gtwiz_reset_all_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer
      port map (
       gtwiz_reset_all_in(0) => gtwiz_reset_all_in(0),
       gtwiz_reset_all_sync => gtwiz_reset_all_sync,
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0)
     );
-reset_synchronizer_gtwiz_reset_rx_any_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62
+reset_synchronizer_gtwiz_reset_rx_any_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62
      port map (
       \FSM_sequential_sm_reset_rx_reg[1]\ => reset_synchronizer_gtwiz_reset_rx_any_inst_n_1,
       Q(2 downto 0) => sm_reset_rx(2 downto 0),
@@ -32040,21 +32045,21 @@ reset_synchronizer_gtwiz_reset_rx_any_inst: entity work.coldata_rx_gtwizard_ultr
       rst_in_out_reg_0 => gtwiz_reset_rx_datapath_int_reg_n_0,
       rst_in_out_reg_1 => gtwiz_reset_rx_pll_and_datapath_int_reg_n_0
     );
-reset_synchronizer_gtwiz_reset_rx_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63
+reset_synchronizer_gtwiz_reset_rx_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_datapath_in(0) => gtwiz_reset_rx_datapath_in(0),
       in0 => gtwiz_reset_rx_datapath_sync,
       rst_in_out_reg_0 => gtwiz_reset_rx_datapath_int_reg_n_0
     );
-reset_synchronizer_gtwiz_reset_rx_pll_and_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64
+reset_synchronizer_gtwiz_reset_rx_pll_and_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_pll_and_datapath_in(0) => gtwiz_reset_rx_pll_and_datapath_in(0),
       in0 => gtwiz_reset_rx_pll_and_datapath_sync,
       rst_in_out_reg_0 => gtwiz_reset_rx_pll_and_datapath_int_reg_n_0
     );
-reset_synchronizer_gtwiz_reset_tx_any_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65
+reset_synchronizer_gtwiz_reset_tx_any_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65
      port map (
       \FSM_sequential_sm_reset_tx_reg[1]\ => reset_synchronizer_gtwiz_reset_tx_any_inst_n_1,
       Q(2 downto 0) => sm_reset_tx(2 downto 0),
@@ -32065,32 +32070,32 @@ reset_synchronizer_gtwiz_reset_tx_any_inst: entity work.coldata_rx_gtwizard_ultr
       gtwiz_reset_tx_pll_and_datapath_in(0) => gtwiz_reset_tx_pll_and_datapath_in(0),
       rst_in_out_reg_0 => gtwiz_reset_tx_pll_and_datapath_int_reg_n_0
     );
-reset_synchronizer_gtwiz_reset_tx_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66
+reset_synchronizer_gtwiz_reset_tx_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_tx_datapath_in(0) => gtwiz_reset_tx_datapath_in(0),
       in0 => gtwiz_reset_tx_datapath_sync
     );
-reset_synchronizer_gtwiz_reset_tx_pll_and_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67
+reset_synchronizer_gtwiz_reset_tx_pll_and_datapath_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_tx_pll_and_datapath_in(0) => gtwiz_reset_tx_pll_and_datapath_in(0),
       in0 => gtwiz_reset_tx_pll_and_datapath_sync,
       rst_in_out_reg_0 => gtwiz_reset_tx_pll_and_datapath_int_reg_n_0
     );
-reset_synchronizer_rx_done_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer
+reset_synchronizer_rx_done_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer
      port map (
       gtwiz_reset_rx_done_out(0) => gtwiz_reset_rx_done_out(0),
       gtwiz_userclk_rx_usrclk2_out(0) => gtwiz_userclk_rx_usrclk2_out(0),
       rst_in_sync2_reg_0 => gtwiz_reset_rx_done_int_reg_n_0
     );
-reset_synchronizer_tx_done_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68
+reset_synchronizer_tx_done_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68
      port map (
       gtwiz_reset_tx_done_out(0) => gtwiz_reset_tx_done_out(0),
       gtwiz_userclk_tx_usrclk2_out(0) => gtwiz_userclk_tx_usrclk2_out(0),
       rst_in_sync2_reg_0 => gtwiz_reset_tx_done_int_reg_n_0
     );
-reset_synchronizer_txprogdivreset_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69
+reset_synchronizer_txprogdivreset_inst: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69
      port map (
       GTHE4_CHANNEL_TXPROGDIVRESET(0) => GTHE4_CHANNEL_TXPROGDIVRESET(0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
@@ -35963,7 +35968,7 @@ begin
       tconrsvdin1_in(1 downto 0) => tconrsvdin1_in(1 downto 0),
       tconrsvdout0_out(0) => tconrsvdout0_out(0)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(0),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst_n_1\,
@@ -35979,7 +35984,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(2 downto 0),
       rxratemode_in(0) => rxratemode_in(0)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(10),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst_n_1\,
@@ -35995,7 +36000,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(32 downto 30),
       rxratemode_in(0) => rxratemode_in(10)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(11),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst_n_1\,
@@ -36011,7 +36016,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(35 downto 33),
       rxratemode_in(0) => rxratemode_in(11)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(12),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst_n_1\,
@@ -36034,7 +36039,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(38 downto 36),
       rxratemode_in(0) => rxratemode_in(12)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(13),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst_n_1\,
@@ -36050,7 +36055,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(41 downto 39),
       rxratemode_in(0) => rxratemode_in(13)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(14),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst_n_1\,
@@ -36066,7 +36071,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(44 downto 42),
       rxratemode_in(0) => rxratemode_in(14)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(15),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst_n_1\,
@@ -36082,7 +36087,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(47 downto 45),
       rxratemode_in(0) => rxratemode_in(15)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(1),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_1\,
@@ -36098,7 +36103,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(5 downto 3),
       rxratemode_in(0) => rxratemode_in(1)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(2),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst_n_1\,
@@ -36114,7 +36119,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(8 downto 6),
       rxratemode_in(0) => rxratemode_in(2)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(3),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst_n_1\,
@@ -36130,7 +36135,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(11 downto 9),
       rxratemode_in(0) => rxratemode_in(3)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(4),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst_n_1\,
@@ -36146,7 +36151,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(14 downto 12),
       rxratemode_in(0) => rxratemode_in(4)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(5),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst_n_1\,
@@ -36162,7 +36167,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(17 downto 15),
       rxratemode_in(0) => rxratemode_in(5)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(6),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst_n_1\,
@@ -36182,7 +36187,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(20 downto 18),
       rxratemode_in(0) => rxratemode_in(6)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(7),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst_n_1\,
@@ -36198,7 +36203,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(23 downto 21),
       rxratemode_in(0) => rxratemode_in(7)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(8),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst_n_1\,
@@ -36214,7 +36219,7 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(26 downto 24),
       rxratemode_in(0) => rxratemode_in(8)
     );
-\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20
+\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20
      port map (
       GTHE4_CHANNEL_RXOUTCLKPCS(0) => \^rxoutclkpcs_out\(9),
       GTHE4_CHANNEL_RXPD(1) => \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst_n_1\,
@@ -36230,55 +36235,55 @@ begin
       rxrate_in(2 downto 0) => rxrate_in(29 downto 27),
       rxratemode_in(0) => rxratemode_in(9)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       rxresetdone_out(0) => \^rxresetdone_out\(0)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       txresetdone_out(0) => \^txresetdone_out\(0)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(10),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       rxresetdone_out(0) => \^rxresetdone_out\(10)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(10),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       txresetdone_out(0) => \^txresetdone_out\(10)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(11),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       rxresetdone_out(0) => \^rxresetdone_out\(11)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(11),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       txresetdone_out(0) => \^txresetdone_out\(11)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(12),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       rxresetdone_out(0) => \^rxresetdone_out\(12)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(12),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       txresetdone_out(0) => \^txresetdone_out\(12)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28
      port map (
       \FSM_sequential_sm_reset_rx[2]_i_5\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(15 downto 14),
       \FSM_sequential_sm_reset_rx[2]_i_5\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(12),
@@ -36286,7 +36291,7 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_rxresetdone_inst_n_0\,
       rxresetdone_out(0) => \^rxresetdone_out\(13)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29
      port map (
       \FSM_sequential_sm_reset_tx[2]_i_4\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(15 downto 14),
       \FSM_sequential_sm_reset_tx[2]_i_4\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(12),
@@ -36294,31 +36299,31 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_txresetdone_inst_n_0\,
       txresetdone_out(0) => \^txresetdone_out\(13)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(14),
       rxresetdone_out(0) => \^rxresetdone_out\(14)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(14),
       txresetdone_out(0) => \^txresetdone_out\(14)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(15),
       rxresetdone_out(0) => \^rxresetdone_out\(15)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(15),
       txresetdone_out(0) => \^txresetdone_out\(15)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34
      port map (
       \FSM_sequential_sm_reset_rx[2]_i_5\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(3 downto 2),
       \FSM_sequential_sm_reset_rx[2]_i_5\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
@@ -36326,7 +36331,7 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst_n_0\,
       rxresetdone_out(0) => \^rxresetdone_out\(1)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35
      port map (
       \FSM_sequential_sm_reset_tx[2]_i_4\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(3 downto 2),
       \FSM_sequential_sm_reset_tx[2]_i_4\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
@@ -36334,43 +36339,43 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst_n_0\,
       txresetdone_out(0) => \^txresetdone_out\(1)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(2),
       rxresetdone_out(0) => \^rxresetdone_out\(2)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(2),
       txresetdone_out(0) => \^txresetdone_out\(2)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(3),
       rxresetdone_out(0) => \^rxresetdone_out\(3)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(3),
       txresetdone_out(0) => \^txresetdone_out\(3)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(4),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       rxresetdone_out(0) => \^rxresetdone_out\(4)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(4),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       txresetdone_out(0) => \^txresetdone_out\(4)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42
      port map (
       \FSM_sequential_sm_reset_rx[2]_i_5\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(7 downto 6),
       \FSM_sequential_sm_reset_rx[2]_i_5\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(4),
@@ -36378,7 +36383,7 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_rxresetdone_inst_n_0\,
       rxresetdone_out(0) => \^rxresetdone_out\(5)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43
      port map (
       \FSM_sequential_sm_reset_tx[2]_i_4\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(7 downto 6),
       \FSM_sequential_sm_reset_tx[2]_i_4\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(4),
@@ -36386,43 +36391,43 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_txresetdone_inst_n_0\,
       txresetdone_out(0) => \^txresetdone_out\(5)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(6),
       rxresetdone_out(0) => \^rxresetdone_out\(6)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(6),
       txresetdone_out(0) => \^txresetdone_out\(6)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(7),
       rxresetdone_out(0) => \^rxresetdone_out\(7)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47
      port map (
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(7),
       txresetdone_out(0) => \^txresetdone_out\(7)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(8),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       rxresetdone_out(0) => \^rxresetdone_out\(8)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(8),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       txresetdone_out(0) => \^txresetdone_out\(8)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_rxresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50
      port map (
       \FSM_sequential_sm_reset_rx[2]_i_5\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(11 downto 10),
       \FSM_sequential_sm_reset_rx[2]_i_5\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(8),
@@ -36430,7 +36435,7 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_rxresetdone_inst_n_0\,
       rxresetdone_out(0) => \^rxresetdone_out\(9)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_txresetdone_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51
      port map (
       \FSM_sequential_sm_reset_tx[2]_i_4\(2 downto 1) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(11 downto 10),
       \FSM_sequential_sm_reset_tx[2]_i_4\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(8),
@@ -36438,7 +36443,7 @@ begin
       i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_txresetdone_inst_n_0\,
       txresetdone_out(0) => \^txresetdone_out\(9)
     );
-\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
+\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset
      port map (
       GTHE4_CHANNEL_GTTXRESET(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gttxreset_int\,
       GTHE4_CHANNEL_RXPROGDIVRESET(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_rxprogdivreset_int\,
@@ -36486,7 +36491,7 @@ begin
       I3 => \^qpll0lock_out\(2),
       O => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_plllock_tx_int__0\
     );
-\gen_gtwizard_gthe4.gen_rx_user_clocking_internal.gen_single_instance.gtwiz_userclk_rx_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx
+\gen_gtwizard_gthe4.gen_rx_user_clocking_internal.gen_single_instance.gtwiz_userclk_rx_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx
      port map (
       gtwiz_userclk_rx_active_out(0) => \^gtwiz_userclk_rx_active_out\(0),
       gtwiz_userclk_rx_reset_in(0) => gtwiz_userclk_rx_reset_in(0),
@@ -36496,7 +36501,7 @@ begin
       lopt_2 => lopt_2,
       rxoutclk_out(0) => \^rxoutclk_out\(3)
     );
-\gen_gtwizard_gthe4.gen_tx_user_clocking_internal.gen_single_instance.gtwiz_userclk_tx_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx
+\gen_gtwizard_gthe4.gen_tx_user_clocking_internal.gen_single_instance.gtwiz_userclk_tx_inst\: entity work.coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx
      port map (
       gtwiz_userclk_tx_active_out(0) => \^gtwiz_userclk_tx_active_out\(0),
       gtwiz_userclk_tx_reset_in(0) => gtwiz_userclk_tx_reset_in(0),
@@ -37829,7 +37834,7 @@ entity coldata_rx is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of coldata_rx : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of coldata_rx : entity is "coldata_rx_gtwizard_top,Vivado 2019.2.1";
+  attribute X_CORE_INFO of coldata_rx : entity is "coldata_rx_gtwizard_top,Vivado 2020.1";
 end coldata_rx;
 
 architecture STRUCTURE of coldata_rx is

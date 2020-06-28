@@ -46,6 +46,7 @@
 // 
 // DO NOT MODIFY THIS FILE.
 
+
 //------------------------------------------------------------------------------------
 // Filename:    design_1_axi_smc_0_stub.sv
 // Description: This HDL file is intended to be used with following simulators only:

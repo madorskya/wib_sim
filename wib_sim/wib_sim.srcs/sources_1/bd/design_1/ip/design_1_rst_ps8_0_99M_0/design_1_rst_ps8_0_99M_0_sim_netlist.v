@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-// Date        : Sun May 31 11:05:38 2020
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Sat Jun 27 23:37:33 2020
+// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0_sim_netlist.v
 // Design      : design_1_rst_ps8_0_99M_0
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_rst_ps8_0_99M_0,proc_sys_reset,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "proc_sys_reset,Vivado 2019.2.1" *) 
+(* CHECK_LICENSE_TYPE = "design_1_rst_ps8_0_99M_0,proc_sys_reset,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "proc_sys_reset,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module design_1_rst_ps8_0_99M_0
    (slowest_sync_clk,
@@ -898,12 +898,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -916,6 +919,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -943,6 +947,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -956,6 +961,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

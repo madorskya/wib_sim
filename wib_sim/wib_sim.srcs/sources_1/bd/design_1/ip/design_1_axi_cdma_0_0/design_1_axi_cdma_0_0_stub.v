@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-// Date        : Sun May 31 11:07:24 2020
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Sat Jun 27 23:39:22 2020
+// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode synth_stub
 //               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_axi_cdma_0_0/design_1_axi_cdma_0_0_stub.v
 // Design      : design_1_axi_cdma_0_0
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* x_core_info = "axi_cdma,Vivado 2019.2.1" *)
+(* x_core_info = "axi_cdma,Vivado 2020.1" *)
 module design_1_axi_cdma_0_0(m_axi_aclk, s_axi_lite_aclk, 
   s_axi_lite_aresetn, cdma_introut, s_axi_lite_awready, s_axi_lite_awvalid, 
   s_axi_lite_awaddr, s_axi_lite_wready, s_axi_lite_wvalid, s_axi_lite_wdata, 

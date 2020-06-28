@@ -1,8 +1,8 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
--- Date        : Thu Jun  4 00:17:03 2020
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Sat Jun 27 23:37:23 2020
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0_sim_netlist.vhdl
 -- Design      : design_1_coldata_i2c_0_0
@@ -134,32 +134,32 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI is
   attribute SOFT_HLUTNM of \axi_rdata[29]_i_1\ : label is "soft_lutpair15";
   attribute SOFT_HLUTNM of \axi_rdata[30]_i_1\ : label is "soft_lutpair15";
   attribute SOFT_HLUTNM of axi_wready_i_1 : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \sda_out_sh[10]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \sda_out_sh[11]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \sda_out_sh[12]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \sda_out_sh[13]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \sda_out_sh[14]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \sda_out_sh[15]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \sda_out_sh[16]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \sda_out_sh[17]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \sda_out_sh[18]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \sda_out_sh[19]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sda_out_sh[10]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \sda_out_sh[11]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sda_out_sh[12]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sda_out_sh[13]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \sda_out_sh[14]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \sda_out_sh[15]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \sda_out_sh[16]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \sda_out_sh[17]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sda_out_sh[18]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sda_out_sh[19]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \sda_out_sh[1]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \sda_out_sh[20]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \sda_out_sh[21]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \sda_out_sh[22]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \sda_out_sh[23]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \sda_out_sh[24]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \sda_out_sh[25]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \sda_out_sh[20]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \sda_out_sh[21]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \sda_out_sh[22]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \sda_out_sh[23]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \sda_out_sh[24]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \sda_out_sh[25]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \sda_out_sh[26]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \sda_out_sh[2]_i_1\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \sda_out_sh[3]_i_1\ : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \sda_out_sh[4]_i_1\ : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \sda_out_sh[5]_i_1\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \sda_out_sh[6]_i_1\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \sda_out_sh[7]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \sda_out_sh[8]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \sda_out_sh[9]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sda_out_sh[7]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \sda_out_sh[8]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \sda_out_sh[9]_i_1\ : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of \slv_reg4[31]_i_2\ : label is "soft_lutpair0";
 begin
   SR(0) <= \^sr\(0);
@@ -3431,28 +3431,28 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   signal wr_reg1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \wr_reg[0]_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_6\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_4\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_5\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_6\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_4\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_5\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_6\ : label is "soft_lutpair25";
   attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_7\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_8\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_8\ : label is "soft_lutpair22";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[0]\ : label is "ST_STRT:01,ST_ACK:11,ST_TX:10,ST_IDLE:00";
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[1]\ : label is "ST_STRT:01,ST_ACK:11,ST_TX:10,ST_IDLE:00";
-  attribute SOFT_HLUTNM of \bit_count[0]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \bit_count[1]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \bit_count[2]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \bit_count[3]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \bit_phase[1]_i_2\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \bit_phase[2]_i_2\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \bit_phase[4]_i_3\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \bit_phase[5]_i_2\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \bit_count[0]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \bit_count[1]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \bit_count[2]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \bit_count[3]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \bit_phase[1]_i_2\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \bit_phase[2]_i_2\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \bit_phase[4]_i_3\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \bit_phase[5]_i_2\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \bit_phase[5]_i_3\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \bit_phase[5]_i_4\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \bit_phase[5]_i_4\ : label is "soft_lutpair19";
   attribute SOFT_HLUTNM of \bit_phase[6]_i_4\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \bit_phase[7]_i_2\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \bit_phase[8]_i_2\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \bit_phase[8]_i_2\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \bit_phase[8]_i_4\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \bit_phase[8]_i_5\ : label is "soft_lutpair18";
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of ibuf_sda : label is "PRIMITIVE";
@@ -3470,9 +3470,9 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   attribute CAPACITANCE of obuf_sda : label is "DONT_CARE";
   attribute XILINX_LEGACY_PRIM of obuf_sda : label is "OBUFDS";
   attribute SOFT_HLUTNM of scl_i_3 : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \sda_in_sh[26]_i_2\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \sda_out_sh[0]_i_3\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \sda_out_sh[0]_i_4\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \sda_in_sh[26]_i_2\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \sda_out_sh[0]_i_3\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \sda_out_sh[0]_i_4\ : label is "soft_lutpair19";
 begin
 \FSM_sequential_state[0]_i_2\: unisim.vcomponents.LUT6
     generic map(
@@ -5177,7 +5177,7 @@ entity design_1_coldata_i2c_0_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_coldata_i2c_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_coldata_i2c_0_0 : entity is "coldata_i2c_v1_0,Vivado 2019.2.1";
+  attribute X_CORE_INFO of design_1_coldata_i2c_0_0 : entity is "coldata_i2c_v1_0,Vivado 2020.1";
 end design_1_coldata_i2c_0_0;
 
 architecture STRUCTURE of design_1_coldata_i2c_0_0 is

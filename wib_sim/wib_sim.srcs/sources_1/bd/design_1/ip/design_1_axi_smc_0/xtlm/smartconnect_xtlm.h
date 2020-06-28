@@ -9,7 +9,9 @@
 #include <bitset>
 #ifndef SMARTCONNECT_XTLM_H
 #define SMARTCONNECT_XTLM_H
-#define DEBUG 1
+#include "smartconnect_xtlm_impl.h"
+#include "report_handler.h"
+#include <sstream>
 
 using namespace std;
 
@@ -26,7 +28,7 @@ class smartconnect_xtlm: public sc_module {
 
 public:
 	smartconnect_xtlm(sc_core::sc_module_name name,
-            xsc::common_cpp::properties& _properties, map<string,string> _smc_properties);
+            xsc::common_cpp::properties& _properties, map<string,string> _smc_properties,xsc::common_cpp::report_handler* report_handler);
 
 	~smartconnect_xtlm();
 
@@ -42,9 +44,11 @@ public:
 //    TODO: delete - should not be required:
 //	sc_in<bool> axi_aclk;
 //	sc_in<bool> axi_aresetn;
+   unsigned int transport_dbg_cb(xtlm::aximm_payload& trans,int si_num); 
+   void b_transport_cb(xtlm::aximm_payload & trans, sc_core::sc_time & t,int si_num); 
 private:
-   vector<xtlm::xtlm_aximm_target_rd_socket_util*> saxi_rd_util;
-   vector<xtlm::xtlm_aximm_target_wr_socket_util*> saxi_wr_util;
+   vector<smartconnect_xtlm_impl::target_rd_util*> saxi_rd_util;
+   vector<smartconnect_xtlm_impl::target_wr_util*> saxi_wr_util;
    vector<xtlm::xtlm_aximm_initiator_rd_socket_util*> maxi_rd_util;
    vector<xtlm::xtlm_aximm_initiator_wr_socket_util*> maxi_wr_util;
 
@@ -159,6 +163,9 @@ private:
 
    xsc::common_cpp::properties m_properties;
 
+   int is_address_hit_lite(xtlm::aximm_payload* trans_ptr, int num_si);
+   std::stringstream m_ss;
+   xsc::common_cpp::report_handler* m_report_handler;
 };
 
 //Extension class to carry SEP_ROUTE information in cascaded smartconnect topology

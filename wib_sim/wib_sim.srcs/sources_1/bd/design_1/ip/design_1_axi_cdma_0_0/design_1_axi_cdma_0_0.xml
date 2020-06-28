@@ -965,6 +965,15 @@
           <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.M_AXI_ACLK.FREQ_HZ">100000000</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
+          <spirit:name>FREQ_TOLERANCE_HZ</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_ACLK.FREQ_TOLERANCE_HZ">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+        <spirit:parameter>
           <spirit:name>PHASE</spirit:name>
           <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_ACLK.PHASE">0.000</spirit:value>
           <spirit:vendorExtensions>
@@ -1033,6 +1042,15 @@
           <spirit:displayName>AXI4-Lite clock frequency</spirit:displayName>
           <spirit:description>AXI4-Lite clock frequency</spirit:description>
           <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.FREQ_HZ">100000000</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>FREQ_TOLERANCE_HZ</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.FREQ_TOLERANCE_HZ">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>PHASE</spirit:name>
@@ -1390,7 +1408,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>DATA_WIDTH</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.DATA_WIDTH">32</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.DATA_WIDTH">1</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1399,7 +1417,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>PROTOCOL</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.PROTOCOL">AXI4</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.PROTOCOL">AXI4LITE</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1426,7 +1444,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ADDR_WIDTH</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.ADDR_WIDTH">32</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.ADDR_WIDTH">1</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1489,7 +1507,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_BURST</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_BURST">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_BURST">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1498,7 +1516,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_LOCK</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_LOCK">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_LOCK">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1507,7 +1525,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_PROT</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_PROT">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_PROT">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1516,7 +1534,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_CACHE</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_CACHE">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_CACHE">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1525,7 +1543,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_QOS</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_QOS">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_QOS">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1534,7 +1552,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_REGION</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_REGION">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_REGION">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1543,7 +1561,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_WSTRB</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_WSTRB">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_WSTRB">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1552,7 +1570,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_BRESP</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_BRESP">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_BRESP">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1561,7 +1579,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>HAS_RRESP</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_RRESP">1</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_SG.HAS_RRESP">0</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2368,6 +2386,67 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
   <spirit:model>
     <spirit:views>
       <spirit:view>
+        <spirit:name>xilinx_vhdlbehavioralsimulation</spirit:name>
+        <spirit:displayName>VHDL Simulation</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>axi_cdma</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Sat Jun 27 23:49:26 UTC 2020</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:28cc097a</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_vhdlsimulationwrapper</spirit:name>
+        <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>vhdl</spirit:language>
+        <spirit:modelName>design_1_axi_cdma_0_0</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Sat Jun 27 23:49:26 UTC 2020</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:28cc097a</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
         <spirit:name>xilinx_vhdlsynthesis</spirit:name>
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
@@ -2403,11 +2482,11 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun May 31 14:57:25 UTC 2020</spirit:value>
+            <spirit:value>Sat Jun 27 23:49:26 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3897a37d</spirit:value>
+            <spirit:value>9:fdebd203</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2421,11 +2500,11 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun May 31 14:57:25 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 03:30:07 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3897a37d</spirit:value>
+            <spirit:value>9:fdebd203</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2441,72 +2520,11 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun May 31 14:57:25 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 03:30:07 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3897a37d</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlbehavioralsimulation</spirit:name>
-        <spirit:displayName>VHDL Simulation</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>axi_cdma</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun May 31 14:57:25 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:edb07804</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_vhdlsimulationwrapper</spirit:name>
-        <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
-        <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
-        <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>design_1_axi_cdma_0_0</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun May 31 14:57:25 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:edb07804</spirit:value>
+            <spirit:value>9:fdebd203</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2520,11 +2538,11 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun May 31 15:07:25 UTC 2020</spirit:value>
+            <spirit:value>Sun Jun 28 03:39:23 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3897a37d</spirit:value>
+            <spirit:value>9:fdebd203</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -4117,156 +4135,6 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lib_pkg_v1_0_2</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_pkg" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="7b6d6b71">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lib_srl_fifo_v1_0_2</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_srl_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="4d35e89b">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/2985/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_4_4</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="blk_mem_gen" xilinx:version="8.4" xilinx:isGenerated="true" xilinx:checksum="eefd2f8b">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/276e/hdl/fifo_generator_v13_2_vhsyn_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>fifo_generator_v13_2_5</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="13.2" xilinx:isGenerated="true" xilinx:checksum="8be15007">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/a5cb/hdl/lib_fifo_v1_0_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lib_fifo_v1_0_14</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="21365c37">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>lib_cdc_v1_0_2</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_cdc" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="726cb4eb">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_datamover_v5_1_22</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_datamover" xilinx:version="5.1" xilinx:isGenerated="true" xilinx:checksum="84cbd81b">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../ipshared/4919/hdl/axi_sg_v4_1_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_sg_v4_1_13</spirit:logicalName>
-      </spirit:file>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_sg" xilinx:version="4.1" xilinx:isGenerated="true" xilinx:checksum="9e08359e">
-            <xilinx:mode xilinx:name="copy_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>design_1_axi_cdma_0_0.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../../ipshared/02b1/hdl/axi_cdma_v4_1_vh_rfs.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>axi_cdma_v4_1_20</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>design_1_axi_cdma_0_0_ooc.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>synth/design_1_axi_cdma_0_0.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>../../ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd</spirit:name>
@@ -4362,14 +4230,14 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/1e40/hdl/axi_datamover_v5_1_vh_rfs.vhd</spirit:name>
+        <spirit:name>../../ipshared/af86/hdl/axi_datamover_v5_1_vh_rfs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>axi_datamover_v5_1_22</spirit:logicalName>
+        <spirit:logicalName>axi_datamover_v5_1_23</spirit:logicalName>
       </spirit:file>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_datamover" xilinx:version="5.1" xilinx:isGenerated="true" xilinx:checksum="5b581987">
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_datamover" xilinx:version="5.1" xilinx:isGenerated="true" xilinx:checksum="e6b496c3">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -4394,16 +4262,166 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/02b1/hdl/axi_cdma_v4_1_vh_rfs.vhd</spirit:name>
+        <spirit:name>../../ipshared/1055/hdl/axi_cdma_v4_1_vh_rfs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>axi_cdma_v4_1_20</spirit:logicalName>
+        <spirit:logicalName>axi_cdma_v4_1_21</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlsimulationwrapper_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>sim/design_1_axi_cdma_0_0.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_pkg_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/0513/hdl/lib_pkg_v1_0_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_pkg_v1_0_2</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_pkg" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="7b6d6b71">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_srl_fifo_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_srl_fifo_v1_0_2</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_srl_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="4d35e89b">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/2985/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>blk_mem_gen_v8_4_4</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="blk_mem_gen" xilinx:version="8.4" xilinx:isGenerated="true" xilinx:checksum="eefd2f8b">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/276e/hdl/fifo_generator_v13_2_vhsyn_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>fifo_generator_v13_2_5</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="fifo_generator" xilinx:version="13.2" xilinx:isGenerated="true" xilinx:checksum="8be15007">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_fifo_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/a5cb/hdl/lib_fifo_v1_0_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_fifo_v1_0_14</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_fifo" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="21365c37">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>lib_cdc_v1_0_2</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="lib_cdc" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="726cb4eb">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_axi_datamover_5_1__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/af86/hdl/axi_datamover_v5_1_vh_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_datamover_v5_1_23</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_datamover" xilinx:version="5.1" xilinx:isGenerated="true" xilinx:checksum="f4d0c525">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_xilinx_com_ip_axi_sg_4_1__ref_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/4919/hdl/axi_sg_v4_1_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_sg_v4_1_13</spirit:logicalName>
+      </spirit:file>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_sg" xilinx:version="4.1" xilinx:isGenerated="true" xilinx:checksum="9e08359e">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>design_1_axi_cdma_0_0.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../../ipshared/1055/hdl/axi_cdma_v4_1_vh_rfs.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>axi_cdma_v4_1_21</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>design_1_axi_cdma_0_0_ooc.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>synth/design_1_axi_cdma_0_0.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>
@@ -4619,7 +4637,7 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>20</xilinx:coreRevision>
+      <xilinx:coreRevision>21</xilinx:coreRevision>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI_RESETN.POLARITY" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CDMA_INTERRUPT.PortWidth" xilinx:valuePermission="bd"/>
@@ -4658,6 +4676,7 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.M_AXI_ACLK.ASSOCIATED_RESET" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.M_AXI_ACLK.CLK_DOMAIN" xilinx:valueSource="default_prop" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.M_AXI_ACLK.FREQ_HZ" xilinx:valueSource="user_prop" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.M_AXI_ACLK.FREQ_TOLERANCE_HZ" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.M_AXI_ACLK.PHASE" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE.ADDR_WIDTH" xilinx:valueSource="constant" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE.ARUSER_WIDTH" xilinx:valueSource="constant" xilinx:valuePermission="bd"/>
@@ -4693,6 +4712,7 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.ASSOCIATED_RESET" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.CLK_DOMAIN" xilinx:valueSource="default_prop" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.FREQ_HZ" xilinx:valueSource="user_prop" xilinx:valuePermission="bd"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.FREQ_TOLERANCE_HZ" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S_AXI_LITE_ACLK.PHASE" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_AXI_LITE_IS_ASYNC" xilinx:valueSource="propagated" xilinx:valuePermission="bd"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_INCLUDE_SG" xilinx:valueSource="user"/>
@@ -4701,11 +4721,11 @@ Note: A value of zero (0) is not allowed and causes a DMA internal error to be s
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2019.2.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="34b11cc4"/>
       <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="b0d56755"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="d08ab1da"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="a2a8ee25"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="068f9946"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="0051a7f9"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="71d99618"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="7c46d71b"/>

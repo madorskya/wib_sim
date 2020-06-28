@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-// Date        : Fri Jun  5 22:14:59 2020
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Sat Jun 27 19:55:08 2020
+// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_sim_netlist.v
 // Design      : coldata_rx
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "coldata_rx,coldata_rx_gtwizard_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_rx_gtwizard_top,Vivado 2019.2.1" *) 
+(* CHECK_LICENSE_TYPE = "coldata_rx,coldata_rx_gtwizard_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_rx_gtwizard_top,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module coldata_rx
    (gtwiz_userclk_tx_reset_in,
@@ -1953,7 +1953,7 @@ module coldata_rx_coldata_rx_gthe4_channel_wrapper
   wire [3:0]txsyncout_out;
   wire [7:0]txsysclksel_in;
 
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75 channel_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75 channel_inst
        (.GTHE4_CHANNEL_GTPOWERGOOD(GTHE4_CHANNEL_GTPOWERGOOD),
         .GTHE4_CHANNEL_GTRXRESET(GTHE4_CHANNEL_GTRXRESET),
         .GTHE4_CHANNEL_GTTXRESET(GTHE4_CHANNEL_GTTXRESET),
@@ -3332,7 +3332,7 @@ module coldata_rx_coldata_rx_gthe4_channel_wrapper_0
   wire [3:0]txsyncout_out;
   wire [7:0]txsysclksel_in;
 
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74 channel_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74 channel_inst
        (.GTHE4_CHANNEL_GTPOWERGOOD(GTHE4_CHANNEL_GTPOWERGOOD),
         .GTHE4_CHANNEL_GTRXRESET(GTHE4_CHANNEL_GTRXRESET),
         .GTHE4_CHANNEL_GTTXRESET(GTHE4_CHANNEL_GTTXRESET),
@@ -4711,7 +4711,7 @@ module coldata_rx_coldata_rx_gthe4_channel_wrapper_1
   wire [3:0]txsyncout_out;
   wire [7:0]txsysclksel_in;
 
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73 channel_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73 channel_inst
        (.GTHE4_CHANNEL_GTPOWERGOOD(GTHE4_CHANNEL_GTPOWERGOOD),
         .GTHE4_CHANNEL_GTRXRESET(GTHE4_CHANNEL_GTRXRESET),
         .GTHE4_CHANNEL_GTTXRESET(GTHE4_CHANNEL_GTTXRESET),
@@ -6118,7 +6118,7 @@ module coldata_rx_coldata_rx_gthe4_channel_wrapper_2
   assign gthrxn_in_1_sp_1 = gthrxn_in_1_sn_1;
   assign gthrxn_in_2_sp_1 = gthrxn_in_2_sn_1;
   assign gthrxn_in_3_sp_1 = gthrxn_in_3_sn_1;
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel channel_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel channel_inst
        (.GTHE4_CHANNEL_GTPOWERGOOD(GTHE4_CHANNEL_GTPOWERGOOD),
         .GTHE4_CHANNEL_GTRXRESET(GTHE4_CHANNEL_GTRXRESET),
         .GTHE4_CHANNEL_GTTXRESET(GTHE4_CHANNEL_GTTXRESET),
@@ -6737,7 +6737,7 @@ module coldata_rx_coldata_rx_gthe4_common_wrapper
   wire [1:0]tconrsvdin1_in;
   wire [0:0]tconrsvdout0_out;
 
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72 common_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72 common_inst
        (.bgbypassb_in(bgbypassb_in),
         .bgmonitorenb_in(bgmonitorenb_in),
         .bgpdb_in(bgpdb_in),
@@ -7098,7 +7098,7 @@ module coldata_rx_coldata_rx_gthe4_common_wrapper_3
   wire [1:0]tconrsvdin1_in;
   wire [0:0]tconrsvdout0_out;
 
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71 common_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71 common_inst
        (.bgbypassb_in(bgbypassb_in),
         .bgmonitorenb_in(bgmonitorenb_in),
         .bgpdb_in(bgpdb_in),
@@ -7455,7 +7455,7 @@ module coldata_rx_coldata_rx_gthe4_common_wrapper_4
   wire [1:0]tconrsvdin1_in;
   wire [0:0]tconrsvdout0_out;
 
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70 common_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70 common_inst
        (.bgbypassb_in(bgbypassb_in),
         .bgmonitorenb_in(bgmonitorenb_in),
         .bgpdb_in(bgpdb_in),
@@ -7811,7 +7811,7 @@ module coldata_rx_coldata_rx_gthe4_common_wrapper_5
   wire [0:0]tconrsvdout0_out;
 
   assign qpll0outclk_out_0_sn_1 = qpll0outclk_out_0_sp_1;
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common common_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common common_inst
        (.bgbypassb_in(bgbypassb_in),
         .bgmonitorenb_in(bgmonitorenb_in),
         .bgpdb_in(bgpdb_in),
@@ -11042,7 +11042,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .tconreset_in(tconreset_in[1:0]),
         .tconrsvdin1_in(tconrsvdin1_in[1:0]),
         .tconrsvdout0_out(tconrsvdout0_out[0]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[0]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[0].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [0]),
@@ -11054,7 +11054,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[0]),
         .rxrate_in(rxrate_in[2:0]),
         .rxratemode_in(rxratemode_in[0]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[10]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[10].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [10]),
@@ -11066,7 +11066,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[10]),
         .rxrate_in(rxrate_in[32:30]),
         .rxratemode_in(rxratemode_in[10]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[11]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[11].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [11]),
@@ -11078,7 +11078,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[11]),
         .rxrate_in(rxrate_in[35:33]),
         .rxratemode_in(rxratemode_in[11]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[12]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[12].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [12]),
@@ -11094,7 +11094,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[12]),
         .rxrate_in(rxrate_in[38:36]),
         .rxratemode_in(rxratemode_in[12]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[13]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[13].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [13]),
@@ -11106,7 +11106,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[13]),
         .rxrate_in(rxrate_in[41:39]),
         .rxratemode_in(rxratemode_in[13]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[14]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[14].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [14]),
@@ -11118,7 +11118,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[14]),
         .rxrate_in(rxrate_in[44:42]),
         .rxratemode_in(rxratemode_in[14]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[15]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[15].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [15]),
@@ -11130,7 +11130,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[15]),
         .rxrate_in(rxrate_in[47:45]),
         .rxratemode_in(rxratemode_in[15]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[1]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [1]),
@@ -11142,7 +11142,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[1]),
         .rxrate_in(rxrate_in[5:3]),
         .rxratemode_in(rxratemode_in[1]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[2]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[2].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [2]),
@@ -11154,7 +11154,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[2]),
         .rxrate_in(rxrate_in[8:6]),
         .rxratemode_in(rxratemode_in[2]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[3]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[3].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [3]),
@@ -11166,7 +11166,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[3]),
         .rxrate_in(rxrate_in[11:9]),
         .rxratemode_in(rxratemode_in[3]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[4]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[4].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [4]),
@@ -11178,7 +11178,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[4]),
         .rxrate_in(rxrate_in[14:12]),
         .rxratemode_in(rxratemode_in[4]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[5]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[5].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [5]),
@@ -11190,7 +11190,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[5]),
         .rxrate_in(rxrate_in[17:15]),
         .rxratemode_in(rxratemode_in[5]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[6]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[6].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [6]),
@@ -11205,7 +11205,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[6]),
         .rxrate_in(rxrate_in[20:18]),
         .rxratemode_in(rxratemode_in[6]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[7]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[7].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [7]),
@@ -11217,7 +11217,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[7]),
         .rxrate_in(rxrate_in[23:21]),
         .rxratemode_in(rxratemode_in[7]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[8]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[8].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [8]),
@@ -11229,7 +11229,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[8]),
         .rxrate_in(rxrate_in[26:24]),
         .rxratemode_in(rxratemode_in[8]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20 \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst 
        (.GTHE4_CHANNEL_RXOUTCLKPCS(rxoutclkpcs_out[9]),
         .GTHE4_CHANNEL_RXPD({\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst_n_1 ,\gen_gtwizard_gthe4.gen_pwrgood_delay_inst[9].delay_powergood_inst_n_2 }),
         .GTHE4_CHANNEL_RXPMARESET(\gen_gtwizard_gthe4.delay_pwrgood_rxpmareset_int [9]),
@@ -11241,143 +11241,143 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .rxpmareset_in(rxpmareset_in[9]),
         .rxrate_in(rxrate_in[29:27]),
         .rxratemode_in(rxratemode_in[9]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[0]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[0]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [10]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[10]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[10].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [10]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[10]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [11]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[11]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[11].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [11]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[11]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [12]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[12]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[12].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [12]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[12]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_rxresetdone_inst 
        (.\FSM_sequential_sm_reset_rx[2]_i_5 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [15:14],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [12]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_rxresetdone_inst_n_0 ),
         .rxresetdone_out(rxresetdone_out[13]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_txresetdone_inst 
        (.\FSM_sequential_sm_reset_tx[2]_i_4 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [15:14],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [12]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[13].bit_synchronizer_txresetdone_inst_n_0 ),
         .txresetdone_out(txresetdone_out[13]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_rxresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [14]),
         .rxresetdone_out(rxresetdone_out[14]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[14].bit_synchronizer_txresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [14]),
         .txresetdone_out(txresetdone_out[14]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_rxresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [15]),
         .rxresetdone_out(rxresetdone_out[15]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[15].bit_synchronizer_txresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [15]),
         .txresetdone_out(txresetdone_out[15]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst 
        (.\FSM_sequential_sm_reset_rx[2]_i_5 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [3:2],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst_n_0 ),
         .rxresetdone_out(rxresetdone_out[1]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst 
        (.\FSM_sequential_sm_reset_tx[2]_i_4 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [3:2],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst_n_0 ),
         .txresetdone_out(txresetdone_out[1]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_rxresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [2]),
         .rxresetdone_out(rxresetdone_out[2]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[2].bit_synchronizer_txresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [2]),
         .txresetdone_out(txresetdone_out[2]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_rxresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [3]),
         .rxresetdone_out(rxresetdone_out[3]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[3].bit_synchronizer_txresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [3]),
         .txresetdone_out(txresetdone_out[3]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [4]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[4]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[4].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [4]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[4]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_rxresetdone_inst 
        (.\FSM_sequential_sm_reset_rx[2]_i_5 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [7:6],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [4]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_rxresetdone_inst_n_0 ),
         .rxresetdone_out(rxresetdone_out[5]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_txresetdone_inst 
        (.\FSM_sequential_sm_reset_tx[2]_i_4 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [7:6],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [4]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[5].bit_synchronizer_txresetdone_inst_n_0 ),
         .txresetdone_out(txresetdone_out[5]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_rxresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [6]),
         .rxresetdone_out(rxresetdone_out[6]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[6].bit_synchronizer_txresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [6]),
         .txresetdone_out(txresetdone_out[6]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_rxresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [7]),
         .rxresetdone_out(rxresetdone_out[7]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[7].bit_synchronizer_txresetdone_inst 
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [7]),
         .txresetdone_out(txresetdone_out[7]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [8]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[8]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[8].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [8]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[8]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_rxresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_rxresetdone_inst 
        (.\FSM_sequential_sm_reset_rx[2]_i_5 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [11:10],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [8]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_rxresetdone_inst_n_0 ),
         .rxresetdone_out(rxresetdone_out[9]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_txresetdone_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_txresetdone_inst 
        (.\FSM_sequential_sm_reset_tx[2]_i_4 ({\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [11:10],\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [8]}),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[9].bit_synchronizer_txresetdone_inst_n_0 ),
         .txresetdone_out(txresetdone_out[9]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst 
        (.GTHE4_CHANNEL_GTTXRESET(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gttxreset_int ),
         .GTHE4_CHANNEL_RXPROGDIVRESET(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_rxprogdivreset_int ),
         .GTHE4_CHANNEL_RXUSERRDY(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_rxuserrdy_int ),
@@ -11420,7 +11420,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .I2(qpll0lock_out[3]),
         .I3(qpll0lock_out[2]),
         .O(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_plllock_tx_int__0 ));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx \gen_gtwizard_gthe4.gen_rx_user_clocking_internal.gen_single_instance.gtwiz_userclk_rx_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx \gen_gtwizard_gthe4.gen_rx_user_clocking_internal.gen_single_instance.gtwiz_userclk_rx_inst 
        (.gtwiz_userclk_rx_active_out(gtwiz_userclk_rx_active_out),
         .gtwiz_userclk_rx_reset_in(gtwiz_userclk_rx_reset_in),
         .gtwiz_userclk_rx_usrclk2_out(gtwiz_userclk_rx_usrclk2_out),
@@ -11428,7 +11428,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
         .lopt_1(lopt_1),
         .lopt_2(lopt_2),
         .rxoutclk_out(rxoutclk_out[3]));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx \gen_gtwizard_gthe4.gen_tx_user_clocking_internal.gen_single_instance.gtwiz_userclk_tx_inst 
+  coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx \gen_gtwizard_gthe4.gen_tx_user_clocking_internal.gen_single_instance.gtwiz_userclk_tx_inst 
        (.gtwiz_userclk_tx_active_out(gtwiz_userclk_tx_active_out),
         .gtwiz_userclk_tx_reset_in(gtwiz_userclk_tx_reset_in),
         .gtwiz_userclk_tx_usrclk2_out(gtwiz_userclk_tx_usrclk2_out),
@@ -13474,8 +13474,8 @@ module coldata_rx_coldata_rx_gtwizard_top
         .txsysclksel_in(txsysclksel_in));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13541,8 +13541,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_21
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13608,8 +13608,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_21
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_22
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13675,8 +13675,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_22
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_23
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13742,8 +13742,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_23
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_24
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13809,8 +13809,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_24
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_25
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13876,8 +13876,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_25
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_26
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -13943,8 +13943,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_26
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_27
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14010,8 +14010,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_27
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_28
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -14089,8 +14089,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_28
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_29
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -14168,8 +14168,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_29
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_30
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14235,8 +14235,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_30
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_31
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14302,8 +14302,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_31
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_32
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14369,8 +14369,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_32
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_33
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14436,8 +14436,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_33
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_34
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -14515,8 +14515,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_34
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_35
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -14594,8 +14594,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_35
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_36
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14661,8 +14661,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_36
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_37
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14728,8 +14728,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_37
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_38
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14795,8 +14795,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_38
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_39
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14862,8 +14862,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_39
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_40
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14929,8 +14929,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_40
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_41
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -14996,8 +14996,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_41
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_42
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -15075,8 +15075,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_42
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_43
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -15154,8 +15154,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_43
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_44
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -15221,8 +15221,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_44
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_45
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -15288,8 +15288,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_45
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_46
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -15355,8 +15355,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_46
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_47
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -15422,8 +15422,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_47
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_48
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -15489,8 +15489,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_48
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_49
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
@@ -15556,8 +15556,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_49
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_50
    (i_in_out_reg_0,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -15635,8 +15635,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_50
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_51
    (i_in_out_reg_0,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in,
@@ -15714,8 +15714,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_51
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52
    (E,
     in0,
     gtwiz_reset_clk_freerun_in,
@@ -15801,8 +15801,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53
    (gtwiz_reset_rx_datapath_dly,
     in0,
     gtwiz_reset_clk_freerun_in);
@@ -15868,8 +15868,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54
    (D,
     sm_reset_rx_pll_timer_sat_reg,
     in0,
@@ -15983,8 +15983,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55
    (gtwiz_reset_tx_datapath_dly,
     in0,
     gtwiz_reset_clk_freerun_in);
@@ -16050,8 +16050,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56
    (sm_reset_tx_pll_timer_sat_reg,
     D,
     in0,
@@ -16160,8 +16160,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57
    (\FSM_sequential_sm_reset_rx_reg[1] ,
     \FSM_sequential_sm_reset_rx_reg[0] ,
     \FSM_sequential_sm_reset_rx_reg[0]_0 ,
@@ -16311,8 +16311,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57
         .O(sm_reset_rx_timer_clr_i_2_n_0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58
    (sm_reset_tx_timer_clr0__0,
     \FSM_sequential_sm_reset_tx_reg[1] ,
     \FSM_sequential_sm_reset_tx_reg[2] ,
@@ -16447,8 +16447,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58
         .O(\FSM_sequential_sm_reset_tx_reg[2] ));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59
    (E,
     i_in_out_reg_0,
     \FSM_sequential_sm_reset_rx_reg[1] ,
@@ -16608,8 +16608,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59
         .O(i_in_out_reg_0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60
    (E,
     i_in_out_reg_0,
     \FSM_sequential_sm_reset_tx_reg[0] ,
@@ -16771,8 +16771,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60
         .O(i_in_out_reg_0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_bit_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61
    (gtwiz_reset_rx_cdr_stable_out,
     \FSM_sequential_sm_reset_rx_reg[1] ,
     \FSM_sequential_sm_reset_rx_reg[2] ,
@@ -16889,8 +16889,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61
         .O(sm_reset_rx_cdr_to_clr0__0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_channel" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_channel" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
    (gthrxn_in_3_sp_1,
     GTHE4_CHANNEL_GTPOWERGOOD,
     gthrxn_in_2_sp_1,
@@ -21384,8 +21384,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel
         .TXUSRCLK2(gtwiz_userclk_tx_usrclk2_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_channel" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_channel" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
    (\gthrxn_in[15] ,
     GTHE4_CHANNEL_GTPOWERGOOD,
     \gthrxn_in[14] ,
@@ -25831,8 +25831,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_73
         .TXUSRCLK2(gtwiz_userclk_tx_usrclk2_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_channel" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_channel" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
    (\gthrxn_in[11] ,
     GTHE4_CHANNEL_GTPOWERGOOD,
     \gthrxn_in[10] ,
@@ -30278,8 +30278,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_74
         .TXUSRCLK2(gtwiz_userclk_tx_usrclk2_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_channel" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_channel" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
    (\gthrxn_in[7] ,
     GTHE4_CHANNEL_GTPOWERGOOD,
     \gthrxn_in[6] ,
@@ -34725,8 +34725,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_channel_75
         .TXUSRCLK2(gtwiz_userclk_tx_usrclk2_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_common" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_common" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common
    (drprdy_common_out,
     qpll0fbclklost_out,
     qpll0lock_out,
@@ -35165,8 +35165,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common
         .TCONRSVDOUT0(tconrsvdout0_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_common" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_common" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70
    (drprdy_common_out,
     qpll0fbclklost_out,
     qpll0lock_out,
@@ -35604,8 +35604,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_70
         .TCONRSVDOUT0(tconrsvdout0_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_common" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_common" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71
    (drprdy_common_out,
     qpll0fbclklost_out,
     qpll0lock_out,
@@ -36057,8 +36057,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_71
         .O(rst_in0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_common" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_common" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72
    (drprdy_common_out,
     qpll0fbclklost_out,
     qpll0lock_out,
@@ -36496,8 +36496,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_common_72
         .TCONRSVDOUT0(tconrsvdout0_out));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -36765,8 +36765,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_10
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -37034,8 +37034,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_10
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_11
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -37303,8 +37303,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_11
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_12
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -37572,8 +37572,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_12
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_13
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -37841,8 +37841,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_13
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_14
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -38110,8 +38110,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_14
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_15
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -38379,8 +38379,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_15
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_16
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -38648,8 +38648,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_16
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_17
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -38936,8 +38936,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_17
         .O(\gen_powergood_delay.pwr_on_fsm_reg_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_18
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -39205,8 +39205,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_18
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_19
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -39474,8 +39474,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_19
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_20
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -39743,8 +39743,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_20
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_6
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -40012,8 +40012,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_6
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_7
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -40281,8 +40281,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_7
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_8
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -40583,8 +40583,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_8
         .O(i_in_inferred_i_2__0_n_0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9
    (out,
     GTHE4_CHANNEL_RXPD,
     GTHE4_CHANNEL_RXRATEMODE,
@@ -40852,8 +40852,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gthe4_delay_powergood_9
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gtwiz_reset" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gtwiz_reset" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset
    (GTHE4_CHANNEL_TXPROGDIVRESET,
     gtwiz_reset_tx_done_out,
     gtwiz_reset_rx_cdr_stable_out,
@@ -41130,7 +41130,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I4(sm_reset_all[1]),
         .I5(sm_reset_all[0]),
         .O(sm_reset_all__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'h34)) 
     \FSM_sequential_sm_reset_all[1]_i_1 
@@ -41138,7 +41138,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(sm_reset_all[1]),
         .I2(sm_reset_all[0]),
         .O(sm_reset_all__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'h4A)) 
     \FSM_sequential_sm_reset_all[2]_i_2 
@@ -41146,7 +41146,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(sm_reset_all[0]),
         .I2(sm_reset_all[1]),
         .O(sm_reset_all__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \FSM_sequential_sm_reset_all[2]_i_3 
@@ -41154,7 +41154,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtwiz_reset_rx_done_int_reg_n_0),
         .I2(sm_reset_all_timer_clr_reg_n_0),
         .O(\FSM_sequential_sm_reset_all[2]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'h40)) 
     \FSM_sequential_sm_reset_all[2]_i_4 
@@ -41278,18 +41278,18 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(sm_reset_tx__0[2]),
         .Q(sm_reset_tx[2]),
         .R(gtwiz_reset_tx_any_sync));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_52 bit_synchronizer_gtpowergood_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_52 bit_synchronizer_gtpowergood_inst
        (.E(bit_synchronizer_gtpowergood_inst_n_0),
         .\FSM_sequential_sm_reset_all_reg[0] (\FSM_sequential_sm_reset_all[2]_i_3_n_0 ),
         .\FSM_sequential_sm_reset_all_reg[0]_0 (\FSM_sequential_sm_reset_all[2]_i_4_n_0 ),
         .Q(sm_reset_all),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .in0(in0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_53 bit_synchronizer_gtwiz_reset_rx_datapath_dly_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_53 bit_synchronizer_gtwiz_reset_rx_datapath_dly_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_datapath_dly(gtwiz_reset_rx_datapath_dly),
         .in0(gtwiz_reset_rx_datapath_sync));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_54 bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_54 bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst
        (.D(sm_reset_rx__0),
         .\FSM_sequential_sm_reset_rx[2]_i_3 (sm_reset_rx_pll_timer_clr_reg_n_0),
         .Q(sm_reset_rx),
@@ -41299,11 +41299,11 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .p_0_in11_out__0(p_0_in11_out__0),
         .sm_reset_rx_pll_timer_sat(sm_reset_rx_pll_timer_sat),
         .sm_reset_rx_pll_timer_sat_reg(bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_55 bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_55 bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_tx_datapath_dly(gtwiz_reset_tx_datapath_dly),
         .in0(gtwiz_reset_tx_datapath_sync));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_56 bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_56 bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst
        (.D(sm_reset_tx__0[1:0]),
         .\FSM_sequential_sm_reset_tx[2]_i_3 (sm_reset_tx_pll_timer_clr_reg_n_0),
         .Q(sm_reset_tx),
@@ -41312,7 +41312,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .in0(gtwiz_reset_tx_pll_and_datapath_sync),
         .sm_reset_tx_pll_timer_sat(sm_reset_tx_pll_timer_sat),
         .sm_reset_tx_pll_timer_sat_reg(bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_57 bit_synchronizer_gtwiz_reset_userclk_rx_active_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_57 bit_synchronizer_gtwiz_reset_userclk_rx_active_inst
        (.\FSM_sequential_sm_reset_rx_reg[0] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1),
         .\FSM_sequential_sm_reset_rx_reg[0]_0 (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2),
         .\FSM_sequential_sm_reset_rx_reg[1] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0),
@@ -41327,7 +41327,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .sm_reset_rx_timer_clr_reg(sm_reset_rx_timer_clr_reg_n_0),
         .sm_reset_rx_timer_clr_reg_0(bit_synchronizer_plllock_rx_inst_n_1),
         .sm_reset_rx_timer_sat(sm_reset_rx_timer_sat));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_58 bit_synchronizer_gtwiz_reset_userclk_tx_active_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_58 bit_synchronizer_gtwiz_reset_userclk_tx_active_inst
        (.\FSM_sequential_sm_reset_tx_reg[1] (bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1),
         .\FSM_sequential_sm_reset_tx_reg[2] (bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2),
         .GTHE4_CHANNEL_TXUSERRDY(GTHE4_CHANNEL_TXUSERRDY),
@@ -41341,7 +41341,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .sm_reset_tx_timer_clr_reg(sm_reset_tx_timer_clr_reg_n_0),
         .sm_reset_tx_timer_clr_reg_0(bit_synchronizer_plllock_tx_inst_n_1),
         .sm_reset_tx_timer_sat(sm_reset_tx_timer_sat));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_59 bit_synchronizer_plllock_rx_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_59 bit_synchronizer_plllock_rx_inst
        (.E(bit_synchronizer_plllock_rx_inst_n_0),
         .\FSM_sequential_sm_reset_rx_reg[0] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0),
         .\FSM_sequential_sm_reset_rx_reg[0]_0 (sm_reset_rx_timer_clr_reg_n_0),
@@ -41358,7 +41358,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .i_in_out_reg_0(bit_synchronizer_plllock_rx_inst_n_1),
         .p_0_in11_out__0(p_0_in11_out__0),
         .sm_reset_rx_timer_sat(sm_reset_rx_timer_sat));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_60 bit_synchronizer_plllock_tx_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_60 bit_synchronizer_plllock_tx_inst
        (.E(bit_synchronizer_plllock_tx_inst_n_0),
         .\FSM_sequential_sm_reset_tx_reg[0] (bit_synchronizer_plllock_tx_inst_n_2),
         .\FSM_sequential_sm_reset_tx_reg[0]_0 (sm_reset_tx_timer_clr_reg_n_0),
@@ -41374,7 +41374,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .i_in_out_reg_0(bit_synchronizer_plllock_tx_inst_n_1),
         .sm_reset_tx_timer_clr0__0(sm_reset_tx_timer_clr0__0),
         .sm_reset_tx_timer_sat(sm_reset_tx_timer_sat));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_bit_synchronizer_61 bit_synchronizer_rxcdrlock_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61 bit_synchronizer_rxcdrlock_inst
        (.\FSM_sequential_sm_reset_rx_reg[1] (bit_synchronizer_rxcdrlock_inst_n_1),
         .\FSM_sequential_sm_reset_rx_reg[2] (bit_synchronizer_rxcdrlock_inst_n_2),
         .GTHE4_CHANNEL_RXPROGDIVRESET(GTHE4_CHANNEL_RXPROGDIVRESET),
@@ -41386,7 +41386,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .sm_reset_rx_cdr_to_clr(sm_reset_rx_cdr_to_clr),
         .sm_reset_rx_cdr_to_clr_reg(bit_synchronizer_plllock_rx_inst_n_2),
         .sm_reset_rx_cdr_to_sat(sm_reset_rx_cdr_to_sat));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1 
@@ -41394,7 +41394,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[12]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [12]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [12]));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__0 
@@ -41402,7 +41402,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[8]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [8]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [8]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__1 
@@ -41410,7 +41410,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[4]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [4]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [4]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1__2 
@@ -41418,7 +41418,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[0]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [0]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [0]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1 
@@ -41426,7 +41426,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[13]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [13]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [13]));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__0 
@@ -41434,7 +41434,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[9]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [9]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [9]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__1 
@@ -41442,7 +41442,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[5]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [5]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [5]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1__2 
@@ -41450,7 +41450,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[1]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [1]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [1]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1 
@@ -41458,7 +41458,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[14]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [14]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [14]));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__0 
@@ -41466,7 +41466,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[10]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [10]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [10]));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__1 
@@ -41474,7 +41474,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[6]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [6]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [6]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[2].GTHE4_CHANNEL_PRIM_INST_i_1__2 
@@ -41482,7 +41482,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[2]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [2]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [2]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1 
@@ -41490,7 +41490,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[15]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [15]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [15]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__0 
@@ -41498,7 +41498,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[11]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [11]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [11]));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__1 
@@ -41506,7 +41506,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(gtpowergood_out[7]),
         .I2(\gen_gtwizard_gthe4.gtpowergood_int [7]),
         .O(\gen_gtwizard_gthe4.delay_pwrgood_gtrxreset_int [7]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h8B)) 
     \gthe4_channel_gen.gen_gthe4_channel_inst[3].GTHE4_CHANNEL_PRIM_INST_i_1__2 
@@ -41618,11 +41618,11 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(reset_synchronizer_gtwiz_reset_tx_any_inst_n_1),
         .Q(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int ),
         .R(1'b0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer reset_synchronizer_gtwiz_reset_all_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer reset_synchronizer_gtwiz_reset_all_inst
        (.gtwiz_reset_all_in(gtwiz_reset_all_in),
         .gtwiz_reset_all_sync(gtwiz_reset_all_sync),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62 reset_synchronizer_gtwiz_reset_rx_any_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62 reset_synchronizer_gtwiz_reset_rx_any_inst
        (.\FSM_sequential_sm_reset_rx_reg[1] (reset_synchronizer_gtwiz_reset_rx_any_inst_n_1),
         .Q(sm_reset_rx),
         .\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int ),
@@ -41632,17 +41632,17 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .gtwiz_reset_rx_pll_and_datapath_in(gtwiz_reset_rx_pll_and_datapath_in),
         .rst_in_out_reg_0(gtwiz_reset_rx_datapath_int_reg_n_0),
         .rst_in_out_reg_1(gtwiz_reset_rx_pll_and_datapath_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63 reset_synchronizer_gtwiz_reset_rx_datapath_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63 reset_synchronizer_gtwiz_reset_rx_datapath_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_datapath_in(gtwiz_reset_rx_datapath_in),
         .in0(gtwiz_reset_rx_datapath_sync),
         .rst_in_out_reg_0(gtwiz_reset_rx_datapath_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64 reset_synchronizer_gtwiz_reset_rx_pll_and_datapath_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64 reset_synchronizer_gtwiz_reset_rx_pll_and_datapath_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_pll_and_datapath_in(gtwiz_reset_rx_pll_and_datapath_in),
         .in0(gtwiz_reset_rx_pll_and_datapath_sync),
         .rst_in_out_reg_0(gtwiz_reset_rx_pll_and_datapath_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65 reset_synchronizer_gtwiz_reset_tx_any_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65 reset_synchronizer_gtwiz_reset_tx_any_inst
        (.\FSM_sequential_sm_reset_tx_reg[1] (reset_synchronizer_gtwiz_reset_tx_any_inst_n_1),
         .Q(sm_reset_tx),
         .\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int ),
@@ -41651,24 +41651,24 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .gtwiz_reset_tx_datapath_in(gtwiz_reset_tx_datapath_in),
         .gtwiz_reset_tx_pll_and_datapath_in(gtwiz_reset_tx_pll_and_datapath_in),
         .rst_in_out_reg_0(gtwiz_reset_tx_pll_and_datapath_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66 reset_synchronizer_gtwiz_reset_tx_datapath_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66 reset_synchronizer_gtwiz_reset_tx_datapath_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_tx_datapath_in(gtwiz_reset_tx_datapath_in),
         .in0(gtwiz_reset_tx_datapath_sync));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67 reset_synchronizer_gtwiz_reset_tx_pll_and_datapath_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67 reset_synchronizer_gtwiz_reset_tx_pll_and_datapath_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_tx_pll_and_datapath_in(gtwiz_reset_tx_pll_and_datapath_in),
         .in0(gtwiz_reset_tx_pll_and_datapath_sync),
         .rst_in_out_reg_0(gtwiz_reset_tx_pll_and_datapath_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer reset_synchronizer_rx_done_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer reset_synchronizer_rx_done_inst
        (.gtwiz_reset_rx_done_out(gtwiz_reset_rx_done_out),
         .gtwiz_userclk_rx_usrclk2_out(gtwiz_userclk_rx_usrclk2_out),
         .rst_in_sync2_reg_0(gtwiz_reset_rx_done_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68 reset_synchronizer_tx_done_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68 reset_synchronizer_tx_done_inst
        (.gtwiz_reset_tx_done_out(gtwiz_reset_tx_done_out),
         .gtwiz_userclk_tx_usrclk2_out(gtwiz_userclk_tx_usrclk2_out),
         .rst_in_sync2_reg_0(gtwiz_reset_tx_done_int_reg_n_0));
-  coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69 reset_synchronizer_txprogdivreset_inst
+  coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69 reset_synchronizer_txprogdivreset_inst
        (.GTHE4_CHANNEL_TXPROGDIVRESET(GTHE4_CHANNEL_TXPROGDIVRESET),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rst_in0(rst_in0));
@@ -41727,14 +41727,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
     \sm_reset_all_timer_ctr[0]_i_1 
        (.I0(sm_reset_all_timer_ctr[0]),
         .O(\sm_reset_all_timer_ctr[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_all_timer_ctr[1]_i_1 
        (.I0(sm_reset_all_timer_ctr[0]),
         .I1(sm_reset_all_timer_ctr[1]),
         .O(\sm_reset_all_timer_ctr[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_all_timer_ctr[2]_i_1 
@@ -41859,6 +41859,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_15 ),
         .Q(sm_reset_rx_cdr_to_ctr_reg[0]),
         .R(sm_reset_rx_cdr_to_clr));
+  (* ADDER_THRESHOLD = "16" *) 
   CARRY8 \sm_reset_rx_cdr_to_ctr_reg[0]_i_2 
        (.CI(1'b0),
         .CI_TOP(1'b0),
@@ -41922,6 +41923,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(\sm_reset_rx_cdr_to_ctr_reg[16]_i_1_n_15 ),
         .Q(sm_reset_rx_cdr_to_ctr_reg[16]),
         .R(sm_reset_rx_cdr_to_clr));
+  (* ADDER_THRESHOLD = "16" *) 
   CARRY8 \sm_reset_rx_cdr_to_ctr_reg[16]_i_1 
        (.CI(\sm_reset_rx_cdr_to_ctr_reg[8]_i_1_n_0 ),
         .CI_TOP(1'b0),
@@ -42001,6 +42003,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(\sm_reset_rx_cdr_to_ctr_reg[24]_i_1_n_15 ),
         .Q(sm_reset_rx_cdr_to_ctr_reg[24]),
         .R(sm_reset_rx_cdr_to_clr));
+  (* ADDER_THRESHOLD = "16" *) 
   CARRY8 \sm_reset_rx_cdr_to_ctr_reg[24]_i_1 
        (.CI(\sm_reset_rx_cdr_to_ctr_reg[16]_i_1_n_0 ),
         .CI_TOP(1'b0),
@@ -42072,6 +42075,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(\sm_reset_rx_cdr_to_ctr_reg[8]_i_1_n_15 ),
         .Q(sm_reset_rx_cdr_to_ctr_reg[8]),
         .R(sm_reset_rx_cdr_to_clr));
+  (* ADDER_THRESHOLD = "16" *) 
   CARRY8 \sm_reset_rx_cdr_to_ctr_reg[8]_i_1 
        (.CI(\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_0 ),
         .CI_TOP(1'b0),
@@ -42124,14 +42128,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
     \sm_reset_rx_pll_timer_ctr[0]_i_1 
        (.I0(sm_reset_rx_pll_timer_ctr_reg[0]),
         .O(p_0_in__1[0]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_rx_pll_timer_ctr[1]_i_1 
        (.I0(sm_reset_rx_pll_timer_ctr_reg[0]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[1]),
         .O(p_0_in__1[1]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_rx_pll_timer_ctr[2]_i_1 
@@ -42139,7 +42143,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(sm_reset_rx_pll_timer_ctr_reg[0]),
         .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
         .O(\sm_reset_rx_pll_timer_ctr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \sm_reset_rx_pll_timer_ctr[3]_i_1 
@@ -42148,7 +42152,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
         .I3(sm_reset_rx_pll_timer_ctr_reg[3]),
         .O(p_0_in__1[3]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \sm_reset_rx_pll_timer_ctr[4]_i_1 
@@ -42168,14 +42172,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I4(sm_reset_rx_pll_timer_ctr_reg[4]),
         .I5(sm_reset_rx_pll_timer_ctr_reg[5]),
         .O(p_0_in__1[5]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_rx_pll_timer_ctr[6]_i_1 
        (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
         .I1(sm_reset_rx_pll_timer_ctr_reg[6]),
         .O(p_0_in__1[6]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_rx_pll_timer_ctr[7]_i_1 
@@ -42183,7 +42187,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(sm_reset_rx_pll_timer_ctr_reg[6]),
         .I2(sm_reset_rx_pll_timer_ctr_reg[7]),
         .O(p_0_in__1[7]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \sm_reset_rx_pll_timer_ctr[8]_i_1 
@@ -42202,7 +42206,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I4(sm_reset_rx_pll_timer_ctr_reg[4]),
         .I5(\sm_reset_rx_pll_timer_ctr[9]_i_3_n_0 ),
         .O(\sm_reset_rx_pll_timer_ctr[9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \sm_reset_rx_pll_timer_ctr[9]_i_2 
@@ -42346,14 +42350,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
     \sm_reset_rx_timer_ctr[0]_i_1 
        (.I0(sm_reset_rx_timer_ctr[0]),
         .O(\sm_reset_rx_timer_ctr[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_rx_timer_ctr[1]_i_1 
        (.I0(sm_reset_rx_timer_ctr[0]),
         .I1(sm_reset_rx_timer_ctr[1]),
         .O(\sm_reset_rx_timer_ctr[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_rx_timer_ctr[2]_i_1 
@@ -42424,14 +42428,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
     \sm_reset_tx_pll_timer_ctr[0]_i_1 
        (.I0(sm_reset_tx_pll_timer_ctr_reg[0]),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_tx_pll_timer_ctr[1]_i_1 
        (.I0(sm_reset_tx_pll_timer_ctr_reg[0]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[1]),
         .O(p_0_in__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_tx_pll_timer_ctr[2]_i_1 
@@ -42439,7 +42443,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(sm_reset_tx_pll_timer_ctr_reg[0]),
         .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
         .O(\sm_reset_tx_pll_timer_ctr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \sm_reset_tx_pll_timer_ctr[3]_i_1 
@@ -42448,7 +42452,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
         .I3(sm_reset_tx_pll_timer_ctr_reg[3]),
         .O(p_0_in__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \sm_reset_tx_pll_timer_ctr[4]_i_1 
@@ -42468,14 +42472,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I4(sm_reset_tx_pll_timer_ctr_reg[4]),
         .I5(sm_reset_tx_pll_timer_ctr_reg[5]),
         .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_tx_pll_timer_ctr[6]_i_1 
        (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
         .I1(sm_reset_tx_pll_timer_ctr_reg[6]),
         .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_tx_pll_timer_ctr[7]_i_1 
@@ -42483,7 +42487,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I1(sm_reset_tx_pll_timer_ctr_reg[6]),
         .I2(sm_reset_tx_pll_timer_ctr_reg[7]),
         .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \sm_reset_tx_pll_timer_ctr[8]_i_1 
@@ -42502,7 +42506,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .I4(sm_reset_tx_pll_timer_ctr_reg[4]),
         .I5(\sm_reset_tx_pll_timer_ctr[9]_i_3_n_0 ),
         .O(sel));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \sm_reset_tx_pll_timer_ctr[9]_i_2 
@@ -42626,7 +42630,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(sm_reset_tx_pll_timer_sat_i_1_n_0),
         .Q(sm_reset_tx_pll_timer_sat),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h2)) 
     sm_reset_tx_timer_clr_i_4
@@ -42653,14 +42657,14 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
     \sm_reset_tx_timer_ctr[0]_i_1 
        (.I0(sm_reset_tx_timer_ctr[0]),
         .O(p_1_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_tx_timer_ctr[1]_i_1 
        (.I0(sm_reset_tx_timer_ctr[0]),
         .I1(sm_reset_tx_timer_ctr[1]),
         .O(p_1_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \sm_reset_tx_timer_ctr[2]_i_1 
@@ -42692,7 +42696,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .D(p_1_in[2]),
         .Q(sm_reset_tx_timer_ctr[2]),
         .R(sm_reset_tx_timer_clr_reg_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'h0000FF80)) 
     sm_reset_tx_timer_sat_i_1
@@ -42720,8 +42724,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_reset
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_rx
    (gtwiz_userclk_rx_usrclk2_out,
     gtwiz_userclk_rx_active_out,
     gtwiz_userclk_rx_reset_in,
@@ -42787,8 +42791,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_rx
         .Q(\gen_gtwiz_userclk_rx_main.gtwiz_userclk_rx_active_sync ));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx
    (gtwiz_userclk_tx_usrclk2_out,
     gtwiz_userclk_tx_active_out,
     gtwiz_userclk_tx_reset_in,
@@ -42854,8 +42858,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_gtwiz_userclk_tx
         .Q(\gen_gtwiz_userclk_tx_main.gtwiz_userclk_tx_active_sync ));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer
    (gtwiz_reset_rx_done_out,
     gtwiz_userclk_rx_usrclk2_out,
     rst_in_sync2_reg_0);
@@ -42927,8 +42931,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68
    (gtwiz_reset_tx_done_out,
     gtwiz_userclk_tx_usrclk2_out,
     rst_in_sync2_reg_0);
@@ -43000,8 +43004,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_inv_synchronizer_68
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer
    (gtwiz_reset_all_sync,
     gtwiz_reset_clk_freerun_in,
     gtwiz_reset_all_in);
@@ -43067,8 +43071,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_62
    (gtwiz_reset_rx_any_sync,
     \FSM_sequential_sm_reset_rx_reg[1] ,
     gtwiz_reset_clk_freerun_in,
@@ -43170,8 +43174,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_62
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_63
    (in0,
     gtwiz_reset_clk_freerun_in,
     gtwiz_reset_rx_datapath_in,
@@ -43247,8 +43251,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_63
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_64
    (in0,
     gtwiz_reset_clk_freerun_in,
     rst_in_out_reg_0,
@@ -43324,8 +43328,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_64
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_65
    (gtwiz_reset_tx_any_sync,
     \FSM_sequential_sm_reset_tx_reg[1] ,
     gtwiz_reset_clk_freerun_in,
@@ -43423,8 +43427,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_65
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_66
    (in0,
     gtwiz_reset_clk_freerun_in,
     gtwiz_reset_tx_datapath_in);
@@ -43490,8 +43494,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_66
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_67
    (in0,
     gtwiz_reset_clk_freerun_in,
     rst_in_out_reg_0,
@@ -43567,8 +43571,8 @@ module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_67
         .Q(rst_in_sync3));
 endmodule
 
-(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_7_reset_synchronizer" *) 
-module coldata_rx_gtwizard_ultrascale_v1_7_7_reset_synchronizer_69
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
+module coldata_rx_gtwizard_ultrascale_v1_7_8_reset_synchronizer_69
    (GTHE4_CHANNEL_TXPROGDIVRESET,
     gtwiz_reset_clk_freerun_in,
     rst_in0);
@@ -43641,12 +43645,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -43659,6 +43666,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -43686,6 +43694,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -43699,6 +43708,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

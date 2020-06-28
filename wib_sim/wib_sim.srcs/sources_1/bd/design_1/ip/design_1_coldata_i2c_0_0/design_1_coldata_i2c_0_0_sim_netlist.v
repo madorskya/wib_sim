@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.2.1 (lin64) Build 2729669 Thu Dec  5 04:48:12 MST 2019
-// Date        : Thu Jun  4 00:17:03 2020
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.7.1908 (Core)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Sat Jun 27 23:37:23 2020
+// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0_sim_netlist.v
 // Design      : design_1_coldata_i2c_0_0
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_coldata_i2c_0_0,coldata_i2c_v1_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2019.2.1" *) 
+(* CHECK_LICENSE_TYPE = "design_1_coldata_i2c_0_0,coldata_i2c_v1_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module design_1_coldata_i2c_0_0
    (scl_p,
@@ -339,7 +339,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
        (.I0(\bit_phase_reg_n_0_[7] ),
         .I1(\bit_phase_reg_n_0_[8] ),
         .O(\FSM_sequential_state[0]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'h00020900)) 
     \FSM_sequential_state[0]_i_6 
@@ -379,14 +379,14 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(\sda_in_sh[26]_i_2_n_0 ),
         .I5(state[1]),
         .O(\FSM_sequential_state[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \FSM_sequential_state[1]_i_4 
        (.I0(\bit_phase_reg_n_0_[1] ),
         .I1(\bit_phase_reg_n_0_[2] ),
         .O(\FSM_sequential_state[1]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
     .INIT(16'h15FF)) 
     \FSM_sequential_state[1]_i_5 
@@ -413,7 +413,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I3(\bit_phase_reg_n_0_[6] ),
         .I4(\bit_phase_reg_n_0_[5] ),
         .O(\FSM_sequential_state[1]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT4 #(
     .INIT(16'h57FF)) 
     \FSM_sequential_state[1]_i_8 
@@ -440,14 +440,14 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .D(state__0[1]),
         .Q(state[1]),
         .R(coldata_i2c_v1_0_S00_AXI_inst_n_1));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \bit_count[0]_i_1 
        (.I0(state[1]),
         .I1(\bit_count_reg_n_0_[0] ),
         .O(\bit_count[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h48)) 
     \bit_count[1]_i_1 
@@ -455,7 +455,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I1(state[1]),
         .I2(\bit_count_reg_n_0_[1] ),
         .O(bit_count[1]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT4 #(
     .INIT(16'h7080)) 
     \bit_count[2]_i_1 
@@ -464,7 +464,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I2(state[1]),
         .I3(\bit_count_reg_n_0_[2] ),
         .O(bit_count[2]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT5 #(
     .INIT(32'h7F008000)) 
     \bit_count[3]_i_1 
@@ -552,7 +552,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(state[0]),
         .I5(\bit_phase[1]_i_3_n_0 ),
         .O(bit_phase[1]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'hAB)) 
     \bit_phase[1]_i_2 
@@ -579,7 +579,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I3(state[0]),
         .I4(\FSM_sequential_state[1]_i_3_n_0 ),
         .O(bit_phase[2]));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \bit_phase[2]_i_2 
@@ -625,7 +625,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(\FSM_sequential_state[0]_i_5_n_0 ),
         .I5(\bit_phase[4]_i_5_n_0 ),
         .O(\bit_phase[4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     \bit_phase[4]_i_3 
@@ -663,7 +663,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(\bit_phase[5]_i_4_n_0 ),
         .I5(\bit_phase[5]_i_5_n_0 ),
         .O(bit_phase[5]));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     \bit_phase[5]_i_2 
@@ -682,7 +682,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I2(state[1]),
         .I3(\bit_phase_reg_n_0_[6] ),
         .O(\bit_phase[5]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT5 #(
     .INIT(32'h0000A888)) 
     \bit_phase[5]_i_4 
@@ -749,7 +749,6 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(state[0]),
         .I5(state[1]),
         .O(bit_phase[7]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT5 #(
     .INIT(32'h00000001)) 
     \bit_phase[7]_i_2 
@@ -759,7 +758,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I3(\bit_phase_reg_n_0_[3] ),
         .I4(\bit_phase_reg_n_0_[4] ),
         .O(\bit_phase[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT5 #(
     .INIT(32'h90C00000)) 
     \bit_phase[8]_i_2 
@@ -779,6 +778,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(\bit_phase_reg_n_0_[2] ),
         .I5(\bit_phase_reg_n_0_[8] ),
         .O(\bit_phase[8]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT5 #(
     .INIT(32'hF7FFFFFF)) 
     \bit_phase[8]_i_4 
@@ -1172,7 +1172,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(\sda_in_sh[26]_i_2_n_0 ),
         .I5(\bit_phase_reg_n_0_[0] ),
         .O(\sda_in_sh[26]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \sda_in_sh[26]_i_2 
@@ -1376,7 +1376,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I4(\sda_out_sh[0]_i_3_n_0 ),
         .I5(\sda_out_sh[0]_i_4_n_0 ),
         .O(\sda_out_sh[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT5 #(
     .INIT(32'hFE000000)) 
     \sda_out_sh[0]_i_3 
@@ -1386,7 +1386,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0
         .I3(\bit_phase_reg_n_0_[7] ),
         .I4(state[0]),
         .O(\sda_out_sh[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT4 #(
     .INIT(16'hF800)) 
     \sda_out_sh[0]_i_4 
@@ -2669,7 +2669,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I4(\wr_reg[0]_0 ),
         .I5(tx_start_r),
         .O(E));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[10]_i_1 
@@ -2677,7 +2677,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[10]),
         .O(\sda_out_sh_reg[25] [9]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[11]_i_1 
@@ -2685,7 +2685,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[11]),
         .O(\sda_out_sh_reg[25] [10]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[12]_i_1 
@@ -2693,7 +2693,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[12]),
         .O(\sda_out_sh_reg[25] [11]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[13]_i_1 
@@ -2701,7 +2701,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[13]),
         .O(\sda_out_sh_reg[25] [12]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[14]_i_1 
@@ -2709,7 +2709,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[14]),
         .O(\sda_out_sh_reg[25] [13]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[15]_i_1 
@@ -2717,7 +2717,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[15]),
         .O(\sda_out_sh_reg[25] [14]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[16]_i_1 
@@ -2725,7 +2725,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[16]),
         .O(\sda_out_sh_reg[25] [15]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[17]_i_1 
@@ -2733,7 +2733,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[17]),
         .O(\sda_out_sh_reg[25] [16]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[18]_i_1 
@@ -2741,7 +2741,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[18]),
         .O(\sda_out_sh_reg[25] [17]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[19]_i_1 
@@ -2757,7 +2757,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[1]),
         .O(\sda_out_sh_reg[25] [0]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[20]_i_1 
@@ -2765,7 +2765,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[20]),
         .O(\sda_out_sh_reg[25] [19]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[21]_i_1 
@@ -2773,7 +2773,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[21]),
         .O(\sda_out_sh_reg[25] [20]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[22]_i_1 
@@ -2781,7 +2781,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[22]),
         .O(\sda_out_sh_reg[25] [21]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[23]_i_1 
@@ -2789,7 +2789,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[23]),
         .O(\sda_out_sh_reg[25] [22]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[24]_i_1 
@@ -2797,7 +2797,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[24]),
         .O(\sda_out_sh_reg[25] [23]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[25]_i_1 
@@ -2853,7 +2853,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[6]),
         .O(\sda_out_sh_reg[25] [5]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[7]_i_1 
@@ -2861,7 +2861,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[7]),
         .O(\sda_out_sh_reg[25] [6]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[8]_i_1 
@@ -2869,7 +2869,7 @@ module design_1_coldata_i2c_0_0_coldata_i2c_v1_0_S00_AXI
         .I1(Q[1]),
         .I2(wr_reg1[8]),
         .O(\sda_out_sh_reg[25] [7]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \sda_out_sh[9]_i_1 
@@ -4098,12 +4098,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -4116,6 +4119,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -4143,6 +4147,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -4156,6 +4161,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

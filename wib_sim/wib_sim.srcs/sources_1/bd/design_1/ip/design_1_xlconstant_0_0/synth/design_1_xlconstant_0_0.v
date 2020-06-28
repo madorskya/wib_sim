@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:ip:xlconstant:1.1
-// IP Revision: 6
+// IP Revision: 7
 
-(* X_CORE_INFO = "xlconstant_v1_1_6_xlconstant,Vivado 2019.2.1" *)
-(* CHECK_LICENSE_TYPE = "design_1_xlconstant_0_0,xlconstant_v1_1_6_xlconstant,{}" *)
-(* CORE_GENERATION_INFO = "design_1_xlconstant_0_0,xlconstant_v1_1_6_xlconstant,{x_ipProduct=Vivado 2019.2.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlconstant,x_ipVersion=1.1,x_ipCoreRevision=6,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,CONST_WIDTH=1,CONST_VAL=0x0}" *)
+(* X_CORE_INFO = "xlconstant_v1_1_7_xlconstant,Vivado 2020.1" *)
+(* CHECK_LICENSE_TYPE = "design_1_xlconstant_0_0,xlconstant_v1_1_7_xlconstant,{}" *)
+(* CORE_GENERATION_INFO = "design_1_xlconstant_0_0,xlconstant_v1_1_7_xlconstant,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlconstant,x_ipVersion=1.1,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,CONST_WIDTH=1,CONST_VAL=0x0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_xlconstant_0_0 (
   dout
@@ -60,7 +60,7 @@ module design_1_xlconstant_0_0 (
 
 output wire [0 : 0] dout;
 
-  xlconstant_v1_1_6_xlconstant #(
+  xlconstant_v1_1_7_xlconstant #(
     .CONST_WIDTH(1),
     .CONST_VAL('H0)
   ) inst (
