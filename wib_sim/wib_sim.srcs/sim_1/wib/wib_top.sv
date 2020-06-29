@@ -26,12 +26,20 @@ module wib_top
     wire [0 : 0] rx_usrclk2_out      ; // rx data clock
     wire [0 : 0] rx_active_out       ; // rx active indicator
     wire [15 :0] rx_data [15:0]      ;
+    wire [15 :0] rx_data_swizzled [15:0]      ;
     wire [15 :0] rxbyteisaligned_out ;
     wire [15 :0] rxbyterealign_out   ;
     wire [15 :0] rxcommadet_out      ;             
     
     wire [0 : 0] rx_cdr_stable_out   ; 
     wire [15 :0] gtpowergood_out     ;
+
+    genvar gi;
+    // swizzle bytes in rx_data for easier viewing in the simulation traces
+    generate
+        for (gi = 0; gi < 16; gi++)
+            assign rx_data_swizzled[gi] = {rx_data[gi][7:0], rx_data[gi][15:8]};
+    endgenerate
 
     bd_tux wrp
     (
