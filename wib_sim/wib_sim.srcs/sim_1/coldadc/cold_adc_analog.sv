@@ -233,4 +233,10 @@ module cold_adc_analog
 
 //*** Just an empty shell
 
+// Madorsky: adding signals that can be driven from simulation test fixture
+    reg [15:0] synced_adc_cal_1p2_0_r; // synced ADC0 word w calibration
+    reg [15:0] synced_adc_cal_1p2_1_r; // synced ADC1 word w calibration
+    assign synced_adc_cal_1p2_0 = synced_adc_cal_1p2_0_r; // synced ADC0 word w calibration
+    assign synced_adc_cal_1p2_1 = synced_adc_cal_1p2_1_r; // synced ADC1 word w calibration
+
 endmodule

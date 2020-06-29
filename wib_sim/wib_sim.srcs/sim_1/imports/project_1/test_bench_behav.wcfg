@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="281745835800fs"></ZoomStartTime>
-      <ZoomEndTime time="282027235801fs"></ZoomEndTime>
-      <Cursor1Time time="281742500000fs"></Cursor1Time>
+      <ZoomStartTime time="27160999000fs"></ZoomStartTime>
+      <ZoomEndTime time="28738999001fs"></ZoomEndTime>
+      <Cursor1Time time="28218999000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="340"></NameColumnWidth>
+      <NameColumnWidth column_width="332"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="82" />
+   <WVObjectSize size="86" />
    <wave_markers>
       <marker label="" time="43887353" />
       <marker label="" time="30073500" />
@@ -366,5 +366,21 @@
    <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND_STARTNUMREG_ADC_1/storedData">
       <obj_property name="ElementShortName">storedData[7:0]</obj_property>
       <obj_property name="ObjectShortName">storedData[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/Clk_16MHz_cu0">
+      <obj_property name="ElementShortName">Clk_16MHz_cu0</obj_property>
+      <obj_property name="ObjectShortName">Clk_16MHz_cu0</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/Clk_16MHz_cu1">
+      <obj_property name="ElementShortName">Clk_16MHz_cu1</obj_property>
+      <obj_property name="ObjectShortName">Clk_16MHz_cu1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/frontEndSample">
+      <obj_property name="ElementShortName">frontEndSample</obj_property>
+      <obj_property name="ObjectShortName">frontEndSample</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Analog_2/synced_adc_cal_1p2_0_r">
+      <obj_property name="ElementShortName">synced_adc_cal_1p2_0_r[15:0]</obj_property>
+      <obj_property name="ObjectShortName">synced_adc_cal_1p2_0_r[15:0]</obj_property>
    </wvobject>
 </wave_config>
