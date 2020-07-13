@@ -475,32 +475,40 @@ end
 
 reg [31:0] rd_addr;
 
-reg [3:0] adc_frame_cnt = 0;
-// feeding test data to ADC inputs 
-always @(posedge test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.Clk_16MHz_cu0)
-begin
-    // assign fixed test data inputs for ADCs
-    // {adc_num, output_num, frame_num, 4'b0} last 4 zeros are cut off by Frame-12 format
-    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h11 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h12 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h21 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h22 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h31 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h32 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h41 , adc_frame_cnt, 4'b0};
-    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h42 , adc_frame_cnt, 4'b0};
+// commented block below is moved to cold_adc_analog.sv
+//reg [3:0] adc_frame_cnt = 0;
+//// feeding test data to ADC inputs 
+//always @(posedge test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.Clk_16MHz_cu0)
+//begin
+//    if (test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.frontEndSample == 1'b1)
+//        adc_frame_cnt = 0;
+//    else
+//        adc_frame_cnt++;
+
+//    // assign fixed test data inputs for ADCs
+//    // {adc_num, output_num, frame_num, 4'b0} last 4 zeros are cut off by Frame-12 format
+//    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h11 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h12 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h21 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h22 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h31 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h32 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_0_r = {8'h41 , adc_frame_cnt, 4'b0};
+//    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Analog_2.synced_adc_cal_1p2_1_r = {8'h42 , adc_frame_cnt, 4'b0};
     
-    if (test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.frontEndSample == 1'b1)
-        adc_frame_cnt = 0;
-    else
-        adc_frame_cnt++;
     
-end
+//end
 
 initial
 begin
 
     $display ("running the tb");
+    
+    // backdoor ADC number into each ADC,for recognizable test patterns
+    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Analog_2.adc_num = 4'h0;
+    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Analog_2.adc_num = 4'h1;
+    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Analog_2.adc_num = 4'h2;
+    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Analog_2.adc_num = 4'h3;
     
     CHIP_ID_0 = 1'b1; // this is lower bit of chip id, full chip id is {4'b001, CHIP_ID_0}
     
@@ -595,7 +603,7 @@ begin
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
-    #40000000; // give I2C time 
+    #39700000; // give I2C time 
 
     // FAST command FSM reset and align
 //    fast_command = 1;
@@ -652,6 +660,12 @@ begin
     test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
     test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
 
+    // backdoor settings to coldadc, to output sync pattern-voltages (1) or ADC data (0) adc_sync_mode
+    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[9][4] = 1;
+    test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[9][4] = 1;
+    test_bench_coldata.adc_loop[2].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[9][4] = 1;
+    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[9][4] = 1;
+
     // backdoor frame marker delay, register config_start_number[4:0], according to slide sent by David on 2020-06-17
     test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.coldADC_DigitalBlock_0.BEND_STARTNUMREG_ADC_1.storedData = 8'h0c;
     test_bench_coldata.adc_loop[1].coldadc.coldADC_Top_0.Digital_1.coldADC_DigitalBlock_0.BEND_STARTNUMREG_ADC_1.storedData = 8'h0c;
@@ -671,7 +685,10 @@ begin
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
-    #40000000;
+    #20000000;
+    // backdoor COLDATA to output ADC data in FRAME14 format, register: FRAMECONFIGREG
+    test_bench_coldata.coldata.ADC_Configure_Reg_0.storedData = 8'b1; 
+    #20000000;
 
     // backdoor settings to coldADC, output ADC data
 //    test_bench_coldata.adc_loop[0].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;

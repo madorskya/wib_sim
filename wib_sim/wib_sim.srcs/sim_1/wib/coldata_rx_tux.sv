@@ -17,10 +17,10 @@ module coldata_rx_tux
     output [15 :0] rxbyteisaligned_out ,
     output [15 :0] rxbyterealign_out   ,
     output [15 :0] rxcommadet_out      ,
-    output [1:0]   rx_k,
-    output [1:0]   rx_comma,
-    output [1:0]   rx_notvalid,
-    output [1:0]   rx_disp,
+    output [1:0]   rx_k [15:0],
+    output [1:0]   rx_comma [15:0],
+    output [1:0]   rx_notvalid [15:0],
+    output [1:0]   rx_disp [15:0],
                  
 
     output [0 : 0] rx_cdr_stable_out   , 
@@ -39,10 +39,6 @@ module coldata_rx_tux
     wire [127 : 0] rxctrl2_out;
     wire [127 : 0] rxctrl3_out;
 
-    assign rx_k        = rxctrl0_out[1:0];
-    assign rx_disp     = rxctrl1_out[1:0];
-    assign rx_comma    = rxctrl2_out[1:0];
-    assign rx_notvalid = rxctrl3_out[1:0];
 
 
     wire [255:0] data_rx_out; // RX data combined into one word
@@ -52,7 +48,11 @@ module coldata_rx_tux
         // split the giant data word into array for convenience
         for (gi = 0; gi < 16; gi++)
         begin
-            assign rx_data[gi] = data_rx_out[gi*16 +: 16];
+            assign rx_data     [gi] = data_rx_out[gi*16 +: 16];
+            assign rx_k        [gi] = rxctrl0_out[gi*16 +: 2];
+            assign rx_disp     [gi] = rxctrl1_out[gi*16 +: 2];
+            assign rx_comma    [gi] = rxctrl2_out[gi*16 +: 2];
+            assign rx_notvalid [gi] = rxctrl3_out[gi*16 +: 2];
         end
         
         // refclk buffers
