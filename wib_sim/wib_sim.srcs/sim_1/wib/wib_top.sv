@@ -59,10 +59,10 @@ module wib_top
         .fastcommand_out_p (fastcommand_out_p)
     );
 
-    wire [1:0]   rx_k;
-    wire [1:0]   rx_comma;
-    wire [1:0]   rx_notvalid;
-    wire [1:0]   rx_disp;
+    wire [1:0]   rx_k [15:0];
+    wire [1:0]   rx_comma [15:0];
+    wire [1:0]   rx_notvalid [15:0];
+    wire [1:0]   rx_disp [15:0];
 
     
     coldata_rx_tux coldata_rx

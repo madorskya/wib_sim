@@ -239,4 +239,39 @@ module cold_adc_analog
     assign synced_adc_cal_1p2_0 = synced_adc_cal_1p2_0_r; // synced ADC0 word w calibration
     assign synced_adc_cal_1p2_1 = synced_adc_cal_1p2_1_r; // synced ADC1 word w calibration
 
+    reg [3:0] adc_frame_cnt;
+    reg [3:0] adc_num; // backdoor register for ADC number ID
+
+    // values of test voltages in adc_sync_mode
+    wire [7:0] voltage [0:7] = '{8'hff, 8'h7f, 8'h01, 8'h7f, 8'h7f, 8'h7f, 8'h7f, 8'h7f}; // [frame_num]
+    // test patterns with voltages in high bits, output number and frame number in lower bits 
+    wire [15:0] adc_sync_val [3:0][1:0][7:0]; // [adc_num][output_num][frame_num]
+    genvar gi, gj, gk;
+    generate
+        for (gi = 0; gi < 4; gi++) // adc loop
+            for (gj = 0; gj < 2; gj++) // output loop
+                for (gk = 0; gk < 8; gk++) // frame loop
+                    assign adc_sync_val[gi][gj][gk] = {voltage[gk], gi[2:0], gj[0], 4'b0};
+    endgenerate
+
+    always @(posedge clk_cu0)
+    begin
+        if (clk_sha_1p2 == 1'b1)
+            adc_frame_cnt = 0;
+        else
+            adc_frame_cnt++;
+    
+        // assign fixed test data inputs for ADCs, instead of actual data
+        // {adc_num, output_num, frame_num, 4'b0} last 4 zeros are cut off by Frame-12 format
+        synced_adc_cal_1p2_0_r = {adc_num, 4'h1 , adc_frame_cnt, 4'b0};
+        synced_adc_cal_1p2_1_r = {adc_num, 4'h2 , adc_frame_cnt, 4'b0};
+        
+        // sync mode with power voltages
+        if (adc_sync_mode_1p2)
+        begin
+            synced_adc_cal_1p2_0_r = adc_sync_val[adc_num][0][adc_frame_cnt];
+            synced_adc_cal_1p2_1_r = adc_sync_val[adc_num][1][adc_frame_cnt];
+        end
+    end
+    
 endmodule
