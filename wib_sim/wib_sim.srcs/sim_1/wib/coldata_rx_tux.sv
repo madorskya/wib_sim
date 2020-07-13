@@ -11,6 +11,7 @@ module coldata_rx_tux
     input  [0 : 0] reset_all_in        , // common reset for all circiuts
     output [0 : 0] reset_rx_done_out   , 
 
+    output [0 : 0] rx_usrclk_out       ,
     output [0 : 0] rx_usrclk2_out      , // rx data clock
     output [0 : 0] rx_active_out       , // rx active indicator
     output [15 :0] rx_data [15:0]      ,
@@ -85,7 +86,7 @@ coldata_rx crx
   .gtwiz_userclk_tx_active_out        (), // used to enable tx stimuli                
   .gtwiz_userclk_rx_reset_in          (~(&rxpmaresetdone_out)),                    
   .gtwiz_userclk_rx_srcclk_out        (),                
-  .gtwiz_userclk_rx_usrclk_out        (),                
+  .gtwiz_userclk_rx_usrclk_out        (rx_usrclk_out),                
   .gtwiz_userclk_rx_usrclk2_out       (rx_usrclk2_out), // rx clock              
   .gtwiz_userclk_rx_active_out        (rx_active_out), // rx active indicator                
   .gtwiz_reset_clk_freerun_in         (reset_clk_64M_in), // 64 MHz clock                  
