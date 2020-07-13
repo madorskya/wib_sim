@@ -18,15 +18,22 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="280918340720fs"></ZoomStartTime>
-      <ZoomEndTime time="281203043996fs"></ZoomEndTime>
-      <Cursor1Time time="281725000000fs"></Cursor1Time>
+      <ZoomStartTime time="247948373897fs"></ZoomStartTime>
+      <ZoomEndTime time="248373873898fs"></ZoomEndTime>
+      <Cursor1Time time="248199873897fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="189"></NameColumnWidth>
+      <NameColumnWidth column_width="161"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="87" />
+   <WVObjectSize size="101" />
+   <wave_markers>
+      <marker label="" time="259664812015" />
+      <marker label="" time="259654812015" />
+      <marker label="" time="253549756900" />
+      <marker label="" time="246230052015" />
+      <marker label="" time="269357251000" />
+   </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
       <obj_property name="ObjectShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -372,10 +379,67 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/rx_k">
       <obj_property name="ElementShortName">rx_k[15:0][1:0]</obj_property>
       <obj_property name="ObjectShortName">rx_k[15:0][1:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/coldata/ADC_Configure_Reg_0/storedData">
       <obj_property name="ElementShortName">storedData[7:0]</obj_property>
       <obj_property name="ObjectShortName">storedData[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk_out">
+      <obj_property name="ElementShortName">rx_usrclk_out[0:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_usrclk_out[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
+      <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_usrclk2_out[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte0">
+      <obj_property name="ElementShortName">rx_byte0[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_byte0[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte1">
+      <obj_property name="ElementShortName">rx_byte1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_byte1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_k0">
+      <obj_property name="ElementShortName">rx_k0</obj_property>
+      <obj_property name="ObjectShortName">rx_k0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /time8">
+      <obj_property name="ElementShortName">time8[7:0]</obj_property>
+      <obj_property name="ObjectShortName">time8[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rxclk2x">
+      <obj_property name="ElementShortName">rxclk2x</obj_property>
+      <obj_property name="ObjectShortName">rxclk2x</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge">
+      <obj_property name="ElementShortName">rx_usrclk_edge</obj_property>
+      <obj_property name="ObjectShortName">rx_usrclk_edge</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge_r">
+      <obj_property name="ElementShortName">rx_usrclk_edge_r</obj_property>
+      <obj_property name="ObjectShortName">rx_usrclk_edge_r</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge_rr">
+      <obj_property name="ElementShortName">rx_usrclk_edge_rr</obj_property>
+      <obj_property name="ObjectShortName">rx_usrclk_edge_rr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /parallel_frame">
+      <obj_property name="ElementShortName">parallel_frame[447:0]</obj_property>
+      <obj_property name="ObjectShortName">parallel_frame[447:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed14">
+      <obj_property name="ElementShortName">deframed14[31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed14[31:0][13:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed12">
+      <obj_property name="ElementShortName">deframed12[31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed12[31:0][13:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /byte_cnt">
+      <obj_property name="ElementShortName">byte_cnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_cnt[7:0]</obj_property>
    </wvobject>
 </wave_config>

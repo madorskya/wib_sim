@@ -23,6 +23,7 @@ module wib_top
     wire         coldata_rx_reset  = gp_out[0]   ; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
     
+    wire [0 : 0] rx_usrclk_out       ;
     wire [0 : 0] rx_usrclk2_out      ; // rx data clock
     wire [0 : 0] rx_active_out       ; // rx active indicator
     wire [15 :0] rx_data [15:0]      ;
@@ -75,6 +76,7 @@ module wib_top
         .reset_all_in        (coldata_rx_reset   ), // common reset for all circiuts
         .reset_rx_done_out   (reset_rx_done_out  ), 
     
+        .rx_usrclk_out       (rx_usrclk_out      ),
         .rx_usrclk2_out      (rx_usrclk2_out     ), // rx data clock
         .rx_active_out       (rx_active_out      ), // rx active indicator
         .rx_data             (rx_data            ),
@@ -90,5 +92,11 @@ module wib_top
         .gtpowergood_out     (gtpowergood_out    )
     );
     
-    
+    coldata_deframer coldata_df
+    (
+        .rx_usrclk2          (rx_usrclk2_out     ), // rx data clock
+        .rx_data             (rx_data            ),
+        .rx_k                (rx_k       ),
+        .mmcm_reset          (!reset_rx_done_out)
+    );
 endmodule
