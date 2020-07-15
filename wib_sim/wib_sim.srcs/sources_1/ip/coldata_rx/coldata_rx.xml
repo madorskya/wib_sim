@@ -14,7 +14,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:abb8dd7b</spirit:value>
+            <spirit:value>9:d73d654d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -29,11 +29,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:07:50 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:21:26 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:cdb8cbd9</spirit:value>
+            <spirit:value>9:8648c027</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -49,11 +49,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:07:54 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:21:31 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:cdb8cbd9</spirit:value>
+            <spirit:value>9:8648c027</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -64,7 +64,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:cdb8cbd9</spirit:value>
+            <spirit:value>9:8648c027</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -80,11 +80,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:07:54 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:21:31 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:cdb8cbd9</spirit:value>
+            <spirit:value>9:8648c027</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -100,11 +100,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:07:59 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:21:35 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:703842d7</spirit:value>
+            <spirit:value>9:468bd4b3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -120,11 +120,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:07:59 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:21:35 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:703842d7</spirit:value>
+            <spirit:value>9:468bd4b3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -139,11 +139,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:07:59 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:21:35 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:cdb8cbd9</spirit:value>
+            <spirit:value>9:8648c027</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -157,11 +157,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Jun 28 19:13:14 UTC 2020</spirit:value>
+            <spirit:value>Wed Jul 15 21:26:57 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:cdb8cbd9</spirit:value>
+            <spirit:value>9:8648c027</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -16700,7 +16700,7 @@
       <spirit:name>RX_COMMA_ALIGN_WORD</spirit:name>
       <spirit:displayName>Alignment boundary</spirit:displayName>
       <spirit:description>Select which data byte boundaries are allowed for comma alignment</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_ALIGN_WORD" spirit:choiceRef="choice_pairs_9c19f015" spirit:order="65">2</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.RX_COMMA_ALIGN_WORD" spirit:choiceRef="choice_pairs_9c19f015" spirit:order="65">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>RX_COMMA_SHOW_REALIGN_ENABLE</spirit:name>
