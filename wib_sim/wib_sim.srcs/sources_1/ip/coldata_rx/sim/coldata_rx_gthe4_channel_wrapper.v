@@ -412,7 +412,7 @@ gtwizard_ultrascale_v1_7_8_gthe4_channel #(
   .GTHE4_CHANNEL_ADAPT_CFG2                     (16'b0000000000000000),
   .GTHE4_CHANNEL_ALIGN_COMMA_DOUBLE             ("FALSE"),
   .GTHE4_CHANNEL_ALIGN_COMMA_ENABLE             (10'b0011111111),
-  .GTHE4_CHANNEL_ALIGN_COMMA_WORD               (2),
+  .GTHE4_CHANNEL_ALIGN_COMMA_WORD               (1),
   .GTHE4_CHANNEL_ALIGN_MCOMMA_DET               ("TRUE"),
   .GTHE4_CHANNEL_ALIGN_MCOMMA_VALUE             (10'b0110000011),
   .GTHE4_CHANNEL_ALIGN_PCOMMA_DET               ("TRUE"),

@@ -6,7 +6,10 @@ module coldata_deframer_single
     input [1:0]   rx_k,
 
     output [13:0] deframed14 [31:0],
-    output [13:0] deframed12 [31:0]
+    output reg valid14,
+
+    output [13:0] deframed12 [31:0],
+    output reg valid12
 );
 
     typedef enum
@@ -34,6 +37,7 @@ module coldata_deframer_single
     localparam FR12_BITS = 32*12; // max number of bits in one entire frame
 
     reg [FR14_BITS-1:0] parallel_frame; // storage for the complete data from one entire frame
+    reg [7:0] crc;
     
     
     genvar gi;
@@ -77,6 +81,7 @@ module coldata_deframer_single
                 time8 = rx_data; // store time marker
                 df_state = FR14;
                 byte_cnt = 8'h0;
+                crc = 8'h0;
             end
             
             TI12: 
@@ -84,6 +89,7 @@ module coldata_deframer_single
                 time8 = rx_data; // store time marker
                 df_state = FR12;
                 byte_cnt = 8'h0;
+                crc = 8'h0;
             end
             
             FR14:
@@ -95,6 +101,7 @@ module coldata_deframer_single
                     
                 parallel_frame = {parallel_frame[FR14_BITS-9:0], rx_byte0}; // shift byte into frame storage
                 byte_cnt++;
+                crc += rx_byte0;
             end
             
             FR12: 
@@ -106,6 +113,7 @@ module coldata_deframer_single
 
                 parallel_frame = {parallel_frame[FR12_BITS-9:0], rx_byte0}; // shift byte into frame storage
                 byte_cnt++;
+                crc += rx_byte0;
             end
             
             CRC:

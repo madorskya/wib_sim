@@ -18,21 +18,23 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="247948373897fs"></ZoomStartTime>
-      <ZoomEndTime time="248373873898fs"></ZoomEndTime>
-      <Cursor1Time time="248199873897fs"></Cursor1Time>
+      <ZoomStartTime time="242174855359fs"></ZoomStartTime>
+      <ZoomEndTime time="247604855360fs"></ZoomEndTime>
+      <Cursor1Time time="244759855359fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="161"></NameColumnWidth>
-      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+      <NameColumnWidth column_width="188"></NameColumnWidth>
+      <ValueColumnWidth column_width="87"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="101" />
+   <WVObjectSize size="104" />
    <wave_markers>
       <marker label="" time="259664812015" />
       <marker label="" time="259654812015" />
-      <marker label="" time="253549756900" />
       <marker label="" time="246230052015" />
       <marker label="" time="269357251000" />
+      <marker label="" time="253549756900" />
+      <marker label="" time="244520909666" />
+      <marker label="" time="244528623000" />
    </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -65,10 +67,6 @@
    <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_inp">
       <obj_property name="ElementShortName">i2c0_sda_inp</obj_property>
       <obj_property name="ObjectShortName">i2c0_sda_inp</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN1">
-      <obj_property name="ElementShortName">SEROUTN1</obj_property>
-      <obj_property name="ObjectShortName">SEROUTN1</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTP1">
       <obj_property name="ElementShortName">SEROUTP1</obj_property>
@@ -173,14 +171,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/gthrxp_in">
       <obj_property name="ElementShortName">gthrxp_in[15:0]</obj_property>
       <obj_property name="ObjectShortName">gthrxp_in[15:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/FIFO1_D">
-      <obj_property name="ElementShortName">FIFO1_D[7:0]</obj_property>
-      <obj_property name="ObjectShortName">FIFO1_D[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FIFO1_K">
-      <obj_property name="ElementShortName">FIFO1_K</obj_property>
-      <obj_property name="ObjectShortName">FIFO1_K</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
       <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
@@ -392,17 +382,34 @@
       <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk2_out[0:0]</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/FIFO1_D">
+      <obj_property name="ElementShortName">FIFO1_D[7:0]</obj_property>
+      <obj_property name="ObjectShortName">FIFO1_D[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FIFO1_K">
+      <obj_property name="ElementShortName">FIFO1_K</obj_property>
+      <obj_property name="ObjectShortName">FIFO1_K</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/coldata/encodedData1">
+      <obj_property name="ElementShortName">encodedData1[9:0]</obj_property>
+      <obj_property name="ObjectShortName">encodedData1[9:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN1">
+      <obj_property name="ElementShortName">SEROUTN1</obj_property>
+      <obj_property name="ObjectShortName">SEROUTN1</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte0">
       <obj_property name="ElementShortName">rx_byte0[7:0]</obj_property>
       <obj_property name="ObjectShortName">rx_byte0[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte1">
-      <obj_property name="ElementShortName">rx_byte1[7:0]</obj_property>
-      <obj_property name="ObjectShortName">rx_byte1[7:0]</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_k0">
       <obj_property name="ElementShortName">rx_k0</obj_property>
       <obj_property name="ObjectShortName">rx_k0</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte1">
+      <obj_property name="ElementShortName">rx_byte1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_byte1[7:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /time8">
       <obj_property name="ElementShortName">time8[7:0]</obj_property>
@@ -436,10 +443,17 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed12">
       <obj_property name="ElementShortName">deframed12[31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed12[31:0][13:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /byte_cnt">
       <obj_property name="ElementShortName">byte_cnt[7:0]</obj_property>
       <obj_property name="ObjectShortName">byte_cnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /df_state">
+      <obj_property name="ElementShortName">df_state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">df_state[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc">
+      <obj_property name="ElementShortName">crc[7:0]</obj_property>
+      <obj_property name="ObjectShortName">crc[7:0]</obj_property>
    </wvobject>
 </wave_config>
