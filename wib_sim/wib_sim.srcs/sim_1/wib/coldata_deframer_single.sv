@@ -9,18 +9,23 @@ module coldata_deframer_single
     output reg valid14,
 
     output [13:0] deframed12 [31:0],
-    output reg valid12
+    output reg valid12,
+    
+    output reg [1:0] crc_err
 );
 
     typedef enum
     {
-        IDLE = 3'h0,
-        HEAD = 3'h1,
-        TI14 = 3'h2,
-        TI12 = 3'h3,
-        FR14 = 3'h4,
-        FR12 = 3'h5,
-        CRC  = 3'h6
+        IDLE = 4'h0,
+        HEAD = 4'h1,
+        TI14 = 4'h2,
+        TI12 = 4'h3,
+        FR14 = 4'h4,
+        FR12 = 4'h5,
+        CRC0_14 = 4'h6,
+        CRC1_14 = 4'h7,
+        CRC0_12 = 4'h8,
+        CRC1_12 = 4'h9
     } df_state_t;
     
     df_state_t df_state = IDLE;
@@ -35,9 +40,18 @@ module coldata_deframer_single
     localparam FR12_BYTE_COUNT = 8'd48; // 32 samples x 12 bits
     localparam FR14_BITS = 32*14; // max number of bits in one entire frame
     localparam FR12_BITS = 32*12; // max number of bits in one entire frame
+    
+    // various K symbols used in format
+    localparam SYM_IDLE = 8'hbc;
+    localparam SYM_FR12 = 8'h5c;
+    localparam SYM_FR14 = 8'h7c;
+    
+    // how many bytes per ADC in each frame format
+    localparam ADC_BYTES_12 = 8'd24;
+    localparam ADC_BYTES_14 = 8'd28;
 
     reg [FR14_BITS-1:0] parallel_frame; // storage for the complete data from one entire frame
-    reg [7:0] crc;
+    reg [7:0] crc [1:0];
     
     
     genvar gi;
@@ -57,22 +71,24 @@ module coldata_deframer_single
 
     always @(posedge rxclk2x)
     begin
+        valid14 = 1'b0;
+        valid12 = 1'b0;
         case (df_state)
         
             IDLE: 
             begin
                 parallel_frame = 0;
                 // wait for header
-                if (rx_k0 == 1'b1 && rx_byte0 == 8'hbc) // header starts
+                if (rx_k0 == 1'b1 && rx_byte0 == SYM_IDLE) // header starts
                     df_state = HEAD;        
             end
             
             HEAD: 
             begin
-                if (rx_k0 == 1'b1 && rx_byte0 == 8'h7c) // FRAME 14 marker
+                if (rx_k0 == 1'b1 && rx_byte0 == SYM_FR14) // FRAME 14 marker
                     df_state = TI14;
 
-                if (rx_k0 == 1'b1 && rx_byte0 == 8'h5c) // FRAME 12 marker
+                if (rx_k0 == 1'b1 && rx_byte0 == SYM_FR12) // FRAME 12 marker
                     df_state = TI12;
             end
             
@@ -81,7 +97,7 @@ module coldata_deframer_single
                 time8 = rx_data; // store time marker
                 df_state = FR14;
                 byte_cnt = 8'h0;
-                crc = 8'h0;
+                crc = '{8'h0, 8'h0};
             end
             
             TI12: 
@@ -89,37 +105,59 @@ module coldata_deframer_single
                 time8 = rx_data; // store time marker
                 df_state = FR12;
                 byte_cnt = 8'h0;
-                crc = 8'h0;
+                crc = '{8'h0, 8'h0};
             end
             
             FR14:
             begin
-                if (rx_k0 == 1'b1)
-                    df_state = IDLE;
-                if (byte_cnt == FR14_BYTE_COUNT)
-                    df_state = CRC;    
-                    
                 parallel_frame = {parallel_frame[FR14_BITS-9:0], rx_byte0}; // shift byte into frame storage
+                
+                crc [byte_cnt >= ADC_BYTES_14] += rx_byte0; // update CRC for corresponding ADC
                 byte_cnt++;
-                crc += rx_byte0;
+
+                if (rx_k0 == 1'b1) // K symbol out of place, invalid frame
+                    df_state = IDLE;
+                if (byte_cnt == FR14_BYTE_COUNT) // done receiving data, go to CRC
+                    df_state = CRC0_14;    
             end
             
             FR12: 
             begin
-                if (rx_k0 == 1'b1)
-                    df_state = IDLE;
-                if (byte_cnt == FR12_BYTE_COUNT)
-                    df_state = CRC;    
-
                 parallel_frame = {parallel_frame[FR12_BITS-9:0], rx_byte0}; // shift byte into frame storage
+                
+                crc [byte_cnt >= ADC_BYTES_12] += rx_byte0; // update CRC for corresponding ADC
                 byte_cnt++;
-                crc += rx_byte0;
+
+                if (rx_k0 == 1'b1) // K symbol out of place, invalid frame
+                    df_state = IDLE;
+                if (byte_cnt == FR12_BYTE_COUNT) // done receiving data, go to CRC
+                    df_state = CRC0_12;    
             end
             
-            CRC:
+            CRC0_14:
             begin
-                if (rx_k0 == 1'b1) // just ignoring CRC so far
-                    df_state = IDLE;
+                crc_err[0] = crc[0] != rx_byte0;
+                df_state = CRC1_14;
+            end
+            
+            CRC1_14:
+            begin
+                crc_err[1] = crc[1] != rx_byte0;
+                valid14 = 1'b1; // frame 14 data is ready for pick up
+                df_state = IDLE;
+            end
+            
+            CRC0_12:
+            begin
+                crc_err[0] = crc[0] != rx_byte0;
+                df_state = CRC1_12;
+            end
+            
+            CRC1_12:
+            begin
+                crc_err[1] = crc[1] != rx_byte0;
+                valid12 = 1'b1; // frame 12 data is ready for pick up
+                df_state = IDLE;
             end
             
         endcase
