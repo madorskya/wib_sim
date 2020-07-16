@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="242174855359fs"></ZoomStartTime>
-      <ZoomEndTime time="247604855360fs"></ZoomEndTime>
-      <Cursor1Time time="244759855359fs"></Cursor1Time>
+      <ZoomStartTime time="247583834359fs"></ZoomStartTime>
+      <ZoomEndTime time="247892234360fs"></ZoomEndTime>
+      <Cursor1Time time="247840834359fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="188"></NameColumnWidth>
-      <ValueColumnWidth column_width="87"></ValueColumnWidth>
+      <ValueColumnWidth column_width="83"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="104" />
+   <WVObjectSize size="107" />
    <wave_markers>
       <marker label="" time="259664812015" />
       <marker label="" time="259654812015" />
@@ -303,7 +303,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/ADC_CLK_2MHZ_P">
       <obj_property name="ElementShortName">ADC_CLK_2MHZ_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_CLK_2MHZ_P[3:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/test_bench_coldata/ADC_MASTER_RESET">
       <obj_property name="ElementShortName">ADC_MASTER_RESET</obj_property>
@@ -364,7 +363,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_data_swizzled">
       <obj_property name="ElementShortName">rx_data_swizzled[15:0][15:0]</obj_property>
       <obj_property name="ObjectShortName">rx_data_swizzled[15:0][15:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/rx_k">
       <obj_property name="ElementShortName">rx_k[15:0][1:0]</obj_property>
@@ -393,7 +391,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/coldata/encodedData1">
       <obj_property name="ElementShortName">encodedData1[9:0]</obj_property>
       <obj_property name="ObjectShortName">encodedData1[9:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN1">
       <obj_property name="ElementShortName">SEROUTN1</obj_property>
@@ -438,11 +435,11 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed14">
       <obj_property name="ElementShortName">deframed14[31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed14[31:0][13:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed12">
       <obj_property name="ElementShortName">deframed12[31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed12[31:0][13:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /byte_cnt">
       <obj_property name="ElementShortName">byte_cnt[7:0]</obj_property>
@@ -453,7 +450,20 @@
       <obj_property name="ObjectShortName">df_state[31:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc">
-      <obj_property name="ElementShortName">crc[7:0]</obj_property>
-      <obj_property name="ObjectShortName">crc[7:0]</obj_property>
+      <obj_property name="ElementShortName">crc[1:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">crc[1:0][7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /valid14">
+      <obj_property name="ElementShortName">valid14</obj_property>
+      <obj_property name="ObjectShortName">valid14</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /valid12">
+      <obj_property name="ElementShortName">valid12</obj_property>
+      <obj_property name="ObjectShortName">valid12</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc_err">
+      <obj_property name="ElementShortName">crc_err[1:0]</obj_property>
+      <obj_property name="ObjectShortName">crc_err[1:0]</obj_property>
    </wvobject>
 </wave_config>
