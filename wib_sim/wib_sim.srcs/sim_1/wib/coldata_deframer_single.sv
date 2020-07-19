@@ -5,16 +5,14 @@ module coldata_deframer_single
     input [15 :0] rx_data,
     input [1:0]   rx_k,
 
-    output [13:0] deframed14 [31:0],
+    output [13:0] deframed [31:0],
     output reg valid14,
-
-    output [13:0] deframed12 [31:0],
     output reg valid12,
     
     output reg [1:0] crc_err
 );
 
-    typedef enum
+    typedef enum bit[3:0]
     {
         IDLE = 4'h0,
         HEAD = 4'h1,
@@ -53,6 +51,8 @@ module coldata_deframer_single
     reg [FR14_BITS-1:0] parallel_frame; // storage for the complete data from one entire frame
     reg [7:0] crc [1:0];
     
+    wire [13:0] deframed14 [31:0];
+    wire [13:0] deframed12 [31:0];
     
     genvar gi;
     // deframe from parallel storage
@@ -63,6 +63,8 @@ module coldata_deframer_single
             assign deframed12 [31-gi] = {parallel_frame [gi*12 +: 12], 2'b0}; // pad 12-bit data with zeros
         end
     endgenerate
+    // common output bus carrying deframed data
+    assign deframed = (valid12) ? deframed12 : deframed14;
 
     always @(posedge rx_usrclk2)
     begin
