@@ -553,7 +553,7 @@ begin
 
     // trying to work with I2C
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b010000001_001000000_000001010, 1, 16'h000F, 4, resp); // read COLDATA from address 20, which should fail
+            128'b010000010_001000000_000001010, 1, 16'h000F, 4, resp); // read COLDATA from address 20, which should fail
 
     // start command
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
@@ -567,7 +567,7 @@ begin
 
     // data, all 3 bytes + ack bits placeholders
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
-            128'b001100001_101000000_000001010, 1, 16'h000F, 4, resp); // read from address A0, which should actually address ADC
+            128'b001100010_101000000_000001010, 1, 16'h000F, 4, resp); // read from address A0, which should actually address ADC
 
     // start command
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
@@ -577,6 +577,9 @@ begin
             128'b000000000_000000000_000000000, 1, 16'h000F, 4, resp);
 
     #40000000; // give I2C time 
+
+    `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
+    $display ("read data, ADC reg A0: %h", read_data128[31:0]);
 
     // data, all 3 bytes + ack bits placeholders
     `ZYNQ_VIP_0.write_burst_strb(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 
@@ -697,7 +700,7 @@ begin
 //    test_bench_coldata.adc_loop[3].coldadc.coldADC_Top_0.Digital_1.cal_core_1.external_interface_inst.regfile_inst.config_regfile_inst.config_bits[50][5] = 0;
 
     `ZYNQ_VIP_0.read_burst(40'h00A0010004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("read data: %h", read_data128[31:0]);
+    $display ("read data reg 3: %h", read_data128[31:0]);
     
     #10000000;
     
