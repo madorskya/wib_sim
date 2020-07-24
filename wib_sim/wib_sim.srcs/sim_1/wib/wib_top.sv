@@ -65,6 +65,10 @@ module wib_top
     wire [1:0]   rx_notvalid [15:0];
     wire [1:0]   rx_disp [15:0];
 
+    wire [13:0] deframed [15:0][31:0]; // [link][sample]
+    wire [15:0] valid14;
+    wire [15:0] valid12;
+    wire [1:0]  crc_err [15:0];
     
     coldata_rx_tux coldata_rx
     (
@@ -94,9 +98,22 @@ module wib_top
     
     coldata_deframer coldata_df
     (
-        .rx_usrclk2          (rx_usrclk2_out     ), // rx data clock
-        .rx_data             (rx_data            ),
-        .rx_k                (rx_k       ),
-        .mmcm_reset          (!reset_rx_done_out)
+        .rx_usrclk2 (rx_usrclk2_out    ), // rx data clock
+        .rx_data    (rx_data           ),
+        .rx_k       (rx_k              ),
+        .mmcm_reset (!reset_rx_done_out),
+        .deframed   (deframed),
+        .valid14    (valid14 ),
+        .valid12    (valid12 ),
+        .crc_err    (crc_err )
     );
+    
+    frame_builder fbld
+    (
+        .deframed   (deframed),
+        .valid14    (valid14 ),
+        .valid12    (valid12 ),
+        .rx_usrclk2 (rx_usrclk2_out)
+    );
+    
 endmodule
