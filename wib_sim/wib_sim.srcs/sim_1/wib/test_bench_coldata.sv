@@ -14,9 +14,10 @@ reg resp;
 reg [7:0]  irq_status;
 reg [31:0] src_data;
 reg [31:0] dst_data;
-wire clk62p5;
+reg clk62p5 = 1'b0;
 reg [31:0] clk62_cnt;
 reg clk_1p28g;
+reg daq_clk;
 
 reg  [3 : 0] gtrefclk00p_in = 4'b0000; // reference clocks; 128M
 reg  [3 : 0] gtrefclk00n_in = 4'b1111; // reference clocks; 128M
@@ -30,6 +31,7 @@ begin
     tb_ACLK = 1'b0;
     clk62_cnt = 0;
     clk_1p28g = 1'b0;
+    daq_clk = 1'b0;
 end
    // instantiate coldata chip
 
@@ -435,10 +437,12 @@ end
 
 always #10000 tb_ACLK = !tb_ACLK;
 reg [3:0] refclk_cnt = 4'b0;
+reg [4:0] sysclk_cnt = 5'b0;
 always
 begin 
     // disable for faster simulation
-    #390.6 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.28G 
+    //#390.6 
+    #400 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.25G 
     if (refclk_cnt == 4'd9)
     begin
         gtrefclk00p_in = ~gtrefclk00p_in; // 128 M ref clk
@@ -447,6 +451,19 @@ begin
     end
     else
         refclk_cnt++;
+
+    if (sysclk_cnt == 5'd19)
+    begin
+        clk62p5 = ~clk62p5; // 62.5 M system clock
+        sysclk_cnt = 5'd0;
+    end
+    else
+        sysclk_cnt++;
+end
+
+always 
+begin        
+    #2083.33 daq_clk = ~daq_clk; // 240 MHz clock, for 9.6G TX in the link
 end
 
 always @(posedge clk62p5) 
@@ -717,11 +734,11 @@ end
    assign temp_clk = tb_ACLK;
    assign temp_rstn = tb_ARESETn;
   
-// duplicate single COLDATA outputs to occupy all WIB inputs  
-assign gthrxn_in[7:0]  = {8{SEROUTN1}};
-assign gthrxp_in[7:0]  = {8{SEROUTP1}};
-assign gthrxn_in[15:8] = {8{SEROUTN2}};
-assign gthrxp_in[15:8] = {8{SEROUTP2}};
+    // duplicate single COLDATA outputs to occupy all WIB inputs  
+    assign gthrxn_in[7:0]  = {8{SEROUTN1}};
+    assign gthrxp_in[7:0]  = {8{SEROUTP1}};
+    assign gthrxn_in[15:8] = {8{SEROUTN2}};
+    assign gthrxp_in[15:8] = {8{SEROUTP2}};
 
     wib_top mpsoc_sys
     (
@@ -740,82 +757,11 @@ assign gthrxp_in[15:8] = {8{SEROUTP2}};
         .gtrefclk00p_in (gtrefclk00p_in), // reference clocks(), 128M
         .gtrefclk00n_in (gtrefclk00n_in), // reference clocks(), 128M
         .gthrxn_in      (gthrxn_in    ), // RX diff lines
-        .gthrxp_in      (gthrxp_in    )    
+        .gthrxp_in      (gthrxp_in    ),
+        
+        .daq_clk        (daq_clk)    
     );
 
 
 endmodule
 
-/*
-    // CDMA transfer from example design, keeping here for reference
-      
-    //Fill the source data area
-    `ZYNQ_VIP_0.pre_load_mem(2'b00, 32'h00010000, 4096); // Write Random
-    
-    //Configure CDMA transfer        
-    //The M_AXI_HPM0_FPD interface is configured for 128 bits.
-    //Use the write_burst_strb command to control which bytes on the interface to enable for the CDMA register writes.
-    //Use the read_burst command to control which bytes on the interface to return for the CDMA register reads.
-   
-    // Read status
-    // read_burst(address, len, size, burst type, lock, cache, prot, data, response)
-    `ZYNQ_VIP_0.read_burst(40'h00A0000004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("%t, running testbench COLDATA, CDMA status after reset 32'h%x",$time, read_data128[31:0]);
-
-    // Set the source address
-    // write_burst_strb(addr, len, size, burst, lock, cache, prot, data, strb_en, strb, datasize, resp);
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0000018, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 128'h00000000000000000000000000010000, 1, 16'h000F, 4, resp);
-    // Set the destination address
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0000020, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 128'h00000000000000000000000000020000, 1, 16'h000F, 4, resp);
-    // Enable Interrupt on Complete
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0000000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 128'h00000000000000000000000000017000, 1, 16'h000F, 4, resp);
-    // Read the control register
-    `ZYNQ_VIP_0.read_burst(40'h00A0000000, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("%t, running testbench COLDATA, CDMA control 32'h%x",$time, read_data128[31:0]);
-    $display ("clk62_cnt: %h", clk62_cnt);
-
-    // Set bytes to transfer to 0x100 and start transfer.
-    `ZYNQ_VIP_0.write_burst_strb(40'h00A0000028, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, 128'h00000000000000000000000000000100, 1, 16'h000F, 4, resp);
-    // Read control register/verify CDMA is running
-    `ZYNQ_VIP_0.read_burst(40'h00A0000004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("%t, running testbench COLDATA, CDMA status after transfer started 32'h%x",$time, read_data128[31:0]);
-    $display ("clk62_cnt: %h", clk62_cnt);
-
-
-    // Wait for interrupt
-    `ZYNQ_VIP_0.wait_interrupt(4'h0,irq_status);
-    
-    if(irq_status & 8'h01) begin
-        $display("SUCCESS: CDMA interrupt received");
-    end
-    else begin
-        $display("FAILURE: CDMA interrupt not received");
-        cdma_tb_pass = 0;
-    end 
-    $display ("clk62_cnt: %h", clk62_cnt);
-    
-    // Read the status register
-    `ZYNQ_VIP_0.read_burst(40'h00A0000004, 4'h0, 3'b010, 2'b01, 2'b00, 4'h0, 3'b000, read_data128, resp);
-    $display ("%t, running testbench COLDATA, CDMA status after interrupt 32'h%x",$time, read_data128[31:0]);
-    $display ("clk62_cnt: %h resp: %b", clk62_cnt, resp);
-    // Check for IRQ error
-    if(read_data128[31:0] & 32'h00004000) begin
-      $display("FAILURE: Error IRQ received");
-      cdma_tb_pass = 0;
-    end
-    $display ("clk62_cnt: %h", clk62_cnt);
-    
-    // Do backdoor data compare to verify transfer
-    for(int addr = 40'h0000010000;addr < 40'h0000010100;addr = addr + 4) begin
-      `ZYNQ_VIP_0.read_mem(addr, 4, src_data);
-      `ZYNQ_VIP_0.read_mem(addr + 40'h0000010000, 4, dst_data); 
-      //$display("Data compare addr: 0x%04X, src data: 0x%08X dst data: 0x%08X",addr,src_data,dst_data);
-      if(src_data != dst_data) begin
-        $display("FAILURE: Data compare addr: 0x%08X, src data: 0x%08X dst data: 0x%08X",addr,src_data,dst_data);
-        cdma_tb_pass = 0;
-      end
-    end
-   
-    if(cdma_tb_pass) $display("SUCCESS: Data compare passed");
-//	repeat(6000) @(posedge tb_ACLK); // wait for 2MHz clk to start
-*/

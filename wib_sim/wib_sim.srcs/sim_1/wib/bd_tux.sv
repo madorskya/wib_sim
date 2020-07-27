@@ -3,7 +3,7 @@
 
 module bd_tux
 (
-    output clk62p5,
+    input  clk62p5,
     output [0:0]gpo_0,
     output i2c0_scln,
     output i2c0_sclp,
