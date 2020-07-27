@@ -6,11 +6,9 @@
       <db_ref path="test_bench_coldata_behav.wdb" id="1">
          <top_modules>
             <top_module name="\$unit_COLDADCP1_sv " />
-            <top_module name="axi_cdma_pkg" />
             <top_module name="axi_vip_pkg" />
             <top_module name="glbl" />
             <top_module name="ipif_pkg" />
-            <top_module name="lib_pkg" />
             <top_module name="std" />
             <top_module name="test_bench_coldata" />
             <top_module name="xil_common_vip_pkg" />
@@ -18,23 +16,29 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="250200000001fs"></ZoomEndTime>
-      <Cursor1Time time="27200000000fs"></Cursor1Time>
+      <ZoomStartTime time="283342436037fs"></ZoomStartTime>
+      <ZoomEndTime time="283350266038fs"></ZoomEndTime>
+      <Cursor1Time time="274546800000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="188"></NameColumnWidth>
-      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+      <NameColumnWidth column_width="292"></NameColumnWidth>
+      <ValueColumnWidth column_width="184"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="107" />
+   <WVObjectSize size="129" />
    <wave_markers>
       <marker label="" time="259664812015" />
       <marker label="" time="259654812015" />
       <marker label="" time="246230052015" />
       <marker label="" time="269357251000" />
-      <marker label="" time="253549756900" />
       <marker label="" time="244520909666" />
       <marker label="" time="53200000000" />
+      <marker label="" time="234218485349" />
+      <marker label="" time="232801152016" />
+      <marker label="" time="253549756900" />
+      <marker label="" time="222660512015" />
+      <marker label="" time="264943155359" />
+      <marker label="" time="265981515359" />
+      <marker label="" time="132982690500" />
    </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -376,6 +380,7 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk_out">
       <obj_property name="ElementShortName">rx_usrclk_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk_out[0:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
       <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
@@ -436,7 +441,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed14">
       <obj_property name="ElementShortName">deframed14[31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed14[31:0][13:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed12">
       <obj_property name="ElementShortName">deframed12[31:0][13:0]</obj_property>
@@ -447,8 +451,8 @@
       <obj_property name="ObjectShortName">byte_cnt[7:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /df_state">
-      <obj_property name="ElementShortName">df_state[31:0]</obj_property>
-      <obj_property name="ObjectShortName">df_state[31:0]</obj_property>
+      <obj_property name="ElementShortName">df_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">df_state[3:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc">
       <obj_property name="ElementShortName">crc[1:0][7:0]</obj_property>
@@ -466,5 +470,98 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc_err">
       <obj_property name="ElementShortName">crc_err[1:0]</obj_property>
       <obj_property name="ObjectShortName">crc_err[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/daq_stream">
+      <obj_property name="ElementShortName">daq_stream[1:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">daq_stream[1:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/daq_stream_k">
+      <obj_property name="ElementShortName">daq_stream_k[1:0][3:0]</obj_property>
+      <obj_property name="ObjectShortName">daq_stream_k[1:0][3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/deframed">
+      <obj_property name="ElementShortName">deframed[15:0][31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed[15:0][31:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed">
+      <obj_property name="ElementShortName">deframed[7:0][31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed[7:0][31:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed">
+      <obj_property name="ElementShortName">deframed[7:0][31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed[7:0][31:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed_aligned">
+      <obj_property name="ElementShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed_mapped">
+      <obj_property name="ElementShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned">
+      <obj_property name="ElementShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_mapped">
+      <obj_property name="ElementShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
+      <obj_property name="ObjectShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/fbf0/parallel_daq_0">
+      <obj_property name="ElementShortName">parallel_daq_0[895:0]</obj_property>
+      <obj_property name="ObjectShortName">parallel_daq_0[895:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/fbf0/parallel_daq_1">
+      <obj_property name="ElementShortName">parallel_daq_1[895:0]</obj_property>
+      <obj_property name="ObjectShortName">parallel_daq_1[895:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words_0">
+      <obj_property name="ElementShortName">tx_words_0[55:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_words_0[55:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words_1">
+      <obj_property name="ElementShortName">tx_words_1[55:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_words_1[55:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words">
+      <obj_property name="ElementShortName">tx_words[111:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_words[111:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/data_ready">
+      <obj_property name="ElementShortName">data_ready[3:0]</obj_property>
+      <obj_property name="ObjectShortName">data_ready[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_served">
+      <obj_property name="ElementShortName">rq_served[3:0]</obj_property>
+      <obj_property name="ObjectShortName">rq_served[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/data_ready">
+      <obj_property name="ElementShortName">data_ready[3:0]</obj_property>
+      <obj_property name="ObjectShortName">data_ready[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/rq_served">
+      <obj_property name="ElementShortName">rq_served[3:0]</obj_property>
+      <obj_property name="ObjectShortName">rq_served[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_state">
+      <obj_property name="ElementShortName">rq_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rq_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/valid_aligned">
+      <obj_property name="ElementShortName">valid_aligned[7:0]</obj_property>
+      <obj_property name="ObjectShortName">valid_aligned[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/valid_aligned">
+      <obj_property name="ElementShortName">valid_aligned[7:0]</obj_property>
+      <obj_property name="ObjectShortName">valid_aligned[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/sysclk_cnt">
+      <obj_property name="ElementShortName">sysclk_cnt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">sysclk_cnt[4:0]</obj_property>
    </wvobject>
 </wave_config>

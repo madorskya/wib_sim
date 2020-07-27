@@ -52,8 +52,8 @@ module coldata_rx_tux
             assign rx_data     [gi] = data_rx_out[gi*16 +: 16];
             assign rx_k        [gi] = rxctrl0_out[gi*16 +: 2];
             assign rx_disp     [gi] = rxctrl1_out[gi*16 +: 2];
-            assign rx_comma    [gi] = rxctrl2_out[gi*16 +: 2];
-            assign rx_notvalid [gi] = rxctrl3_out[gi*16 +: 2];
+            assign rx_comma    [gi] = rxctrl2_out[gi*8 +: 2];
+            assign rx_notvalid [gi] = rxctrl3_out[gi*8 +: 2];
         end
         
         // refclk buffers

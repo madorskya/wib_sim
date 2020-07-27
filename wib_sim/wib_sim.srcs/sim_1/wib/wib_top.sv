@@ -1,6 +1,6 @@
 module wib_top
 (
-    output clk62p5,
+    input  clk62p5,
     output [0:0]gpo_0,
     output i2c0_scln,
     output i2c0_sclp,
@@ -15,7 +15,8 @@ module wib_top
     input  [3 : 0] gtrefclk00p_in, // reference clocks; 128M
     input  [3 : 0] gtrefclk00n_in, // reference clocks; 128M
     input [15 : 0] gthrxn_in    , // RX diff lines
-    input [15 : 0] gthrxp_in    
+    input [15 : 0] gthrxp_in    ,
+    input daq_clk
 );
 
     wire [7:0] gp_out;
@@ -108,12 +109,21 @@ module wib_top
         .crc_err    (crc_err )
     );
     
+    wire [15:0] link_mask = 16'h0; // this input allows to disable some links in case the are broken
+    wire [31:0] daq_stream [1:0]; // data to felix
+    wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
+    
+    
     frame_builder fbld
     (
-        .deframed   (deframed),
-        .valid14    (valid14 ),
-        .valid12    (valid12 ),
-        .rx_usrclk2 (rx_usrclk2_out)
+        .deframed     (deframed),
+        .valid14      (valid14 ),
+        .valid12      (valid12 ),
+        .rx_usrclk2   (rx_usrclk2_out),
+        .link_mask    (link_mask   ), // this input allows to disable some links in case the are broken
+        .daq_stream   (daq_stream  ), // data to felix
+        .daq_stream_k (daq_stream_k), // K symbol flags to felix
+        .daq_clk      (daq_clk)
     );
     
 endmodule
