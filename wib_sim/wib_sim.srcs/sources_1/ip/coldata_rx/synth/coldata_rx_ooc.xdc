@@ -54,7 +54,7 @@
 # OOC Synthesis and Hierarchical Designs.
 
 # Free-running clock constraint
-create_clock -period 15.625 [get_ports gtwiz_reset_clk_freerun_in]
+create_clock -period 16.0 [get_ports gtwiz_reset_clk_freerun_in]
 
 # QPLL0 reference clock constraint (will be overridden by required constraint on IBUFDS_GTE4 input in context)
 create_clock -period 7.812 [get_ports gtrefclk00_in[0]]

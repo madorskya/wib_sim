@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Jul 15 17:26:54 2020
+// Date        : Wed Jul 29 09:31:25 2020
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_sim_netlist.v
@@ -296,7 +296,7 @@ module coldata_rx
   (* C_CPLL_VCO_FREQUENCY = "2578.125000" *) 
   (* C_ENABLE_COMMON_USRCLK = "0" *) 
   (* C_FORCE_COMMONS = "0" *) 
-  (* C_FREERUN_FREQUENCY = "64.000000" *) 
+  (* C_FREERUN_FREQUENCY = "62.500000" *) 
   (* C_GT_REV = "57" *) 
   (* C_GT_TYPE = "2" *) 
   (* C_INCLUDE_CPLL_CAL = "2" *) 
@@ -11469,7 +11469,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
 endmodule
 
 (* C_CHANNEL_ENABLE = "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000001111000000000000" *) (* C_COMMON_SCALING_FACTOR = "4" *) (* C_CPLL_VCO_FREQUENCY = "2578.125000" *) 
-(* C_ENABLE_COMMON_USRCLK = "0" *) (* C_FORCE_COMMONS = "0" *) (* C_FREERUN_FREQUENCY = "64.000000" *) 
+(* C_ENABLE_COMMON_USRCLK = "0" *) (* C_FORCE_COMMONS = "0" *) (* C_FREERUN_FREQUENCY = "62.500000" *) 
 (* C_GT_REV = "57" *) (* C_GT_TYPE = "2" *) (* C_INCLUDE_CPLL_CAL = "2" *) 
 (* C_LOCATE_COMMON = "0" *) (* C_LOCATE_IN_SYSTEM_IBERT_CORE = "2" *) (* C_LOCATE_RESET_CONTROLLER = "0" *) 
 (* C_LOCATE_RX_BUFFER_BYPASS_CONTROLLER = "0" *) (* C_LOCATE_RX_USER_CLOCKING = "0" *) (* C_LOCATE_TX_BUFFER_BYPASS_CONTROLLER = "0" *) 
@@ -41796,36 +41796,36 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     \sm_reset_rx_cdr_to_ctr[0]_i_1 
        (.I0(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ),
         .I1(sm_reset_rx_cdr_to_ctr_reg[12]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[13]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[18]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[15]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[16]),
         .I4(\sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 ),
         .I5(\sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_1_n_0 ));
   LUT4 #(
     .INIT(16'h8000)) 
     \sm_reset_rx_cdr_to_ctr[0]_i_3 
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[7]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[4]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[11]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[9]),
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[4]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[0]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[8]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[5]),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0001000000000000)) 
+    .INIT(64'h0100000000000000)) 
     \sm_reset_rx_cdr_to_ctr[0]_i_4 
        (.I0(sm_reset_rx_cdr_to_ctr_reg[3]),
         .I1(sm_reset_rx_cdr_to_ctr_reg[1]),
         .I2(sm_reset_rx_cdr_to_ctr_reg[2]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[0]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[19]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[20]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[20]),
+        .I4(sm_reset_rx_cdr_to_ctr_reg[17]),
+        .I5(sm_reset_rx_cdr_to_ctr_reg[19]),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'h00020000)) 
     \sm_reset_rx_cdr_to_ctr[0]_i_5 
        (.I0(\sm_reset_rx_cdr_to_ctr[0]_i_7_n_0 ),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[15]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[14]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[16]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[13]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[11]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[14]),
         .I4(\sm_reset_rx_cdr_to_ctr[0]_i_8_n_0 ),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ));
   LUT1 #(
@@ -41839,7 +41839,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset
        (.I0(sm_reset_rx_cdr_to_ctr_reg[24]),
         .I1(sm_reset_rx_cdr_to_ctr_reg[23]),
         .I2(sm_reset_rx_cdr_to_ctr_reg[25]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[17]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[18]),
         .I4(sm_reset_rx_cdr_to_ctr_reg[21]),
         .I5(sm_reset_rx_cdr_to_ctr_reg[22]),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_7_n_0 ));
@@ -41847,9 +41847,9 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(16'h0001)) 
     \sm_reset_rx_cdr_to_ctr[0]_i_8 
        (.I0(sm_reset_rx_cdr_to_ctr_reg[10]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[8]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[6]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[5]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[9]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[7]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[6]),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_8_n_0 ));
   FDRE #(
     .INIT(1'b0)) 

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Jul 15 17:26:54 2020
+-- Date        : Wed Jul 29 09:31:25 2020
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/cernbox/projects/vivado/dune_wib/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_sim_netlist.vhdl
@@ -32270,8 +32270,8 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
         port map (
       I0 => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\,
       I1 => sm_reset_rx_cdr_to_ctr_reg(12),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(13),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(18),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(15),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(16),
       I4 => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\,
       I5 => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\,
       O => \sm_reset_rx_cdr_to_ctr[0]_i_1_n_0\
@@ -32281,23 +32281,23 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
       INIT => X"8000"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(7),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(4),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(11),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(9),
+      I0 => sm_reset_rx_cdr_to_ctr_reg(4),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(0),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(8),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(5),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\
     );
 \sm_reset_rx_cdr_to_ctr[0]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0001000000000000"
+      INIT => X"0100000000000000"
     )
         port map (
       I0 => sm_reset_rx_cdr_to_ctr_reg(3),
       I1 => sm_reset_rx_cdr_to_ctr_reg(1),
       I2 => sm_reset_rx_cdr_to_ctr_reg(2),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(0),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(19),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(20),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(20),
+      I4 => sm_reset_rx_cdr_to_ctr_reg(17),
+      I5 => sm_reset_rx_cdr_to_ctr_reg(19),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\
     );
 \sm_reset_rx_cdr_to_ctr[0]_i_5\: unisim.vcomponents.LUT5
@@ -32306,9 +32306,9 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       I0 => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\,
-      I1 => sm_reset_rx_cdr_to_ctr_reg(15),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(14),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(16),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(13),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(11),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(14),
       I4 => \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\,
       O => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\
     );
@@ -32328,7 +32328,7 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
       I0 => sm_reset_rx_cdr_to_ctr_reg(24),
       I1 => sm_reset_rx_cdr_to_ctr_reg(23),
       I2 => sm_reset_rx_cdr_to_ctr_reg(25),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(17),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(18),
       I4 => sm_reset_rx_cdr_to_ctr_reg(21),
       I5 => sm_reset_rx_cdr_to_ctr_reg(22),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\
@@ -32339,9 +32339,9 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       I0 => sm_reset_rx_cdr_to_ctr_reg(10),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(8),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(6),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(5),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(9),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(7),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(6),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\
     );
 \sm_reset_rx_cdr_to_ctr_reg[0]\: unisim.vcomponents.FDRE
@@ -37103,7 +37103,7 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_FORCE_COMMONS : integer;
   attribute C_FORCE_COMMONS of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_FREERUN_FREQUENCY : string;
-  attribute C_FREERUN_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_FREERUN_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_GT_REV : integer;
   attribute C_GT_REV of coldata_rx_coldata_rx_gtwizard_top : entity is 57;
   attribute C_GT_TYPE : integer;
@@ -37982,7 +37982,7 @@ architecture STRUCTURE of coldata_rx is
   attribute C_FORCE_COMMONS : integer;
   attribute C_FORCE_COMMONS of inst : label is 0;
   attribute C_FREERUN_FREQUENCY : string;
-  attribute C_FREERUN_FREQUENCY of inst : label is "64.000000";
+  attribute C_FREERUN_FREQUENCY of inst : label is "62.500000";
   attribute C_GT_REV : integer;
   attribute C_GT_REV of inst : label is 57;
   attribute C_GT_TYPE : integer;

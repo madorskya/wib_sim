@@ -4,7 +4,7 @@ module frame_builder
     input [15:0] valid14,
     input [15:0] valid12,
     input [1:0]  crc_err [15:0],
-    input rx_usrclk2, // rx data clock
+    input rxclk2x, // deframed data clock
 
     input  [15:0] link_mask, // this input allows to disable some links in case the are broken
     output [31:0] daq_stream [1:0], // data to felix
@@ -62,7 +62,7 @@ module frame_builder
         .valid14      (valid14  [7:0]),
         .valid12      (valid12  [7:0]),
         .crc_err      (crc_err  [7:0]),
-        .rx_usrclk2   (rx_usrclk2          ), 
+        .rxclk2x      (rxclk2x       ), 
         .link_mask    (link_mask[7:0]),
         .daq_stream   (daq_stream   [0]),
         .daq_stream_k (daq_stream_k [0]),
@@ -75,7 +75,7 @@ module frame_builder
         .valid14      (valid14  [15:8]),
         .valid12      (valid12  [15:8]),
         .crc_err      (crc_err  [15:8]),
-        .rx_usrclk2   (rx_usrclk2          ), 
+        .rxclk2x      (rxclk2x        ), 
         .link_mask    (link_mask[15:8]),
         .daq_stream   (daq_stream   [1]),
         .daq_stream_k (daq_stream_k [1]),

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Jul 27 17:22:05 2020
+//Date        : Wed Jul 29 11:29:33 2020
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,10 +9,9 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=16,numReposBlks=10,numNonXlnxBlks=2,numHierBlks=6,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=7,da_board_cnt=2,da_bram_cntlr_cnt=1,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=9,numNonXlnxBlks=2,numHierBlks=6,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=7,da_board_cnt=2,da_bram_cntlr_cnt=1,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (clk62p5,
-    clk64,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     gp_out_tri_o,
@@ -23,7 +22,6 @@ module design_1
     sda_out_n_0,
     sda_out_p_0);
   input clk62p5;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK64 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK64, CLK_DOMAIN /clk_wiz_0_clk_out1, FREQ_HZ 63988095, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output clk64;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gp_out TRI_O" *) output [7:0]gp_out_tri_o;
@@ -36,7 +34,6 @@ module design_1
 
   wire [7:0]axi_gpio_0_GPIO_TRI_O;
   wire clk62p5_0_1;
-  wire clk_wiz_0_clk_out2;
   wire coldata_fast_cmd_0_fastcommand_out_n;
   wire coldata_fast_cmd_0_fastcommand_out_p;
   wire coldata_i2c_0_scl_n;
@@ -144,7 +141,6 @@ module design_1
   wire zynq_ultra_ps_e_0_pl_resetn0;
 
   assign clk62p5_0_1 = clk62p5;
-  assign clk64 = clk_wiz_0_clk_out2;
   assign fastcommand_out_n_0 = coldata_fast_cmd_0_fastcommand_out_n;
   assign fastcommand_out_p_0 = coldata_fast_cmd_0_fastcommand_out_p;
   assign gp_out_tri_o[7:0] = axi_gpio_0_GPIO_TRI_O;
@@ -175,10 +171,6 @@ module design_1
         .s_axi_wready(ps8_0_axi_periph_M02_AXI_WREADY),
         .s_axi_wstrb(ps8_0_axi_periph_M02_AXI_WSTRB),
         .s_axi_wvalid(ps8_0_axi_periph_M02_AXI_WVALID));
-  design_1_clk_wiz_0_0 clk_wiz_0
-       (.clk_in1(zynq_ultra_ps_e_0_pl_clk0),
-        .clk_out2(clk_wiz_0_clk_out2),
-        .reset(xlconstant_0_dout));
   design_1_coldata_fast_cmd_0_0 coldata_fast_cmd_0
        (.clk62p5(clk62p5_0_1),
         .cmd_act(xlconstant_0_dout),
