@@ -8,10 +8,10 @@ module coldata_deframer
     output [13:0] deframed [15:0][31:0],
     output [15:0] valid14,
     output [15:0] valid12,
-    output [1:0]  crc_err [15:0]
+    output [1:0]  crc_err [15:0],
+    output rxclk2x // doubled rx clock synchronous with deframed data
 );
 
-    wire rxclk2x;
 
     genvar gi;
     generate

@@ -233,6 +233,10 @@
 	// Slave register write enable is asserted when valid address and data are available
 	// and the slave is ready to accept the write address and write data.
 	assign slv_reg_wren = axi_wready && S_AXI_WVALID && axi_awready && S_AXI_AWVALID;
+    reg [4:0] cmd_req_r; 
+    reg cmd_req; 
+    reg [3:0] cmd_rsp_r;
+    reg cmd_rsp;
 
 	always @( posedge S_AXI_ACLK )
 	begin
@@ -319,6 +323,18 @@
 	                    end
 	        endcase
 	      end
+
+            if (slv_reg_wren && 
+                axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 3'b0) 
+                    cmd_req = 1'b1; // register 0 was written, set request for FSM
+            
+            if (cmd_rsp_r[3])
+            begin 
+                cmd_req = 1'b0; // received response, remove request
+                slv_reg0 = 0; // remove the command code when it's picked up by FSM
+                // so it doesn't interfere with firmware commands
+            end
+            cmd_rsp_r = {cmd_rsp_r[2:0], cmd_rsp};
 	  end
 	end    
 
@@ -471,26 +487,6 @@
     localparam code_sync  = 8'b1110_0010; // (zero time stamp)
     localparam code_act   = 8'b1110_0100; // (perform command stored in Act Command Register)
     localparam code_reset = 8'b1110_1000; // (Resets COLDATA)		// User ports ends
-
-    reg [4:0] cmd_req_r; 
-    reg cmd_req; 
-    reg [3:0] cmd_rsp_r;
-    reg cmd_rsp;
-    
-    always @(posedge S_AXI_ACLK)
-    begin
-        if (slv_reg_wren && 
-            axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 3'b0) 
-                cmd_req = 1'b1; // register 0 was written, set request for FSM
-        
-        if (cmd_rsp_r[3])
-        begin 
-            cmd_req = 1'b0; // received response, remove request
-            slv_reg0 = 0; // remove the command code when it's picked up by FSM
-            // so it doesn't interfere with firmware commands
-        end
-        cmd_rsp_r = {cmd_rsp_r[2:0], cmd_rsp};
-    end
 
     localparam IDLE  = 2'b00;
     localparam WAIT  = 2'b01;

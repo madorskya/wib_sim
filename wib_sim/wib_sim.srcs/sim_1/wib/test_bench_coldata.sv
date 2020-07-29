@@ -740,19 +740,40 @@ end
     assign gthrxn_in[15:8] = {8{SEROUTN2}};
     assign gthrxp_in[15:8] = {8{SEROUTP2}};
 
+    wire [3:0] i2c_lvds_scl_p;
+    wire [3:0] i2c_lvds_scl_n;
+    wire [3:0] i2c_lvds_sda_c2w_p;
+    wire [3:0] i2c_lvds_sda_c2w_n;
+    wire [3:0] i2c_lvds_sda_w2c_p;
+    wire [3:0] i2c_lvds_sda_w2c_n;
+    wire [3:0] i2c_lvds_l2_sda_w2c_p;
+    wire [3:0] i2c_lvds_l2_sda_w2c_n;
+    wire [3:0] i2c_lvds_l2_sda_c2w_p;
+    wire [3:0] i2c_lvds_l2_sda_c2w_n;
+
+    assign i2c0_sclp     = i2c_lvds_scl_p     [0];
+    assign i2c0_scln     = i2c_lvds_scl_n     [0];
+    assign i2c_lvds_sda_c2w_p [0] = i2c0_sda_inp;
+    assign i2c_lvds_sda_c2w_n [0] = i2c0_sda_inn;
+    assign i2c0_sda_outp = i2c_lvds_sda_w2c_p [0];
+    assign i2c0_sda_outn = i2c_lvds_sda_w2c_n [0];
+
     wib_top mpsoc_sys
     (
-        .clk62p5       (clk62p5      ),
+        .dune_clk_fpga_in_p     (clk62p5      ),
+        .dune_clk_fpga_in_n     (~clk62p5     ),
         .gpo_0         (gpo_0        ),
-        .i2c0_scln     (i2c0_scln    ),
-        .i2c0_sclp     (i2c0_sclp    ),
-        .i2c0_sda_inn  (i2c0_sda_inn ),
-        .i2c0_sda_inp  (i2c0_sda_inp ),
-        .i2c0_sda_outn (i2c0_sda_outn),
-        .i2c0_sda_outp (i2c0_sda_outp),
 
-        .fastcommand_out_n (FASTCOMMAND_IN_N),
-        .fastcommand_out_p (FASTCOMMAND_IN_P),
+        .i2c_lvds_scl_p     (i2c_lvds_scl_p    ),
+        .i2c_lvds_scl_n     (i2c_lvds_scl_n    ),
+        .i2c_lvds_sda_c2w_p (i2c_lvds_sda_c2w_p),
+        .i2c_lvds_sda_c2w_n (i2c_lvds_sda_c2w_n),
+        .i2c_lvds_sda_w2c_p (i2c_lvds_sda_w2c_p),
+        .i2c_lvds_sda_w2c_n (i2c_lvds_sda_w2c_n),
+
+
+        .femb_cmd_fpga_out_n (FASTCOMMAND_IN_N),
+        .femb_cmd_fpga_out_p (FASTCOMMAND_IN_P),
 
         .gtrefclk00p_in (gtrefclk00p_in), // reference clocks(), 128M
         .gtrefclk00n_in (gtrefclk00n_in), // reference clocks(), 128M

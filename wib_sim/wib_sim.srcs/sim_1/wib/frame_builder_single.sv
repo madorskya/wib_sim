@@ -5,7 +5,7 @@ module frame_builder_single
     input [7:0]  valid12,
     input [7:0]  link_mask, // this input allows to disable some links in case the are broken
     input [1:0]  crc_err [7:0],
-    input        rx_usrclk2, // rx data clock
+    input        rxclk2x, // deframed data clock
     output reg [31:0] daq_stream, // data to felix
     output reg [3:0]  daq_stream_k, // K symbol flags to felix
     input             daq_clk
@@ -134,7 +134,7 @@ module frame_builder_single
     (* async_reg *) reg [3:0] rq_served;
     
     // DAQ request FSM
-    always @(negedge rx_usrclk2)
+    always @(posedge rxclk2x)
     begin
         data_ready[0] = 1'b0;
         case (rq_state)

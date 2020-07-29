@@ -158,7 +158,7 @@ output wire [15 : 0] txpmaresetdone_out;
     .C_COMMON_SCALING_FACTOR(4),
     .C_CPLL_VCO_FREQUENCY(2578.125),
     .C_FORCE_COMMONS(0),
-    .C_FREERUN_FREQUENCY(64),
+    .C_FREERUN_FREQUENCY(62.5),
     .C_GT_TYPE(2),
     .C_GT_REV(57),
     .C_INCLUDE_CPLL_CAL(2),
