@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="pdts_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="pdts_code8b10bpkg" />
+            <top_module name="pdts_defs" />
+            <top_module name="pdts_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="45345929583fs"></ZoomStartTime>
+      <ZoomEndTime time="45346158084fs"></ZoomEndTime>
+      <Cursor1Time time="45346120000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="185"></NameColumnWidth>
+      <ValueColumnWidth column_width="89"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="45" />
+   <wvobject type="logic" fp_name="/pdts_tb/clk50_tb">
+      <obj_property name="ElementShortName">clk50_tb</obj_property>
+      <obj_property name="ObjectShortName">clk50_tb</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/srst_tb">
+      <obj_property name="ElementShortName">srst_tb</obj_property>
+      <obj_property name="ObjectShortName">srst_tb</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/rec_d_clk_tb">
+      <obj_property name="ElementShortName">rec_d_clk_tb</obj_property>
+      <obj_property name="ObjectShortName">rec_d_clk_tb</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/sclk">
+      <obj_property name="ElementShortName">sclk</obj_property>
+      <obj_property name="ObjectShortName">sclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/srst">
+      <obj_property name="ElementShortName">srst</obj_property>
+      <obj_property name="ObjectShortName">srst</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/addr">
+      <obj_property name="ElementShortName">addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/tgrp">
+      <obj_property name="ElementShortName">tgrp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tgrp[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/stat">
+      <obj_property name="ElementShortName">stat[3:0]</obj_property>
+      <obj_property name="ObjectShortName">stat[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rec_clk">
+      <obj_property name="ElementShortName">rec_clk</obj_property>
+      <obj_property name="ObjectShortName">rec_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rec_d_clk">
+      <obj_property name="ElementShortName">rec_d_clk</obj_property>
+      <obj_property name="ObjectShortName">rec_d_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rec_d">
+      <obj_property name="ElementShortName">rec_d</obj_property>
+      <obj_property name="ObjectShortName">rec_d</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rec_clk_locked">
+      <obj_property name="ElementShortName">rec_clk_locked</obj_property>
+      <obj_property name="ObjectShortName">rec_clk_locked</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rec_clk_reset">
+      <obj_property name="ElementShortName">rec_clk_reset</obj_property>
+      <obj_property name="ObjectShortName">rec_clk_reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/sfp_los">
+      <obj_property name="ElementShortName">sfp_los</obj_property>
+      <obj_property name="ObjectShortName">sfp_los</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/cdr_los">
+      <obj_property name="ElementShortName">cdr_los</obj_property>
+      <obj_property name="ObjectShortName">cdr_los</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/cdr_lol">
+      <obj_property name="ElementShortName">cdr_lol</obj_property>
+      <obj_property name="ObjectShortName">cdr_lol</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rdy">
+      <obj_property name="ElementShortName">rdy</obj_property>
+      <obj_property name="ObjectShortName">rdy</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/sync">
+      <obj_property name="ElementShortName">sync[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sync[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/sync_v">
+      <obj_property name="ElementShortName">sync_v</obj_property>
+      <obj_property name="ObjectShortName">sync_v</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/tstamp">
+      <obj_property name="ElementShortName">tstamp[63:0]</obj_property>
+      <obj_property name="ObjectShortName">tstamp[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/evtctr">
+      <obj_property name="ElementShortName">evtctr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">evtctr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rec_rst">
+      <obj_property name="ElementShortName">rec_rst</obj_property>
+      <obj_property name="ObjectShortName">rec_rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rxphy_aligned">
+      <obj_property name="ElementShortName">rxphy_aligned</obj_property>
+      <obj_property name="ObjectShortName">rxphy_aligned</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/clk_i">
+      <obj_property name="ElementShortName">clk_i</obj_property>
+      <obj_property name="ObjectShortName">clk_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rxphy_rst">
+      <obj_property name="ElementShortName">rxphy_rst</obj_property>
+      <obj_property name="ObjectShortName">rxphy_rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rxphy_locked">
+      <obj_property name="ElementShortName">rxphy_locked</obj_property>
+      <obj_property name="ObjectShortName">rxphy_locked</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rst_i">
+      <obj_property name="ElementShortName">rst_i</obj_property>
+      <obj_property name="ObjectShortName">rst_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/rx_err">
+      <obj_property name="ElementShortName">rx_err[2:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_err[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/phase_locked">
+      <obj_property name="ElementShortName">phase_locked</obj_property>
+      <obj_property name="ObjectShortName">phase_locked</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/phase_rst">
+      <obj_property name="ElementShortName">phase_rst</obj_property>
+      <obj_property name="ObjectShortName">phase_rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/stb">
+      <obj_property name="ElementShortName">stb</obj_property>
+      <obj_property name="ObjectShortName">stb</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/k">
+      <obj_property name="ElementShortName">k</obj_property>
+      <obj_property name="ObjectShortName">k</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/s_valid">
+      <obj_property name="ElementShortName">s_valid</obj_property>
+      <obj_property name="ObjectShortName">s_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/s_first">
+      <obj_property name="ElementShortName">s_first</obj_property>
+      <obj_property name="ObjectShortName">s_first</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/d">
+      <obj_property name="ElementShortName">d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/dr">
+      <obj_property name="ElementShortName">dr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dr[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/rdy_i">
+      <obj_property name="ElementShortName">rdy_i</obj_property>
+      <obj_property name="ObjectShortName">rdy_i</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/pdts_tb/dut/SCLK_FREQ">
+      <obj_property name="ElementShortName">SCLK_FREQ</obj_property>
+      <obj_property name="ObjectShortName">SCLK_FREQ</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/pdts_tb/dut/SIM">
+      <obj_property name="ElementShortName">SIM</obj_property>
+      <obj_property name="ObjectShortName">SIM</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pdts_tb/dut/startup/f_ok">
+      <obj_property name="ElementShortName">f_ok</obj_property>
+      <obj_property name="ObjectShortName">f_ok</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/startup/sctr">
+      <obj_property name="ElementShortName">sctr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sctr[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pdts_tb/dut/startup/cctr">
+      <obj_property name="ElementShortName">cctr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">cctr[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/pdts_tb/dut/startup/state">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+</wave_config>
