@@ -61,6 +61,18 @@ module frame_builder_single
         .tx_words        (tx_words_1)
     );
 
+    reg crc_reset, crc_calc;
+    wire [19:0] crc_out;
+
+    CRC crc20
+    (
+        .CRC   (crc_out   ),
+        .Calc  (crc_calc  ),
+        .Clk   (daq_clk   ),
+        .DIn   (daq_stream_d[0]),
+        .Reset (crc_reset )  
+    );
+
     // states of the DAQ streaming FSM
     typedef enum bit[3:0]
     {
@@ -102,9 +114,9 @@ module frame_builder_single
     wire  [7:0] wiec_crate = 8'h23;
     wire [31:0] wib_coldata_code = 32'hbabeface;
     wire [63:0] timestamp = 64'h1234567890abcdef;
-    wire [11:0] flex_12 = 0;
-    wire [23:0] flex_24 = 0;
-    reg  [19:0] crc_20 = 0;
+    wire [11:0] flex_12 = 12'hF12;
+    wire [23:0] flex_24 = 24'hF24F24;
+    reg  [19:0] crc_20 = 0; // this is just a place holder, actual CRC is in crc_out
 
     assign header  [0] = {24'h0, 8'h3c};
     assign header_k[0] = 4'b0001;
@@ -133,9 +145,16 @@ module frame_builder_single
     (* async_reg *) reg [3:0] data_ready;
     (* async_reg *) reg [3:0] rq_served;
     
+    // daq_stream delay line to compensate for CRC module latency, 2 clks
+    reg [31:0] daq_stream_d [1:0]; 
+    reg [3:0]  daq_stream_k_d [1:0];
+    reg [2:0]  crc_inject;
+
+
     // DAQ request FSM
     always @(posedge rxclk2x)
     begin
+    
         data_ready[0] = 1'b0;
         case (rq_state)
             DAQ_WAIT:
@@ -174,14 +193,27 @@ module frame_builder_single
     // formatting FSM
     always @(posedge daq_clk)
     begin
+    
+    
+        // daq stream delay line to compensate for CRC module latency, 2 clks
+        daq_stream      = daq_stream_d[1];
+        daq_stream_d[1] = daq_stream_d[0];
+        daq_stream_k      = daq_stream_k_d[1];
+        daq_stream_k_d[1] = daq_stream_k_d[0];
+        
+    
         rq_served[0] = 1'b0; 
+        crc_reset = 1'b0;
+        crc_calc = 1'b1;
         case (fb_state)
             IDLE:
             begin
+                crc_reset = 1'b1;
+                crc_calc = 1'b0;
                 if (data_ready[3:2] == 2'b01) // request just came
                     fb_state = SOF; // start frame
-                daq_stream = 32'h0;
-                daq_stream_k = 4'b0;
+                daq_stream_d[0] = 32'h0;
+                daq_stream_k_d[0] = 4'b0;
             end
             
             SOF:
@@ -190,40 +222,40 @@ module frame_builder_single
                 // store prepared tx words in register for shifting out
                 tx_words [55:0] = tx_words_0;
                 tx_words [111:56] = tx_words_1;
-                daq_stream = header[0];
-                daq_stream_k = header_k[0];
+                daq_stream_d[0] = header[0];
+                daq_stream_k_d[0] = header_k[0];
                 fb_state = HEAD;
             end
             
             HEAD:
             begin
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
-                daq_stream = header[1];
-                daq_stream_k = header_k[1];
+                daq_stream_d[0] = header[1];
+                daq_stream_k_d[0] = header_k[1];
                 fb_state = CODE;
             end
             
             CODE:
             begin
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
-                daq_stream = header[2];
-                daq_stream_k = header_k[2];
+                daq_stream_d[0] = header[2];
+                daq_stream_k_d[0] = header_k[2];
                 fb_state = TIME0;
             end
             
             TIME0:
             begin
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
-                daq_stream = header[3];
-                daq_stream_k = header_k[3];
+                daq_stream_d[0] = header[3];
+                daq_stream_k_d[0] = header_k[3];
                 fb_state = TIME1;
             end
             
             TIME1:
             begin
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
-                daq_stream = header[4];
-                daq_stream_k = header_k[4];
+                daq_stream_d[0] = header[4];
+                daq_stream_k_d[0] = header_k[4];
                 data_cnt = 7'd0;
                 fb_state = DATA;
             end
@@ -232,38 +264,44 @@ module frame_builder_single
             begin
                 if (data_cnt == 7'd111)
                     fb_state = CRC;
-                daq_stream = tx_words[0];
+                daq_stream_d[0] = tx_words[0];
                 // shift tx_words to prepare next word
-                for (i = 0; i < 110; i++)
+                for (i = 0; i <= 110; i++)
                 begin
                     tx_words[i] = tx_words[i+1];
                 end
-                daq_stream_k = 4'b0;
+                daq_stream_k_d[0] = 4'b0;
                 data_cnt++;    
             end
             
             CRC:
             begin
-                daq_stream = trailer[0];
-                daq_stream_k = trailer_k[0];
+                daq_stream_d[0] = trailer[0];
+                daq_stream_k_d[0] = trailer_k[0];
+                crc_inject[0] = 1'b1; 
                 fb_state = FLEX;
             end
             
             FLEX:
             begin
-                daq_stream = trailer[1];
-                daq_stream_k = trailer_k[1];
+                daq_stream_d[0] = trailer[1];
+                daq_stream_k_d[0] = trailer_k[1];
                 fb_state = TAIL;
             end
             
             TAIL:
             begin
-                daq_stream = trailer[2];
-                daq_stream_k = trailer_k[2];
+                daq_stream_d[0] = trailer[2];
+                daq_stream_k_d[0] = trailer_k[2];
                 fb_state = IDLE;
             end
             
         endcase
+
+        if (crc_inject[2]) // time to inject CRC into daq stream
+            daq_stream[19:0] = crc_out;
+        crc_inject = {crc_inject[1:0], 1'b0};
+
         // demetastab the request
         data_ready[3:1] = data_ready[2:0]; 
     end

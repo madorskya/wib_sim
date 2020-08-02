@@ -16,15 +16,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="281795251100fs"></ZoomStartTime>
-      <ZoomEndTime time="282322251101fs"></ZoomEndTime>
-      <Cursor1Time time="282286409250fs"></Cursor1Time>
+      <ZoomStartTime time="256199747000fs"></ZoomStartTime>
+      <ZoomEndTime time="256350147001fs"></ZoomEndTime>
+      <Cursor1Time time="256653547000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="292"></NameColumnWidth>
-      <ValueColumnWidth column_width="180"></ValueColumnWidth>
+      <NameColumnWidth column_width="219"></NameColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="131" />
+   <WVObjectSize size="135" />
    <wave_markers>
       <marker label="" time="259664812015" />
       <marker label="" time="259654812015" />
@@ -41,6 +41,7 @@
       <marker label="" time="132982690500" />
       <marker label="" time="282919200000" />
       <marker label="" time="282230051100" />
+      <marker label="" time="256231573000" />
    </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -478,6 +479,10 @@
       <obj_property name="ObjectShortName">daq_stream[1:0][31:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_out">
+      <obj_property name="ElementShortName">crc_out[19:0]</obj_property>
+      <obj_property name="ObjectShortName">crc_out[19:0]</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/daq_stream_k">
       <obj_property name="ElementShortName">daq_stream_k[1:0][3:0]</obj_property>
       <obj_property name="ObjectShortName">daq_stream_k[1:0][3:0]</obj_property>
@@ -530,16 +535,20 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words">
       <obj_property name="ElementShortName">tx_words[111:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">tx_words[111:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/daq_stream_d">
+      <obj_property name="ElementShortName">daq_stream_d[1:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">daq_stream_d[1:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/data_ready">
       <obj_property name="ElementShortName">data_ready[3:0]</obj_property>
       <obj_property name="ObjectShortName">data_ready[3:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_served">
       <obj_property name="ElementShortName">rq_served[3:0]</obj_property>
       <obj_property name="ObjectShortName">rq_served[3:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/data_ready">
       <obj_property name="ElementShortName">data_ready[3:0]</obj_property>
@@ -560,7 +569,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/valid_aligned">
       <obj_property name="ElementShortName">valid_aligned[7:0]</obj_property>
       <obj_property name="ObjectShortName">valid_aligned[7:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/sysclk_cnt">
       <obj_property name="ElementShortName">sysclk_cnt[4:0]</obj_property>
@@ -570,8 +578,16 @@
       <obj_property name="ElementShortName">daq_clk</obj_property>
       <obj_property name="ObjectShortName">daq_clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rx_usrclk2">
-      <obj_property name="ElementShortName">rx_usrclk2</obj_property>
-      <obj_property name="ObjectShortName">rx_usrclk2</obj_property>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_reset">
+      <obj_property name="ElementShortName">crc_reset</obj_property>
+      <obj_property name="ObjectShortName">crc_reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_calc">
+      <obj_property name="ElementShortName">crc_calc</obj_property>
+      <obj_property name="ObjectShortName">crc_calc</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_inject">
+      <obj_property name="ElementShortName">crc_inject[2:0]</obj_property>
+      <obj_property name="ObjectShortName">crc_inject[2:0]</obj_property>
    </wvobject>
 </wave_config>
