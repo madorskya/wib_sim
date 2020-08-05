@@ -1,2 +1,3 @@
 # wib_sim
-DUNE WIB + COLDATA + COLDADC firmware simulation project
+DUNE WIB firmware project.
+Includes COLDATA + COLDADC simulation attached to WIB
