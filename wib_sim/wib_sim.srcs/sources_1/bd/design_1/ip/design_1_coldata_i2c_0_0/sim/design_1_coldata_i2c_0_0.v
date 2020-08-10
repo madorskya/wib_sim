@@ -48,14 +48,13 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 12
+// IP Revision: 13
 
 `timescale 1ns/1ps
 
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_coldata_i2c_0_0 (
-  scl_p,
-  scl_n,
+  scl,
   sda_out_p,
   sda_out_n,
   sda_in_p,
@@ -83,13 +82,12 @@ module design_1_coldata_i2c_0_0 (
   s00_axi_rready
 );
 
-output wire scl_p;
-output wire scl_n;
+output wire scl;
 output wire sda_out_p;
 output wire sda_out_n;
 input wire sda_in_p;
 input wire sda_in_n;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *)
 input wire s00_axi_aclk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -144,8 +142,7 @@ input wire s00_axi_rready;
     .scl_up(20),
     .scl_down(65)
   ) inst (
-    .scl_p(scl_p),
-    .scl_n(scl_n),
+    .scl(scl),
     .sda_out_p(sda_out_p),
     .sda_out_n(sda_out_n),
     .sda_in_p(sda_in_p),

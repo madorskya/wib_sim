@@ -3,33 +3,114 @@
 
 module bd_tux
 (
-    input  clk62p5,
-    output [0:0]gpo_0,
-    output i2c0_scln,
-    output i2c0_sclp,
-    input  i2c0_sda_inn,
-    input  i2c0_sda_inp,
-    output i2c0_sda_outn,
-    output i2c0_sda_outp,
+    output [3:0] coldata_clk_40_p,
+    output [3:0] coldata_clk_40_n,
     
-    output [7:0] gp_out,
-
+    // coldata fast command
+    output fastcommand_out_p,
     output fastcommand_out_n,
-    output fastcommand_out_p
+    
+    output [7:0]gp_out,
+    
+    // coldata I2C
+    output [3:0] i2c_lvds_scl_p,
+    output [3:0] i2c_lvds_scl_n,
+    input  [3:0] i2c_lvds_sda_c2w_p,
+    input  [3:0] i2c_lvds_sda_c2w_n,
+    output [3:0] i2c_lvds_sda_w2c_p,
+    output [3:0] i2c_lvds_sda_w2c_n,
+    input  [3:0] i2c_lvds_l2_sda_c2w_p,
+    input  [3:0] i2c_lvds_l2_sda_c2w_n,
+    output [3:0] i2c_lvds_l2_sda_w2c_p,
+    output [3:0] i2c_lvds_l2_sda_w2c_n,
+    
+    // timing point signals
+    input  ts_cdr_lol,
+    input  ts_cdr_los,
+    output ts_clk,
+    output [31:0]ts_evtctr,
+    output ts_rdy,
+    input  ts_rec_clk,
+    input  ts_rec_clk_locked,
+    input  ts_rec_d,
+    input  ts_rec_d_clk,
+    output ts_rst,
+    input  ts_sfp_los,
+    output [3:0]ts_sync,
+    output ts_sync_v,
+    output [63:0]ts_tstamp
+    
 );
     
- 
+    wire clk_40;
+    // output the same 40M clock to all FEMBs
+    OBUFDS clk_40_buf[3:0] (.I(clk_40), .O(coldata_clk_40_p[3:0]), .OB(coldata_clk_40_n[3:0]));
+
     design_1 design_1_i
     (
-        .clk62p5      (clk62p5      ),
-        .scl_n_0      (i2c0_scln    ),
-        .scl_p_0      (i2c0_sclp    ),
-        .sda_in_n_0   (i2c0_sda_inn ),
-        .sda_in_p_0   (i2c0_sda_inp ),
-        .sda_out_n_0  (i2c0_sda_outn),
-        .sda_out_p_0  (i2c0_sda_outp),
-        .gp_out_tri_o (gp_out),
-        .fastcommand_out_n_0 (fastcommand_out_n),
-        .fastcommand_out_p_0 (fastcommand_out_p)
+        .clk_40(clk_40),
+        .fastcommand_out_n_0(fastcommand_out_n),
+        .fastcommand_out_p_0(fastcommand_out_p),
+        .gp_out_tri_o(gp_out),
+        
+        .scl_n_0 (i2c_lvds_scl_n [0]),
+        .scl_n_1 (i2c_lvds_scl_n [1]),
+        .scl_n_2 (i2c_lvds_scl_n [2]),
+        .scl_n_3 (i2c_lvds_scl_n [3]),
+        .scl_p_0 (i2c_lvds_scl_p [0]),
+        .scl_p_1 (i2c_lvds_scl_p [1]),
+        .scl_p_2 (i2c_lvds_scl_p [2]),
+        .scl_p_3 (i2c_lvds_scl_p [3]),
+        
+        .sda_in_n_0 (i2c_lvds_sda_c2w_n    [0]),
+        .sda_in_n_1 (i2c_lvds_l2_sda_c2w_n [0]),
+        .sda_in_n_2 (i2c_lvds_sda_c2w_n    [1]),
+        .sda_in_n_3 (i2c_lvds_l2_sda_c2w_n [1]),
+        .sda_in_n_4 (i2c_lvds_sda_c2w_n    [2]),
+        .sda_in_n_5 (i2c_lvds_l2_sda_c2w_n [2]),
+        .sda_in_n_6 (i2c_lvds_sda_c2w_n    [3]),
+        .sda_in_n_7 (i2c_lvds_l2_sda_c2w_n [3]),
+        .sda_in_p_0 (i2c_lvds_sda_c2w_p    [0]),
+        .sda_in_p_1 (i2c_lvds_l2_sda_c2w_p [0]),
+        .sda_in_p_2 (i2c_lvds_sda_c2w_p    [1]),
+        .sda_in_p_3 (i2c_lvds_l2_sda_c2w_p [1]),
+        .sda_in_p_4 (i2c_lvds_sda_c2w_p    [2]),
+        .sda_in_p_5 (i2c_lvds_l2_sda_c2w_p [2]),
+        .sda_in_p_6 (i2c_lvds_sda_c2w_p    [3]),
+        .sda_in_p_7 (i2c_lvds_l2_sda_c2w_p [3]),
+        
+        .sda_out_n_0 (i2c_lvds_sda_w2c_n    [0]),
+        .sda_out_n_1 (i2c_lvds_l2_sda_w2c_n [0]),
+        .sda_out_n_2 (i2c_lvds_sda_w2c_n    [1]),
+        .sda_out_n_3 (i2c_lvds_l2_sda_w2c_n [1]),
+        .sda_out_n_4 (i2c_lvds_sda_w2c_n    [2]),
+        .sda_out_n_5 (i2c_lvds_l2_sda_w2c_n [2]),
+        .sda_out_n_6 (i2c_lvds_sda_w2c_n    [3]),
+        .sda_out_n_7 (i2c_lvds_l2_sda_w2c_n [3]),
+        .sda_out_p_0 (i2c_lvds_sda_w2c_p    [0]),
+        .sda_out_p_1 (i2c_lvds_l2_sda_w2c_p [0]),
+        .sda_out_p_2 (i2c_lvds_sda_w2c_p    [1]),
+        .sda_out_p_3 (i2c_lvds_l2_sda_w2c_p [1]),
+        .sda_out_p_4 (i2c_lvds_sda_w2c_p    [2]),
+        .sda_out_p_5 (i2c_lvds_l2_sda_w2c_p [2]),
+        .sda_out_p_6 (i2c_lvds_sda_w2c_p    [3]),
+        .sda_out_p_7 (i2c_lvds_l2_sda_w2c_p [3]),
+        
+        .ts_cdr_lol   (ts_cdr_lol),
+        .ts_cdr_los   (ts_cdr_los),
+        .ts_clk       (ts_clk), // this is 62.5 M clock from timing point
+        .ts_evtctr    (ts_evtctr),
+        .ts_rdy       (ts_rdy),
+        .ts_rec_clk   (ts_rec_clk),
+        .ts_rec_clk_locked (ts_rec_clk_locked),
+        .ts_rec_d     (ts_rec_d),
+        .ts_rec_d_clk (ts_rec_d_clk),
+        .ts_rst       (ts_rst),
+        .ts_sfp_los   (ts_sfp_los),
+        .ts_sync      (ts_sync),
+        .ts_sync_v    (ts_sync_v),
+        .ts_tstamp    (ts_tstamp)
     );
+
 endmodule
+

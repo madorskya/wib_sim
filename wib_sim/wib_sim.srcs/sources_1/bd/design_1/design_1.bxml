@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="design_1" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1596411709"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1596411709"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1596411709"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1596411709"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1597025849"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1597025849"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1597025849"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1597025849"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci" Type="IP">
         <Instance HierarchyPath="zynq_ultra_ps_e_0"/>
@@ -16,6 +16,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/design_1_ps8_0_axi_periph_0/design_1_ps8_0_axi_periph_0.xci" Type="IP">
+        <Instance HierarchyPath="ps8_0_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -39,7 +40,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_0"/>
+        <Instance HierarchyPath="coldata_i2c_dual0/coldata_i2c_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -70,15 +71,172 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="synth/design_1.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+      <File Name="ip/design_1_pdts_endpoint_0_0/design_1_pdts_endpoint_0_0.xci" Type="IP">
+        <Instance HierarchyPath="timing_module/pdts_endpoint_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="sim/design_1.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+      <File Name="ip/design_1_util_vector_logic_0_0/design_1_util_vector_logic_0_0.xci" Type="IP">
+        <Instance HierarchyPath="timing_module/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_axi_gpio_0_1/design_1_axi_gpio_0_1.xci" Type="IP">
+        <Instance HierarchyPath="timing_module/axi_gpio_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_xlslice_0_0/design_1_xlslice_0_0.xci" Type="IP">
+        <Instance HierarchyPath="timing_module/xlslice_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_xlslice_0_1/design_1_xlslice_0_1.xci" Type="IP">
+        <Instance HierarchyPath="timing_module/xlslice_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_0_1/design_1_coldata_i2c_0_1.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual0/coldata_i2c_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_ds_buf_0_0/design_1_util_ds_buf_0_0.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual0/util_ds_buf_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_vector_logic_0_1/design_1_util_vector_logic_0_1.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual0/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_1_0/design_1_coldata_i2c_1_0.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual1/coldata_i2c_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_0_2/design_1_coldata_i2c_0_2.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual1/coldata_i2c_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual1/util_ds_buf_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_vector_logic_0_2/design_1_util_vector_logic_0_2.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual1/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_1_1/design_1_coldata_i2c_1_1.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual2/coldata_i2c_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_0_3/design_1_coldata_i2c_0_3.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual2/coldata_i2c_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_ds_buf_0_2/design_1_util_ds_buf_0_2.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual2/util_ds_buf_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_vector_logic_0_3/design_1_util_vector_logic_0_3.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual2/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_1_2/design_1_coldata_i2c_1_2.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual3/coldata_i2c_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_coldata_i2c_0_4/design_1_coldata_i2c_0_4.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual3/coldata_i2c_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_ds_buf_0_3/design_1_util_ds_buf_0_3.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual3/util_ds_buf_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_util_vector_logic_0_4/design_1_util_vector_logic_0_4.xci" Type="IP">
+        <Instance HierarchyPath="coldata_i2c_dual3/util_vector_logic_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xci" Type="IP">
+        <Instance HierarchyPath="clk_wiz_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/design_1_auto_ds_0/design_1_auto_ds_0.xci" Type="IP">
@@ -95,6 +253,17 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="synth/design_1.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim/design_1.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="design_1_ooc.xdc" Type="XDC">

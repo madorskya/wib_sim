@@ -25,24 +25,26 @@ module wib_top
     output femb_cmd_fpga_out_n,
 
     // clock to FEMBs    
-    output femb_clk_fpga_out_p, 
-    output femb_clk_fpga_out_n, 
+//    output femb_clk_fpga_out_p, 
+//    output femb_clk_fpga_out_n,
 
-    input  [3 : 0] gtrefclk00p_in, // reference clocks; 128M
-    input  [3 : 0] gtrefclk00n_in, // reference clocks; 128M
+    // timing pt signals
+    input adn2814_data_p, 
+    input adn2814_data_n,
+     
+    input si5344_out1_p, // clock from tp
+    input si5344_out1_n,
+
+    input adn2814_los,
+    input adn2814_lol,
+
+
+    input  [3 : 0] gtrefclk00p_in, // reference clocks; 125M
+    input  [3 : 0] gtrefclk00n_in, // reference clocks; 125M
     input [15 : 0] gthrxn_in    , // RX diff lines
     input [15 : 0] gthrxp_in    ,
     input daq_clk
 );
-
-    // temporary, to make implementation possible
-    OBUFDS clk40_buf[3:0] (.I(1'b0), .O(coldata_clk40_p[3:0]), .OB(coldata_clk40_n[3:0]));
-    OBUFDS b1_buf[3:1] (.I(1'b0), .O(i2c_lvds_scl_p[3:1]), .OB(i2c_lvds_scl_n[3:1]));
-    OBUFDS b2_buf[3:1] (.I(1'b0), .O(i2c_lvds_sda_w2c_p[3:1]), .OB(i2c_lvds_sda_w2c_n[3:1]));
-    OBUFDS b3_buf[3:0] (.I(1'b0), .O(i2c_lvds_l2_sda_w2c_p[3:0]), .OB(i2c_lvds_l2_sda_w2c_n[3:0]));
-    
-    IBUFDS ib1[3:1] (.I(i2c_lvds_sda_c2w_p[3:1]), .IB(i2c_lvds_sda_c2w_n[3:1]), .O());
-    IBUFDS ib2[3:0] (.I(i2c_lvds_l2_sda_c2w_p[3:0]), .IB(i2c_lvds_l2_sda_c2w_n[3:0]), .O());
 
     wire [7:0] gp_out;
     wire         coldata_rx_reset  = gp_out[0]   ; // common reset for all circiuts
@@ -60,8 +62,26 @@ module wib_top
     wire [0 : 0] rx_cdr_stable_out   ; 
     wire [15 :0] gtpowergood_out     ;
     wire clk62p5;
+    
+    wire ts_clk;
+    wire [31:0] ts_evtctr;
+    wire ts_rdy;
+    wire ts_rec_clk;
+    wire ts_rec_d;
+    wire ts_rec_d_clk;
+    wire ts_rst;
+    wire [3:0] ts_sync;
+    wire ts_sync_v;
+    wire [63:0] ts_tstamp;
+    
+    
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O(clk62p5));
-    OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
+    IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d));
+    IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_clk));
+    
+    // system 62.5M clock to FEMBs, from timing pt.
+    // note: not needed, clock to FEMBs is delivered by timing chips
+    //OBUFDS clk_buf_out (.I(ts_clk), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
 
     genvar gi;
     // swizzle bytes in rx_data for easier viewing in the simulation traces
@@ -72,19 +92,45 @@ module wib_top
 
     bd_tux wrp
     (
-        .clk62p5       (clk62p5       ),
-        .gpo_0         (gpo_0         ),
-        .i2c0_sclp     (i2c_lvds_scl_p     [0]),
-        .i2c0_scln     (i2c_lvds_scl_n     [0]),
-        .i2c0_sda_inp  (i2c_lvds_sda_c2w_p [0]),
-        .i2c0_sda_inn  (i2c_lvds_sda_c2w_n [0]),
-        .i2c0_sda_outp (i2c_lvds_sda_w2c_p [0]),
-        .i2c0_sda_outn (i2c_lvds_sda_w2c_n [0]),
-        
-        .gp_out        (gp_out),
+//        .clk62p5       (clk62p5       ),
 
+        .coldata_clk_40_p (coldata_clk40_p),
+        .coldata_clk_40_n (coldata_clk40_n),
+        
+        // coldata fast command
+        .fastcommand_out_p (femb_cmd_fpga_out_p),
         .fastcommand_out_n (femb_cmd_fpga_out_n),
-        .fastcommand_out_p (femb_cmd_fpga_out_p)
+        
+        .gp_out (),
+        
+        // coldata I2C
+        .i2c_lvds_scl_p        (i2c_lvds_scl_p       ),
+        .i2c_lvds_scl_n        (i2c_lvds_scl_n       ),
+        .i2c_lvds_sda_c2w_p    (i2c_lvds_sda_c2w_p   ),
+        .i2c_lvds_sda_c2w_n    (i2c_lvds_sda_c2w_n   ),
+        .i2c_lvds_sda_w2c_p    (i2c_lvds_sda_w2c_p   ),
+        .i2c_lvds_sda_w2c_n    (i2c_lvds_sda_w2c_n   ),
+        .i2c_lvds_l2_sda_c2w_p (i2c_lvds_l2_sda_c2w_p),
+        .i2c_lvds_l2_sda_c2w_n (i2c_lvds_l2_sda_c2w_n),
+        .i2c_lvds_l2_sda_w2c_p (i2c_lvds_l2_sda_w2c_p),
+        .i2c_lvds_l2_sda_w2c_n (i2c_lvds_l2_sda_w2c_n),
+        
+        // timing point signals
+        .ts_cdr_lol        (adn2814_lol      ),
+        .ts_cdr_los        (adn2814_los      ),
+        .ts_clk            (ts_clk           ),
+        .ts_evtctr         (ts_evtctr        ),
+        .ts_rdy            (ts_rdy           ),
+        .ts_rec_clk        (ts_rec_clk       ),
+        .ts_rec_clk_locked (~adn2814_lol     ),
+        .ts_rec_d          (ts_rec_d         ),
+        .ts_rec_d_clk      (ts_rec_d_clk     ), // ???
+        .ts_rst            (ts_rst           ),
+        .ts_sfp_los        (1'b0             ),
+        .ts_sync           (ts_sync          ),
+        .ts_sync_v         (ts_sync_v        ),
+        .ts_tstamp         (ts_tstamp        )
+
     );
 
     wire [1:0]   rx_k [15:0];

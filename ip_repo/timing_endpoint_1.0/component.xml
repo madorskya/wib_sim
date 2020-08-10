@@ -36,6 +36,12 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.RST.POLARITY">ACTIVE_HIGH</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>clk</spirit:name>
@@ -52,6 +58,12 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.FREQ_HZ">62500000</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>rec_clk</spirit:name>
@@ -106,7 +118,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fd76267a</spirit:value>
+            <spirit:value>9a28ac8a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -122,7 +134,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fd76267a</spirit:value>
+            <spirit:value>9a28ac8a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -137,7 +149,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c86733a2</spirit:value>
+            <spirit:value>ecfdc858</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -151,7 +163,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>dda49ea0</spirit:value>
+            <spirit:value>f92e9879</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -442,13 +454,6 @@
         </spirit:wire>
       </spirit:port>
     </spirit:ports>
-    <spirit:modelParameters>
-      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="signed">
-        <spirit:name>SCLK_FREQ</spirit:name>
-        <spirit:displayName>Sclk Freq</spirit:displayName>
-        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SCLK_FREQ">50</spirit:value>
-      </spirit:modelParameter>
-    </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
     <spirit:fileSet>
@@ -511,7 +516,7 @@
       <spirit:file>
         <spirit:name>src/pdts_endpoint.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_06458ff8</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_341e55a8</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -584,15 +589,15 @@
         <spirit:name>src/pdts_tb.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
         <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+        <spirit:userFileType>USED_IN_testbench</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/pdts_tb_behav.wcfg</spirit:name>
         <spirit:fileType>unknown</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_testbench</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -600,18 +605,13 @@
       <spirit:file>
         <spirit:name>xgui/pdts_endpoint_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_dda49ea0</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_f92e9879</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
   <spirit:description>pdts_endpoint_v1_0</spirit:description>
   <spirit:parameters>
-    <spirit:parameter>
-      <spirit:name>SCLK_FREQ</spirit:name>
-      <spirit:displayName>Sclk Freq</spirit:displayName>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.SCLK_FREQ">50</spirit:value>
-    </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">pdts_endpoint_v1_0</spirit:value>
@@ -627,16 +627,9 @@
         <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">akintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">spartan7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aspartan7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexu</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">zynquplus</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">virtexuplus</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">virtexuplusHBM</xilinx:family>
@@ -648,17 +641,110 @@
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>pdts_endpoint_v1_0</xilinx:displayName>
+      <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2020-07-31T23:43:11Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>7</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2020-08-10T02:16:06Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@347638e8_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c953aa9_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@321da51f_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b718fbc_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57fb343a_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23b28e0a_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69d6e631_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53e318ec_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49272f49_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@276bcb16_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79ddc557_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22fcb332_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c9772ab_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7913425d_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1102a544_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27f2b2ef_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e57c6e6_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ad3389_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b2e4d42_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78b8e968_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@463ac008_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27f699b_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@465703b6_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49ae23b1_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@471df75f_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3586a8ad_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34b6ea14_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4602c6e4_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@100c5523_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7be6c891_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@578bb730_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ff61e25_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@549ef002_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f404498_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2664fba2_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f3630b8_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6535c553_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d7459f4_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7576a8ce_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ceb01e4_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4403d030_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2351caf7_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@898a2c7_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ed56028_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f4dbe05_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d20015e_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fb60db6_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dacd19c_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5055e0ff_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35998d6c_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ddd7fb6_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@107869a6_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d6d52d5_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@68e16ef1_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4918748d_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d6e7ef7_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@484a9b44_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a5d34d1_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dc7d789_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fc2e1d5_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7817ff42_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7591c3ef_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11cb8957_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e6ab130_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30dda0fb_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d8e1c0e_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e4357af_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5543c3fb_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41e76c3d_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29ba39a_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6acd0545_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16f96fbc_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17ff48ac_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4716e4da_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e0dd95d_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fede4d7_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@122dbb70_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@523879f5_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11e52177_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b95700f_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27f9fa1_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3bd3ccb9_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@382d9255_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19827cfd_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f4df1_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fe8c687_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@68119510_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@94e0a15_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@370e982f_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e9ff00f_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@712497c_ARCHIVE_LOCATION">/home/madorsky/github/dune_wib/ip_repo/timing_endpoint_1.0</xilinx:tag>
+      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c4426723"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="cfd415c8"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="d08a4bd9"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="1f614b84"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="57a27f47"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="0c056723"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9a5027c2"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="9dd3435a"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="1d7475b6"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
