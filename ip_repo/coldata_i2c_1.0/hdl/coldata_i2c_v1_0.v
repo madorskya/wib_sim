@@ -19,7 +19,7 @@
 	)
 	(
 		// Users to add ports here
-		output scl_p, scl_n,
+		output reg scl,
 		output sda_out_p, sda_out_n,
 		input sda_in_p, sda_in_n,
 
@@ -97,10 +97,9 @@
 	);
 
 	// Add user logic here
-    reg scl, sda_out; 
+    reg sda_out; 
     wire sda_in;
 
-    OBUFDS obuf_scl (.I(scl), .O(scl_p), .OB(scl_n));
     OBUFDS obuf_sda (.I(sda_out), .O(sda_out_p), .OB(sda_out_n));
     IBUFDS ibuf_sda (.I(sda_in_p), .IB(sda_in_n), .O(sda_in));
 

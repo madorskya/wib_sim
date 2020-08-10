@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Sat Jun 27 23:37:22 2020
+-- Date        : Sun Aug  9 22:23:58 2020
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_coldata_i2c_0_0 -prefix
---               design_1_coldata_i2c_0_0_ design_1_coldata_i2c_0_0_sim_netlist.vhdl
--- Design      : design_1_coldata_i2c_0_0
+--               design_1_coldata_i2c_0_0_ design_1_coldata_i2c_0_1_sim_netlist.vhdl
+-- Design      : design_1_coldata_i2c_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xczu9eg-ffvb1156-2-e
@@ -266,15 +266,7 @@ axi_arready_reg: unisim.vcomponents.FDRE
       Q => axi_awaddr(4),
       R => \^sr\(0)
     );
-axi_awready_i_1: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => s00_axi_aresetn,
-      O => \^sr\(0)
-    );
-axi_awready_i_2: unisim.vcomponents.LUT4
+axi_awready_i_1: unisim.vcomponents.LUT4
     generic map(
       INIT => X"4000"
     )
@@ -1405,6 +1397,14 @@ axi_wready_reg: unisim.vcomponents.FDRE
       I4 => \^wr_reg[0]_0\,
       I5 => tx_start_r,
       O => E(0)
+    );
+scl_i_1: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => s00_axi_aresetn,
+      O => \^sr\(0)
     );
 \sda_out_sh[10]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -3296,8 +3296,6 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   port (
-    scl_p : out STD_LOGIC;
-    scl_n : out STD_LOGIC;
     sda_out_p : out STD_LOGIC;
     sda_out_n : out STD_LOGIC;
     s00_axi_awready : out STD_LOGIC;
@@ -3306,6 +3304,7 @@ entity design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
     s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     s00_axi_rvalid : out STD_LOGIC;
     s00_axi_bvalid : out STD_LOGIC;
+    scl : out STD_LOGIC;
     sda_in_p : in STD_LOGIC;
     sda_in_n : in STD_LOGIC;
     s00_axi_aclk : in STD_LOGIC;
@@ -3327,7 +3326,6 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   signal \FSM_sequential_state[0]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[0]_i_4_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[0]_i_5_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_state[0]_i_6_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_4_n_0\ : STD_LOGIC;
@@ -3379,11 +3377,12 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   signal \rd_reg[1][26]_i_2_n_0\ : STD_LOGIC;
   signal \rd_reg[1][26]_i_3_n_0\ : STD_LOGIC;
   signal \rd_reg_reg[1]\ : STD_LOGIC_VECTOR ( 26 downto 0 );
-  signal scl : STD_LOGIC;
-  signal scl_i_1_n_0 : STD_LOGIC;
+  signal \^scl\ : STD_LOGIC;
   signal scl_i_2_n_0 : STD_LOGIC;
   signal scl_i_3_n_0 : STD_LOGIC;
   signal scl_i_4_n_0 : STD_LOGIC;
+  signal scl_i_5_n_0 : STD_LOGIC;
+  signal scl_i_6_n_0 : STD_LOGIC;
   signal sda_in : STD_LOGIC;
   signal sda_in_sh : STD_LOGIC_VECTOR ( 26 downto 0 );
   signal \sda_in_sh[26]_i_1_n_0\ : STD_LOGIC;
@@ -3427,19 +3426,19 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   signal wr_reg1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \wr_reg[0]_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_6\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_5\ : label is "soft_lutpair23";
   attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_4\ : label is "soft_lutpair27";
   attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_5\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_6\ : label is "soft_lutpair25";
   attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_7\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_8\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_8\ : label is "soft_lutpair23";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[0]\ : label is "ST_STRT:01,ST_ACK:11,ST_TX:10,ST_IDLE:00";
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[1]\ : label is "ST_STRT:01,ST_ACK:11,ST_TX:10,ST_IDLE:00";
   attribute SOFT_HLUTNM of \bit_count[0]_i_1\ : label is "soft_lutpair26";
   attribute SOFT_HLUTNM of \bit_count[1]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \bit_count[2]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \bit_count[3]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \bit_count[2]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \bit_count[3]_i_1\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of \bit_phase[1]_i_2\ : label is "soft_lutpair16";
   attribute SOFT_HLUTNM of \bit_phase[2]_i_2\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \bit_phase[4]_i_3\ : label is "soft_lutpair27";
@@ -3458,26 +3457,24 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0_coldata_i2c_v1_0 is
   attribute IBUF_DELAY_VALUE of ibuf_sda : label is "0";
   attribute IFD_DELAY_VALUE : string;
   attribute IFD_DELAY_VALUE of ibuf_sda : label is "AUTO";
-  attribute BOX_TYPE of obuf_scl : label is "PRIMITIVE";
-  attribute CAPACITANCE of obuf_scl : label is "DONT_CARE";
-  attribute XILINX_LEGACY_PRIM : string;
-  attribute XILINX_LEGACY_PRIM of obuf_scl : label is "OBUFDS";
   attribute BOX_TYPE of obuf_sda : label is "PRIMITIVE";
   attribute CAPACITANCE of obuf_sda : label is "DONT_CARE";
+  attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of obuf_sda : label is "OBUFDS";
-  attribute SOFT_HLUTNM of scl_i_3 : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of scl_i_4 : label is "soft_lutpair24";
   attribute SOFT_HLUTNM of \sda_in_sh[26]_i_2\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of \sda_out_sh[0]_i_3\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of \sda_out_sh[0]_i_4\ : label is "soft_lutpair19";
 begin
+  scl <= \^scl\;
 \FSM_sequential_state[0]_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"00E0FF0000E03300"
     )
         port map (
       I0 => \FSM_sequential_state[0]_i_4_n_0\,
-      I1 => \FSM_sequential_state[0]_i_5_n_0\,
-      I2 => \FSM_sequential_state[0]_i_6_n_0\,
+      I1 => scl_i_6_n_0,
+      I2 => \FSM_sequential_state[0]_i_5_n_0\,
       I3 => state(0),
       I4 => state(1),
       I5 => \bit_phase[7]_i_2_n_0\,
@@ -3488,7 +3485,7 @@ begin
       INIT => X"4040404040404044"
     )
         port map (
-      I0 => \FSM_sequential_state[0]_i_5_n_0\,
+      I0 => scl_i_6_n_0,
       I1 => state(0),
       I2 => \FSM_sequential_state[1]_i_5_n_0\,
       I3 => \bit_phase_reg_n_0_[2]\,
@@ -3509,16 +3506,7 @@ begin
       I5 => \bit_phase_reg_n_0_[6]\,
       O => \FSM_sequential_state[0]_i_4_n_0\
     );
-\FSM_sequential_state[0]_i_5\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => \bit_phase_reg_n_0_[7]\,
-      I1 => \bit_phase_reg_n_0_[8]\,
-      O => \FSM_sequential_state[0]_i_5_n_0\
-    );
-\FSM_sequential_state[0]_i_6\: unisim.vcomponents.LUT5
+\FSM_sequential_state[0]_i_5\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00020900"
     )
@@ -3528,7 +3516,7 @@ begin
       I2 => \bit_count_reg_n_0_[2]\,
       I3 => \bit_count_reg_n_0_[3]\,
       I4 => \bit_count_reg_n_0_[0]\,
-      O => \FSM_sequential_state[0]_i_6_n_0\
+      O => \FSM_sequential_state[0]_i_5_n_0\
     );
 \FSM_sequential_state[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -3855,7 +3843,7 @@ begin
         port map (
       I0 => \bit_phase[7]_i_2_n_0\,
       I1 => state(0),
-      I2 => scl_i_3_n_0,
+      I2 => scl_i_4_n_0,
       I3 => \bit_phase_reg_n_0_[4]\,
       I4 => \bit_phase_reg_n_0_[3]\,
       I5 => \bit_phase[4]_i_3_n_0\,
@@ -3882,7 +3870,7 @@ begin
       I1 => state(0),
       I2 => \bit_phase_reg_n_0_[6]\,
       I3 => state(1),
-      I4 => \FSM_sequential_state[0]_i_5_n_0\,
+      I4 => scl_i_6_n_0,
       I5 => \bit_phase[4]_i_5_n_0\,
       O => \bit_phase[4]_i_2_n_0\
     );
@@ -3979,7 +3967,7 @@ begin
       I1 => \bit_phase[4]_i_3_n_0\,
       I2 => \bit_phase_reg_n_0_[4]\,
       I3 => \bit_phase_reg_n_0_[3]\,
-      I4 => scl_i_3_n_0,
+      I4 => scl_i_4_n_0,
       I5 => \bit_phase_reg_n_0_[6]\,
       O => \bit_phase[5]_i_5_n_0\
     );
@@ -4269,15 +4257,6 @@ ibuf_sda: unisim.vcomponents.IBUFDS
       IB => sda_in_n,
       O => sda_in
     );
-obuf_scl: unisim.vcomponents.OBUFDS
-    generic map(
-      IOSTANDARD => "DEFAULT"
-    )
-        port map (
-      I => scl,
-      O => scl_p,
-      OB => scl_n
-    );
 obuf_sda: unisim.vcomponents.OBUFDS
     generic map(
       IOSTANDARD => "DEFAULT"
@@ -4308,7 +4287,7 @@ obuf_sda: unisim.vcomponents.OBUFDS
       I2 => \bit_phase_reg_n_0_[4]\,
       I3 => \FSM_sequential_state[1]_i_4_n_0\,
       I4 => \bit_phase_reg_n_0_[5]\,
-      I5 => \FSM_sequential_state[0]_i_5_n_0\,
+      I5 => scl_i_6_n_0,
       O => \rd_reg[1][26]_i_2_n_0\
     );
 \rd_reg[1][26]_i_3\: unisim.vcomponents.LUT5
@@ -4539,20 +4518,20 @@ obuf_sda: unisim.vcomponents.OBUFDS
       Q => \rd_reg_reg[1]\(9),
       R => '0'
     );
-scl_i_1: unisim.vcomponents.LUT6
+scl_i_2: unisim.vcomponents.LUT6
     generic map(
       INIT => X"A3ABABABA3030303"
     )
         port map (
-      I0 => scl_i_2_n_0,
+      I0 => scl_i_3_n_0,
       I1 => state(0),
       I2 => state(1),
-      I3 => scl_i_3_n_0,
-      I4 => scl_i_4_n_0,
-      I5 => scl,
-      O => scl_i_1_n_0
+      I3 => scl_i_4_n_0,
+      I4 => scl_i_5_n_0,
+      I5 => \^scl\,
+      O => scl_i_2_n_0
     );
-scl_i_2: unisim.vcomponents.LUT6
+scl_i_3: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFFFFFFFFEFFFFF"
     )
@@ -4562,10 +4541,10 @@ scl_i_2: unisim.vcomponents.LUT6
       I2 => \bit_phase_reg_n_0_[6]\,
       I3 => \sda_in_sh[26]_i_2_n_0\,
       I4 => \bit_phase_reg_n_0_[0]\,
-      I5 => \FSM_sequential_state[0]_i_5_n_0\,
-      O => scl_i_2_n_0
+      I5 => scl_i_6_n_0,
+      O => scl_i_3_n_0
     );
-scl_i_3: unisim.vcomponents.LUT4
+scl_i_4: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0010"
     )
@@ -4574,9 +4553,9 @@ scl_i_3: unisim.vcomponents.LUT4
       I1 => \bit_phase_reg_n_0_[8]\,
       I2 => state(1),
       I3 => \bit_phase_reg_n_0_[5]\,
-      O => scl_i_3_n_0
+      O => scl_i_4_n_0
     );
-scl_i_4: unisim.vcomponents.LUT6
+scl_i_5: unisim.vcomponents.LUT6
     generic map(
       INIT => X"0000000200000000"
     )
@@ -4587,14 +4566,23 @@ scl_i_4: unisim.vcomponents.LUT6
       I3 => \bit_phase_reg_n_0_[1]\,
       I4 => \bit_phase_reg_n_0_[6]\,
       I5 => \bit_phase_reg_n_0_[4]\,
-      O => scl_i_4_n_0
+      O => scl_i_5_n_0
+    );
+scl_i_6: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => \bit_phase_reg_n_0_[7]\,
+      I1 => \bit_phase_reg_n_0_[8]\,
+      O => scl_i_6_n_0
     );
 scl_reg: unisim.vcomponents.FDSE
      port map (
       C => s00_axi_aclk,
       CE => '1',
-      D => scl_i_1_n_0,
-      Q => scl,
+      D => scl_i_2_n_0,
+      Q => \^scl\,
       S => coldata_i2c_v1_0_S00_AXI_inst_n_1
     );
 \sda_in_sh[26]_i_1\: unisim.vcomponents.LUT6
@@ -4874,7 +4862,7 @@ sda_out_reg: unisim.vcomponents.FDSE
     )
         port map (
       I0 => \FSM_sequential_state[0]_i_4_n_0\,
-      I1 => \FSM_sequential_state[0]_i_5_n_0\,
+      I1 => scl_i_6_n_0,
       I2 => state(0),
       I3 => state(1),
       I4 => \sda_out_sh[0]_i_3_n_0\,
@@ -5138,8 +5126,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity design_1_coldata_i2c_0_0 is
   port (
-    scl_p : out STD_LOGIC;
-    scl_n : out STD_LOGIC;
+    scl : out STD_LOGIC;
     sda_out_p : out STD_LOGIC;
     sda_out_n : out STD_LOGIC;
     sda_in_p : in STD_LOGIC;
@@ -5169,7 +5156,7 @@ entity design_1_coldata_i2c_0_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_coldata_i2c_0_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of design_1_coldata_i2c_0_0 : entity is "design_1_coldata_i2c_0_0,coldata_i2c_v1_0,{}";
+  attribute CHECK_LICENSE_TYPE of design_1_coldata_i2c_0_0 : entity is "design_1_coldata_i2c_0_1,coldata_i2c_v1_0,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_coldata_i2c_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
@@ -5181,7 +5168,7 @@ architecture STRUCTURE of design_1_coldata_i2c_0_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of s00_axi_aclk : signal is "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of s00_axi_aclk : signal is "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of s00_axi_aclk : signal is "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s00_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 S00_AXI_RST RST";
   attribute X_INTERFACE_PARAMETER of s00_axi_aresetn : signal is "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s00_axi_arready : signal is "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY";
@@ -5232,8 +5219,7 @@ inst: entity work.design_1_coldata_i2c_0_0_coldata_i2c_v1_0
       s00_axi_wready => s00_axi_wready,
       s00_axi_wstrb(3 downto 0) => s00_axi_wstrb(3 downto 0),
       s00_axi_wvalid => s00_axi_wvalid,
-      scl_n => scl_n,
-      scl_p => scl_p,
+      scl => scl,
       sda_in_n => sda_in_n,
       sda_in_p => sda_in_p,
       sda_out_n => sda_out_n,

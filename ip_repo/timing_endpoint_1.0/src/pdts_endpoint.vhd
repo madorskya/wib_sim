@@ -11,9 +11,11 @@ use ieee.numeric_std.all;
 use work.pdts_defs.all;
 
 entity pdts_endpoint is
-	generic(
-		SCLK_FREQ: real := 50.0
-	);
+-- Madorsky: commented genertic, incompatible with IP packager
+-- moved definition to pdts_defs.vhd
+--	generic(
+--		SCLK_FREQ: real := 62.5
+--	);
 	port(
 		sclk: in std_logic; -- Free-running system clock
 		srst: in std_logic; -- System reset (sclk domain)
@@ -36,7 +38,7 @@ entity pdts_endpoint is
 		sync: out std_logic_vector(SCMD_W - 1 downto 0); -- Sync command output (clk domain)
 		sync_v: out std_logic; -- Sync command valid flag (clk domain)
 		tstamp: out std_logic_vector(8 * TSTAMP_WDS - 1 downto 0); -- Timestamp out
-		evtctr: out std_logic_vector(8 * EVTCTR_WDS - 1 downto 0) -- Event counter out
+		evtctr: out std_logic_vector(8 * EVTCTR_WDS - 1 downto 0) -- Event counter out 
 	);
 
 end pdts_endpoint;

@@ -11,8 +11,9 @@ use ieee.numeric_std.all;
 package pdts_defs is
 
 -- L0 constants
-
-	constant CLK_FREQ: real := 50.0; -- System clock frequency
+    -- Madorsky: changed clock constants
+	constant CLK_FREQ: real := 62.5; -- System clock frequency
+	constant SCLK_FREQ: real := 100.0; -- ZYNQ clock frequency 
 	constant SCLK_RATIO: integer := 5; -- Ratio of IO clock to base clock (5 = 250Mb/s IO)
 	
 -- L1 constants
