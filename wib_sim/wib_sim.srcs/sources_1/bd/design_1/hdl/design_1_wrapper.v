@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Sun Aug  9 22:17:28 2020
+//Date        : Mon Aug 10 19:19:56 2020
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -10,10 +10,17 @@
 `timescale 1 ps / 1 ps
 
 module design_1_wrapper
-   (clk_40,
+   (AXI_CLK_OUT,
+    AXI_RSTn,
+    WIB_LED_tri_o,
+    clk_40,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     gp_out_tri_o,
+    iic_rtl_0_scl_io,
+    iic_rtl_0_sda_io,
+    reg_ro,
+    reg_rw,
     scl_n_0,
     scl_n_1,
     scl_n_2,
@@ -68,10 +75,17 @@ module design_1_wrapper
     ts_sync,
     ts_sync_v,
     ts_tstamp);
+  output AXI_CLK_OUT;
+  output [0:0]AXI_RSTn;
+  output [7:0]WIB_LED_tri_o;
   output clk_40;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   output [7:0]gp_out_tri_o;
+  inout iic_rtl_0_scl_io;
+  inout iic_rtl_0_sda_io;
+  input [1023:0]reg_ro;
+  output [1023:0]reg_rw;
   output [0:0]scl_n_0;
   output [0:0]scl_n_1;
   output [0:0]scl_n_2;
@@ -127,10 +141,23 @@ module design_1_wrapper
   output ts_sync_v;
   output [63:0]ts_tstamp;
 
+  wire AXI_CLK_OUT;
+  wire [0:0]AXI_RSTn;
+  wire [7:0]WIB_LED_tri_o;
   wire clk_40;
   wire fastcommand_out_n_0;
   wire fastcommand_out_p_0;
   wire [7:0]gp_out_tri_o;
+  wire iic_rtl_0_scl_i;
+  wire iic_rtl_0_scl_io;
+  wire iic_rtl_0_scl_o;
+  wire iic_rtl_0_scl_t;
+  wire iic_rtl_0_sda_i;
+  wire iic_rtl_0_sda_io;
+  wire iic_rtl_0_sda_o;
+  wire iic_rtl_0_sda_t;
+  wire [1023:0]reg_ro;
+  wire [1023:0]reg_rw;
   wire [0:0]scl_n_0;
   wire [0:0]scl_n_1;
   wire [0:0]scl_n_2;
@@ -187,10 +214,21 @@ module design_1_wrapper
   wire [63:0]ts_tstamp;
 
   design_1 design_1_i
-       (.clk_40(clk_40),
+       (.AXI_CLK_OUT(AXI_CLK_OUT),
+        .AXI_RSTn(AXI_RSTn),
+        .WIB_LED_tri_o(WIB_LED_tri_o),
+        .clk_40(clk_40),
         .fastcommand_out_n_0(fastcommand_out_n_0),
         .fastcommand_out_p_0(fastcommand_out_p_0),
         .gp_out_tri_o(gp_out_tri_o),
+        .iic_rtl_0_scl_i(iic_rtl_0_scl_i),
+        .iic_rtl_0_scl_o(iic_rtl_0_scl_o),
+        .iic_rtl_0_scl_t(iic_rtl_0_scl_t),
+        .iic_rtl_0_sda_i(iic_rtl_0_sda_i),
+        .iic_rtl_0_sda_o(iic_rtl_0_sda_o),
+        .iic_rtl_0_sda_t(iic_rtl_0_sda_t),
+        .reg_ro(reg_ro),
+        .reg_rw(reg_rw),
         .scl_n_0(scl_n_0),
         .scl_n_1(scl_n_1),
         .scl_n_2(scl_n_2),
@@ -245,4 +283,14 @@ module design_1_wrapper
         .ts_sync(ts_sync),
         .ts_sync_v(ts_sync_v),
         .ts_tstamp(ts_tstamp));
+  IOBUF iic_rtl_0_scl_iobuf
+       (.I(iic_rtl_0_scl_o),
+        .IO(iic_rtl_0_scl_io),
+        .O(iic_rtl_0_scl_i),
+        .T(iic_rtl_0_scl_t));
+  IOBUF iic_rtl_0_sda_iobuf
+       (.I(iic_rtl_0_sda_o),
+        .IO(iic_rtl_0_sda_io),
+        .O(iic_rtl_0_sda_i),
+        .T(iic_rtl_0_sda_t));
 endmodule

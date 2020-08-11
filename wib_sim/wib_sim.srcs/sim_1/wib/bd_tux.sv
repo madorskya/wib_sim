@@ -38,8 +38,20 @@ module bd_tux
     input  ts_sfp_los,
     output [3:0]ts_sync,
     output ts_sync_v,
-    output [63:0]ts_tstamp
+    output [63:0]ts_tstamp,
     
+    output        axi_clk_out,
+    output        axi_rstn,
+    
+    output [1023:0] reg_rw,
+    input  [1023:0] reg_ro,
+
+    input  iic_rtl_0_scl_i,
+    output iic_rtl_0_scl_o,
+    output iic_rtl_0_scl_t,
+    input  iic_rtl_0_sda_i,
+    output iic_rtl_0_sda_o,
+    output iic_rtl_0_sda_t
 );
     
     wire clk_40;
@@ -109,7 +121,19 @@ module bd_tux
         .ts_sfp_los   (ts_sfp_los),
         .ts_sync      (ts_sync),
         .ts_sync_v    (ts_sync_v),
-        .ts_tstamp    (ts_tstamp)
+        .ts_tstamp    (ts_tstamp),
+        
+        .AXI_CLK_OUT  (axi_clk_out),
+        .AXI_RSTn     (axi_rstn),
+        .reg_rw       (reg_rw),
+        .reg_ro       (reg_ro),
+
+        .iic_rtl_0_scl_i (iic_rtl_0_scl_i),
+        .iic_rtl_0_scl_o (iic_rtl_0_scl_o),
+        .iic_rtl_0_scl_t (iic_rtl_0_scl_t),
+        .iic_rtl_0_sda_i (iic_rtl_0_sda_i),
+        .iic_rtl_0_sda_o (iic_rtl_0_sda_o),
+        .iic_rtl_0_sda_t (iic_rtl_0_sda_t)
     );
 
 endmodule
