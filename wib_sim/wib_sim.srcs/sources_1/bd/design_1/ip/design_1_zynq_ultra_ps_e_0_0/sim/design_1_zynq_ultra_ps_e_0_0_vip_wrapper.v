@@ -98,6 +98,7 @@ maxigp0_rvalid,
 maxigp0_rready, 
 maxigp0_awqos, 
 maxigp0_arqos, 
+pl_ps_irq0, 
 pl_resetn0, 
 pl_clk0 
 );
@@ -141,6 +142,7 @@ input maxigp0_rvalid;
 output maxigp0_rready;
 output [3 : 0] maxigp0_awqos;
 output [3 : 0] maxigp0_arqos;
+input [0 : 0] pl_ps_irq0;
 output pl_resetn0;
 output pl_clk0;
 wire pl_clk_t[3:0] ;
@@ -749,6 +751,7 @@ assign pl_clk0 = pl_clk_t[0] ;
 .SACEFPDBID(),
 .SACEFPDRID(),
 
+.PLPSIRQ0(pl_ps_irq0),
 
 .PL_RESETN0(pl_resetn0),
 .PLCLK({pl_clk_t[3],pl_clk_t[2],pl_clk_t[1],pl_clk_t[0]})

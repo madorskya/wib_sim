@@ -43,7 +43,32 @@ module wib_top
     input  [3 : 0] gtrefclk00n_in, // reference clocks; 125M
     input [15 : 0] gthrxn_in    , // RX diff lines
     input [15 : 0] gthrxp_in    ,
-    input daq_clk
+    input daq_clk,
+    
+    // I2C busses for onboard devices
+    inout si5344_scl, 
+    inout si5344_sda, 
+    inout si5342_scl, 
+    inout si5342_sda, 
+    inout qsfp_scl,     
+    inout qsfp_sda, 
+    inout pl_femb_pwr_scl, 
+    inout pl_femb_pwr_sda, 
+    inout pl_femb_en_scl, 
+    inout pl_femb_en_sda, 
+    inout sensor_i2c_scl, 
+    inout sensor_i2c_sda, 
+    inout pl_femb_pwr2_scl, 
+    inout pl_femb_pwr2_sda, 
+    inout ltc2977_scl, 
+    inout ltc2977_sda, 
+    inout pl_femb_pwr3_scl,  
+    inout pl_femb_pwr3_sda,  
+    inout flash_scl, 
+    inout flash_sda, 
+    inout adn2814_scl,   
+    inout adn2814_sda 
+    
 );
 
     wire [7:0] gp_out;
@@ -74,6 +99,19 @@ module wib_top
     wire ts_sync_v;
     wire [63:0] ts_tstamp;
     
+    wire        axi_clk_out;
+    wire        axi_rstn;
+
+
+    wire [1023:0] config_reg;
+    wire [1023:0] status_reg;
+    
+    wire iic_rtl_0_scl_i;
+    wire iic_rtl_0_scl_o;
+    wire iic_rtl_0_scl_t;
+    wire iic_rtl_0_sda_i;
+    wire iic_rtl_0_sda_o;
+    wire iic_rtl_0_sda_t;
     
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O(clk62p5));
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d));
@@ -129,8 +167,19 @@ module wib_top
         .ts_sfp_los        (1'b0             ),
         .ts_sync           (ts_sync          ),
         .ts_sync_v         (ts_sync_v        ),
-        .ts_tstamp         (ts_tstamp        )
+        .ts_tstamp         (ts_tstamp        ),
 
+        .axi_clk_out (axi_clk_out),
+        .axi_rstn    (axi_rstn   ),
+        .reg_rw      (config_reg),
+        .reg_ro      (status_reg),
+    
+        .iic_rtl_0_scl_i (iic_rtl_0_scl_i),
+        .iic_rtl_0_scl_o (iic_rtl_0_scl_o),
+        .iic_rtl_0_scl_t (iic_rtl_0_scl_t),
+        .iic_rtl_0_sda_i (iic_rtl_0_sda_i),
+        .iic_rtl_0_sda_o (iic_rtl_0_sda_o),
+        .iic_rtl_0_sda_t (iic_rtl_0_sda_t)
     );
 
     wire [1:0]   rx_k [15:0];
@@ -143,6 +192,16 @@ module wib_top
     wire [15:0] valid12;
     wire [1:0]  crc_err [15:0];
     wire rxclk2x;
+    
+    // config and status registers mapping, compatible with reference design so far
+// macros for configuration and status bits
+// parameters: a = offset of 32-bit register, b = low bit in the register, n = number of bits
+`define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
+`define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
+    
+    wire [3:0] i2c_select = `CONFIG_BITS(1, 0, 4);
+    
+    assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
     
     coldata_rx_tux coldata_rx
     (
@@ -198,6 +257,53 @@ module wib_top
         .daq_stream   (daq_stream  ), // data to felix
         .daq_stream_k (daq_stream_k), // K symbol flags to felix
         .daq_clk      (daq_clk)
+    );
+    
+    
+    I2C_CONTROL i2c_ctrl
+    ( 
+        .I2C_SELECT (i2c_select), 
+          
+        .iic_rtl_0_scl_i (iic_rtl_0_scl_i), 
+        .iic_rtl_0_scl_o (iic_rtl_0_scl_o), 
+        .iic_rtl_0_scl_t (iic_rtl_0_scl_t), 
+        
+        .iic_rtl_0_sda_i (iic_rtl_0_sda_i), 
+        .iic_rtl_0_sda_o (iic_rtl_0_sda_o), 
+        .iic_rtl_0_sda_t (iic_rtl_0_sda_t), 
+        
+        .SI5344_SCL (si5344_scl), 
+        .SI5344_SDA (si5344_sda), 
+        
+        .SI5342_SCL (si5342_scl), 
+        .SI5342_SDA (si5342_sda), 
+        
+        .QSFP_SCL (qsfp_scl),     
+        .QSFP_SDA (qsfp_sda), 
+        
+        .PL_FEMB_PWR_SCL (pl_femb_pwr_scl), 
+        .PL_FEMB_PWR_SDA (pl_femb_pwr_sda), 
+        
+        .PL_FEMB_EN_SCL (pl_femb_en_scl), 
+        .PL_FEMB_EN_SDA (pl_femb_en_sda), 
+        
+        .SENSOR_I2C_SCL (sensor_i2c_scl), 
+        .SENSOR_I2C_SDA (sensor_i2c_sda), 
+        
+        .PL_FEMB_PWR2_SCL (pl_femb_pwr2_scl), 
+        .PL_FEMB_PWR2_SDA (pl_femb_pwr2_sda), 
+        
+        .LTC2977_SCL (ltc2977_scl), 
+        .LTC2977_SDA (ltc2977_sda), 
+        
+        .PL_FEMB_PWR3_SCL (pl_femb_pwr3_scl),  
+        .PL_FEMB_PWR3_SDA (pl_femb_pwr3_sda),  
+        
+        .FLASH_SCL (flash_scl), 
+        .FLASH_SDA (flash_sda), 
+        
+        .ADN2814_SCL (adn2814_scl),   
+        .ADN2814_SDA (adn2814_sda) 
     );
     
 endmodule
