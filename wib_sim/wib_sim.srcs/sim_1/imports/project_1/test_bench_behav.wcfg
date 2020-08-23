@@ -16,13 +16,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="256199747000fs"></ZoomStartTime>
-      <ZoomEndTime time="256350147001fs"></ZoomEndTime>
-      <Cursor1Time time="256653547000fs"></Cursor1Time>
+      <ZoomStartTime time="250704409250fs"></ZoomStartTime>
+      <ZoomEndTime time="251641409251fs"></ZoomEndTime>
+      <Cursor1Time time="250990409250fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="219"></NameColumnWidth>
-      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+      <ValueColumnWidth column_width="102"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="135" />
    <wave_markers>
@@ -42,6 +42,8 @@
       <marker label="" time="282919200000" />
       <marker label="" time="282230051100" />
       <marker label="" time="256231573000" />
+      <marker label="" time="251502409250" />
+      <marker label="" time="250998509250" />
    </wave_markers>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
@@ -535,7 +537,6 @@
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words">
       <obj_property name="ElementShortName">tx_words[111:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">tx_words[111:0][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/daq_stream_d">
       <obj_property name="ElementShortName">daq_stream_d[1:0][31:0]</obj_property>
