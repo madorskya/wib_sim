@@ -63,6 +63,11 @@ module frame_builder_single
 
     reg crc_reset, crc_calc;
     wire [19:0] crc_out;
+    // daq_stream delay line to compensate for CRC module latency, 2 clks
+    reg [31:0] daq_stream_d [1:0]; 
+    reg [3:0]  daq_stream_k_d [1:0];
+    reg [2:0]  crc_inject;
+
 
     CRC crc20
     (
@@ -145,11 +150,6 @@ module frame_builder_single
     (* async_reg *) reg [3:0] data_ready;
     (* async_reg *) reg [3:0] rq_served;
     
-    // daq_stream delay line to compensate for CRC module latency, 2 clks
-    reg [31:0] daq_stream_d [1:0]; 
-    reg [3:0]  daq_stream_k_d [1:0];
-    reg [2:0]  crc_inject;
-
 
     // DAQ request FSM
     always @(posedge rxclk2x)
