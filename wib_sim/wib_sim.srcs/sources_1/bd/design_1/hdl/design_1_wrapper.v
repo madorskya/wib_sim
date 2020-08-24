@@ -1,8 +1,8 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Aug 10 19:19:56 2020
-//Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+//Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+//Date        : Mon Aug 24 04:17:15 2020
+//Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
 //Purpose     : IP block netlist
@@ -66,7 +66,6 @@ module design_1_wrapper
     ts_clk,
     ts_evtctr,
     ts_rdy,
-    ts_rec_clk,
     ts_rec_clk_locked,
     ts_rec_d,
     ts_rec_d_clk,
@@ -77,7 +76,7 @@ module design_1_wrapper
     ts_tstamp);
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
-  output [7:0]WIB_LED_tri_o;
+  output [31:0]WIB_LED_tri_o;
   output clk_40;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
@@ -131,7 +130,6 @@ module design_1_wrapper
   output ts_clk;
   output [31:0]ts_evtctr;
   output ts_rdy;
-  input ts_rec_clk;
   input ts_rec_clk_locked;
   input ts_rec_d;
   input ts_rec_d_clk;
@@ -143,7 +141,7 @@ module design_1_wrapper
 
   wire AXI_CLK_OUT;
   wire [0:0]AXI_RSTn;
-  wire [7:0]WIB_LED_tri_o;
+  wire [31:0]WIB_LED_tri_o;
   wire clk_40;
   wire fastcommand_out_n_0;
   wire fastcommand_out_p_0;
@@ -203,7 +201,6 @@ module design_1_wrapper
   wire ts_clk;
   wire [31:0]ts_evtctr;
   wire ts_rdy;
-  wire ts_rec_clk;
   wire ts_rec_clk_locked;
   wire ts_rec_d;
   wire ts_rec_d_clk;
@@ -274,7 +271,6 @@ module design_1_wrapper
         .ts_clk(ts_clk),
         .ts_evtctr(ts_evtctr),
         .ts_rdy(ts_rdy),
-        .ts_rec_clk(ts_rec_clk),
         .ts_rec_clk_locked(ts_rec_clk_locked),
         .ts_rec_d(ts_rec_d),
         .ts_rec_d_clk(ts_rec_d_clk),

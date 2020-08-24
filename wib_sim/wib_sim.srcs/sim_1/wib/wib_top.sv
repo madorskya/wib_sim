@@ -24,9 +24,9 @@ module wib_top
     output femb_cmd_fpga_out_p,
     output femb_cmd_fpga_out_n,
 
-    // clock to FEMBs    
-//    output femb_clk_fpga_out_p, 
-//    output femb_clk_fpga_out_n,
+    // clock to FEMBs, 62.5M, recovered by timing endpoint    
+    output femb_clk_fpga_out_p, 
+    output femb_clk_fpga_out_n,
 
     // timing pt signals
     input adn2814_data_p, 
@@ -60,8 +60,8 @@ module wib_top
     inout sensor_i2c_sda, 
     inout pl_femb_pwr2_scl, 
     inout pl_femb_pwr2_sda, 
-    inout ltc2977_scl, 
-    inout ltc2977_sda, 
+//    inout ltc2977_scl, // commented out per Jack's message from 2020-08-10
+//    inout ltc2977_sda, 
     inout pl_femb_pwr3_scl,  
     inout pl_femb_pwr3_sda,  
     inout flash_scl, 
@@ -88,12 +88,10 @@ module wib_top
     wire [15 :0] gtpowergood_out     ;
     wire clk62p5;
     
-    wire ts_clk;
     wire [31:0] ts_evtctr;
     wire ts_rdy;
-    wire ts_rec_clk;
     wire ts_rec_d;
-    wire ts_rec_d_clk;
+    wire ts_rec_d_clk; // 312.5 M
     wire ts_rst;
     wire [3:0] ts_sync;
     wire ts_sync_v;
@@ -113,13 +111,15 @@ module wib_top
     wire iic_rtl_0_sda_o;
     wire iic_rtl_0_sda_t;
     
-    IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O(clk62p5));
+    // this input is unused, see Jack's message 2020-08-23
+    IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
+    
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d));
-    IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_clk));
+    IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk));
     
     // system 62.5M clock to FEMBs, from timing pt.
     // note: not needed, clock to FEMBs is delivered by timing chips
-    //OBUFDS clk_buf_out (.I(ts_clk), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
+    OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
 
     genvar gi;
     // swizzle bytes in rx_data for easier viewing in the simulation traces
@@ -130,8 +130,6 @@ module wib_top
 
     bd_tux wrp
     (
-//        .clk62p5       (clk62p5       ),
-
         .coldata_clk_40_p (coldata_clk40_p),
         .coldata_clk_40_n (coldata_clk40_n),
         
@@ -139,7 +137,7 @@ module wib_top
         .fastcommand_out_p (femb_cmd_fpga_out_p),
         .fastcommand_out_n (femb_cmd_fpga_out_n),
         
-        .gp_out (),
+        .gp_out (gp_out),
         
         // coldata I2C
         .i2c_lvds_scl_p        (i2c_lvds_scl_p       ),
@@ -156,13 +154,12 @@ module wib_top
         // timing point signals
         .ts_cdr_lol        (adn2814_lol      ),
         .ts_cdr_los        (adn2814_los      ),
-        .ts_clk            (ts_clk           ),
+        .ts_clk            (clk62p5           ), // this is 62.5 M clock for WIB logic
         .ts_evtctr         (ts_evtctr        ),
         .ts_rdy            (ts_rdy           ),
-        .ts_rec_clk        (ts_rec_clk       ),
         .ts_rec_clk_locked (~adn2814_lol     ),
         .ts_rec_d          (ts_rec_d         ),
-        .ts_rec_d_clk      (ts_rec_d_clk     ), // ???
+        .ts_rec_d_clk      (ts_rec_d_clk     ), // 312.5 M clock from CDR
         .ts_rst            (ts_rst           ),
         .ts_sfp_los        (1'b0             ),
         .ts_sync           (ts_sync          ),
@@ -293,8 +290,8 @@ module wib_top
         .PL_FEMB_PWR2_SCL (pl_femb_pwr2_scl), 
         .PL_FEMB_PWR2_SDA (pl_femb_pwr2_sda), 
         
-        .LTC2977_SCL (ltc2977_scl), 
-        .LTC2977_SDA (ltc2977_sda), 
+//        .LTC2977_SCL (ltc2977_scl), 
+//        .LTC2977_SDA (ltc2977_sda), 
         
         .PL_FEMB_PWR3_SCL (pl_femb_pwr3_scl),  
         .PL_FEMB_PWR3_SDA (pl_femb_pwr3_sda),  
