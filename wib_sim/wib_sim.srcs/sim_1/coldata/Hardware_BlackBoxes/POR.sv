@@ -2,6 +2,7 @@
 `include "PACKAGE.constants.colData.sv"
 //Verilog HDL for "COLDATAP2_IOs", "POR_v4" "functional"
 
+`timescale 1ns / 1ps
 
 module POR_v4 ( output  logic   POR_gated,
                 input   logic   Vcap,

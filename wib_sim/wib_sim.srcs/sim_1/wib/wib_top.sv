@@ -259,7 +259,7 @@ module wib_top
     
     I2C_CONTROL i2c_ctrl
     ( 
-        .I2C_SELECT (i2c_select), 
+        .I2C_SELECT ({4'b0, i2c_select}), 
           
         .iic_rtl_0_scl_i (iic_rtl_0_scl_i), 
         .iic_rtl_0_scl_o (iic_rtl_0_scl_o), 
