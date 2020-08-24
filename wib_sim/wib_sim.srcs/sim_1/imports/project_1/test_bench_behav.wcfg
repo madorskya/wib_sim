@@ -8,7 +8,10 @@
             <top_module name="\$unit_COLDADCP1_sv " />
             <top_module name="axi_vip_pkg" />
             <top_module name="glbl" />
+            <top_module name="iic_pkg" />
             <top_module name="ipif_pkg" />
+            <top_module name="pdts_code8b10bpkg" />
+            <top_module name="pdts_defs" />
             <top_module name="std" />
             <top_module name="test_bench_coldata" />
             <top_module name="xil_common_vip_pkg" />
@@ -16,579 +19,572 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="250704409250fs"></ZoomStartTime>
-      <ZoomEndTime time="251641409251fs"></ZoomEndTime>
-      <Cursor1Time time="250990409250fs"></Cursor1Time>
+      <ZoomStartTime time="207542723000fs"></ZoomStartTime>
+      <ZoomEndTime time="278692723001fs"></ZoomEndTime>
+      <Cursor1Time time="266792723000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="219"></NameColumnWidth>
-      <ValueColumnWidth column_width="102"></ValueColumnWidth>
+      <ValueColumnWidth column_width="97"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="135" />
-   <wave_markers>
-      <marker label="" time="259664812015" />
-      <marker label="" time="259654812015" />
-      <marker label="" time="246230052015" />
-      <marker label="" time="269357251000" />
-      <marker label="" time="244520909666" />
-      <marker label="" time="53200000000" />
-      <marker label="" time="234218485349" />
-      <marker label="" time="232801152016" />
-      <marker label="" time="253549756900" />
-      <marker label="" time="222660512015" />
-      <marker label="" time="264943155359" />
-      <marker label="" time="265981515359" />
-      <marker label="" time="132982690500" />
-      <marker label="" time="282919200000" />
-      <marker label="" time="282230051100" />
-      <marker label="" time="256231573000" />
-      <marker label="" time="251502409250" />
-      <marker label="" time="250998509250" />
-   </wave_markers>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn">
+   <WVObjectSize size="130" />
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/rst_ps8_0_99M_peripheral_aresetn" type="array">
       <obj_property name="ElementShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
       <obj_property name="ObjectShortName">rst_ps8_0_99M_peripheral_aresetn[0:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/PAD_RESET">
+   <wvobject fp_name="/test_bench_coldata/PAD_RESET" type="logic">
       <obj_property name="ElementShortName">PAD_RESET</obj_property>
       <obj_property name="ObjectShortName">PAD_RESET</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_scln">
+   <wvobject fp_name="/test_bench_coldata/i2c0_scln" type="logic">
       <obj_property name="ElementShortName">i2c0_scln</obj_property>
       <obj_property name="ObjectShortName">i2c0_scln</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sclp">
+   <wvobject fp_name="/test_bench_coldata/i2c0_sclp" type="logic">
       <obj_property name="ElementShortName">i2c0_sclp</obj_property>
       <obj_property name="ObjectShortName">i2c0_sclp</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_outn">
+   <wvobject fp_name="/test_bench_coldata/i2c0_sda_outn" type="logic">
       <obj_property name="ElementShortName">i2c0_sda_outn</obj_property>
       <obj_property name="ObjectShortName">i2c0_sda_outn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_outp">
+   <wvobject fp_name="/test_bench_coldata/i2c0_sda_outp" type="logic">
       <obj_property name="ElementShortName">i2c0_sda_outp</obj_property>
       <obj_property name="ObjectShortName">i2c0_sda_outp</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_inn">
+   <wvobject fp_name="/test_bench_coldata/i2c0_sda_inn" type="logic">
       <obj_property name="ElementShortName">i2c0_sda_inn</obj_property>
       <obj_property name="ObjectShortName">i2c0_sda_inn</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/i2c0_sda_inp">
+   <wvobject fp_name="/test_bench_coldata/i2c0_sda_inp" type="logic">
       <obj_property name="ElementShortName">i2c0_sda_inp</obj_property>
       <obj_property name="ObjectShortName">i2c0_sda_inp</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTP1">
+   <wvobject fp_name="/test_bench_coldata/SEROUTP1" type="logic">
       <obj_property name="ElementShortName">SEROUTP1</obj_property>
       <obj_property name="ObjectShortName">SEROUTP1</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN2">
+   <wvobject fp_name="/test_bench_coldata/SEROUTN2" type="logic">
       <obj_property name="ElementShortName">SEROUTN2</obj_property>
       <obj_property name="ObjectShortName">SEROUTN2</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTP2">
+   <wvobject fp_name="/test_bench_coldata/SEROUTP2" type="logic">
       <obj_property name="ElementShortName">SEROUTP2</obj_property>
       <obj_property name="ObjectShortName">SEROUTP2</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/LOCK">
+   <wvobject fp_name="/test_bench_coldata/LOCK" type="logic">
       <obj_property name="ElementShortName">LOCK</obj_property>
       <obj_property name="ObjectShortName">LOCK</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/colData_IO_I2C_0/I2C_LVDS_SDA_C2W_internal">
+   <wvobject fp_name="/test_bench_coldata/coldata/colData_IO_I2C_0/I2C_LVDS_SDA_C2W_internal" type="logic">
       <obj_property name="ElementShortName">I2C_LVDS_SDA_C2W_internal</obj_property>
       <obj_property name="ObjectShortName">I2C_LVDS_SDA_C2W_internal</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/myChipID">
+   <wvobject fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/myChipID" type="array">
       <obj_property name="ElementShortName">myChipID[3:0]</obj_property>
       <obj_property name="ObjectShortName">myChipID[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/capturedPageAddr">
+   <wvobject fp_name="/test_bench_coldata/coldata/capturedPageAddr" type="array">
       <obj_property name="ElementShortName">capturedPageAddr[6:0]</obj_property>
       <obj_property name="ObjectShortName">capturedPageAddr[6:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/capturedChipID">
+   <wvobject fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/capturedChipID" type="array">
       <obj_property name="ElementShortName">capturedChipID[3:0]</obj_property>
       <obj_property name="ObjectShortName">capturedChipID[3:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/local_SDA_C2W">
+   <wvobject fp_name="/test_bench_coldata/coldata/coldADC_I2C_relay0/local_SDA_C2W" type="logic">
       <obj_property name="ElementShortName">local_SDA_C2W</obj_property>
       <obj_property name="ObjectShortName">local_SDA_C2W</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/pageAddr">
+   <wvobject fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/pageAddr" type="array">
       <obj_property name="ElementShortName">pageAddr[6:0]</obj_property>
       <obj_property name="ObjectShortName">pageAddr[6:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/validCapPageAddr">
+   <wvobject fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/validCapPageAddr" type="logic">
       <obj_property name="ElementShortName">validCapPageAddr</obj_property>
       <obj_property name="ObjectShortName">validCapPageAddr</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/currentState">
+   <wvobject fp_name="/test_bench_coldata/coldata/colData_I2Cslave_0/currentState" type="array">
       <obj_property name="ElementShortName">currentState[4:0]</obj_property>
       <obj_property name="ObjectShortName">currentState[4:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/valid_chipID">
+   <wvobject fp_name="/test_bench_coldata/coldata/valid_chipID" type="logic">
       <obj_property name="ElementShortName">valid_chipID</obj_property>
       <obj_property name="ObjectShortName">valid_chipID</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/state">
-      <obj_property name="ElementShortName">state[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state[1:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/tx_start">
-      <obj_property name="ElementShortName">tx_start</obj_property>
-      <obj_property name="ObjectShortName">tx_start</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/tx_start_r">
-      <obj_property name="ElementShortName">tx_start_r</obj_property>
-      <obj_property name="ObjectShortName">tx_start_r</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/wr_reg[0]">
-      <obj_property name="ElementShortName">[0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/wr_reg[1]">
-      <obj_property name="ElementShortName">[1][31:0]</obj_property>
-      <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/bit_count">
-      <obj_property name="ElementShortName">bit_count[4:0]</obj_property>
-      <obj_property name="ObjectShortName">bit_count[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/bit_phase">
-      <obj_property name="ElementShortName">bit_phase[8:0]</obj_property>
-      <obj_property name="ObjectShortName">bit_phase[8:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/sda_out">
-      <obj_property name="ElementShortName">sda_out</obj_property>
-      <obj_property name="ObjectShortName">sda_out</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_i2c_0/inst/rd_reg[1]">
-      <obj_property name="ElementShortName">[1][31:0]</obj_property>
-      <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/clk_1p28g">
+   <wvobject fp_name="/test_bench_coldata/clk_1p28g" type="logic">
       <obj_property name="ElementShortName">clk_1p28g</obj_property>
       <obj_property name="ObjectShortName">clk_1p28g</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/gtrefclk00p_in">
+   <wvobject fp_name="/test_bench_coldata/gtrefclk00p_in" type="array">
       <obj_property name="ElementShortName">gtrefclk00p_in[3:0]</obj_property>
       <obj_property name="ObjectShortName">gtrefclk00p_in[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/gthrxn_in">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/gthrxn_in" type="array">
       <obj_property name="ElementShortName">gthrxn_in[15:0]</obj_property>
       <obj_property name="ObjectShortName">gthrxn_in[15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/gthrxp_in">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/gthrxp_in" type="array">
       <obj_property name="ElementShortName">gthrxp_in[15:0]</obj_property>
       <obj_property name="ObjectShortName">gthrxp_in[15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out" type="array">
       <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk2_out[0:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_active_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_active_out" type="array">
       <obj_property name="ElementShortName">rx_active_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_active_out[0:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rxbyteisaligned_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rxbyteisaligned_out" type="array">
       <obj_property name="ElementShortName">rxbyteisaligned_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">rxbyteisaligned_out[15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rxbyterealign_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rxbyterealign_out" type="array">
       <obj_property name="ElementShortName">rxbyterealign_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">rxbyterealign_out[15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rxcommadet_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rxcommadet_out" type="array">
       <obj_property name="ElementShortName">rxcommadet_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">rxcommadet_out[15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_cdr_stable_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_cdr_stable_out" type="array">
       <obj_property name="ElementShortName">rx_cdr_stable_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_cdr_stable_out[0:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/reset_all_in">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/reset_all_in" type="array">
       <obj_property name="ElementShortName">reset_all_in[0:0]</obj_property>
       <obj_property name="ObjectShortName">reset_all_in[0:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTA_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTA_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTA_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTA_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTB_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTB_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTB_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTB_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTC_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTC_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTC_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTC_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTD_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTD_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTD_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTD_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTE_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTE_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTE_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTE_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTF_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTF_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTF_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTF_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTG_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTG_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTG_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTG_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_OUTH_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_OUTH_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_OUTH_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_OUTH_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_FRAME_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_FRAME_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_FRAME_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_FRAME_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/FASTACT_Command">
+   <wvobject fp_name="/test_bench_coldata/coldata/FASTACT_Command" type="array">
       <obj_property name="ElementShortName">FASTACT_Command[7:0]</obj_property>
       <obj_property name="ObjectShortName">FASTACT_Command[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FASTACT_COLDADC_RESET">
+   <wvobject fp_name="/test_bench_coldata/coldata/FASTACT_COLDADC_RESET" type="logic">
       <obj_property name="ElementShortName">FASTACT_COLDADC_RESET</obj_property>
       <obj_property name="ObjectShortName">FASTACT_COLDADC_RESET</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FAST_CMD_ACT">
+   <wvobject fp_name="/test_bench_coldata/coldata/FAST_CMD_ACT" type="logic">
       <obj_property name="ElementShortName">FAST_CMD_ACT</obj_property>
       <obj_property name="ObjectShortName">FAST_CMD_ACT</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_comma">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_comma" type="array">
       <obj_property name="ElementShortName">rx_comma[15:0][1:0]</obj_property>
       <obj_property name="ObjectShortName">rx_comma[15:0][1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_notvalid">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_notvalid" type="array">
       <obj_property name="ElementShortName">rx_notvalid[15:0][1:0]</obj_property>
       <obj_property name="ObjectShortName">rx_notvalid[15:0][1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_disp">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_disp" type="array">
       <obj_property name="ElementShortName">rx_disp[15:0][1:0]</obj_property>
       <obj_property name="ObjectShortName">rx_disp[15:0][1:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/I2C_COLDATA_SCL">
+   <wvobject fp_name="/test_bench_coldata/I2C_COLDATA_SCL" type="logic">
       <obj_property name="ElementShortName">I2C_COLDATA_SCL</obj_property>
       <obj_property name="ObjectShortName">I2C_COLDATA_SCL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/I2C_COLDATA_SDA_W2C">
+   <wvobject fp_name="/test_bench_coldata/I2C_COLDATA_SDA_W2C" type="logic">
       <obj_property name="ElementShortName">I2C_COLDATA_SDA_W2C</obj_property>
       <obj_property name="ObjectShortName">I2C_COLDATA_SDA_W2C</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/I2C_SDA_C2W">
+   <wvobject fp_name="/test_bench_coldata/I2C_SDA_C2W" type="array">
       <obj_property name="ElementShortName">I2C_SDA_C2W[3:0]</obj_property>
       <obj_property name="ObjectShortName">I2C_SDA_C2W[3:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_DIG_CLKOUT_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_DIG_CLKOUT_P" type="array">
       <obj_property name="ElementShortName">ADC_DIG_CLKOUT_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_DIG_CLKOUT_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/shr">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/shr" type="array">
       <obj_property name="ElementShortName">shr[17:0]</obj_property>
       <obj_property name="ObjectShortName">shr[17:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/sh_mark">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/sh_mark" type="array">
       <obj_property name="ElementShortName">sh_mark[17:0]</obj_property>
       <obj_property name="ObjectShortName">sh_mark[17:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/state">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/state" type="array">
       <obj_property name="ElementShortName">state[1:0]</obj_property>
       <obj_property name="ObjectShortName">state[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req_r">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req_r" type="array">
       <obj_property name="ElementShortName">cmd_req_r[4:0]</obj_property>
       <obj_property name="ObjectShortName">cmd_req_r[4:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req" type="logic">
       <obj_property name="ElementShortName">cmd_req</obj_property>
       <obj_property name="ObjectShortName">cmd_req</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp" type="logic">
       <obj_property name="ElementShortName">cmd_rsp</obj_property>
       <obj_property name="ObjectShortName">cmd_rsp</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/ADC_CLK_2MHZ_P">
+   <wvobject fp_name="/test_bench_coldata/ADC_CLK_2MHZ_P" type="array">
       <obj_property name="ElementShortName">ADC_CLK_2MHZ_P[3:0]</obj_property>
       <obj_property name="ObjectShortName">ADC_CLK_2MHZ_P[3:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/ADC_MASTER_RESET">
+   <wvobject fp_name="/test_bench_coldata/ADC_MASTER_RESET" type="logic">
       <obj_property name="ElementShortName">ADC_MASTER_RESET</obj_property>
       <obj_property name="ObjectShortName">ADC_MASTER_RESET</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/FASTCOMMAND_IN_P">
+   <wvobject fp_name="/test_bench_coldata/FASTCOMMAND_IN_P" type="logic">
       <obj_property name="ElementShortName">FASTCOMMAND_IN_P</obj_property>
       <obj_property name="ObjectShortName">FASTCOMMAND_IN_P</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/clk62p5">
-      <obj_property name="ElementShortName">clk62p5</obj_property>
-      <obj_property name="ObjectShortName">clk62p5</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code" type="array">
       <obj_property name="ElementShortName">cmd_code[3:0][5:0]</obj_property>
       <obj_property name="ObjectShortName">cmd_code[3:0][5:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg0">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg0" type="array">
       <obj_property name="ElementShortName">slv_reg0[31:0]</obj_property>
       <obj_property name="ObjectShortName">slv_reg0[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg_wren">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/coldata_fast_cmd_0/inst/coldata_fast_cmd_v1_0_S00_AXI_inst/slv_reg_wren" type="logic">
       <obj_property name="ElementShortName">slv_reg_wren</obj_property>
       <obj_property name="ObjectShortName">slv_reg_wren</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/startNumber">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/startNumber" type="array">
       <obj_property name="ElementShortName">startNumber[4:0]</obj_property>
       <obj_property name="ObjectShortName">startNumber[4:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/holdFrameCnt">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/holdFrameCnt" type="array">
       <obj_property name="ElementShortName">holdFrameCnt[4:0]</obj_property>
       <obj_property name="ObjectShortName">holdFrameCnt[4:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/predictFrameSt">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND3/predictFrameSt" type="logic">
       <obj_property name="ElementShortName">predictFrameSt</obj_property>
       <obj_property name="ObjectShortName">predictFrameSt</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND_STARTNUMREG_ADC_1/storedData">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/coldADC_DigitalBlock_0/BEND_STARTNUMREG_ADC_1/storedData" type="array">
       <obj_property name="ElementShortName">storedData[7:0]</obj_property>
       <obj_property name="ObjectShortName">storedData[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/Clk_16MHz_cu0">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/Clk_16MHz_cu0" type="logic">
       <obj_property name="ElementShortName">Clk_16MHz_cu0</obj_property>
       <obj_property name="ObjectShortName">Clk_16MHz_cu0</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/Clk_16MHz_cu1">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/Clk_16MHz_cu1" type="logic">
       <obj_property name="ElementShortName">Clk_16MHz_cu1</obj_property>
       <obj_property name="ObjectShortName">Clk_16MHz_cu1</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/frontEndSample">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Digital_1/frontEndSample" type="logic">
       <obj_property name="ElementShortName">frontEndSample</obj_property>
       <obj_property name="ObjectShortName">frontEndSample</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Analog_2/synced_adc_cal_1p2_0_r">
+   <wvobject fp_name="/test_bench_coldata/\adc_loop[0].coldadc /coldADC_Top_0/Analog_2/synced_adc_cal_1p2_0_r" type="array">
       <obj_property name="ElementShortName">synced_adc_cal_1p2_0_r[15:0]</obj_property>
       <obj_property name="ObjectShortName">synced_adc_cal_1p2_0_r[15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_data_swizzled">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_data_swizzled" type="array">
       <obj_property name="ElementShortName">rx_data_swizzled[15:0][15:0]</obj_property>
       <obj_property name="ObjectShortName">rx_data_swizzled[15:0][15:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/rx_k">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_rx/rx_k" type="array">
       <obj_property name="ElementShortName">rx_k[15:0][1:0]</obj_property>
       <obj_property name="ObjectShortName">rx_k[15:0][1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/ADC_Configure_Reg_0/storedData">
+   <wvobject fp_name="/test_bench_coldata/coldata/ADC_Configure_Reg_0/storedData" type="array">
       <obj_property name="ElementShortName">storedData[7:0]</obj_property>
       <obj_property name="ObjectShortName">storedData[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk_out" type="array">
       <obj_property name="ElementShortName">rx_usrclk_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk_out[0:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/rx_usrclk2_out" type="array">
       <obj_property name="ElementShortName">rx_usrclk2_out[0:0]</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk2_out[0:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/FIFO1_D">
+   <wvobject fp_name="/test_bench_coldata/coldata/FIFO1_D" type="array">
       <obj_property name="ElementShortName">FIFO1_D[7:0]</obj_property>
       <obj_property name="ObjectShortName">FIFO1_D[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/coldata/FIFO1_K">
+   <wvobject fp_name="/test_bench_coldata/coldata/FIFO1_K" type="logic">
       <obj_property name="ElementShortName">FIFO1_K</obj_property>
       <obj_property name="ObjectShortName">FIFO1_K</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/coldata/encodedData1">
+   <wvobject fp_name="/test_bench_coldata/coldata/encodedData1" type="array">
       <obj_property name="ElementShortName">encodedData1[9:0]</obj_property>
       <obj_property name="ObjectShortName">encodedData1[9:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/SEROUTN1">
+   <wvobject fp_name="/test_bench_coldata/SEROUTN1" type="logic">
       <obj_property name="ElementShortName">SEROUTN1</obj_property>
       <obj_property name="ObjectShortName">SEROUTN1</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte0">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte0" type="array">
       <obj_property name="ElementShortName">rx_byte0[7:0]</obj_property>
       <obj_property name="ObjectShortName">rx_byte0[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_k0">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_k0" type="logic">
       <obj_property name="ElementShortName">rx_k0</obj_property>
       <obj_property name="ObjectShortName">rx_k0</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte1">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_byte1" type="array">
       <obj_property name="ElementShortName">rx_byte1[7:0]</obj_property>
       <obj_property name="ObjectShortName">rx_byte1[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /time8">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /time8" type="array">
       <obj_property name="ElementShortName">time8[7:0]</obj_property>
       <obj_property name="ObjectShortName">time8[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rxclk2x">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rxclk2x" type="logic">
       <obj_property name="ElementShortName">rxclk2x</obj_property>
       <obj_property name="ObjectShortName">rxclk2x</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge" type="logic">
       <obj_property name="ElementShortName">rx_usrclk_edge</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk_edge</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge_r">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge_r" type="logic">
       <obj_property name="ElementShortName">rx_usrclk_edge_r</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk_edge_r</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge_rr">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /rx_usrclk_edge_rr" type="logic">
       <obj_property name="ElementShortName">rx_usrclk_edge_rr</obj_property>
       <obj_property name="ObjectShortName">rx_usrclk_edge_rr</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /parallel_frame">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /parallel_frame" type="array">
       <obj_property name="ElementShortName">parallel_frame[447:0]</obj_property>
       <obj_property name="ObjectShortName">parallel_frame[447:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed14">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed14" type="array">
       <obj_property name="ElementShortName">deframed14[31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed14[31:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed12">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /deframed12" type="array">
       <obj_property name="ElementShortName">deframed12[31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed12[31:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /byte_cnt">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /byte_cnt" type="array">
       <obj_property name="ElementShortName">byte_cnt[7:0]</obj_property>
       <obj_property name="ObjectShortName">byte_cnt[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /df_state">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /df_state" type="array">
       <obj_property name="ElementShortName">df_state[3:0]</obj_property>
       <obj_property name="ObjectShortName">df_state[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc" type="array">
       <obj_property name="ElementShortName">crc[1:0][7:0]</obj_property>
       <obj_property name="ObjectShortName">crc[1:0][7:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /valid14">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /valid14" type="logic">
       <obj_property name="ElementShortName">valid14</obj_property>
       <obj_property name="ObjectShortName">valid14</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /valid12">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /valid12" type="logic">
       <obj_property name="ElementShortName">valid12</obj_property>
       <obj_property name="ObjectShortName">valid12</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc_err">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/coldata_df/\genblk1[0].df_s /crc_err" type="array">
       <obj_property name="ElementShortName">crc_err[1:0]</obj_property>
       <obj_property name="ObjectShortName">crc_err[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/daq_stream">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/daq_stream" type="array">
       <obj_property name="ElementShortName">daq_stream[1:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">daq_stream[1:0][31:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_out">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_out" type="array">
       <obj_property name="ElementShortName">crc_out[19:0]</obj_property>
       <obj_property name="ObjectShortName">crc_out[19:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/daq_stream_k">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/daq_stream_k" type="array">
       <obj_property name="ElementShortName">daq_stream_k[1:0][3:0]</obj_property>
       <obj_property name="ObjectShortName">daq_stream_k[1:0][3:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/deframed">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/deframed" type="array">
       <obj_property name="ElementShortName">deframed[15:0][31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed[15:0][31:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed" type="array">
       <obj_property name="ElementShortName">deframed[7:0][31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed[7:0][31:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed" type="array">
       <obj_property name="ElementShortName">deframed[7:0][31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed[7:0][31:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed_aligned">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed_aligned" type="array">
       <obj_property name="ElementShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed_mapped">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/deframed_mapped" type="array">
       <obj_property name="ElementShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned" type="array">
       <obj_property name="ElementShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed_aligned[7:0][31:0][13:0]</obj_property>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[7]" type="array">
+         <obj_property name="ElementShortName">[7][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[6]" type="array">
+         <obj_property name="ElementShortName">[6][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[5]" type="array">
+         <obj_property name="ElementShortName">[5][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[4]" type="array">
+         <obj_property name="ElementShortName">[4][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[3]" type="array">
+         <obj_property name="ElementShortName">[3][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[2]" type="array">
+         <obj_property name="ElementShortName">[2][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[1]" type="array">
+         <obj_property name="ElementShortName">[1][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][31:0][13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_aligned[0]" type="array">
+         <obj_property name="ElementShortName">[0][31:0][13:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][31:0][13:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_mapped">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/deframed_mapped" type="array">
       <obj_property name="ElementShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
       <obj_property name="ObjectShortName">deframed_mapped[1:0][1:0][3:0][15:0][13:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/fbf0/parallel_daq_0">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/fbf0/parallel_daq_0" type="array">
       <obj_property name="ElementShortName">parallel_daq_0[895:0]</obj_property>
       <obj_property name="ObjectShortName">parallel_daq_0[895:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/fbf0/parallel_daq_1">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/fbf0/parallel_daq_1" type="array">
       <obj_property name="ElementShortName">parallel_daq_1[895:0]</obj_property>
       <obj_property name="ObjectShortName">parallel_daq_1[895:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words_0">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words_0" type="array">
       <obj_property name="ElementShortName">tx_words_0[55:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">tx_words_0[55:0][31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words_1">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words_1" type="array">
       <obj_property name="ElementShortName">tx_words_1[55:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">tx_words_1[55:0][31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/tx_words" type="array">
       <obj_property name="ElementShortName">tx_words[111:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">tx_words[111:0][31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/daq_stream_d">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/daq_stream_d" type="array">
       <obj_property name="ElementShortName">daq_stream_d[1:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">daq_stream_d[1:0][31:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/data_ready">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/data_ready" type="array">
       <obj_property name="ElementShortName">data_ready[3:0]</obj_property>
       <obj_property name="ObjectShortName">data_ready[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_served">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_served" type="array">
       <obj_property name="ElementShortName">rq_served[3:0]</obj_property>
       <obj_property name="ObjectShortName">rq_served[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/data_ready">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/data_ready" type="array">
       <obj_property name="ElementShortName">data_ready[3:0]</obj_property>
       <obj_property name="ObjectShortName">data_ready[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/rq_served">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/rq_served" type="array">
       <obj_property name="ElementShortName">rq_served[3:0]</obj_property>
       <obj_property name="ObjectShortName">rq_served[3:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_state">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/rq_state" type="array">
       <obj_property name="ElementShortName">rq_state[1:0]</obj_property>
       <obj_property name="ObjectShortName">rq_state[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/valid_aligned">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/valid_aligned" type="array">
       <obj_property name="ElementShortName">valid_aligned[7:0]</obj_property>
       <obj_property name="ObjectShortName">valid_aligned[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/valid_aligned">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs1/valid_aligned" type="array">
       <obj_property name="ElementShortName">valid_aligned[7:0]</obj_property>
       <obj_property name="ObjectShortName">valid_aligned[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/sysclk_cnt">
+   <wvobject fp_name="/test_bench_coldata/sysclk_cnt" type="array">
       <obj_property name="ElementShortName">sysclk_cnt[4:0]</obj_property>
       <obj_property name="ObjectShortName">sysclk_cnt[4:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/daq_clk">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/daq_clk" type="logic">
       <obj_property name="ElementShortName">daq_clk</obj_property>
       <obj_property name="ObjectShortName">daq_clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_reset">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_reset" type="logic">
       <obj_property name="ElementShortName">crc_reset</obj_property>
       <obj_property name="ObjectShortName">crc_reset</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_calc">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_calc" type="logic">
       <obj_property name="ElementShortName">crc_calc</obj_property>
       <obj_property name="ObjectShortName">crc_calc</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_inject">
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/fbld/fbs0/crc_inject" type="array">
       <obj_property name="ElementShortName">crc_inject[2:0]</obj_property>
       <obj_property name="ObjectShortName">crc_inject[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_bench_coldata/clk62p5_p" type="logic">
+      <obj_property name="ElementShortName">clk62p5_p</obj_property>
+      <obj_property name="ObjectShortName">clk62p5_p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_bench_coldata/clk312p5" type="logic">
+      <obj_property name="ElementShortName">clk312p5</obj_property>
+      <obj_property name="ObjectShortName">clk312p5</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/timing_module/pdts_endpoint_0/stat" type="array">
+      <obj_property name="ElementShortName">stat[3:0]</obj_property>
+      <obj_property name="ObjectShortName">stat[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/timing_module/pdts_endpoint_0/tstamp" type="array">
+      <obj_property name="ElementShortName">tstamp[63:0]</obj_property>
+      <obj_property name="ObjectShortName">tstamp[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_bench_coldata/mpsoc_sys/wrp/design_1_i/timing_module/pdts_endpoint_0/rdy" type="logic">
+      <obj_property name="ElementShortName">rdy</obj_property>
+      <obj_property name="ObjectShortName">rdy</obj_property>
    </wvobject>
 </wave_config>

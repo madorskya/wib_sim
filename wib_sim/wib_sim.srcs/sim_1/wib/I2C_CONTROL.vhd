@@ -66,8 +66,8 @@ entity I2C_CONTROL is
           PL_FEMB_PWR2_SCL          : INOUT STD_LOGIC;                 --    3.3V,
           PL_FEMB_PWR2_SDA          : INOUT STD_LOGIC;                 --    3.3V,
     
-          LTC2977_SDA               : INOUT STD_LOGIC;                 --    3.3V,
-          LTC2977_SCL               : INOUT STD_LOGIC;                 --    3.3V,
+--          LTC2977_SDA               : INOUT STD_LOGIC;                 --    3.3V,
+--          LTC2977_SCL               : INOUT STD_LOGIC;                 --    3.3V,
     
           PL_FEMB_PWR3_SCL          : INOUT STD_LOGIC;                 --    1.8V, default 
           PL_FEMB_PWR3_SDA          : INOUT STD_LOGIC;                 --    1.8V, default 
@@ -126,9 +126,9 @@ SIGNAL  PL_FEMB_PWR2_SDA_i          : STD_LOGIC;                 --    3.3V,
 SIGNAL  PL_FEMB_PWR2_SDA_o          : STD_LOGIC;                 --    3.3V,
 
 
-SIGNAL  LTC2977_SDA_i               : STD_LOGIC;                 --    3.3V,
-SIGNAL  LTC2977_SCL_i               : STD_LOGIC;                 --    3.3V,
-SIGNAL  LTC2977_SCL_o               : STD_LOGIC;                 --    3.3V,
+--SIGNAL  LTC2977_SDA_i               : STD_LOGIC;                 --    3.3V,
+--SIGNAL  LTC2977_SCL_i               : STD_LOGIC;                 --    3.3V,
+--SIGNAL  LTC2977_SCL_o               : STD_LOGIC;                 --    3.3V,
 
 
 SIGNAL  PL_FEMB_PWR3_SCL_i          : STD_LOGIC;                 --    1.8V, default 
@@ -154,7 +154,7 @@ begin
                                 PL_FEMB_EN_SCL_i    when(I2C_SELECT = x"04") else
                                 SENSOR_I2C_SCL_i    when(I2C_SELECT = x"05") else
                                 PL_FEMB_PWR2_SCL_i  when(I2C_SELECT = x"06") else
-                                LTC2977_SCL_i       when(I2C_SELECT = x"07") else
+                                --LTC2977_SCL_i       when(I2C_SELECT = x"07") else
                                 PL_FEMB_PWR3_SCL_i  when(I2C_SELECT = x"08") else
                                 FLASH_SCL_i         when(I2C_SELECT = x"09") else
                                 ADN2814_SCL_i       when(I2C_SELECT = x"0A") else
@@ -167,7 +167,7 @@ begin
                                 PL_FEMB_EN_SDA_i    when(I2C_SELECT = x"04") else
                                 SENSOR_I2C_SDA_i    when(I2C_SELECT = x"05") else
                                 PL_FEMB_PWR2_SDA_i  when(I2C_SELECT = x"06") else
-                                LTC2977_SDA_i       when(I2C_SELECT = x"07") else
+                                --LTC2977_SDA_i       when(I2C_SELECT = x"07") else
                                 PL_FEMB_PWR3_SDA_i  when(I2C_SELECT = x"08") else
                                 FLASH_SDA_i         when(I2C_SELECT = x"09") else
                                 ADN2814_SDA_i       when(I2C_SELECT = x"0A") else
@@ -181,7 +181,7 @@ begin
  PL_FEMB_EN_SDA_o    <= iic_rtl_0_sda_o when(I2C_SELECT = x"04") else  '1';
  SENSOR_I2C_SDA_o    <= iic_rtl_0_sda_o when(I2C_SELECT = x"05") else  '1';                         
  PL_FEMB_PWR2_SDA_o  <= iic_rtl_0_sda_o when(I2C_SELECT = x"06") else  '1';                     
- LTC2977_SCL_o       <= iic_rtl_0_sda_o when(I2C_SELECT = x"07") else  '1';                
+ --LTC2977_SCL_o       <= iic_rtl_0_sda_o when(I2C_SELECT = x"07") else  '1';                
  PL_FEMB_PWR3_SDA_o  <= iic_rtl_0_sda_o when(I2C_SELECT = x"08") else  '1';                       
  FLASH_SDA_o         <= iic_rtl_0_sda_o when(I2C_SELECT = x"09") else  '1';                
  ADN2814_SDA_o       <= iic_rtl_0_sda_o when(I2C_SELECT = x"0A") else  '1';      
@@ -209,8 +209,8 @@ SENSOR_I2C_SDA_iobuf:   component IOBUF  port map (IO => SENSOR_I2C_SDA,I => SEN
 PL_FEMB_PWR2_SCL_iobuf: component IOBUF  port map (IO => PL_FEMB_PWR2_SCL,I => iic_rtl_0_scl_o, O => PL_FEMB_PWR2_SCL_i,T => iic_rtl_0_scl_t );
 PL_FEMB_PWR2_SDA_iobuf: component IOBUF  port map (IO => PL_FEMB_PWR2_SDA,I => PL_FEMB_PWR2_SDA_o,O => PL_FEMB_PWR2_SDA_i,T => iic_rtl_0_sda_t );	
 
-LTC2977_SCL_iobuf:      component IOBUF  port map (IO => LTC2977_SCL,I => iic_rtl_0_scl_o,O => LTC2977_SCL_i,T => iic_rtl_0_scl_t );
-LTC2977_SDA_iobuf:      component IOBUF  port map (IO => LTC2977_SDA,I => LTC2977_SCL_o,O => LTC2977_SDA_i,T => iic_rtl_0_sda_t );	
+--LTC2977_SCL_iobuf:      component IOBUF  port map (IO => LTC2977_SCL,I => iic_rtl_0_scl_o,O => LTC2977_SCL_i,T => iic_rtl_0_scl_t );
+--LTC2977_SDA_iobuf:      component IOBUF  port map (IO => LTC2977_SDA,I => LTC2977_SCL_o,O => LTC2977_SDA_i,T => iic_rtl_0_sda_t );	
 
 PL_FEMB_PWR3_SCL_iobuf: component IOBUF  port map (IO => PL_FEMB_PWR3_SCL,I => iic_rtl_0_scl_o,O => PL_FEMB_PWR3_SCL_i,T => iic_rtl_0_scl_t );
 PL_FEMB_PWR3_SDA_iobuf: component IOBUF  port map (IO => PL_FEMB_PWR3_SDA,I => PL_FEMB_PWR3_SDA_o,O => PL_FEMB_PWR3_SDA_i,T => iic_rtl_0_sda_t );	

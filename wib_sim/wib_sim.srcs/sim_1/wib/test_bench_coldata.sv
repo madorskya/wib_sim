@@ -14,7 +14,8 @@ reg resp;
 reg [7:0]  irq_status;
 reg [31:0] src_data;
 reg [31:0] dst_data;
-reg clk62p5 = 1'b0;
+reg clk62p5_p, clk62p5_n;
+reg clk312p5 = 1'b0;
 reg [31:0] clk62_cnt;
 reg clk_1p28g;
 reg daq_clk;
@@ -445,16 +446,16 @@ begin
     #400 clk_1p28g = !clk_1p28g; // simulated PLL output, 1.25G 
     if (refclk_cnt == 4'd9)
     begin
-        gtrefclk00p_in = ~gtrefclk00p_in; // 128 M ref clk
+        gtrefclk00p_in = ~gtrefclk00p_in; // 125 M ref clk
         gtrefclk00n_in = ~gtrefclk00p_in;
         refclk_cnt = 4'd0;
     end
     else
         refclk_cnt++;
 
-    if (sysclk_cnt == 5'd19)
+    if (sysclk_cnt == 5'd3)
     begin
-        clk62p5 = ~clk62p5; // 62.5 M system clock
+        clk312p5 = ~clk312p5; // 312.5 M clock from SI5344
         sysclk_cnt = 5'd0;
     end
     else
@@ -466,13 +467,13 @@ begin
     #2083.33 daq_clk = ~daq_clk; // 240 MHz clock, for 9.6G TX in the link
 end
 
-always @(posedge clk62p5) 
+always @(posedge clk62p5_p) 
 begin
 	clk62_cnt++;
 end
 
-assign CLK_64MHZ_SYS_P =  clk62p5;
-assign CLK_64MHZ_SYS_N = !clk62p5;
+assign CLK_64MHZ_SYS_P = clk62p5_p;
+assign CLK_64MHZ_SYS_N = clk62p5_n;
 
 reg [31:0] counter_2M = 0;
 always @(posedge ADC_CLK_2MHZ_P[3])
@@ -535,7 +536,7 @@ begin
     tb_ARESETn = 1'b1;
     repeat(200)@(posedge tb_ACLK);        
     PAD_RESET = 1'b1; 
-    repeat(1100)@(posedge clk62p5); // COLDATA initialization time       
+    repeat(1100)@(posedge clk62p5_p); // COLDATA initialization time       
     @(posedge tb_ACLK);
     
     repeat(5) @(posedge tb_ACLK);
@@ -760,8 +761,8 @@ end
 
     wib_top mpsoc_sys
     (
-        .dune_clk_fpga_in_p     (clk62p5      ),
-        .dune_clk_fpga_in_n     (~clk62p5     ),
+        .dune_clk_fpga_in_p     (1'b0), // unused
+        .dune_clk_fpga_in_n     (1'b1),
         .gpo_0         (gpo_0        ),
 
         .i2c_lvds_scl_p     (i2c_lvds_scl_p    ),
@@ -770,19 +771,62 @@ end
         .i2c_lvds_sda_c2w_n (i2c_lvds_sda_c2w_n),
         .i2c_lvds_sda_w2c_p (i2c_lvds_sda_w2c_p),
         .i2c_lvds_sda_w2c_n (i2c_lvds_sda_w2c_n),
+        .i2c_lvds_l2_sda_w2c_p (),
+        .i2c_lvds_l2_sda_w2c_n (),
+        .i2c_lvds_l2_sda_c2w_p (1'b1),
+        .i2c_lvds_l2_sda_c2w_n (1'b0),
 
+        .coldata_clk40_p (),
+        .coldata_clk40_n (),
 
         .femb_cmd_fpga_out_n (FASTCOMMAND_IN_N),
         .femb_cmd_fpga_out_p (FASTCOMMAND_IN_P),
+
+        // clock to FEMBs, 62.5M, recovered by timing endpoint    
+        .femb_clk_fpga_out_p (clk62p5_p), 
+        .femb_clk_fpga_out_n (clk62p5_n),
+
+        .adn2814_data_p (1'b0), // data from timing stream 
+        .adn2814_data_n (1'b1),
+
+        .si5344_out1_p ( clk312p5), // clock recovered from timing stream
+        .si5344_out1_n (~clk312p5),
+
+        .adn2814_los (1'b0),
+        .adn2814_lol (1'b0),
 
         .gtrefclk00p_in (gtrefclk00p_in), // reference clocks(), 128M
         .gtrefclk00n_in (gtrefclk00n_in), // reference clocks(), 128M
         .gthrxn_in      (gthrxn_in    ), // RX diff lines
         .gthrxp_in      (gthrxp_in    ),
         
-        .daq_clk        (daq_clk)    
+        .daq_clk        (daq_clk),    
+
+        .si5344_scl (), 
+        .si5344_sda (), 
+        .si5342_scl (), 
+        .si5342_sda (), 
+        .qsfp_scl (),     
+        .qsfp_sda (), 
+        .pl_femb_pwr_scl (), 
+        .pl_femb_pwr_sda (), 
+        .pl_femb_en_scl (), 
+        .pl_femb_en_sda (), 
+        .sensor_i2c_scl (), 
+        .sensor_i2c_sda (), 
+        .pl_femb_pwr2_scl (), 
+        .pl_femb_pwr2_sda (), 
+        .pl_femb_pwr3_scl (),  
+        .pl_femb_pwr3_sda (),  
+        .flash_scl (), 
+        .flash_sda (), 
+        .adn2814_scl (),   
+        .adn2814_sda ()
     );
 
-
+/*
+    
+    // I2C busses for onboard devices
+*/
 endmodule
 
