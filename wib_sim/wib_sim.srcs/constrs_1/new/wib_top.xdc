@@ -3,7 +3,7 @@
 
 set_property -dict {LOC W12 IOSTANDARD LVCMOS18} [get_ports gpo_0]
 
-set_property -dict {LOC P11 IOSTANDARD LVCMOS18} [get_ports daq_clk]; # temporary
+#set_property -dict {LOC P11 IOSTANDARD LVCMOS18} [get_ports daq_clk]; # temporary
 
 #set_property -dict {LOC AD4 IOSTANDARD LVDS} [get_ports femb_cmd_fpga_out_p]
 
@@ -54,13 +54,16 @@ create_clock -period 8 -name gtrefclk00p_in2 [get_ports gtrefclk00p_in[2]]
 create_clock -period 8 -name gtrefclk00p_in3 [get_ports gtrefclk00p_in[3]]
 
 create_clock -period 16.000 -name dune_clk_fpga_in_p [get_ports dune_clk_fpga_in_p]
-create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
+#create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
 
 set_clock_groups -group [get_clocks -include_generated_clocks dune_clk_fpga_in_p] -asynchronous
-set_clock_groups -group [get_clocks -include_generated_clocks daq_clk] -asynchronous
+#set_clock_groups -group [get_clocks -include_generated_clocks daq_clk] -asynchronous
 
 set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks clk_pl_0]
 set_false_path -from [get_clocks clk_pl_0] -to [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] 
+
+set_property CLOCK_DEDICATED_ROUTE ANY_CMT_COLUMN [get_nets clk50]
+create_clock -period 20 -name clk50 [get_ports clk50]
  
 # below copied from Jack's project
 
