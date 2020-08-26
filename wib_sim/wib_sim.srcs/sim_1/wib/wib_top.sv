@@ -43,7 +43,6 @@ module wib_top
     input  [3 : 0] gtrefclk00n_in, // reference clocks; 125M
     input [15 : 0] gthrxn_in    , // RX diff lines
     input [15 : 0] gthrxp_in    ,
-    input daq_clk,
     
     // I2C busses for onboard devices
     inout si5344_scl, 
@@ -67,7 +66,15 @@ module wib_top
     inout flash_scl, 
     inout flash_sda, 
     inout adn2814_scl,   
-    inout adn2814_sda 
+    inout adn2814_sda, 
+    
+    output fp_sfp_sel, // (sch page 14) P15 SFP connection selector U11
+    // return signals from timing point
+    output tx_timing_p,
+    output tx_timing_n,
+    
+    // standalone oscillator 
+    input  clk_in_50mhz
     
 );
 
@@ -120,6 +127,12 @@ module wib_top
     // system 62.5M clock to FEMBs, from timing pt.
     // note: not needed, clock to FEMBs is delivered by timing chips
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
+
+    wire tx_timing;
+    OBUFDS tx_tim_buf_out (.I(tx_timing), .O(tx_timing_p), .OB(tx_timing_n));
+    
+    wire clk50;
+    BUFG clk50_bufg (.I(clk_in_50mhz), .O(clk50));
 
     genvar gi;
     // swizzle bytes in rx_data for easier viewing in the simulation traces
@@ -197,6 +210,7 @@ module wib_top
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
     
     wire [3:0] i2c_select = `CONFIG_BITS(1, 0, 4);
+    assign fp_sfp_sel     = `CONFIG_BITS(1, 4, 4);
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
     
@@ -242,7 +256,7 @@ module wib_top
     wire [15:0] link_mask = 16'h0; // this input allows to disable some links in case the are broken
     (* mark_debug *) wire [31:0] daq_stream [1:0]; // data to felix
     (* mark_debug *) wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
-    
+    wire daq_clk;
     
     frame_builder fbld
     (
@@ -302,5 +316,13 @@ module wib_top
         .ADN2814_SCL (adn2814_scl),   
         .ADN2814_SDA (adn2814_sda) 
     );
-    
+
+    // fake timing master, for tests
+    timing_master_fake tmf
+    (
+        .clk50     (clk50),
+        .tx_timing (tx_timing),
+        .clk240    (daq_clk) // temporary replacement for real DAQ clock that should be coming from FELIX links
+    );
+        
 endmodule
