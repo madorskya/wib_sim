@@ -7,7 +7,7 @@ set_property -dict {LOC P11 IOSTANDARD LVCMOS18} [get_ports daq_clk]; # temporar
 
 #set_property -dict {LOC AD4 IOSTANDARD LVDS} [get_ports femb_cmd_fpga_out_p]
 
-#set_property -dict {LOC AG5  IOSTANDARD LVDS} [get_ports femb_clk_fpga_out_p] 
+set_property -dict {LOC AG5  IOSTANDARD LVDS} [get_ports femb_clk_fpga_out_p] 
 
 set_property -dict {LOC AE2  IOSTANDARD LVDS} [get_ports i2c_lvds_scl_p[0]]
 set_property -dict {LOC AD2  IOSTANDARD LVDS DIFF_TERM_ADV TERM_100} [get_ports i2c_lvds_sda_c2w_p[0]]
@@ -58,6 +58,9 @@ create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
 
 set_clock_groups -group [get_clocks -include_generated_clocks dune_clk_fpga_in_p] -asynchronous
 set_clock_groups -group [get_clocks -include_generated_clocks daq_clk] -asynchronous
+
+set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks clk_pl_0]
+set_false_path -from [get_clocks clk_pl_0] -to [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] 
  
 # below copied from Jack's project
 
