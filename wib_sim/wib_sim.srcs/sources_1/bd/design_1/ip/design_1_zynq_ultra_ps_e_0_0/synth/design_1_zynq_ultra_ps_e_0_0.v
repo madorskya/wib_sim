@@ -53,7 +53,7 @@
 (* X_CORE_INFO = "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_zynq_ultra_ps_e_0_0,zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,{}" *)
 (* CORE_GENERATION_INFO = "design_1_zynq_ultra_ps_e_0_0,zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=zynq_ultra_ps_e,x_ipVersion=3.3,x_ipCoreRevision=2,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_DP_USE_AUDIO=0,C_DP_USE_VIDEO=0,C_MAXIGP0_DATA_WIDTH=128,C_MAXIGP1_DATA_WIDTH=128,C_MAXIGP2_DATA_WIDTH=32,C_SAXIGP0_DATA_WIDTH=128,C_SAXIGP1_DATA_WIDTH=128,C_SAXIGP2_DATA_WIDTH=128,C_SAXIGP3_DATA_WIDTH=128,C_SAXIGP4_DATA_WIDTH=128,C_SAXIGP5_DATA_WIDTH=128,C_SAXIG\
-P6_DATA_WIDTH=128,C_USE_DIFF_RW_CLK_GP0=0,C_USE_DIFF_RW_CLK_GP1=0,C_USE_DIFF_RW_CLK_GP2=0,C_USE_DIFF_RW_CLK_GP3=0,C_USE_DIFF_RW_CLK_GP4=0,C_USE_DIFF_RW_CLK_GP5=0,C_USE_DIFF_RW_CLK_GP6=0,C_EN_FIFO_ENET0=0,C_EN_FIFO_ENET1=0,C_EN_FIFO_ENET2=0,C_EN_FIFO_ENET3=0,C_PL_CLK0_BUF=TRUE,C_PL_CLK1_BUF=FALSE,C_PL_CLK2_BUF=FALSE,C_PL_CLK3_BUF=FALSE,C_TRACE_PIPELINE_WIDTH=8,C_EN_EMIO_TRACE=0,C_TRACE_DATA_WIDTH=32,C_USE_DEBUG_TEST=0,C_SD0_INTERNAL_BUS_WIDTH=8,C_SD1_INTERNAL_BUS_WIDTH=8,C_NUM_F2P_0_INTR_INPUTS=1\
+P6_DATA_WIDTH=128,C_USE_DIFF_RW_CLK_GP0=0,C_USE_DIFF_RW_CLK_GP1=0,C_USE_DIFF_RW_CLK_GP2=0,C_USE_DIFF_RW_CLK_GP3=0,C_USE_DIFF_RW_CLK_GP4=0,C_USE_DIFF_RW_CLK_GP5=0,C_USE_DIFF_RW_CLK_GP6=0,C_EN_FIFO_ENET0=0,C_EN_FIFO_ENET1=0,C_EN_FIFO_ENET2=0,C_EN_FIFO_ENET3=0,C_PL_CLK0_BUF=TRUE,C_PL_CLK1_BUF=FALSE,C_PL_CLK2_BUF=FALSE,C_PL_CLK3_BUF=FALSE,C_TRACE_PIPELINE_WIDTH=8,C_EN_EMIO_TRACE=0,C_TRACE_DATA_WIDTH=32,C_USE_DEBUG_TEST=0,C_SD0_INTERNAL_BUS_WIDTH=8,C_SD1_INTERNAL_BUS_WIDTH=4,C_NUM_F2P_0_INTR_INPUTS=1\
 ,C_NUM_F2P_1_INTR_INPUTS=1,C_EMIO_GPIO_WIDTH=1,C_NUM_FABRIC_RESETS=1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_zynq_ultra_ps_e_0_0 (
@@ -97,6 +97,7 @@ module design_1_zynq_ultra_ps_e_0_0 (
   maxigp0_rready,
   maxigp0_awqos,
   maxigp0_arqos,
+  emio_enet0_enet_tsu_timer_cnt,
   pl_ps_irq0,
   pl_resetn0,
   pl_clk0
@@ -181,10 +182,11 @@ input wire maxigp0_rvalid;
 output wire maxigp0_rready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD AWQOS" *)
 output wire [3 : 0] maxigp0_awqos;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXI_HPM0_FPD, NUM_WRITE_OUTSTANDING 8, NUM_READ_OUTSTANDING 8, DATA_WIDTH 128, PROTOCOL AXI4, FREQ_HZ 100000000, ID_WIDTH 16, ADDR_WIDTH 39, AWUSER_WIDTH 16, ARUSER_WIDTH 16, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, MAX_BURST_LENGTH 256, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_\
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXI_HPM0_FPD, NUM_WRITE_OUTSTANDING 8, NUM_READ_OUTSTANDING 8, DATA_WIDTH 128, PROTOCOL AXI4, FREQ_HZ 100000000, ID_WIDTH 16, ADDR_WIDTH 40, AWUSER_WIDTH 16, ARUSER_WIDTH 16, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, MAX_BURST_LENGTH 256, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_\
 THREADS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARQOS" *)
 output wire [3 : 0] maxigp0_arqos;
+output wire [93 : 0] emio_enet0_enet_tsu_timer_cnt;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_PS_IRQ0, SENSITIVITY LEVEL_HIGH, PortWidth 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 PL_PS_IRQ0 INTERRUPT" *)
 input wire [0 : 0] pl_ps_irq0;
@@ -228,7 +230,7 @@ output wire pl_clk0;
     .C_TRACE_DATA_WIDTH(32),
     .C_USE_DEBUG_TEST(0),
     .C_SD0_INTERNAL_BUS_WIDTH(8),
-    .C_SD1_INTERNAL_BUS_WIDTH(8),
+    .C_SD1_INTERNAL_BUS_WIDTH(4),
     .C_NUM_F2P_0_INTR_INPUTS(1),
     .C_NUM_F2P_1_INTR_INPUTS(1),
     .C_EMIO_GPIO_WIDTH(1),
@@ -995,7 +997,7 @@ output wire pl_clk0;
     .fmio_gem_tsu_clk_to_pl_bufg(),
     .fmio_gem_tsu_clk_from_pl(1'B0),
     .emio_enet_tsu_clk(1'B0),
-    .emio_enet0_enet_tsu_timer_cnt(),
+    .emio_enet0_enet_tsu_timer_cnt(emio_enet0_enet_tsu_timer_cnt),
     .emio_enet0_ext_int_in(1'B0),
     .emio_enet1_ext_int_in(1'B0),
     .emio_enet2_ext_int_in(1'B0),
@@ -1053,7 +1055,7 @@ output wire pl_clk0;
     .emio_sdio1_cmdout(),
     .emio_sdio1_cmdin(1'B0),
     .emio_sdio1_cmdena(),
-    .emio_sdio1_datain(8'B0),
+    .emio_sdio1_datain(4'B0),
     .emio_sdio1_dataout(),
     .emio_sdio1_dataena(),
     .emio_sdio1_cd_n(1'B0),
