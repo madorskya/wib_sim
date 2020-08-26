@@ -143,6 +143,7 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
     zynq_ultra_ps_e_tlm :: zynq_ultra_ps_e_tlm (sc_core::sc_module_name name,
     xsc::common_cpp::properties&): sc_module(name)//registering module name with parent
         ,maxihpm0_fpd_aclk("maxihpm0_fpd_aclk")
+        ,emio_enet0_enet_tsu_timer_cnt("emio_enet0_enet_tsu_timer_cnt")
         ,pl_ps_irq0("pl_ps_irq0")
         ,pl_resetn0("pl_resetn0")
         ,pl_clk0("pl_clk0")

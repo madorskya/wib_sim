@@ -85,7 +85,7 @@ design_1_zynq_ultra_ps_e_0_0_sc::design_1_zynq_ultra_ps_e_0_0_sc(const sc_core::
     model_param_props.addLong("C_TRACE_DATA_WIDTH", "32");
     model_param_props.addLong("C_USE_DEBUG_TEST", "0");
     model_param_props.addLong("C_SD0_INTERNAL_BUS_WIDTH", "8");
-    model_param_props.addLong("C_SD1_INTERNAL_BUS_WIDTH", "8");
+    model_param_props.addLong("C_SD1_INTERNAL_BUS_WIDTH", "4");
     model_param_props.addLong("C_NUM_F2P_0_INTR_INPUTS", "1");
     model_param_props.addLong("C_NUM_F2P_1_INTR_INPUTS", "1");
     model_param_props.addLong("C_EMIO_GPIO_WIDTH", "1");
