@@ -68,7 +68,8 @@ module wib_top
     inout adn2814_scl,   
     inout adn2814_sda, 
     
-    output fp_sfp_sel, // (sch page 14) P15 SFP connection selector U11
+    output fp_sfp_sel, // (sch page 14) P15 SFP connection selector U11 0=CDR 1=GTH
+    output rx_timing_sel, // sch page 15 U1 input selector 0=backplane 1=SFP
     // return signals from timing point
     output tx_timing_p,
     output tx_timing_n,
@@ -210,7 +211,8 @@ module wib_top
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
     
     wire [3:0] i2c_select = `CONFIG_BITS(1, 0, 4);
-    assign fp_sfp_sel     = `CONFIG_BITS(1, 4, 4);
+    assign fp_sfp_sel     = `CONFIG_BITS(1, 4, 1);
+    assign rx_timing_sel  = `CONFIG_BITS(1, 5, 1);
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
     
