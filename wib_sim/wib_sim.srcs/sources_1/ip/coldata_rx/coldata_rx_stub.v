@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Sun Aug 23 18:48:46 2020
+// Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+// Date        : Fri Oct  2 20:09:15 2020
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_stub.v
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "coldata_rx_gtwizard_top,Vivado 2020.1" *)
+(* X_CORE_INFO = "coldata_rx_gtwizard_top,Vivado 2020.1.1_AR73018" *)
 module coldata_rx(gtwiz_userclk_tx_reset_in, 
   gtwiz_userclk_tx_srcclk_out, gtwiz_userclk_tx_usrclk_out, 
   gtwiz_userclk_tx_usrclk2_out, gtwiz_userclk_tx_active_out, gtwiz_userclk_rx_reset_in, 

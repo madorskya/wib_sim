@@ -70,6 +70,8 @@ module wib_top
     
     output fp_sfp_sel, // (sch page 14) P15 SFP connection selector U11 0=CDR 1=GTH
     output rx_timing_sel, // sch page 15 U1 input selector 0=backplane 1=SFP
+    output mgt_clk_sel, // clock source selector for MGTs 1=standalone 0=recovered timing
+    output femb_clk_sel, // clock source selector for FEMBs 0=direcly from SI5344, 1=FPGA
     // return signals from timing point
     output tx_timing_p,
     output tx_timing_n,
@@ -79,6 +81,8 @@ module wib_top
     
 );
 
+    assign mgt_clk_sel = 1'b0; // select recovered clk permanently
+    assign femb_clk_sel = 1'b0; // select SI5344 clk permanently
     wire [7:0] gp_out;
     wire         coldata_rx_reset  = gp_out[0]   ; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 

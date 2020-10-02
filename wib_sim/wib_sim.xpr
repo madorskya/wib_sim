@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2020.1.1 (64-bit)              -->
+<!-- Product Version: Vivado v2020.1.1_AR73018 (64-bit)              -->
 <!--                                                         -->
 <!-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   -->
 
@@ -51,13 +51,13 @@
     <Option Name="WTVcsLaunchSim" Val="2"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="56"/>
-    <Option Name="WTModelSimExportSim" Val="64"/>
-    <Option Name="WTQuestaExportSim" Val="56"/>
-    <Option Name="WTIesExportSim" Val="56"/>
-    <Option Name="WTVcsExportSim" Val="56"/>
-    <Option Name="WTRivieraExportSim" Val="56"/>
-    <Option Name="WTActivehdlExportSim" Val="56"/>
+    <Option Name="WTXSimExportSim" Val="58"/>
+    <Option Name="WTModelSimExportSim" Val="66"/>
+    <Option Name="WTQuestaExportSim" Val="58"/>
+    <Option Name="WTIesExportSim" Val="58"/>
+    <Option Name="WTVcsExportSim" Val="58"/>
+    <Option Name="WTRivieraExportSim" Val="58"/>
+    <Option Name="WTActivehdlExportSim" Val="58"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>

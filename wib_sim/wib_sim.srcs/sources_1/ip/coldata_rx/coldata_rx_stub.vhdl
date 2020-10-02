@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Sun Aug 23 18:48:46 2020
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Fri Oct  2 20:09:15 2020
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_stub.vhdl
@@ -71,6 +71,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "gtwiz_userclk_tx_reset_in[0:0],gtwiz_userclk_tx_srcclk_out[0:0],gtwiz_userclk_tx_usrclk_out[0:0],gtwiz_userclk_tx_usrclk2_out[0:0],gtwiz_userclk_tx_active_out[0:0],gtwiz_userclk_rx_reset_in[0:0],gtwiz_userclk_rx_srcclk_out[0:0],gtwiz_userclk_rx_usrclk_out[0:0],gtwiz_userclk_rx_usrclk2_out[0:0],gtwiz_userclk_rx_active_out[0:0],gtwiz_reset_clk_freerun_in[0:0],gtwiz_reset_all_in[0:0],gtwiz_reset_tx_pll_and_datapath_in[0:0],gtwiz_reset_tx_datapath_in[0:0],gtwiz_reset_rx_pll_and_datapath_in[0:0],gtwiz_reset_rx_datapath_in[0:0],gtwiz_reset_rx_cdr_stable_out[0:0],gtwiz_reset_tx_done_out[0:0],gtwiz_reset_rx_done_out[0:0],gtwiz_userdata_tx_in[255:0],gtwiz_userdata_rx_out[255:0],gtrefclk00_in[3:0],qpll0outclk_out[3:0],qpll0outrefclk_out[3:0],gthrxn_in[15:0],gthrxp_in[15:0],rx8b10ben_in[15:0],rxcommadeten_in[15:0],rxmcommaalignen_in[15:0],rxpcommaalignen_in[15:0],tx8b10ben_in[15:0],txctrl0_in[255:0],txctrl1_in[255:0],txctrl2_in[127:0],txpd_in[31:0],gthtxn_out[15:0],gthtxp_out[15:0],gtpowergood_out[15:0],rxbyteisaligned_out[15:0],rxbyterealign_out[15:0],rxcommadet_out[15:0],rxctrl0_out[255:0],rxctrl1_out[255:0],rxctrl2_out[127:0],rxctrl3_out[127:0],rxpmaresetdone_out[15:0],txpmaresetdone_out[15:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "coldata_rx_gtwizard_top,Vivado 2020.1";
+attribute X_CORE_INFO of stub : architecture is "coldata_rx_gtwizard_top,Vivado 2020.1.1_AR73018";
 begin
 end;

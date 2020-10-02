@@ -249,7 +249,7 @@ gtwizard_ultrascale_v1_7_8_gthe4_common #(
   .GTHE4_COMMON_QPLL0_CP                        (10'b0011111111),
   .GTHE4_COMMON_QPLL0_CP_G3                     (10'b0000001111),
   .GTHE4_COMMON_QPLL0_FBDIV                     (80),
-  .GTHE4_COMMON_QPLL0_FBDIV_G3                  (160),
+  .GTHE4_COMMON_QPLL0_FBDIV_G3                  (128),
   .GTHE4_COMMON_QPLL0_INIT_CFG0                 (16'b0000001010110010),
   .GTHE4_COMMON_QPLL0_INIT_CFG1                 (8'b00000000),
   .GTHE4_COMMON_QPLL0_LOCK_CFG                  (16'b0010010111101000),
