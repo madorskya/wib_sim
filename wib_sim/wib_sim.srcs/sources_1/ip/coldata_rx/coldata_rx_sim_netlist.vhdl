@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Sun Aug 23 18:48:47 2020
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Fri Oct  2 20:09:15 2020
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_sim_netlist.vhdl
@@ -5168,7 +5168,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -5279,7 +5279,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -6019,7 +6019,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -6130,7 +6130,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -6870,7 +6870,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -6981,7 +6981,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -7721,7 +7721,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -7832,7 +7832,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -8968,7 +8968,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -9079,7 +9079,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -9819,7 +9819,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -9930,7 +9930,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -10670,7 +10670,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -10781,7 +10781,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -11521,7 +11521,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -11632,7 +11632,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -12768,7 +12768,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -12879,7 +12879,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -13619,7 +13619,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -13730,7 +13730,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -14470,7 +14470,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -14581,7 +14581,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -15321,7 +15321,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -15432,7 +15432,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -16568,7 +16568,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -16679,7 +16679,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -17419,7 +17419,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -17530,7 +17530,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -18270,7 +18270,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -18381,7 +18381,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -19121,7 +19121,7 @@ begin
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 6,
+      RX_CLK25_DIV => 5,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -19232,7 +19232,7 @@ begin
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 6,
+      TX_CLK25_DIV => 5,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 20,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -19795,7 +19795,7 @@ begin
       QPLL0_CP => B"0011111111",
       QPLL0_CP_G3 => B"0000001111",
       QPLL0_FBDIV => 80,
-      QPLL0_FBDIV_G3 => 160,
+      QPLL0_FBDIV_G3 => 128,
       QPLL0_INIT_CFG0 => X"02B2",
       QPLL0_INIT_CFG1 => X"00",
       QPLL0_LOCK_CFG => X"25E8",
@@ -20072,7 +20072,7 @@ begin
       QPLL0_CP => B"0011111111",
       QPLL0_CP_G3 => B"0000001111",
       QPLL0_FBDIV => 80,
-      QPLL0_FBDIV_G3 => 160,
+      QPLL0_FBDIV_G3 => 128,
       QPLL0_INIT_CFG0 => X"02B2",
       QPLL0_INIT_CFG1 => X"00",
       QPLL0_LOCK_CFG => X"25E8",
@@ -20353,7 +20353,7 @@ begin
       QPLL0_CP => B"0011111111",
       QPLL0_CP_G3 => B"0000001111",
       QPLL0_FBDIV => 80,
-      QPLL0_FBDIV_G3 => 160,
+      QPLL0_FBDIV_G3 => 128,
       QPLL0_INIT_CFG0 => X"02B2",
       QPLL0_INIT_CFG1 => X"00",
       QPLL0_LOCK_CFG => X"25E8",
@@ -20641,7 +20641,7 @@ begin
       QPLL0_CP => B"0011111111",
       QPLL0_CP_G3 => B"0000001111",
       QPLL0_FBDIV => 80,
-      QPLL0_FBDIV_G3 => 160,
+      QPLL0_FBDIV_G3 => 128,
       QPLL0_INIT_CFG0 => X"02B2",
       QPLL0_INIT_CFG1 => X"00",
       QPLL0_LOCK_CFG => X"25E8",
@@ -32270,8 +32270,8 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
         port map (
       I0 => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\,
       I1 => sm_reset_rx_cdr_to_ctr_reg(12),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(15),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(16),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(13),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(18),
       I4 => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\,
       I5 => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\,
       O => \sm_reset_rx_cdr_to_ctr[0]_i_1_n_0\
@@ -32281,23 +32281,23 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
       INIT => X"8000"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(4),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(0),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(8),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(5),
+      I0 => sm_reset_rx_cdr_to_ctr_reg(7),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(4),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(11),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(9),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\
     );
 \sm_reset_rx_cdr_to_ctr[0]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0100000000000000"
+      INIT => X"0001000000000000"
     )
         port map (
       I0 => sm_reset_rx_cdr_to_ctr_reg(3),
       I1 => sm_reset_rx_cdr_to_ctr_reg(1),
       I2 => sm_reset_rx_cdr_to_ctr_reg(2),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(20),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(17),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(19),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(0),
+      I4 => sm_reset_rx_cdr_to_ctr_reg(19),
+      I5 => sm_reset_rx_cdr_to_ctr_reg(20),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\
     );
 \sm_reset_rx_cdr_to_ctr[0]_i_5\: unisim.vcomponents.LUT5
@@ -32306,9 +32306,9 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       I0 => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\,
-      I1 => sm_reset_rx_cdr_to_ctr_reg(13),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(11),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(14),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(15),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(14),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(16),
       I4 => \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\,
       O => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\
     );
@@ -32328,7 +32328,7 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
       I0 => sm_reset_rx_cdr_to_ctr_reg(24),
       I1 => sm_reset_rx_cdr_to_ctr_reg(23),
       I2 => sm_reset_rx_cdr_to_ctr_reg(25),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(18),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(17),
       I4 => sm_reset_rx_cdr_to_ctr_reg(21),
       I5 => sm_reset_rx_cdr_to_ctr_reg(22),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\
@@ -32339,9 +32339,9 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       I0 => sm_reset_rx_cdr_to_ctr_reg(10),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(9),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(7),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(6),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(8),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(6),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(5),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\
     );
 \sm_reset_rx_cdr_to_ctr_reg[0]\: unisim.vcomponents.FDRE
@@ -37181,13 +37181,13 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_RX_INT_DATA_WIDTH : integer;
   attribute C_RX_INT_DATA_WIDTH of coldata_rx_coldata_rx_gtwizard_top : entity is 20;
   attribute C_RX_LINE_RATE : string;
-  attribute C_RX_LINE_RATE of coldata_rx_coldata_rx_gtwizard_top : entity is "1.280000";
+  attribute C_RX_LINE_RATE of coldata_rx_coldata_rx_gtwizard_top : entity is "1.250000";
   attribute C_RX_MASTER_CHANNEL_IDX : integer;
   attribute C_RX_MASTER_CHANNEL_IDX of coldata_rx_coldata_rx_gtwizard_top : entity is 15;
   attribute C_RX_OUTCLK_BUFG_GT_DIV : integer;
   attribute C_RX_OUTCLK_BUFG_GT_DIV of coldata_rx_coldata_rx_gtwizard_top : entity is 1;
   attribute C_RX_OUTCLK_FREQUENCY : string;
-  attribute C_RX_OUTCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_RX_OUTCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_RX_OUTCLK_SOURCE : integer;
   attribute C_RX_OUTCLK_SOURCE of coldata_rx_coldata_rx_gtwizard_top : entity is 1;
   attribute C_RX_PLL_TYPE : integer;
@@ -37195,7 +37195,7 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_RX_RECCLK_OUTPUT : string;
   attribute C_RX_RECCLK_OUTPUT of coldata_rx_coldata_rx_gtwizard_top : entity is "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
   attribute C_RX_REFCLK_FREQUENCY : string;
-  attribute C_RX_REFCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "128.000000";
+  attribute C_RX_REFCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "125.000000";
   attribute C_RX_SLIDE_MODE : integer;
   attribute C_RX_SLIDE_MODE of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_RX_USER_CLOCKING_CONTENTS : integer;
@@ -37211,9 +37211,9 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_RX_USER_DATA_WIDTH : integer;
   attribute C_RX_USER_DATA_WIDTH of coldata_rx_coldata_rx_gtwizard_top : entity is 16;
   attribute C_RX_USRCLK2_FREQUENCY : string;
-  attribute C_RX_USRCLK2_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_RX_USRCLK2_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_RX_USRCLK_FREQUENCY : string;
-  attribute C_RX_USRCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_RX_USRCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_SECONDARY_QPLL_ENABLE : integer;
   attribute C_SECONDARY_QPLL_ENABLE of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_SECONDARY_QPLL_REFCLK_FREQUENCY : string;
@@ -37231,7 +37231,7 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_TXPROGDIV_FREQ_SOURCE : integer;
   attribute C_TXPROGDIV_FREQ_SOURCE of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_TXPROGDIV_FREQ_VAL : string;
-  attribute C_TXPROGDIV_FREQ_VAL of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_TXPROGDIV_FREQ_VAL of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_TX_BUFFBYPASS_MODE : integer;
   attribute C_TX_BUFFBYPASS_MODE of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_TX_BUFFER_BYPASS_INSTANCE_CTRL : integer;
@@ -37245,19 +37245,19 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_TX_INT_DATA_WIDTH : integer;
   attribute C_TX_INT_DATA_WIDTH of coldata_rx_coldata_rx_gtwizard_top : entity is 20;
   attribute C_TX_LINE_RATE : string;
-  attribute C_TX_LINE_RATE of coldata_rx_coldata_rx_gtwizard_top : entity is "1.280000";
+  attribute C_TX_LINE_RATE of coldata_rx_coldata_rx_gtwizard_top : entity is "1.250000";
   attribute C_TX_MASTER_CHANNEL_IDX : integer;
   attribute C_TX_MASTER_CHANNEL_IDX of coldata_rx_coldata_rx_gtwizard_top : entity is 15;
   attribute C_TX_OUTCLK_BUFG_GT_DIV : integer;
   attribute C_TX_OUTCLK_BUFG_GT_DIV of coldata_rx_coldata_rx_gtwizard_top : entity is 1;
   attribute C_TX_OUTCLK_FREQUENCY : string;
-  attribute C_TX_OUTCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_TX_OUTCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_TX_OUTCLK_SOURCE : integer;
   attribute C_TX_OUTCLK_SOURCE of coldata_rx_coldata_rx_gtwizard_top : entity is 1;
   attribute C_TX_PLL_TYPE : integer;
   attribute C_TX_PLL_TYPE of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_TX_REFCLK_FREQUENCY : string;
-  attribute C_TX_REFCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "128.000000";
+  attribute C_TX_REFCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "125.000000";
   attribute C_TX_USER_CLOCKING_CONTENTS : integer;
   attribute C_TX_USER_CLOCKING_CONTENTS of coldata_rx_coldata_rx_gtwizard_top : entity is 0;
   attribute C_TX_USER_CLOCKING_INSTANCE_CTRL : integer;
@@ -37271,9 +37271,9 @@ entity coldata_rx_coldata_rx_gtwizard_top is
   attribute C_TX_USER_DATA_WIDTH : integer;
   attribute C_TX_USER_DATA_WIDTH of coldata_rx_coldata_rx_gtwizard_top : entity is 16;
   attribute C_TX_USRCLK2_FREQUENCY : string;
-  attribute C_TX_USRCLK2_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_TX_USRCLK2_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_TX_USRCLK_FREQUENCY : string;
-  attribute C_TX_USRCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "64.000000";
+  attribute C_TX_USRCLK_FREQUENCY of coldata_rx_coldata_rx_gtwizard_top : entity is "62.500000";
   attribute C_USER_GTPOWERGOOD_DELAY_EN : integer;
   attribute C_USER_GTPOWERGOOD_DELAY_EN of coldata_rx_coldata_rx_gtwizard_top : entity is 1;
   attribute ORIG_REF_NAME : string;
@@ -37834,7 +37834,7 @@ entity coldata_rx is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of coldata_rx : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of coldata_rx : entity is "coldata_rx_gtwizard_top,Vivado 2020.1";
+  attribute X_CORE_INFO of coldata_rx : entity is "coldata_rx_gtwizard_top,Vivado 2020.1.1_AR73018";
 end coldata_rx;
 
 architecture STRUCTURE of coldata_rx is
@@ -38060,13 +38060,13 @@ architecture STRUCTURE of coldata_rx is
   attribute C_RX_INT_DATA_WIDTH : integer;
   attribute C_RX_INT_DATA_WIDTH of inst : label is 20;
   attribute C_RX_LINE_RATE : string;
-  attribute C_RX_LINE_RATE of inst : label is "1.280000";
+  attribute C_RX_LINE_RATE of inst : label is "1.250000";
   attribute C_RX_MASTER_CHANNEL_IDX : integer;
   attribute C_RX_MASTER_CHANNEL_IDX of inst : label is 15;
   attribute C_RX_OUTCLK_BUFG_GT_DIV : integer;
   attribute C_RX_OUTCLK_BUFG_GT_DIV of inst : label is 1;
   attribute C_RX_OUTCLK_FREQUENCY : string;
-  attribute C_RX_OUTCLK_FREQUENCY of inst : label is "64.000000";
+  attribute C_RX_OUTCLK_FREQUENCY of inst : label is "62.500000";
   attribute C_RX_OUTCLK_SOURCE : integer;
   attribute C_RX_OUTCLK_SOURCE of inst : label is 1;
   attribute C_RX_PLL_TYPE : integer;
@@ -38074,7 +38074,7 @@ architecture STRUCTURE of coldata_rx is
   attribute C_RX_RECCLK_OUTPUT : string;
   attribute C_RX_RECCLK_OUTPUT of inst : label is "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
   attribute C_RX_REFCLK_FREQUENCY : string;
-  attribute C_RX_REFCLK_FREQUENCY of inst : label is "128.000000";
+  attribute C_RX_REFCLK_FREQUENCY of inst : label is "125.000000";
   attribute C_RX_SLIDE_MODE : integer;
   attribute C_RX_SLIDE_MODE of inst : label is 0;
   attribute C_RX_USER_CLOCKING_CONTENTS : integer;
@@ -38090,9 +38090,9 @@ architecture STRUCTURE of coldata_rx is
   attribute C_RX_USER_DATA_WIDTH : integer;
   attribute C_RX_USER_DATA_WIDTH of inst : label is 16;
   attribute C_RX_USRCLK2_FREQUENCY : string;
-  attribute C_RX_USRCLK2_FREQUENCY of inst : label is "64.000000";
+  attribute C_RX_USRCLK2_FREQUENCY of inst : label is "62.500000";
   attribute C_RX_USRCLK_FREQUENCY : string;
-  attribute C_RX_USRCLK_FREQUENCY of inst : label is "64.000000";
+  attribute C_RX_USRCLK_FREQUENCY of inst : label is "62.500000";
   attribute C_SECONDARY_QPLL_ENABLE : integer;
   attribute C_SECONDARY_QPLL_ENABLE of inst : label is 0;
   attribute C_SECONDARY_QPLL_REFCLK_FREQUENCY : string;
@@ -38110,7 +38110,7 @@ architecture STRUCTURE of coldata_rx is
   attribute C_TXPROGDIV_FREQ_SOURCE : integer;
   attribute C_TXPROGDIV_FREQ_SOURCE of inst : label is 0;
   attribute C_TXPROGDIV_FREQ_VAL : string;
-  attribute C_TXPROGDIV_FREQ_VAL of inst : label is "64.000000";
+  attribute C_TXPROGDIV_FREQ_VAL of inst : label is "62.500000";
   attribute C_TX_BUFFBYPASS_MODE : integer;
   attribute C_TX_BUFFBYPASS_MODE of inst : label is 0;
   attribute C_TX_BUFFER_BYPASS_INSTANCE_CTRL : integer;
@@ -38124,19 +38124,19 @@ architecture STRUCTURE of coldata_rx is
   attribute C_TX_INT_DATA_WIDTH : integer;
   attribute C_TX_INT_DATA_WIDTH of inst : label is 20;
   attribute C_TX_LINE_RATE : string;
-  attribute C_TX_LINE_RATE of inst : label is "1.280000";
+  attribute C_TX_LINE_RATE of inst : label is "1.250000";
   attribute C_TX_MASTER_CHANNEL_IDX : integer;
   attribute C_TX_MASTER_CHANNEL_IDX of inst : label is 15;
   attribute C_TX_OUTCLK_BUFG_GT_DIV : integer;
   attribute C_TX_OUTCLK_BUFG_GT_DIV of inst : label is 1;
   attribute C_TX_OUTCLK_FREQUENCY : string;
-  attribute C_TX_OUTCLK_FREQUENCY of inst : label is "64.000000";
+  attribute C_TX_OUTCLK_FREQUENCY of inst : label is "62.500000";
   attribute C_TX_OUTCLK_SOURCE : integer;
   attribute C_TX_OUTCLK_SOURCE of inst : label is 1;
   attribute C_TX_PLL_TYPE : integer;
   attribute C_TX_PLL_TYPE of inst : label is 0;
   attribute C_TX_REFCLK_FREQUENCY : string;
-  attribute C_TX_REFCLK_FREQUENCY of inst : label is "128.000000";
+  attribute C_TX_REFCLK_FREQUENCY of inst : label is "125.000000";
   attribute C_TX_USER_CLOCKING_CONTENTS : integer;
   attribute C_TX_USER_CLOCKING_CONTENTS of inst : label is 0;
   attribute C_TX_USER_CLOCKING_INSTANCE_CTRL : integer;
@@ -38150,9 +38150,9 @@ architecture STRUCTURE of coldata_rx is
   attribute C_TX_USER_DATA_WIDTH : integer;
   attribute C_TX_USER_DATA_WIDTH of inst : label is 16;
   attribute C_TX_USRCLK2_FREQUENCY : string;
-  attribute C_TX_USRCLK2_FREQUENCY of inst : label is "64.000000";
+  attribute C_TX_USRCLK2_FREQUENCY of inst : label is "62.500000";
   attribute C_TX_USRCLK_FREQUENCY : string;
-  attribute C_TX_USRCLK_FREQUENCY of inst : label is "64.000000";
+  attribute C_TX_USRCLK_FREQUENCY of inst : label is "62.500000";
   attribute C_USER_GTPOWERGOOD_DELAY_EN : integer;
   attribute C_USER_GTPOWERGOOD_DELAY_EN of inst : label is 1;
 begin

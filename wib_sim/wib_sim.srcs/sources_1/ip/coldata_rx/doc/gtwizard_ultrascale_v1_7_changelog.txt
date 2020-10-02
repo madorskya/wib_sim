@@ -1,3 +1,7 @@
+2020.1.1:
+ * Version 1.7 (Rev. 8)
+ * No changes
+
 2020.1:
  * Version 1.7 (Rev. 8)
  * Feature Enhancement: Added new transceiver configuration preset options for GTY-100GAUI_4/ GTY-50GAUI_2
