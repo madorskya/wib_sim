@@ -72,6 +72,7 @@ module wib_top
     output rx_timing_sel, // sch page 15 U1 input selector 0=backplane 1=SFP
     output mgt_clk_sel, // clock source selector for MGTs 1=standalone 0=recovered timing
     output femb_clk_sel, // clock source selector for FEMBs 0=direcly from SI5344, 1=FPGA
+    output femb_cmd_sel, // I2C command source for FEMBs 0=FPGA, 1=clock from SI5344, output 2 (why ???)
     // return signals from timing point
     output tx_timing_p,
     output tx_timing_n,
@@ -82,7 +83,8 @@ module wib_top
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
-    assign femb_clk_sel = 1'b0; // select SI5344 clk permanently
+    assign femb_clk_sel = 1'b1; // select FPGA clk permanently
+    assign femb_cmd_sel = 1'b0; // select FPGA command permanently
     wire [7:0] gp_out;
     wire         coldata_rx_reset  = gp_out[0]   ; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
@@ -146,6 +148,12 @@ module wib_top
             assign rx_data_swizzled[gi] = {rx_data[gi][7:0], rx_data[gi][15:8]};
     endgenerate
 
+    wire [1:0] daq_spy_full;
+    wire [1:0] daq_spy_reset;
+    (* mark_debug *) wire [31:0] daq_stream [1:0]; // data to felix
+    (* mark_debug *) wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
+    wire daq_clk;
+
     bd_tux wrp
     (
         .coldata_clk_40_p (coldata_clk40_p),
@@ -194,7 +202,13 @@ module wib_top
         .iic_rtl_0_scl_t (iic_rtl_0_scl_t),
         .iic_rtl_0_sda_i (iic_rtl_0_sda_i),
         .iic_rtl_0_sda_o (iic_rtl_0_sda_o),
-        .iic_rtl_0_sda_t (iic_rtl_0_sda_t)
+        .iic_rtl_0_sda_t (iic_rtl_0_sda_t),
+
+        .daq_clk       (daq_clk      ),
+        .daq_spy_full  (daq_spy_full ),
+        .daq_spy_reset (daq_spy_reset),
+        .daq_stream    (daq_stream   ),
+        .daq_stream_k  (daq_stream_k )
     );
 
     wire [1:0]   rx_k [15:0];
@@ -217,8 +231,10 @@ module wib_top
     wire [3:0] i2c_select = `CONFIG_BITS(1, 0, 4);
     assign fp_sfp_sel     = `CONFIG_BITS(1, 4, 1);
     assign rx_timing_sel  = `CONFIG_BITS(1, 5, 1);
+    assign daq_spy_reset  = `CONFIG_BITS(1, 6, 2);
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
+    assign `STATUS_BITS(16, 0,  2) = daq_spy_full;
     
     coldata_rx_tux coldata_rx
     (
@@ -260,9 +276,6 @@ module wib_top
     );
     
     wire [15:0] link_mask = 16'h0; // this input allows to disable some links in case the are broken
-    (* mark_debug *) wire [31:0] daq_stream [1:0]; // data to felix
-    (* mark_debug *) wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
-    wire daq_clk;
     
     frame_builder fbld
     (

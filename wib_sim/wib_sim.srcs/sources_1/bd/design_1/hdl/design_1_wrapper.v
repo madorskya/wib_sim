@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-//Date        : Wed Aug 26 18:20:28 2020
+//Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+//Date        : Wed Oct  7 00:16:52 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -14,6 +14,15 @@ module design_1_wrapper
     AXI_RSTn,
     WIB_LED_tri_o,
     clk_40,
+    daq_clk,
+    daq_spy_full_0,
+    daq_spy_full_1,
+    daq_spy_reset_0,
+    daq_spy_reset_1,
+    daq_stream0,
+    daq_stream1,
+    daq_stream_k0,
+    daq_stream_k1,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     gp_out_tri_o,
@@ -78,6 +87,15 @@ module design_1_wrapper
   output [0:0]AXI_RSTn;
   output [31:0]WIB_LED_tri_o;
   output clk_40;
+  input daq_clk;
+  output daq_spy_full_0;
+  output daq_spy_full_1;
+  input daq_spy_reset_0;
+  input daq_spy_reset_1;
+  input [31:0]daq_stream0;
+  input [31:0]daq_stream1;
+  input [3:0]daq_stream_k0;
+  input [3:0]daq_stream_k1;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   output [7:0]gp_out_tri_o;
@@ -143,6 +161,15 @@ module design_1_wrapper
   wire [0:0]AXI_RSTn;
   wire [31:0]WIB_LED_tri_o;
   wire clk_40;
+  wire daq_clk;
+  wire daq_spy_full_0;
+  wire daq_spy_full_1;
+  wire daq_spy_reset_0;
+  wire daq_spy_reset_1;
+  wire [31:0]daq_stream0;
+  wire [31:0]daq_stream1;
+  wire [3:0]daq_stream_k0;
+  wire [3:0]daq_stream_k1;
   wire fastcommand_out_n_0;
   wire fastcommand_out_p_0;
   wire [7:0]gp_out_tri_o;
@@ -215,6 +242,15 @@ module design_1_wrapper
         .AXI_RSTn(AXI_RSTn),
         .WIB_LED_tri_o(WIB_LED_tri_o),
         .clk_40(clk_40),
+        .daq_clk(daq_clk),
+        .daq_spy_full_0(daq_spy_full_0),
+        .daq_spy_full_1(daq_spy_full_1),
+        .daq_spy_reset_0(daq_spy_reset_0),
+        .daq_spy_reset_1(daq_spy_reset_1),
+        .daq_stream0(daq_stream0),
+        .daq_stream1(daq_stream1),
+        .daq_stream_k0(daq_stream_k0),
+        .daq_stream_k1(daq_stream_k1),
         .fastcommand_out_n_0(fastcommand_out_n_0),
         .fastcommand_out_p_0(fastcommand_out_p_0),
         .gp_out_tri_o(gp_out_tri_o),

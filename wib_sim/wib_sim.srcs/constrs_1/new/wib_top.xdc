@@ -53,18 +53,33 @@ create_clock -period 8 -name gtrefclk00p_in1 [get_ports gtrefclk00p_in[1]]
 create_clock -period 8 -name gtrefclk00p_in2 [get_ports gtrefclk00p_in[2]]
 create_clock -period 8 -name gtrefclk00p_in3 [get_ports gtrefclk00p_in[3]]
 
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in0]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in1]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in2]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in3]
+
 create_clock -period 16.000 -name dune_clk_fpga_in_p [get_ports dune_clk_fpga_in_p]
 #create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
 
 set_clock_groups -group [get_clocks -include_generated_clocks dune_clk_fpga_in_p] -asynchronous
 #set_clock_groups -group [get_clocks -include_generated_clocks daq_clk] -asynchronous
 
-set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks clk_pl_0]
-set_false_path -from [get_clocks clk_pl_0] -to [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] 
 
 set_property CLOCK_DEDICATED_ROUTE ANY_CMT_COLUMN [get_nets clk50]
-create_clock -period 20 -name clk50 [get_ports clk50]
+create_clock -period 20 -name clk50 [get_ports clk_in_50mhz]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk50]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk_pl_0]
+
+
+create_clock -period 3.2 -name si5344_out1_p [get_ports si5344_out1_p] # timing endpoint clock
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
  
+# even though all clocks are declared as asynchronous, still have to do this for some reason 
+#set_false_path -from [get_clocks clk_pl_0] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] 
+#set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks clk_pl_0] 
+#set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks clk_pl_0]
+#set_false_path -from [get_clocks clk_pl_0] -to [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0]] 
+
 # below copied from Jack's project
 
 #BANK  44 HD  2.5V

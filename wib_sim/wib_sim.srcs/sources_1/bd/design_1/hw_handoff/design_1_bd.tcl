@@ -37,6 +37,13 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # To test this script, run the following commands from Vivado Tcl console:
 # source design_1_script.tcl
 
+
+# The design that will be created by this Tcl script contains the following 
+# module references:
+# daq_spy_control, daq_spy_control
+
+# Please add the sources of those modules before sourcing this Tcl script.
+
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
@@ -235,6 +242,274 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net xlslice_0_Dout [get_bd_pins pdts_endpoint_0/tgrp] [get_bd_pins xlslice_0/Dout]
   connect_bd_net -net xlslice_1_Dout [get_bd_pins pdts_endpoint_0/addr] [get_bd_pins xlslice_1/Dout]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_0/sclk]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: dbg
+proc create_hier_cell_dbg { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2092 -severity "ERROR" "create_hier_cell_dbg() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI
+
+
+  # Create pins
+  create_bd_pin -dir I -type clk AXI_CLK_OUT
+  create_bd_pin -dir I -type rst AXI_RSTn
+
+  # Create instance: debug_bridge_0, and set properties
+  set debug_bridge_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:debug_bridge:3.0 debug_bridge_0 ]
+  set_property -dict [ list \
+   CONFIG.C_DEBUG_MODE {2} \
+   CONFIG.C_NUM_BS_MASTER {1} \
+ ] $debug_bridge_0
+
+  # Create instance: debug_bridge_1, and set properties
+  set debug_bridge_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:debug_bridge:3.0 debug_bridge_1 ]
+
+  # Create interface connections
+  connect_bd_intf_net -intf_net debug_bridge_0_m0_bscan [get_bd_intf_pins debug_bridge_0/m0_bscan] [get_bd_intf_pins debug_bridge_1/S_BSCAN]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M14_AXI [get_bd_intf_pins S_AXI] [get_bd_intf_pins debug_bridge_0/S_AXI]
+
+  # Create port connections
+  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_pins AXI_RSTn] [get_bd_pins debug_bridge_0/s_axi_aresetn]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins AXI_CLK_OUT] [get_bd_pins debug_bridge_0/s_axi_aclk] [get_bd_pins debug_bridge_1/clk]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: daq_spy_1
+proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2092 -severity "ERROR" "create_hier_cell_daq_spy_1() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI
+
+
+  # Create pins
+  create_bd_pin -dir I -type clk AXI_CLK_OUT
+  create_bd_pin -dir I -type rst AXI_RSTn
+  create_bd_pin -dir I -type clk daq_clk
+  create_bd_pin -dir O daq_spy_full
+  create_bd_pin -dir I -type rst daq_spy_reset
+  create_bd_pin -dir I -from 31 -to 0 daq_stream0
+  create_bd_pin -dir I -from 3 -to 0 daq_stream_k0
+  create_bd_pin -dir I -type clk ts_clk
+  create_bd_pin -dir I -from 63 -to 0 ts_tstamp
+
+  # Create instance: axi_bram_ctrl_0, and set properties
+  set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
+  set_property -dict [ list \
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_0
+
+  # Create instance: axi_bram_ctrl_0_bram, and set properties
+  set axi_bram_ctrl_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 axi_bram_ctrl_0_bram ]
+  set_property -dict [ list \
+   CONFIG.Enable_B {Use_ENB_Pin} \
+   CONFIG.Memory_Type {True_Dual_Port_RAM} \
+   CONFIG.Port_B_Clock {100} \
+   CONFIG.Port_B_Enable_Rate {100} \
+   CONFIG.Port_B_Write_Rate {50} \
+   CONFIG.Use_RSTB_Pin {true} \
+ ] $axi_bram_ctrl_0_bram
+
+  # Create instance: daq_spy_control_0, and set properties
+  set block_name daq_spy_control
+  set block_cell_name daq_spy_control_0
+  if { [catch {set daq_spy_control_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $daq_spy_control_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create interface connections
+  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins axi_bram_ctrl_0_bram/BRAM_PORTA]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins S_AXI] [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
+
+  # Create port connections
+  connect_bd_net -net AXI_RSTn_1 [get_bd_pins AXI_RSTn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn]
+  connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk]
+  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr]
+  connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
+  connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din]
+  connect_bd_net -net daq_spy_control_0_bram_en [get_bd_pins axi_bram_ctrl_0_bram/enb] [get_bd_pins daq_spy_control_0/bram_en]
+  connect_bd_net -net daq_spy_control_0_bram_rst [get_bd_pins axi_bram_ctrl_0_bram/rstb] [get_bd_pins daq_spy_control_0/bram_rst]
+  connect_bd_net -net daq_spy_control_0_bram_we [get_bd_pins axi_bram_ctrl_0_bram/web] [get_bd_pins daq_spy_control_0/bram_we]
+  connect_bd_net -net daq_spy_full_0 [get_bd_pins daq_spy_full] [get_bd_pins daq_spy_control_0/full]
+  connect_bd_net -net daq_stream0_0_1 [get_bd_pins daq_stream0] [get_bd_pins daq_spy_control_0/daq_stream]
+  connect_bd_net -net daq_stream_k0_0_1 [get_bd_pins daq_stream_k0] [get_bd_pins daq_spy_control_0/daq_stream_k]
+  connect_bd_net -net pdts_endpoint_0_clk [get_bd_pins ts_clk] [get_bd_pins daq_spy_control_0/clk65p5]
+  connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins daq_spy_control_0/time_stamp]
+  connect_bd_net -net reset_0_1 [get_bd_pins daq_spy_reset] [get_bd_pins daq_spy_control_0/reset]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins AXI_CLK_OUT] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: daq_spy_0
+proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2092 -severity "ERROR" "create_hier_cell_daq_spy_0() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:aximm_rtl:1.0 S_AXI
+
+
+  # Create pins
+  create_bd_pin -dir I -type clk AXI_CLK_OUT
+  create_bd_pin -dir I -type rst AXI_RSTn
+  create_bd_pin -dir I -type clk daq_clk
+  create_bd_pin -dir O daq_spy_full
+  create_bd_pin -dir I -type rst daq_spy_reset
+  create_bd_pin -dir I -from 31 -to 0 daq_stream0
+  create_bd_pin -dir I -from 3 -to 0 daq_stream_k0
+  create_bd_pin -dir I -type clk ts_clk
+  create_bd_pin -dir I -from 63 -to 0 ts_tstamp
+
+  # Create instance: axi_bram_ctrl_0, and set properties
+  set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
+  set_property -dict [ list \
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_0
+
+  # Create instance: axi_bram_ctrl_0_bram, and set properties
+  set axi_bram_ctrl_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 axi_bram_ctrl_0_bram ]
+  set_property -dict [ list \
+   CONFIG.Enable_B {Use_ENB_Pin} \
+   CONFIG.Memory_Type {True_Dual_Port_RAM} \
+   CONFIG.Port_B_Clock {100} \
+   CONFIG.Port_B_Enable_Rate {100} \
+   CONFIG.Port_B_Write_Rate {50} \
+   CONFIG.Use_RSTB_Pin {true} \
+ ] $axi_bram_ctrl_0_bram
+
+  # Create instance: daq_spy_control_0, and set properties
+  set block_name daq_spy_control
+  set block_cell_name daq_spy_control_0
+  if { [catch {set daq_spy_control_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $daq_spy_control_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create interface connections
+  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins axi_bram_ctrl_0_bram/BRAM_PORTA]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins S_AXI] [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
+
+  # Create port connections
+  connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk]
+  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr]
+  connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
+  connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din]
+  connect_bd_net -net daq_spy_control_0_bram_en [get_bd_pins axi_bram_ctrl_0_bram/enb] [get_bd_pins daq_spy_control_0/bram_en]
+  connect_bd_net -net daq_spy_control_0_bram_rst [get_bd_pins axi_bram_ctrl_0_bram/rstb] [get_bd_pins daq_spy_control_0/bram_rst]
+  connect_bd_net -net daq_spy_control_0_bram_we [get_bd_pins axi_bram_ctrl_0_bram/web] [get_bd_pins daq_spy_control_0/bram_we]
+  connect_bd_net -net daq_spy_full_0 [get_bd_pins daq_spy_full] [get_bd_pins daq_spy_control_0/full]
+  connect_bd_net -net daq_stream0_0_1 [get_bd_pins daq_stream0] [get_bd_pins daq_spy_control_0/daq_stream]
+  connect_bd_net -net daq_stream_k0_0_1 [get_bd_pins daq_stream_k0] [get_bd_pins daq_spy_control_0/daq_stream_k]
+  connect_bd_net -net pdts_endpoint_0_clk [get_bd_pins ts_clk] [get_bd_pins daq_spy_control_0/clk65p5]
+  connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins daq_spy_control_0/time_stamp]
+  connect_bd_net -net reset_0_1 [get_bd_pins daq_spy_reset] [get_bd_pins daq_spy_control_0/reset]
+  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_pins AXI_RSTn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins AXI_CLK_OUT] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -676,6 +951,21 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.FREQ_HZ {40000000} \
  ] $clk_40
+  set daq_clk [ create_bd_port -dir I -type clk daq_clk ]
+  set_property -dict [ list \
+   CONFIG.ASSOCIATED_RESET {daq_spy_reset_0:daq_spy_reset_1} \
+ ] $daq_clk
+  set daq_spy_full_0 [ create_bd_port -dir O daq_spy_full_0 ]
+  set daq_spy_full_1 [ create_bd_port -dir O daq_spy_full_1 ]
+  set daq_spy_reset_0 [ create_bd_port -dir I -type rst daq_spy_reset_0 ]
+  set_property -dict [ list \
+   CONFIG.POLARITY {ACTIVE_LOW} \
+ ] $daq_spy_reset_0
+  set daq_spy_reset_1 [ create_bd_port -dir I -type rst daq_spy_reset_1 ]
+  set daq_stream0 [ create_bd_port -dir I -from 31 -to 0 daq_stream0 ]
+  set daq_stream1 [ create_bd_port -dir I -from 31 -to 0 daq_stream1 ]
+  set daq_stream_k0 [ create_bd_port -dir I -from 3 -to 0 daq_stream_k0 ]
+  set daq_stream_k1 [ create_bd_port -dir I -from 3 -to 0 daq_stream_k1 ]
   set fastcommand_out_n_0 [ create_bd_port -dir O fastcommand_out_n_0 ]
   set fastcommand_out_p_0 [ create_bd_port -dir O fastcommand_out_p_0 ]
   set reg_ro [ create_bd_port -dir I -from 1023 -to 0 reg_ro ]
@@ -728,6 +1018,9 @@ proc create_root_design { parentCell } {
   set ts_rec_clk_locked [ create_bd_port -dir I ts_rec_clk_locked ]
   set ts_rec_d [ create_bd_port -dir I ts_rec_d ]
   set ts_rec_d_clk [ create_bd_port -dir I -type clk -freq_hz 312500000 ts_rec_d_clk ]
+  set_property -dict [ list \
+   CONFIG.ASSOCIATED_RESET {daq_spy_reset_0} \
+ ] $ts_rec_d_clk
   set ts_rst [ create_bd_port -dir O -type rst ts_rst ]
   set ts_sfp_los [ create_bd_port -dir I ts_sfp_los ]
   set ts_sync [ create_bd_port -dir O -from 3 -to 0 ts_sync ]
@@ -791,10 +1084,19 @@ proc create_root_design { parentCell } {
   # Create instance: coldata_i2c_dual3
   create_hier_cell_coldata_i2c_dual3 [current_bd_instance .] coldata_i2c_dual3
 
+  # Create instance: daq_spy_0
+  create_hier_cell_daq_spy_0 [current_bd_instance .] daq_spy_0
+
+  # Create instance: daq_spy_1
+  create_hier_cell_daq_spy_1 [current_bd_instance .] daq_spy_1
+
+  # Create instance: dbg
+  create_hier_cell_dbg [current_bd_instance .] dbg
+
   # Create instance: ps8_0_axi_periph, and set properties
   set ps8_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps8_0_axi_periph ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {14} \
+   CONFIG.NUM_MI {16} \
  ] $ps8_0_axi_periph
 
   # Create instance: reg_bank_64_0, and set properties
@@ -2358,6 +2660,7 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports gp_out] [get_bd_intf_pins axi_gpio_0/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_1_GPIO [get_bd_intf_ports WIB_LED] [get_bd_intf_pins axi_gpio_1/GPIO]
   connect_bd_intf_net -intf_net axi_iic_0_IIC [get_bd_intf_ports iic_rtl_0] [get_bd_intf_pins axi_iic_0/IIC]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins daq_spy_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M00_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins coldata_i2c_dual0/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M01_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M02_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M03_AXI [get_bd_intf_pins coldata_fast_cmd_0/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M03_AXI]
@@ -2365,6 +2668,8 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M11_AXI [get_bd_intf_pins axi_iic_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M11_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M12_AXI [get_bd_intf_pins ps8_0_axi_periph/M12_AXI] [get_bd_intf_pins reg_bank_64_0/S00_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M13_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M13_AXI]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M14_AXI [get_bd_intf_pins dbg/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M14_AXI]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M15_AXI [get_bd_intf_pins daq_spy_1/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M15_AXI]
   connect_bd_intf_net -intf_net zynq_ultra_ps_e_0_M_AXI_HPM0_FPD [get_bd_intf_pins ps8_0_axi_periph/S00_AXI] [get_bd_intf_pins zynq_ultra_ps_e_0/M_AXI_HPM0_FPD]
 
   # Create port connections
@@ -2398,20 +2703,29 @@ proc create_root_design { parentCell } {
   connect_bd_net -net coldata_i2c_dual3_sda_out_p_1 [get_bd_ports sda_out_p_7] [get_bd_pins coldata_i2c_dual3/sda_out_p_1]
   connect_bd_net -net coldata_i2c_dual_sda_out_n_1 [get_bd_ports sda_out_n_1] [get_bd_pins coldata_i2c_dual0/sda_out_n_1]
   connect_bd_net -net coldata_i2c_dual_sda_out_p_1 [get_bd_ports sda_out_p_1] [get_bd_pins coldata_i2c_dual0/sda_out_p_1]
-  connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins timing_module/ts_clk]
+  connect_bd_net -net daq_clk_0_1 [get_bd_ports daq_clk] [get_bd_pins daq_spy_0/daq_clk] [get_bd_pins daq_spy_1/daq_clk]
+  connect_bd_net -net daq_spy_1_daq_spy_full [get_bd_ports daq_spy_full_1] [get_bd_pins daq_spy_1/daq_spy_full]
+  connect_bd_net -net daq_spy_full_0 [get_bd_ports daq_spy_full_0] [get_bd_pins daq_spy_0/daq_spy_full]
+  connect_bd_net -net daq_spy_reset_0_1 [get_bd_ports daq_spy_reset_1] [get_bd_pins daq_spy_1/daq_spy_reset]
+  connect_bd_net -net daq_stream0_0_1 [get_bd_ports daq_stream0] [get_bd_pins daq_spy_0/daq_stream0]
+  connect_bd_net -net daq_stream1_0_1 [get_bd_ports daq_stream1] [get_bd_pins daq_spy_1/daq_stream0]
+  connect_bd_net -net daq_stream_k0_0_1 [get_bd_ports daq_stream_k0] [get_bd_pins daq_spy_0/daq_stream_k0]
+  connect_bd_net -net daq_stream_k1_0_1 [get_bd_ports daq_stream_k1] [get_bd_pins daq_spy_1/daq_stream_k0]
+  connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins timing_module/ts_clk]
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_ports ts_evtctr] [get_bd_pins timing_module/ts_evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_ports ts_rdy] [get_bd_pins timing_module/ts_rdy]
-  connect_bd_net -net pdts_endpoint_0_rst [get_bd_ports ts_rst] [get_bd_pins clk_wiz_0/reset] [get_bd_pins timing_module/ts_rst]
+  connect_bd_net -net pdts_endpoint_0_rst [get_bd_ports ts_rst] [get_bd_pins timing_module/ts_rst]
   connect_bd_net -net pdts_endpoint_0_sync [get_bd_ports ts_sync] [get_bd_pins timing_module/ts_sync]
   connect_bd_net -net pdts_endpoint_0_sync_v [get_bd_ports ts_sync_v] [get_bd_pins timing_module/ts_sync_v]
-  connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_ports ts_tstamp] [get_bd_pins timing_module/ts_tstamp]
+  connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_ports ts_tstamp] [get_bd_pins daq_spy_0/ts_tstamp] [get_bd_pins daq_spy_1/ts_tstamp] [get_bd_pins timing_module/ts_tstamp]
   connect_bd_net -net rec_clk_locked_0_1 [get_bd_ports ts_rec_clk_locked] [get_bd_pins timing_module/ts_rec_clk_locked]
   connect_bd_net -net rec_d_0_1 [get_bd_ports ts_rec_d] [get_bd_pins timing_module/ts_rec_d]
   connect_bd_net -net rec_d_clk_0_1 [get_bd_ports ts_rec_d_clk] [get_bd_pins timing_module/ts_rec_d_clk]
   connect_bd_net -net reg_bank_64_0_reg_rw [get_bd_ports reg_rw] [get_bd_pins reg_bank_64_0/reg_rw] [get_bd_pins timing_module/Din]
   connect_bd_net -net reg_ro_0_1 [get_bd_ports reg_ro] [get_bd_pins reg_bank_64_0/reg_ro]
+  connect_bd_net -net reset_0_1 [get_bd_ports daq_spy_reset_0] [get_bd_pins daq_spy_0/daq_spy_reset]
   connect_bd_net -net rst_ps8_0_99M_interconnect_aresetn [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins rst_ps8_0_99M/interconnect_aresetn]
-  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_ports AXI_RSTn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual1/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual2/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual3/s00_axi_aresetn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins reg_bank_64_0/s00_axi_aresetn] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn] [get_bd_pins timing_module/Op1]
+  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_ports AXI_RSTn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual1/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual2/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual3/s00_axi_aresetn] [get_bd_pins daq_spy_0/AXI_RSTn] [get_bd_pins daq_spy_1/AXI_RSTn] [get_bd_pins dbg/AXI_RSTn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/M14_ARESETN] [get_bd_pins ps8_0_axi_periph/M15_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins reg_bank_64_0/s00_axi_aresetn] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn] [get_bd_pins timing_module/Op1]
   connect_bd_net -net sda_in_n_0_0_1 [get_bd_ports sda_in_n_2] [get_bd_pins coldata_i2c_dual1/sda_in_n_0]
   connect_bd_net -net sda_in_n_0_1 [get_bd_ports sda_in_n_0] [get_bd_pins coldata_i2c_dual0/sda_in_n_0]
   connect_bd_net -net sda_in_n_0_1_1 [get_bd_ports sda_in_n_4] [get_bd_pins coldata_i2c_dual2/sda_in_n_0]
@@ -2429,11 +2743,13 @@ proc create_root_design { parentCell } {
   connect_bd_net -net sda_in_p_1_1_1 [get_bd_ports sda_in_p_5] [get_bd_pins coldata_i2c_dual2/sda_in_p_1]
   connect_bd_net -net sda_in_p_1_2_1 [get_bd_ports sda_in_p_7] [get_bd_pins coldata_i2c_dual3/sda_in_p_1]
   connect_bd_net -net sfp_los_0_1 [get_bd_ports ts_sfp_los] [get_bd_pins timing_module/ts_sfp_los]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins coldata_fast_cmd_0/cmd_act] [get_bd_pins coldata_fast_cmd_0/cmd_adc_reset] [get_bd_pins coldata_fast_cmd_0/cmd_edge] [get_bd_pins coldata_fast_cmd_0/cmd_idle] [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins coldata_fast_cmd_0/cmd_act] [get_bd_pins coldata_fast_cmd_0/cmd_adc_reset] [get_bd_pins coldata_fast_cmd_0/cmd_edge] [get_bd_pins coldata_fast_cmd_0/cmd_idle] [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins daq_spy_0/AXI_CLK_OUT] [get_bd_pins daq_spy_1/AXI_CLK_OUT] [get_bd_pins dbg/AXI_CLK_OUT] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/M15_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_99M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 
   # Create address segments
+  assign_bd_address -offset 0xA0100000 -range 0x00100000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs daq_spy_0/axi_bram_ctrl_0/S_AXI/Mem0] -force
+  assign_bd_address -offset 0xA0200000 -range 0x00100000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs daq_spy_1/axi_bram_ctrl_0/S_AXI/Mem0] -force
   assign_bd_address -offset 0xA0020000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] -force
   assign_bd_address -offset 0xA00D0000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_1/S_AXI/Reg] -force
   assign_bd_address -offset 0xA00B0000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_iic_0/S_AXI/Reg] -force
@@ -2446,6 +2762,7 @@ proc create_root_design { parentCell } {
   assign_bd_address -offset 0xA0060000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs coldata_i2c_dual1/coldata_i2c_1/S00_AXI/S00_AXI_reg] -force
   assign_bd_address -offset 0xA0080000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs coldata_i2c_dual2/coldata_i2c_1/S00_AXI/S00_AXI_reg] -force
   assign_bd_address -offset 0xA00A0000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs coldata_i2c_dual3/coldata_i2c_1/S00_AXI/S00_AXI_reg] -force
+  assign_bd_address -offset 0xA0000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs dbg/debug_bridge_0/S_AXI/Reg0] -force
   assign_bd_address -offset 0xA00C0000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs reg_bank_64_0/S00_AXI/S00_AXI_reg] -force
 
 
