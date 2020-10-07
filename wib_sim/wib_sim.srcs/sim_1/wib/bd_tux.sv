@@ -50,7 +50,14 @@ module bd_tux
     output iic_rtl_0_scl_t,
     input  iic_rtl_0_sda_i,
     output iic_rtl_0_sda_o,
-    output iic_rtl_0_sda_t
+    output iic_rtl_0_sda_t,
+    
+    input         daq_clk,
+    output [1:0]  daq_spy_full,
+    input  [1:0]  daq_spy_reset,
+    input  [31:0] daq_stream [1:0],
+    input  [3:0]  daq_stream_k [1:0]
+    
 );
     
     wire clk_40;
@@ -131,7 +138,17 @@ module bd_tux
         .iic_rtl_0_scl_t (iic_rtl_0_scl_t),
         .iic_rtl_0_sda_i (iic_rtl_0_sda_i),
         .iic_rtl_0_sda_o (iic_rtl_0_sda_o),
-        .iic_rtl_0_sda_t (iic_rtl_0_sda_t)
+        .iic_rtl_0_sda_t (iic_rtl_0_sda_t),
+        
+        .daq_clk         (daq_clk         ),
+        .daq_spy_full_0  (daq_spy_full[0] ),
+        .daq_spy_full_1  (daq_spy_full[1] ),
+        .daq_spy_reset_0 (daq_spy_reset[0]),
+        .daq_spy_reset_1 (daq_spy_reset[1]),
+        .daq_stream0     (daq_stream[0]   ),
+        .daq_stream_k0   (daq_stream_k[0] ),
+        .daq_stream1     (daq_stream[1]   ),
+        .daq_stream_k1   (daq_stream_k[1] )
     );
 
 endmodule
