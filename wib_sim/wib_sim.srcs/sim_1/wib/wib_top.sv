@@ -85,8 +85,7 @@ module wib_top
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
     assign femb_clk_sel = 1'b1; // select FPGA clk permanently
     assign femb_cmd_sel = 1'b0; // select FPGA command permanently
-    wire [7:0] gp_out;
-    wire         coldata_rx_reset  = gp_out[0]   ; // common reset for all circiuts
+    wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
     
     wire [0 : 0] rx_usrclk_out       ;
@@ -163,8 +162,6 @@ module wib_top
         .fastcommand_out_p (femb_cmd_fpga_out_p),
         .fastcommand_out_n (femb_cmd_fpga_out_n),
         
-        .gp_out (gp_out),
-        
         // coldata I2C
         .i2c_lvds_scl_p        (i2c_lvds_scl_p       ),
         .i2c_lvds_scl_n        (i2c_lvds_scl_n       ),
@@ -228,13 +225,14 @@ module wib_top
 `define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
     
-    wire [3:0] i2c_select = `CONFIG_BITS(1, 0, 4);
-    assign fp_sfp_sel     = `CONFIG_BITS(1, 4, 1);
-    assign rx_timing_sel  = `CONFIG_BITS(1, 5, 1);
-    assign daq_spy_reset  = `CONFIG_BITS(1, 6, 2);
+    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4);
+    assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1);
+    assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1);
+    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2);
+    assign coldata_rx_reset = `CONFIG_BITS(1, 7, 1);
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
-    assign `STATUS_BITS(16, 0,  2) = daq_spy_full;
+    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;
     
     coldata_rx_tux coldata_rx
     (

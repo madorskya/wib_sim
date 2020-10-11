@@ -939,8 +939,6 @@ proc create_root_design { parentCell } {
   # Create interface ports
   set WIB_LED [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 WIB_LED ]
 
-  set gp_out [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 gp_out ]
-
   set iic_rtl_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:iic_rtl:1.0 iic_rtl_0 ]
 
 
@@ -1026,16 +1024,6 @@ proc create_root_design { parentCell } {
   set ts_sync [ create_bd_port -dir O -from 3 -to 0 ts_sync ]
   set ts_sync_v [ create_bd_port -dir O ts_sync_v ]
   set ts_tstamp [ create_bd_port -dir O -from 63 -to 0 ts_tstamp ]
-
-  # Create instance: axi_gpio_0, and set properties
-  set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
-  set_property -dict [ list \
-   CONFIG.C_ALL_INPUTS {0} \
-   CONFIG.C_ALL_OUTPUTS {1} \
-   CONFIG.C_GPIO_WIDTH {8} \
-   CONFIG.GPIO_BOARD_INTERFACE {Custom} \
-   CONFIG.USE_BOARD_FLOW {true} \
- ] $axi_gpio_0
 
   # Create instance: axi_gpio_1, and set properties
   set axi_gpio_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_1 ]
@@ -2657,12 +2645,10 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net S00_AXI_1 [get_bd_intf_pins coldata_i2c_dual1/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M05_AXI]
   connect_bd_intf_net -intf_net S00_AXI_2 [get_bd_intf_pins coldata_i2c_dual2/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M07_AXI]
   connect_bd_intf_net -intf_net S00_AXI_3 [get_bd_intf_pins coldata_i2c_dual3/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M09_AXI]
-  connect_bd_intf_net -intf_net axi_gpio_0_GPIO [get_bd_intf_ports gp_out] [get_bd_intf_pins axi_gpio_0/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_1_GPIO [get_bd_intf_ports WIB_LED] [get_bd_intf_pins axi_gpio_1/GPIO]
   connect_bd_intf_net -intf_net axi_iic_0_IIC [get_bd_intf_ports iic_rtl_0] [get_bd_intf_pins axi_iic_0/IIC]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins daq_spy_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M00_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins coldata_i2c_dual0/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M01_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M02_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M02_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M03_AXI [get_bd_intf_pins coldata_fast_cmd_0/S00_AXI] [get_bd_intf_pins ps8_0_axi_periph/M03_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M04_AXI [get_bd_intf_pins coldata_i2c_dual0/S00_AXI1] [get_bd_intf_pins ps8_0_axi_periph/M04_AXI]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M11_AXI [get_bd_intf_pins axi_iic_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M11_AXI]
@@ -2725,7 +2711,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net reg_ro_0_1 [get_bd_ports reg_ro] [get_bd_pins reg_bank_64_0/reg_ro]
   connect_bd_net -net reset_0_1 [get_bd_ports daq_spy_reset_0] [get_bd_pins daq_spy_0/daq_spy_reset]
   connect_bd_net -net rst_ps8_0_99M_interconnect_aresetn [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins rst_ps8_0_99M/interconnect_aresetn]
-  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_ports AXI_RSTn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual1/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual2/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual3/s00_axi_aresetn] [get_bd_pins daq_spy_0/AXI_RSTn] [get_bd_pins daq_spy_1/AXI_RSTn] [get_bd_pins dbg/AXI_RSTn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/M14_ARESETN] [get_bd_pins ps8_0_axi_periph/M15_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins reg_bank_64_0/s00_axi_aresetn] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn] [get_bd_pins timing_module/Op1]
+  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_ports AXI_RSTn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual1/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual2/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual3/s00_axi_aresetn] [get_bd_pins daq_spy_0/AXI_RSTn] [get_bd_pins daq_spy_1/AXI_RSTn] [get_bd_pins dbg/AXI_RSTn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/M14_ARESETN] [get_bd_pins ps8_0_axi_periph/M15_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins reg_bank_64_0/s00_axi_aresetn] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn] [get_bd_pins timing_module/Op1]
   connect_bd_net -net sda_in_n_0_0_1 [get_bd_ports sda_in_n_2] [get_bd_pins coldata_i2c_dual1/sda_in_n_0]
   connect_bd_net -net sda_in_n_0_1 [get_bd_ports sda_in_n_0] [get_bd_pins coldata_i2c_dual0/sda_in_n_0]
   connect_bd_net -net sda_in_n_0_1_1 [get_bd_ports sda_in_n_4] [get_bd_pins coldata_i2c_dual2/sda_in_n_0]
@@ -2744,13 +2730,12 @@ proc create_root_design { parentCell } {
   connect_bd_net -net sda_in_p_1_2_1 [get_bd_ports sda_in_p_7] [get_bd_pins coldata_i2c_dual3/sda_in_p_1]
   connect_bd_net -net sfp_los_0_1 [get_bd_ports ts_sfp_los] [get_bd_pins timing_module/ts_sfp_los]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins coldata_fast_cmd_0/cmd_act] [get_bd_pins coldata_fast_cmd_0/cmd_adc_reset] [get_bd_pins coldata_fast_cmd_0/cmd_edge] [get_bd_pins coldata_fast_cmd_0/cmd_idle] [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins daq_spy_0/AXI_CLK_OUT] [get_bd_pins daq_spy_1/AXI_CLK_OUT] [get_bd_pins dbg/AXI_CLK_OUT] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/M15_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins daq_spy_0/AXI_CLK_OUT] [get_bd_pins daq_spy_1/AXI_CLK_OUT] [get_bd_pins dbg/AXI_CLK_OUT] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/M15_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_99M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 
   # Create address segments
   assign_bd_address -offset 0xA0100000 -range 0x00100000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs daq_spy_0/axi_bram_ctrl_0/S_AXI/Mem0] -force
   assign_bd_address -offset 0xA0200000 -range 0x00100000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs daq_spy_1/axi_bram_ctrl_0/S_AXI/Mem0] -force
-  assign_bd_address -offset 0xA0020000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] -force
   assign_bd_address -offset 0xA00D0000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_1/S_AXI/Reg] -force
   assign_bd_address -offset 0xA00B0000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_iic_0/S_AXI/Reg] -force
   assign_bd_address -offset 0xA0030000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs coldata_fast_cmd_0/S00_AXI/S00_AXI_reg] -force

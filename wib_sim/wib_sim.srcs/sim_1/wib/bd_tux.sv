@@ -10,8 +10,6 @@ module bd_tux
     output fastcommand_out_p,
     output fastcommand_out_n,
     
-    output [7:0]gp_out,
-    
     // coldata I2C
     output [3:0] i2c_lvds_scl_p,
     output [3:0] i2c_lvds_scl_n,
@@ -69,7 +67,6 @@ module bd_tux
         .clk_40(clk_40),
         .fastcommand_out_n_0(fastcommand_out_n),
         .fastcommand_out_p_0(fastcommand_out_p),
-        .gp_out_tri_o(gp_out),
         
         .scl_n_0 (i2c_lvds_scl_n [0]),
         .scl_n_1 (i2c_lvds_scl_n [1]),
