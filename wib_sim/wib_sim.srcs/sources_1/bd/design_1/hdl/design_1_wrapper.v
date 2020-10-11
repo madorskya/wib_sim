@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Wed Oct  7 00:16:52 2020
+//Date        : Sun Oct 11 02:50:44 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -25,7 +25,6 @@ module design_1_wrapper
     daq_stream_k1,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
-    gp_out_tri_o,
     iic_rtl_0_scl_io,
     iic_rtl_0_sda_io,
     reg_ro,
@@ -98,7 +97,6 @@ module design_1_wrapper
   input [3:0]daq_stream_k1;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
-  output [7:0]gp_out_tri_o;
   inout iic_rtl_0_scl_io;
   inout iic_rtl_0_sda_io;
   input [1023:0]reg_ro;
@@ -172,7 +170,6 @@ module design_1_wrapper
   wire [3:0]daq_stream_k1;
   wire fastcommand_out_n_0;
   wire fastcommand_out_p_0;
-  wire [7:0]gp_out_tri_o;
   wire iic_rtl_0_scl_i;
   wire iic_rtl_0_scl_io;
   wire iic_rtl_0_scl_o;
@@ -253,7 +250,6 @@ module design_1_wrapper
         .daq_stream_k1(daq_stream_k1),
         .fastcommand_out_n_0(fastcommand_out_n_0),
         .fastcommand_out_p_0(fastcommand_out_p_0),
-        .gp_out_tri_o(gp_out_tri_o),
         .iic_rtl_0_scl_i(iic_rtl_0_scl_i),
         .iic_rtl_0_scl_o(iic_rtl_0_scl_o),
         .iic_rtl_0_scl_t(iic_rtl_0_scl_t),

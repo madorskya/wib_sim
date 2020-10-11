@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Wed Oct  7 00:21:22 2020
+-- Date        : Wed Oct  7 00:21:21 2020
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_5/design_1_auto_ds_5_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_auto_ds_5 -prefix
+--               design_1_auto_ds_5_ design_1_auto_ds_5_stub.vhdl
 -- Design      : design_1_auto_ds_5
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu9eg-ffvb1156-2-e
