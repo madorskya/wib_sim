@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Fri Oct  2 20:09:15 2020
+// Date        : Thu Oct 15 17:02:32 2020
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/ip/coldata_rx/coldata_rx_sim_netlist.v
@@ -45,6 +45,8 @@ module coldata_rx
     rxcommadeten_in,
     rxmcommaalignen_in,
     rxpcommaalignen_in,
+    rxpolarity_in,
+    rxprbssel_in,
     tx8b10ben_in,
     txctrl0_in,
     txctrl1_in,
@@ -61,6 +63,7 @@ module coldata_rx
     rxctrl2_out,
     rxctrl3_out,
     rxpmaresetdone_out,
+    rxprbserr_out,
     txpmaresetdone_out);
   input [0:0]gtwiz_userclk_tx_reset_in;
   output [0:0]gtwiz_userclk_tx_srcclk_out;
@@ -92,6 +95,8 @@ module coldata_rx
   input [15:0]rxcommadeten_in;
   input [15:0]rxmcommaalignen_in;
   input [15:0]rxpcommaalignen_in;
+  input [15:0]rxpolarity_in;
+  input [63:0]rxprbssel_in;
   input [15:0]tx8b10ben_in;
   input [255:0]txctrl0_in;
   input [255:0]txctrl1_in;
@@ -108,6 +113,7 @@ module coldata_rx
   output [127:0]rxctrl2_out;
   output [127:0]rxctrl3_out;
   output [15:0]rxpmaresetdone_out;
+  output [15:0]rxprbserr_out;
   output [15:0]txpmaresetdone_out;
 
   wire [15:0]gthrxn_in;
@@ -151,6 +157,9 @@ module coldata_rx
   wire [15:0]rxmcommaalignen_in;
   wire [15:0]rxpcommaalignen_in;
   wire [15:0]rxpmaresetdone_out;
+  wire [15:0]rxpolarity_in;
+  wire [15:0]rxprbserr_out;
+  wire [63:0]rxprbssel_in;
   wire [15:0]tx8b10ben_in;
   wire [255:0]txctrl0_in;
   wire [255:0]txctrl1_in;
@@ -240,7 +249,6 @@ module coldata_rx
   wire [15:0]NLW_inst_rxoutclkpcs_out_UNCONNECTED;
   wire [15:0]NLW_inst_rxphaligndone_out_UNCONNECTED;
   wire [15:0]NLW_inst_rxphalignerr_out_UNCONNECTED;
-  wire [15:0]NLW_inst_rxprbserr_out_UNCONNECTED;
   wire [15:0]NLW_inst_rxprbslocked_out_UNCONNECTED;
   wire [15:0]NLW_inst_rxprgdivresetdone_out_UNCONNECTED;
   wire [15:0]NLW_inst_rxqpisenn_out_UNCONNECTED;
@@ -296,7 +304,7 @@ module coldata_rx
   (* C_CPLL_VCO_FREQUENCY = "2578.125000" *) 
   (* C_ENABLE_COMMON_USRCLK = "0" *) 
   (* C_FORCE_COMMONS = "0" *) 
-  (* C_FREERUN_FREQUENCY = "62.500000" *) 
+  (* C_FREERUN_FREQUENCY = "64.000000" *) 
   (* C_GT_REV = "57" *) 
   (* C_GT_TYPE = "2" *) 
   (* C_INCLUDE_CPLL_CAL = "2" *) 
@@ -335,14 +343,14 @@ module coldata_rx
   (* C_RX_DATA_DECODING = "1" *) 
   (* C_RX_ENABLE = "1" *) 
   (* C_RX_INT_DATA_WIDTH = "20" *) 
-  (* C_RX_LINE_RATE = "1.250000" *) 
+  (* C_RX_LINE_RATE = "1.280000" *) 
   (* C_RX_MASTER_CHANNEL_IDX = "15" *) 
   (* C_RX_OUTCLK_BUFG_GT_DIV = "1" *) 
-  (* C_RX_OUTCLK_FREQUENCY = "62.500000" *) 
+  (* C_RX_OUTCLK_FREQUENCY = "64.000000" *) 
   (* C_RX_OUTCLK_SOURCE = "1" *) 
   (* C_RX_PLL_TYPE = "0" *) 
   (* C_RX_RECCLK_OUTPUT = "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" *) 
-  (* C_RX_REFCLK_FREQUENCY = "125.000000" *) 
+  (* C_RX_REFCLK_FREQUENCY = "128.000000" *) 
   (* C_RX_SLIDE_MODE = "0" *) 
   (* C_RX_USER_CLOCKING_CONTENTS = "0" *) 
   (* C_RX_USER_CLOCKING_INSTANCE_CTRL = "0" *) 
@@ -350,8 +358,8 @@ module coldata_rx
   (* C_RX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2 = "1" *) 
   (* C_RX_USER_CLOCKING_SOURCE = "0" *) 
   (* C_RX_USER_DATA_WIDTH = "16" *) 
-  (* C_RX_USRCLK2_FREQUENCY = "62.500000" *) 
-  (* C_RX_USRCLK_FREQUENCY = "62.500000" *) 
+  (* C_RX_USRCLK2_FREQUENCY = "64.000000" *) 
+  (* C_RX_USRCLK_FREQUENCY = "64.000000" *) 
   (* C_SECONDARY_QPLL_ENABLE = "0" *) 
   (* C_SECONDARY_QPLL_REFCLK_FREQUENCY = "257.812500" *) 
   (* C_SIM_CPLL_CAL_BYPASS = "1" *) 
@@ -360,28 +368,28 @@ module coldata_rx
   (* C_TOTAL_NUM_COMMONS_EXAMPLE = "0" *) 
   (* C_TXPROGDIV_FREQ_ENABLE = "0" *) 
   (* C_TXPROGDIV_FREQ_SOURCE = "0" *) 
-  (* C_TXPROGDIV_FREQ_VAL = "62.500000" *) 
+  (* C_TXPROGDIV_FREQ_VAL = "64.000000" *) 
   (* C_TX_BUFFBYPASS_MODE = "0" *) 
   (* C_TX_BUFFER_BYPASS_INSTANCE_CTRL = "0" *) 
   (* C_TX_BUFFER_MODE = "1" *) 
   (* C_TX_DATA_ENCODING = "1" *) 
   (* C_TX_ENABLE = "1" *) 
   (* C_TX_INT_DATA_WIDTH = "20" *) 
-  (* C_TX_LINE_RATE = "1.250000" *) 
+  (* C_TX_LINE_RATE = "1.280000" *) 
   (* C_TX_MASTER_CHANNEL_IDX = "15" *) 
   (* C_TX_OUTCLK_BUFG_GT_DIV = "1" *) 
-  (* C_TX_OUTCLK_FREQUENCY = "62.500000" *) 
+  (* C_TX_OUTCLK_FREQUENCY = "64.000000" *) 
   (* C_TX_OUTCLK_SOURCE = "1" *) 
   (* C_TX_PLL_TYPE = "0" *) 
-  (* C_TX_REFCLK_FREQUENCY = "125.000000" *) 
+  (* C_TX_REFCLK_FREQUENCY = "128.000000" *) 
   (* C_TX_USER_CLOCKING_CONTENTS = "0" *) 
   (* C_TX_USER_CLOCKING_INSTANCE_CTRL = "0" *) 
   (* C_TX_USER_CLOCKING_RATIO_FSRC_FUSRCLK = "1" *) 
   (* C_TX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2 = "1" *) 
   (* C_TX_USER_CLOCKING_SOURCE = "0" *) 
   (* C_TX_USER_DATA_WIDTH = "16" *) 
-  (* C_TX_USRCLK2_FREQUENCY = "62.500000" *) 
-  (* C_TX_USRCLK_FREQUENCY = "62.500000" *) 
+  (* C_TX_USRCLK2_FREQUENCY = "64.000000" *) 
+  (* C_TX_USRCLK_FREQUENCY = "64.000000" *) 
   (* C_USER_GTPOWERGOOD_DELAY_EN = "1" *) 
   coldata_rx_coldata_rx_gtwizard_top inst
        (.bgbypassb_in({1'b1,1'b1,1'b1,1'b1}),
@@ -742,11 +750,11 @@ module coldata_rx
         .rxpllclksel_in({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
         .rxpmareset_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .rxpmaresetdone_out(rxpmaresetdone_out),
-        .rxpolarity_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .rxpolarity_in(rxpolarity_in),
         .rxprbscntreset_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .rxprbserr_out(NLW_inst_rxprbserr_out_UNCONNECTED[15:0]),
+        .rxprbserr_out(rxprbserr_out),
         .rxprbslocked_out(NLW_inst_rxprbslocked_out_UNCONNECTED[15:0]),
-        .rxprbssel_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .rxprbssel_in(rxprbssel_in),
         .rxprgdivresetdone_out(NLW_inst_rxprgdivresetdone_out_UNCONNECTED[15:0]),
         .rxprogdivreset_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .rxqpien_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
@@ -11469,7 +11477,7 @@ module coldata_rx_coldata_rx_gtwizard_gthe4
 endmodule
 
 (* C_CHANNEL_ENABLE = "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000001111000000000000" *) (* C_COMMON_SCALING_FACTOR = "4" *) (* C_CPLL_VCO_FREQUENCY = "2578.125000" *) 
-(* C_ENABLE_COMMON_USRCLK = "0" *) (* C_FORCE_COMMONS = "0" *) (* C_FREERUN_FREQUENCY = "62.500000" *) 
+(* C_ENABLE_COMMON_USRCLK = "0" *) (* C_FORCE_COMMONS = "0" *) (* C_FREERUN_FREQUENCY = "64.000000" *) 
 (* C_GT_REV = "57" *) (* C_GT_TYPE = "2" *) (* C_INCLUDE_CPLL_CAL = "2" *) 
 (* C_LOCATE_COMMON = "0" *) (* C_LOCATE_IN_SYSTEM_IBERT_CORE = "2" *) (* C_LOCATE_RESET_CONTROLLER = "0" *) 
 (* C_LOCATE_RX_BUFFER_BYPASS_CONTROLLER = "0" *) (* C_LOCATE_RX_USER_CLOCKING = "0" *) (* C_LOCATE_TX_BUFFER_BYPASS_CONTROLLER = "0" *) 
@@ -11482,23 +11490,23 @@ endmodule
 (* C_RX_CC_LEN_SEQ = "1" *) (* C_RX_CC_NUM_SEQ = "0" *) (* C_RX_CC_PERIODICITY = "5000" *) 
 (* C_RX_CC_VAL = "80'b00000000000000000000000000000000000000000000000000000000000000000000000000000000" *) (* C_RX_COMMA_M_ENABLE = "1" *) (* C_RX_COMMA_M_VAL = "10'b0110000011" *) 
 (* C_RX_COMMA_P_ENABLE = "1" *) (* C_RX_COMMA_P_VAL = "10'b1001111100" *) (* C_RX_DATA_DECODING = "1" *) 
-(* C_RX_ENABLE = "1" *) (* C_RX_INT_DATA_WIDTH = "20" *) (* C_RX_LINE_RATE = "1.250000" *) 
-(* C_RX_MASTER_CHANNEL_IDX = "15" *) (* C_RX_OUTCLK_BUFG_GT_DIV = "1" *) (* C_RX_OUTCLK_FREQUENCY = "62.500000" *) 
+(* C_RX_ENABLE = "1" *) (* C_RX_INT_DATA_WIDTH = "20" *) (* C_RX_LINE_RATE = "1.280000" *) 
+(* C_RX_MASTER_CHANNEL_IDX = "15" *) (* C_RX_OUTCLK_BUFG_GT_DIV = "1" *) (* C_RX_OUTCLK_FREQUENCY = "64.000000" *) 
 (* C_RX_OUTCLK_SOURCE = "1" *) (* C_RX_PLL_TYPE = "0" *) (* C_RX_RECCLK_OUTPUT = "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" *) 
-(* C_RX_REFCLK_FREQUENCY = "125.000000" *) (* C_RX_SLIDE_MODE = "0" *) (* C_RX_USER_CLOCKING_CONTENTS = "0" *) 
+(* C_RX_REFCLK_FREQUENCY = "128.000000" *) (* C_RX_SLIDE_MODE = "0" *) (* C_RX_USER_CLOCKING_CONTENTS = "0" *) 
 (* C_RX_USER_CLOCKING_INSTANCE_CTRL = "0" *) (* C_RX_USER_CLOCKING_RATIO_FSRC_FUSRCLK = "1" *) (* C_RX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2 = "1" *) 
-(* C_RX_USER_CLOCKING_SOURCE = "0" *) (* C_RX_USER_DATA_WIDTH = "16" *) (* C_RX_USRCLK2_FREQUENCY = "62.500000" *) 
-(* C_RX_USRCLK_FREQUENCY = "62.500000" *) (* C_SECONDARY_QPLL_ENABLE = "0" *) (* C_SECONDARY_QPLL_REFCLK_FREQUENCY = "257.812500" *) 
+(* C_RX_USER_CLOCKING_SOURCE = "0" *) (* C_RX_USER_DATA_WIDTH = "16" *) (* C_RX_USRCLK2_FREQUENCY = "64.000000" *) 
+(* C_RX_USRCLK_FREQUENCY = "64.000000" *) (* C_SECONDARY_QPLL_ENABLE = "0" *) (* C_SECONDARY_QPLL_REFCLK_FREQUENCY = "257.812500" *) 
 (* C_SIM_CPLL_CAL_BYPASS = "1" *) (* C_TOTAL_NUM_CHANNELS = "16" *) (* C_TOTAL_NUM_COMMONS = "4" *) 
 (* C_TOTAL_NUM_COMMONS_EXAMPLE = "0" *) (* C_TXPROGDIV_FREQ_ENABLE = "0" *) (* C_TXPROGDIV_FREQ_SOURCE = "0" *) 
-(* C_TXPROGDIV_FREQ_VAL = "62.500000" *) (* C_TX_BUFFBYPASS_MODE = "0" *) (* C_TX_BUFFER_BYPASS_INSTANCE_CTRL = "0" *) 
+(* C_TXPROGDIV_FREQ_VAL = "64.000000" *) (* C_TX_BUFFBYPASS_MODE = "0" *) (* C_TX_BUFFER_BYPASS_INSTANCE_CTRL = "0" *) 
 (* C_TX_BUFFER_MODE = "1" *) (* C_TX_DATA_ENCODING = "1" *) (* C_TX_ENABLE = "1" *) 
-(* C_TX_INT_DATA_WIDTH = "20" *) (* C_TX_LINE_RATE = "1.250000" *) (* C_TX_MASTER_CHANNEL_IDX = "15" *) 
-(* C_TX_OUTCLK_BUFG_GT_DIV = "1" *) (* C_TX_OUTCLK_FREQUENCY = "62.500000" *) (* C_TX_OUTCLK_SOURCE = "1" *) 
-(* C_TX_PLL_TYPE = "0" *) (* C_TX_REFCLK_FREQUENCY = "125.000000" *) (* C_TX_USER_CLOCKING_CONTENTS = "0" *) 
+(* C_TX_INT_DATA_WIDTH = "20" *) (* C_TX_LINE_RATE = "1.280000" *) (* C_TX_MASTER_CHANNEL_IDX = "15" *) 
+(* C_TX_OUTCLK_BUFG_GT_DIV = "1" *) (* C_TX_OUTCLK_FREQUENCY = "64.000000" *) (* C_TX_OUTCLK_SOURCE = "1" *) 
+(* C_TX_PLL_TYPE = "0" *) (* C_TX_REFCLK_FREQUENCY = "128.000000" *) (* C_TX_USER_CLOCKING_CONTENTS = "0" *) 
 (* C_TX_USER_CLOCKING_INSTANCE_CTRL = "0" *) (* C_TX_USER_CLOCKING_RATIO_FSRC_FUSRCLK = "1" *) (* C_TX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2 = "1" *) 
-(* C_TX_USER_CLOCKING_SOURCE = "0" *) (* C_TX_USER_DATA_WIDTH = "16" *) (* C_TX_USRCLK2_FREQUENCY = "62.500000" *) 
-(* C_TX_USRCLK_FREQUENCY = "62.500000" *) (* C_USER_GTPOWERGOOD_DELAY_EN = "1" *) (* ORIG_REF_NAME = "coldata_rx_gtwizard_top" *) 
+(* C_TX_USER_CLOCKING_SOURCE = "0" *) (* C_TX_USER_DATA_WIDTH = "16" *) (* C_TX_USRCLK2_FREQUENCY = "64.000000" *) 
+(* C_TX_USRCLK_FREQUENCY = "64.000000" *) (* C_USER_GTPOWERGOOD_DELAY_EN = "1" *) (* ORIG_REF_NAME = "coldata_rx_gtwizard_top" *) 
 module coldata_rx_coldata_rx_gtwizard_top
    (gtwiz_userclk_tx_reset_in,
     gtwiz_userclk_tx_active_in,
@@ -18304,7 +18312,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -18415,7 +18423,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -19152,7 +19160,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -19263,7 +19271,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -20000,7 +20008,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -20111,7 +20119,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -20848,7 +20856,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -20959,7 +20967,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -22751,7 +22759,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -22862,7 +22870,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -23599,7 +23607,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -23710,7 +23718,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -24447,7 +24455,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -24558,7 +24566,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -25295,7 +25303,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -25406,7 +25414,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_73
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -27198,7 +27206,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -27309,7 +27317,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -28046,7 +28054,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -28157,7 +28165,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -28894,7 +28902,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -29005,7 +29013,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -29742,7 +29750,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -29853,7 +29861,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_74
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -31645,7 +31653,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -31756,7 +31764,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -32493,7 +32501,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -32604,7 +32612,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -33341,7 +33349,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -33452,7 +33460,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -34189,7 +34197,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -34300,7 +34308,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(20),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -35023,7 +35031,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common
     .QPLL0_CP(10'b0011111111),
     .QPLL0_CP_G3(10'b0000001111),
     .QPLL0_FBDIV(80),
-    .QPLL0_FBDIV_G3(128),
+    .QPLL0_FBDIV_G3(160),
     .QPLL0_INIT_CFG0(16'h02B2),
     .QPLL0_INIT_CFG1(8'h00),
     .QPLL0_LOCK_CFG(16'h25E8),
@@ -35462,7 +35470,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_70
     .QPLL0_CP(10'b0011111111),
     .QPLL0_CP_G3(10'b0000001111),
     .QPLL0_FBDIV(80),
-    .QPLL0_FBDIV_G3(128),
+    .QPLL0_FBDIV_G3(160),
     .QPLL0_INIT_CFG0(16'h02B2),
     .QPLL0_INIT_CFG1(8'h00),
     .QPLL0_LOCK_CFG(16'h25E8),
@@ -35907,7 +35915,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_71
     .QPLL0_CP(10'b0011111111),
     .QPLL0_CP_G3(10'b0000001111),
     .QPLL0_FBDIV(80),
-    .QPLL0_FBDIV_G3(128),
+    .QPLL0_FBDIV_G3(160),
     .QPLL0_INIT_CFG0(16'h02B2),
     .QPLL0_INIT_CFG1(8'h00),
     .QPLL0_LOCK_CFG(16'h25E8),
@@ -36354,7 +36362,7 @@ module coldata_rx_gtwizard_ultrascale_v1_7_8_gthe4_common_72
     .QPLL0_CP(10'b0011111111),
     .QPLL0_CP_G3(10'b0000001111),
     .QPLL0_FBDIV(80),
-    .QPLL0_FBDIV_G3(128),
+    .QPLL0_FBDIV_G3(160),
     .QPLL0_INIT_CFG0(16'h02B2),
     .QPLL0_INIT_CFG1(8'h00),
     .QPLL0_LOCK_CFG(16'h25E8),

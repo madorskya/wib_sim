@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Oct 11 02:50:54 2020" VIVADOVERSION="2020.1.1_AR73018">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Oct 15 18:19:01 2020" VIVADOVERSION="2020.1.1_AR73018">
 
   <SYSTEMINFO ARCH="zynquplus" BOARD="xilinx.com:zcu102:part0:3.1" DEVICE="xczu9eg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-2"/>
 
@@ -384,6 +384,11 @@
     <PORT DIR="O" NAME="daq_spy_full_1" SIGIS="undef" SIGNAME="daq_spy_1_daq_spy_control_0_full">
       <CONNECTIONS>
         <CONNECTION INSTANCE="daq_spy_1_daq_spy_control_0" PORT="full"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="3" NAME="ts_stat" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_0_stat">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="timing_module_pdts_endpoint_0" PORT="stat"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -10469,7 +10474,11 @@
             <CONNECTION INSTANCE="timing_module_xlslice_0" PORT="Dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="stat" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="3" NAME="stat" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_0_stat">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ts_stat"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="62500000" DIR="I" NAME="rec_clk" SIGIS="clk" SIGNAME="timing_module_clk_wiz_1_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="timing_module_clk_wiz_1" PORT="clk_out1"/>

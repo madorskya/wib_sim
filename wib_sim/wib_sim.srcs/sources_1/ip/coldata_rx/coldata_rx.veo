@@ -85,6 +85,8 @@ coldata_rx your_instance_name (
   .rxcommadeten_in(rxcommadeten_in),                                        // input wire [15 : 0] rxcommadeten_in
   .rxmcommaalignen_in(rxmcommaalignen_in),                                  // input wire [15 : 0] rxmcommaalignen_in
   .rxpcommaalignen_in(rxpcommaalignen_in),                                  // input wire [15 : 0] rxpcommaalignen_in
+  .rxpolarity_in(rxpolarity_in),                                            // input wire [15 : 0] rxpolarity_in
+  .rxprbssel_in(rxprbssel_in),                                              // input wire [63 : 0] rxprbssel_in
   .tx8b10ben_in(tx8b10ben_in),                                              // input wire [15 : 0] tx8b10ben_in
   .txctrl0_in(txctrl0_in),                                                  // input wire [255 : 0] txctrl0_in
   .txctrl1_in(txctrl1_in),                                                  // input wire [255 : 0] txctrl1_in
@@ -101,6 +103,7 @@ coldata_rx your_instance_name (
   .rxctrl2_out(rxctrl2_out),                                                // output wire [127 : 0] rxctrl2_out
   .rxctrl3_out(rxctrl3_out),                                                // output wire [127 : 0] rxctrl3_out
   .rxpmaresetdone_out(rxpmaresetdone_out),                                  // output wire [15 : 0] rxpmaresetdone_out
+  .rxprbserr_out(rxprbserr_out),                                            // output wire [15 : 0] rxprbserr_out
   .txpmaresetdone_out(txpmaresetdone_out)                                  // output wire [15 : 0] txpmaresetdone_out
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------

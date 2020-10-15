@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Sun Oct 11 02:50:42 2020
+//Date        : Thu Oct 15 18:18:49 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1807,6 +1807,7 @@ module design_1
     ts_rec_d_clk,
     ts_rst,
     ts_sfp_los,
+    ts_stat,
     ts_sync,
     ts_sync_v,
     ts_tstamp);
@@ -1883,6 +1884,7 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_REC_D_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_REC_D_CLK, ASSOCIATED_RESET daq_spy_reset_0, CLK_DOMAIN design_1_ts_rec_d_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ts_rec_d_clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.TS_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.TS_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) output ts_rst;
   input ts_sfp_los;
+  output [3:0]ts_stat;
   output [3:0]ts_sync;
   output ts_sync_v;
   output [63:0]ts_tstamp;
@@ -2269,6 +2271,7 @@ module design_1
   wire sda_in_p_1_1_1;
   wire sda_in_p_1_2_1;
   wire sfp_los_0_1;
+  wire [3:0]timing_module_stat_0;
   wire [0:0]xlconstant_0_dout;
   wire [39:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR;
   wire [1:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST;
@@ -2384,6 +2387,7 @@ module design_1
   assign ts_evtctr[31:0] = pdts_endpoint_0_evtctr;
   assign ts_rdy = pdts_endpoint_0_rdy;
   assign ts_rst = pdts_endpoint_0_rst;
+  assign ts_stat[3:0] = timing_module_stat_0;
   assign ts_sync[3:0] = pdts_endpoint_0_sync;
   assign ts_sync_v = pdts_endpoint_0_sync_v;
   assign ts_tstamp[63:0] = pdts_endpoint_0_tstamp;
@@ -3203,6 +3207,7 @@ module design_1
        (.Din(reg_bank_64_0_reg_rw),
         .Op1(rst_ps8_0_99M_peripheral_aresetn),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
+        .stat_0(timing_module_stat_0),
         .ts_cdr_lol(cdr_lol_0_1),
         .ts_cdr_los(cdr_los_0_1),
         .ts_clk(pdts_endpoint_0_clk),
@@ -12851,6 +12856,7 @@ module timing_module_imp_2RES6C
    (Din,
     Op1,
     sclk,
+    stat_0,
     ts_cdr_lol,
     ts_cdr_los,
     ts_clk,
@@ -12867,6 +12873,7 @@ module timing_module_imp_2RES6C
   input [1023:0]Din;
   input [0:0]Op1;
   input sclk;
+  output [3:0]stat_0;
   input ts_cdr_lol;
   input ts_cdr_los;
   output ts_clk;
@@ -12889,6 +12896,7 @@ module timing_module_imp_2RES6C
   wire [31:0]pdts_endpoint_0_evtctr;
   wire pdts_endpoint_0_rdy;
   wire pdts_endpoint_0_rst;
+  wire [3:0]pdts_endpoint_0_stat;
   wire [3:0]pdts_endpoint_0_sync;
   wire pdts_endpoint_0_sync_v;
   wire [63:0]pdts_endpoint_0_tstamp;
@@ -12910,6 +12918,7 @@ module timing_module_imp_2RES6C
   assign rec_d_clk_0_1 = ts_rec_d_clk;
   assign rst_ps8_0_99M_peripheral_aresetn = Op1[0];
   assign sfp_los_0_1 = ts_sfp_los;
+  assign stat_0[3:0] = pdts_endpoint_0_stat;
   assign ts_clk = pdts_endpoint_0_clk;
   assign ts_evtctr[31:0] = pdts_endpoint_0_evtctr;
   assign ts_rdy = pdts_endpoint_0_rdy;
@@ -12937,6 +12946,7 @@ module timing_module_imp_2RES6C
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .sfp_los(sfp_los_0_1),
         .srst(util_vector_logic_0_Res),
+        .stat(pdts_endpoint_0_stat),
         .sync(pdts_endpoint_0_sync),
         .sync_v(pdts_endpoint_0_sync_v),
         .tgrp(xlslice_0_Dout),

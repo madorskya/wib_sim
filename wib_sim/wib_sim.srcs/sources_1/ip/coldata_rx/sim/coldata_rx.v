@@ -84,6 +84,8 @@ module coldata_rx (
   rxcommadeten_in,
   rxmcommaalignen_in,
   rxpcommaalignen_in,
+  rxpolarity_in,
+  rxprbssel_in,
   tx8b10ben_in,
   txctrl0_in,
   txctrl1_in,
@@ -100,6 +102,7 @@ module coldata_rx (
   rxctrl2_out,
   rxctrl3_out,
   rxpmaresetdone_out,
+  rxprbserr_out,
   txpmaresetdone_out
 );
 
@@ -133,6 +136,8 @@ input wire [15 : 0] rx8b10ben_in;
 input wire [15 : 0] rxcommadeten_in;
 input wire [15 : 0] rxmcommaalignen_in;
 input wire [15 : 0] rxpcommaalignen_in;
+input wire [15 : 0] rxpolarity_in;
+input wire [63 : 0] rxprbssel_in;
 input wire [15 : 0] tx8b10ben_in;
 input wire [255 : 0] txctrl0_in;
 input wire [255 : 0] txctrl1_in;
@@ -149,6 +154,7 @@ output wire [255 : 0] rxctrl1_out;
 output wire [127 : 0] rxctrl2_out;
 output wire [127 : 0] rxctrl3_out;
 output wire [15 : 0] rxpmaresetdone_out;
+output wire [15 : 0] rxprbserr_out;
 output wire [15 : 0] txpmaresetdone_out;
 
   coldata_rx_gtwizard_top #(
@@ -158,7 +164,7 @@ output wire [15 : 0] txpmaresetdone_out;
     .C_COMMON_SCALING_FACTOR(4),
     .C_CPLL_VCO_FREQUENCY(2578.125),
     .C_FORCE_COMMONS(0),
-    .C_FREERUN_FREQUENCY(62.5),
+    .C_FREERUN_FREQUENCY(64),
     .C_GT_TYPE(2),
     .C_GT_REV(57),
     .C_INCLUDE_CPLL_CAL(2),
@@ -198,14 +204,14 @@ output wire [15 : 0] txpmaresetdone_out;
     .C_RX_DATA_DECODING(1),
     .C_RX_ENABLE(1),
     .C_RX_INT_DATA_WIDTH(20),
-    .C_RX_LINE_RATE(1.25),
+    .C_RX_LINE_RATE(1.28),
     .C_RX_MASTER_CHANNEL_IDX(15),
     .C_RX_OUTCLK_BUFG_GT_DIV(1),
-    .C_RX_OUTCLK_FREQUENCY(62.5000000),
+    .C_RX_OUTCLK_FREQUENCY(64.0000000),
     .C_RX_OUTCLK_SOURCE(1),
     .C_RX_PLL_TYPE(0),
     .C_RX_RECCLK_OUTPUT(192'H000000000000000000000000000000000000000000000000),
-    .C_RX_REFCLK_FREQUENCY(125),
+    .C_RX_REFCLK_FREQUENCY(128),
     .C_RX_SLIDE_MODE(0),
     .C_RX_USER_CLOCKING_CONTENTS(0),
     .C_RX_USER_CLOCKING_INSTANCE_CTRL(0),
@@ -213,8 +219,8 @@ output wire [15 : 0] txpmaresetdone_out;
     .C_RX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2(1),
     .C_RX_USER_CLOCKING_SOURCE(0),
     .C_RX_USER_DATA_WIDTH(16),
-    .C_RX_USRCLK_FREQUENCY(62.5000000),
-    .C_RX_USRCLK2_FREQUENCY(62.5000000),
+    .C_RX_USRCLK_FREQUENCY(64.0000000),
+    .C_RX_USRCLK2_FREQUENCY(64.0000000),
     .C_SECONDARY_QPLL_ENABLE(0),
     .C_SECONDARY_QPLL_REFCLK_FREQUENCY(257.8125),
     .C_TOTAL_NUM_CHANNELS(16),
@@ -222,28 +228,28 @@ output wire [15 : 0] txpmaresetdone_out;
     .C_TOTAL_NUM_COMMONS_EXAMPLE(0),
     .C_TXPROGDIV_FREQ_ENABLE(0),
     .C_TXPROGDIV_FREQ_SOURCE(0),
-    .C_TXPROGDIV_FREQ_VAL(62.5),
+    .C_TXPROGDIV_FREQ_VAL(64),
     .C_TX_BUFFBYPASS_MODE(0),
     .C_TX_BUFFER_BYPASS_INSTANCE_CTRL(0),
     .C_TX_BUFFER_MODE(1),
     .C_TX_DATA_ENCODING(1),
     .C_TX_ENABLE(1),
     .C_TX_INT_DATA_WIDTH(20),
-    .C_TX_LINE_RATE(1.25),
+    .C_TX_LINE_RATE(1.28),
     .C_TX_MASTER_CHANNEL_IDX(15),
     .C_TX_OUTCLK_BUFG_GT_DIV(1),
-    .C_TX_OUTCLK_FREQUENCY(62.5000000),
+    .C_TX_OUTCLK_FREQUENCY(64.0000000),
     .C_TX_OUTCLK_SOURCE(1),
     .C_TX_PLL_TYPE(0),
-    .C_TX_REFCLK_FREQUENCY(125),
+    .C_TX_REFCLK_FREQUENCY(128),
     .C_TX_USER_CLOCKING_CONTENTS(0),
     .C_TX_USER_CLOCKING_INSTANCE_CTRL(0),
     .C_TX_USER_CLOCKING_RATIO_FSRC_FUSRCLK(1),
     .C_TX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2(1),
     .C_TX_USER_CLOCKING_SOURCE(0),
     .C_TX_USER_DATA_WIDTH(16),
-    .C_TX_USRCLK_FREQUENCY(62.5000000),
-    .C_TX_USRCLK2_FREQUENCY(62.5000000)
+    .C_TX_USRCLK_FREQUENCY(64.0000000),
+    .C_TX_USRCLK2_FREQUENCY(64.0000000)
   ) inst (
     .gtwiz_userclk_tx_reset_in(gtwiz_userclk_tx_reset_in),
     .gtwiz_userclk_tx_active_in(1'B0),
@@ -576,9 +582,9 @@ output wire [15 : 0] txpmaresetdone_out;
     .rxphovrden_in(16'H0000),
     .rxpllclksel_in(32'HFFFFFFFF),
     .rxpmareset_in(16'H0000),
-    .rxpolarity_in(16'H0000),
+    .rxpolarity_in(rxpolarity_in),
     .rxprbscntreset_in(16'H0000),
-    .rxprbssel_in(64'H0000000000000000),
+    .rxprbssel_in(rxprbssel_in),
     .rxprogdivreset_in(16'H0000),
     .rxqpien_in(16'H0000),
     .rxrate_in(48'H000000000000),
@@ -745,7 +751,7 @@ output wire [15 : 0] txpmaresetdone_out;
     .rxphaligndone_out(),
     .rxphalignerr_out(),
     .rxpmaresetdone_out(rxpmaresetdone_out),
-    .rxprbserr_out(),
+    .rxprbserr_out(rxprbserr_out),
     .rxprbslocked_out(),
     .rxprgdivresetdone_out(),
     .rxqpisenn_out(),

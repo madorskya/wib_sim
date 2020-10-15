@@ -25,7 +25,9 @@ module coldata_rx_tux
                  
 
     output [0 : 0] rx_cdr_stable_out   , 
-    output [15 :0] gtpowergood_out     
+    output [15 :0] gtpowergood_out,     
+    input    [3:0] rx_prbs_sel,
+    output  [15:0] rxprbserr_out
 );
 
     // these don't have to be connected to top level
@@ -40,7 +42,8 @@ module coldata_rx_tux
     wire [127 : 0] rxctrl2_out;
     wire [127 : 0] rxctrl3_out;
 
-
+    wire [15:0] rxpolarity_in = 16'hffff; // all coldata serial inputs are inverted
+    wire [63:0] rxprbssel_in = {16{rx_prbs_sel}};
 
     wire [255:0] data_rx_out; // RX data combined into one word
     wire  [3 : 0] gtrefclk00_in;
@@ -125,8 +128,12 @@ coldata_rx crx
   .rxctrl1_out                        (rxctrl1_out),                                                
   .rxctrl2_out                        (rxctrl2_out),                                                
   .rxctrl3_out                        (rxctrl3_out),                                                
-  .rxpmaresetdone_out(rxpmaresetdone_out),                                  
-  .txpmaresetdone_out(txpmaresetdone_out)                                   
+  .rxpmaresetdone_out                 (rxpmaresetdone_out),                                  
+  .txpmaresetdone_out                 (txpmaresetdone_out),
+  .rxpolarity_in                      (rxpolarity_in),
+  .rxprbssel_in                       (rxprbssel_in ),
+  .rxprbserr_out                      (rxprbserr_out)
+                                     
 );
 
 

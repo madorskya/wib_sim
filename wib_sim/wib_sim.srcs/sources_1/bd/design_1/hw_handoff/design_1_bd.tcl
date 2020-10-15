@@ -169,6 +169,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -from 1023 -to 0 Din
   create_bd_pin -dir I -from 0 -to 0 Op1
   create_bd_pin -dir I sclk
+  create_bd_pin -dir O -from 3 -to 0 stat_0
   create_bd_pin -dir I ts_cdr_lol
   create_bd_pin -dir I ts_cdr_los
   create_bd_pin -dir O -type clk ts_clk
@@ -230,6 +231,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_pins ts_evtctr] [get_bd_pins pdts_endpoint_0/evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_pins ts_rdy] [get_bd_pins pdts_endpoint_0/rdy]
   connect_bd_net -net pdts_endpoint_0_rst [get_bd_pins ts_rst] [get_bd_pins pdts_endpoint_0/rst]
+  connect_bd_net -net pdts_endpoint_0_stat [get_bd_pins stat_0] [get_bd_pins pdts_endpoint_0/stat]
   connect_bd_net -net pdts_endpoint_0_sync [get_bd_pins ts_sync] [get_bd_pins pdts_endpoint_0/sync]
   connect_bd_net -net pdts_endpoint_0_sync_v [get_bd_pins ts_sync_v] [get_bd_pins pdts_endpoint_0/sync_v]
   connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins pdts_endpoint_0/tstamp]
@@ -1021,6 +1023,7 @@ proc create_root_design { parentCell } {
  ] $ts_rec_d_clk
   set ts_rst [ create_bd_port -dir O -type rst ts_rst ]
   set ts_sfp_los [ create_bd_port -dir I ts_sfp_los ]
+  set ts_stat [ create_bd_port -dir O -from 3 -to 0 ts_stat ]
   set ts_sync [ create_bd_port -dir O -from 3 -to 0 ts_sync ]
   set ts_sync_v [ create_bd_port -dir O ts_sync_v ]
   set ts_tstamp [ create_bd_port -dir O -from 63 -to 0 ts_tstamp ]
@@ -2729,6 +2732,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net sda_in_p_1_1_1 [get_bd_ports sda_in_p_5] [get_bd_pins coldata_i2c_dual2/sda_in_p_1]
   connect_bd_net -net sda_in_p_1_2_1 [get_bd_ports sda_in_p_7] [get_bd_pins coldata_i2c_dual3/sda_in_p_1]
   connect_bd_net -net sfp_los_0_1 [get_bd_ports ts_sfp_los] [get_bd_pins timing_module/ts_sfp_los]
+  connect_bd_net -net timing_module_stat_0 [get_bd_ports ts_stat] [get_bd_pins timing_module/stat_0]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins clk_wiz_0/reset] [get_bd_pins coldata_fast_cmd_0/cmd_act] [get_bd_pins coldata_fast_cmd_0/cmd_adc_reset] [get_bd_pins coldata_fast_cmd_0/cmd_edge] [get_bd_pins coldata_fast_cmd_0/cmd_idle] [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins daq_spy_0/AXI_CLK_OUT] [get_bd_pins daq_spy_1/AXI_CLK_OUT] [get_bd_pins dbg/AXI_CLK_OUT] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/M15_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_99M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]

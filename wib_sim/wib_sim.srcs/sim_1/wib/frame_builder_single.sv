@@ -8,7 +8,8 @@ module frame_builder_single
     input        rxclk2x, // deframed data clock
     output reg [31:0] daq_stream, // data to felix
     output reg [3:0]  daq_stream_k, // K symbol flags to felix
-    input             daq_clk
+    input             daq_clk,
+    input [63:0] ts_tstamp
 );
 
     reg [13:0] deframed_aligned [7:0][31:0]; // [link][sample]
@@ -111,14 +112,14 @@ module frame_builder_single
     reg [6:0] data_cnt;
 
     // various fields assigned temporarily
-    wire [13:0] wib_code = 0; 
+    wire [13:0] wib_code = {6'h0, link_mask}; // link mask transmitted at the top of each frame 
     wire  [3:0] fr_ver = 0; 
     wire  [1:0] femb_val = 0; 
     wire        fnum = 0; 
     wire  [2:0] wib_slot = 0; 
     wire  [7:0] wiec_crate = 8'h23;
     wire [31:0] wib_coldata_code = 32'hbabeface;
-    wire [63:0] timestamp = 64'h1234567890abcdef;
+    wire [63:0] timestamp = ts_tstamp;
     wire [11:0] flex_12 = 12'hF12;
     wire [23:0] flex_24 = 24'hF24F24;
     reg  [19:0] crc_20 = 0; // this is just a place holder, actual CRC is in crc_out
