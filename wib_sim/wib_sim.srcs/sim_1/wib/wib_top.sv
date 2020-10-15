@@ -92,7 +92,7 @@ module wib_top
     wire [0 : 0] rx_usrclk2_out      ; // rx data clock
     wire [0 : 0] rx_active_out       ; // rx active indicator
     wire [15 :0] rx_data [15:0]      ;
-    wire [15 :0] rx_data_swizzled [15:0]      ;
+    (* mark_debug *) wire [15 :0] rx_data_swizzled [15:0]      ;
     wire [15 :0] rxbyteisaligned_out ;
     wire [15 :0] rxbyterealign_out   ;
     wire [15 :0] rxcommadet_out      ;             
@@ -131,7 +131,6 @@ module wib_top
     IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk));
     
     // system 62.5M clock to FEMBs, from timing pt.
-    // note: not needed, clock to FEMBs is delivered by timing chips
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
 
     wire tx_timing;
@@ -152,6 +151,7 @@ module wib_top
     (* mark_debug *) wire [31:0] daq_stream [1:0]; // data to felix
     (* mark_debug *) wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
     wire daq_clk;
+    wire [3:0] ts_stat;
 
     bd_tux wrp
     (
@@ -188,6 +188,7 @@ module wib_top
         .ts_sync           (ts_sync          ),
         .ts_sync_v         (ts_sync_v        ),
         .ts_tstamp         (ts_tstamp        ),
+        .ts_stat           (ts_stat          ),
 
         .axi_clk_out (axi_clk_out),
         .axi_rstn    (axi_rstn   ),
@@ -208,7 +209,7 @@ module wib_top
         .daq_stream_k  (daq_stream_k )
     );
 
-    wire [1:0]   rx_k [15:0];
+    (* mark_debug *) wire [1:0]   rx_k [15:0];
     wire [1:0]   rx_comma [15:0];
     wire [1:0]   rx_notvalid [15:0];
     wire [1:0]   rx_disp [15:0];
@@ -216,10 +217,13 @@ module wib_top
     wire [13:0] deframed [15:0][31:0]; // [link][sample]
     wire [15:0] valid14;
     wire [15:0] valid12;
+    reg [15:0] valid14_r [1:0];
+    reg [15:0] valid12_r [1:0];
     wire [1:0]  crc_err [15:0];
     wire rxclk2x;
+    (* mark_debug *) wire [15:0] rxprbserr_out;
     
-    // config and status registers mapping, compatible with reference design so far
+    // config and status registers mapping
 // macros for configuration and status bits
 // parameters: a = offset of 32-bit register, b = low bit in the register, n = number of bits
 `define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
@@ -230,9 +234,22 @@ module wib_top
     assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1);
     assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2);
     assign coldata_rx_reset = `CONFIG_BITS(1, 7, 1);
+    wire [3:0]  rx_prbs_sel = `CONFIG_BITS(1, 8, 4);
+    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // this input allows to disable some links in case the are broken
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;
+    assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;
+
+    // according to Adrian's Slack message from 2020-10-15
+    assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32];
+    assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];
+    assign `STATUS_BITS( 4,20,  8) = 8'hff;
+    assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
+    assign `STATUS_BITS( 4,12,  4) = ts_sync;
+    assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
+    assign `STATUS_BITS( 4, 4,  1) = ts_rst;
+    assign `STATUS_BITS( 4, 0,  4) = ts_stat;
     
     coldata_rx_tux coldata_rx
     (
@@ -257,7 +274,9 @@ module wib_top
         .rx_disp             (rx_disp    ),
 
         .rx_cdr_stable_out   (rx_cdr_stable_out  ), 
-        .gtpowergood_out     (gtpowergood_out    )
+        .gtpowergood_out     (gtpowergood_out    ),
+        .rx_prbs_sel         (rx_prbs_sel),
+        .rxprbserr_out       (rxprbserr_out)
     );
     
     coldata_deframer coldata_df
@@ -273,7 +292,6 @@ module wib_top
         .rxclk2x    (rxclk2x)
     );
     
-    wire [15:0] link_mask = 16'h0; // this input allows to disable some links in case the are broken
     
     frame_builder fbld
     (
@@ -281,10 +299,11 @@ module wib_top
         .valid14      (valid14 ),
         .valid12      (valid12 ),
         .rxclk2x      (rxclk2x),
-        .link_mask    (link_mask   ), // this input allows to disable some links in case the are broken
+        .link_mask    (link_mask   ), // this input allows to disable some links in case they are broken
         .daq_stream   (daq_stream  ), // data to felix
         .daq_stream_k (daq_stream_k), // K symbol flags to felix
-        .daq_clk      (daq_clk)
+        .daq_clk      (daq_clk),
+        .ts_tstamp    (ts_tstamp)
     );
     
     
@@ -341,5 +360,55 @@ module wib_top
         .tx_timing (tx_timing),
         .clk240    (daq_clk) // temporary replacement for real DAQ clock that should be coming from FELIX links
     );
+
+    // logic for valid12 and 14 bit extention, so we can watch them using rx clock
+    reg [15:0] valid12_ila;
+    reg [15:0] valid14_ila;
+    always @(posedge rxclk2x)
+    begin
+        valid12_ila = valid12_r[1] | valid12_r[0];
+        valid14_ila = valid14_r[1] | valid14_r[0];
+    
+        valid12_r[1] = valid12_r[0];
+        valid12_r[0] = valid12;
+        valid14_r[1] = valid14_r[0];
+        valid14_r[0] = valid14;
+    end
+
+    ila_0 ila_rx 
+    (
+        .clk     (rx_usrclk2_out), // input wire clk
+        .probe0  (rx_data_swizzled[0 ]), // input wire [15:0]  probe0
+        .probe1  (rx_data_swizzled[1 ]), // input wire [15:0]  probe1
+        .probe2  (rx_data_swizzled[2 ]), // input wire [15:0]  probe2
+        .probe3  (rx_data_swizzled[3 ]), // input wire [15:0]  probe3
+        .probe4  (rx_data_swizzled[4 ]), // input wire [15:0]  probe4
+        .probe5  (rx_data_swizzled[5 ]), // input wire [15:0]  probe5
+        .probe6  (rx_data_swizzled[6 ]), // input wire [15:0]  probe6
+        .probe7  (rx_data_swizzled[7 ]), // input wire [15:0]  probe7
+        .probe8  (rx_data_swizzled[8 ]), // input wire [15:0]  probe8
+        .probe9  (rx_data_swizzled[9 ]), // input wire [15:0]  probe9
+        .probe10 (rx_data_swizzled[10]), // input wire [15:0]  probe10
+        .probe11 (rx_data_swizzled[11]), // input wire [15:0]  probe11
+        .probe12 (rx_data_swizzled[12]), // input wire [15:0]  probe12
+        .probe13 (rx_data_swizzled[13]), // input wire [15:0]  probe13
+        .probe14 (rx_data_swizzled[14]), // input wire [15:0]  probe14
+        .probe15 (rx_data_swizzled[15]), // input wire [15:0]  probe15
+        .probe16 (rx_k[0]), // input wire [15:0]  probe16
+        .probe17 (rx_k[1]), // input wire [15:0]  probe17
+        .probe18 (rxprbserr_out), // input wire [15:0]  probe18
+        .probe19 (valid12_ila), // input wire [15:0]  probe19
+        .probe20 (valid14_ila) // input wire [15:0]  probe20
+    );
+
+    ila_1 ila_daq 
+    (
+        .clk    (daq_clk), // input wire clk
+        .probe0 (daq_stream[0]), // input wire [31:0]  probe0
+        .probe1 (daq_stream[1]), // input wire [31:0]  probe1
+        .probe2 (daq_stream_k[0]), // input wire [3:0]  probe2
+        .probe3 (daq_stream_k[1]) // input wire [3:0]  probe3
+    );
+
         
 endmodule

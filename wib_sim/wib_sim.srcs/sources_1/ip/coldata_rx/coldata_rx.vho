@@ -84,6 +84,8 @@ COMPONENT coldata_rx
     rxcommadeten_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     rxmcommaalignen_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     rxpcommaalignen_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    rxpolarity_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    rxprbssel_in : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
     tx8b10ben_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     txctrl0_in : IN STD_LOGIC_VECTOR(255 DOWNTO 0);
     txctrl1_in : IN STD_LOGIC_VECTOR(255 DOWNTO 0);
@@ -100,6 +102,7 @@ COMPONENT coldata_rx
     rxctrl2_out : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
     rxctrl3_out : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
     rxpmaresetdone_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    rxprbserr_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
     txpmaresetdone_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
 END COMPONENT;
@@ -141,6 +144,8 @@ your_instance_name : coldata_rx
     rxcommadeten_in => rxcommadeten_in,
     rxmcommaalignen_in => rxmcommaalignen_in,
     rxpcommaalignen_in => rxpcommaalignen_in,
+    rxpolarity_in => rxpolarity_in,
+    rxprbssel_in => rxprbssel_in,
     tx8b10ben_in => tx8b10ben_in,
     txctrl0_in => txctrl0_in,
     txctrl1_in => txctrl1_in,
@@ -157,6 +162,7 @@ your_instance_name : coldata_rx
     rxctrl2_out => rxctrl2_out,
     rxctrl3_out => rxctrl3_out,
     rxpmaresetdone_out => rxpmaresetdone_out,
+    rxprbserr_out => rxprbserr_out,
     txpmaresetdone_out => txpmaresetdone_out
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ---------

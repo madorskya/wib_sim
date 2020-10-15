@@ -33,9 +33,10 @@ module bd_tux
     input  ts_rec_d_clk,
     output ts_rst,
     input  ts_sfp_los,
-    output [3:0]ts_sync,
+    output [3:0] ts_sync,
     output ts_sync_v,
-    output [63:0]ts_tstamp,
+    output [63:0] ts_tstamp,
+    output [3:0]  ts_stat,
     
     output        axi_clk_out,
     output        axi_rstn,
@@ -124,6 +125,7 @@ module bd_tux
         .ts_sync      (ts_sync),
         .ts_sync_v    (ts_sync_v),
         .ts_tstamp    (ts_tstamp),
+        .ts_stat      (ts_stat),
         
         .AXI_CLK_OUT  (axi_clk_out),
         .AXI_RSTn     (axi_rstn),

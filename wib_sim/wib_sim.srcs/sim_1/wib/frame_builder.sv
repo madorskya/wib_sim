@@ -9,7 +9,8 @@ module frame_builder
     input  [15:0] link_mask, // this input allows to disable some links in case the are broken
     output [31:0] daq_stream [1:0], // data to felix
     output [3:0]  daq_stream_k [1:0], // K symbol flags to felix
-    input         daq_clk
+    input         daq_clk,
+    input  [63:0] ts_tstamp // time stamp from timing endpoint
 );
 /*
     genvar gi;
@@ -31,8 +32,8 @@ module frame_builder
     endgenerate
 */
 
-    // passing deframed [7:0] into frame_builder_single does not work for some reason
-    // even though it should and does in synthesis.
+    // passing deframed [7:0] into frame_builder_single does not work in simulation for some reason
+    // even though it should, and does work in synthesis.
     // have to assign each sub-bus separately
     wire [13:0] deframed0 [7:0][31:0];
     wire [13:0] deframed1 [7:0][31:0];
@@ -66,7 +67,8 @@ module frame_builder
         .link_mask    (link_mask[7:0]),
         .daq_stream   (daq_stream   [0]),
         .daq_stream_k (daq_stream_k [0]),
-        .daq_clk      (daq_clk)
+        .daq_clk      (daq_clk),
+        .ts_tstamp    (ts_tstamp)
     );
 
     frame_builder_single fbs1
@@ -79,7 +81,8 @@ module frame_builder
         .link_mask    (link_mask[15:8]),
         .daq_stream   (daq_stream   [1]),
         .daq_stream_k (daq_stream_k [1]),
-        .daq_clk      (daq_clk)
+        .daq_clk      (daq_clk),
+        .ts_tstamp    (ts_tstamp)
     );
 
 endmodule
