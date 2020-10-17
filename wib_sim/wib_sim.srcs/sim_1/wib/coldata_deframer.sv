@@ -17,7 +17,7 @@ module coldata_deframer
     generate
         for (gi = 0; gi < 16; gi++)
         begin
-            coldata_deframer_single df_s
+            coldata_deframer_single #(.NUM(gi)) df_s
             (
                 .rxclk2x    (rxclk2x      ),
                 .rx_usrclk2 (rx_usrclk2   ),

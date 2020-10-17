@@ -1,4 +1,4 @@
-module coldata_deframer_single
+module coldata_deframer_single #(parameter NUM = 0)
 (
     input rxclk2x,
     input rx_usrclk2, // rx data clock
@@ -43,6 +43,7 @@ module coldata_deframer_single
     localparam SYM_IDLE = 8'hbc;
     localparam SYM_FR12 = 8'h5c;
     localparam SYM_FR14 = 8'h7c;
+    localparam SYM_FRDD = 8'h1c;
     
     // how many bytes per ADC in each frame format
     localparam ADC_BYTES_12 = 8'd24;
@@ -92,6 +93,9 @@ module coldata_deframer_single
 
                 if (rx_k0 == 1'b1 && rx_byte0 == SYM_FR12) // FRAME 12 marker
                     df_state = TI12;
+
+                if (rx_k0 == 1'b1 && rx_byte0 == SYM_FRDD) // FRAME DD marker
+                    df_state = TI12; // same decoder as Frame 12
             end
             
             TI14:
@@ -181,6 +185,23 @@ module coldata_deframer_single
         rx_usrclk_edge_rr = rx_usrclk_edge_r;
         rx_usrclk_edge_r = rx_usrclk_edge;
     end
+
+    generate
+        if (NUM == 0)
+        begin
+            ila_2 ila_deframer 
+            (
+                .clk    (rxclk2x), // input wire clk
+                .probe0 (rx_byte0), // input wire [7:0]  probe0
+                .probe1 (rx_byte1), // input wire [7:0]  probe1
+                .probe2 (rx_k0), // input wire [0:0]  probe2
+                .probe3 (rx_k1), // input wire [0:0]  probe3
+                .probe4 (df_state), // input wire [3:0]  probe4
+                .probe5 (byte_cnt) // input wire [7:0]  probe5
+            );
+        end
+
+    endgenerate
 
 endmodule
 
