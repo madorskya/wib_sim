@@ -229,12 +229,14 @@ module wib_top
 `define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
     
-    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4);
+    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // i2c chain selector, see I2C_CONTROL module below
     assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1);
     assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1);
     assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2);
     assign coldata_rx_reset = `CONFIG_BITS(1, 7, 1);
-    wire [3:0]  rx_prbs_sel = `CONFIG_BITS(1, 8, 4);
+    wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4);
+    wire fb_reset           = `CONFIG_BITS(1,12, 1); // frame builder reset
+    
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // this input allows to disable some links in case the are broken
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
@@ -303,7 +305,8 @@ module wib_top
         .daq_stream   (daq_stream  ), // data to felix
         .daq_stream_k (daq_stream_k), // K symbol flags to felix
         .daq_clk      (daq_clk),
-        .ts_tstamp    (ts_tstamp)
+        .ts_tstamp    (ts_tstamp),
+        .reset        (fb_reset)
     );
     
     
@@ -394,12 +397,27 @@ module wib_top
         .probe13 (rx_data_swizzled[13]), // input wire [15:0]  probe13
         .probe14 (rx_data_swizzled[14]), // input wire [15:0]  probe14
         .probe15 (rx_data_swizzled[15]), // input wire [15:0]  probe15
-        .probe16 (rx_k[0]), // input wire [15:0]  probe16
-        .probe17 (rx_k[1]), // input wire [15:0]  probe17
-        .probe18 (rxprbserr_out), // input wire [15:0]  probe18
-        .probe19 (valid12_ila), // input wire [15:0]  probe19
-        .probe20 (valid14_ila) // input wire [15:0]  probe20
+        .probe16 (rxprbserr_out), // input wire [15:0]  probe16
+        .probe17 (valid12_ila  ), // input wire [15:0]  probe17
+        .probe18 (valid14_ila  ), // input wire [15:0]  probe18
+        .probe19 (rx_k[0 ]), // input wire [1:0]  probe19
+        .probe20 (rx_k[1 ]), // input wire [1:0]  probe20
+        .probe21 (rx_k[2 ]), // input wire [1:0]  probe21
+        .probe22 (rx_k[3 ]), // input wire [1:0]  probe22
+        .probe23 (rx_k[4 ]), // input wire [1:0]  probe23
+        .probe24 (rx_k[5 ]), // input wire [1:0]  probe24
+        .probe25 (rx_k[6 ]), // input wire [1:0]  probe25
+        .probe26 (rx_k[7 ]), // input wire [1:0]  probe26
+        .probe27 (rx_k[8 ]), // input wire [1:0]  probe27
+        .probe28 (rx_k[9 ]), // input wire [1:0]  probe28
+        .probe29 (rx_k[10]), // input wire [1:0]  probe29
+        .probe30 (rx_k[11]), // input wire [1:0]  probe30
+        .probe31 (rx_k[12]), // input wire [1:0]  probe31
+        .probe32 (rx_k[13]), // input wire [1:0]  probe32
+        .probe33 (rx_k[14]), // input wire [1:0]  probe33
+        .probe34 (rx_k[15]) // input wire [1:0]  probe34
     );
+    
 
     ila_1 ila_daq 
     (

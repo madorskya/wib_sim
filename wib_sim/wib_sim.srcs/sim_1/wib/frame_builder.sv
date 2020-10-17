@@ -10,7 +10,8 @@ module frame_builder
     output [31:0] daq_stream [1:0], // data to felix
     output [3:0]  daq_stream_k [1:0], // K symbol flags to felix
     input         daq_clk,
-    input  [63:0] ts_tstamp // time stamp from timing endpoint
+    input  [63:0] ts_tstamp, // time stamp from timing endpoint
+    input         reset
 );
 /*
     genvar gi;
@@ -57,7 +58,7 @@ module frame_builder
     assign deframed1[7] = deframed[15];
 
     // modules below generate daq streams for each of the FELIX links
-    frame_builder_single fbs0
+    frame_builder_single #(.NUM(0)) fbs0
     (
         .deframed     (deframed0),
         .valid14      (valid14  [7:0]),
@@ -68,10 +69,11 @@ module frame_builder
         .daq_stream   (daq_stream   [0]),
         .daq_stream_k (daq_stream_k [0]),
         .daq_clk      (daq_clk),
-        .ts_tstamp    (ts_tstamp)
+        .ts_tstamp    (ts_tstamp),
+        .reset        (reset)
     );
 
-    frame_builder_single fbs1
+    frame_builder_single #(.NUM(1)) fbs1
     (
         .deframed     (deframed1),
         .valid14      (valid14  [15:8]),
@@ -82,7 +84,8 @@ module frame_builder
         .daq_stream   (daq_stream   [1]),
         .daq_stream_k (daq_stream_k [1]),
         .daq_clk      (daq_clk),
-        .ts_tstamp    (ts_tstamp)
+        .ts_tstamp    (ts_tstamp),
+        .reset        (reset)
     );
 
 endmodule

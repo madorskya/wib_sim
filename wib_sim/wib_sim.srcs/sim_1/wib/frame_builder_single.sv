@@ -1,4 +1,4 @@
-module frame_builder_single
+module frame_builder_single #(parameter NUM = 0)
 (
     input [13:0] deframed [7:0][31:0], // [link][sample]
     input [7:0]  valid14,
@@ -9,7 +9,8 @@ module frame_builder_single
     output reg [31:0] daq_stream, // data to felix
     output reg [3:0]  daq_stream_k, // K symbol flags to felix
     input             daq_clk,
-    input [63:0] ts_tstamp
+    input [63:0] ts_tstamp,
+    input reset
 );
 
     reg [13:0] deframed_aligned [7:0][31:0]; // [link][sample]
@@ -155,12 +156,18 @@ module frame_builder_single
     // DAQ request FSM
     always @(posedge rxclk2x)
     begin
+        if (reset)
+        begin
+            rq_state = DAQ_WAIT;
+            valid_aligned = 8'h0;
+            data_ready[0] = 1'b0;
+        end
     
-        data_ready[0] = 1'b0;
         case (rq_state)
             DAQ_WAIT:
             begin
                 // here we wait until data arrive from all links so we can start frame forming
+                data_ready[0] = 1'b0;
                 if (valid_aligned == 8'hff) // all valid bits arrived
                 begin
                     rq_state = DAQ_RQ;
@@ -183,6 +190,7 @@ module frame_builder_single
                 if (rq_served[3:2] == 2'b01) // response just came
                 begin
                     valid_aligned = 8'h0; // reset valid bits
+                    data_ready[0] = 1'b0; // remove request
                     rq_state = DAQ_WAIT; // go wait for next request
                 end
             end
@@ -194,7 +202,10 @@ module frame_builder_single
     // formatting FSM
     always @(posedge daq_clk)
     begin
-    
+        if (reset)
+        begin
+            fb_state = IDLE;
+        end
     
         // daq stream delay line to compensate for CRC module latency, 2 clks
         daq_stream      = daq_stream_d[1];
@@ -306,6 +317,31 @@ module frame_builder_single
         // demetastab the request
         data_ready[3:1] = data_ready[2:0]; 
     end
+
+    generate
+        if (NUM == 0)
+        begin
+            ila_3 ila_daq_rq 
+            (
+                .clk    (rxclk2x), // input wire clk
+                .probe0 (rq_state), // input wire [2:0]  probe0
+                .probe1 (data_ready[0]), // input wire [0:0]  probe1
+                .probe2 (rq_served[3:1]), // input wire [3:0]  probe2
+                .probe3 (valid_aligned), // input wire [7:0]  probe3
+                .probe4 (link_mask), // input wire [7:0]  probe4
+                .probe5 (valid12) // input wire [7:0]  probe5
+            );
+            
+            ila_4 ila_daq_fsm 
+            (
+                .clk    (daq_clk), // input wire clk
+                .probe0 (fb_state), // input wire [3:0]  probe0
+                .probe1 (data_cnt), // input wire [6:0]  probe1
+                .probe2 (data_ready[3:1]), // input wire [2:0]  probe2
+                .probe3 (rq_served[0]) // input wire [0:0]  probe3
+            );
+        end
+    endgenerate    
 
 
 endmodule
