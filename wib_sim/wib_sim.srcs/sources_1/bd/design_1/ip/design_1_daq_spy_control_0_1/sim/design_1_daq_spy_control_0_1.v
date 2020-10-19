@@ -67,7 +67,8 @@ module design_1_daq_spy_control_0_1 (
   time_stamp,
   clk65p5,
   reset,
-  full
+  full,
+  state
 );
 
 input wire [31 : 0] daq_stream;
@@ -91,12 +92,15 @@ input wire clk65p5;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset RST" *)
 input wire reset;
 output wire full;
+output wire [2 : 0] state;
 
   daq_spy_control #(
-    .IDLE(2'B00),
-    .RECORD(2'B01),
-    .FULL(2'B10),
-    .FRAME_LNG(20'H00078)
+    .IDLE(3'B000),
+    .IDLE_CHECK(3'B001),
+    .RECORD(3'B010),
+    .LAST(3'B011),
+    .FULL(3'B100),
+    .FRAME_LNG(20'H001E0)
   ) inst (
     .daq_stream(daq_stream),
     .daq_stream_k(daq_stream_k),
@@ -110,6 +114,7 @@ output wire full;
     .time_stamp(time_stamp),
     .clk65p5(clk65p5),
     .reset(reset),
-    .full(full)
+    .full(full),
+    .state(state)
   );
 endmodule

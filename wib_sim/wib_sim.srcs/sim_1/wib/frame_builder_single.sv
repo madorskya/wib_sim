@@ -187,7 +187,7 @@ module frame_builder_single #(parameter NUM = 0)
             
             DAQ_RQ:
             begin
-                if (rq_served[3:2] == 2'b01) // response just came
+                if (rq_served[2] == 1'b1) // response came
                 begin
                     valid_aligned = 8'h0; // reset valid bits
                     data_ready[0] = 1'b0; // remove request
@@ -222,7 +222,7 @@ module frame_builder_single #(parameter NUM = 0)
             begin
                 crc_reset = 1'b1;
                 crc_calc = 1'b0;
-                if (data_ready[3:2] == 2'b01) // request just came
+                if (data_ready[2] == 1'b1) // request on
                     fb_state = SOF; // start frame
                 daq_stream_d[0] = 32'h0;
                 daq_stream_k_d[0] = 4'b0;
