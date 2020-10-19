@@ -78,7 +78,10 @@ module wib_top
     output tx_timing_n,
     
     // standalone oscillator 
-    input  clk_in_50mhz
+    input  clk_in_50mhz,
+    
+    // test points
+    output [15:0] misc_io
     
 );
 
@@ -233,9 +236,9 @@ module wib_top
     assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1);
     assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1);
     assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2);
-    assign coldata_rx_reset = `CONFIG_BITS(1, 7, 1);
     wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4);
     wire fb_reset           = `CONFIG_BITS(1,12, 1); // frame builder reset
+    assign coldata_rx_reset = `CONFIG_BITS(1,13, 1);
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // this input allows to disable some links in case the are broken
     
@@ -428,5 +431,13 @@ module wib_top
         .probe3 (daq_stream_k[1]) // input wire [3:0]  probe3
     );
 
+    // test points
+    assign misc_io[1:0]  = rx_k[0];
+    assign misc_io[3:2]  = rx_k[1];
+    assign misc_io[5:4]  = rx_k[2];
+    assign misc_io[7:6]  = rx_k[3];
+    assign misc_io[11:8] = valid12[3:0];
+    assign misc_io[14:12] = daq_stream_k[0][2:0];
+    assign misc_io[15] = daq_spy_reset; 
         
 endmodule

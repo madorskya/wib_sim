@@ -492,21 +492,31 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
      return 1
    }
   
+  # Create instance: ila_0, and set properties
+  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_INPUT_PIPE_STAGES {6} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {8} \
+ ] $ila_0
+
   # Create interface connections
   connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins axi_bram_ctrl_0_bram/BRAM_PORTA]
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins S_AXI] [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
 
   # Create port connections
-  connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk]
-  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr]
+  connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk] [get_bd_pins ila_0/clk]
+  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr] [get_bd_pins ila_0/probe2]
   connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
-  connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din]
-  connect_bd_net -net daq_spy_control_0_bram_en [get_bd_pins axi_bram_ctrl_0_bram/enb] [get_bd_pins daq_spy_control_0/bram_en]
+  connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din] [get_bd_pins ila_0/probe3]
+  connect_bd_net -net daq_spy_control_0_bram_en [get_bd_pins axi_bram_ctrl_0_bram/enb] [get_bd_pins daq_spy_control_0/bram_en] [get_bd_pins ila_0/probe4]
   connect_bd_net -net daq_spy_control_0_bram_rst [get_bd_pins axi_bram_ctrl_0_bram/rstb] [get_bd_pins daq_spy_control_0/bram_rst]
-  connect_bd_net -net daq_spy_control_0_bram_we [get_bd_pins axi_bram_ctrl_0_bram/web] [get_bd_pins daq_spy_control_0/bram_we]
-  connect_bd_net -net daq_spy_full_0 [get_bd_pins daq_spy_full] [get_bd_pins daq_spy_control_0/full]
-  connect_bd_net -net daq_stream0_0_1 [get_bd_pins daq_stream0] [get_bd_pins daq_spy_control_0/daq_stream]
-  connect_bd_net -net daq_stream_k0_0_1 [get_bd_pins daq_stream_k0] [get_bd_pins daq_spy_control_0/daq_stream_k]
+  connect_bd_net -net daq_spy_control_0_bram_we [get_bd_pins axi_bram_ctrl_0_bram/web] [get_bd_pins daq_spy_control_0/bram_we] [get_bd_pins ila_0/probe5]
+  connect_bd_net -net daq_spy_control_0_state [get_bd_pins daq_spy_control_0/state] [get_bd_pins ila_0/probe7]
+  connect_bd_net -net daq_spy_full_0 [get_bd_pins daq_spy_full] [get_bd_pins daq_spy_control_0/full] [get_bd_pins ila_0/probe6]
+  connect_bd_net -net daq_stream0_0_1 [get_bd_pins daq_stream0] [get_bd_pins daq_spy_control_0/daq_stream] [get_bd_pins ila_0/probe0]
+  connect_bd_net -net daq_stream_k0_0_1 [get_bd_pins daq_stream_k0] [get_bd_pins daq_spy_control_0/daq_stream_k] [get_bd_pins ila_0/probe1]
   connect_bd_net -net pdts_endpoint_0_clk [get_bd_pins ts_clk] [get_bd_pins daq_spy_control_0/clk65p5]
   connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins daq_spy_control_0/time_stamp]
   connect_bd_net -net reset_0_1 [get_bd_pins daq_spy_reset] [get_bd_pins daq_spy_control_0/reset]
