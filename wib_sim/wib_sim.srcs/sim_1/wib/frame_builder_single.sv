@@ -8,6 +8,7 @@ module frame_builder_single #(parameter NUM = 0)
     input        rxclk2x, // deframed data clock
     output reg [31:0] daq_stream, // data to felix
     output reg [3:0]  daq_stream_k, // K symbol flags to felix
+    output reg [1:0]  daq_data_type, // data type flags needed by felix
     input             daq_clk,
     input [63:0] ts_tstamp,
     input reset
@@ -68,6 +69,7 @@ module frame_builder_single #(parameter NUM = 0)
     // daq_stream delay line to compensate for CRC module latency, 2 clks
     reg [31:0] daq_stream_d [1:0]; 
     reg [3:0]  daq_stream_k_d [1:0];
+    reg [1:0]  daq_data_type_d [1:0];
     reg [2:0]  crc_inject;
 
 
@@ -96,6 +98,15 @@ module frame_builder_single #(parameter NUM = 0)
     } fb_state_t;
 
     fb_state_t fb_state = IDLE;
+
+    // daq stream data type flags for FELIX
+    typedef enum bit[1:0]
+    {
+        DT_INTERMEDIATE = 2'b00,
+        DT_FIRST,
+        DT_LAST,
+        DT_IGNORE
+    } daq_data_type_t;
     
     // states of the DAQ TX request FSM
     typedef enum bit [1:0]
@@ -212,6 +223,8 @@ module frame_builder_single #(parameter NUM = 0)
         daq_stream_d[1] = daq_stream_d[0];
         daq_stream_k      = daq_stream_k_d[1];
         daq_stream_k_d[1] = daq_stream_k_d[0];
+        daq_data_type      = daq_data_type_d[1];
+        daq_data_type_d[1] = daq_data_type_d[0];
         
     
         rq_served[0] = 1'b0; 
@@ -226,9 +239,10 @@ module frame_builder_single #(parameter NUM = 0)
                     fb_state = SOF; // start frame
                 daq_stream_d[0] = 32'h0;
                 daq_stream_k_d[0] = 4'b0;
+                daq_data_type_d[0] = DT_IGNORE; // ignore word
             end
             
-            SOF:
+            SOF: // start of frame
             begin
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 // store prepared tx words in register for shifting out
@@ -236,6 +250,7 @@ module frame_builder_single #(parameter NUM = 0)
                 tx_words [111:56] = tx_words_1;
                 daq_stream_d[0] = header[0];
                 daq_stream_k_d[0] = header_k[0];
+                daq_data_type_d[0] = DT_FIRST; 
                 fb_state = HEAD;
             end
             
@@ -244,6 +259,7 @@ module frame_builder_single #(parameter NUM = 0)
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 daq_stream_d[0] = header[1];
                 daq_stream_k_d[0] = header_k[1];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 fb_state = CODE;
             end
             
@@ -252,6 +268,7 @@ module frame_builder_single #(parameter NUM = 0)
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 daq_stream_d[0] = header[2];
                 daq_stream_k_d[0] = header_k[2];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 fb_state = TIME0;
             end
             
@@ -260,6 +277,7 @@ module frame_builder_single #(parameter NUM = 0)
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 daq_stream_d[0] = header[3];
                 daq_stream_k_d[0] = header_k[3];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 fb_state = TIME1;
             end
             
@@ -268,6 +286,7 @@ module frame_builder_single #(parameter NUM = 0)
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 daq_stream_d[0] = header[4];
                 daq_stream_k_d[0] = header_k[4];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 data_cnt = 7'd0;
                 fb_state = DATA;
             end
@@ -283,6 +302,7 @@ module frame_builder_single #(parameter NUM = 0)
                     tx_words[i] = tx_words[i+1];
                 end
                 daq_stream_k_d[0] = 4'b0;
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 data_cnt++;    
             end
             
@@ -290,6 +310,7 @@ module frame_builder_single #(parameter NUM = 0)
             begin
                 daq_stream_d[0] = trailer[0];
                 daq_stream_k_d[0] = trailer_k[0];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 crc_inject[0] = 1'b1; 
                 fb_state = FLEX;
             end
@@ -298,6 +319,7 @@ module frame_builder_single #(parameter NUM = 0)
             begin
                 daq_stream_d[0] = trailer[1];
                 daq_stream_k_d[0] = trailer_k[1];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
                 fb_state = TAIL;
             end
             
@@ -305,6 +327,7 @@ module frame_builder_single #(parameter NUM = 0)
             begin
                 daq_stream_d[0] = trailer[2];
                 daq_stream_k_d[0] = trailer_k[2];
+                daq_data_type_d[0] = DT_LAST; 
                 fb_state = IDLE;
             end
             
