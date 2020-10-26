@@ -151,8 +151,9 @@ module wib_top
 
     wire [1:0] daq_spy_full;
     wire [1:0] daq_spy_reset;
-    (* mark_debug *) wire [31:0] daq_stream [1:0]; // data to felix
-    (* mark_debug *) wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
+    wire [31:0] daq_stream [1:0]; // data to felix
+    wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
+    wire [1:0]  daq_data_type [1:0]; // data_type flags for felix
     wire daq_clk;
     wire [3:0] ts_stat;
 
@@ -307,6 +308,7 @@ module wib_top
         .link_mask    (link_mask   ), // this input allows to disable some links in case they are broken
         .daq_stream   (daq_stream  ), // data to felix
         .daq_stream_k (daq_stream_k), // K symbol flags to felix
+        .daq_data_type(daq_data_type), // data type flags for felix
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
         .reset        (fb_reset)
@@ -428,7 +430,9 @@ module wib_top
         .probe0 (daq_stream[0]), // input wire [31:0]  probe0
         .probe1 (daq_stream[1]), // input wire [31:0]  probe1
         .probe2 (daq_stream_k[0]), // input wire [3:0]  probe2
-        .probe3 (daq_stream_k[1]) // input wire [3:0]  probe3
+        .probe3 (daq_stream_k[1]), // input wire [3:0]  probe3
+        .probe4 (daq_data_type[0]), // input wire [1:0]  probe4
+        .probe5 (daq_data_type[1]) // input wire [1:0]  probe5
     );
 
     // test points

@@ -9,6 +9,7 @@ module frame_builder
     input  [15:0] link_mask, // this input allows to disable some links in case the are broken
     output [31:0] daq_stream [1:0], // data to felix
     output [3:0]  daq_stream_k [1:0], // K symbol flags to felix
+    output [1:0]  daq_data_type [1:0], // data_type flags for felix
     input         daq_clk,
     input  [63:0] ts_tstamp, // time stamp from timing endpoint
     input         reset
@@ -68,6 +69,7 @@ module frame_builder
         .link_mask    (link_mask[7:0]),
         .daq_stream   (daq_stream   [0]),
         .daq_stream_k (daq_stream_k [0]),
+        .daq_data_type(daq_data_type[0]),
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
         .reset        (reset)
@@ -83,6 +85,7 @@ module frame_builder
         .link_mask    (link_mask[15:8]),
         .daq_stream   (daq_stream   [1]),
         .daq_stream_k (daq_stream_k [1]),
+        .daq_data_type(daq_data_type[1]),
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
         .reset        (reset)

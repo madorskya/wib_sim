@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Thu Oct 15 19:30:29 2020
+-- Date        : Mon Oct 26 21:57:35 2020
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/ip/ila_1/ila_1_stub.vhdl
@@ -18,7 +18,9 @@ entity ila_1 is
     probe0 : in STD_LOGIC_VECTOR ( 31 downto 0 );
     probe1 : in STD_LOGIC_VECTOR ( 31 downto 0 );
     probe2 : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    probe3 : in STD_LOGIC_VECTOR ( 3 downto 0 )
+    probe3 : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    probe4 : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    probe5 : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
 
 end ila_1;
@@ -27,7 +29,7 @@ architecture stub of ila_1 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clk,probe0[31:0],probe1[31:0],probe2[3:0],probe3[3:0]";
+attribute black_box_pad_pin of stub : architecture is "clk,probe0[31:0],probe1[31:0],probe2[3:0],probe3[3:0],probe4[1:0],probe5[1:0]";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "ila,Vivado 2020.1.1_AR73018";
 begin
