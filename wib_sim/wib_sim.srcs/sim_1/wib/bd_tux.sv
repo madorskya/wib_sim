@@ -55,17 +55,16 @@ module bd_tux
     output [1:0]  daq_spy_full,
     input  [1:0]  daq_spy_reset,
     input  [31:0] daq_stream [1:0],
-    input  [3:0]  daq_stream_k [1:0]
-    
+    input  [3:0]  daq_stream_k [1:0],
+    output clk_240
 );
     
-    wire clk_40;
+    wire clk_40 = 1'b0; // unused, FEMBs generate their own 40M clocks for each COLDATA
     // output the same 40M clock to all FEMBs
     OBUFDS clk_40_buf[3:0] (.I(clk_40), .O(coldata_clk_40_p[3:0]), .OB(coldata_clk_40_n[3:0]));
 
     design_1 design_1_i
     (
-        .clk_40(clk_40),
         .fastcommand_out_n_0(fastcommand_out_n),
         .fastcommand_out_p_0(fastcommand_out_p),
         

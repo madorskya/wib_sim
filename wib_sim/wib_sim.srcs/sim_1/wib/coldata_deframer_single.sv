@@ -27,12 +27,11 @@ module coldata_deframer_single #(parameter NUM = 0)
     } df_state_t;
     
     df_state_t df_state = IDLE;
-    reg rx_usrclk_edge = 1'b0; 
-    reg rx_usrclk_edge_r, rx_usrclk_edge_rr;
-    reg [7:0] rx_byte0, rx_byte1;
-    reg rx_k0, rx_k1;
+    reg [7:0] rx_byte0;
+    reg rx_k0;
     reg [7:0] time8;
     reg [7:0] byte_cnt;
+    wire dfifo_valid;
 
     localparam FR14_BYTE_COUNT = 8'd56; // 32 samples x 14 bits
     localparam FR12_BYTE_COUNT = 8'd48; // 32 samples x 12 bits
@@ -67,17 +66,14 @@ module coldata_deframer_single #(parameter NUM = 0)
     // common output bus carrying deframed data
     assign deframed = (valid12) ? deframed12 : deframed14;
 
-    always @(posedge rx_usrclk2)
-    begin
-        rx_usrclk_edge = ~rx_usrclk_edge;
-    end
-
     always @(posedge rxclk2x)
     begin
-        valid14 = 1'b0;
-        valid12 = 1'b0;
+      valid14 = 1'b0;
+      valid12 = 1'b0;
+      if (dfifo_valid) // do anything only when valid data from fifo
+      begin        
         case (df_state)
-        
+
             IDLE: 
             begin
                 parallel_frame = 0;
@@ -100,7 +96,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             
             TI14:
             begin
-                time8 = rx_data; // store time marker
+                time8 = rx_byte0; // store time marker
                 df_state = FR14;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
@@ -108,7 +104,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             
             TI12: 
             begin
-                time8 = rx_data; // store time marker
+                time8 = rx_byte0; // store time marker
                 df_state = FR12;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
@@ -167,41 +163,47 @@ module coldata_deframer_single #(parameter NUM = 0)
             end
             
         endcase
-        
-        if (rx_usrclk_edge_r == rx_usrclk_edge_rr)
-        begin
-            {rx_byte1, rx_byte0} = rx_data; // lock new data word at the 62.5M edge
-            {rx_k1, rx_k0} = rx_k;
-        end
-        else
-        begin
-            rx_byte0 = rx_byte1; // shift another byte for processing
-            rx_k0 = rx_k1;
-        end
+      end
     end
     
-    always @(negedge rxclk2x) // negedge is actually needed for simulation only, could be done on posedge in real fw
-    begin
-        rx_usrclk_edge_rr = rx_usrclk_edge_r;
-        rx_usrclk_edge_r = rx_usrclk_edge;
-    end
+    wire dfifo_empty;
 
-    generate
-        if (NUM == 0)
-        begin
+    deframer_fifo dfifo 
+    (
+        .rst    (1'b0),                  // input wire rst
+        .wr_clk (rx_usrclk2),            // input wire wr_clk
+        .rd_clk (rxclk2x),            // input wire rd_clk
+        .din    ({rx_k[0], rx_data[7:0], rx_k[1], rx_data[15:8]}),                  // input wire [17 : 0] din
+        .wr_en  (1'b1),    // write everything
+        .rd_en  (!dfifo_empty),  // read whenever there's data
+        .dout   ({rx_k0, rx_byte0}),                // output wire [8 : 0] dout
+        .full   (),                // output wire full
+        .empty  (dfifo_empty),              // output wire empty
+        .valid  (dfifo_valid),              // output wire valid
+        .wr_rst_busy (),  // output wire wr_rst_busy
+        .rd_rst_busy ()  // output wire rd_rst_busy
+    );
+    
+
+            ila_0 ila_rx 
+            (
+                .clk     (rx_usrclk2), // input wire clk
+                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
+                .probe1  (rx_k)
+            ); 
+            
             ila_2 ila_deframer 
             (
                 .clk    (rxclk2x), // input wire clk
                 .probe0 (rx_byte0), // input wire [7:0]  probe0
-                .probe1 (rx_byte1), // input wire [7:0]  probe1
-                .probe2 (rx_k0), // input wire [0:0]  probe2
-                .probe3 (rx_k1), // input wire [0:0]  probe3
-                .probe4 (df_state), // input wire [3:0]  probe4
-                .probe5 (byte_cnt) // input wire [7:0]  probe5
+                .probe1 (rx_k0), // input wire [0:0]  probe2
+                .probe2 (df_state), // input wire [3:0]  probe4
+                .probe3 (byte_cnt), // input wire [7:0]  probe5
+                .probe4 (valid12),
+                .probe5 (valid14),
+                .probe6 (dfifo_empty),
+                .probe7 (dfifo_valid)
             );
-        end
-
-    endgenerate
 
 endmodule
 

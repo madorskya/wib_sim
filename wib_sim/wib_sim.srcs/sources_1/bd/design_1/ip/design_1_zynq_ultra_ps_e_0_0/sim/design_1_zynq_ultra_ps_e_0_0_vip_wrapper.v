@@ -208,7 +208,7 @@ assign pl_clk0 = pl_clk_t[0] ;
     .C_S_AXI_GP5_DATA_WIDTH(128),
     .C_S_AXI_GP6_DATA_WIDTH(128),
     .C_FCLK_CLK0_FREQ(100.000000),
-    .C_FCLK_CLK1_FREQ(100),
+    .C_FCLK_CLK1_FREQ(240.000000),
     .C_FCLK_CLK2_FREQ(100),
     .C_FCLK_CLK3_FREQ(100)
   ) inst (

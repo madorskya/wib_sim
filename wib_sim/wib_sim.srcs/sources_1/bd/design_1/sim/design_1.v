@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Sun Oct 18 23:28:14 2020
+//Date        : Mon Nov  2 15:38:01 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1744,12 +1744,11 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=93,numReposBlks=67,numNonXlnxBlks=11,numHierBlks=26,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=92,numReposBlks=66,numNonXlnxBlks=11,numHierBlks=26,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
-    clk_40,
     daq_clk,
     daq_spy_full_0,
     daq_spy_full_1,
@@ -1826,7 +1825,6 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.AXI_CLK_OUT CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.AXI_CLK_OUT, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output AXI_CLK_OUT;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.AXI_RSTN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.AXI_RSTN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output [0:0]AXI_RSTn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 WIB_LED TRI_O" *) output [31:0]WIB_LED_tri_o;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_40 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_40, CLK_DOMAIN design_1_clk_wiz_0_0_clk_out1, FREQ_HZ 40000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output clk_40;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DAQ_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DAQ_CLK, ASSOCIATED_RESET daq_spy_reset_0:daq_spy_reset_1, CLK_DOMAIN design_1_daq_clk_0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input daq_clk;
   output daq_spy_full_0;
   output daq_spy_full_1;
@@ -2025,7 +2023,6 @@ module design_1
   wire axi_iic_0_iic2intc_irpt;
   wire cdr_lol_0_1;
   wire cdr_los_0_1;
-  wire clk_wiz_0_clk_out1;
   wire coldata_fast_cmd_0_fastcommand_out_n;
   wire coldata_fast_cmd_0_fastcommand_out_p;
   wire [0:0]coldata_i2c_0_scl_n;
@@ -2334,7 +2331,6 @@ module design_1
   assign axi_iic_0_IIC_SDA_I = iic_rtl_0_sda_i;
   assign cdr_lol_0_1 = ts_cdr_lol;
   assign cdr_los_0_1 = ts_cdr_los;
-  assign clk_40 = clk_wiz_0_clk_out1;
   assign daq_clk_0_1 = daq_clk;
   assign daq_spy_full_1 = daq_spy_1_daq_spy_full;
   assign daq_spy_reset_0_1 = daq_spy_reset_1;
@@ -2451,10 +2447,6 @@ module design_1
         .sda_i(axi_iic_0_IIC_SDA_I),
         .sda_o(axi_iic_0_IIC_SDA_O),
         .sda_t(axi_iic_0_IIC_SDA_T));
-  design_1_clk_wiz_0_0 clk_wiz_0
-       (.clk_in1(pdts_endpoint_0_clk),
-        .clk_out1(clk_wiz_0_clk_out1),
-        .reset(xlconstant_0_dout));
   design_1_coldata_fast_cmd_0_0 coldata_fast_cmd_0
        (.clk62p5(pdts_endpoint_0_clk),
         .cmd_act(xlconstant_0_dout),

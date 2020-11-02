@@ -91,9 +91,7 @@ module wib_top
     wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
     
-    wire [0 : 0] rx_usrclk_out       ;
-    wire [0 : 0] rx_usrclk2_out      ; // rx data clock
-    wire [0 : 0] rx_active_out       ; // rx active indicator
+    wire [7 : 0] rx_usrclk2_out      ; // rx data clock
     wire [15 :0] rx_data [15:0]      ;
     (* mark_debug *) wire [15 :0] rx_data_swizzled [15:0]      ;
     wire [15 :0] rxbyteisaligned_out ;
@@ -155,6 +153,7 @@ module wib_top
     wire [3:0]  daq_stream_k [1:0]; // K symbol flags to felix
     wire [1:0]  daq_data_type [1:0]; // data_type flags for felix
     wire daq_clk;
+    
     wire [3:0] ts_stat;
 
     bd_tux wrp
@@ -224,7 +223,7 @@ module wib_top
     reg [15:0] valid14_r [1:0];
     reg [15:0] valid12_r [1:0];
     wire [1:0]  crc_err [15:0];
-    wire rxclk2x;
+    wire rxclk2x = tx_timing; // using main 156.25M clock as double data clock
     (* mark_debug *) wire [15:0] rxprbserr_out;
     
     // config and status registers mapping
@@ -267,9 +266,7 @@ module wib_top
         .reset_all_in        (coldata_rx_reset   ), // common reset for all circiuts
         .reset_rx_done_out   (reset_rx_done_out  ), 
     
-        .rx_usrclk_out       (rx_usrclk_out      ),
         .rx_usrclk2_out      (rx_usrclk2_out     ), // rx data clock
-        .rx_active_out       (rx_active_out      ), // rx active indicator
         .rx_data             (rx_data            ),
         .rxbyteisaligned_out (rxbyteisaligned_out),
         .rxbyterealign_out   (rxbyterealign_out  ),
@@ -366,7 +363,8 @@ module wib_top
     (
         .clk50     (clk50),
         .tx_timing (tx_timing),
-        .clk240    (daq_clk) // temporary replacement for real DAQ clock that should be coming from FELIX links
+        
+        .clk_240 (daq_clk) // temporary replacement for real DAQ clock that should be coming from FELIX links
     );
 
     // logic for valid12 and 14 bit extention, so we can watch them using rx clock
@@ -382,47 +380,6 @@ module wib_top
         valid14_r[1] = valid14_r[0];
         valid14_r[0] = valid14;
     end
-
-    ila_0 ila_rx 
-    (
-        .clk     (rx_usrclk2_out), // input wire clk
-        .probe0  (rx_data_swizzled[0 ]), // input wire [15:0]  probe0
-        .probe1  (rx_data_swizzled[1 ]), // input wire [15:0]  probe1
-        .probe2  (rx_data_swizzled[2 ]), // input wire [15:0]  probe2
-        .probe3  (rx_data_swizzled[3 ]), // input wire [15:0]  probe3
-        .probe4  (rx_data_swizzled[4 ]), // input wire [15:0]  probe4
-        .probe5  (rx_data_swizzled[5 ]), // input wire [15:0]  probe5
-        .probe6  (rx_data_swizzled[6 ]), // input wire [15:0]  probe6
-        .probe7  (rx_data_swizzled[7 ]), // input wire [15:0]  probe7
-        .probe8  (rx_data_swizzled[8 ]), // input wire [15:0]  probe8
-        .probe9  (rx_data_swizzled[9 ]), // input wire [15:0]  probe9
-        .probe10 (rx_data_swizzled[10]), // input wire [15:0]  probe10
-        .probe11 (rx_data_swizzled[11]), // input wire [15:0]  probe11
-        .probe12 (rx_data_swizzled[12]), // input wire [15:0]  probe12
-        .probe13 (rx_data_swizzled[13]), // input wire [15:0]  probe13
-        .probe14 (rx_data_swizzled[14]), // input wire [15:0]  probe14
-        .probe15 (rx_data_swizzled[15]), // input wire [15:0]  probe15
-        .probe16 (rxprbserr_out), // input wire [15:0]  probe16
-        .probe17 (valid12_ila  ), // input wire [15:0]  probe17
-        .probe18 (valid14_ila  ), // input wire [15:0]  probe18
-        .probe19 (rx_k[0 ]), // input wire [1:0]  probe19
-        .probe20 (rx_k[1 ]), // input wire [1:0]  probe20
-        .probe21 (rx_k[2 ]), // input wire [1:0]  probe21
-        .probe22 (rx_k[3 ]), // input wire [1:0]  probe22
-        .probe23 (rx_k[4 ]), // input wire [1:0]  probe23
-        .probe24 (rx_k[5 ]), // input wire [1:0]  probe24
-        .probe25 (rx_k[6 ]), // input wire [1:0]  probe25
-        .probe26 (rx_k[7 ]), // input wire [1:0]  probe26
-        .probe27 (rx_k[8 ]), // input wire [1:0]  probe27
-        .probe28 (rx_k[9 ]), // input wire [1:0]  probe28
-        .probe29 (rx_k[10]), // input wire [1:0]  probe29
-        .probe30 (rx_k[11]), // input wire [1:0]  probe30
-        .probe31 (rx_k[12]), // input wire [1:0]  probe31
-        .probe32 (rx_k[13]), // input wire [1:0]  probe32
-        .probe33 (rx_k[14]), // input wire [1:0]  probe33
-        .probe34 (rx_k[15]) // input wire [1:0]  probe34
-    );
-    
 
     ila_1 ila_daq 
     (
