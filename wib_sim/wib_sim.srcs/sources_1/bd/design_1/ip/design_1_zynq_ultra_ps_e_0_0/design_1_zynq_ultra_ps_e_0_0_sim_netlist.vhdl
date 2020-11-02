@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
--- Date        : Wed Aug 26 18:23:17 2020
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Mon Nov  2 15:41:10 2020
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_sim_netlist.vhdl
@@ -6406,7 +6406,7 @@ entity design_1_zynq_ultra_ps_e_0_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_zynq_ultra_ps_e_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_zynq_ultra_ps_e_0_0 : entity is "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1";
+  attribute X_CORE_INFO of design_1_zynq_ultra_ps_e_0_0 : entity is "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1.1_AR73018";
 end design_1_zynq_ultra_ps_e_0_0;
 
 architecture STRUCTURE of design_1_zynq_ultra_ps_e_0_0 is

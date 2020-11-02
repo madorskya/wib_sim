@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Sun Oct 18 23:28:14 2020
+//Date        : Mon Nov  2 15:38:02 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -13,7 +13,6 @@ module design_1_wrapper
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
-    clk_40,
     daq_clk,
     daq_spy_full_0,
     daq_spy_full_1,
@@ -86,7 +85,6 @@ module design_1_wrapper
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
   output [31:0]WIB_LED_tri_o;
-  output clk_40;
   input daq_clk;
   output daq_spy_full_0;
   output daq_spy_full_1;
@@ -160,7 +158,6 @@ module design_1_wrapper
   wire AXI_CLK_OUT;
   wire [0:0]AXI_RSTn;
   wire [31:0]WIB_LED_tri_o;
-  wire clk_40;
   wire daq_clk;
   wire daq_spy_full_0;
   wire daq_spy_full_1;
@@ -241,7 +238,6 @@ module design_1_wrapper
        (.AXI_CLK_OUT(AXI_CLK_OUT),
         .AXI_RSTn(AXI_RSTn),
         .WIB_LED_tri_o(WIB_LED_tri_o),
-        .clk_40(clk_40),
         .daq_clk(daq_clk),
         .daq_spy_full_0(daq_spy_full_0),
         .daq_spy_full_1(daq_spy_full_1),

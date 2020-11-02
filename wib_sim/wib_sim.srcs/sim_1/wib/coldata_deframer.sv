@@ -1,6 +1,6 @@
 module coldata_deframer
 (
-    input [0 : 0] rx_usrclk2, // rx data clock
+    input [7 : 0] rx_usrclk2, // rx data clocks, one per COLDATA chip
     input [15 :0] rx_data [15:0],
     input [1:0]   rx_k [15:0],
     input mmcm_reset,
@@ -9,7 +9,7 @@ module coldata_deframer
     output [15:0] valid14,
     output [15:0] valid12,
     output [1:0]  crc_err [15:0],
-    output rxclk2x // doubled rx clock synchronous with deframed data
+    input  rxclk2x // slightly faster than doubled rx clock for deframed data
 );
 
 
@@ -20,7 +20,7 @@ module coldata_deframer
             coldata_deframer_single #(.NUM(gi)) df_s
             (
                 .rxclk2x    (rxclk2x      ),
-                .rx_usrclk2 (rx_usrclk2   ),
+                .rx_usrclk2 (rx_usrclk2 [gi/2]  ),
                 .rx_data    (rx_data  [gi]),
                 .rx_k       (rx_k     [gi]),
                 .deframed   (deframed [gi]),
@@ -31,7 +31,7 @@ module coldata_deframer
             
         end
     endgenerate
-
+/*
     coldata_deframer_mmcm df_mmcm
     (
         .clk_out1 (rxclk2x),
@@ -39,7 +39,7 @@ module coldata_deframer
         .locked   (),
         .clk_in1  (rx_usrclk2)
     );
-    
+  */  
 
 endmodule
 
