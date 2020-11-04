@@ -37,10 +37,6 @@ set_property -dict {LOC W7   IOSTANDARD LVDS} [get_ports i2c_lvds_l2_sda_w2c_p[3
 set_property -dict {LOC AB8  IOSTANDARD LVDS DIFF_TERM_ADV TERM_100} [get_ports i2c_lvds_l2_sda_c2w_p[3]]
 set_property -dict {LOC AC7  IOSTANDARD LVDS} [get_ports coldata_clk40_p[3]]
 
-set_property LOC G27 [get_ports gtrefclk00p_in[0]]
-set_property LOC L8  [get_ports gtrefclk00p_in[1]]
-set_property LOC G8  [get_ports gtrefclk00p_in[2]]
-set_property LOC C8  [get_ports gtrefclk00p_in[3]]
 
 #set_property -dict {LOC L12 IOSTANDARD LVDS} [get_ports adn2814_data_p] 
 #set_property -dict {LOC AE7 IOSTANDARD LVDS} [get_ports si5344_out1_p]
@@ -366,6 +362,7 @@ set_property PACKAGE_PIN L12 [get_ports adn2814_data_p]
 set_property PACKAGE_PIN K12 [get_ports adn2814_data_n]
 set_property DIFF_TERM_ADV TERM_100 [get_ports adn2814_data_p]
 set_property DIFF_TERM_ADV TERM_100 [get_ports si5344_out1_p]
+set_property IOB TRUE [get_ports adn2814_data_p]
 
 set_property PACKAGE_PIN P10 [get_ports recov_clk_p]
 set_property PACKAGE_PIN P9 [get_ports recov_clk_n]
@@ -682,5 +679,9 @@ set_property IOSTANDARD LVDS [get_ports core_clk1_p]
 set_property IOSTANDARD LVDS [get_ports fpga_clk_n]
 set_property IOSTANDARD LVDS [get_ports fpga_clk_p]
 
+set_property LOC G27 [get_ports gtrefclk00p_in[0]]
+set_property LOC L8  [get_ports gtrefclk00p_in[1]]
+set_property LOC G8  [get_ports gtrefclk00p_in[2]]
+set_property LOC C8  [get_ports gtrefclk00p_in[3]]
 
  
