@@ -187,13 +187,6 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   # Create instance: endpoint_wrapper_0, and set properties
   set endpoint_wrapper_0 [ create_bd_cell -type ip -vlnv user.org:user:endpoint_wrapper:1.0 endpoint_wrapper_0 ]
 
-  # Create instance: util_vector_logic_0, and set properties
-  set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
-  set_property -dict [ list \
-   CONFIG.C_OPERATION {not} \
-   CONFIG.C_SIZE {1} \
- ] $util_vector_logic_0
-
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
   set_property -dict [ list \
@@ -224,8 +217,17 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.DOUT_WIDTH {8} \
  ] $xlslice_1
 
+  # Create instance: xlslice_2, and set properties
+  set xlslice_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_2 ]
+  set_property -dict [ list \
+   CONFIG.DIN_FROM {28} \
+   CONFIG.DIN_TO {28} \
+   CONFIG.DIN_WIDTH {1024} \
+   CONFIG.DOUT_WIDTH {1} \
+ ] $xlslice_2
+
   # Create port connections
-  connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins Din] [get_bd_pins xlslice_0/Din] [get_bd_pins xlslice_1/Din]
+  connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins Din] [get_bd_pins xlslice_0/Din] [get_bd_pins xlslice_1/Din] [get_bd_pins xlslice_2/Din]
   connect_bd_net -net cdr_lol_0_1 [get_bd_pins ts_cdr_lol] [get_bd_pins endpoint_wrapper_0/cdr_lol]
   connect_bd_net -net cdr_los_0_1 [get_bd_pins ts_cdr_los] [get_bd_pins endpoint_wrapper_0/cdr_los]
   connect_bd_net -net endpoint_wrapper_0_clk [get_bd_pins ts_clk] [get_bd_pins endpoint_wrapper_0/clk]
@@ -236,13 +238,12 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net endpoint_wrapper_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins endpoint_wrapper_0/tstamp]
   connect_bd_net -net rec_d_0_1 [get_bd_pins ts_rec_d] [get_bd_pins endpoint_wrapper_0/rec_d]
   connect_bd_net -net rec_d_clk_0_1 [get_bd_pins ts_rec_d_clk] [get_bd_pins endpoint_wrapper_0/rec_clk]
-  connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_pins Op1] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net sfp_los_0_1 [get_bd_pins ts_sfp_los] [get_bd_pins endpoint_wrapper_0/sfp_los]
-  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins endpoint_wrapper_0/srst] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins ts_evtctr] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins ts_sync_v] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlslice_0_Dout [get_bd_pins endpoint_wrapper_0/tgrp] [get_bd_pins xlslice_0/Dout]
   connect_bd_net -net xlslice_1_Dout [get_bd_pins endpoint_wrapper_0/addr] [get_bd_pins xlslice_1/Dout]
+  connect_bd_net -net xlslice_2_Dout [get_bd_pins endpoint_wrapper_0/srst] [get_bd_pins xlslice_2/Dout]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins sclk] [get_bd_pins endpoint_wrapper_0/sclk]
 
   # Restore current instance

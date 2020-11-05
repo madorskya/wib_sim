@@ -47,27 +47,26 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:ip:util_vector_logic:2.0
-// IP Revision: 1
+// IP VLNV: xilinx.com:ip:xlslice:1.0
+// IP Revision: 2
 
-(* X_CORE_INFO = "util_vector_logic_v2_0_1_util_vector_logic,Vivado 2020.1" *)
-(* CHECK_LICENSE_TYPE = "design_1_util_vector_logic_0_0,util_vector_logic_v2_0_1_util_vector_logic,{}" *)
-(* CORE_GENERATION_INFO = "design_1_util_vector_logic_0_0,util_vector_logic_v2_0_1_util_vector_logic,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=util_vector_logic,x_ipVersion=2.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_OPERATION=not,C_SIZE=1}" *)
+`timescale 1ns/1ps
+
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module design_1_util_vector_logic_0_0 (
-  Op1,
-  Res
+module design_1_xlslice_1_3 (
+  Din,
+  Dout
 );
 
-input wire [0 : 0] Op1;
-output wire [0 : 0] Res;
+input wire [1023 : 0] Din;
+output wire [0 : 0] Dout;
 
-  util_vector_logic_v2_0_1_util_vector_logic #(
-    .C_OPERATION("not"),
-    .C_SIZE(1)
+  xlslice_v1_0_2_xlslice #(
+    .DIN_WIDTH(1024),
+    .DIN_FROM(28),
+    .DIN_TO(28)
   ) inst (
-    .Op1(Op1),
-    .Op2(1'B0),
-    .Res(Res)
+    .Din(Din),
+    .Dout(Dout)
   );
 endmodule

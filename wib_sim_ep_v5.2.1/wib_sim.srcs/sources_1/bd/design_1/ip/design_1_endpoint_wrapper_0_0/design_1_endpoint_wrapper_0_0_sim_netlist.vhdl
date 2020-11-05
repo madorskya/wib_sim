@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Tue Nov  3 12:26:41 2020
+-- Date        : Wed Nov  4 14:57:54 2020
 -- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/lxeng99/DUNE/wib_sim_timing/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_endpoint_wrapper_0_0/design_1_endpoint_wrapper_0_0_sim_netlist.vhdl
+--               /home/lxeng99/DUNE/wib_sim_timing/wib_sim_ep_v5.2.1/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_endpoint_wrapper_0_0/design_1_endpoint_wrapper_0_0_sim_netlist.vhdl
 -- Design      : design_1_endpoint_wrapper_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

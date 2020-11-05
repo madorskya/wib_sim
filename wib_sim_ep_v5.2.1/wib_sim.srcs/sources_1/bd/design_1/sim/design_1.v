@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Nov  3 12:17:55 2020
+//Date        : Wed Nov  4 14:40:43 2020
 //Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -13155,13 +13155,12 @@ module timing_module_imp_2RES6C
   wire [63:0]endpoint_wrapper_0_tstamp;
   wire rec_d_0_1;
   wire rec_d_clk_0_1;
-  wire [0:0]rst_ps8_0_99M_peripheral_aresetn;
   wire sfp_los_0_1;
-  wire [0:0]util_vector_logic_0_Res;
   wire [31:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
   wire [1:0]xlslice_0_Dout;
   wire [7:0]xlslice_1_Dout;
+  wire [0:0]xlslice_2_Dout;
   wire zynq_ultra_ps_e_0_pl_clk0;
 
   assign axi_gpio_1_gpio_io_o = Din[1023:0];
@@ -13169,7 +13168,6 @@ module timing_module_imp_2RES6C
   assign cdr_los_0_1 = ts_cdr_los;
   assign rec_d_0_1 = ts_rec_d;
   assign rec_d_clk_0_1 = ts_rec_d_clk;
-  assign rst_ps8_0_99M_peripheral_aresetn = Op1[0];
   assign sfp_los_0_1 = ts_sfp_los;
   assign stat_0[3:0] = endpoint_wrapper_0_stat;
   assign ts_clk = endpoint_wrapper_0_clk;
@@ -13191,14 +13189,11 @@ module timing_module_imp_2RES6C
         .rst(endpoint_wrapper_0_rst),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .sfp_los(sfp_los_0_1),
-        .srst(util_vector_logic_0_Res),
+        .srst(xlslice_2_Dout),
         .stat(endpoint_wrapper_0_stat),
         .sync(endpoint_wrapper_0_sync),
         .tgrp(xlslice_0_Dout),
         .tstamp(endpoint_wrapper_0_tstamp));
-  design_1_util_vector_logic_0_0 util_vector_logic_0
-       (.Op1(rst_ps8_0_99M_peripheral_aresetn),
-        .Res(util_vector_logic_0_Res));
   design_1_xlconstant_0_1 xlconstant_0
        (.dout(xlconstant_0_dout));
   design_1_xlconstant_1_0 xlconstant_1
@@ -13209,4 +13204,7 @@ module timing_module_imp_2RES6C
   design_1_xlslice_1_2 xlslice_1
        (.Din(axi_gpio_1_gpio_io_o),
         .Dout(xlslice_1_Dout));
+  design_1_xlslice_1_3 xlslice_2
+       (.Din(axi_gpio_1_gpio_io_o),
+        .Dout(xlslice_2_Dout));
 endmodule

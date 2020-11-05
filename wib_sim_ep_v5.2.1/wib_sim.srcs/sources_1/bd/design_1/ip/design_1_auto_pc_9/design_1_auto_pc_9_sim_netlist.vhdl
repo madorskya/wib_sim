@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Tue Nov  3 12:21:18 2020
+-- Date        : Wed Nov  4 15:00:52 2020
 -- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_auto_pc_9 -prefix
---               design_1_auto_pc_9_ design_1_auto_pc_8_sim_netlist.vhdl
--- Design      : design_1_auto_pc_8
+--               design_1_auto_pc_9_ design_1_auto_pc_7_sim_netlist.vhdl
+-- Design      : design_1_auto_pc_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xczu9eg-ffvb1156-2-e
@@ -13993,7 +13993,7 @@ entity design_1_auto_pc_9 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_auto_pc_9 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of design_1_auto_pc_9 : entity is "design_1_auto_pc_8,axi_protocol_converter_v2_1_21_axi_protocol_converter,{}";
+  attribute CHECK_LICENSE_TYPE of design_1_auto_pc_9 : entity is "design_1_auto_pc_7,axi_protocol_converter_v2_1_21_axi_protocol_converter,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_auto_pc_9 : entity is "yes";
   attribute X_CORE_INFO : string;
