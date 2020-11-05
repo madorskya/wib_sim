@@ -683,4 +683,4 @@ set_property IOSTANDARD LVDS [get_ports fpga_clk_n]
 set_property IOSTANDARD LVDS [get_ports fpga_clk_p]
 
 
- 
+ set_property IOB TRUE [get_ports adn2814_data_p]
