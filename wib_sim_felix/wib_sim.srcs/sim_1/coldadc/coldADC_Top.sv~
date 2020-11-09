@@ -1,0 +1,752 @@
+`include "PACKAGE.types.coldADC.sv"
+`include "PACKAGE.constants.coldADC.sv"
+//*******************************************************************************************
+//*******************************************************************************************
+//***
+//*** Description: The highest module to be used by INNO_ADCVUS to synthesize the
+//***		coldADC chip.  This module contains cold_adc_analog and coldADC_digital.
+//***		It is assumed that PACKAGE.constants.coldADC.sv is available to this module.
+//*** Author: Jim Hoff
+//***
+//*******************************************************************************************
+//*******************************************************************************************
+
+module coldADC_Top (
+					//***
+					//*** Connections for coldADC_DigitalBlock
+					//***
+						//*** for I2C_ADC
+					output 	logic					PAD_SDA_c2w,			//(I2C_ADC) SDA connection (output) from cold to warm
+					input 	logic					PAD_SDA_w2c,			//(I2C_ADC) SDA connection (input) from warm to cold
+					input		logic					PAD_SCL,					//(I2C_ADC) SCL connection (serial clock)
+					input		logic	[3:0]		PAD_chipID,				//(I2C_ADC) I2C and UART_ADC chip id
+					input 	logic 				PAD_I2C_ADC_UART_ADC_SEL,	//(I2C) Selection between using UART or I2C
+						//*** for Clocks
+					input		logic					PAD_Clk_2MHz,			//(MISC) Sample period clock
+					input		logic					PAD_Clk_64MHz,		//(MISC) "high speed" system clock
+						//*** for Readout
+					output	logic					PAD_frameStart,		//(READOUT) Data output, frame start indicator
+					output	logic					PAD_dataOutClk,		//(READOUT) Data output, clock
+					output	logic					PAD_dataOutA,			//(READOUT)
+					output	logic					PAD_dataOutB,			//(READOUT)
+					output	logic					PAD_dataOutC,			//(READOUT)
+					output	logic					PAD_dataOutD,			//(READOUT)
+					output	logic					PAD_dataOutE,			//(READOUT)
+					output	logic					PAD_dataOutF,			//(READOUT)
+					output	logic					PAD_dataOutG,			//(READOUT)
+					output	logic					PAD_dataOutH,			//(READOUT)
+						//*** reset
+					input 	logic					PAD_MASTER_RESET,
+
+						//*** Not actually for Pads...Control Signals for LVDS
+					output	logic	[3:0]		PAD_lvdsICTRL,
+
+            //*** UART_ADC
+          input   logic         PAD_mosi,
+          output  logic         PAD_miso,
+
+            //*** Digital Mux output
+          output  logic         PAD_digital_mux_out,
+
+            //*** Slow Shift out
+          output  logic         PAD_sso_data_out_0,
+          output  logic         PAD_sso_data_out_1,
+          output  logic         PAD_sso_frame_clk,
+					output 	logic					PAD_sso_out_clk,
+
+            // analog signals (inputs and outputs mixed)
+          inout 	wire 					vssd2p5,           // high-voltage analog ground
+          inout 	wire 					vssd1p2,           // low voltage digital ground
+          inout 	wire 					vssa2p5,           // analog ground
+          inout 	wire 					vrefp_unbuffered, // vrefp before reference buffers
+          inout 	wire 					vrefn_unbuffered, // vrefn before reference buffers
+          inout 	wire 					vref_ext,             // external divided down bgr
+          inout 	wire 					vmonitor_out,    // voltage monitor output
+          inout 	wire 					vddd2p5,           // digital power suppy (2.25 V)
+          inout 	wire 					vddd1p2,           // digital power suppy (1.0 V)
+          inout 	wire 					vdda2p5,           // analog power supply (2.25 V)
+          inout 	wire 					vcmo_unbuffered, // vcmo before reference buffers
+          inout 	wire 					vcmi_unbuffered, // vcmi before reference buffers
+          inout 	wire 					r_bias_ext,      // bias resistor for CMOS reference
+          inout 	wire 					inp [0:15],      // postive inputs
+          inout 	wire 					inn [0:15],      // negative inputs
+          inout 	wire 					imonitor_out,    // current monitor output
+          inout 	wire 					aux3,           // aux3 output (bjt ref buffer)
+          inout 	wire 					aux2,           // aux2 output (bjt ref buffer)
+          inout 	wire 					aux1,           // aux1 output (bjt ref buffer)
+          inout 	wire 					adc_test_in_p,   // positive test input (bypass SHA)
+          inout 	wire 					adc_test_in_n,   // negative test input (bypass SHA)
+          inout 	wire 					vref_decouple      // decoupling connection for vref
+);
+
+//********************************************************
+//***
+//*** Wires for Module Interconnection
+//***
+//********************************************************
+    wire 	logic	[15:0]	w0_0_0;
+    wire 	logic	[15:0]	w0_1_0;
+    wire 	logic	[15:0]	w0_2_0;
+    wire 	logic	[15:0]	w0_3_0;
+    wire 	logic	[15:0]	w0_4_0;
+    wire 	logic	[15:0]	w0_5_0;
+    wire 	logic	[15:0]	w0_6_0;
+    wire 	logic	[15:0]	w0_7_0;
+    wire 	logic	[15:0]	w0_8_0;
+    wire 	logic	[15:0]	w0_9_0;
+    wire 	logic	[15:0]	w0_10_0;
+    wire 	logic	[15:0]	w0_11_0;
+    wire 	logic	[15:0]	w0_12_0;
+    wire 	logic	[15:0]	w0_13_0;
+    wire 	logic	[15:0]	w0_14_0;
+    wire 	logic	[15:0]	w2_0_0;
+    wire 	logic	[15:0]	w2_1_0;
+    wire 	logic	[15:0]	w2_2_0;
+    wire 	logic	[15:0]	w2_3_0;
+    wire 	logic	[15:0]	w2_4_0;
+    wire 	logic	[15:0]	w2_5_0;
+    wire 	logic	[15:0]	w2_6_0;
+    wire 	logic	[15:0]	w2_7_0;
+    wire 	logic	[15:0]	w2_8_0;
+    wire 	logic	[15:0]	w2_9_0;
+    wire 	logic	[15:0]	w2_10_0;
+    wire 	logic	[15:0]	w2_11_0;
+    wire 	logic	[15:0]	w2_12_0;
+    wire 	logic	[15:0]	w2_13_0;
+    wire 	logic	[15:0]	w2_14_0;
+    wire 	logic	[15:0]	w0_0_1;
+    wire 	logic	[15:0]	w0_1_1;
+    wire 	logic	[15:0]	w0_2_1;
+    wire 	logic	[15:0]	w0_3_1;
+    wire 	logic	[15:0]	w0_4_1;
+    wire 	logic	[15:0]	w0_5_1;
+    wire 	logic	[15:0]	w0_6_1;
+    wire 	logic	[15:0]	w0_7_1;
+    wire 	logic	[15:0]	w0_8_1;
+    wire 	logic	[15:0]	w0_9_1;
+    wire 	logic	[15:0]	w0_10_1;
+    wire 	logic	[15:0]	w0_11_1;
+    wire 	logic	[15:0]	w0_12_1;
+    wire 	logic	[15:0]	w0_13_1;
+    wire 	logic	[15:0]	w0_14_1;
+    wire 	logic	[15:0]	w2_0_1;
+    wire 	logic	[15:0]	w2_1_1;
+    wire 	logic	[15:0]	w2_2_1;
+    wire 	logic	[15:0]	w2_3_1;
+    wire 	logic	[15:0]	w2_4_1;
+    wire 	logic	[15:0]	w2_5_1;
+    wire 	logic	[15:0]	w2_6_1;
+    wire 	logic	[15:0]	w2_7_1;
+    wire 	logic	[15:0]	w2_8_1;
+    wire 	logic	[15:0]	w2_9_1;
+    wire 	logic	[15:0]	w2_10_1;
+    wire 	logic	[15:0]	w2_11_1;
+    wire 	logic	[15:0]	w2_12_1;
+    wire 	logic	[15:0]	w2_13_1;
+    wire 	logic	[15:0]	w2_14_1;
+
+		//	ALTERED BY CARL
+    //wire  logic         Clk_16MHz;
+		wire  logic         Clk_16MHz_cu0;
+    wire  logic         Clk_16MHz_cu1;
+    wire  logic         Clk_16MHz_adc;
+		wire 	logic					frontEndSample;
+
+
+		logic								extern_force_refp         [1:0];
+		logic								extern_force_refn         [1:0];
+		logic								extern_force_cm           [1:0];
+		logic								extern_force_msb          [1:0];
+		logic								extern_force_lsb          [1:0];
+		logic								extern_caldac_ctrl        [1:0];
+    wire 	logic	[0:6]		extern_calibrate_stage0;
+    wire 	logic	[0:6]		extern_calibrate_stage1;
+		logic								adc_pd                    [1:0];
+    wire 	logic					adc_disable_gb;
+    wire 	logic					adc_sync_mode;
+    wire 	logic					adc_test_mode;
+    wire 	logic	[2:0]		adc_bias;
+    wire 	logic	[1:0]		nonov_ctrl;
+    wire 	logic					edge_select;
+    wire 	logic					samp_ctrl;
+    wire 	logic					adc_output_format;
+    wire 	logic					enable_radix_converter;
+    wire 	logic					ibuff_sdc_pd;
+    wire 	logic					ibuff_db_pd;
+    wire 	logic	[3:0]		ibuff_ctrl;
+    wire 	logic	[7:0]		sha_pd_0;
+    wire 	logic	[7:0]		sha_pd_1;
+    wire 	logic					sha_se_input;
+    wire 	logic	[2:0]		sha0_bias;
+    wire 	logic	[2:0]		sha1_bias;
+    wire 	logic	[2:0]		sha2_bias;
+    wire 	logic	[2:0]		sha3_bias;
+    wire 	logic	[2:0]		sha4_bias;
+    wire 	logic	[2:0]		sha5_bias;
+    wire 	logic	[2:0]		sha6_bias;
+    wire 	logic	[2:0]		sha7_bias;
+    wire 	logic	[2:0]		freeze_select_0;
+    wire 	logic	[2:0]		freeze_select_1;
+		logic								freeze_sha [1:0];
+		//ALTERED BY CARL
+		//wire 	logic					clk_sha_select;
+		wire 	logic					clk_sha_select_cu0;
+    wire 	logic					clk_sha_select_cu1;
+    wire 	logic					clk_sha_select_analog;
+		wire 	logic	[1:0]		sha_select_ctrl;
+    wire 	logic	[7:0]		vrefp_ctrl;
+    wire 	logic	[7:0]		vrefn_ctrl;
+    wire 	logic	[7:0]		vcmo_ctrl;
+    wire 	logic	[7:0]		vcmi_ctrl;
+    wire 	logic	[1:0]		vrefp_offset;
+    wire 	logic	[1:0]		vrefn_offset;
+    wire 	logic	[1:0]		vcmo_offset;
+    wire 	logic	[1:0]		vcmi_offset;
+    wire 	logic	[7:0]		i_vdac_0_ctrl;
+    wire 	logic	[7:0]		i_vdac_1_ctrl;
+    wire 	logic	[7:0]		ibuff0_bjt_ctrl;
+    wire 	logic	[7:0]		ibuff1_bjt_ctrl;
+    wire 	logic					external_reference;
+    wire 	logic					external_bgr;
+    wire 	logic					bgr_select;
+    wire 	logic	[15:0]	ref_monitor;
+    wire 	logic	[11:0]	ref_powerdown;
+    wire 	logic	[2:0]		ref_bias;
+    wire 	logic	[7:0]		vrefp_ctrl_cmos;
+    wire 	logic	[7:0]		vrefn_ctrl_cmos;
+    wire 	logic	[7:0]		vcmo_ctrl_cmos;
+    wire 	logic	[7:0]		vcmi_ctrl_cmos;
+    wire 	logic	[1:0]		iref_sel;
+    wire 	logic	[2:0]		vt_iref_trim_ctrl;
+    wire 	logic					vt_kickstart;
+    wire 	logic	[5:0]		ibuff0_cmos;
+    wire 	logic	[5:0]		ibuff1_cmos;
+		logic								calibrate [1:0];
+
+		//ALTERED BY CARL
+    //wire 	logic	[3:0]		meas_cycles;
+    //wire 	logic	[2:0]		cal_stages;
+    //wire 	logic					test_correction_logic;
+		wire 	logic	[3:0]		meas_cycles_cu0;
+		wire 	logic	[3:0]		meas_cycles_cu1;
+		wire 	logic	[2:0]		cal_stages_cu0;
+		wire 	logic	[2:0]		cal_stages_cu1;
+		wire 	logic					test_correction_logic_cu0;
+		wire 	logic					test_correction_logic_cu1;
+
+    wire 	logic	[14:0]	test_lsb0;
+    wire 	logic	[14:0]	test_msb0;
+    wire 	logic	[14:0]	test_lsb1;
+    wire 	logic	[14:0]	test_msb1;
+    wire 	logic					vmonitor_enable;
+    wire 	logic					imonitor_enable;
+    wire 	logic	[2:0]		vmonitor_select;
+    wire 	logic	[2:0]		imonitor_select;
+    wire 	logic [15:0] 	synced_adc_cal_0;
+    wire 	logic [15:0] 	synced_adc_cal_1;
+    wire 	logic [15:0] 	synced_adc_nocal_0;
+    wire 	logic [15:0] 	synced_adc_nocal_1;
+    wire 	logic [0:14] 	synced_msb_0;
+    wire 	logic [0:14] 	synced_msb_1;
+    wire 	logic [0:14] 	synced_lsb_0;
+    wire 	logic [0:14] 	synced_lsb_1;
+    wire 	logic [15:0] 	write_data_0;
+    wire 	logic [15:0] 	write_data_1;
+    wire 	logic [2:0] 	current_stage_0;
+    wire 	logic [2:0] 	current_stage_1;
+		logic 							clear_regs_internal [1:0];
+		logic 							weight_sel [1:0];
+		logic 							g_sel [1:0];
+		logic 							o_sel [1:0];
+		logic 							write [1:0];
+		logic 							busy [1:0];
+
+		//***************************
+		//***
+		//***	Getting rid of those pesky unpacked arrays
+		//***
+		//***************************
+		logic 				extern_force_refp_0;
+		logic 				extern_force_refp_1;
+		logic 				extern_force_refn_0;
+		logic 				extern_force_refn_1;
+		logic 				extern_force_cm_0;
+		logic 				extern_force_cm_1;
+		logic 				extern_force_lsb_0;
+		logic 				extern_force_lsb_1;
+		logic 				extern_force_msb_0;
+		logic 				extern_force_msb_1;
+		logic 				extern_caldac_ctrl_0;
+		logic 				extern_caldac_ctrl_1;
+		logic 				adc_pd_0;
+		logic 				adc_pd_1;
+		logic 				freeze_sha_0;
+		logic 				freeze_sha_1;
+		logic 				calibrate_0;
+		logic 				calibrate_1;
+		logic 				clear_regs_internal_0;
+		logic 				clear_regs_internal_1;
+		logic 				weight_sel_0;
+		logic 				weight_sel_1;
+		logic 				g_sel_0;
+		logic 				g_sel_1;
+		logic 				o_sel_0;
+		logic 				o_sel_1;
+		logic 				write_0;
+		logic 				write_1;
+		logic 				busy_0;
+		logic 				busy_1;
+
+		always_comb
+			begin
+				extern_force_refp[0]				=	extern_force_refp_0;
+				extern_force_refp[1]				=	extern_force_refp_1;
+				extern_force_refn[0]				=	extern_force_refn_0;
+				extern_force_refn[1]				=	extern_force_refn_1;
+				extern_force_cm[0]					=	extern_force_cm_0;
+				extern_force_cm[1]					=	extern_force_cm_1;
+				extern_force_lsb[0]					=	extern_force_lsb_0;
+				extern_force_lsb[1]					=	extern_force_lsb_1;
+				extern_force_msb[0]					=	extern_force_msb_0;
+				extern_force_msb[1]					=	extern_force_msb_1;
+				extern_caldac_ctrl[0]				=	extern_caldac_ctrl_0;
+				extern_caldac_ctrl[1]				=	extern_caldac_ctrl_1;
+				adc_pd[0]										=	adc_pd_0;
+				adc_pd[1]										=	adc_pd_1;
+				freeze_sha[0]								=	freeze_sha_0;
+				freeze_sha[1]								=	freeze_sha_1;
+				calibrate[0]								=	calibrate_0;
+				calibrate[1]								=	calibrate_1;
+				clear_regs_internal_0				=	clear_regs_internal[0];
+				clear_regs_internal_1				=	clear_regs_internal[1];
+				weight_sel_0								=	weight_sel[0];
+				weight_sel_1								=	weight_sel[1];
+				g_sel_0											=	g_sel[0];
+				g_sel_1											=	g_sel[1];
+				o_sel_0											=	o_sel[0];
+				o_sel_1											=	o_sel[1];
+				write_0											=	write[0];
+				write_1											=	write[1];
+				busy_0											=	busy[0];
+				busy_1											=	busy[1];
+			end
+
+//********************************************************
+//***
+//*** The Digital Mod
+//***
+//********************************************************
+
+coldADC_digital Digital_1 (
+					.PAD_SDA_c2w(              PAD_SDA_c2w        			),
+          .PAD_SDA_w2c(              PAD_SDA_w2c        			),
+          .PAD_SCL(                  PAD_SCL            			),
+          .PAD_chipID(               PAD_chipID         			),
+          .PAD_I2C_ADC_UART_ADC_SEL(         PAD_I2C_UART_SEL   			),
+          .PAD_Clk_2MHz(             PAD_Clk_2MHz       			),
+          .PAD_Clk_64MHz(            PAD_Clk_64MHz      			),
+          .PAD_frameStart(           PAD_frameStart     			),
+          .PAD_dataOutClk(           PAD_dataOutClk     			),
+          .PAD_dataOutA(             PAD_dataOutA       			),
+          .PAD_dataOutB(             PAD_dataOutB       			),
+          .PAD_dataOutC(             PAD_dataOutC       			),
+          .PAD_dataOutD(             PAD_dataOutD       			),
+          .PAD_dataOutE(             PAD_dataOutE       			),
+          .PAD_dataOutF(             PAD_dataOutF       			),
+          .PAD_dataOutG(             PAD_dataOutG       			),
+          .PAD_dataOutH(             PAD_dataOutH       			),
+					.PAD_digital_mux_out(			 PAD_digital_mux_out			),
+          .PAD_MASTER_RESET(         PAD_MASTER_RESET   			),
+					.PAD_lvdsICTRL(            PAD_lvdsICTRL      			),
+					.Clk_16MHz_cu0(            Clk_16MHz_cu0        		),
+          .Clk_16MHz_cu1(            Clk_16MHz_cu1        		),
+          .Clk_16MHz_adc(            Clk_16MHz_adc        		),
+          .frontEndSample(           frontEndSample     			),
+					.PAD_miso(                 PAD_miso           			),
+          .w0_0_0(                   w0_0_0             			),
+          .w0_1_0(                   w0_1_0             			),
+          .w0_2_0(                   w0_2_0             			),
+          .w0_3_0(                   w0_3_0             			),
+          .w0_4_0(                   w0_4_0             			),
+          .w0_5_0(                   w0_5_0             			),
+          .w0_6_0(                   w0_6_0             			),
+          .w0_7_0(                   w0_7_0             			),
+          .w0_8_0(                   w0_8_0             			),
+          .w0_9_0(                   w0_9_0             			),
+          .w0_10_0(                  w0_10_0            			),
+          .w0_11_0(                  w0_11_0            			),
+          .w0_12_0(                  w0_12_0            			),
+          .w0_13_0(                  w0_13_0            			),
+          .w0_14_0(                  w0_14_0            			),
+          .w2_0_0(                   w2_0_0             			),
+          .w2_1_0(                   w2_1_0             			),
+          .w2_2_0(                   w2_2_0             			),
+          .w2_3_0(                   w2_3_0             			),
+          .w2_4_0(                   w2_4_0             			),
+          .w2_5_0(                   w2_5_0             			),
+          .w2_6_0(                   w2_6_0             			),
+          .w2_7_0(                   w2_7_0             			),
+          .w2_8_0(                   w2_8_0             			),
+          .w2_9_0(                   w2_9_0             			),
+          .w2_10_0(                  w2_10_0            			),
+          .w2_11_0(                  w2_11_0            			),
+          .w2_12_0(                  w2_12_0            			),
+          .w2_13_0(                  w2_13_0            			),
+          .w2_14_0(                  w2_14_0            			),
+          .w0_0_1(                   w0_0_1             			),
+          .w0_1_1(                   w0_1_1             			),
+          .w0_2_1(                   w0_2_1             			),
+          .w0_3_1(                   w0_3_1             			),
+          .w0_4_1(                   w0_4_1             			),
+          .w0_5_1(                   w0_5_1             			),
+          .w0_6_1(                   w0_6_1             			),
+          .w0_7_1(                   w0_7_1             			),
+          .w0_8_1(                   w0_8_1             			),
+          .w0_9_1(                   w0_9_1             			),
+          .w0_10_1(                  w0_10_1            			),
+          .w0_11_1(                  w0_11_1            			),
+          .w0_12_1(                  w0_12_1            			),
+          .w0_13_1(                  w0_13_1            			),
+          .w0_14_1(                  w0_14_1            			),
+          .w2_0_1(                   w2_0_1             			),
+          .w2_1_1(                   w2_1_1             			),
+          .w2_2_1(                   w2_2_1             			),
+          .w2_3_1(                   w2_3_1             			),
+          .w2_4_1(                   w2_4_1             			),
+          .w2_5_1(                   w2_5_1             			),
+          .w2_6_1(                   w2_6_1             			),
+          .w2_7_1(                   w2_7_1             			),
+          .w2_8_1(                   w2_8_1             			),
+          .w2_9_1(                   w2_9_1             			),
+          .w2_10_1(                  w2_10_1            			),
+          .w2_11_1(                  w2_11_1            			),
+          .w2_12_1(                  w2_12_1            			),
+          .w2_13_1(                  w2_13_1            			),
+          .w2_14_1(                  w2_14_1            			),
+					.extern_force_refp_0(      extern_force_refp_0  		),
+					.extern_force_refp_1(      extern_force_refp_1  		),
+					.extern_force_refn_0(      extern_force_refn_0  		),
+					.extern_force_refn_1(      extern_force_refn_1  		),
+					.extern_force_cm_0(        extern_force_cm_0    		),
+					.extern_force_cm_1(        extern_force_cm_1    		),
+					.extern_force_msb_0(       extern_force_msb_0   		),
+					.extern_force_msb_1(       extern_force_msb_1   		),
+					.extern_force_lsb_0(       extern_force_lsb_0   		),
+					.extern_force_lsb_1(       extern_force_lsb_1   		),
+					.extern_caldac_ctrl_0(     extern_caldac_ctrl_0 		),
+					.extern_caldac_ctrl_1(     extern_caldac_ctrl_1 		),
+			    .extern_calibrate_stage0(  extern_calibrate_stage0 	),
+			    .extern_calibrate_stage1(  extern_calibrate_stage1 	),
+					.adc_pd_0(                 adc_pd_0            	 		),
+					.adc_pd_1(                 adc_pd_1            	 		),
+			    .adc_disable_gb(           adc_disable_gb     			),
+			    .adc_sync_mode(            adc_sync_mode      			),
+			    .adc_test_mode(            adc_test_mode      			),
+			    .adc_bias(                 adc_bias           			),
+			    .nonov_ctrl(               nonov_ctrl         			),
+					.edge_select_cu0(          edge_select_cu0        	),
+			    .edge_select_cu1(          edge_select_cu1        	),
+			    .adc_output_format_cu0(    adc_output_format_cu0 		),
+			    .adc_output_format_cu1(    adc_output_format_cu1 		),
+			    .enable_radix_converter(   enable_radix_converter   ),
+			    .ibuff_sdc_pd(             ibuff_sdc_pd        			),
+			    .ibuff_db_pd(              ibuff_db_pd         			),
+			    .ibuff_ctrl(               ibuff_ctrl          			),
+			    .sha_pd_0(                 sha_pd_0            			),
+			    .sha_pd_1(                 sha_pd_1            			),
+			    .sha_se_input(             sha_se_input        			),
+			    .sha0_bias(                sha0_bias           			),
+			    .sha1_bias(                sha1_bias           			),
+			    .sha2_bias(                sha2_bias           			),
+			    .sha3_bias(                sha3_bias           			),
+			    .sha4_bias(                sha4_bias           			),
+			    .sha5_bias(                sha5_bias           			),
+			    .sha6_bias(                sha6_bias           			),
+			    .sha7_bias(                sha7_bias           			),
+			    .freeze_select_0(          freeze_select_0     			),
+			    .freeze_select_1(          freeze_select_1     			),
+					.freeze_sha_0(             freeze_sha_0          		),
+					.freeze_sha_1(             freeze_sha_1          		),
+					.clk_sha_select_cu0(       clk_sha_select_cu0      	),
+          .clk_sha_select_cu1(       clk_sha_select_cu1      	),
+          .clk_sha_select_analog(    clk_sha_select_analog    ),
+					.sha_select_ctrl(          sha_select_ctrl      		),
+			    .vrefp_ctrl(               vrefp_ctrl          			),
+			    .vrefn_ctrl(               vrefn_ctrl          			),
+			    .vcmo_ctrl(                vcmo_ctrl           			),
+			    .vcmi_ctrl(                vcmi_ctrl           			),
+			    .vrefp_offset(             vrefp_offset        			),
+			    .vrefn_offset(             vrefn_offset        			),
+			    .vcmo_offset(              vcmo_offset         			),
+			    .vcmi_offset(              vcmi_offset         			),
+			    .i_vdac_0_ctrl(            i_vdac_0_ctrl       			),
+			    .i_vdac_1_ctrl(            i_vdac_1_ctrl       			),
+			    .ibuff0_bjt_ctrl(          ibuff0_bjt_ctrl     			),
+			    .ibuff1_bjt_ctrl(          ibuff1_bjt_ctrl     			),
+			    .external_reference(       external_reference  			),
+			    .external_bgr(             external_bgr        			),
+			    .bgr_select(               bgr_select          			),
+          .ref_monitor(              ref_monitor         			),
+			    .ref_powerdown(            ref_powerdown       			),
+			    .ref_bias(                 ref_bias            			),
+			    .vrefp_ctrl_cmos(          vrefp_ctrl_cmos     			),
+			    .vrefn_ctrl_cmos(          vrefn_ctrl_cmos     			),
+			    .vcmo_ctrl_cmos(           vcmo_ctrl_cmos      			),
+			    .vcmi_ctrl_cmos(           vcmi_ctrl_cmos      			),
+			    .iref_sel(                 iref_sel            			),
+			    .vt_iref_trim_ctrl(        vt_iref_trim_ctrl   			),
+			    .vt_kickstart(             vt_kickstart        			),
+			    .ibuff0_cmos(              ibuff0_cmos         			),
+			    .ibuff1_cmos(              ibuff1_cmos         			),
+					.calibrate_0(              calibrate_0           		),
+					.calibrate_1(              calibrate_1         			),
+					.meas_cycles_cu0(          meas_cycles_cu0         	),
+			    .meas_cycles_cu1(          meas_cycles_cu1         	),
+			    .cal_stages_cu0(           cal_stages_cu0          	),
+			    .cal_stages_cu1(           cal_stages_cu1          	),
+			    .test_correction_logic_cu0(test_correction_logic_cu0),
+			    .test_correction_logic_cu1(test_correction_logic_cu1),
+			    .test_lsb0(                test_lsb0           			),
+			    .test_msb0(                test_msb0           			),
+			    .test_lsb1(                test_lsb1           			),
+			    .test_msb1(                test_msb1           			),
+			    .vmonitor_enable(          vmonitor_enable     			),
+			    .imonitor_enable(          imonitor_enable     			),
+			    .vmonitor_select(          vmonitor_select     			),
+			    .imonitor_select(          imonitor_select     			),
+					.PAD_sso_data_out_0(			 PAD_sso_data_out_0				),
+					.PAD_sso_data_out_1(			 PAD_sso_data_out_1				),
+					.PAD_sso_frame_clk(		 		 PAD_sso_frame_clk				),
+					.PAD_sso_out_clk(		 		 	 PAD_sso_out_clk					),
+			    .PAD_mosi(								 PAD_mosi									),
+			    //.chip_id(									 PAD_chipID								),
+			    .synced_adc_cal_0(				 synced_adc_cal_0					),
+			    .synced_adc_cal_1(				 synced_adc_cal_1					),
+			    .synced_adc_nocal_0(			 synced_adc_nocal_0				),
+			    .synced_adc_nocal_1(			 synced_adc_nocal_1				),
+			    .synced_msb_0(						 synced_msb_0							),
+			    .synced_msb_1(						 synced_msb_1							),
+			    .synced_lsb_0(						 synced_lsb_0							),
+			    .synced_lsb_1(						 synced_lsb_1							),
+			    .write_data_0(						 write_data_0							),
+			    .write_data_1(						 write_data_1							),
+			    .current_stage_0(					 current_stage_0					),
+			    .current_stage_1(					 current_stage_1					),
+					.clear_regs_internal_0(		 clear_regs_internal_0		),
+					.clear_regs_internal_1(		 clear_regs_internal_1		),
+					.weight_sel_0(						 weight_sel_0							),
+					.weight_sel_1(						 weight_sel_1							),
+					.g_sel_0(									 g_sel_0									),
+					.g_sel_1(									 g_sel_1									),
+					.o_sel_0(									 o_sel_0									),
+					.o_sel_1(									 o_sel_1									),
+					.write_0(									 write_0									),
+					.write_1(									 write_1									),
+					.busy_0(									 busy_0										),
+					.busy_1(									 busy_1										)
+  );
+
+	//********************************************************
+	//***
+	//*** The Analog Mod
+	//***
+	//********************************************************
+	cold_adc_analog	Analog_2	(
+				.busy_1p2_0(								busy[0]										),
+				.busy_1p2_1(								busy[1]										),
+				.clear_regs_internal_1p2_0(	clear_regs_internal[0]		),
+				.clear_regs_internal_1p2_1(	clear_regs_internal[1]		),
+				.current_stage_1p2_0(				current_stage_0						),
+				.current_stage_1p2_1(				current_stage_1						),
+				.g_sel_1p2_0(								g_sel[0]									),
+				.g_sel_1p2_1(								g_sel[1]									),
+				.o_sel_1p2_0(								o_sel[0]									),
+				.o_sel_1p2_1(								o_sel[1]									),
+				.synced_adc_cal_1p2_0(			synced_adc_cal_0					),
+				.synced_adc_cal_1p2_1(			synced_adc_cal_1					),
+				.synced_adc_nocal_1p2_0(		synced_adc_nocal_0				),
+				.synced_adc_nocal_1p2_1(		synced_adc_nocal_1				),
+				.synced_lsb_1p2_0(					synced_lsb_0							),
+				.synced_lsb_1p2_1(					synced_lsb_1							),
+				.synced_msb_1p2_0(					synced_msb_0							),
+				.synced_msb_1p2_1(					synced_msb_1							),
+				.weight_sel_1p2_0(					weight_sel[0]							),
+				.weight_sel_1p2_1(					weight_sel[1]							),
+				.write_1p2_0(								write[0]									),
+				.write_1p2_1(								write[1]									),
+				.write_data_1p2_0(					write_data_0							),
+				.write_data_1p2_1(					write_data_1							),
+				.adc_bias_1p2(							adc_bias									),
+				.adc_disable_gb_1p2(				adc_disable_gb						),
+				.adc_pd_1p2_0(							adc_pd[0]									),
+				.adc_pd_1p2_1(							adc_pd[1]									),
+				.adc_sync_mode_1p2(					adc_sync_mode							),
+				.adc_test_mode(							adc_test_mode							),
+				.bgr_select_1p2(						bgr_select								),
+				.cal_stages_cu0(						cal_stages_cu0						),
+				.cal_stages_cu1(						cal_stages_cu1						),
+				.calibrate(									calibrate									),
+				.clk_cu0(										Clk_16MHz_cu0							),
+				.clk_cu1(										Clk_16MHz_cu1							),
+				.clk_adc_1p2(								Clk_16MHz_adc							),
+				.clk_sha_1p2(								frontEndSample						),
+				.clk_sha_select_cu0_1p2(		clk_sha_select_cu0				),
+				.clk_sha_select_cu1_1p2(		clk_sha_select_cu1				),
+				.clk_sha_select_analog_1p2(	clk_sha_select_analog			),
+				.sha_select_ctrl_1p2(				sha_select_ctrl						),
+				.edge_select_cu0(						edge_select_cu0						),
+				.edge_select_cu1(						edge_select_cu1						),
+				.enable_radix_converter(		enable_radix_converter		),
+				.external_bgr(							external_bgr							),
+				.external_reference_1p2(		external_reference				),
+				.extern_caldac_ctrl(				extern_caldac_ctrl				),
+				.extern_calibrate_stage0(		extern_calibrate_stage0		),
+				.extern_calibrate_stage1(		extern_calibrate_stage1		),
+				.extern_force_cm(						extern_force_cm						),
+				.extern_force_lsb(					extern_force_lsb					),
+				.extern_force_msb(					extern_force_msb					),
+				.extern_force_refn(					extern_force_refn					),
+				.extern_force_refp(					extern_force_refp					),
+				.freeze_select0(						freeze_select_0						),
+				.freeze_select1(						freeze_select_1						),
+				.freeze_sha(								freeze_sha								),
+				.ibuff0_bjt_ctrl(						ibuff0_bjt_ctrl						),
+				.ibuff0_cmos_ctrl(					ibuff0_cmos								),
+				.ibuff1_bjt_ctrl(						ibuff1_bjt_ctrl						),
+				.ibuff1_cmos_ctrl(					ibuff1_cmos								),
+				.i_vdac_0_ctrl(							i_vdac_0_ctrl							),
+				.i_vdac_1_ctrl(							i_vdac_1_ctrl							),
+				.ibuff_ctrl(								ibuff_ctrl								),
+				.ibuff_db_pd(								ibuff_db_pd								),
+				.ibuff_sdc_pd(							ibuff_sdc_pd							),
+				.imonitor_enable_1p2(				imonitor_enable						),
+				.imonitor_select_1p2(				imonitor_select						),
+				.iref_sel_1p2(							iref_sel									),
+				.meas_cycles_cu0(						meas_cycles_cu0						),
+				.meas_cycles_cu1(						meas_cycles_cu1						),
+				.nonov_ctrl_1p2(						nonov_ctrl								),
+				.output_format_cu0(					adc_output_format_cu0			),
+				.output_format_cu1(					adc_output_format_cu1			),
+				.pd_sha_1p2_0(							sha_pd_0									),
+				.pd_sha_1p2_1(							sha_pd_1									),
+				.ref_bias_1p2(							ref_bias									),
+				.ref_monitor(								ref_monitor								),
+				.ref_powerdown(							ref_powerdown							),
+				.reset_n_cu0(								PAD_MASTER_RESET					),
+				.reset_n_cu1(								PAD_MASTER_RESET					),
+				.sha0_bias_1p2(							sha0_bias									),
+				.sha1_bias_1p2(							sha1_bias									),
+				.sha2_bias_1p2(							sha2_bias									),
+				.sha3_bias_1p2(							sha3_bias									),
+				.sha4_bias_1p2(							sha4_bias									),
+				.sha5_bias_1p2(							sha5_bias									),
+				.sha6_bias_1p2(							sha6_bias									),
+				.sha7_bias_1p2(							sha7_bias									),
+				.sha_se_input_1p2(					sha_se_input							),
+				.test_correction_logic_cu0(	test_correction_logic_cu0	),
+				.test_correction_logic_cu1(	test_correction_logic_cu1	),
+				.test_lsb0(									test_lsb0									),
+				.test_msb0(									test_msb0									),
+				.test_lsb1(									test_lsb1									),
+				.test_msb1(									test_msb1									),
+				.vcmi_ctrl(									vcmi_ctrl									),
+				.vcmi_ctrl_cmos_1p2(				vcmi_ctrl_cmos						),
+				.vcmi_offset(								vcmi_offset								),
+				.vcmo_ctrl(									vcmo_ctrl									),
+				.vcmo_ctrl_cmos_1p2(				vcmo_ctrl_cmos						),
+				.vcmo_offset(								vcmo_offset								),
+				.vmonitor_enable_1p2(				vmonitor_enable						),
+				.vmonitor_select_1p2(				vmonitor_select						),
+				.vrefn_ctrl(								vrefn_ctrl								),
+				.vrefn_ctrl_cmos_1p2(				vrefn_ctrl_cmos						),
+				.vrefn_offset(							vrefn_offset							),
+				.vrefp_ctrl(								vrefp_ctrl								),
+				.vrefp_ctrl_cmos_1p2(				vrefp_ctrl_cmos						),
+				.vrefp_offset(							vrefp_offset							),
+				.vt_iref_trim_ctrl_1p2(			vt_iref_trim_ctrl					),
+				.vt_kickstart_1p2(					vt_kickstart							),
+				.w0_0_0(                   w0_0_0             				),
+				.w0_1_0(                   w0_1_0             				),
+				.w0_2_0(                   w0_2_0             				),
+				.w0_3_0(                   w0_3_0             				),
+				.w0_4_0(                   w0_4_0             				),
+				.w0_5_0(                   w0_5_0             				),
+				.w0_6_0(                   w0_6_0             				),
+				.w0_7_0(                   w0_7_0             				),
+				.w0_8_0(                   w0_8_0             				),
+				.w0_9_0(                   w0_9_0             				),
+				.w0_10_0(                  w0_10_0            				),
+				.w0_11_0(                  w0_11_0            				),
+				.w0_12_0(                  w0_12_0            				),
+				.w0_13_0(                  w0_13_0            				),
+				.w0_14_0(                  w0_14_0            				),
+				.w2_0_0(                   w2_0_0             				),
+				.w2_1_0(                   w2_1_0             				),
+				.w2_2_0(                   w2_2_0             				),
+				.w2_3_0(                   w2_3_0             				),
+				.w2_4_0(                   w2_4_0             				),
+				.w2_5_0(                   w2_5_0             				),
+				.w2_6_0(                   w2_6_0             				),
+				.w2_7_0(                   w2_7_0             				),
+				.w2_8_0(                   w2_8_0             				),
+				.w2_9_0(                   w2_9_0             				),
+				.w2_10_0(                  w2_10_0            				),
+				.w2_11_0(                  w2_11_0            				),
+				.w2_12_0(                  w2_12_0            				),
+				.w2_13_0(                  w2_13_0            				),
+				.w2_14_0(                  w2_14_0            				),
+				.w0_0_1(                   w0_0_1             				),
+				.w0_1_1(                   w0_1_1             				),
+				.w0_2_1(                   w0_2_1             				),
+				.w0_3_1(                   w0_3_1             				),
+				.w0_4_1(                   w0_4_1             				),
+				.w0_5_1(                   w0_5_1             				),
+				.w0_6_1(                   w0_6_1             				),
+				.w0_7_1(                   w0_7_1             				),
+				.w0_8_1(                   w0_8_1             				),
+				.w0_9_1(                   w0_9_1             				),
+				.w0_10_1(                  w0_10_1            				),
+				.w0_11_1(                  w0_11_1            				),
+				.w0_12_1(                  w0_12_1            				),
+				.w0_13_1(                  w0_13_1            				),
+				.w0_14_1(                  w0_14_1            				),
+				.w2_0_1(                   w2_0_1             				),
+				.w2_1_1(                   w2_1_1             				),
+				.w2_2_1(                   w2_2_1             				),
+				.w2_3_1(                   w2_3_1             				),
+				.w2_4_1(                   w2_4_1             				),
+				.w2_5_1(                   w2_5_1             				),
+				.w2_6_1(                   w2_6_1             				),
+				.w2_7_1(                   w2_7_1             				),
+				.w2_8_1(                   w2_8_1             				),
+				.w2_9_1(                   w2_9_1             				),
+				.w2_10_1(                  w2_10_1            				),
+				.w2_11_1(                  w2_11_1            				),
+				.w2_12_1(                  w2_12_1            				),
+				.w2_13_1(                  w2_13_1            				),
+				.w2_14_1(                  w2_14_1            				),
+				.vssd2p5(									 vssd2p5										),
+				.vssd1p2(									 vssd1p2										),
+				.vssa2p5(									 vssa2p5										),
+				.vrefp_unbuffered(				 vrefp_unbuffered						),
+				.vrefn_unbuffered(				 vrefn_unbuffered						),
+				.vref_ext(								 vref_ext										),
+				.vmonitor_out(						 vmonitor_out								),
+				.vddd2p5(									 vddd2p5										),
+				.vddd1p2(									 vddd1p2										),
+				.vdda2p5(									 vdda2p5										),
+				.vcmo_unbuffered(					 vcmo_unbuffered						),
+				.vcmi_unbuffered(					 vcmi_unbuffered						),
+				.r_bias_ext(							 r_bias_ext									),
+				.inp(											 inp												),
+				.inn(											 inn												),
+				.imonitor_out(						 imonitor_out								),
+				.aux3(										 aux3												),
+				.aux2(										 aux2												),
+				.aux1(										 aux1												),
+				.adc_test_in_p(						 adc_test_in_p							),
+				.adc_test_in_n(						 adc_test_in_n							),
+				.vref_decouple(						 vref_decouple							)
+	);
+
+endmodule // coldADC_Top
