@@ -1,0 +1,12 @@
+verilog xil_defaultlib  \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/gtwizard_ultrascale_v1_7_gthe4_channel.v" \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/FELIX_GTH_gthe4_channel_wrapper.v" \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/gtwizard_ultrascale_v1_7_gthe4_common.v" \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/FELIX_GTH_gthe4_common_wrapper.v" \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/FELIX_GTH_gtwizard_gthe4.v" \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/FELIX_GTH_gtwizard_top.v" \
+"../../../../wib_sim.srcs/sources_1/ip/FELIX_GTH/sim/FELIX_GTH.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
