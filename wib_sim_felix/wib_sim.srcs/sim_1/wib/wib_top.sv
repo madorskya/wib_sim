@@ -329,8 +329,8 @@ module wib_top
         .gtrefclkn_in      (gtrefclk_b128_n_in),
         .gth_txp_out       (gth_b128_tx0_p_out),
         .gth_txn_out       (gth_b128_tx0_n_out),
-        .felix_data_in     (daq_stream),
-        .felix_data_type_in(daq_data_type)
+        .felix_data_in     (daq_stream[0]),
+        .felix_data_type_in(daq_data_type[0])
     );
     
     I2C_CONTROL i2c_ctrl

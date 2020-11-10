@@ -8,7 +8,7 @@ module FELIX_controller(
     output         gth_txp_out,
     output         gth_txn_out,
     input [31 : 0] felix_data_in,
-    input  [1 : 0] delix_data_type_in   
+    input  [1 : 0] felix_data_type_in   
 );
 
     wire clk240;
@@ -60,13 +60,12 @@ module FELIX_controller(
         .gtwiz_reset_tx_datapath_in         (rst),                               
         .gtwiz_reset_tx_done_out            (),                                             
         .gtwiz_userdata_tx_in               ({32'h00000000, felix_data_to_gth}),                                                        
-        .gtrefclk00_in                      (gtrefclk00_in),                                            
-        .qpll0outclk_out                    (clk240),                                        
-        .qpll0outrefclk_out                 (),                                                                  
+        .gtrefclk01_in                      (gtrefclk00_in),                                            
+        .qpll1outclk_out                    (clk240),                                        
+        .qpll1outrefclk_out                 (),                                                                  
         .tx8b10ben_in                       (16'hffff),                                              
         .txctrl0_in                         (32'h00000003),                                                  
         .txctrl1_in                         (32'h00000000),                                                                                                    
-        .txpd_in                            (32'h00000000), // TX power down                                                        
         .gthtxn_out                         (gth_txn_out),                                                  
         .gthtxp_out                         (gth_txp_out),                                                  
         .gtpowergood_out                    ()
