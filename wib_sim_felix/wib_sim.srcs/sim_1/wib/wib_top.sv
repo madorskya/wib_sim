@@ -44,6 +44,13 @@ module wib_top
     input [15 : 0] gthrxn_in    , // RX diff lines
     input [15 : 0] gthrxp_in    ,
     
+    input gtrefclk_b128_p_in,   // FELIX refclk on bank 128, 125MHz osc
+    input gtrefclk_b128_n_in,
+    output gth_b128_tx0_p_out,   // X0Y4
+    output gth_b128_tx0_n_out,
+    output gth_b128_tx1_p_out,   // X0Y5
+    output gth_b128_tx1_n_out,
+    
     // I2C busses for onboard devices
     inout si5344_scl, 
     inout si5344_sda, 
@@ -314,6 +321,17 @@ module wib_top
         .reset        (fb_reset)
     );
     
+    FELIX_controller felix
+    (
+        .clk               (ts_clk),
+        .rst               (fb_reset),
+        .gtrefclkp_in      (gtrefclk_b128_p_in), // reference clock, 125M
+        .gtrefclkn_in      (gtrefclk_b128_n_in),
+        .gth_txp_out       (gth_b128_tx0_p_out),
+        .gth_txn_out       (gth_b128_tx0_n_out),
+        .felix_data_in     (daq_stream),
+        .felix_data_type_in(daq_data_type)
+    );
     
     I2C_CONTROL i2c_ctrl
     ( 
