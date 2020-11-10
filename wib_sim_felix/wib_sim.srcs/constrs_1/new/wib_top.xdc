@@ -41,6 +41,10 @@ set_property LOC G27 [get_ports gtrefclk00p_in[0]]
 set_property LOC L8  [get_ports gtrefclk00p_in[1]]
 set_property LOC G8  [get_ports gtrefclk00p_in[2]]
 set_property LOC C8  [get_ports gtrefclk00p_in[3]]
+set_property LOC R27 [get_ports gtrefclk_b128_p_in] #FELIX refclk on bank 128, 125MHz osc
+set_property LOC T29 [get_ports gth_b128_tx0_p_out] # X0Y4
+set_property LOC R31 [get_ports gth_b128_tx1_p_out] # X0Y5
+
 
 #set_property -dict {LOC L12 IOSTANDARD LVDS} [get_ports adn2814_data_p] 
 #set_property -dict {LOC AE7 IOSTANDARD LVDS} [get_ports si5344_out1_p]
@@ -52,11 +56,15 @@ create_clock -period 7.8 -name gtrefclk00p_in0 [get_ports gtrefclk00p_in[0]]
 create_clock -period 7.8 -name gtrefclk00p_in1 [get_ports gtrefclk00p_in[1]]
 create_clock -period 7.8 -name gtrefclk00p_in2 [get_ports gtrefclk00p_in[2]]
 create_clock -period 7.8 -name gtrefclk00p_in3 [get_ports gtrefclk00p_in[3]]
+create_clock -period 8.0 -name gtrefclk_b128_p_in [get_ports gtrefclk_b128_p_in]
+
 
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in0]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in1]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in2]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in3]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk_b128_p_in]
+
 
 create_clock -period 16.000 -name dune_clk_fpga_in_p [get_ports dune_clk_fpga_in_p]
 #create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
