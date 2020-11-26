@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Tue Nov 17 20:07:52 2020
+//Date        : Thu Nov 26 18:02:03 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1744,7 +1744,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=92,numReposBlks=66,numNonXlnxBlks=11,numHierBlks=26,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=93,numReposBlks=67,numNonXlnxBlks=11,numHierBlks=26,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -1896,7 +1896,7 @@ module design_1
   input ts_sfp_los;
   output [3:0]ts_stat;
   output [3:0]ts_sync;
-  output ts_sync_v;
+  output [0:0]ts_sync_v;
   output [63:0]ts_tstamp;
 
   wire [39:0]S00_AXI1_1_ARADDR;
@@ -2062,7 +2062,7 @@ module design_1
   wire pdts_endpoint_0_rdy;
   wire pdts_endpoint_0_rst;
   wire [3:0]pdts_endpoint_0_sync;
-  wire pdts_endpoint_0_sync_v;
+  wire [0:0]pdts_endpoint_0_sync_v;
   wire [63:0]pdts_endpoint_0_tstamp;
   wire [19:0]ps8_0_axi_periph_M00_AXI_ARADDR;
   wire [1:0]ps8_0_axi_periph_M00_AXI_ARBURST;
@@ -2397,7 +2397,7 @@ module design_1
   assign ts_rst = pdts_endpoint_0_rst;
   assign ts_stat[3:0] = timing_module_stat_0;
   assign ts_sync[3:0] = pdts_endpoint_0_sync;
-  assign ts_sync_v = pdts_endpoint_0_sync_v;
+  assign ts_sync_v[0] = pdts_endpoint_0_sync_v;
   assign ts_tstamp[63:0] = pdts_endpoint_0_tstamp;
   design_1_axi_gpio_1_0 axi_gpio_1
        (.gpio_io_o(axi_gpio_1_GPIO_TRI_O),
@@ -3210,7 +3210,6 @@ module design_1
         .slowest_sync_clk(zynq_ultra_ps_e_0_pl_clk0));
   timing_module_imp_2RES6C timing_module
        (.Din(reg_bank_64_0_reg_rw),
-        .Op1(rst_ps8_0_99M_peripheral_aresetn),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .stat_0(timing_module_stat_0),
         .ts_cdr_lol(cdr_lol_0_1),
@@ -13110,7 +13109,6 @@ endmodule
 
 module timing_module_imp_2RES6C
    (Din,
-    Op1,
     sclk,
     stat_0,
     ts_cdr_lol,
@@ -13127,7 +13125,6 @@ module timing_module_imp_2RES6C
     ts_sync_v,
     ts_tstamp);
   input [1023:0]Din;
-  input [0:0]Op1;
   input sclk;
   output [3:0]stat_0;
   input ts_cdr_lol;
@@ -13141,79 +13138,70 @@ module timing_module_imp_2RES6C
   output ts_rst;
   input ts_sfp_los;
   output [3:0]ts_sync;
-  output ts_sync_v;
+  output [0:0]ts_sync_v;
   output [63:0]ts_tstamp;
 
   wire [1023:0]axi_gpio_1_gpio_io_o;
-  wire cdr_lol_0_1;
-  wire cdr_los_0_1;
-  wire clk_wiz_1_clk_out1;
-  wire pdts_endpoint_0_clk;
-  wire [31:0]pdts_endpoint_0_evtctr;
-  wire pdts_endpoint_0_rdy;
-  wire pdts_endpoint_0_rst;
-  wire [3:0]pdts_endpoint_0_stat;
-  wire [3:0]pdts_endpoint_0_sync;
-  wire pdts_endpoint_0_sync_v;
-  wire [63:0]pdts_endpoint_0_tstamp;
-  wire rec_clk_locked_0_1;
-  wire rec_d_0_1;
-  wire rec_d_clk_0_1;
-  wire [0:0]rst_ps8_0_99M_peripheral_aresetn;
-  wire sfp_los_0_1;
-  wire [0:0]util_vector_logic_0_Res;
+  wire endpoint_wrapper_0_clk;
+  wire endpoint_wrapper_0_rdy;
+  wire endpoint_wrapper_0_rst;
+  wire [3:0]endpoint_wrapper_0_stat;
+  wire [3:0]endpoint_wrapper_0_sync;
+  wire [63:0]endpoint_wrapper_0_tstamp;
+  wire sclk_1;
+  wire ts_cdr_lol_1;
+  wire ts_cdr_los_1;
+  wire ts_rec_d_1;
+  wire ts_rec_d_clk_1;
+  wire ts_sfp_los_1;
+  wire [0:0]xlconstant_1_dout;
+  wire [31:0]xlconstant_2_dout;
   wire [1:0]xlslice_0_Dout;
   wire [7:0]xlslice_1_Dout;
-  wire zynq_ultra_ps_e_0_pl_clk0;
+  wire [0:0]xlslice_2_Dout;
 
   assign axi_gpio_1_gpio_io_o = Din[1023:0];
-  assign cdr_lol_0_1 = ts_cdr_lol;
-  assign cdr_los_0_1 = ts_cdr_los;
-  assign rec_clk_locked_0_1 = ts_rec_clk_locked;
-  assign rec_d_0_1 = ts_rec_d;
-  assign rec_d_clk_0_1 = ts_rec_d_clk;
-  assign rst_ps8_0_99M_peripheral_aresetn = Op1[0];
-  assign sfp_los_0_1 = ts_sfp_los;
-  assign stat_0[3:0] = pdts_endpoint_0_stat;
-  assign ts_clk = pdts_endpoint_0_clk;
-  assign ts_evtctr[31:0] = pdts_endpoint_0_evtctr;
-  assign ts_rdy = pdts_endpoint_0_rdy;
-  assign ts_rst = pdts_endpoint_0_rst;
-  assign ts_sync[3:0] = pdts_endpoint_0_sync;
-  assign ts_sync_v = pdts_endpoint_0_sync_v;
-  assign ts_tstamp[63:0] = pdts_endpoint_0_tstamp;
-  assign zynq_ultra_ps_e_0_pl_clk0 = sclk;
-  design_1_clk_wiz_1_0 clk_wiz_1
-       (.clk_in1(rec_d_clk_0_1),
-        .clk_out1(clk_wiz_1_clk_out1),
-        .reset(util_vector_logic_0_Res));
-  design_1_pdts_endpoint_0_0 pdts_endpoint_0
+  assign sclk_1 = sclk;
+  assign stat_0[3:0] = endpoint_wrapper_0_stat;
+  assign ts_cdr_lol_1 = ts_cdr_lol;
+  assign ts_cdr_los_1 = ts_cdr_los;
+  assign ts_clk = endpoint_wrapper_0_clk;
+  assign ts_evtctr[31:0] = xlconstant_2_dout;
+  assign ts_rdy = endpoint_wrapper_0_rdy;
+  assign ts_rec_d_1 = ts_rec_d;
+  assign ts_rec_d_clk_1 = ts_rec_d_clk;
+  assign ts_rst = endpoint_wrapper_0_rst;
+  assign ts_sfp_los_1 = ts_sfp_los;
+  assign ts_sync[3:0] = endpoint_wrapper_0_sync;
+  assign ts_sync_v[0] = xlconstant_1_dout;
+  assign ts_tstamp[63:0] = endpoint_wrapper_0_tstamp;
+  design_1_endpoint_wrapper_0_0 endpoint_wrapper_0
        (.addr(xlslice_1_Dout),
-        .cdr_lol(cdr_lol_0_1),
-        .cdr_los(cdr_los_0_1),
-        .clk(pdts_endpoint_0_clk),
-        .evtctr(pdts_endpoint_0_evtctr),
-        .rdy(pdts_endpoint_0_rdy),
-        .rec_clk(clk_wiz_1_clk_out1),
-        .rec_clk_locked(rec_clk_locked_0_1),
-        .rec_d(rec_d_0_1),
-        .rec_d_clk(rec_d_clk_0_1),
-        .rst(pdts_endpoint_0_rst),
-        .sclk(zynq_ultra_ps_e_0_pl_clk0),
-        .sfp_los(sfp_los_0_1),
-        .srst(util_vector_logic_0_Res),
-        .stat(pdts_endpoint_0_stat),
-        .sync(pdts_endpoint_0_sync),
-        .sync_v(pdts_endpoint_0_sync_v),
+        .cdr_lol(ts_cdr_lol_1),
+        .cdr_los(ts_cdr_los_1),
+        .clk(endpoint_wrapper_0_clk),
+        .rdy(endpoint_wrapper_0_rdy),
+        .rec_clk(ts_rec_d_clk_1),
+        .rec_d(ts_rec_d_1),
+        .rst(endpoint_wrapper_0_rst),
+        .sclk(sclk_1),
+        .sfp_los(ts_sfp_los_1),
+        .srst(xlslice_2_Dout),
+        .stat(endpoint_wrapper_0_stat),
+        .sync(endpoint_wrapper_0_sync),
         .tgrp(xlslice_0_Dout),
-        .tstamp(pdts_endpoint_0_tstamp));
-  design_1_util_vector_logic_0_0 util_vector_logic_0
-       (.Op1(rst_ps8_0_99M_peripheral_aresetn),
-        .Res(util_vector_logic_0_Res));
+        .tstamp(endpoint_wrapper_0_tstamp));
+  design_1_xlconstant_1_0 xlconstant_1
+       (.dout(xlconstant_1_dout));
+  design_1_xlconstant_1_1 xlconstant_2
+       (.dout(xlconstant_2_dout));
   design_1_xlslice_0_0 xlslice_0
        (.Din(axi_gpio_1_gpio_io_o),
         .Dout(xlslice_0_Dout));
   design_1_xlslice_1_2 xlslice_1
        (.Din(axi_gpio_1_gpio_io_o),
         .Dout(xlslice_1_Dout));
+  design_1_xlslice_0_1 xlslice_2
+       (.Din(axi_gpio_1_gpio_io_o),
+        .Dout(xlslice_2_Dout));
 endmodule

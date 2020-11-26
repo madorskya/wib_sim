@@ -1,0 +1,404 @@
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+141c141
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+184d183
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.SI_RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+132c132
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+175d174
+<             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.TYPE" xilinx:valuePermission="bd"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+52,54c52,54
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+61,63c61,63
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">180</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">130</spirit:configurableElementValue>
+<         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">40</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.bit_duration">90</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_down">65</spirit:configurableElementValue>
+>         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.scl_up">20</spirit:configurableElementValue>
+78c78
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">14</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">13</spirit:configurableElementValue>
+83c83
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+122,124d121
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.bit_duration" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_down" xilinx:valueSource="user"/>
+<             <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.scl_up" xilinx:valueSource="user"/>
+32c32
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+36c36
+<         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1.1_AR73018</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2020.1</spirit:configurableElementValue>
+159c159
+<         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.M_AXI_HPM0_FPD.ADDR_WIDTH">39</spirit:configurableElementValue>
+---
+>         <spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.M_AXI_HPM0_FPD.ADDR_WIDTH">40</spirit:configurableElementValue>
