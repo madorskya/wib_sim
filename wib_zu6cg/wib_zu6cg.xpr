@@ -30,6 +30,7 @@
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/reg_bank_64_1.0"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/timing_endpoint_v5.2.1"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/coldata_fast_cmd_1.0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/REG_IO_1.0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/timing_endpoint_1.0"/>
