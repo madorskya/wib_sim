@@ -105,7 +105,7 @@ module wib_top
     wire [31:0] ts_evtctr;
     wire ts_rdy;
     wire ts_rec_d;
-    wire ts_rec_d_clk; // 312.5 M
+    wire ts_rec_d_clk; // 312.5 M or 250M
     wire ts_rst;
     wire [3:0] ts_sync;
     wire ts_sync_v;
@@ -156,6 +156,18 @@ module wib_top
     
     wire [3:0] ts_stat;
 
+// macros for configuration and status bits
+// parameters: a = offset of 32-bit register, b = low bit in the register, n = number of bits
+`define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
+`define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
+    // command codes from timing system
+    wire [7:0] cmd_code_idle      = `CONFIG_BITS(3,  0, 8);
+    wire [7:0] cmd_code_edge      = `CONFIG_BITS(3,  8, 8);
+    wire [7:0] cmd_code_sync      = `CONFIG_BITS(3, 16, 8);
+    wire [7:0] cmd_code_act       = `CONFIG_BITS(3, 24, 8);
+    wire [7:0] cmd_code_reset     = `CONFIG_BITS(4,  0, 8);
+    wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(4,  8, 8);
+
     bd_tux wrp
     (
         .coldata_clk_40_p (coldata_clk40_p),
@@ -180,12 +192,12 @@ module wib_top
         // timing point signals
         .ts_cdr_lol        (adn2814_lol      ),
         .ts_cdr_los        (adn2814_los      ),
-        .ts_clk            (clk62p5           ), // this is 62.5 M clock for WIB logic
+        .ts_clk            (clk62p5          ), // this is 62.5 M clock for WIB logic
         .ts_evtctr         (ts_evtctr        ),
         .ts_rdy            (ts_rdy           ),
         .ts_rec_clk_locked (~adn2814_lol     ),
         .ts_rec_d          (ts_rec_d         ),
-        .ts_rec_d_clk      (ts_rec_d_clk     ), // 312.5 M clock from CDR
+        .ts_rec_d_clk      (ts_rec_d_clk     ), // 312.5 (or 250) M clock from CDR
         .ts_rst            (ts_rst           ),
         .ts_sfp_los        (1'b0             ),
         .ts_sync           (ts_sync          ),
@@ -209,7 +221,14 @@ module wib_top
         .daq_spy_full  (daq_spy_full ),
         .daq_spy_reset (daq_spy_reset),
         .daq_stream    (daq_stream   ),
-        .daq_stream_k  (daq_stream_k )
+        .daq_stream_k  (daq_stream_k ),
+
+        .cmd_code_idle      (cmd_code_idle     ),
+        .cmd_code_edge      (cmd_code_edge     ),
+        .cmd_code_sync      (cmd_code_sync     ),
+        .cmd_code_act       (cmd_code_act      ),
+        .cmd_code_reset     (cmd_code_reset    ),
+        .cmd_code_adc_reset (cmd_code_adc_reset)
     );
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];
@@ -223,14 +242,10 @@ module wib_top
     reg [15:0] valid14_r [1:0];
     reg [15:0] valid12_r [1:0];
     wire [1:0]  crc_err [15:0];
-    wire rxclk2x = tx_timing; // using main 156.25M clock as double data clock
+    wire rxclk2x;
     (* mark_debug *) wire [15:0] rxprbserr_out;
     
     // config and status registers mapping
-// macros for configuration and status bits
-// parameters: a = offset of 32-bit register, b = low bit in the register, n = number of bits
-`define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
-`define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
     
     wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // i2c chain selector, see I2C_CONTROL module below
     assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1);
@@ -362,9 +377,10 @@ module wib_top
     timing_master_fake tmf
     (
         .clk50     (clk50),
-        .tx_timing (tx_timing),
+        .tx_timing (tx_timing), // 125M clock = 50M*2.5, simulating timing master working at 50M
         
-        .clk_240 (daq_clk) // temporary replacement for real DAQ clock that should be coming from FELIX links
+        .clk_240 (daq_clk), // temporary replacement for real DAQ clock that should be coming from FELIX links
+        .clk_130 (rxclk2x) // clock for deframer and frame builder, slightly faster than 64M*2 coming from COLDATA links
     );
 
     // logic for valid12 and 14 bit extention, so we can watch them using rx clock
@@ -398,7 +414,7 @@ module wib_top
     assign misc_io[5:4]  = rx_k[2];
     assign misc_io[7:6]  = rx_k[3];
     assign misc_io[11:8] = valid12[3:0];
-    assign misc_io[14:12] = daq_stream_k[0][2:0];
-    assign misc_io[15] = daq_spy_reset; 
+    assign misc_io[14]   = ts_rec_d_clk;
+    assign misc_io[15]   = clk62p5;
         
 endmodule
