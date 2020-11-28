@@ -2,7 +2,8 @@ module timing_master_fake
 (
 	input clk50,
 	output tx_timing,
-	output clk_240
+	output clk_240,
+	output clk_130
 );
 
     wire clk156p25;
@@ -12,6 +13,7 @@ module timing_master_fake
     (
         .clk_out1 (clk156p25),
         .clk_out2 (clk_240),        
+        .clk_out3 (clk_130),        
         .reset    (1'b0),
         .locked   (),
         .clk_in1  (clk50)

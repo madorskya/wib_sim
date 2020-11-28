@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Thu Nov 26 18:04:01 2020
+// Date        : Fri Nov 27 04:06:51 2020
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/madorsky/github/wib_sim/wib_sim/wib_sim.srcs/sources_1/bd/design_1/ip/design_1_endpoint_wrapper_0_0/design_1_endpoint_wrapper_0_0_sim_netlist.v
@@ -51,7 +51,6 @@ module design_1_endpoint_wrapper_0_0
   output sync_first;
   output [63:0]tstamp;
 
-  wire \<const0> ;
   wire [7:0]addr;
   wire cdr_lol;
   wire cdr_los;
@@ -64,17 +63,12 @@ module design_1_endpoint_wrapper_0_0
   wire sfp_los;
   wire srst;
   wire [3:0]stat;
+  wire [3:0]sync;
+  wire sync_first;
+  wire sync_stb;
   wire [1:0]tgrp;
   wire [63:0]tstamp;
 
-  assign sync[3] = \<const0> ;
-  assign sync[2] = \<const0> ;
-  assign sync[1] = \<const0> ;
-  assign sync[0] = \<const0> ;
-  assign sync_first = \<const0> ;
-  assign sync_stb = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
   design_1_endpoint_wrapper_0_0_endpoint_wrapper U0
        (.addr(addr),
         .cdr_lol(cdr_lol),
@@ -88,17 +82,23 @@ module design_1_endpoint_wrapper_0_0
         .sfp_los(sfp_los),
         .srst(srst),
         .stat(stat),
+        .sync(sync),
+        .sync_first(sync_first),
+        .sync_stb(sync_stb),
         .tgrp(tgrp),
         .tstamp(tstamp));
 endmodule
 
 (* ORIG_REF_NAME = "endpoint_wrapper" *) 
 module design_1_endpoint_wrapper_0_0_endpoint_wrapper
-   (tstamp,
+   (sync,
+    tstamp,
     rst,
     rdy,
     clk,
     stat,
+    sync_stb,
+    sync_first,
     sclk,
     srst,
     rec_clk,
@@ -108,11 +108,14 @@ module design_1_endpoint_wrapper_0_0_endpoint_wrapper
     cdr_lol,
     addr,
     tgrp);
+  output [3:0]sync;
   output [63:0]tstamp;
   output rst;
   output rdy;
   output clk;
   output [3:0]stat;
+  output sync_stb;
+  output sync_first;
   input sclk;
   input srst;
   input rec_clk;
@@ -135,6 +138,9 @@ module design_1_endpoint_wrapper_0_0_endpoint_wrapper
   wire sfp_los;
   wire srst;
   wire [3:0]stat;
+  wire [3:0]sync;
+  wire sync_first;
+  wire sync_stb;
   wire [1:0]tgrp;
   wire [63:0]tstamp;
 
@@ -151,6 +157,9 @@ module design_1_endpoint_wrapper_0_0_endpoint_wrapper
         .sfp_los(sfp_los),
         .srst(srst),
         .stat(stat),
+        .sync(sync),
+        .sync_first(sync_first),
+        .sync_stb(sync_stb),
         .tgrp(tgrp),
         .tstamp(tstamp));
 endmodule
@@ -9137,11 +9146,14 @@ endmodule
 
 (* ORIG_REF_NAME = "pdts_endpoint" *) 
 module design_1_endpoint_wrapper_0_0_pdts_endpoint
-   (tstamp,
+   (sync,
+    tstamp,
     rst,
     Q,
     clk,
     stat,
+    sync_stb,
+    sync_first,
     sclk,
     srst,
     rec_clk,
@@ -9151,11 +9163,14 @@ module design_1_endpoint_wrapper_0_0_pdts_endpoint
     cdr_lol,
     addr,
     tgrp);
+  output [3:0]sync;
   output [63:0]tstamp;
   output rst;
   output [0:0]Q;
   output clk;
   output [3:0]stat;
+  output sync_stb;
+  output sync_first;
   input sclk;
   input srst;
   input rec_clk;
@@ -9205,43 +9220,41 @@ module design_1_endpoint_wrapper_0_0_pdts_endpoint
   wire rec_d;
   wire rst;
   wire rx_err_f;
-  wire rx_n_2;
-  wire rx_n_6;
-  wire rxphy_n_12;
-  wire rxphy_n_13;
-  wire rxphy_n_14;
-  wire rxphy_n_15;
+  wire rx_n_4;
+  wire rx_n_8;
   wire rxphy_n_5;
   wire rxphy_n_6;
   wire rxphy_n_7;
   wire \s_reg[4] ;
+  wire s_stb;
   wire sclk;
   wire sfp_los;
-  wire sr;
   wire srst;
   wire startup_n_1;
   wire startup_n_3;
   wire startup_n_4;
   wire [3:0]stat;
   wire stb;
+  wire [3:0]sync;
+  wire sync_first;
+  wire sync_stb;
   wire [1:0]tgrp;
   wire ts_n_64;
   wire ts_n_65;
   wire ts_n_66;
-  wire ts_n_67;
   wire [63:0]tstamp;
   wire NLW_rxphy_edge_UNCONNECTED;
   wire [3:0]NLW_rxphy_fdel_out_UNCONNECTED;
 
   design_1_endpoint_wrapper_0_0_pdts_acmd_rx acmd_rx
-       (.E(rx_n_2),
+       (.E(rx_n_4),
         .Q({p_1_in,acmd_rx_n_2,acmd_rx_n_3,acmd_rx_n_4,acmd_rx_n_5,acmd_rx_n_6,acmd_rx_n_7,acmd_rx_n_8,acmd_rx_n_9,acmd_rx_n_10,acmd_rx_n_11}),
         .SR(c),
         .a_first(a_first),
         .a_stb(a_stb),
         .clk(clk),
         .debug(startup_n_3),
-        .q({d,rxphy_n_12,rxphy_n_13,rxphy_n_14,rxphy_n_15}),
+        .q({d,sync}),
         .s_reg_0(acmd_rx_n_0));
   design_1_endpoint_wrapper_0_0_pdts_adjust adj
        (.E(\s_reg[4] ),
@@ -9260,22 +9273,24 @@ module design_1_endpoint_wrapper_0_0_pdts_endpoint
         .rec_clk(rec_clk));
   design_1_endpoint_wrapper_0_0_pdts_rx rx
        (.D(rx_err_f),
-        .E(sr),
+        .E(ctr0),
         .SR(c),
         .a_first(a_first),
         .a_stb(a_stb),
-        .\actr_reg[0]_0 (rx_n_2),
+        .\actr_reg[0]_0 (rx_n_4),
         .addr(addr),
         .clk(clk),
-        .\ctr_reg[1] (ctr0),
-        .\ctr_reg[7] (ts_n_67),
-        .\ctr_reg[7]_0 (ts_n_66),
-        .\err_reg[0]_0 (rx_n_6),
+        .\ctr_reg[7] (ts_n_66),
+        .\ctr_reg[7]_0 (ts_n_65),
+        .\err_reg[0]_0 (rx_n_8),
         .k(k),
         .out(startup_n_3),
-        .q({d,rxphy_n_12,rxphy_n_13,rxphy_n_14,rxphy_n_15}),
-        .\sr_reg[63] (ts_n_65),
+        .q({d,sync}),
+        .s_stb(s_stb),
         .stbo(stb),
+        .sync_first(sync_first),
+        .sync_stb(sync_stb),
+        .sync_stb_0(ts_n_64),
         .tgrp(tgrp));
   (* KEEP_HIERARCHY = "soft" *) 
   (* UPSTREAM_MODE = "FALSE" *) 
@@ -9290,7 +9305,7 @@ module design_1_endpoint_wrapper_0_0_pdts_endpoint
         .k(k),
         .phase_locked(clkgen_n_0),
         .phase_rst(rxphy_n_5),
-        .q({d,rxphy_n_12,rxphy_n_13,rxphy_n_14,rxphy_n_15}),
+        .q({d,sync}),
         .rst(startup_n_4),
         .rx_locked(rxphy_n_7),
         .rxclk(rec_clk),
@@ -9310,21 +9325,20 @@ module design_1_endpoint_wrapper_0_0_pdts_endpoint
         .out(startup_n_1),
         .\q_reg[2] ({rst,startup_n_3,startup_n_4}),
         .rec_clk(rec_clk),
-        .rx_err_f_reg_0(rx_n_6),
+        .rx_err_f_reg_0(rx_n_8),
         .sclk(sclk),
         .sfp_los(sfp_los),
         .srst(srst),
         .stat(stat));
   design_1_endpoint_wrapper_0_0_pdts_tstamp ts
-       (.D({d,rxphy_n_12,rxphy_n_13,rxphy_n_14,rxphy_n_15}),
-        .E(sr),
+       (.D({d,sync}),
+        .E(ctr0),
         .clk(clk),
         .\ctr_reg[0]_0 (startup_n_3),
-        .\ctr_reg[1]_0 (ts_n_67),
-        .\ctr_reg[5]_0 (ts_n_65),
-        .\ctr_reg[6]_0 (ts_n_66),
-        .\ctr_reg[7]_0 (ctr0),
+        .\ctr_reg[5]_0 (ts_n_66),
+        .\ctr_reg[6]_0 (ts_n_65),
         .lock_reg_0(ts_n_64),
+        .s_stb(s_stb),
         .tstamp(tstamp[63:1]),
         .\tstamp_i_reg[0]_0 (tstamp[0]));
 endmodule
@@ -10247,7 +10261,9 @@ endmodule
 (* ORIG_REF_NAME = "pdts_rx" *) 
 module design_1_endpoint_wrapper_0_0_pdts_rx
    (E,
-    \ctr_reg[1] ,
+    sync_stb,
+    s_stb,
+    sync_first,
     \actr_reg[0]_0 ,
     SR,
     a_stb,
@@ -10257,15 +10273,17 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
     q,
     stbo,
     k,
-    out,
-    \sr_reg[63] ,
     \ctr_reg[7] ,
     \ctr_reg[7]_0 ,
+    sync_stb_0,
+    out,
     addr,
     tgrp,
     D);
   output [0:0]E;
-  output [0:0]\ctr_reg[1] ;
+  output sync_stb;
+  output s_stb;
+  output sync_first;
   output [0:0]\actr_reg[0]_0 ;
   output [0:0]SR;
   output a_stb;
@@ -10275,10 +10293,10 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
   input [7:0]q;
   input stbo;
   input k;
-  input [0:0]out;
-  input \sr_reg[63] ;
   input \ctr_reg[7] ;
   input \ctr_reg[7]_0 ;
+  input sync_stb_0;
+  input [0:0]out;
   input [7:0]addr;
   input [1:0]tgrp;
   input [0:0]D;
@@ -10303,7 +10321,6 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
   wire cksum_n_0;
   wire cksum_n_3;
   wire clk;
-  wire [0:0]\ctr_reg[1] ;
   wire \ctr_reg[7] ;
   wire \ctr_reg[7]_0 ;
   wire [2:0]err;
@@ -10330,13 +10347,12 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
   wire pend_f;
   wire pend_f0;
   wire pend_f1__1;
-  wire pend_f_i_2_n_0;
-  wire pend_i_3_n_0;
   wire [4:1]plusOp__2;
   wire [4:0]plusOp__3;
   wire [7:0]q;
   wire s_match;
   wire s_match_r_reg_n_0;
+  wire s_stb;
   wire sctr0;
   wire \sctr[0]_i_1__0_n_0 ;
   wire [4:0]sctr_reg;
@@ -10344,7 +10360,6 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
   wire [3:0]slen_r;
   wire \slen_r[3]_i_1_n_0 ;
   wire \slen_r[3]_i_3_n_0 ;
-  wire \sr_reg[63] ;
   wire [1:0]state;
   wire state32_in;
   wire \state[1]_i_3_n_0 ;
@@ -10354,6 +10369,10 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
   wire \state_reg_n_0_[0] ;
   wire \state_reg_n_0_[1] ;
   wire stbo;
+  wire sync_first;
+  wire sync_first_INST_0_i_3_n_0;
+  wire sync_stb;
+  wire sync_stb_0;
   wire [1:0]tgrp;
   wire [3:0]ts;
   wire \ts[3]_i_1_n_0 ;
@@ -10408,10 +10427,10 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
   LUT5 #(
     .INIT(32'h00010000)) 
     a_match_i_5
-       (.I0(q[4]),
-        .I1(q[5]),
-        .I2(q[6]),
-        .I3(q[7]),
+       (.I0(q[6]),
+        .I1(q[7]),
+        .I2(q[4]),
+        .I3(q[5]),
         .I4(slen),
         .O(a_match_i_5_n_0));
   LUT6 #(
@@ -10424,7 +10443,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I4(q[1]),
         .I5(a_match_i_7_n_0),
         .O(a_match_i_6_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT5 #(
     .INIT(32'hFAFA6FF6)) 
     a_match_i_7
@@ -10440,7 +10459,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .D(a_match_i_1_n_0),
         .Q(a_match_reg_n_0),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \actr[0]_i_1 
@@ -10460,7 +10479,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I1(actr_reg[1]),
         .I2(actr_reg[2]),
         .O(plusOp__3[2]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \actr[3]_i_1 
@@ -10469,7 +10488,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I2(actr_reg[2]),
         .I3(actr_reg[3]),
         .O(plusOp__3[3]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \actr[4]_i_1 
@@ -10577,22 +10596,21 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
     .INIT(64'hFFFFFFFFEAAAAAAA)) 
     \ctr[7]_i_1 
        (.I0(\ctr_reg[7] ),
-        .I1(pend1__0),
-        .I2(slen),
-        .I3(issue),
+        .I1(issue),
+        .I2(pend1__0),
+        .I3(slen),
         .I4(pend_f1__1),
         .I5(\ctr_reg[7]_0 ),
-        .O(\ctr_reg[1] ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+        .O(E));
   LUT5 #(
-    .INIT(32'hFFFF4000)) 
+    .INIT(32'hFFFF2000)) 
     \ctr[7]_i_4 
-       (.I0(state32_in),
-        .I1(s_match_r_reg_n_0),
-        .I2(sctr_reg[0]),
-        .I3(sctr0),
-        .I4(pend_f),
-        .O(pend_f1__1));
+       (.I0(s_match_r_reg_n_0),
+        .I1(\state_reg_n_0_[0] ),
+        .I2(\state_reg_n_0_[1] ),
+        .I3(stbo),
+        .I4(pend),
+        .O(pend1__0));
   (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'hE)) 
@@ -10664,7 +10682,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I4(\err[2]_i_4_n_0 ),
         .I5(\err[2]_i_5_n_0 ),
         .O(err_c[2]));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \err[2]_i_2 
@@ -10719,32 +10737,14 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .D(err_c[2]),
         .Q(err[2]),
         .R(1'b0));
-  LUT6 #(
-    .INIT(64'h88888888A8888888)) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'h10)) 
     pend_f_i_1
-       (.I0(pend_f_i_2_n_0),
-        .I1(pend_f),
-        .I2(sctr0),
-        .I3(sctr_reg[0]),
-        .I4(s_match_r_reg_n_0),
-        .I5(state32_in),
+       (.I0(out),
+        .I1(issue),
+        .I2(pend_f1__1),
         .O(pend_f0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT2 #(
-    .INIT(4'h1)) 
-    pend_f_i_2
-       (.I0(issue),
-        .I1(out),
-        .O(pend_f_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    pend_f_i_3
-       (.I0(sctr_reg[1]),
-        .I1(sctr_reg[2]),
-        .I2(sctr_reg[3]),
-        .I3(sctr_reg[4]),
-        .O(state32_in));
   FDRE pend_f_reg
        (.C(clk),
         .CE(1'b1),
@@ -10760,24 +10760,6 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I3(sctr0),
         .I4(s_match_r_reg_n_0),
         .O(pend0));
-  LUT5 #(
-    .INIT(32'h90090000)) 
-    pend_i_2
-       (.I0(ts[3]),
-        .I1(\vctr_reg_n_0_[3] ),
-        .I2(ts[2]),
-        .I3(\vctr_reg_n_0_[2] ),
-        .I4(pend_i_3_n_0),
-        .O(issue));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT4 #(
-    .INIT(16'h9009)) 
-    pend_i_3
-       (.I0(\vctr_reg_n_0_[0] ),
-        .I1(ts[0]),
-        .I2(\vctr_reg_n_0_[1] ),
-        .I3(ts[1]),
-        .O(pend_i_3_n_0));
   FDRE pend_reg
        (.C(clk),
         .CE(1'b1),
@@ -10818,13 +10800,13 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .D(s_match),
         .Q(s_match_r_reg_n_0),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \sctr[0]_i_1__0 
        (.I0(sctr_reg[0]),
         .O(\sctr[0]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sctr[1]_i_1 
@@ -10838,7 +10820,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I1(sctr_reg[1]),
         .I2(sctr_reg[2]),
         .O(plusOp__2[2]));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \sctr[3]_i_1 
@@ -10861,7 +10843,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I1(\state_reg_n_0_[1] ),
         .I2(stbo),
         .O(sctr0));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \sctr[4]_i_3 
@@ -10952,25 +10934,6 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .D(slen),
         .Q(slen_r[3]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT5 #(
-    .INIT(32'h10000000)) 
-    \sr[63]_i_1 
-       (.I0(out),
-        .I1(\sr_reg[63] ),
-        .I2(pend1__0),
-        .I3(issue),
-        .I4(\ctr_reg[1] ),
-        .O(E));
-  LUT5 #(
-    .INIT(32'hFFFF2000)) 
-    \sr[63]_i_3 
-       (.I0(s_match_r_reg_n_0),
-        .I1(\state_reg_n_0_[0] ),
-        .I2(\state_reg_n_0_[1] ),
-        .I3(stbo),
-        .I4(pend),
-        .O(pend1__0));
   LUT6 #(
     .INIT(64'h0000000000000800)) 
     \state[1]_i_3 
@@ -10981,7 +10944,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I4(sctr_reg[2]),
         .I5(sctr_reg[1]),
         .O(\state[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT4 #(
     .INIT(16'h0400)) 
     \state[1]_i_4 
@@ -11020,6 +10983,67 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .D(state[1]),
         .Q(\state_reg_n_0_[1] ),
         .R(out));
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'h80)) 
+    sync_first_INST_0
+       (.I0(sync_stb_0),
+        .I1(issue),
+        .I2(pend_f1__1),
+        .O(sync_first));
+  LUT5 #(
+    .INIT(32'h90090000)) 
+    sync_first_INST_0_i_1
+       (.I0(ts[3]),
+        .I1(\vctr_reg_n_0_[3] ),
+        .I2(ts[2]),
+        .I3(\vctr_reg_n_0_[2] ),
+        .I4(sync_first_INST_0_i_3_n_0),
+        .O(issue));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT5 #(
+    .INIT(32'hFFFF4000)) 
+    sync_first_INST_0_i_2
+       (.I0(state32_in),
+        .I1(s_match_r_reg_n_0),
+        .I2(sctr_reg[0]),
+        .I3(sctr0),
+        .I4(pend_f),
+        .O(pend_f1__1));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT4 #(
+    .INIT(16'h9009)) 
+    sync_first_INST_0_i_3
+       (.I0(\vctr_reg_n_0_[0] ),
+        .I1(ts[0]),
+        .I2(\vctr_reg_n_0_[1] ),
+        .I3(ts[1]),
+        .O(sync_first_INST_0_i_3_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    sync_first_INST_0_i_4
+       (.I0(sctr_reg[1]),
+        .I1(sctr_reg[2]),
+        .I2(sctr_reg[3]),
+        .I3(sctr_reg[4]),
+        .O(state32_in));
+  LUT2 #(
+    .INIT(4'h8)) 
+    sync_stb_INST_0
+       (.I0(s_stb),
+        .I1(sync_stb_0),
+        .O(sync_stb));
+  LUT6 #(
+    .INIT(64'h8888A88888888888)) 
+    sync_stb_INST_0_i_1
+       (.I0(issue),
+        .I1(pend),
+        .I2(stbo),
+        .I3(\state_reg_n_0_[1] ),
+        .I4(\state_reg_n_0_[0] ),
+        .I5(s_match_r_reg_n_0),
+        .O(s_stb));
   LUT6 #(
     .INIT(64'h0000000000000004)) 
     \ts[3]_i_1 
@@ -11067,7 +11091,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
     \vctr[0]_i_1 
        (.I0(\vctr_reg_n_0_[0] ),
         .O(\vctr[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT4 #(
     .INIT(16'h3C2C)) 
     \vctr[1]_i_1 
@@ -11076,7 +11100,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I2(\vctr_reg_n_0_[0] ),
         .I3(\vctr_reg_n_0_[2] ),
         .O(\vctr[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \vctr[2]_i_1 
@@ -11084,7 +11108,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .I1(\vctr_reg_n_0_[0] ),
         .I2(\vctr_reg_n_0_[2] ),
         .O(\vctr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \vctr[3]_i_1 
@@ -13418,37 +13442,33 @@ module design_1_endpoint_wrapper_0_0_pdts_tstamp
    (\tstamp_i_reg[0]_0 ,
     tstamp,
     lock_reg_0,
-    \ctr_reg[5]_0 ,
     \ctr_reg[6]_0 ,
-    \ctr_reg[1]_0 ,
+    \ctr_reg[5]_0 ,
     clk,
     \ctr_reg[0]_0 ,
+    s_stb,
     E,
-    D,
-    \ctr_reg[7]_0 );
+    D);
   output \tstamp_i_reg[0]_0 ;
   output [62:0]tstamp;
   output lock_reg_0;
-  output \ctr_reg[5]_0 ;
   output \ctr_reg[6]_0 ;
-  output \ctr_reg[1]_0 ;
+  output \ctr_reg[5]_0 ;
   input clk;
   input [0:0]\ctr_reg[0]_0 ;
+  input s_stb;
   input [0:0]E;
   input [7:0]D;
-  input [0:0]\ctr_reg[7]_0 ;
 
   wire [7:0]D;
   wire [0:0]E;
   wire clk;
   wire \ctr[6]_i_2_n_0 ;
-  wire \ctr[7]_i_6_n_0 ;
+  wire \ctr[7]_i_5_n_0 ;
   wire [7:0]ctr_reg;
   wire [0:0]\ctr_reg[0]_0 ;
-  wire \ctr_reg[1]_0 ;
   wire \ctr_reg[5]_0 ;
   wire \ctr_reg[6]_0 ;
-  wire [0:0]\ctr_reg[7]_0 ;
   wire [63:1]data;
   wire i__carry_i_1_n_0;
   wire init;
@@ -13566,8 +13586,10 @@ module design_1_endpoint_wrapper_0_0_pdts_tstamp
   wire \plusOp_inferred__0/i__carry_n_5 ;
   wire \plusOp_inferred__0/i__carry_n_6 ;
   wire \plusOp_inferred__0/i__carry_n_7 ;
+  wire s_stb;
   wire [63:0]sr;
-  wire \sr[63]_i_4_n_0 ;
+  wire \sr[63]_i_3_n_0 ;
+  wire sr_0;
   wire [62:0]tstamp;
   wire \tstamp_i[15]_i_2_n_0 ;
   wire \tstamp_i[15]_i_3_n_0 ;
@@ -13784,7 +13806,7 @@ module design_1_endpoint_wrapper_0_0_pdts_tstamp
        (.I0(ctr_reg[0]),
         .I1(ctr_reg[1]),
         .O(plusOp__4[1]));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \ctr[2]_i_1 
@@ -13841,82 +13863,75 @@ module design_1_endpoint_wrapper_0_0_pdts_tstamp
   LUT3 #(
     .INIT(8'h78)) 
     \ctr[7]_i_2 
-       (.I0(\ctr[7]_i_6_n_0 ),
+       (.I0(\ctr[7]_i_5_n_0 ),
         .I1(ctr_reg[6]),
         .I2(ctr_reg[7]),
         .O(plusOp__4[7]));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \ctr[7]_i_3 
-       (.I0(ctr_reg[1]),
-        .I1(ctr_reg[2]),
+       (.I0(ctr_reg[5]),
+        .I1(ctr_reg[4]),
         .I2(ctr_reg[3]),
-        .I3(ctr_reg[0]),
-        .I4(ctr_reg[4]),
-        .I5(ctr_reg[5]),
-        .O(\ctr_reg[1]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \ctr[7]_i_5 
-       (.I0(ctr_reg[6]),
-        .I1(ctr_reg[7]),
-        .O(\ctr_reg[6]_0 ));
+        .I3(ctr_reg[2]),
+        .I4(ctr_reg[0]),
+        .I5(ctr_reg[1]),
+        .O(\ctr_reg[5]_0 ));
   LUT6 #(
     .INIT(64'h8000000000000000)) 
-    \ctr[7]_i_6 
+    \ctr[7]_i_5 
        (.I0(ctr_reg[5]),
         .I1(ctr_reg[3]),
         .I2(ctr_reg[0]),
         .I3(ctr_reg[1]),
         .I4(ctr_reg[2]),
         .I5(ctr_reg[4]),
-        .O(\ctr[7]_i_6_n_0 ));
+        .O(\ctr[7]_i_5_n_0 ));
   FDRE \ctr_reg[0] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[0]),
         .Q(ctr_reg[0]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[1] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[1]),
         .Q(ctr_reg[1]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[2] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[2]),
         .Q(ctr_reg[2]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[3] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[3]),
         .Q(ctr_reg[3]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[4] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[4]),
         .Q(ctr_reg[4]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[5] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[5]),
         .Q(ctr_reg[5]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[6] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[6]),
         .Q(ctr_reg[6]),
         .R(\ctr_reg[0]_0 ));
   FDRE \ctr_reg[7] 
        (.C(clk),
-        .CE(\ctr_reg[7]_0 ),
+        .CE(E),
         .D(plusOp__4[7]),
         .Q(ctr_reg[7]),
         .R(\ctr_reg[0]_0 ));
@@ -14198,6 +14213,7 @@ module design_1_endpoint_wrapper_0_0_pdts_tstamp
         .D(pkt_end),
         .Q(pkt_end_d),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     pkt_end_i_1
@@ -14286,405 +14302,413 @@ module design_1_endpoint_wrapper_0_0_pdts_tstamp
         .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_plusOp_inferred__0/i__carry__6_O_UNCONNECTED [7],data[63:57]}),
         .S({1'b0,sr[63:57]}));
+  LUT6 #(
+    .INIT(64'h0002000000000000)) 
+    \sr[63]_i_1 
+       (.I0(s_stb),
+        .I1(\ctr_reg[0]_0 ),
+        .I2(\ctr_reg[6]_0 ),
+        .I3(ctr_reg[5]),
+        .I4(\sr[63]_i_3_n_0 ),
+        .I5(E),
+        .O(sr_0));
   (* SOFT_HLUTNM = "soft_lutpair40" *) 
-  LUT5 #(
-    .INIT(32'hFFFEFEFE)) 
+  LUT2 #(
+    .INIT(4'hE)) 
     \sr[63]_i_2 
-       (.I0(ctr_reg[5]),
-        .I1(ctr_reg[6]),
-        .I2(ctr_reg[7]),
-        .I3(ctr_reg[4]),
-        .I4(\sr[63]_i_4_n_0 ),
-        .O(\ctr_reg[5]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
-  LUT3 #(
-    .INIT(8'hFE)) 
-    \sr[63]_i_4 
+       (.I0(ctr_reg[6]),
+        .I1(ctr_reg[7]),
+        .O(\ctr_reg[6]_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  LUT4 #(
+    .INIT(16'h01FF)) 
+    \sr[63]_i_3 
        (.I0(ctr_reg[1]),
-        .I1(ctr_reg[2]),
-        .I2(ctr_reg[3]),
-        .O(\sr[63]_i_4_n_0 ));
+        .I1(ctr_reg[3]),
+        .I2(ctr_reg[2]),
+        .I3(ctr_reg[4]),
+        .O(\sr[63]_i_3_n_0 ));
   FDRE \sr_reg[0] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[8]),
         .Q(sr[0]),
         .R(1'b0));
   FDRE \sr_reg[10] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[18]),
         .Q(sr[10]),
         .R(1'b0));
   FDRE \sr_reg[11] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[19]),
         .Q(sr[11]),
         .R(1'b0));
   FDRE \sr_reg[12] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[20]),
         .Q(sr[12]),
         .R(1'b0));
   FDRE \sr_reg[13] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[21]),
         .Q(sr[13]),
         .R(1'b0));
   FDRE \sr_reg[14] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[22]),
         .Q(sr[14]),
         .R(1'b0));
   FDRE \sr_reg[15] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[23]),
         .Q(sr[15]),
         .R(1'b0));
   FDRE \sr_reg[16] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[24]),
         .Q(sr[16]),
         .R(1'b0));
   FDRE \sr_reg[17] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[25]),
         .Q(sr[17]),
         .R(1'b0));
   FDRE \sr_reg[18] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[26]),
         .Q(sr[18]),
         .R(1'b0));
   FDRE \sr_reg[19] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[27]),
         .Q(sr[19]),
         .R(1'b0));
   FDRE \sr_reg[1] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[9]),
         .Q(sr[1]),
         .R(1'b0));
   FDRE \sr_reg[20] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[28]),
         .Q(sr[20]),
         .R(1'b0));
   FDRE \sr_reg[21] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[29]),
         .Q(sr[21]),
         .R(1'b0));
   FDRE \sr_reg[22] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[30]),
         .Q(sr[22]),
         .R(1'b0));
   FDRE \sr_reg[23] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[31]),
         .Q(sr[23]),
         .R(1'b0));
   FDRE \sr_reg[24] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[32]),
         .Q(sr[24]),
         .R(1'b0));
   FDRE \sr_reg[25] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[33]),
         .Q(sr[25]),
         .R(1'b0));
   FDRE \sr_reg[26] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[34]),
         .Q(sr[26]),
         .R(1'b0));
   FDRE \sr_reg[27] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[35]),
         .Q(sr[27]),
         .R(1'b0));
   FDRE \sr_reg[28] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[36]),
         .Q(sr[28]),
         .R(1'b0));
   FDRE \sr_reg[29] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[37]),
         .Q(sr[29]),
         .R(1'b0));
   FDRE \sr_reg[2] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[10]),
         .Q(sr[2]),
         .R(1'b0));
   FDRE \sr_reg[30] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[38]),
         .Q(sr[30]),
         .R(1'b0));
   FDRE \sr_reg[31] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[39]),
         .Q(sr[31]),
         .R(1'b0));
   FDRE \sr_reg[32] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[40]),
         .Q(sr[32]),
         .R(1'b0));
   FDRE \sr_reg[33] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[41]),
         .Q(sr[33]),
         .R(1'b0));
   FDRE \sr_reg[34] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[42]),
         .Q(sr[34]),
         .R(1'b0));
   FDRE \sr_reg[35] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[43]),
         .Q(sr[35]),
         .R(1'b0));
   FDRE \sr_reg[36] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[44]),
         .Q(sr[36]),
         .R(1'b0));
   FDRE \sr_reg[37] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[45]),
         .Q(sr[37]),
         .R(1'b0));
   FDRE \sr_reg[38] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[46]),
         .Q(sr[38]),
         .R(1'b0));
   FDRE \sr_reg[39] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[47]),
         .Q(sr[39]),
         .R(1'b0));
   FDRE \sr_reg[3] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[11]),
         .Q(sr[3]),
         .R(1'b0));
   FDRE \sr_reg[40] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[48]),
         .Q(sr[40]),
         .R(1'b0));
   FDRE \sr_reg[41] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[49]),
         .Q(sr[41]),
         .R(1'b0));
   FDRE \sr_reg[42] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[50]),
         .Q(sr[42]),
         .R(1'b0));
   FDRE \sr_reg[43] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[51]),
         .Q(sr[43]),
         .R(1'b0));
   FDRE \sr_reg[44] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[52]),
         .Q(sr[44]),
         .R(1'b0));
   FDRE \sr_reg[45] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[53]),
         .Q(sr[45]),
         .R(1'b0));
   FDRE \sr_reg[46] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[54]),
         .Q(sr[46]),
         .R(1'b0));
   FDRE \sr_reg[47] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[55]),
         .Q(sr[47]),
         .R(1'b0));
   FDRE \sr_reg[48] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[56]),
         .Q(sr[48]),
         .R(1'b0));
   FDRE \sr_reg[49] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[57]),
         .Q(sr[49]),
         .R(1'b0));
   FDRE \sr_reg[4] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[12]),
         .Q(sr[4]),
         .R(1'b0));
   FDRE \sr_reg[50] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[58]),
         .Q(sr[50]),
         .R(1'b0));
   FDRE \sr_reg[51] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[59]),
         .Q(sr[51]),
         .R(1'b0));
   FDRE \sr_reg[52] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[60]),
         .Q(sr[52]),
         .R(1'b0));
   FDRE \sr_reg[53] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[61]),
         .Q(sr[53]),
         .R(1'b0));
   FDRE \sr_reg[54] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[62]),
         .Q(sr[54]),
         .R(1'b0));
   FDRE \sr_reg[55] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[63]),
         .Q(sr[55]),
         .R(1'b0));
   FDRE \sr_reg[56] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[0]),
         .Q(sr[56]),
         .R(1'b0));
   FDRE \sr_reg[57] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[1]),
         .Q(sr[57]),
         .R(1'b0));
   FDRE \sr_reg[58] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[2]),
         .Q(sr[58]),
         .R(1'b0));
   FDRE \sr_reg[59] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[3]),
         .Q(sr[59]),
         .R(1'b0));
   FDRE \sr_reg[5] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[13]),
         .Q(sr[5]),
         .R(1'b0));
   FDRE \sr_reg[60] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[4]),
         .Q(sr[60]),
         .R(1'b0));
   FDRE \sr_reg[61] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[5]),
         .Q(sr[61]),
         .R(1'b0));
   FDRE \sr_reg[62] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[6]),
         .Q(sr[62]),
         .R(1'b0));
   FDRE \sr_reg[63] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(D[7]),
         .Q(sr[63]),
         .R(1'b0));
   FDRE \sr_reg[6] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[14]),
         .Q(sr[6]),
         .R(1'b0));
   FDRE \sr_reg[7] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[15]),
         .Q(sr[7]),
         .R(1'b0));
   FDRE \sr_reg[8] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[16]),
         .Q(sr[8]),
         .R(1'b0));
   FDRE \sr_reg[9] 
        (.C(clk),
-        .CE(E),
+        .CE(sr_0),
         .D(sr[17]),
         .Q(sr[9]),
         .R(1'b0));

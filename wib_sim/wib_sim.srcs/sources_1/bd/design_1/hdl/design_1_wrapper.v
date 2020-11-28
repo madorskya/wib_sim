@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Thu Nov 26 18:02:05 2020
+//Date        : Fri Nov 27 22:37:43 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -13,6 +13,12 @@ module design_1_wrapper
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
+    cmd_code_act,
+    cmd_code_adc_reset,
+    cmd_code_edge,
+    cmd_code_idle,
+    cmd_code_reset,
+    cmd_code_sync,
     daq_clk,
     daq_spy_full_0,
     daq_spy_full_1,
@@ -81,10 +87,17 @@ module design_1_wrapper
     ts_stat,
     ts_sync,
     ts_sync_v,
-    ts_tstamp);
+    ts_tstamp,
+    ts_valid);
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
   output [31:0]WIB_LED_tri_o;
+  input [7:0]cmd_code_act;
+  input [7:0]cmd_code_adc_reset;
+  input [7:0]cmd_code_edge;
+  input [7:0]cmd_code_idle;
+  input [7:0]cmd_code_reset;
+  input [7:0]cmd_code_sync;
   input daq_clk;
   output daq_spy_full_0;
   output daq_spy_full_1;
@@ -154,10 +167,17 @@ module design_1_wrapper
   output [3:0]ts_sync;
   output [0:0]ts_sync_v;
   output [63:0]ts_tstamp;
+  output ts_valid;
 
   wire AXI_CLK_OUT;
   wire [0:0]AXI_RSTn;
   wire [31:0]WIB_LED_tri_o;
+  wire [7:0]cmd_code_act;
+  wire [7:0]cmd_code_adc_reset;
+  wire [7:0]cmd_code_edge;
+  wire [7:0]cmd_code_idle;
+  wire [7:0]cmd_code_reset;
+  wire [7:0]cmd_code_sync;
   wire daq_clk;
   wire daq_spy_full_0;
   wire daq_spy_full_1;
@@ -233,11 +253,18 @@ module design_1_wrapper
   wire [3:0]ts_sync;
   wire [0:0]ts_sync_v;
   wire [63:0]ts_tstamp;
+  wire ts_valid;
 
   design_1 design_1_i
        (.AXI_CLK_OUT(AXI_CLK_OUT),
         .AXI_RSTn(AXI_RSTn),
         .WIB_LED_tri_o(WIB_LED_tri_o),
+        .cmd_code_act(cmd_code_act),
+        .cmd_code_adc_reset(cmd_code_adc_reset),
+        .cmd_code_edge(cmd_code_edge),
+        .cmd_code_idle(cmd_code_idle),
+        .cmd_code_reset(cmd_code_reset),
+        .cmd_code_sync(cmd_code_sync),
         .daq_clk(daq_clk),
         .daq_spy_full_0(daq_spy_full_0),
         .daq_spy_full_1(daq_spy_full_1),
@@ -310,7 +337,8 @@ module design_1_wrapper
         .ts_stat(ts_stat),
         .ts_sync(ts_sync),
         .ts_sync_v(ts_sync_v),
-        .ts_tstamp(ts_tstamp));
+        .ts_tstamp(ts_tstamp),
+        .ts_valid(ts_valid));
   IOBUF iic_rtl_0_scl_iobuf
        (.I(iic_rtl_0_scl_o),
         .IO(iic_rtl_0_scl_io),

@@ -56,7 +56,13 @@ module bd_tux
     input  [1:0]  daq_spy_reset,
     input  [31:0] daq_stream [1:0],
     input  [3:0]  daq_stream_k [1:0],
-    output clk_240
+    output clk_240,
+    output cmd_code_idle,
+    output cmd_code_edge,
+    output cmd_code_sync,
+    output cmd_code_act ,
+    output cmd_code_reset,
+    output cmd_code_adc_reset
 );
     
     wire clk_40 = 1'b0; // unused, FEMBs generate their own 40M clocks for each COLDATA
@@ -146,7 +152,15 @@ module bd_tux
         .daq_stream0     (daq_stream[0]   ),
         .daq_stream_k0   (daq_stream_k[0] ),
         .daq_stream1     (daq_stream[1]   ),
-        .daq_stream_k1   (daq_stream_k[1] )
+        .daq_stream_k1   (daq_stream_k[1] ),
+        
+        .cmd_code_idle      (cmd_code_idle     ),
+        .cmd_code_edge      (cmd_code_edge     ),
+        .cmd_code_sync      (cmd_code_sync     ),
+        .cmd_code_act       (cmd_code_act      ),
+        .cmd_code_reset     (cmd_code_reset    ),
+        .cmd_code_adc_reset (cmd_code_adc_reset)
+        
     );
 
 endmodule

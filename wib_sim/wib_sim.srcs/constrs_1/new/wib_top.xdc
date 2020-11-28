@@ -76,6 +76,11 @@ set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si53
  
 set_false_path -to [get_ports misc_io[*]] 
 
+set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_0/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
+set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
+set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]]
+set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT3]]
+set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT3]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]]
 # below copied from Jack's project
 
 #BANK  44 HD  2.5V
