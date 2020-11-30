@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Sun Nov 29 01:24:27 2020
+// Date        : Sun Nov 29 01:24:26 2020
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_14/design_1_auto_ds_14_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top design_1_auto_ds_14 -prefix
+//               design_1_auto_ds_14_ design_1_auto_ds_14_stub.v
 // Design      : design_1_auto_ds_14
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu6cg-ffvb1156-1-e
