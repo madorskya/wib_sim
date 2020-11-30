@@ -354,15 +354,15 @@ set psu_pll_init_data {
 		# PSU_CRF_APB_DPLL_CTRL_PRE_SRC                                                   0x0
 
 		# The integer portion of the feedback divider to the PLL
-		# PSU_CRF_APB_DPLL_CTRL_FBDIV                                                     0x40
+		# PSU_CRF_APB_DPLL_CTRL_FBDIV                                                     0x3f
 
 		# This turns on the divide by 2 that is inside of the PLL. This does not c
     # hange the VCO frequency, just the output frequency
 		# PSU_CRF_APB_DPLL_CTRL_DIV2                                                      0x1
 
 		# PLL Basic Control
-		#(OFFSET, MASK, VALUE)      (0XFD1A002C, 0x00717F00U ,0x00014000U)  */
-    mask_write 0XFD1A002C 0x00717F00 0x00014000
+		#(OFFSET, MASK, VALUE)      (0XFD1A002C, 0x00717F00U ,0x00013F00U)  */
+    mask_write 0XFD1A002C 0x00717F00 0x00013F00
 		# : BY PASS PLL
 		# Register : DPLL_CTRL @ 0XFD1A002C</p>
 
@@ -974,7 +974,7 @@ set psu_clock_init_data {
 		# Register : TOPSW_MAIN_CTRL @ 0XFD1A00C0</p>
 
 		# 6 bit divider
-		# PSU_CRF_APB_TOPSW_MAIN_CTRL_DIVISOR0                                            0x3
+		# PSU_CRF_APB_TOPSW_MAIN_CTRL_DIVISOR0                                            0x2
 
 		# 000 = APLL; 010 = VPLL; 011 = DPLL; (This signal may only be toggled aft
     # er 4 cycles of the old clock and 4 cycles of the new clock. This is not
@@ -985,8 +985,8 @@ set psu_clock_init_data {
 		# PSU_CRF_APB_TOPSW_MAIN_CTRL_CLKACT                                              0x1
 
 		# This register controls this reference clock
-		#(OFFSET, MASK, VALUE)      (0XFD1A00C0, 0x01003F07U ,0x01000303U)  */
-    mask_write 0XFD1A00C0 0x01003F07 0x01000303
+		#(OFFSET, MASK, VALUE)      (0XFD1A00C0, 0x01003F07U ,0x01000203U)  */
+    mask_write 0XFD1A00C0 0x01003F07 0x01000203
 		# Register : TOPSW_LSBUS_CTRL @ 0XFD1A00C4</p>
 
 		# 6 bit divider
@@ -1085,7 +1085,7 @@ set psu_ddr_init_data {
 
 		# Indicates the configuration of the device used in the system. - 00 - x4
     # device - 01 - x8 device - 10 - x16 device - 11 - x32 device
-		# PSU_DDRC_MSTR_DEVICE_CONFIG                                                     0x1
+		# PSU_DDRC_MSTR_DEVICE_CONFIG                                                     0x2
 
 		# Choose which registers are used. - 0 - Original registers - 1 - Shadow r
     # egisters
@@ -1170,8 +1170,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_MSTR_DDR3                                                              0x0
 
 		# Master Register
-		#(OFFSET, MASK, VALUE)      (0XFD070000, 0xE30FBE3DU ,0x41040010U)  */
-    mask_write 0XFD070000 0xE30FBE3D 0x41040010
+		#(OFFSET, MASK, VALUE)      (0XFD070000, 0xE30FBE3DU ,0x81040010U)  */
+    mask_write 0XFD070000 0xE30FBE3D 0x81040010
 		# Register : MRCTRL0 @ 0XFD070010</p>
 
 		# Setting this register bit to 1 triggers a mode register read or write op
@@ -1341,7 +1341,7 @@ set psu_ddr_init_data {
     # C specification is 500us. Unit: Multiples of 4096 clocks. Present only i
     # n designs configured to support mDDR, LPDDR2 or LPDDR3. FOR PERFORMANCE
     # ONLY.
-		# PSU_DDRC_PWRTMG_T_DPD_X4096                                                     0x84
+		# PSU_DDRC_PWRTMG_T_DPD_X4096                                                     0x82
 
 		# After this many clocks of NOP or deselect the uMCTL2 automatically puts
     # the SDRAM into power-down. This must be enabled in the PWRCTL.powerdown_
@@ -1349,8 +1349,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_PWRTMG_POWERDOWN_TO_X32                                                0x10
 
 		# Low Power Timing Register
-		#(OFFSET, MASK, VALUE)      (0XFD070034, 0x00FFFF1FU ,0x00408410U)  */
-    mask_write 0XFD070034 0x00FFFF1F 0x00408410
+		#(OFFSET, MASK, VALUE)      (0XFD070034, 0x00FFFF1FU ,0x00408210U)  */
+    mask_write 0XFD070034 0x00FFFF1F 0x00408210
 		# Register : RFSHCTL0 @ 0XFD070050</p>
 
 		# Threshold value in number of clock cycles before the critical refresh or
@@ -1466,7 +1466,7 @@ set psu_ddr_init_data {
     # refresh mode register. Note that RFSHTMG.t_rfc_nom_x32 * 32 must be grea
     # ter than RFSHTMG.t_rfc_min, and RFSHTMG.t_rfc_nom_x32 must be greater th
     # an 0x1. Unit: Multiples of 32 clocks.
-		# PSU_DDRC_RFSHTMG_T_RFC_NOM_X32                                                  0x81
+		# PSU_DDRC_RFSHTMG_T_RFC_NOM_X32                                                  0x7f
 
 		# Used only when LPDDR3 memory type is connected. Should only be changed w
     # hen uMCTL2 is in reset. Specifies whether to use the tREFBW parameter (r
@@ -1486,11 +1486,11 @@ set psu_ddr_init_data {
     # d the device density. The user should program the appropriate value from
     #  the spec based on the 'refresh_mode' and the device density that is use
     # d. Unit: Clocks.
-		# PSU_DDRC_RFSHTMG_T_RFC_MIN                                                      0x8b
+		# PSU_DDRC_RFSHTMG_T_RFC_MIN                                                      0xb8
 
 		# Refresh Timing Register
-		#(OFFSET, MASK, VALUE)      (0XFD070064, 0x0FFF83FFU ,0x0081808BU)  */
-    mask_write 0XFD070064 0x0FFF83FF 0x0081808B
+		#(OFFSET, MASK, VALUE)      (0XFD070064, 0x0FFF83FFU ,0x007F80B8U)  */
+    mask_write 0XFD070064 0x0FFF83FF 0x007F80B8
 		# Register : ECCCFG0 @ 0XFD070070</p>
 
 		# Disable ECC scrubs. Valid only when ECCCFG0.ecc_mode = 3'b100 and MEMC_U
@@ -1660,11 +1660,11 @@ set psu_ddr_init_data {
     # DR3: tINIT1 of 100 ns (min) LPDDR4: tINIT3 of 2 ms (min) For configurati
     # ons with MEMC_FREQ_RATIO=2, program this to JEDEC spec value divided by
     # 2, and round it up to next integer value.
-		# PSU_DDRC_INIT0_PRE_CKE_X1024                                                    0x106
+		# PSU_DDRC_INIT0_PRE_CKE_X1024                                                    0x102
 
 		# SDRAM Initialization Register 0
-		#(OFFSET, MASK, VALUE)      (0XFD0700D0, 0xC3FF0FFFU ,0x00020106U)  */
-    mask_write 0XFD0700D0 0xC3FF0FFF 0x00020106
+		#(OFFSET, MASK, VALUE)      (0XFD0700D0, 0xC3FF0FFFU ,0x00020102U)  */
+    mask_write 0XFD0700D0 0xC3FF0FFF 0x00020102
 		# Register : INIT1 @ 0XFD0700D4</p>
 
 		# Number of cycles to assert SDRAM reset signal during init sequence. This
@@ -1690,7 +1690,7 @@ set psu_ddr_init_data {
 
 		# Idle time after the reset command, tINIT4. Present only in designs confi
     # gured to support LPDDR2. Unit: 32 clock cycles.
-		# PSU_DDRC_INIT2_IDLE_AFTER_RESET_X32                                             0x23
+		# PSU_DDRC_INIT2_IDLE_AFTER_RESET_X32                                             0x22
 
 		# Time to wait after the first CKE high, tINIT2. Present only in designs c
     # onfigured to support LPDDR2/LPDDR3. Unit: 1 clock cycle. LPDDR2/LPDDR3 t
@@ -1698,15 +1698,15 @@ set psu_ddr_init_data {
 		# PSU_DDRC_INIT2_MIN_STABLE_CLOCK_X1                                              0x5
 
 		# SDRAM Initialization Register 2
-		#(OFFSET, MASK, VALUE)      (0XFD0700D8, 0x0000FF0FU ,0x00002305U)  */
-    mask_write 0XFD0700D8 0x0000FF0F 0x00002305
+		#(OFFSET, MASK, VALUE)      (0XFD0700D8, 0x0000FF0FU ,0x00002205U)  */
+    mask_write 0XFD0700D8 0x0000FF0F 0x00002205
 		# Register : INIT3 @ 0XFD0700DC</p>
 
 		# DDR2: Value to write to MR register. Bit 8 is for DLL and the setting he
     # re is ignored. The uMCTL2 sets this bit appropriately. DDR3/DDR4: Value
     # loaded into MR0 register. mDDR: Value to write to MR register. LPDDR2/LP
     # DDR3/LPDDR4 - Value to write to MR1 register
-		# PSU_DDRC_INIT3_MR                                                               0x730
+		# PSU_DDRC_INIT3_MR                                                               0x734
 
 		# DDR2: Value to write to EMR register. Bits 9:7 are for OCD and the setti
     # ng in this register is ignored. The uMCTL2 sets those bits appropriately
@@ -1717,8 +1717,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_INIT3_EMR                                                              0x301
 
 		# SDRAM Initialization Register 3
-		#(OFFSET, MASK, VALUE)      (0XFD0700DC, 0xFFFFFFFFU ,0x07300301U)  */
-    mask_write 0XFD0700DC 0xFFFFFFFF 0x07300301
+		#(OFFSET, MASK, VALUE)      (0XFD0700DC, 0xFFFFFFFFU ,0x07340301U)  */
+    mask_write 0XFD0700DC 0xFFFFFFFF 0x07340301
 		# Register : INIT4 @ 0XFD0700E0</p>
 
 		# DDR2: Value to write to EMR2 register. DDR3/DDR4: Value to write to MR2
@@ -1931,18 +1931,18 @@ set psu_ddr_init_data {
     #  register is 1. Zero is invalid. For configurations with MEMC_FREQ_RATIO
     # =2, program this to (tRAS(max)-1)/2. No rounding up. Unit: Multiples of
     # 1024 clocks.
-		# PSU_DDRC_DRAMTMG0_T_RAS_MAX                                                     0x24
+		# PSU_DDRC_DRAMTMG0_T_RAS_MAX                                                     0x23
 
 		# tRAS(min): Minimum time between activate and precharge to the same bank.
     #  For configurations with MEMC_FREQ_RATIO=2, 1T mode, program this to tRA
     # S(min)/2. No rounding up. For configurations with MEMC_FREQ_RATIO=2, 2T
     # mode or LPDDR4 mode, program this to (tRAS(min)/2) and round it up to th
     # e next integer value. Unit: Clocks
-		# PSU_DDRC_DRAMTMG0_T_RAS_MIN                                                     0x12
+		# PSU_DDRC_DRAMTMG0_T_RAS_MIN                                                     0x11
 
 		# SDRAM Timing Register 0
-		#(OFFSET, MASK, VALUE)      (0XFD070100, 0x7F3F7F3FU ,0x11102412U)  */
-    mask_write 0XFD070100 0x7F3F7F3F 0x11102412
+		#(OFFSET, MASK, VALUE)      (0XFD070100, 0x7F3F7F3FU ,0x11102311U)  */
+    mask_write 0XFD070100 0x7F3F7F3F 0x11102311
 		# Register : DRAMTMG1 @ 0XFD070104</p>
 
 		# tXP: Minimum time after power-down exit to any operation. For DDR3, this
@@ -1966,11 +1966,11 @@ set psu_ddr_init_data {
 		# tRC: Minimum time between activates to same bank. For configurations wit
     # h MEMC_FREQ_RATIO=2, program this to (tRC/2) and round up to next intege
     # r value. Unit: Clocks.
-		# PSU_DDRC_DRAMTMG1_T_RC                                                          0x1a
+		# PSU_DDRC_DRAMTMG1_T_RC                                                          0x19
 
 		# SDRAM Timing Register 1
-		#(OFFSET, MASK, VALUE)      (0XFD070104, 0x001F1F7FU ,0x0004041AU)  */
-    mask_write 0XFD070104 0x001F1F7F 0x0004041A
+		#(OFFSET, MASK, VALUE)      (0XFD070104, 0x001F1F7FU ,0x00040419U)  */
+    mask_write 0XFD070104 0x001F1F7F 0x00040419
 		# Register : DRAMTMG2 @ 0XFD070108</p>
 
 		# Set to WL Time from write command to write data on SDRAM interface. This
@@ -2080,7 +2080,7 @@ set psu_ddr_init_data {
     # nk 'a' to bank 'b'For configurations with MEMC_FREQ_RATIO=2, program thi
     # s to (tRRD_L/2 or tRRD/2) and round it up to the next integer value. Uni
     # t: Clocks.
-		# PSU_DDRC_DRAMTMG4_T_RRD                                                         0x3
+		# PSU_DDRC_DRAMTMG4_T_RRD                                                         0x4
 
 		# tRP: Minimum time from precharge to activate of same bank. For MEMC_FREQ
     # _RATIO=1 configurations, t_rp should be set to RoundUp(tRP/tCK). For MEM
@@ -2090,8 +2090,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_DRAMTMG4_T_RP                                                          0x9
 
 		# SDRAM Timing Register 4
-		#(OFFSET, MASK, VALUE)      (0XFD070110, 0x1F0F0F1FU ,0x08030309U)  */
-    mask_write 0XFD070110 0x1F0F0F1F 0x08030309
+		#(OFFSET, MASK, VALUE)      (0XFD070110, 0x1F0F0F1FU ,0x08030409U)  */
+    mask_write 0XFD070110 0x1F0F0F1F 0x08030409
 		# Register : DRAMTMG5 @ 0XFD070114</p>
 
 		# This is the time before Self Refresh Exit that CK is maintained as a val
@@ -2187,14 +2187,14 @@ set psu_ddr_init_data {
     # to the above value divided by 2 and round up to next integer value. Unit
     # : Multiples of 32 clocks. Note: This is applicable to only ZQCL/ZQCS com
     # mands. Note: Ensure this is less than or equal to t_xs_x32.
-		# PSU_DDRC_DRAMTMG8_T_XS_FAST_X32                                                 0x3
+		# PSU_DDRC_DRAMTMG8_T_XS_FAST_X32                                                 0x4
 
 		# tXS_ABORT: Exit Self Refresh to commands not requiring a locked DLL in S
     # elf Refresh Abort. For configurations with MEMC_FREQ_RATIO=2, program th
     # is to the above value divided by 2 and round up to next integer value. U
     # nit: Multiples of 32 clocks. Note: Ensure this is less than or equal to
     # t_xs_x32.
-		# PSU_DDRC_DRAMTMG8_T_XS_ABORT_X32                                                0x3
+		# PSU_DDRC_DRAMTMG8_T_XS_ABORT_X32                                                0x4
 
 		# tXSDLL: Exit Self Refresh to commands requiring a locked DLL. For config
     # urations with MEMC_FREQ_RATIO=2, program this to the above value divided
@@ -2206,11 +2206,11 @@ set psu_ddr_init_data {
     # gurations with MEMC_FREQ_RATIO=2, program this to the above value divide
     # d by 2 and round up to next integer value. Unit: Multiples of 32 clocks.
     #  Note: Used only for DDR2, DDR3 and DDR4 SDRAMs.
-		# PSU_DDRC_DRAMTMG8_T_XS_X32                                                      0x6
+		# PSU_DDRC_DRAMTMG8_T_XS_X32                                                      0x7
 
 		# SDRAM Timing Register 8
-		#(OFFSET, MASK, VALUE)      (0XFD070120, 0x7F7F7F7FU ,0x03030D06U)  */
-    mask_write 0XFD070120 0x7F7F7F7F 0x03030D06
+		#(OFFSET, MASK, VALUE)      (0XFD070120, 0x7F7F7F7FU ,0x04040D07U)  */
+    mask_write 0XFD070120 0x7F7F7F7F 0x04040D07
 		# Register : DRAMTMG9 @ 0XFD070124</p>
 
 		# DDR4 Write preamble mode - 0: 1tCK preamble - 1: 2tCK preamble Present o
@@ -2228,7 +2228,7 @@ set psu_ddr_init_data {
     # ferent bank group. For configurations with MEMC_FREQ_RATIO=2, program th
     # is to (tRRD_S/2) and round it up to the next integer value. Present only
     #  in designs configured to support DDR4. Unit: Clocks.
-		# PSU_DDRC_DRAMTMG9_T_RRD_S                                                       0x2
+		# PSU_DDRC_DRAMTMG9_T_RRD_S                                                       0x3
 
 		# CWL + PL + BL/2 + tWTR_S Minimum time from write command to read command
     #  for different bank group. Includes time for bus turnaround, recovery ti
@@ -2243,15 +2243,15 @@ set psu_ddr_init_data {
 		# PSU_DDRC_DRAMTMG9_WR2RD_S                                                       0xb
 
 		# SDRAM Timing Register 9
-		#(OFFSET, MASK, VALUE)      (0XFD070124, 0x40070F3FU ,0x0002020BU)  */
-    mask_write 0XFD070124 0x40070F3F 0x0002020B
+		#(OFFSET, MASK, VALUE)      (0XFD070124, 0x40070F3FU ,0x0002030BU)  */
+    mask_write 0XFD070124 0x40070F3F 0x0002030B
 		# Register : DRAMTMG11 @ 0XFD07012C</p>
 
 		# tXMPDLL: This is the minimum Exit MPSM to commands requiring a locked DL
     # L. For configurations with MEMC_FREQ_RATIO=2, program this to (tXMPDLL/2
     # ) and round it up to the next integer value. Present only in designs con
     # figured to support DDR4. Unit: Multiples of 32 clocks.
-		# PSU_DDRC_DRAMTMG11_POST_MPSM_GAP_X32                                            0x11
+		# PSU_DDRC_DRAMTMG11_POST_MPSM_GAP_X32                                            0x12
 
 		# tMPX_LH: This is the minimum CS_n Low hold time to CKE rising edge. For
     # configurations with MEMC_FREQ_RATIO=2, program this to RoundUp(tMPX_LH/2
@@ -2271,8 +2271,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_DRAMTMG11_T_CKMPE                                                      0xe
 
 		# SDRAM Timing Register 11
-		#(OFFSET, MASK, VALUE)      (0XFD07012C, 0x7F1F031FU ,0x1107010EU)  */
-    mask_write 0XFD07012C 0x7F1F031F 0x1107010E
+		#(OFFSET, MASK, VALUE)      (0XFD07012C, 0x7F1F031FU ,0x1207010EU)  */
+    mask_write 0XFD07012C 0x7F1F031F 0x1207010E
 		# Register : DRAMTMG12 @ 0XFD070130</p>
 
 		# tCMDCKE: Delay from valid command to CKE input LOW. Set this to the larg
@@ -2360,11 +2360,11 @@ set psu_ddr_init_data {
     # 4 devices. Meaningless, if ZQCTL0.dis_auto_zq=1. Unit: 1024 clock cycles
     # . This is only present for designs supporting DDR3/DDR4 or LPDDR2/LPDDR3
     # /LPDDR4 devices.
-		# PSU_DDRC_ZQCTL1_T_ZQ_SHORT_INTERVAL_X1024                                       0x196e6
+		# PSU_DDRC_ZQCTL1_T_ZQ_SHORT_INTERVAL_X1024                                       0x1908b
 
 		# ZQ Control Register 1
-		#(OFFSET, MASK, VALUE)      (0XFD070184, 0x3FFFFFFFU ,0x020196E6U)  */
-    mask_write 0XFD070184 0x3FFFFFFF 0x020196E6
+		#(OFFSET, MASK, VALUE)      (0XFD070184, 0x3FFFFFFFU ,0x0201908BU)  */
+    mask_write 0XFD070184 0x3FFFFFFF 0x0201908B
 		# Register : DFITMG0 @ 0XFD070190</p>
 
 		# Specifies the number of DFI clock cycles after an assertion or de-assert
@@ -2389,7 +2389,7 @@ set psu_ddr_init_data {
     # depending on the PHY, if using RDIMM, it may be necessary to use the val
     # ue (CL + 1) in the calculation of trddata_en. This is to compensate for
     # the extra cycle of latency through the RDIMM. Unit: Clocks
-		# PSU_DDRC_DFITMG0_DFI_T_RDDATA_EN                                                0xb
+		# PSU_DDRC_DFITMG0_DFI_T_RDDATA_EN                                                0xc
 
 		# Defines whether dfi_wrdata_en/dfi_wrdata/dfi_wrdata_mask is generated us
     # ing HDR or SDR values Selects whether value in DFITMG0.dfi_tphy_wrlat is
@@ -2415,8 +2415,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_DFITMG0_DFI_TPHY_WRLAT                                                 0xb
 
 		# DFI Timing Register 0
-		#(OFFSET, MASK, VALUE)      (0XFD070190, 0x1FBFBF3FU ,0x048B820BU)  */
-    mask_write 0XFD070190 0x1FBFBF3F 0x048B820B
+		#(OFFSET, MASK, VALUE)      (0XFD070190, 0x1FBFBF3FU ,0x048C820BU)  */
+    mask_write 0XFD070190 0x1FBFBF3F 0x048C820B
 		# Register : DFITMG1 @ 0XFD070194</p>
 
 		# Specifies the number of DFI PHY clocks between when the dfi_cs signal is
@@ -2602,7 +2602,7 @@ set psu_ddr_init_data {
     #  interface and when the associated dfi_rddata_cs signal is asserted. Thi
     # s corresponds to the DFI timing parameter tphy_rdcslat. Refer to PHY spe
     # cification for correct value.
-		# PSU_DDRC_DFITMG2_DFI_TPHY_RDCSLAT                                               0x9
+		# PSU_DDRC_DFITMG2_DFI_TPHY_RDCSLAT                                               0xa
 
 		# Number of clocks between when a write command is sent on the DFI control
     #  interface and when the associated dfi_wrdata_cs signal is asserted. Thi
@@ -2611,8 +2611,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_DFITMG2_DFI_TPHY_WRCSLAT                                               0x9
 
 		# DFI Timing Register 2
-		#(OFFSET, MASK, VALUE)      (0XFD0701B4, 0x00003F3FU ,0x00000909U)  */
-    mask_write 0XFD0701B4 0x00003F3F 0x00000909
+		#(OFFSET, MASK, VALUE)      (0XFD0701B4, 0x00003F3FU ,0x00000A09U)  */
+    mask_write 0XFD0701B4 0x00003F3F 0x00000A09
 		# Register : DBICTL @ 0XFD0701C0</p>
 
 		# Read DBI enable signal in DDRC. - 0 - Read DBI is disabled. - 1 - Read D
@@ -2660,17 +2660,17 @@ set psu_ddr_init_data {
     # to 30 Internal Base: 3 The selected HIF address bit for each of the bank
     #  address bits is determined by adding the internal base to the value of
     # this field.
-		# PSU_DDRC_ADDRMAP1_ADDRMAP_BANK_B1                                               0xa
+		# PSU_DDRC_ADDRMAP1_ADDRMAP_BANK_B1                                               0x9
 
 		# Selects the HIF address bits used as bank address bit 0. Valid Range: 0
     # to 30 Internal Base: 2 The selected HIF address bit for each of the bank
     #  address bits is determined by adding the internal base to the value of
     # this field.
-		# PSU_DDRC_ADDRMAP1_ADDRMAP_BANK_B0                                               0xa
+		# PSU_DDRC_ADDRMAP1_ADDRMAP_BANK_B0                                               0x9
 
 		# Address Map Register 1
-		#(OFFSET, MASK, VALUE)      (0XFD070204, 0x001F1F1FU ,0x001F0A0AU)  */
-    mask_write 0XFD070204 0x001F1F1F 0x001F0A0A
+		#(OFFSET, MASK, VALUE)      (0XFD070204, 0x001F1F1FU ,0x001F0909U)  */
+    mask_write 0XFD070204 0x001F1F1F 0x001F0909
 		# Register : ADDRMAP2 @ 0XFD070208</p>
 
 		# - Full bus width mode: Selects the HIF address bit used as column addres
@@ -2799,7 +2799,7 @@ set psu_ddr_init_data {
     # o 11, and 15 Internal Base: 17 The selected HIF address bit is determine
     # d by adding the internal base to the value of this field. If set to 15,
     # row address bit 11 is set to 0.
-		# PSU_DDRC_ADDRMAP5_ADDRMAP_ROW_B11                                               0x8
+		# PSU_DDRC_ADDRMAP5_ADDRMAP_ROW_B11                                               0x7
 
 		# Selects the HIF address bits used as row address bits 2 to 10. Valid Ran
     # ge: 0 to 11, and 15 Internal Base: 8 (for row address bit 2), 9 (for row
@@ -2814,17 +2814,17 @@ set psu_ddr_init_data {
     # o 11 Internal Base: 7 The selected HIF address bit for each of the row a
     # ddress bits is determined by adding the internal base to the value of th
     # is field.
-		# PSU_DDRC_ADDRMAP5_ADDRMAP_ROW_B1                                                0x8
+		# PSU_DDRC_ADDRMAP5_ADDRMAP_ROW_B1                                                0x7
 
 		# Selects the HIF address bits used as row address bit 0. Valid Range: 0 t
     # o 11 Internal Base: 6 The selected HIF address bit for each of the row a
     # ddress bits is determined by adding the internal base to the value of th
     # is field.
-		# PSU_DDRC_ADDRMAP5_ADDRMAP_ROW_B0                                                0x8
+		# PSU_DDRC_ADDRMAP5_ADDRMAP_ROW_B0                                                0x7
 
 		# Address Map Register 5
-		#(OFFSET, MASK, VALUE)      (0XFD070214, 0x0F0F0F0FU ,0x080F0808U)  */
-    mask_write 0XFD070214 0x0F0F0F0F 0x080F0808
+		#(OFFSET, MASK, VALUE)      (0XFD070214, 0x0F0F0F0FU ,0x070F0707U)  */
+    mask_write 0XFD070214 0x0F0F0F0F 0x070F0707
 		# Register : ADDRMAP6 @ 0XFD070218</p>
 
 		# Set this to 1 if there is an LPDDR3 SDRAM 6Gb or 12Gb device in use. - 1
@@ -2838,29 +2838,29 @@ set psu_ddr_init_data {
     # o 11, and 15 Internal Base: 21 The selected HIF address bit is determine
     # d by adding the internal base to the value of this field. If set to 15,
     # row address bit 15 is set to 0.
-		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B15                                               0xf
+		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B15                                               0x7
 
 		# Selects the HIF address bit used as row address bit 14. Valid Range: 0 t
     # o 11, and 15 Internal Base: 20 The selected HIF address bit is determine
     # d by adding the internal base to the value of this field. If set to 15,
     # row address bit 14 is set to 0.
-		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B14                                               0x8
+		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B14                                               0x7
 
 		# Selects the HIF address bit used as row address bit 13. Valid Range: 0 t
     # o 11, and 15 Internal Base: 19 The selected HIF address bit is determine
     # d by adding the internal base to the value of this field. If set to 15,
     # row address bit 13 is set to 0.
-		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B13                                               0x8
+		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B13                                               0x7
 
 		# Selects the HIF address bit used as row address bit 12. Valid Range: 0 t
     # o 11, and 15 Internal Base: 18 The selected HIF address bit is determine
     # d by adding the internal base to the value of this field. If set to 15,
     # row address bit 12 is set to 0.
-		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B12                                               0x8
+		# PSU_DDRC_ADDRMAP6_ADDRMAP_ROW_B12                                               0x7
 
 		# Address Map Register 6
-		#(OFFSET, MASK, VALUE)      (0XFD070218, 0x8F0F0F0FU ,0x0F080808U)  */
-    mask_write 0XFD070218 0x8F0F0F0F 0x0F080808
+		#(OFFSET, MASK, VALUE)      (0XFD070218, 0x8F0F0F0FU ,0x07070707U)  */
+    mask_write 0XFD070218 0x8F0F0F0F 0x07070707
 		# Register : ADDRMAP7 @ 0XFD07021C</p>
 
 		# Selects the HIF address bit used as row address bit 17. Valid Range: 0 t
@@ -2885,7 +2885,7 @@ set psu_ddr_init_data {
     # ch of the bank group address bits is determined by adding the internal b
     # ase to the value of this field. If set to 31, bank group address bit 1 i
     # s set to 0.
-		# PSU_DDRC_ADDRMAP8_ADDRMAP_BG_B1                                                 0x8
+		# PSU_DDRC_ADDRMAP8_ADDRMAP_BG_B1                                                 0x1f
 
 		# Selects the HIF address bits used as bank group address bit 0. Valid Ran
     # ge: 0 to 30 Internal Base: 2 The selected HIF address bit for each of th
@@ -2894,8 +2894,8 @@ set psu_ddr_init_data {
 		# PSU_DDRC_ADDRMAP8_ADDRMAP_BG_B0                                                 0x1
 
 		# Address Map Register 8
-		#(OFFSET, MASK, VALUE)      (0XFD070220, 0x00001F1FU ,0x00000801U)  */
-    mask_write 0XFD070220 0x00001F1F 0x00000801
+		#(OFFSET, MASK, VALUE)      (0XFD070220, 0x00001F1FU ,0x00001F01U)  */
+    mask_write 0XFD070220 0x00001F1F 0x00001F01
 		# Register : ADDRMAP9 @ 0XFD070224</p>
 
 		# Selects the HIF address bits used as row address bit 5. Valid Range: 0 t
@@ -2903,32 +2903,32 @@ set psu_ddr_init_data {
     # address bits is determined by adding the internal base to the value of t
     # his field. This register field is used only when ADDRMAP5.addrmap_row_b2
     # _10 is set to value 15.
-		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B5                                                0x8
+		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B5                                                0x7
 
 		# Selects the HIF address bits used as row address bit 4. Valid Range: 0 t
     # o 11 Internal Base: 10 The selected HIF address bit for each of the row
     # address bits is determined by adding the internal base to the value of t
     # his field. This register field is used only when ADDRMAP5.addrmap_row_b2
     # _10 is set to value 15.
-		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B4                                                0x8
+		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B4                                                0x7
 
 		# Selects the HIF address bits used as row address bit 3. Valid Range: 0 t
     # o 11 Internal Base: 9 The selected HIF address bit for each of the row a
     # ddress bits is determined by adding the internal base to the value of th
     # is field. This register field is used only when ADDRMAP5.addrmap_row_b2_
     # 10 is set to value 15.
-		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B3                                                0x8
+		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B3                                                0x7
 
 		# Selects the HIF address bits used as row address bit 2. Valid Range: 0 t
     # o 11 Internal Base: 8 The selected HIF address bit for each of the row a
     # ddress bits is determined by adding the internal base to the value of th
     # is field. This register field is used only when ADDRMAP5.addrmap_row_b2_
     # 10 is set to value 15.
-		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B2                                                0x8
+		# PSU_DDRC_ADDRMAP9_ADDRMAP_ROW_B2                                                0x7
 
 		# Address Map Register 9
-		#(OFFSET, MASK, VALUE)      (0XFD070224, 0x0F0F0F0FU ,0x08080808U)  */
-    mask_write 0XFD070224 0x0F0F0F0F 0x08080808
+		#(OFFSET, MASK, VALUE)      (0XFD070224, 0x0F0F0F0FU ,0x07070707U)  */
+    mask_write 0XFD070224 0x0F0F0F0F 0x07070707
 		# Register : ADDRMAP10 @ 0XFD070228</p>
 
 		# Selects the HIF address bits used as row address bit 9. Valid Range: 0 t
@@ -2936,32 +2936,32 @@ set psu_ddr_init_data {
     # address bits is determined by adding the internal base to the value of t
     # his field. This register field is used only when ADDRMAP5.addrmap_row_b2
     # _10 is set to value 15.
-		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B9                                               0x8
+		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B9                                               0x7
 
 		# Selects the HIF address bits used as row address bit 8. Valid Range: 0 t
     # o 11 Internal Base: 14 The selected HIF address bit for each of the row
     # address bits is determined by adding the internal base to the value of t
     # his field. This register field is used only when ADDRMAP5.addrmap_row_b2
     # _10 is set to value 15.
-		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B8                                               0x8
+		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B8                                               0x7
 
 		# Selects the HIF address bits used as row address bit 7. Valid Range: 0 t
     # o 11 Internal Base: 13 The selected HIF address bit for each of the row
     # address bits is determined by adding the internal base to the value of t
     # his field. This register field is used only when ADDRMAP5.addrmap_row_b2
     # _10 is set to value 15.
-		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B7                                               0x8
+		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B7                                               0x7
 
 		# Selects the HIF address bits used as row address bit 6. Valid Range: 0 t
     # o 11 Internal Base: 12 The selected HIF address bit for each of the row
     # address bits is determined by adding the internal base to the value of t
     # his field. This register field is used only when ADDRMAP5.addrmap_row_b2
     # _10 is set to value 15.
-		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B6                                               0x8
+		# PSU_DDRC_ADDRMAP10_ADDRMAP_ROW_B6                                               0x7
 
 		# Address Map Register 10
-		#(OFFSET, MASK, VALUE)      (0XFD070228, 0x0F0F0F0FU ,0x08080808U)  */
-    mask_write 0XFD070228 0x0F0F0F0F 0x08080808
+		#(OFFSET, MASK, VALUE)      (0XFD070228, 0x0F0F0F0FU ,0x07070707U)  */
+    mask_write 0XFD070228 0x0F0F0F0F 0x07070707
 		# Register : ADDRMAP11 @ 0XFD07022C</p>
 
 		# Selects the HIF address bits used as row address bit 10. Valid Range: 0
@@ -2969,11 +2969,11 @@ set psu_ddr_init_data {
     #  address bits is determined by adding the internal base to the value of
     # this field. This register field is used only when ADDRMAP5.addrmap_row_b
     # 2_10 is set to value 15.
-		# PSU_DDRC_ADDRMAP11_ADDRMAP_ROW_B10                                              0x8
+		# PSU_DDRC_ADDRMAP11_ADDRMAP_ROW_B10                                              0x7
 
 		# Address Map Register 11
-		#(OFFSET, MASK, VALUE)      (0XFD07022C, 0x0000000FU ,0x00000008U)  */
-    mask_write 0XFD07022C 0x0000000F 0x00000008
+		#(OFFSET, MASK, VALUE)      (0XFD07022C, 0x0000000FU ,0x00000007U)  */
+    mask_write 0XFD07022C 0x0000000F 0x00000007
 		# Register : ODTCFG @ 0XFD070240</p>
 
 		# Cycles to hold ODT for a write command. The minimum supported value is 2
@@ -3012,11 +3012,11 @@ set psu_ddr_init_data {
     # amble) If (CL - CWL - RD_PREAMBLE + WR_PREAMBLE) < 0, uMCTL2 does not su
     # pport ODT for read operation. LPDDR3: - RL + RD(tDQSCK(min)/tCK) - 1 - R
     # U(tODTon(max)/tCK)
-		# PSU_DDRC_ODTCFG_RD_ODT_DELAY                                                    0x0
+		# PSU_DDRC_ODTCFG_RD_ODT_DELAY                                                    0x1
 
 		# ODT Configuration Register
-		#(OFFSET, MASK, VALUE)      (0XFD070240, 0x0F1F0F7CU ,0x06000600U)  */
-    mask_write 0XFD070240 0x0F1F0F7C 0x06000600
+		#(OFFSET, MASK, VALUE)      (0XFD070240, 0x0F1F0F7CU ,0x06000604U)  */
+    mask_write 0XFD070240 0x0F1F0F7C 0x06000604
 		# Register : ODTMAP @ 0XFD070244</p>
 
 		# Indicates which remote ODTs must be turned on during a read from rank 1.
@@ -4434,11 +4434,11 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_PGCR2_PLLFSMBYP                                                     0x0
 
 		# Refresh Period
-		# PSU_DDR_PHY_PGCR2_TREFPRD                                                       0x10010
+		# PSU_DDR_PHY_PGCR2_TREFPRD                                                       0xfc08
 
 		# PHY General Configuration Register 2
-		#(OFFSET, MASK, VALUE)      (0XFD080018, 0xFFFFFFFFU ,0x00F10010U)  */
-    mask_write 0XFD080018 0xFFFFFFFF 0x00F10010
+		#(OFFSET, MASK, VALUE)      (0XFD080018, 0xFFFFFFFFU ,0x00F0FC08U)  */
+    mask_write 0XFD080018 0xFFFFFFFF 0x00F0FC08
 		# Register : PGCR3 @ 0XFD08001C</p>
 
 		# CKN Enable
@@ -4512,31 +4512,31 @@ set psu_ddr_init_data {
 		# Register : PTR0 @ 0XFD080040</p>
 
 		# PLL Power-Down Time
-		# PSU_DDR_PHY_PTR0_TPLLPD                                                         0x216
+		# PSU_DDR_PHY_PTR0_TPLLPD                                                         0x20d
 
 		# PLL Gear Shift Time
-		# PSU_DDR_PHY_PTR0_TPLLGS                                                         0x856
+		# PSU_DDR_PHY_PTR0_TPLLGS                                                         0x834
 
 		# PHY Reset Time
 		# PSU_DDR_PHY_PTR0_TPHYRST                                                        0x10
 
 		# PHY Timing Register 0
-		#(OFFSET, MASK, VALUE)      (0XFD080040, 0xFFFFFFFFU ,0x42C21590U)  */
-    mask_write 0XFD080040 0xFFFFFFFF 0x42C21590
+		#(OFFSET, MASK, VALUE)      (0XFD080040, 0xFFFFFFFFU ,0x41A20D10U)  */
+    mask_write 0XFD080040 0xFFFFFFFF 0x41A20D10
 		# Register : PTR1 @ 0XFD080044</p>
 
 		# PLL Lock Time
-		# PSU_DDR_PHY_PTR1_TPLLLOCK                                                       0xd056
+		# PSU_DDR_PHY_PTR1_TPLLLOCK                                                       0xcd14
 
 		# Reserved. Returns zeroes on reads.
 		# PSU_DDR_PHY_PTR1_RESERVED_15_13                                                 0x0
 
 		# PLL Reset Time
-		# PSU_DDR_PHY_PTR1_TPLLRST                                                        0x12c0
+		# PSU_DDR_PHY_PTR1_TPLLRST                                                        0x1275
 
 		# PHY Timing Register 1
-		#(OFFSET, MASK, VALUE)      (0XFD080044, 0xFFFFFFFFU ,0xD05612C0U)  */
-    mask_write 0XFD080044 0xFFFFFFFF 0xD05612C0
+		#(OFFSET, MASK, VALUE)      (0XFD080044, 0xFFFFFFFFU ,0xCD141275U)  */
+    mask_write 0XFD080044 0xFFFFFFFF 0xCD141275
 		# Register : PLLCR0 @ 0XFD080068</p>
 
 		# PLL Bypass
@@ -4711,19 +4711,19 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_DTPR0_RESERVED_31_29                                                0x0
 
 		# Activate to activate command delay (different banks)
-		# PSU_DDR_PHY_DTPR0_TRRD                                                          0x6
+		# PSU_DDR_PHY_DTPR0_TRRD                                                          0x7
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR0_RESERVED_23                                                   0x0
 
 		# Activate to precharge command delay
-		# PSU_DDR_PHY_DTPR0_TRAS                                                          0x24
+		# PSU_DDR_PHY_DTPR0_TRAS                                                          0x22
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR0_RESERVED_15                                                   0x0
 
 		# Precharge command period
-		# PSU_DDR_PHY_DTPR0_TRP                                                           0xf
+		# PSU_DDR_PHY_DTPR0_TRP                                                           0x10
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR0_RESERVED_7_5                                                  0x0
@@ -4732,8 +4732,8 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_DTPR0_TRTP                                                          0x8
 
 		# DRAM Timing Parameters Register 0
-		#(OFFSET, MASK, VALUE)      (0XFD080110, 0xFFFFFFFFU ,0x06240F08U)  */
-    mask_write 0XFD080110 0xFFFFFFFF 0x06240F08
+		#(OFFSET, MASK, VALUE)      (0XFD080110, 0xFFFFFFFFU ,0x07221008U)  */
+    mask_write 0XFD080110 0xFFFFFFFF 0x07221008
 		# Register : DTPR1 @ 0XFD080114</p>
 
 		# Reserved. Return zeroes on reads.
@@ -4831,7 +4831,7 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_DTPR4_RESERVED_27_26                                                0x0
 
 		# Refresh-to-Refresh
-		# PSU_DDR_PHY_DTPR4_TRFC                                                          0x116
+		# PSU_DDR_PHY_DTPR4_TRFC                                                          0x170
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR4_RESERVED_15_14                                                0x0
@@ -4846,21 +4846,21 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_DTPR4_TXP                                                           0x7
 
 		# DRAM Timing Parameters Register 4
-		#(OFFSET, MASK, VALUE)      (0XFD080120, 0xFFFFFFFFU ,0x01162B07U)  */
-    mask_write 0XFD080120 0xFFFFFFFF 0x01162B07
+		#(OFFSET, MASK, VALUE)      (0XFD080120, 0xFFFFFFFFU ,0x01702B07U)  */
+    mask_write 0XFD080120 0xFFFFFFFF 0x01702B07
 		# Register : DTPR5 @ 0XFD080124</p>
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR5_RESERVED_31_24                                                0x0
 
 		# Activate to activate command delay (same bank)
-		# PSU_DDR_PHY_DTPR5_TRC                                                           0x33
+		# PSU_DDR_PHY_DTPR5_TRC                                                           0x32
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR5_RESERVED_15                                                   0x0
 
 		# Activate to read or write delay
-		# PSU_DDR_PHY_DTPR5_TRCD                                                          0xf
+		# PSU_DDR_PHY_DTPR5_TRCD                                                          0x10
 
 		# Reserved. Return zeroes on reads.
 		# PSU_DDR_PHY_DTPR5_RESERVED_7_5                                                  0x0
@@ -4869,8 +4869,8 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_DTPR5_TWTR                                                          0x8
 
 		# DRAM Timing Parameters Register 5
-		#(OFFSET, MASK, VALUE)      (0XFD080124, 0xFFFFFFFFU ,0x00330F08U)  */
-    mask_write 0XFD080124 0xFFFFFFFF 0x00330F08
+		#(OFFSET, MASK, VALUE)      (0XFD080124, 0xFFFFFFFFU ,0x00321008U)  */
+    mask_write 0XFD080124 0xFFFFFFFF 0x00321008
 		# Register : DTPR6 @ 0XFD080128</p>
 
 		# PUB Write Latency Enable
@@ -4889,11 +4889,11 @@ set psu_ddr_init_data {
 		# PSU_DDR_PHY_DTPR6_RESERVED_7_6                                                  0x0
 
 		# Read Latency
-		# PSU_DDR_PHY_DTPR6_PUBRL                                                         0xf
+		# PSU_DDR_PHY_DTPR6_PUBRL                                                         0x10
 
 		# DRAM Timing Parameters Register 6
-		#(OFFSET, MASK, VALUE)      (0XFD080128, 0xFFFFFFFFU ,0x00000E0FU)  */
-    mask_write 0XFD080128 0xFFFFFFFF 0x00000E0F
+		#(OFFSET, MASK, VALUE)      (0XFD080128, 0xFFFFFFFFU ,0x00000E10U)  */
+    mask_write 0XFD080128 0xFFFFFFFF 0x00000E10
 		# Register : RDIMMGCR0 @ 0XFD080140</p>
 
 		# Reserved. Return zeroes on reads.
@@ -5073,11 +5073,11 @@ set psu_ddr_init_data {
 
 		# Reserved. These are JEDEC reserved bits and are recommended by JEDEC to
     # be programmed to 0x0.
-		# PSU_DDR_PHY_MR0_RSVD_2_0                                                        0x0
+		# PSU_DDR_PHY_MR0_RSVD_2_0                                                        0x4
 
 		# LPDDR4 Mode Register 0
-		#(OFFSET, MASK, VALUE)      (0XFD080180, 0xFFFFFFFFU ,0x00000630U)  */
-    mask_write 0XFD080180 0xFFFFFFFF 0x00000630
+		#(OFFSET, MASK, VALUE)      (0XFD080180, 0xFFFFFFFFU ,0x00000634U)  */
+    mask_write 0XFD080180 0xFFFFFFFF 0x00000634
 		# Register : MR1 @ 0XFD080184</p>
 
 		# Reserved. Return zeroes on reads.
@@ -14593,7 +14593,7 @@ poll 0xFD080030 0x00000FFF 0x00000FFF
 
  # Run Vref training in static read mode  
 mwr -force  0xFD080200 0x100091C7
-mwr -force  0xFD080018 0x00F01EEF
+mwr -force  0xFD080018 0x00F01E6E
 	psu_mask_write 0xFD08142C 0x00000030 0x00000030
 	psu_mask_write 0xFD08146C 0x00000030 0x00000030
 	psu_mask_write 0xFD0814AC 0x00000030 0x00000030
@@ -14606,7 +14606,7 @@ poll 0xFD080030 0x00004001 0x00004001
      
  #//Poll PUB_PGSR0 for Trng complete  
 mwr -force  0xFD080200 0x800091C7
-mwr -force  0xFD080018 0x00F122E7
+mwr -force  0xFD080018 0x00F11E5E
 	psu_mask_write 0xFD08142C 0x00000030 0x00000000
 	psu_mask_write 0xFD08146C 0x00000030 0x00000000
 	psu_mask_write 0xFD0814AC 0x00000030 0x00000000

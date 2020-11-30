@@ -1426,7 +1426,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__ACPU2__POWER__ON">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__ACPU3__POWER__ON">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__ACTUAL__IP">1</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__ACT_DDR_FREQ_MHZ">1066.666626</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__ACT_DDR_FREQ_MHZ">1050.000000</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__AFI0_COHERENCY">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__AFI1_COHERENCY">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__AUX_REF_CLK__FREQMHZ">33.333</spirit:configurableElementValue>
@@ -1497,7 +1497,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DBG_TSTMP_CTRL__DIVISOR0">2</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DBG_TSTMP_CTRL__FREQMHZ">250</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DBG_TSTMP_CTRL__SRCSEL">IOPLL</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DDR_CTRL__ACT_FREQMHZ">533.333313</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DDR_CTRL__ACT_FREQMHZ">525.000000</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DDR_CTRL__DIVISOR0">2</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DDR_CTRL__FREQMHZ">1067</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DDR_CTRL__SRCSEL">DPLL</spirit:configurableElementValue>
@@ -1506,7 +1506,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPDMA_REF_CTRL__FREQMHZ">600</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPDMA_REF_CTRL__SRCSEL">APLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__DIV2">1</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FBDIV">64</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FBDIV">63</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FRACDATA">0.000000</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FRACFREQ">27.138</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__SRCSEL">PSS_REF_CLK</spirit:configurableElementValue>
@@ -1554,8 +1554,8 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_LSBUS_CTRL__DIVISOR0">5</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_LSBUS_CTRL__FREQMHZ">100</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_LSBUS_CTRL__SRCSEL">IOPLL</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__ACT_FREQMHZ">355.555542</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__DIVISOR0">3</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__ACT_FREQMHZ">525.000000</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__DIVISOR0">2</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__FREQMHZ">533.33</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__SRCSEL">DPLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__DIV2">1</spirit:configurableElementValue>
@@ -1803,10 +1803,10 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__ADDR_MIRROR">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__AL">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__BANK_ADDR_COUNT">2</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__BG_ADDR_COUNT">2</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__BG_ADDR_COUNT">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__BRC_MAPPING">ROW_BANK_COL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__BUS_WIDTH">64 Bit</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__CL">15</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__CL">16</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__CLOCK_STOP_EN">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__COL_ADDR_COUNT">10</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__COMPONENTS">UDIMM</spirit:configurableElementValue>
@@ -1821,7 +1821,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DDR4_T_REF_RANGE">Normal (0-85)</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DEEP_PWR_DOWN_EN">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DERATE_INT_D">&lt;Select></spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DEVICE_CAPACITY">4096 MBits</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DEVICE_CAPACITY">8192 MBits</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DIMM_ADDR_MIRROR">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DM_DBI">DM_NO_DBI</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DQMAP_0_3">0</spirit:configurableElementValue>
@@ -1842,7 +1842,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DQMAP_64_67">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DQMAP_68_71">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DQMAP_8_11">0</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DRAM_WIDTH">8 Bits</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__DRAM_WIDTH">16 Bits</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__ECC">Disabled</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__ECC_SCRUB">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__ENABLE">1</spirit:configurableElementValue>
@@ -1867,7 +1867,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__PWR_DOWN_EN">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__RANK_ADDR_COUNT">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__RD_DQS_CENTER">0</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__ROW_ADDR_COUNT">15</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__ROW_ADDR_COUNT">16</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__SB_TARGET">15-15-15</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__SELF_REF_ABORT">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__SPEED_BIN">DDR4_2133P</spirit:configurableElementValue>
@@ -1878,8 +1878,8 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_FAW">30.0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_RAS_MIN">33</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_RC">47.06</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_RCD">15</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_RP">15</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_RCD">16</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__T_RP">16</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__VENDOR_PART">OTHERS</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__VIDEO_BUFFER_SIZE">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__DDRC__VREF">1</spirit:configurableElementValue>
@@ -2588,7 +2588,7 @@ _DMA;FFC80000;FFC9FFFF;1|LPD;CSU;FFCA0000;FFCAFFFF;1|LPD;CRL_APB;FF5E0000;FF85FF
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SD1_BOARD_INTERFACE">custom</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SPI0_BOARD_INTERFACE">custom</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SPI1_BOARD_INTERFACE">custom</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SUBPRESET1">DDR4_KINGSTON_KVR21SE15S8</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SUBPRESET1">Custom</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SUBPRESET2">Custom</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SWDT0_BOARD_INTERFACE">custom</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.SWDT1_BOARD_INTERFACE">custom</spirit:configurableElementValue>
