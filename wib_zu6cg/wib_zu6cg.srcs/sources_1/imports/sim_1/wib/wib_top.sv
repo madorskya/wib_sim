@@ -104,7 +104,8 @@ module wib_top
     
     wire [31:0] ts_evtctr;
     wire ts_rdy;
-    wire ts_rec_d;
+    wire ts_rec_d_pad;
+    reg  ts_rec_d;
     wire ts_rec_d_clk; // 312.5 M or 250M
     wire ts_rst;
     wire [3:0] ts_sync;
@@ -128,8 +129,11 @@ module wib_top
     // this input is unused, see Jack's message 2020-08-23
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
     
-    IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d));
+    IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
     IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk));
+    
+    // have to add an input FF for timing data, it's missing in the timing endpoint
+    always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_pad;
     
     // system 62.5M clock to FEMBs, from timing pt.
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
@@ -265,6 +269,8 @@ module wib_top
     assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32];
     assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];
     assign `STATUS_BITS( 4,20,  8) = 8'hff;
+    assign `STATUS_BITS( 4,18,  1) = adn2814_los;
+    assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
     assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
     assign `STATUS_BITS( 4,12,  4) = ts_sync;
     assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
