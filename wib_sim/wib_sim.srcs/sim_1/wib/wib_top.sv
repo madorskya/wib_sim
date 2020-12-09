@@ -104,7 +104,8 @@ module wib_top
     
     wire [31:0] ts_evtctr;
     wire ts_rdy;
-    wire ts_rec_d;
+    reg  ts_rec_d;
+    wire ts_rec_d_pad;
     wire ts_rec_d_clk; // 312.5 M or 250M
     wire ts_rst;
     wire [3:0] ts_sync;
@@ -128,8 +129,11 @@ module wib_top
     // this input is unused, see Jack's message 2020-08-23
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
     
-    IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d));
+    IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
     IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk));
+
+    // have to add an input FF for timing data, it's missing in the timing endpoint
+    always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_pad;
     
     // system 62.5M clock to FEMBs, from timing pt.
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));

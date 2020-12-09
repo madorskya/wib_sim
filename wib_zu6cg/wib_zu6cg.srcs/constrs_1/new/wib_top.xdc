@@ -71,8 +71,13 @@ set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins wrp/desi
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT0]]
 
-create_clock -period 3.2 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
+create_clock -period 4 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
+ 
+# timing data input constraints relative to clock
+# measured at UPenn setup by Ben on 2020-12-09
+set_input_delay -max -clock si5344_out1_p 2.0 [get_ports adn2814_data_p]
+set_input_delay -min -clock si5344_out1_p 0.8 [get_ports adn2814_data_p] 
  
 set_false_path -to [get_ports misc_io[*]] 
 
@@ -367,7 +372,7 @@ set_property PACKAGE_PIN L12 [get_ports adn2814_data_p]
 set_property PACKAGE_PIN K12 [get_ports adn2814_data_n]
 set_property DIFF_TERM_ADV TERM_100 [get_ports adn2814_data_p]
 set_property DIFF_TERM_ADV TERM_100 [get_ports si5344_out1_p]
-set_property IOB TRUE [get_ports adn2814_data_p]
+#set_property IOB TRUE [get_ports adn2814_data_p]
 
 set_property PACKAGE_PIN P10 [get_ports recov_clk_p]
 set_property PACKAGE_PIN P9 [get_ports recov_clk_n]
