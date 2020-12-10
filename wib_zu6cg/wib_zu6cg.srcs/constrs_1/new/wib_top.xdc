@@ -76,8 +76,8 @@ set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si53
  
 # timing data input constraints relative to clock
 # measured at UPenn setup by Ben on 2020-12-09
-set_input_delay -max -clock si5344_out1_p 2.0 [get_ports adn2814_data_p]
-set_input_delay -min -clock si5344_out1_p 0.8 [get_ports adn2814_data_p] 
+#set_input_delay -max -clock si5344_out1_p 2.0 [get_ports adn2814_data_p]
+#set_input_delay -min -clock si5344_out1_p 0.8 [get_ports adn2814_data_p] 
  
 set_false_path -to [get_ports misc_io[*]] 
 
@@ -694,4 +694,7 @@ set_property LOC L8  [get_ports gtrefclk00p_in[1]]
 set_property LOC G8  [get_ports gtrefclk00p_in[2]]
 set_property LOC C8  [get_ports gtrefclk00p_in[3]]
 
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+set_property BITSTREAM.CONFIG.OVERTEMPPOWERDOWN ENABLE [current_design]
+set_property BITSTREAM.CONFIG.USR_ACCESS TIMESTAMP [current_design]
  

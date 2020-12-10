@@ -104,9 +104,11 @@ module wib_top
     
     wire [31:0] ts_evtctr;
     wire ts_rdy;
+    wire ts_rec_d_pad; 
+    wire [1:0] ts_rec_d_ddr;
     reg  ts_rec_d;
-    wire ts_rec_d_pad;
     wire ts_rec_d_clk; // 312.5 M or 250M
+    wire ts_rec_d_clk_pad;
     wire ts_rst;
     wire [3:0] ts_sync;
     wire ts_sync_v;
@@ -125,15 +127,27 @@ module wib_top
     wire iic_rtl_0_sda_i;
     wire iic_rtl_0_sda_o;
     wire iic_rtl_0_sda_t;
+    wire ts_edge_sel;
     
     // this input is unused, see Jack's message 2020-08-23
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
     
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
-    IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk));
-
+    IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk_pad));
+    BUFG (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk));
+    
     // have to add an input FF for timing data, it's missing in the timing endpoint
-    always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_pad;
+    always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
+    
+    IDDRE1 #(.DDR_CLK_EDGE ("SAME_EDGE_PIPELINED")) iddr_timing
+    (
+        .Q1 (ts_rec_d_ddr[0]),
+        .Q2 (ts_rec_d_ddr[1]),
+        .C  (ts_rec_d_clk),
+        .CB (~ts_rec_d_clk),
+        .D  (ts_rec_d_pad),
+        .R  (1'b0)
+    );    
     
     // system 62.5M clock to FEMBs, from timing pt.
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
@@ -248,6 +262,7 @@ module wib_top
     wire [1:0]  crc_err [15:0];
     wire rxclk2x;
     (* mark_debug *) wire [15:0] rxprbserr_out;
+    wire [31:0] fw_date;
     
     // config and status registers mapping
     
@@ -261,14 +276,19 @@ module wib_top
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // this input allows to disable some links in case the are broken
     
+    assign ts_edge_sel      = `CONFIG_BITS(3, 0,  1); // timing data clock edge selection
+    
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;
     assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;
+    assign `STATUS_BITS( 2, 0, 32) = fw_date;
 
     // according to Adrian's Slack message from 2020-10-15
     assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32];
     assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];
     assign `STATUS_BITS( 4,20,  8) = 8'hff;
+    assign `STATUS_BITS( 4,18,  1) = adn2814_los;
+    assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
     assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
     assign `STATUS_BITS( 4,12,  4) = ts_sync;
     assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
@@ -420,5 +440,14 @@ module wib_top
     assign misc_io[11:8] = valid12[3:0];
     assign misc_io[14]   = ts_rec_d_clk;
     assign misc_io[15]   = clk62p5;
+
+    // firmware timestamp 
+    // need to set -g USR_ACCESS option to TIMESTAMP in BitGen settings
+	USR_ACCESSE2 usr_access
+	(
+		.DATA (fw_date),
+		.CFGCLK (),
+		.DATAVALID ()
+	);
         
 endmodule
