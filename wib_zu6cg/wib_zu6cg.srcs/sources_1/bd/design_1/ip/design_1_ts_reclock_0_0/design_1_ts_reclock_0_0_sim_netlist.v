@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Mon Nov 30 22:21:21 2020
+// Date        : Mon Dec 14 22:48:17 2020
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.v
+//               c:/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.v
 // Design      : design_1_ts_reclock_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -46,7 +46,8 @@ module design_1_ts_reclock_0_0
     cmd_bit_sync,
     cmd_bit_act,
     cmd_bit_reset,
-    cmd_bit_adc_reset);
+    cmd_bit_adc_reset,
+    fake_time_stamp_en);
   input [3:0]stat_in;
   input rst_in;
   input rdy_in;
@@ -78,6 +79,7 @@ module design_1_ts_reclock_0_0
   output cmd_bit_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cmd_bit_reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cmd_bit_adc_reset;
+  input fake_time_stamp_en;
 
   wire clk50;
   wire clk62p5;
@@ -93,6 +95,7 @@ module design_1_ts_reclock_0_0
   wire [7:0]cmd_code_idle;
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
+  wire fake_time_stamp_en;
   wire fifo_rst;
   wire fifo_valid;
   wire rdy_in;
@@ -128,6 +131,7 @@ module design_1_ts_reclock_0_0
         .cmd_code_sync(cmd_code_sync),
         .din({stat_in,rst_in,rdy_in,sync_in,sync_stb_in,sync_first_in,tstamp_in}),
         .dout({stat_out,rst_out,rdy_out,sync_out,sync_stb_out,sync_first_out}),
+        .fake_time_stamp_en(fake_time_stamp_en),
         .fifo_rst(fifo_rst),
         .fifo_valid(fifo_valid),
         .ts_valid(ts_valid),
@@ -155,7 +159,8 @@ module design_1_ts_reclock_0_0_ts_reclock
     cmd_code_sync,
     cmd_code_act,
     cmd_code_reset,
-    cmd_code_adc_reset);
+    cmd_code_adc_reset,
+    fake_time_stamp_en);
   output [11:0]dout;
   output fifo_valid;
   output [63:0]tstamp_out;
@@ -176,6 +181,7 @@ module design_1_ts_reclock_0_0_ts_reclock
   input [7:0]cmd_code_act;
   input [7:0]cmd_code_reset;
   input [7:0]cmd_code_adc_reset;
+  input fake_time_stamp_en;
 
   wire clk50;
   wire clk62p5;
@@ -196,6 +202,7 @@ module design_1_ts_reclock_0_0_ts_reclock
   wire cmd_bit_edge_i_4_n_0;
   wire cmd_bit_idle;
   wire cmd_bit_idle0;
+  wire cmd_bit_idle_i_1_n_0;
   wire cmd_bit_idle_i_3_n_0;
   wire cmd_bit_idle_i_4_n_0;
   wire cmd_bit_idle_i_5_n_0;
@@ -217,9 +224,10 @@ module design_1_ts_reclock_0_0_ts_reclock
   wire [7:0]cmd_code_sync;
   wire [75:0]din;
   wire [11:0]dout;
+  wire fake_time_stamp_en;
   wire fifo_rst;
   wire fifo_valid;
-  wire p_0_in;
+  wire [63:0]p_0_in;
   wire ts_valid;
   wire ts_valid0;
   wire ts_valid_i_2_n_0;
@@ -287,11 +295,141 @@ module design_1_ts_reclock_0_0_ts_reclock
   wire tsrf_n_73;
   wire tsrf_n_74;
   wire tsrf_n_75;
+  wire \tstamp_fake[0]_i_2_n_0 ;
+  wire [63:0]tstamp_fake_reg;
+  wire \tstamp_fake_reg[0]_i_1_n_0 ;
+  wire \tstamp_fake_reg[0]_i_1_n_1 ;
+  wire \tstamp_fake_reg[0]_i_1_n_10 ;
+  wire \tstamp_fake_reg[0]_i_1_n_11 ;
+  wire \tstamp_fake_reg[0]_i_1_n_12 ;
+  wire \tstamp_fake_reg[0]_i_1_n_13 ;
+  wire \tstamp_fake_reg[0]_i_1_n_14 ;
+  wire \tstamp_fake_reg[0]_i_1_n_15 ;
+  wire \tstamp_fake_reg[0]_i_1_n_2 ;
+  wire \tstamp_fake_reg[0]_i_1_n_3 ;
+  wire \tstamp_fake_reg[0]_i_1_n_4 ;
+  wire \tstamp_fake_reg[0]_i_1_n_5 ;
+  wire \tstamp_fake_reg[0]_i_1_n_6 ;
+  wire \tstamp_fake_reg[0]_i_1_n_7 ;
+  wire \tstamp_fake_reg[0]_i_1_n_8 ;
+  wire \tstamp_fake_reg[0]_i_1_n_9 ;
+  wire \tstamp_fake_reg[16]_i_1_n_0 ;
+  wire \tstamp_fake_reg[16]_i_1_n_1 ;
+  wire \tstamp_fake_reg[16]_i_1_n_10 ;
+  wire \tstamp_fake_reg[16]_i_1_n_11 ;
+  wire \tstamp_fake_reg[16]_i_1_n_12 ;
+  wire \tstamp_fake_reg[16]_i_1_n_13 ;
+  wire \tstamp_fake_reg[16]_i_1_n_14 ;
+  wire \tstamp_fake_reg[16]_i_1_n_15 ;
+  wire \tstamp_fake_reg[16]_i_1_n_2 ;
+  wire \tstamp_fake_reg[16]_i_1_n_3 ;
+  wire \tstamp_fake_reg[16]_i_1_n_4 ;
+  wire \tstamp_fake_reg[16]_i_1_n_5 ;
+  wire \tstamp_fake_reg[16]_i_1_n_6 ;
+  wire \tstamp_fake_reg[16]_i_1_n_7 ;
+  wire \tstamp_fake_reg[16]_i_1_n_8 ;
+  wire \tstamp_fake_reg[16]_i_1_n_9 ;
+  wire \tstamp_fake_reg[24]_i_1_n_0 ;
+  wire \tstamp_fake_reg[24]_i_1_n_1 ;
+  wire \tstamp_fake_reg[24]_i_1_n_10 ;
+  wire \tstamp_fake_reg[24]_i_1_n_11 ;
+  wire \tstamp_fake_reg[24]_i_1_n_12 ;
+  wire \tstamp_fake_reg[24]_i_1_n_13 ;
+  wire \tstamp_fake_reg[24]_i_1_n_14 ;
+  wire \tstamp_fake_reg[24]_i_1_n_15 ;
+  wire \tstamp_fake_reg[24]_i_1_n_2 ;
+  wire \tstamp_fake_reg[24]_i_1_n_3 ;
+  wire \tstamp_fake_reg[24]_i_1_n_4 ;
+  wire \tstamp_fake_reg[24]_i_1_n_5 ;
+  wire \tstamp_fake_reg[24]_i_1_n_6 ;
+  wire \tstamp_fake_reg[24]_i_1_n_7 ;
+  wire \tstamp_fake_reg[24]_i_1_n_8 ;
+  wire \tstamp_fake_reg[24]_i_1_n_9 ;
+  wire \tstamp_fake_reg[32]_i_1_n_0 ;
+  wire \tstamp_fake_reg[32]_i_1_n_1 ;
+  wire \tstamp_fake_reg[32]_i_1_n_10 ;
+  wire \tstamp_fake_reg[32]_i_1_n_11 ;
+  wire \tstamp_fake_reg[32]_i_1_n_12 ;
+  wire \tstamp_fake_reg[32]_i_1_n_13 ;
+  wire \tstamp_fake_reg[32]_i_1_n_14 ;
+  wire \tstamp_fake_reg[32]_i_1_n_15 ;
+  wire \tstamp_fake_reg[32]_i_1_n_2 ;
+  wire \tstamp_fake_reg[32]_i_1_n_3 ;
+  wire \tstamp_fake_reg[32]_i_1_n_4 ;
+  wire \tstamp_fake_reg[32]_i_1_n_5 ;
+  wire \tstamp_fake_reg[32]_i_1_n_6 ;
+  wire \tstamp_fake_reg[32]_i_1_n_7 ;
+  wire \tstamp_fake_reg[32]_i_1_n_8 ;
+  wire \tstamp_fake_reg[32]_i_1_n_9 ;
+  wire \tstamp_fake_reg[40]_i_1_n_0 ;
+  wire \tstamp_fake_reg[40]_i_1_n_1 ;
+  wire \tstamp_fake_reg[40]_i_1_n_10 ;
+  wire \tstamp_fake_reg[40]_i_1_n_11 ;
+  wire \tstamp_fake_reg[40]_i_1_n_12 ;
+  wire \tstamp_fake_reg[40]_i_1_n_13 ;
+  wire \tstamp_fake_reg[40]_i_1_n_14 ;
+  wire \tstamp_fake_reg[40]_i_1_n_15 ;
+  wire \tstamp_fake_reg[40]_i_1_n_2 ;
+  wire \tstamp_fake_reg[40]_i_1_n_3 ;
+  wire \tstamp_fake_reg[40]_i_1_n_4 ;
+  wire \tstamp_fake_reg[40]_i_1_n_5 ;
+  wire \tstamp_fake_reg[40]_i_1_n_6 ;
+  wire \tstamp_fake_reg[40]_i_1_n_7 ;
+  wire \tstamp_fake_reg[40]_i_1_n_8 ;
+  wire \tstamp_fake_reg[40]_i_1_n_9 ;
+  wire \tstamp_fake_reg[48]_i_1_n_0 ;
+  wire \tstamp_fake_reg[48]_i_1_n_1 ;
+  wire \tstamp_fake_reg[48]_i_1_n_10 ;
+  wire \tstamp_fake_reg[48]_i_1_n_11 ;
+  wire \tstamp_fake_reg[48]_i_1_n_12 ;
+  wire \tstamp_fake_reg[48]_i_1_n_13 ;
+  wire \tstamp_fake_reg[48]_i_1_n_14 ;
+  wire \tstamp_fake_reg[48]_i_1_n_15 ;
+  wire \tstamp_fake_reg[48]_i_1_n_2 ;
+  wire \tstamp_fake_reg[48]_i_1_n_3 ;
+  wire \tstamp_fake_reg[48]_i_1_n_4 ;
+  wire \tstamp_fake_reg[48]_i_1_n_5 ;
+  wire \tstamp_fake_reg[48]_i_1_n_6 ;
+  wire \tstamp_fake_reg[48]_i_1_n_7 ;
+  wire \tstamp_fake_reg[48]_i_1_n_8 ;
+  wire \tstamp_fake_reg[48]_i_1_n_9 ;
+  wire \tstamp_fake_reg[56]_i_1_n_1 ;
+  wire \tstamp_fake_reg[56]_i_1_n_10 ;
+  wire \tstamp_fake_reg[56]_i_1_n_11 ;
+  wire \tstamp_fake_reg[56]_i_1_n_12 ;
+  wire \tstamp_fake_reg[56]_i_1_n_13 ;
+  wire \tstamp_fake_reg[56]_i_1_n_14 ;
+  wire \tstamp_fake_reg[56]_i_1_n_15 ;
+  wire \tstamp_fake_reg[56]_i_1_n_2 ;
+  wire \tstamp_fake_reg[56]_i_1_n_3 ;
+  wire \tstamp_fake_reg[56]_i_1_n_4 ;
+  wire \tstamp_fake_reg[56]_i_1_n_5 ;
+  wire \tstamp_fake_reg[56]_i_1_n_6 ;
+  wire \tstamp_fake_reg[56]_i_1_n_7 ;
+  wire \tstamp_fake_reg[56]_i_1_n_8 ;
+  wire \tstamp_fake_reg[56]_i_1_n_9 ;
+  wire \tstamp_fake_reg[8]_i_1_n_0 ;
+  wire \tstamp_fake_reg[8]_i_1_n_1 ;
+  wire \tstamp_fake_reg[8]_i_1_n_10 ;
+  wire \tstamp_fake_reg[8]_i_1_n_11 ;
+  wire \tstamp_fake_reg[8]_i_1_n_12 ;
+  wire \tstamp_fake_reg[8]_i_1_n_13 ;
+  wire \tstamp_fake_reg[8]_i_1_n_14 ;
+  wire \tstamp_fake_reg[8]_i_1_n_15 ;
+  wire \tstamp_fake_reg[8]_i_1_n_2 ;
+  wire \tstamp_fake_reg[8]_i_1_n_3 ;
+  wire \tstamp_fake_reg[8]_i_1_n_4 ;
+  wire \tstamp_fake_reg[8]_i_1_n_5 ;
+  wire \tstamp_fake_reg[8]_i_1_n_6 ;
+  wire \tstamp_fake_reg[8]_i_1_n_7 ;
+  wire \tstamp_fake_reg[8]_i_1_n_8 ;
+  wire \tstamp_fake_reg[8]_i_1_n_9 ;
   wire [63:0]tstamp_out;
   wire NLW_tsrf_empty_UNCONNECTED;
   wire NLW_tsrf_full_UNCONNECTED;
   wire NLW_tsrf_rd_rst_busy_UNCONNECTED;
   wire NLW_tsrf_wr_rst_busy_UNCONNECTED;
+  wire [7:7]\NLW_tstamp_fake_reg[56]_i_1_CO_UNCONNECTED ;
 
   LUT5 #(
     .INIT(32'hE00000E0)) 
@@ -333,7 +471,7 @@ module design_1_ts_reclock_0_0_ts_reclock
         .CE(1'b1),
         .D(cmd_bit_act0),
         .Q(cmd_bit_act),
-        .R(p_0_in));
+        .R(cmd_bit_idle_i_1_n_0));
   LUT5 #(
     .INIT(32'hE00000E0)) 
     cmd_bit_adc_reset_i_1
@@ -374,7 +512,7 @@ module design_1_ts_reclock_0_0_ts_reclock
         .CE(1'b1),
         .D(cmd_bit_adc_reset0),
         .Q(cmd_bit_adc_reset),
-        .R(p_0_in));
+        .R(cmd_bit_idle_i_1_n_0));
   LUT5 #(
     .INIT(32'hE00000E0)) 
     cmd_bit_edge_i_1
@@ -415,13 +553,13 @@ module design_1_ts_reclock_0_0_ts_reclock
         .CE(1'b1),
         .D(cmd_bit_edge0),
         .Q(cmd_bit_edge),
-        .R(p_0_in));
+        .R(cmd_bit_idle_i_1_n_0));
   LUT2 #(
     .INIT(4'h7)) 
     cmd_bit_idle_i_1
        (.I0(fifo_valid),
         .I1(dout[1]),
-        .O(p_0_in));
+        .O(cmd_bit_idle_i_1_n_0));
   LUT5 #(
     .INIT(32'hE00000E0)) 
     cmd_bit_idle_i_2
@@ -462,7 +600,7 @@ module design_1_ts_reclock_0_0_ts_reclock
         .CE(1'b1),
         .D(cmd_bit_idle0),
         .Q(cmd_bit_idle),
-        .R(p_0_in));
+        .R(cmd_bit_idle_i_1_n_0));
   LUT5 #(
     .INIT(32'hE00000E0)) 
     cmd_bit_reset_i_1
@@ -503,7 +641,7 @@ module design_1_ts_reclock_0_0_ts_reclock
         .CE(1'b1),
         .D(cmd_bit_reset0),
         .Q(cmd_bit_reset),
-        .R(p_0_in));
+        .R(cmd_bit_idle_i_1_n_0));
   LUT5 #(
     .INIT(32'hE00000E0)) 
     cmd_bit_sync_i_1
@@ -544,7 +682,7 @@ module design_1_ts_reclock_0_0_ts_reclock
         .CE(1'b1),
         .D(cmd_bit_sync0),
         .Q(cmd_bit_sync),
-        .R(p_0_in));
+        .R(cmd_bit_idle_i_1_n_0));
   LUT6 #(
     .INIT(64'h0000000000000008)) 
     ts_valid_i_1
@@ -583,388 +721,1481 @@ module design_1_ts_reclock_0_0_ts_reclock
         .wr_clk(clk50),
         .wr_en(1'b1),
         .wr_rst_busy(NLW_tsrf_wr_rst_busy_UNCONNECTED));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \tstamp_fake[0]_i_2 
+       (.I0(tstamp_fake_reg[0]),
+        .O(\tstamp_fake[0]_i_2_n_0 ));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[0] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[0]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[0]_i_1 
+       (.CI(1'b0),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[0]_i_1_n_0 ,\tstamp_fake_reg[0]_i_1_n_1 ,\tstamp_fake_reg[0]_i_1_n_2 ,\tstamp_fake_reg[0]_i_1_n_3 ,\tstamp_fake_reg[0]_i_1_n_4 ,\tstamp_fake_reg[0]_i_1_n_5 ,\tstamp_fake_reg[0]_i_1_n_6 ,\tstamp_fake_reg[0]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1}),
+        .O({\tstamp_fake_reg[0]_i_1_n_8 ,\tstamp_fake_reg[0]_i_1_n_9 ,\tstamp_fake_reg[0]_i_1_n_10 ,\tstamp_fake_reg[0]_i_1_n_11 ,\tstamp_fake_reg[0]_i_1_n_12 ,\tstamp_fake_reg[0]_i_1_n_13 ,\tstamp_fake_reg[0]_i_1_n_14 ,\tstamp_fake_reg[0]_i_1_n_15 }),
+        .S({tstamp_fake_reg[7:1],\tstamp_fake[0]_i_2_n_0 }));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[10] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[10]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[11] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[11]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[12] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[12]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[13] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[13]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[14] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[14]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[15] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[15]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[16] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[16]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[16]_i_1 
+       (.CI(\tstamp_fake_reg[8]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[16]_i_1_n_0 ,\tstamp_fake_reg[16]_i_1_n_1 ,\tstamp_fake_reg[16]_i_1_n_2 ,\tstamp_fake_reg[16]_i_1_n_3 ,\tstamp_fake_reg[16]_i_1_n_4 ,\tstamp_fake_reg[16]_i_1_n_5 ,\tstamp_fake_reg[16]_i_1_n_6 ,\tstamp_fake_reg[16]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[16]_i_1_n_8 ,\tstamp_fake_reg[16]_i_1_n_9 ,\tstamp_fake_reg[16]_i_1_n_10 ,\tstamp_fake_reg[16]_i_1_n_11 ,\tstamp_fake_reg[16]_i_1_n_12 ,\tstamp_fake_reg[16]_i_1_n_13 ,\tstamp_fake_reg[16]_i_1_n_14 ,\tstamp_fake_reg[16]_i_1_n_15 }),
+        .S(tstamp_fake_reg[23:16]));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[17] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[17]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[18] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[18]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[19] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[19]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[1] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[1]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[20] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[20]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[21] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[21]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[22] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[22]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[23] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[16]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[23]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[24] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[24]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[24]_i_1 
+       (.CI(\tstamp_fake_reg[16]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[24]_i_1_n_0 ,\tstamp_fake_reg[24]_i_1_n_1 ,\tstamp_fake_reg[24]_i_1_n_2 ,\tstamp_fake_reg[24]_i_1_n_3 ,\tstamp_fake_reg[24]_i_1_n_4 ,\tstamp_fake_reg[24]_i_1_n_5 ,\tstamp_fake_reg[24]_i_1_n_6 ,\tstamp_fake_reg[24]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[24]_i_1_n_8 ,\tstamp_fake_reg[24]_i_1_n_9 ,\tstamp_fake_reg[24]_i_1_n_10 ,\tstamp_fake_reg[24]_i_1_n_11 ,\tstamp_fake_reg[24]_i_1_n_12 ,\tstamp_fake_reg[24]_i_1_n_13 ,\tstamp_fake_reg[24]_i_1_n_14 ,\tstamp_fake_reg[24]_i_1_n_15 }),
+        .S(tstamp_fake_reg[31:24]));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[25] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[25]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[26] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[26]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[27] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[27]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[28] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[28]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[29] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[29]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[2] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[2]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[30] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[30]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[31] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[24]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[31]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[32] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[32]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[32]_i_1 
+       (.CI(\tstamp_fake_reg[24]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[32]_i_1_n_0 ,\tstamp_fake_reg[32]_i_1_n_1 ,\tstamp_fake_reg[32]_i_1_n_2 ,\tstamp_fake_reg[32]_i_1_n_3 ,\tstamp_fake_reg[32]_i_1_n_4 ,\tstamp_fake_reg[32]_i_1_n_5 ,\tstamp_fake_reg[32]_i_1_n_6 ,\tstamp_fake_reg[32]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[32]_i_1_n_8 ,\tstamp_fake_reg[32]_i_1_n_9 ,\tstamp_fake_reg[32]_i_1_n_10 ,\tstamp_fake_reg[32]_i_1_n_11 ,\tstamp_fake_reg[32]_i_1_n_12 ,\tstamp_fake_reg[32]_i_1_n_13 ,\tstamp_fake_reg[32]_i_1_n_14 ,\tstamp_fake_reg[32]_i_1_n_15 }),
+        .S(tstamp_fake_reg[39:32]));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[33] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[33]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[34] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[34]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[35] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[35]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[36] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[36]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[37] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[37]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[38] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[38]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[39] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[32]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[39]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[3] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[3]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[40] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[40]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[40]_i_1 
+       (.CI(\tstamp_fake_reg[32]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[40]_i_1_n_0 ,\tstamp_fake_reg[40]_i_1_n_1 ,\tstamp_fake_reg[40]_i_1_n_2 ,\tstamp_fake_reg[40]_i_1_n_3 ,\tstamp_fake_reg[40]_i_1_n_4 ,\tstamp_fake_reg[40]_i_1_n_5 ,\tstamp_fake_reg[40]_i_1_n_6 ,\tstamp_fake_reg[40]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[40]_i_1_n_8 ,\tstamp_fake_reg[40]_i_1_n_9 ,\tstamp_fake_reg[40]_i_1_n_10 ,\tstamp_fake_reg[40]_i_1_n_11 ,\tstamp_fake_reg[40]_i_1_n_12 ,\tstamp_fake_reg[40]_i_1_n_13 ,\tstamp_fake_reg[40]_i_1_n_14 ,\tstamp_fake_reg[40]_i_1_n_15 }),
+        .S(tstamp_fake_reg[47:40]));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[41] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[41]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[42] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[42]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[43] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[43]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[44] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[44]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[45] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[45]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[46] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[46]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[47] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[40]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[47]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[48] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[48]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[48]_i_1 
+       (.CI(\tstamp_fake_reg[40]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[48]_i_1_n_0 ,\tstamp_fake_reg[48]_i_1_n_1 ,\tstamp_fake_reg[48]_i_1_n_2 ,\tstamp_fake_reg[48]_i_1_n_3 ,\tstamp_fake_reg[48]_i_1_n_4 ,\tstamp_fake_reg[48]_i_1_n_5 ,\tstamp_fake_reg[48]_i_1_n_6 ,\tstamp_fake_reg[48]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[48]_i_1_n_8 ,\tstamp_fake_reg[48]_i_1_n_9 ,\tstamp_fake_reg[48]_i_1_n_10 ,\tstamp_fake_reg[48]_i_1_n_11 ,\tstamp_fake_reg[48]_i_1_n_12 ,\tstamp_fake_reg[48]_i_1_n_13 ,\tstamp_fake_reg[48]_i_1_n_14 ,\tstamp_fake_reg[48]_i_1_n_15 }),
+        .S(tstamp_fake_reg[55:48]));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[49] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[49]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[4] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[4]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b1)) 
+    \tstamp_fake_reg[50] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[50]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[51] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[51]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b1)) 
+    \tstamp_fake_reg[52] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[52]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b1)) 
+    \tstamp_fake_reg[53] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[53]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[54] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[54]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[55] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[48]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[55]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[56] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[56]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[56]_i_1 
+       (.CI(\tstamp_fake_reg[48]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\NLW_tstamp_fake_reg[56]_i_1_CO_UNCONNECTED [7],\tstamp_fake_reg[56]_i_1_n_1 ,\tstamp_fake_reg[56]_i_1_n_2 ,\tstamp_fake_reg[56]_i_1_n_3 ,\tstamp_fake_reg[56]_i_1_n_4 ,\tstamp_fake_reg[56]_i_1_n_5 ,\tstamp_fake_reg[56]_i_1_n_6 ,\tstamp_fake_reg[56]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[56]_i_1_n_8 ,\tstamp_fake_reg[56]_i_1_n_9 ,\tstamp_fake_reg[56]_i_1_n_10 ,\tstamp_fake_reg[56]_i_1_n_11 ,\tstamp_fake_reg[56]_i_1_n_12 ,\tstamp_fake_reg[56]_i_1_n_13 ,\tstamp_fake_reg[56]_i_1_n_14 ,\tstamp_fake_reg[56]_i_1_n_15 }),
+        .S(tstamp_fake_reg[63:56]));
+  FDRE #(
+    .INIT(1'b1)) 
+    \tstamp_fake_reg[57] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[57]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[58] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_13 ),
+        .Q(tstamp_fake_reg[58]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[59] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_12 ),
+        .Q(tstamp_fake_reg[59]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[5] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[5]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b1)) 
+    \tstamp_fake_reg[60] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_11 ),
+        .Q(tstamp_fake_reg[60]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[61] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_10 ),
+        .Q(tstamp_fake_reg[61]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[62] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[62]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[63] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[56]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[63]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[6] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_9 ),
+        .Q(tstamp_fake_reg[6]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[7] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[0]_i_1_n_8 ),
+        .Q(tstamp_fake_reg[7]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[8] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_15 ),
+        .Q(tstamp_fake_reg[8]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "16" *) 
+  CARRY8 \tstamp_fake_reg[8]_i_1 
+       (.CI(\tstamp_fake_reg[0]_i_1_n_0 ),
+        .CI_TOP(1'b0),
+        .CO({\tstamp_fake_reg[8]_i_1_n_0 ,\tstamp_fake_reg[8]_i_1_n_1 ,\tstamp_fake_reg[8]_i_1_n_2 ,\tstamp_fake_reg[8]_i_1_n_3 ,\tstamp_fake_reg[8]_i_1_n_4 ,\tstamp_fake_reg[8]_i_1_n_5 ,\tstamp_fake_reg[8]_i_1_n_6 ,\tstamp_fake_reg[8]_i_1_n_7 }),
+        .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .O({\tstamp_fake_reg[8]_i_1_n_8 ,\tstamp_fake_reg[8]_i_1_n_9 ,\tstamp_fake_reg[8]_i_1_n_10 ,\tstamp_fake_reg[8]_i_1_n_11 ,\tstamp_fake_reg[8]_i_1_n_12 ,\tstamp_fake_reg[8]_i_1_n_13 ,\tstamp_fake_reg[8]_i_1_n_14 ,\tstamp_fake_reg[8]_i_1_n_15 }),
+        .S(tstamp_fake_reg[15:8]));
+  FDRE #(
+    .INIT(1'b0)) 
+    \tstamp_fake_reg[9] 
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(\tstamp_fake_reg[8]_i_1_n_14 ),
+        .Q(tstamp_fake_reg[9]),
+        .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[0]_i_1 
+       (.I0(tstamp_fake_reg[0]),
+        .I1(tsrf_n_75),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[0]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[10]_i_1 
+       (.I0(tstamp_fake_reg[10]),
+        .I1(tsrf_n_65),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[10]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[11]_i_1 
+       (.I0(tstamp_fake_reg[11]),
+        .I1(tsrf_n_64),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[11]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[12]_i_1 
+       (.I0(tstamp_fake_reg[12]),
+        .I1(tsrf_n_63),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[12]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[13]_i_1 
+       (.I0(tstamp_fake_reg[13]),
+        .I1(tsrf_n_62),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[13]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[14]_i_1 
+       (.I0(tstamp_fake_reg[14]),
+        .I1(tsrf_n_61),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[14]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[15]_i_1 
+       (.I0(tstamp_fake_reg[15]),
+        .I1(tsrf_n_60),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[15]));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[16]_i_1 
+       (.I0(tstamp_fake_reg[16]),
+        .I1(tsrf_n_59),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[16]));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[17]_i_1 
+       (.I0(tstamp_fake_reg[17]),
+        .I1(tsrf_n_58),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[17]));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[18]_i_1 
+       (.I0(tstamp_fake_reg[18]),
+        .I1(tsrf_n_57),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[18]));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[19]_i_1 
+       (.I0(tstamp_fake_reg[19]),
+        .I1(tsrf_n_56),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[19]));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[1]_i_1 
+       (.I0(tstamp_fake_reg[1]),
+        .I1(tsrf_n_74),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[1]));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[20]_i_1 
+       (.I0(tstamp_fake_reg[20]),
+        .I1(tsrf_n_55),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[20]));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[21]_i_1 
+       (.I0(tstamp_fake_reg[21]),
+        .I1(tsrf_n_54),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[21]));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[22]_i_1 
+       (.I0(tstamp_fake_reg[22]),
+        .I1(tsrf_n_53),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[22]));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[23]_i_1 
+       (.I0(tstamp_fake_reg[23]),
+        .I1(tsrf_n_52),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[23]));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[24]_i_1 
+       (.I0(tstamp_fake_reg[24]),
+        .I1(tsrf_n_51),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[24]));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[25]_i_1 
+       (.I0(tstamp_fake_reg[25]),
+        .I1(tsrf_n_50),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[25]));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[26]_i_1 
+       (.I0(tstamp_fake_reg[26]),
+        .I1(tsrf_n_49),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[26]));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[27]_i_1 
+       (.I0(tstamp_fake_reg[27]),
+        .I1(tsrf_n_48),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[27]));
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[28]_i_1 
+       (.I0(tstamp_fake_reg[28]),
+        .I1(tsrf_n_47),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[28]));
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[29]_i_1 
+       (.I0(tstamp_fake_reg[29]),
+        .I1(tsrf_n_46),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[29]));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[2]_i_1 
+       (.I0(tstamp_fake_reg[2]),
+        .I1(tsrf_n_73),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[2]));
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[30]_i_1 
+       (.I0(tstamp_fake_reg[30]),
+        .I1(tsrf_n_45),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[30]));
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[31]_i_1 
+       (.I0(tstamp_fake_reg[31]),
+        .I1(tsrf_n_44),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[31]));
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[32]_i_1 
+       (.I0(tstamp_fake_reg[32]),
+        .I1(tsrf_n_43),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[32]));
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[33]_i_1 
+       (.I0(tstamp_fake_reg[33]),
+        .I1(tsrf_n_42),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[33]));
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[34]_i_1 
+       (.I0(tstamp_fake_reg[34]),
+        .I1(tsrf_n_41),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[34]));
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[35]_i_1 
+       (.I0(tstamp_fake_reg[35]),
+        .I1(tsrf_n_40),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[35]));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[36]_i_1 
+       (.I0(tstamp_fake_reg[36]),
+        .I1(tsrf_n_39),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[36]));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[37]_i_1 
+       (.I0(tstamp_fake_reg[37]),
+        .I1(tsrf_n_38),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[37]));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[38]_i_1 
+       (.I0(tstamp_fake_reg[38]),
+        .I1(tsrf_n_37),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[38]));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[39]_i_1 
+       (.I0(tstamp_fake_reg[39]),
+        .I1(tsrf_n_36),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[39]));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[3]_i_1 
+       (.I0(tstamp_fake_reg[3]),
+        .I1(tsrf_n_72),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[3]));
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[40]_i_1 
+       (.I0(tstamp_fake_reg[40]),
+        .I1(tsrf_n_35),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[40]));
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[41]_i_1 
+       (.I0(tstamp_fake_reg[41]),
+        .I1(tsrf_n_34),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[41]));
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[42]_i_1 
+       (.I0(tstamp_fake_reg[42]),
+        .I1(tsrf_n_33),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[42]));
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[43]_i_1 
+       (.I0(tstamp_fake_reg[43]),
+        .I1(tsrf_n_32),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[43]));
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[44]_i_1 
+       (.I0(tstamp_fake_reg[44]),
+        .I1(tsrf_n_31),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[44]));
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[45]_i_1 
+       (.I0(tstamp_fake_reg[45]),
+        .I1(tsrf_n_30),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[45]));
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[46]_i_1 
+       (.I0(tstamp_fake_reg[46]),
+        .I1(tsrf_n_29),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[46]));
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[47]_i_1 
+       (.I0(tstamp_fake_reg[47]),
+        .I1(tsrf_n_28),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[47]));
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[48]_i_1 
+       (.I0(tstamp_fake_reg[48]),
+        .I1(tsrf_n_27),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[48]));
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[49]_i_1 
+       (.I0(tstamp_fake_reg[49]),
+        .I1(tsrf_n_26),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[49]));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[4]_i_1 
+       (.I0(tstamp_fake_reg[4]),
+        .I1(tsrf_n_71),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[4]));
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[50]_i_1 
+       (.I0(tstamp_fake_reg[50]),
+        .I1(tsrf_n_25),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[50]));
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[51]_i_1 
+       (.I0(tstamp_fake_reg[51]),
+        .I1(tsrf_n_24),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[51]));
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[52]_i_1 
+       (.I0(tstamp_fake_reg[52]),
+        .I1(tsrf_n_23),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[52]));
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[53]_i_1 
+       (.I0(tstamp_fake_reg[53]),
+        .I1(tsrf_n_22),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[53]));
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[54]_i_1 
+       (.I0(tstamp_fake_reg[54]),
+        .I1(tsrf_n_21),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[54]));
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[55]_i_1 
+       (.I0(tstamp_fake_reg[55]),
+        .I1(tsrf_n_20),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[55]));
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[56]_i_1 
+       (.I0(tstamp_fake_reg[56]),
+        .I1(tsrf_n_19),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[56]));
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[57]_i_1 
+       (.I0(tstamp_fake_reg[57]),
+        .I1(tsrf_n_18),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[57]));
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[58]_i_1 
+       (.I0(tstamp_fake_reg[58]),
+        .I1(tsrf_n_17),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[58]));
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[59]_i_1 
+       (.I0(tstamp_fake_reg[59]),
+        .I1(tsrf_n_16),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[59]));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[5]_i_1 
+       (.I0(tstamp_fake_reg[5]),
+        .I1(tsrf_n_70),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[5]));
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[60]_i_1 
+       (.I0(tstamp_fake_reg[60]),
+        .I1(tsrf_n_15),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[60]));
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[61]_i_1 
+       (.I0(tstamp_fake_reg[61]),
+        .I1(tsrf_n_14),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[61]));
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[62]_i_1 
+       (.I0(tstamp_fake_reg[62]),
+        .I1(tsrf_n_13),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[62]));
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[63]_i_1 
+       (.I0(tstamp_fake_reg[63]),
+        .I1(tsrf_n_12),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[63]));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[6]_i_1 
+       (.I0(tstamp_fake_reg[6]),
+        .I1(tsrf_n_69),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[6]));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[7]_i_1 
+       (.I0(tstamp_fake_reg[7]),
+        .I1(tsrf_n_68),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[7]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[8]_i_1 
+       (.I0(tstamp_fake_reg[8]),
+        .I1(tsrf_n_67),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[8]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT3 #(
+    .INIT(8'hAC)) 
+    \tstamp_out[9]_i_1 
+       (.I0(tstamp_fake_reg[9]),
+        .I1(tsrf_n_66),
+        .I2(fake_time_stamp_en),
+        .O(p_0_in[9]));
   FDRE \tstamp_out_reg[0] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_75),
+        .D(p_0_in[0]),
         .Q(tstamp_out[0]),
         .R(1'b0));
   FDRE \tstamp_out_reg[10] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_65),
+        .D(p_0_in[10]),
         .Q(tstamp_out[10]),
         .R(1'b0));
   FDRE \tstamp_out_reg[11] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_64),
+        .D(p_0_in[11]),
         .Q(tstamp_out[11]),
         .R(1'b0));
   FDRE \tstamp_out_reg[12] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_63),
+        .D(p_0_in[12]),
         .Q(tstamp_out[12]),
         .R(1'b0));
   FDRE \tstamp_out_reg[13] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_62),
+        .D(p_0_in[13]),
         .Q(tstamp_out[13]),
         .R(1'b0));
   FDRE \tstamp_out_reg[14] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_61),
+        .D(p_0_in[14]),
         .Q(tstamp_out[14]),
         .R(1'b0));
   FDRE \tstamp_out_reg[15] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_60),
+        .D(p_0_in[15]),
         .Q(tstamp_out[15]),
         .R(1'b0));
   FDRE \tstamp_out_reg[16] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_59),
+        .D(p_0_in[16]),
         .Q(tstamp_out[16]),
         .R(1'b0));
   FDRE \tstamp_out_reg[17] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_58),
+        .D(p_0_in[17]),
         .Q(tstamp_out[17]),
         .R(1'b0));
   FDRE \tstamp_out_reg[18] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_57),
+        .D(p_0_in[18]),
         .Q(tstamp_out[18]),
         .R(1'b0));
   FDRE \tstamp_out_reg[19] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_56),
+        .D(p_0_in[19]),
         .Q(tstamp_out[19]),
         .R(1'b0));
   FDRE \tstamp_out_reg[1] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_74),
+        .D(p_0_in[1]),
         .Q(tstamp_out[1]),
         .R(1'b0));
   FDRE \tstamp_out_reg[20] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_55),
+        .D(p_0_in[20]),
         .Q(tstamp_out[20]),
         .R(1'b0));
   FDRE \tstamp_out_reg[21] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_54),
+        .D(p_0_in[21]),
         .Q(tstamp_out[21]),
         .R(1'b0));
   FDRE \tstamp_out_reg[22] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_53),
+        .D(p_0_in[22]),
         .Q(tstamp_out[22]),
         .R(1'b0));
   FDRE \tstamp_out_reg[23] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_52),
+        .D(p_0_in[23]),
         .Q(tstamp_out[23]),
         .R(1'b0));
   FDRE \tstamp_out_reg[24] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_51),
+        .D(p_0_in[24]),
         .Q(tstamp_out[24]),
         .R(1'b0));
   FDRE \tstamp_out_reg[25] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_50),
+        .D(p_0_in[25]),
         .Q(tstamp_out[25]),
         .R(1'b0));
   FDRE \tstamp_out_reg[26] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_49),
+        .D(p_0_in[26]),
         .Q(tstamp_out[26]),
         .R(1'b0));
   FDRE \tstamp_out_reg[27] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_48),
+        .D(p_0_in[27]),
         .Q(tstamp_out[27]),
         .R(1'b0));
   FDRE \tstamp_out_reg[28] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_47),
+        .D(p_0_in[28]),
         .Q(tstamp_out[28]),
         .R(1'b0));
   FDRE \tstamp_out_reg[29] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_46),
+        .D(p_0_in[29]),
         .Q(tstamp_out[29]),
         .R(1'b0));
   FDRE \tstamp_out_reg[2] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_73),
+        .D(p_0_in[2]),
         .Q(tstamp_out[2]),
         .R(1'b0));
   FDRE \tstamp_out_reg[30] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_45),
+        .D(p_0_in[30]),
         .Q(tstamp_out[30]),
         .R(1'b0));
   FDRE \tstamp_out_reg[31] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_44),
+        .D(p_0_in[31]),
         .Q(tstamp_out[31]),
         .R(1'b0));
   FDRE \tstamp_out_reg[32] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_43),
+        .D(p_0_in[32]),
         .Q(tstamp_out[32]),
         .R(1'b0));
   FDRE \tstamp_out_reg[33] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_42),
+        .D(p_0_in[33]),
         .Q(tstamp_out[33]),
         .R(1'b0));
   FDRE \tstamp_out_reg[34] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_41),
+        .D(p_0_in[34]),
         .Q(tstamp_out[34]),
         .R(1'b0));
   FDRE \tstamp_out_reg[35] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_40),
+        .D(p_0_in[35]),
         .Q(tstamp_out[35]),
         .R(1'b0));
   FDRE \tstamp_out_reg[36] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_39),
+        .D(p_0_in[36]),
         .Q(tstamp_out[36]),
         .R(1'b0));
   FDRE \tstamp_out_reg[37] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_38),
+        .D(p_0_in[37]),
         .Q(tstamp_out[37]),
         .R(1'b0));
   FDRE \tstamp_out_reg[38] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_37),
+        .D(p_0_in[38]),
         .Q(tstamp_out[38]),
         .R(1'b0));
   FDRE \tstamp_out_reg[39] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_36),
+        .D(p_0_in[39]),
         .Q(tstamp_out[39]),
         .R(1'b0));
   FDRE \tstamp_out_reg[3] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_72),
+        .D(p_0_in[3]),
         .Q(tstamp_out[3]),
         .R(1'b0));
   FDRE \tstamp_out_reg[40] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_35),
+        .D(p_0_in[40]),
         .Q(tstamp_out[40]),
         .R(1'b0));
   FDRE \tstamp_out_reg[41] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_34),
+        .D(p_0_in[41]),
         .Q(tstamp_out[41]),
         .R(1'b0));
   FDRE \tstamp_out_reg[42] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_33),
+        .D(p_0_in[42]),
         .Q(tstamp_out[42]),
         .R(1'b0));
   FDRE \tstamp_out_reg[43] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_32),
+        .D(p_0_in[43]),
         .Q(tstamp_out[43]),
         .R(1'b0));
   FDRE \tstamp_out_reg[44] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_31),
+        .D(p_0_in[44]),
         .Q(tstamp_out[44]),
         .R(1'b0));
   FDRE \tstamp_out_reg[45] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_30),
+        .D(p_0_in[45]),
         .Q(tstamp_out[45]),
         .R(1'b0));
   FDRE \tstamp_out_reg[46] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_29),
+        .D(p_0_in[46]),
         .Q(tstamp_out[46]),
         .R(1'b0));
   FDRE \tstamp_out_reg[47] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_28),
+        .D(p_0_in[47]),
         .Q(tstamp_out[47]),
         .R(1'b0));
   FDRE \tstamp_out_reg[48] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_27),
+        .D(p_0_in[48]),
         .Q(tstamp_out[48]),
         .R(1'b0));
   FDRE \tstamp_out_reg[49] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_26),
+        .D(p_0_in[49]),
         .Q(tstamp_out[49]),
         .R(1'b0));
   FDRE \tstamp_out_reg[4] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_71),
+        .D(p_0_in[4]),
         .Q(tstamp_out[4]),
         .R(1'b0));
   FDRE \tstamp_out_reg[50] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_25),
+        .D(p_0_in[50]),
         .Q(tstamp_out[50]),
         .R(1'b0));
   FDRE \tstamp_out_reg[51] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_24),
+        .D(p_0_in[51]),
         .Q(tstamp_out[51]),
         .R(1'b0));
   FDRE \tstamp_out_reg[52] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_23),
+        .D(p_0_in[52]),
         .Q(tstamp_out[52]),
         .R(1'b0));
   FDRE \tstamp_out_reg[53] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_22),
+        .D(p_0_in[53]),
         .Q(tstamp_out[53]),
         .R(1'b0));
   FDRE \tstamp_out_reg[54] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_21),
+        .D(p_0_in[54]),
         .Q(tstamp_out[54]),
         .R(1'b0));
   FDRE \tstamp_out_reg[55] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_20),
+        .D(p_0_in[55]),
         .Q(tstamp_out[55]),
         .R(1'b0));
   FDRE \tstamp_out_reg[56] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_19),
+        .D(p_0_in[56]),
         .Q(tstamp_out[56]),
         .R(1'b0));
   FDRE \tstamp_out_reg[57] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_18),
+        .D(p_0_in[57]),
         .Q(tstamp_out[57]),
         .R(1'b0));
   FDRE \tstamp_out_reg[58] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_17),
+        .D(p_0_in[58]),
         .Q(tstamp_out[58]),
         .R(1'b0));
   FDRE \tstamp_out_reg[59] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_16),
+        .D(p_0_in[59]),
         .Q(tstamp_out[59]),
         .R(1'b0));
   FDRE \tstamp_out_reg[5] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_70),
+        .D(p_0_in[5]),
         .Q(tstamp_out[5]),
         .R(1'b0));
   FDRE \tstamp_out_reg[60] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_15),
+        .D(p_0_in[60]),
         .Q(tstamp_out[60]),
         .R(1'b0));
   FDRE \tstamp_out_reg[61] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_14),
+        .D(p_0_in[61]),
         .Q(tstamp_out[61]),
         .R(1'b0));
   FDRE \tstamp_out_reg[62] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_13),
+        .D(p_0_in[62]),
         .Q(tstamp_out[62]),
         .R(1'b0));
   FDRE \tstamp_out_reg[63] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_12),
+        .D(p_0_in[63]),
         .Q(tstamp_out[63]),
         .R(1'b0));
   FDRE \tstamp_out_reg[6] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_69),
+        .D(p_0_in[6]),
         .Q(tstamp_out[6]),
         .R(1'b0));
   FDRE \tstamp_out_reg[7] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_68),
+        .D(p_0_in[7]),
         .Q(tstamp_out[7]),
         .R(1'b0));
   FDRE \tstamp_out_reg[8] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_67),
+        .D(p_0_in[8]),
         .Q(tstamp_out[8]),
         .R(1'b0));
   FDRE \tstamp_out_reg[9] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(tsrf_n_66),
+        .D(p_0_in[9]),
         .Q(tstamp_out[9]),
         .R(1'b0));
 endmodule

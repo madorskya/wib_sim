@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Sun Nov 29 01:17:57 2020
+// Date        : Mon Dec 14 22:42:42 2020
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/Users/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/standalone_50m_mmcm/standalone_50m_mmcm_sim_netlist.v
+//               c:/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/standalone_50m_mmcm/standalone_50m_mmcm_sim_netlist.v
 // Design      : standalone_50m_mmcm
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -126,20 +126,20 @@ module standalone_50m_mmcm_standalone_50m_mmcm_clk_wiz
   (* OPT_MODIFIED = "MLO" *) 
   MMCME4_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(28.750000),
+    .CLKFBOUT_MULT_F(48.125000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(20.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(11.500000),
+    .CLKOUT0_DIVIDE_F(9.625000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
-    .CLKOUT1_DIVIDE(6),
+    .CLKOUT1_DIVIDE(5),
     .CLKOUT1_DUTY_CYCLE(0.500000),
     .CLKOUT1_PHASE(0.000000),
     .CLKOUT1_USE_FINE_PS("FALSE"),
-    .CLKOUT2_DIVIDE(11),
+    .CLKOUT2_DIVIDE(8),
     .CLKOUT2_DUTY_CYCLE(0.500000),
     .CLKOUT2_PHASE(0.000000),
     .CLKOUT2_USE_FINE_PS("FALSE"),
@@ -161,7 +161,7 @@ module standalone_50m_mmcm_standalone_50m_mmcm_clk_wiz
     .CLKOUT6_PHASE(0.000000),
     .CLKOUT6_USE_FINE_PS("FALSE"),
     .COMPENSATION("INTERNAL"),
-    .DIVCLK_DIVIDE(1),
+    .DIVCLK_DIVIDE(2),
     .IS_CLKFBIN_INVERTED(1'b0),
     .IS_CLKIN1_INVERTED(1'b0),
     .IS_CLKIN2_INVERTED(1'b0),

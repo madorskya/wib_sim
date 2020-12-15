@@ -179,12 +179,14 @@ module wib_top
 `define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
     // command codes from timing system
-    wire [7:0] cmd_code_idle      = `CONFIG_BITS(3,  0, 8);
-    wire [7:0] cmd_code_edge      = `CONFIG_BITS(3,  8, 8);
-    wire [7:0] cmd_code_sync      = `CONFIG_BITS(3, 16, 8);
-    wire [7:0] cmd_code_act       = `CONFIG_BITS(3, 24, 8);
-    wire [7:0] cmd_code_reset     = `CONFIG_BITS(4,  0, 8);
-    wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(4,  8, 8);
+    wire [7:0] cmd_code_idle      = `CONFIG_BITS(4,  0, 8);
+    wire [7:0] cmd_code_edge      = `CONFIG_BITS(4,  8, 8);
+    wire [7:0] cmd_code_sync      = `CONFIG_BITS(4, 16, 8);
+    wire [7:0] cmd_code_act       = `CONFIG_BITS(4, 24, 8);
+    wire [7:0] cmd_code_reset     = `CONFIG_BITS(5,  0, 8);
+    wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(5,  8, 8);
+    
+    wire       fake_time_stamp_en = `CONFIG_BITS(3,  1, 1);
 
     bd_tux wrp
     (
@@ -246,7 +248,8 @@ module wib_top
         .cmd_code_sync      (cmd_code_sync     ),
         .cmd_code_act       (cmd_code_act      ),
         .cmd_code_reset     (cmd_code_reset    ),
-        .cmd_code_adc_reset (cmd_code_adc_reset)
+        .cmd_code_adc_reset (cmd_code_adc_reset),
+        .fake_time_stamp_en (fake_time_stamp_en)
     );
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];
