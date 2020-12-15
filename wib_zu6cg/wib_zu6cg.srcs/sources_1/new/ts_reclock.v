@@ -36,7 +36,9 @@ module ts_reclock
     output reg cmd_bit_sync     ,
     output reg cmd_bit_act      ,
     output reg cmd_bit_reset    ,
-    output reg cmd_bit_adc_reset
+    output reg cmd_bit_adc_reset,
+    
+    input fake_time_stamp_en // enable fake time stamp
 );
 
     wire [75:0] din = 
@@ -84,6 +86,8 @@ module ts_reclock
     
 `define CMD_DECODE(c,b) if (c != 8'h0 && c[3:0] == sync_out) b = 1'b1
     
+    reg [63:0] tstamp_fake = 64'h12340000_00000000;
+    
     always @(posedge clk62p5)
     begin
     
@@ -106,7 +110,8 @@ module ts_reclock
         
         //decode time stamp valid
         ts_valid = ts_valid_int && sync_stb_out && sync_first_out && (sync_out == 4'b0);
-        tstamp_out = tstamp_int; // to match valid signal latency
+        tstamp_out = (fake_time_stamp_en == 1'b1) ? tstamp_fake : tstamp_int; // to match valid signal latency
+        tstamp_fake = tstamp_fake + 64'h1;
     end
 
 endmodule

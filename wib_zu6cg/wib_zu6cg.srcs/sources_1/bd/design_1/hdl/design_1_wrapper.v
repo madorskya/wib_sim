@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Thu Dec 10 19:58:26 2020
+//Date        : Mon Dec 14 22:45:57 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -28,6 +28,7 @@ module design_1_wrapper
     daq_stream1,
     daq_stream_k0,
     daq_stream_k1,
+    fake_time_stamp_en,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     iic_rtl_0_scl_io,
@@ -107,6 +108,7 @@ module design_1_wrapper
   input [31:0]daq_stream1;
   input [3:0]daq_stream_k0;
   input [3:0]daq_stream_k1;
+  input fake_time_stamp_en;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   inout iic_rtl_0_scl_io;
@@ -187,6 +189,7 @@ module design_1_wrapper
   wire [31:0]daq_stream1;
   wire [3:0]daq_stream_k0;
   wire [3:0]daq_stream_k1;
+  wire fake_time_stamp_en;
   wire fastcommand_out_n_0;
   wire fastcommand_out_p_0;
   wire iic_rtl_0_scl_i;
@@ -274,6 +277,7 @@ module design_1_wrapper
         .daq_stream1(daq_stream1),
         .daq_stream_k0(daq_stream_k0),
         .daq_stream_k1(daq_stream_k1),
+        .fake_time_stamp_en(fake_time_stamp_en),
         .fastcommand_out_n_0(fastcommand_out_n_0),
         .fastcommand_out_p_0(fastcommand_out_p_0),
         .iic_rtl_0_scl_i(iic_rtl_0_scl_i),

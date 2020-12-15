@@ -85,7 +85,8 @@ module design_1_ts_reclock_0_0 (
   cmd_bit_sync,
   cmd_bit_act,
   cmd_bit_reset,
-  cmd_bit_adc_reset
+  cmd_bit_adc_reset,
+  fake_time_stamp_en
 );
 
 input wire [3 : 0] stat_in;
@@ -129,6 +130,7 @@ output wire cmd_bit_reset;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST" *)
 output wire cmd_bit_adc_reset;
+input wire fake_time_stamp_en;
 
   ts_reclock inst (
     .stat_in(stat_in),
@@ -161,6 +163,7 @@ output wire cmd_bit_adc_reset;
     .cmd_bit_sync(cmd_bit_sync),
     .cmd_bit_act(cmd_bit_act),
     .cmd_bit_reset(cmd_bit_reset),
-    .cmd_bit_adc_reset(cmd_bit_adc_reset)
+    .cmd_bit_adc_reset(cmd_bit_adc_reset),
+    .fake_time_stamp_en(fake_time_stamp_en)
   );
 endmodule

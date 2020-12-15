@@ -178,6 +178,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -from 7 -to 0 cmd_code_idle_0
   create_bd_pin -dir I -from 7 -to 0 -type rst cmd_code_reset_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_sync_0
+  create_bd_pin -dir I fake_time_stamp_en_0
   create_bd_pin -dir I sclk
   create_bd_pin -dir O -from 3 -to 0 stat_0
   create_bd_pin -dir I ts_cdr_lol
@@ -291,6 +292,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net endpoint_wrapper_0_sync_first [get_bd_pins endpoint_wrapper_0/sync_first] [get_bd_pins ts_reclock_0/sync_first_in]
   connect_bd_net -net endpoint_wrapper_0_sync_stb [get_bd_pins endpoint_wrapper_0/sync_stb] [get_bd_pins ts_reclock_0/sync_stb_in]
   connect_bd_net -net endpoint_wrapper_0_tstamp [get_bd_pins endpoint_wrapper_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
+  connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_pins fake_time_stamp_en_0] [get_bd_pins ts_reclock_0/fake_time_stamp_en]
   connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins endpoint_wrapper_0/sclk]
   connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins endpoint_wrapper_0/cdr_lol]
   connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins endpoint_wrapper_0/cdr_los]
@@ -1091,6 +1093,7 @@ proc create_root_design { parentCell } {
   set daq_stream1 [ create_bd_port -dir I -from 31 -to 0 daq_stream1 ]
   set daq_stream_k0 [ create_bd_port -dir I -from 3 -to 0 daq_stream_k0 ]
   set daq_stream_k1 [ create_bd_port -dir I -from 3 -to 0 daq_stream_k1 ]
+  set fake_time_stamp_en [ create_bd_port -dir I fake_time_stamp_en ]
   set fastcommand_out_n_0 [ create_bd_port -dir O fastcommand_out_n_0 ]
   set fastcommand_out_p_0 [ create_bd_port -dir O fastcommand_out_p_0 ]
   set reg_ro [ create_bd_port -dir I -from 1023 -to 0 reg_ro ]
@@ -2810,6 +2813,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net daq_stream1_0_1 [get_bd_ports daq_stream1] [get_bd_pins daq_spy_1/daq_stream0]
   connect_bd_net -net daq_stream_k0_0_1 [get_bd_ports daq_stream_k0] [get_bd_pins daq_spy_0/daq_stream_k0]
   connect_bd_net -net daq_stream_k1_0_1 [get_bd_ports daq_stream_k1] [get_bd_pins daq_spy_1/daq_stream_k0]
+  connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_ports fake_time_stamp_en] [get_bd_pins timing_module/fake_time_stamp_en_0]
   connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins timing_module/ts_clk]
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_ports ts_evtctr] [get_bd_pins timing_module/ts_evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_ports ts_rdy] [get_bd_pins timing_module/ts_rdy]

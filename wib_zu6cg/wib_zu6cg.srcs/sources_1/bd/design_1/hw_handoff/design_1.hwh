@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Dec 10 19:58:38 2020" VIVADOVERSION="2020.1.1_AR73018">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Dec 14 22:46:06 2020" VIVADOVERSION="2020.1.1_AR73018">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -417,6 +417,11 @@
     <PORT DIR="O" NAME="iic_rtl_0_sda_t" SIGIS="undef" SIGNAME="axi_iic_0_sda_t">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axi_iic_0" PORT="sda_t"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="fake_time_stamp_en" SIGIS="undef" SIGNAME="External_Ports_fake_time_stamp_en">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fake_time_stamp_en"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -9977,163 +9982,453 @@
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="19" NAME="M15_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awaddr">
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awaddr"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="M15_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awlen">
+        <PORT DIR="I" LEFT="39" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awaddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awlen"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awaddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M15_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awsize">
+        <PORT DIR="I" LEFT="7" NAME="S00_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awlen">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awsize"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awlen"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="M15_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awburst">
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awsize">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awburst"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awsize"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M15_AXI_awlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awlock">
+        <PORT DIR="I" LEFT="1" NAME="S00_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awburst">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awlock"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awburst"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M15_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awcache">
+        <PORT DIR="I" NAME="S00_AXI_awlock" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awlock">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awcache"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awlock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M15_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awprot">
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awcache">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awprot"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awcache"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M15_AXI_awregion" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M15_AXI_awqos" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M15_AXI_awvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awvalid">
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awprot">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awvalid"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M15_AXI_awready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awready">
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awqos" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awqos">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awready"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awqos"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M15_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wdata">
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awuser" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awuser">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wdata"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awuser"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M15_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wstrb">
+        <PORT DIR="I" NAME="S00_AXI_awvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wstrb"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M15_AXI_wlast" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wlast">
+        <PORT DIR="O" NAME="S00_AXI_awready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wlast"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M15_AXI_wvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wvalid">
+        <PORT DIR="I" LEFT="127" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wvalid"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M15_AXI_wready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wready">
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wstrb">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wready"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M15_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_bresp">
+        <PORT DIR="I" NAME="S00_AXI_wlast" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wlast">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_bresp"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wlast"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M15_AXI_bvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_bvalid">
+        <PORT DIR="I" NAME="S00_AXI_wvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_bvalid"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M15_AXI_bready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_bready">
+        <PORT DIR="O" NAME="S00_AXI_wready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_bready"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="19" NAME="M15_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_araddr">
+        <PORT DIR="O" LEFT="15" NAME="S00_AXI_bid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_araddr"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="M15_AXI_arlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arlen">
+        <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arlen"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M15_AXI_arsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arsize">
+        <PORT DIR="O" NAME="S00_AXI_bvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arsize"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="M15_AXI_arburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arburst">
+        <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arburst"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M15_AXI_arlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arlock">
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_arid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arlock"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M15_AXI_arcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arcache">
+        <PORT DIR="I" LEFT="39" NAME="S00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_araddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arcache"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_araddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M15_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arprot">
+        <PORT DIR="I" LEFT="7" NAME="S00_AXI_arlen" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arlen">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arprot"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arlen"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M15_AXI_arregion" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M15_AXI_arqos" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M15_AXI_arvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arvalid">
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arsize" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arsize">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arvalid"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arsize"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M15_AXI_arready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arready">
+        <PORT DIR="I" LEFT="1" NAME="S00_AXI_arburst" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arburst">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arready"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arburst"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M15_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rdata">
+        <PORT DIR="I" NAME="S00_AXI_arlock" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arlock">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rdata"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arlock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M15_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rresp">
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_arcache" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arcache">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rresp"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arcache"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M15_AXI_rlast" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rlast">
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arprot">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rlast"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M15_AXI_rvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rvalid">
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_arqos" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arqos">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rvalid"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arqos"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M15_AXI_rready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rready">
+        <PORT DIR="I" LEFT="15" NAME="S00_AXI_aruser" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_aruser">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rready"/>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_aruser"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_arvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_arready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="S00_AXI_rid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="127" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="S00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_rlast" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_rvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_rready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="19" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="M00_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awlen">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awlen"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M00_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awsize">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awsize"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="M00_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awburst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awburst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_awlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awlock">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awlock"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M00_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awcache">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awcache"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awqos" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_awvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_awready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_wlast" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_wvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_wready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_bvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_bready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="19" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="M00_AXI_arlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arlen">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arlen"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M00_AXI_arsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arsize">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arsize"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="M00_AXI_arburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arburst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arburst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M00_AXI_arlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arlock">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arlock"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M00_AXI_arcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arcache">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arcache"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_arregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arqos" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M00_AXI_arvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_arready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_rlast" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_rvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_rready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="39" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M01_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_awvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_awready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M01_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_wvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_wready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M01_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_bvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_bready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="39" NAME="M01_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M01_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_arprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_arprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_arvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_arready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M01_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M01_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_rvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_rready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="M02_AXI_awid" SIGIS="undef"/>
@@ -11301,453 +11596,163 @@
             <CONNECTION INSTANCE="dbg_debug_bridge_0" PORT="S_AXI_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="19" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awaddr">
+        <PORT DIR="O" LEFT="19" NAME="M15_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awaddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awaddr"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awaddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="M00_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awlen">
+        <PORT DIR="O" LEFT="7" NAME="M15_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awlen">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awlen"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awlen"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M00_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awsize">
+        <PORT DIR="O" LEFT="2" NAME="M15_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awsize">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awsize"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awsize"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="M00_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awburst">
+        <PORT DIR="O" LEFT="1" NAME="M15_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awburst">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awburst"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awburst"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_awlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awlock">
+        <PORT DIR="O" LEFT="0" NAME="M15_AXI_awlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awlock">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awlock"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awlock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M00_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awcache">
+        <PORT DIR="O" LEFT="3" NAME="M15_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awcache">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awcache"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awcache"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awprot">
+        <PORT DIR="O" LEFT="2" NAME="M15_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awprot">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awprot"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_awregion" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M00_AXI_awqos" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M00_AXI_awvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awvalid">
+        <PORT DIR="O" NAME="M15_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M15_AXI_awqos" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M15_AXI_awvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awvalid"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_awready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_awready">
+        <PORT DIR="I" NAME="M15_AXI_awready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_awready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_awready"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_awready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wdata">
+        <PORT DIR="O" LEFT="31" NAME="M15_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wdata"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wstrb">
+        <PORT DIR="O" LEFT="3" NAME="M15_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wstrb">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wstrb"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_wlast" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wlast">
+        <PORT DIR="O" NAME="M15_AXI_wlast" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wlast">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wlast"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wlast"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_wvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wvalid">
+        <PORT DIR="O" NAME="M15_AXI_wvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wvalid"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_wready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_wready">
+        <PORT DIR="I" NAME="M15_AXI_wready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_wready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_wready"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_wready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_bresp">
+        <PORT DIR="I" LEFT="1" NAME="M15_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_bresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_bresp"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_bvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_bvalid">
+        <PORT DIR="I" NAME="M15_AXI_bvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_bvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_bvalid"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_bready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_bready">
+        <PORT DIR="O" NAME="M15_AXI_bready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_bready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_bready"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_bready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="19" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_araddr">
+        <PORT DIR="O" LEFT="19" NAME="M15_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_araddr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_araddr"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_araddr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="M00_AXI_arlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arlen">
+        <PORT DIR="O" LEFT="7" NAME="M15_AXI_arlen" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arlen">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arlen"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arlen"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M00_AXI_arsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arsize">
+        <PORT DIR="O" LEFT="2" NAME="M15_AXI_arsize" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arsize">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arsize"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arsize"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="M00_AXI_arburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arburst">
+        <PORT DIR="O" LEFT="1" NAME="M15_AXI_arburst" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arburst">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arburst"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arburst"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M00_AXI_arlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arlock">
+        <PORT DIR="O" LEFT="0" NAME="M15_AXI_arlock" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arlock">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arlock"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arlock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M00_AXI_arcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arcache">
+        <PORT DIR="O" LEFT="3" NAME="M15_AXI_arcache" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arcache">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arcache"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arcache"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arprot">
+        <PORT DIR="O" LEFT="2" NAME="M15_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arprot">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arprot"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_arregion" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M00_AXI_arqos" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M00_AXI_arvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arvalid">
+        <PORT DIR="O" NAME="M15_AXI_arregion" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M15_AXI_arqos" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M15_AXI_arvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arvalid"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_arready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_arready">
+        <PORT DIR="I" NAME="M15_AXI_arready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_arready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_arready"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_arready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rdata">
+        <PORT DIR="I" LEFT="31" NAME="M15_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rdata"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rresp">
+        <PORT DIR="I" LEFT="1" NAME="M15_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rresp">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rresp"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_rlast" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rlast">
+        <PORT DIR="I" NAME="M15_AXI_rlast" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rlast">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rlast"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rlast"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_AXI_rvalid" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rvalid">
+        <PORT DIR="I" NAME="M15_AXI_rvalid" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rvalid"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M00_AXI_rready" SIGIS="undef" SIGNAME="daq_spy_0_axi_bram_ctrl_0_s_axi_rready">
+        <PORT DIR="O" NAME="M15_AXI_rready" SIGIS="undef" SIGNAME="daq_spy_1_axi_bram_ctrl_0_s_axi_rready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0" PORT="s_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="39" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="7" NAME="S00_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awlen">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awlen"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awsize">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awsize"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="S00_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awburst">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awburst"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_awlock" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awlock">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awlock"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awcache">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awcache"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awqos" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awqos">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awqos"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_awuser" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awuser">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awuser"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_awvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_awready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="127" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_wlast" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wlast">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wlast"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_wvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_wready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="S00_AXI_bid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_bvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_arid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="39" NAME="S00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="7" NAME="S00_AXI_arlen" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arlen">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arlen"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arsize" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arsize">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arsize"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="S00_AXI_arburst" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arburst">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arburst"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_arlock" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arlock">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arlock"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_arcache" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arcache">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arcache"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_arqos" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arqos">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arqos"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="S00_AXI_aruser" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_aruser">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_aruser"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_arvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_arready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="S00_AXI_rid" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="127" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="S00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_rlast" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rlast">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rlast"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_rvalid" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_rready" SIGIS="undef" SIGNAME="ps8_0_axi_periph_S00_AXI_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxigp0_rready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="39" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M01_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_awvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_awready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M01_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_wvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_wready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M01_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_bvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_bready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="39" NAME="M01_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M01_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_arprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_arprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_arvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_arready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M01_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M01_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_rvalid" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_rready" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_s00_axi_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="s00_axi_rready"/>
+            <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_rready"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -16587,6 +16592,11 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="cmd_adc_reset"/>
             <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe13"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="fake_time_stamp_en" SIGIS="undef" SIGNAME="External_Ports_fake_time_stamp_en">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="fake_time_stamp_en"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
