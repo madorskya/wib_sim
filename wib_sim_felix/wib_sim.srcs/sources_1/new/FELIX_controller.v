@@ -23,8 +23,8 @@ module FELIX_controller(
         .busy(),
         .fifo_rclk(),
         .fifo_re(),
-        .fifo_dout(),
-        .fifo_dtype(),
+        .fifo_dout(felix_data_in),
+        .fifo_dtype(felix_data_type_in),
         .fifo_empty(),
         
         .dout(felix_data_to_gth),
@@ -51,7 +51,7 @@ module FELIX_controller(
     (
         .gtwiz_userclk_tx_reset_in          (rst),                    
         .gtwiz_userclk_tx_srcclk_out        (),                
-        .gtwiz_userclk_tx_usrclk_out        (),                
+        .gtwiz_userclk_tx_usrclk_out        (clk240),                
         .gtwiz_userclk_tx_usrclk2_out       (),        
         .gtwiz_userclk_tx_active_out        (),                            
         .gtwiz_reset_clk_freerun_in         (clk),            
@@ -61,7 +61,7 @@ module FELIX_controller(
         .gtwiz_reset_tx_done_out            (),                                             
         .gtwiz_userdata_tx_in               ({32'h00000000, felix_data_to_gth}),                                                        
         .gtrefclk01_in                      (gtrefclk00_in),                                            
-        .qpll1outclk_out                    (clk240),                                        
+        .qpll1outclk_out                    (),                                        
         .qpll1outrefclk_out                 (),                                                                  
         .tx8b10ben_in                       (16'hffff),                                              
         .txctrl0_in                         (32'h00000003),                                                  

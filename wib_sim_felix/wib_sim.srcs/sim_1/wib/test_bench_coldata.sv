@@ -19,11 +19,15 @@ reg clk312p5 = 1'b0;
 reg [31:0] clk62_cnt;
 reg clk_1p28g;
 reg daq_clk;
+reg clk50 = 1'b0;
 
 reg  [3 : 0] gtrefclk00p_in = 4'b0000; // reference clocks; 128M
 reg  [3 : 0] gtrefclk00n_in = 4'b1111; // reference clocks; 128M
 wire [15 : 0] gthrxn_in    ; // RX diff lines
 wire [15 : 0] gthrxp_in    ;
+
+reg gtrefclk_b128_p_in = 1'b0;   // FELIX refclk on bank 128, 125MHz osc
+reg gtrefclk_b128_n_in = 1'b1;
 
 int cdma_tb_pass = 1;
   
@@ -462,6 +466,15 @@ begin
         sysclk_cnt++;
 end
 
+always #4000 begin
+    gtrefclk_b128_p_in = !gtrefclk_b128_p_in;
+    gtrefclk_b128_n_in = !gtrefclk_b128_n_in;
+end
+
+always #10000 begin
+    clk50 = !clk50;
+end
+
 always 
 begin        
     #2083.33 daq_clk = ~daq_clk; // 240 MHz clock, for 9.6G TX in the link
@@ -800,7 +813,14 @@ end
         .gthrxn_in      (gthrxn_in    ), // RX diff lines
         .gthrxp_in      (gthrxp_in    ),
         
-        .daq_clk        (daq_clk),    
+        .gtrefclk_b128_p_in (gtrefclk_b128_p_in),   // FELIX refclk on bank 128, 125MHz osc
+        .gtrefclk_b128_n_in (gtrefclk_b128_n_in),
+        .gth_b128_tx0_p_out (),   // X0Y4
+        .gth_b128_tx0_n_out (),
+        .gth_b128_tx1_p_out (),   // X0Y5
+        .gth_b128_tx1_n_out (),
+        
+        //.daq_clk        (daq_clk),    
 
         .si5344_scl (), 
         .si5344_sda (), 
@@ -821,7 +841,9 @@ end
         .flash_scl (), 
         .flash_sda (), 
         .adn2814_scl (),   
-        .adn2814_sda ()
+        .adn2814_sda (),
+        
+        .clk_in_50mhz(clk50)
     );
 
 /*

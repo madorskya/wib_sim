@@ -50,6 +50,7 @@ module wib_top
     output gth_b128_tx0_n_out,
     output gth_b128_tx1_p_out,   // X0Y5
     output gth_b128_tx1_n_out,
+   
     
     // I2C busses for onboard devices
     inout si5344_scl, 
@@ -323,7 +324,7 @@ module wib_top
     
     FELIX_controller felix
     (
-        .clk               (ts_clk),
+        .clk               (clk62p5),
         .rst               (fb_reset),
         .gtrefclkp_in      (gtrefclk_b128_p_in), // reference clock, 125M
         .gtrefclkn_in      (gtrefclk_b128_n_in),
