@@ -73,6 +73,7 @@ module wib_top
     output mgt_clk_sel, // clock source selector for MGTs 1=standalone 0=recovered timing
     output femb_clk_sel, // clock source selector for FEMBs 0=direcly from SI5344, 1=FPGA
     output femb_cmd_sel, // I2C command source for FEMBs 0=FPGA, 1=clock from SI5344, output 2 (why ???)
+    output si5344_oe, // output enable for PLL
     // return signals from timing point
     output tx_timing_p,
     output tx_timing_n,
@@ -88,6 +89,7 @@ module wib_top
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
     assign femb_clk_sel = 1'b1; // select FPGA clk permanently
     assign femb_cmd_sel = 1'b0; // select FPGA command permanently
+    assign si5344_oe = 1'b0;
     wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
     
