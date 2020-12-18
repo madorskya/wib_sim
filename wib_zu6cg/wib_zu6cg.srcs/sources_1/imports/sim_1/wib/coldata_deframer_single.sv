@@ -175,7 +175,7 @@ module coldata_deframer_single #(parameter NUM = 0)
         .rd_clk (rxclk2x),            // input wire rd_clk
         .din    ({rx_k[0], rx_data[7:0], rx_k[1], rx_data[15:8]}),                  // input wire [17 : 0] din
         .wr_en  (1'b1),    // write everything
-        .rd_en  (!dfifo_empty),  // read whenever there's data
+        .rd_en  (1'b1),    //(!dfifo_empty),  // read whenever there's data
         .dout   ({rx_k0, rx_byte0}),                // output wire [8 : 0] dout
         .full   (),                // output wire full
         .empty  (dfifo_empty),              // output wire empty
