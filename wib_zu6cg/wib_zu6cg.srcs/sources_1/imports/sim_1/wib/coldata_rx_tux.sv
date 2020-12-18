@@ -25,7 +25,9 @@ module coldata_rx_tux
     output [7 : 0] rx_cdr_stable_out   , 
     output [15 :0] gtpowergood_out,     
     input    [3:0] rx_prbs_sel,
-    output  [15:0] rxprbserr_out
+    output  [15:0] rxprbserr_out,
+    output [15:0] rxclk_unroll 
+
 );
 
     // these don't have to be connected to top level
@@ -45,13 +47,17 @@ module coldata_rx_tux
 
     wire [255:0] data_rx_out; // RX data combined into one word
     wire  [3 : 0] gtrefclk00_in;
+    wire [15:0] rxoutclk_out; // recovered clocks
+    wire [15:0] rxoutclk_mapped; // recovered clocks mapped to proper channels
+    wire [7:0] rxclk; // buffered recovered clocks
     
     // mapping of the rx channels to FEMB channels
     integer rx_map[0:15] = '{4,5,6,7,8,9,10,11,12,13,14,15,0,1,2,3};
+    integer clk_map[0:7] = '{2,  3,  4,   5,    6,    7,   0,  1};
     
     genvar gi;
     generate
-        // split the giant data word into array for convenience
+        // split the giant data word into array for convenience and map to proper outputs
         for (gi = 0; gi < 16; gi++)
         begin
             assign rx_data     [gi] = data_rx_out[rx_map[gi]*16 +: 16];
@@ -59,6 +65,11 @@ module coldata_rx_tux
             assign rx_disp     [gi] = rxctrl1_out[rx_map[gi]*16 +: 2];
             assign rx_comma    [gi] = rxctrl2_out[rx_map[gi]*8 +: 2];
             assign rx_notvalid [gi] = rxctrl3_out[rx_map[gi]*8 +: 2];
+        end
+        // mapping clocks same way as data
+        for (gi = 0; gi < 8; gi++)
+        begin
+            assign rx_usrclk2_out[gi] = rxclk [clk_map[gi]];
         end
         
         // refclk buffers
@@ -82,9 +93,6 @@ module coldata_rx_tux
             
     endgenerate
 
-    wire [15:0] rxoutclk_out; // recovered clocks
-    wire [7:0] rxclk; // buffered recovered clocks
-    assign rx_usrclk2_out = rxclk;
     
     // take recovered clock from each COLDATA chip separately, 
     // since each COLDATA runs on its own oscillator
@@ -106,7 +114,7 @@ module coldata_rx_tux
     endgenerate 
     
     // use one common RX clock for each COLDATA chip
-    wire [15:0] rxclk_unroll = 
+    assign rxclk_unroll = 
     {
         {2{rxclk[7]}},
         {2{rxclk[6]}},
