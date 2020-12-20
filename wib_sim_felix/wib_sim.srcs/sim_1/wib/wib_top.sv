@@ -214,7 +214,7 @@ module wib_top
         .iic_rtl_0_sda_o (iic_rtl_0_sda_o),
         .iic_rtl_0_sda_t (iic_rtl_0_sda_t),
 
-        .daq_clk       (daq_clk      ),
+        .daq_clk       (clk_240_felix),
         .daq_spy_full  (daq_spy_full ),
         .daq_spy_reset (daq_spy_reset),
         .daq_stream    (daq_stream   ),
@@ -234,6 +234,7 @@ module wib_top
     wire [1:0]  crc_err [15:0];
     wire rxclk2x;
     (* mark_debug *) wire [15:0] rxprbserr_out;
+    //wire clk_240_felix;
     
     // config and status registers mapping
 // macros for configuration and status bits
@@ -317,7 +318,7 @@ module wib_top
         .daq_stream   (daq_stream  ), // data to felix
         .daq_stream_k (daq_stream_k), // K symbol flags to felix
         .daq_data_type(daq_data_type), // data type flags for felix
-        .daq_clk      (daq_clk),
+        .daq_clk      (clk_240_felix),
         .ts_tstamp    (ts_tstamp),
         .reset        (fb_reset)
     );
@@ -330,6 +331,7 @@ module wib_top
         .gtrefclkn_in      (gtrefclk_b128_n_in),
         .gth_txp_out       (gth_b128_tx0_p_out),
         .gth_txn_out       (gth_b128_tx0_n_out),
+        .clk_240_felix     (clk_240_felix),
         .felix_data_in     (daq_stream[0]),
         .felix_data_type_in(daq_data_type[0])
     );
@@ -445,7 +447,7 @@ module wib_top
 
     ila_1 ila_daq 
     (
-        .clk    (daq_clk), // input wire clk
+        .clk    (clk_240_felix), // input wire clk
         .probe0 (daq_stream[0]), // input wire [31:0]  probe0
         .probe1 (daq_stream[1]), // input wire [31:0]  probe1
         .probe2 (daq_stream_k[0]), // input wire [3:0]  probe2
