@@ -817,8 +817,6 @@ end
         .gtrefclk_b128_n_in (gtrefclk_b128_n_in),
         .gth_b128_tx0_p_out (),   // X0Y4
         .gth_b128_tx0_n_out (),
-        .gth_b128_tx1_p_out (),   // X0Y5
-        .gth_b128_tx1_n_out (),
         
         //.daq_clk        (daq_clk),    
 

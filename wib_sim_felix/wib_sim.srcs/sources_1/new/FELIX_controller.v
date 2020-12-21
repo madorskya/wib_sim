@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
 module FELIX_controller(
-    input          clk,          // 62.5 clk from endpoint, generates 240 thru GTH
+    input          clk,          // 62.5 clk from endpoint
     input          rst,
-    input          gtrefclkp_in, // reference clocks, 125M
+    input          gtrefclkp_in, // reference clocks, 125M, generates 240 thru GTH
     input          gtrefclkn_in,
     output [1 : 0] gth_txp_out,
     output [1 : 0] gth_txn_out,
@@ -29,8 +29,8 @@ module FELIX_controller(
         .busy(1'b0),
         .fifo_rclk(rclk_to_fifo),
         .fifo_re(read_en),
-        .fifo_dout(felix_data_in),
-        .fifo_dtype(felix_data_type_in),
+        .fifo_dout(data_from_fifo[31:0]),
+        .fifo_dtype(data_from_fifo[33:32]),
         .fifo_empty(empty_from_fifo),
         
         .dout(felix_data_to_gth),
@@ -68,7 +68,7 @@ module FELIX_controller(
         .gtwiz_reset_tx_done_out            (),    
         .gtwiz_reset_rx_datapath_in         (rst),
         .gtwiz_reset_rx_pll_and_datapath_in (rst),                                        
-        .gtwiz_userdata_tx_in               ({30'h00000000, data_from_fifo}),                                                        
+        .gtwiz_userdata_tx_in               ({32'h00000000, felix_data_to_gth}),                                                        
         .gtrefclk01_in                      (gtrefclk01_in),                                            
         .qpll1outclk_out                    (),                                        
         .qpll1outrefclk_out                 (),                                                                  
