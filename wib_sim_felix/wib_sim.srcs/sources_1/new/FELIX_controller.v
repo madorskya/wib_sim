@@ -5,15 +5,15 @@ module FELIX_controller(
     input          rst,
     input          gtrefclkp_in, // reference clocks, 125M
     input          gtrefclkn_in,
-    output         gth_txp_out,
-    output         gth_txn_out,
+    output [1 : 0] gth_txp_out,
+    output [1 : 0] gth_txn_out,
     output         clk_240_felix,// clk from GTH, out to Frame Builder
     input [31 : 0] felix_data_in,
     input  [1 : 0] felix_data_type_in   
 );
 
     wire clk240;
-    wire gtrefclk00_in;
+    wire gtrefclk01_in;
     wire [31 : 0] felix_data_to_gth;
     wire rclk_to_fifo;
     wire read_en;
@@ -43,12 +43,12 @@ module FELIX_controller(
         .REFCLK_HROW_CK_SEL (2'b00),
         .REFCLK_ICNTL_RX    (2'b00)
     ) 
-    IBUFDS_GTE4_MGTREFCLK0_X0Y3_INST 
+    IBUFDS_GTE4_MGTREFCLK0_X0Y4_INST 
     (
         .I     (gtrefclkp_in),
         .IB    (gtrefclkn_in),
         .CEB   (1'b0),
-        .O     (gtrefclk00_in),
+        .O     (gtrefclk01_in),
         .ODIV2 ()
     );
 
@@ -69,7 +69,7 @@ module FELIX_controller(
         .gtwiz_reset_rx_datapath_in         (rst),
         .gtwiz_reset_rx_pll_and_datapath_in (rst),                                        
         .gtwiz_userdata_tx_in               ({30'h00000000, data_from_fifo}),                                                        
-        .gtrefclk01_in                      (gtrefclk00_in),                                            
+        .gtrefclk01_in                      (gtrefclk01_in),                                            
         .qpll1outclk_out                    (),                                        
         .qpll1outrefclk_out                 (),                                                                  
         .tx8b10ben_in                       (16'hffff),                                              

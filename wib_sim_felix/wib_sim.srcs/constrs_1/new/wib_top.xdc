@@ -42,8 +42,8 @@ set_property LOC L8  [get_ports gtrefclk00p_in[1]]
 set_property LOC G8  [get_ports gtrefclk00p_in[2]]
 set_property LOC C8  [get_ports gtrefclk00p_in[3]]
 set_property LOC R27 [get_ports gtrefclk_b128_p_in] #FELIX refclk on bank 128, 125MHz osc
-set_property LOC T29 [get_ports gth_b128_tx0_p_out] # X0Y4
-set_property LOC R31 [get_ports gth_b128_tx1_p_out] # X0Y5
+set_property LOC T29 [get_ports gth_b128_tx0_p_out[0]] # X0Y4
+set_property LOC R31 [get_ports gth_b128_tx0_p_out[1]] # X0Y5
 
 
 #set_property -dict {LOC L12 IOSTANDARD LVDS} [get_ports adn2814_data_p] 

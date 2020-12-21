@@ -46,11 +46,8 @@ module wib_top
     
     input gtrefclk_b128_p_in,   // FELIX refclk on bank 128, 125MHz osc
     input gtrefclk_b128_n_in,
-    output gth_b128_tx0_p_out,   // X0Y4
-    output gth_b128_tx0_n_out,
-    output gth_b128_tx1_p_out,   // X0Y5
-    output gth_b128_tx1_n_out,
-   
+    output [1 : 0] gth_b128_tx0_p_out,   // X0Y4, 5
+    output [1 : 0] gth_b128_tx0_n_out,
     
     // I2C busses for onboard devices
     inout si5344_scl, 
