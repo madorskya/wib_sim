@@ -64,7 +64,8 @@ module bd_tux
     input  cmd_code_reset,
     input  cmd_code_adc_reset,
     
-    input fake_time_stamp_en // enable fake time stamp
+    input fake_time_stamp_en, // enable fake time stamp
+    input [63:0] fake_time_stamp_init
 );
     
     wire clk_40 = 1'b0; // unused, FEMBs generate their own 40M clocks for each COLDATA
@@ -163,8 +164,8 @@ module bd_tux
         .cmd_code_reset     (cmd_code_reset    ),
         .cmd_code_adc_reset (cmd_code_adc_reset),
         
-        .fake_time_stamp_en (fake_time_stamp_en)
-        
+        .fake_time_stamp_en (fake_time_stamp_en),
+        .fake_time_stamp_init (fake_time_stamp_init)
     );
 
 endmodule

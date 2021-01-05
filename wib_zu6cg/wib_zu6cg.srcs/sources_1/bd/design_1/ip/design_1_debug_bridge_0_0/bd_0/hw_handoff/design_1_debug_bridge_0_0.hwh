@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Dec 14 22:45:58 2020" VIVADOVERSION="2020.1.1_AR73018">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Dec 22 20:29:13 2020" VIVADOVERSION="2020.1.1_AR73018">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="bd_c443" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -12,6 +12,66 @@
     <PORT DIR="I" NAME="s_axi_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_s_axi_aresetn">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axi_jtag" PORT="s_axi_aresetn"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_bscanid_en" SIGIS="undef" SIGNAME="bs_switch_1_bscanid_en_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="bscanid_en_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_capture" SIGIS="undef" SIGNAME="bs_switch_1_capture_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="capture_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="m0_bscan_drck" SIGIS="clk" SIGNAME="bs_switch_1_drck_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="drck_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="bs_switch_1_reset_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="reset_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_runtest" SIGIS="undef" SIGNAME="bs_switch_1_runtest_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="runtest_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_sel" SIGIS="undef" SIGNAME="bs_switch_1_sel_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="sel_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_shift" SIGIS="undef" SIGNAME="bs_switch_1_shift_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="shift_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="m0_bscan_tck" SIGIS="clk" SIGNAME="bs_switch_1_tck_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="tck_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_tdi" SIGIS="undef" SIGNAME="bs_switch_1_tdi_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="tdi_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="m0_bscan_tdo" SIGIS="undef" SIGNAME="bs_switch_1_tdo_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="tdo_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m0_bscan_tms" SIGIS="undef" SIGNAME="bs_switch_1_tms_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="tms_0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="m0_bscan_update" SIGIS="clk" SIGNAME="bs_switch_1_update_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="bs_switch_1" PORT="update_0"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="4" NAME="S_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_jtag_s_axi_araddr">
@@ -107,66 +167,6 @@
     <PORT DIR="I" NAME="S_AXI_wvalid" SIGIS="undef" SIGNAME="axi_jtag_s_axi_wvalid">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axi_jtag" PORT="s_axi_wvalid"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_bscanid_en" SIGIS="undef" SIGNAME="bs_switch_1_bscanid_en_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="bscanid_en_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_capture" SIGIS="undef" SIGNAME="bs_switch_1_capture_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="capture_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="m0_bscan_drck" SIGIS="clk" SIGNAME="bs_switch_1_drck_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="drck_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="bs_switch_1_reset_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="reset_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_runtest" SIGIS="undef" SIGNAME="bs_switch_1_runtest_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="runtest_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_sel" SIGIS="undef" SIGNAME="bs_switch_1_sel_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="sel_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_shift" SIGIS="undef" SIGNAME="bs_switch_1_shift_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="shift_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="m0_bscan_tck" SIGIS="clk" SIGNAME="bs_switch_1_tck_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="tck_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_tdi" SIGIS="undef" SIGNAME="bs_switch_1_tdi_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="tdi_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="m0_bscan_tdo" SIGIS="undef" SIGNAME="bs_switch_1_tdo_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="tdo_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="m0_bscan_tms" SIGIS="undef" SIGNAME="bs_switch_1_tms_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="tms_0"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="m0_bscan_update" SIGIS="clk" SIGNAME="bs_switch_1_update_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="bs_switch_1" PORT="update_0"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>

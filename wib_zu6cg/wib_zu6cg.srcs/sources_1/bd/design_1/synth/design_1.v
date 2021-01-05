@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Mon Dec 14 22:45:55 2020
+//Date        : Tue Dec 22 20:29:10 2020
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1765,6 +1765,7 @@ module design_1
     daq_stream_k0,
     daq_stream_k1,
     fake_time_stamp_en,
+    fake_time_stamp_init,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     iic_rtl_0_scl_i,
@@ -1849,6 +1850,7 @@ module design_1
   input [3:0]daq_stream_k0;
   input [3:0]daq_stream_k1;
   input fake_time_stamp_en;
+  input [63:0]fake_time_stamp_init;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SCL_I" *) input iic_rtl_0_scl_i;
@@ -2080,6 +2082,7 @@ module design_1
   wire [3:0]daq_stream_k0_0_1;
   wire [3:0]daq_stream_k1_0_1;
   wire fake_time_stamp_en_0_1;
+  wire [63:0]fake_time_stamp_init_0_1;
   wire pdts_endpoint_0_clk;
   wire [31:0]pdts_endpoint_0_evtctr;
   wire pdts_endpoint_0_rdy;
@@ -2374,6 +2377,7 @@ module design_1
   assign daq_stream_k0_0_1 = daq_stream_k0[3:0];
   assign daq_stream_k1_0_1 = daq_stream_k1[3:0];
   assign fake_time_stamp_en_0_1 = fake_time_stamp_en;
+  assign fake_time_stamp_init_0_1 = fake_time_stamp_init[63:0];
   assign fastcommand_out_n_0 = coldata_fast_cmd_0_fastcommand_out_n;
   assign fastcommand_out_p_0 = coldata_fast_cmd_0_fastcommand_out_p;
   assign iic_rtl_0_scl_o = axi_iic_0_IIC_SCL_O;
@@ -3262,6 +3266,7 @@ module design_1
         .cmd_code_reset_0(cmd_code_reset_0_1),
         .cmd_code_sync_0(cmd_code_sync_0_1),
         .fake_time_stamp_en_0(fake_time_stamp_en_0_1),
+        .fake_time_stamp_init_0(fake_time_stamp_init_0_1),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .stat_0(timing_module_stat_0),
         .ts_cdr_lol(cdr_lol_0_1),
@@ -13653,6 +13658,7 @@ module timing_module_imp_2RES6C
     cmd_code_reset_0,
     cmd_code_sync_0,
     fake_time_stamp_en_0,
+    fake_time_stamp_init_0,
     sclk,
     stat_0,
     ts_cdr_lol,
@@ -13683,6 +13689,7 @@ module timing_module_imp_2RES6C
   input [7:0]cmd_code_reset_0;
   input [7:0]cmd_code_sync_0;
   input fake_time_stamp_en_0;
+  input [63:0]fake_time_stamp_init_0;
   input sclk;
   output [3:0]stat_0;
   input ts_cdr_lol;
@@ -13717,6 +13724,7 @@ module timing_module_imp_2RES6C
   wire endpoint_wrapper_0_sync_stb;
   wire [63:0]endpoint_wrapper_0_tstamp;
   wire fake_time_stamp_en_0_1;
+  wire [63:0]fake_time_stamp_init_0_1;
   wire sclk_1;
   wire ts_cdr_lol_1;
   wire ts_cdr_los_1;
@@ -13758,6 +13766,7 @@ module timing_module_imp_2RES6C
   assign cmd_code_reset_0_1 = cmd_code_reset_0[7:0];
   assign cmd_code_sync_0_1 = cmd_code_sync_0[7:0];
   assign fake_time_stamp_en_0_1 = fake_time_stamp_en_0;
+  assign fake_time_stamp_init_0_1 = fake_time_stamp_init_0[63:0];
   assign sclk_1 = sclk;
   assign stat_0[3:0] = ts_reclock_0_stat_out;
   assign ts_cdr_lol_1 = ts_cdr_lol;
@@ -13828,6 +13837,7 @@ module timing_module_imp_2RES6C
         .cmd_code_reset(cmd_code_reset_0_1),
         .cmd_code_sync(cmd_code_sync_0_1),
         .fake_time_stamp_en(fake_time_stamp_en_0_1),
+        .fake_time_stamp_init(fake_time_stamp_init_0_1),
         .fifo_rst(xlslice_2_Dout),
         .fifo_valid(ts_reclock_0_fifo_valid),
         .rdy_in(endpoint_wrapper_0_rdy),
