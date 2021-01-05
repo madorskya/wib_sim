@@ -279,16 +279,16 @@
       }
     },
     "interface_nets": {
-      "bsip_m_bscan": {
-        "interface_ports": [
-          "bsip/m_bscan",
-          "bs_switch_1/s_bscan"
-        ]
-      },
       "bs_switch_1_m0_bscan": {
         "interface_ports": [
           "m0_bscan",
           "bs_switch_1/m0_bscan"
+        ]
+      },
+      "bsip_m_bscan": {
+        "interface_ports": [
+          "bsip/m_bscan",
+          "bs_switch_1/s_bscan"
         ]
       },
       "S_AXI_1": {

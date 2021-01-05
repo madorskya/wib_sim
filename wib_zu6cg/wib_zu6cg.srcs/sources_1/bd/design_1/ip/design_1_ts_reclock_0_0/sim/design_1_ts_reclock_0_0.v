@@ -86,7 +86,8 @@ module design_1_ts_reclock_0_0 (
   cmd_bit_act,
   cmd_bit_reset,
   cmd_bit_adc_reset,
-  fake_time_stamp_en
+  fake_time_stamp_en,
+  fake_time_stamp_init
 );
 
 input wire [3 : 0] stat_in;
@@ -131,6 +132,7 @@ output wire cmd_bit_reset;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST" *)
 output wire cmd_bit_adc_reset;
 input wire fake_time_stamp_en;
+input wire [63 : 0] fake_time_stamp_init;
 
   ts_reclock inst (
     .stat_in(stat_in),
@@ -164,6 +166,7 @@ input wire fake_time_stamp_en;
     .cmd_bit_act(cmd_bit_act),
     .cmd_bit_reset(cmd_bit_reset),
     .cmd_bit_adc_reset(cmd_bit_adc_reset),
-    .fake_time_stamp_en(fake_time_stamp_en)
+    .fake_time_stamp_en(fake_time_stamp_en),
+    .fake_time_stamp_init(fake_time_stamp_init)
   );
 endmodule

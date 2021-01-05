@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Mon Dec 14 22:48:17 2020
+-- Date        : Tue Dec 22 20:31:49 2020
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.vhdl
@@ -7018,13 +7018,14 @@ entity design_1_ts_reclock_0_0_ts_reclock is
     clk50 : in STD_LOGIC;
     clk62p5 : in STD_LOGIC;
     din : in STD_LOGIC_VECTOR ( 75 downto 0 );
+    fake_time_stamp_en : in STD_LOGIC;
     cmd_code_idle : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_edge : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_sync : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_act : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_adc_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    fake_time_stamp_en : in STD_LOGIC
+    fake_time_stamp_init : in STD_LOGIC_VECTOR ( 63 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of design_1_ts_reclock_0_0_ts_reclock : entity is "ts_reclock";
@@ -7058,6 +7059,7 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal cmd_bit_sync_i_4_n_0 : STD_LOGIC;
   signal \^dout\ : STD_LOGIC_VECTOR ( 11 downto 0 );
   signal \^fifo_valid\ : STD_LOGIC;
+  signal fts_en : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal p_0_in : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal ts_valid0 : STD_LOGIC;
   signal ts_valid_i_2_n_0 : STD_LOGIC;
@@ -7125,140 +7127,140 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal tsrf_n_73 : STD_LOGIC;
   signal tsrf_n_74 : STD_LOGIC;
   signal tsrf_n_75 : STD_LOGIC;
-  signal \tstamp_fake[0]_i_2_n_0\ : STD_LOGIC;
-  signal tstamp_fake_reg : STD_LOGIC_VECTOR ( 63 downto 0 );
-  signal \tstamp_fake_reg[0]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[0]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[16]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[24]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[32]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[40]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[48]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[56]_i_1_n_9\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_0\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_1\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_10\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_11\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_12\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_13\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_14\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_15\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_2\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_3\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_4\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_5\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_6\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_7\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_8\ : STD_LOGIC;
-  signal \tstamp_fake_reg[8]_i_1_n_9\ : STD_LOGIC;
+  signal tstamp_fake : STD_LOGIC_VECTOR ( 63 downto 0 );
+  signal tstamp_fake0 : STD_LOGIC_VECTOR ( 63 downto 1 );
+  signal \tstamp_fake0_carry__0_n_0\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_1\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__0_n_7\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_0\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_1\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__1_n_7\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_0\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_1\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__2_n_7\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_0\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_1\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__3_n_7\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_0\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_1\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__4_n_7\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_0\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_1\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__5_n_7\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__6_n_2\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__6_n_3\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__6_n_4\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__6_n_5\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__6_n_6\ : STD_LOGIC;
+  signal \tstamp_fake0_carry__6_n_7\ : STD_LOGIC;
+  signal tstamp_fake0_carry_n_0 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_1 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_2 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_3 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_4 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_5 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_6 : STD_LOGIC;
+  signal tstamp_fake0_carry_n_7 : STD_LOGIC;
+  signal \tstamp_out[0]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[10]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[11]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[12]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[13]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[14]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[15]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[16]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[17]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[18]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[19]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[1]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[20]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[21]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[22]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[23]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[24]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[25]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[26]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[27]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[28]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[29]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[2]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[30]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[31]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[32]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[33]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[34]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[35]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[36]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[37]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[38]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[39]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[3]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[40]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[41]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[42]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[43]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[44]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[45]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[46]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[47]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[48]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[49]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[4]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[50]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[51]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[52]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[53]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[54]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[55]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[56]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[57]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[58]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[59]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[5]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[60]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[61]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[62]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[63]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[6]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[7]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[8]_i_1_n_0\ : STD_LOGIC;
+  signal \tstamp_out[9]_i_1_n_0\ : STD_LOGIC;
   signal NLW_tsrf_empty_UNCONNECTED : STD_LOGIC;
   signal NLW_tsrf_full_UNCONNECTED : STD_LOGIC;
   signal NLW_tsrf_rd_rst_busy_UNCONNECTED : STD_LOGIC;
   signal NLW_tsrf_wr_rst_busy_UNCONNECTED : STD_LOGIC;
-  signal \NLW_tstamp_fake_reg[56]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 to 7 );
+  signal \NLW_tstamp_fake0_carry__6_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 6 );
+  signal \NLW_tstamp_fake0_carry__6_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 to 7 );
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of tsrf : label is "ts_reclock_fifo,fifo_generator_v13_2_5,{}";
   attribute downgradeipidentifiedwarnings : string;
@@ -7266,79 +7268,79 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   attribute x_core_info : string;
   attribute x_core_info of tsrf : label is "fifo_generator_v13_2_5,Vivado 2020.1.1_AR73018";
   attribute ADDER_THRESHOLD : integer;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[0]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[16]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[24]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[32]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[40]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[48]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[56]_i_1\ : label is 16;
-  attribute ADDER_THRESHOLD of \tstamp_fake_reg[8]_i_1\ : label is 16;
+  attribute ADDER_THRESHOLD of tstamp_fake0_carry : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__0\ : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__1\ : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__2\ : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__3\ : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__4\ : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__5\ : label is 35;
+  attribute ADDER_THRESHOLD of \tstamp_fake0_carry__6\ : label is 35;
   attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \tstamp_fake[0]_i_1\ : label is "soft_lutpair15";
   attribute SOFT_HLUTNM of \tstamp_out[0]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \tstamp_out[10]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \tstamp_out[11]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \tstamp_out[12]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \tstamp_out[13]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \tstamp_out[14]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \tstamp_out[15]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \tstamp_out[16]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \tstamp_out[17]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \tstamp_out[18]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \tstamp_out[19]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \tstamp_out[1]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \tstamp_out[20]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \tstamp_out[21]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \tstamp_out[22]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \tstamp_out[23]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \tstamp_out[24]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \tstamp_out[25]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \tstamp_out[26]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \tstamp_out[27]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \tstamp_out[28]_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \tstamp_out[29]_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \tstamp_out[2]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \tstamp_out[30]_i_1\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \tstamp_out[31]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \tstamp_out[10]_i_1\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \tstamp_out[11]_i_1\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \tstamp_out[12]_i_1\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \tstamp_out[13]_i_1\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \tstamp_out[14]_i_1\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \tstamp_out[15]_i_1\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \tstamp_out[16]_i_1\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \tstamp_out[17]_i_1\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \tstamp_out[18]_i_1\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \tstamp_out[19]_i_1\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \tstamp_out[20]_i_1\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \tstamp_out[21]_i_1\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \tstamp_out[22]_i_1\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \tstamp_out[23]_i_1\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \tstamp_out[24]_i_1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \tstamp_out[25]_i_1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \tstamp_out[26]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \tstamp_out[27]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \tstamp_out[28]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \tstamp_out[29]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \tstamp_out[2]_i_1\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \tstamp_out[30]_i_1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \tstamp_out[31]_i_1\ : label is "soft_lutpair32";
   attribute SOFT_HLUTNM of \tstamp_out[32]_i_1\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \tstamp_out[33]_i_1\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \tstamp_out[34]_i_1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \tstamp_out[35]_i_1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \tstamp_out[36]_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \tstamp_out[37]_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \tstamp_out[38]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \tstamp_out[39]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \tstamp_out[3]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \tstamp_out[40]_i_1\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \tstamp_out[41]_i_1\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \tstamp_out[42]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \tstamp_out[43]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \tstamp_out[44]_i_1\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \tstamp_out[45]_i_1\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \tstamp_out[46]_i_1\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \tstamp_out[47]_i_1\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \tstamp_out[48]_i_1\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \tstamp_out[49]_i_1\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \tstamp_out[4]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \tstamp_out[50]_i_1\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \tstamp_out[51]_i_1\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \tstamp_out[52]_i_1\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \tstamp_out[53]_i_1\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \tstamp_out[54]_i_1\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \tstamp_out[55]_i_1\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \tstamp_out[56]_i_1\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \tstamp_out[57]_i_1\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \tstamp_out[58]_i_1\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \tstamp_out[59]_i_1\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \tstamp_out[5]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \tstamp_out[60]_i_1\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \tstamp_out[61]_i_1\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \tstamp_out[62]_i_1\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \tstamp_out[63]_i_1\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \tstamp_out[6]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \tstamp_out[7]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \tstamp_out[8]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \tstamp_out[9]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \tstamp_out[34]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \tstamp_out[35]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \tstamp_out[36]_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \tstamp_out[37]_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \tstamp_out[38]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \tstamp_out[39]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \tstamp_out[3]_i_1\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \tstamp_out[40]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \tstamp_out[41]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \tstamp_out[42]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \tstamp_out[43]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \tstamp_out[44]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \tstamp_out[45]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \tstamp_out[46]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \tstamp_out[47]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \tstamp_out[48]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \tstamp_out[49]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \tstamp_out[4]_i_1\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \tstamp_out[50]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \tstamp_out[51]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \tstamp_out[52]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \tstamp_out[53]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \tstamp_out[54]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \tstamp_out[55]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \tstamp_out[56]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \tstamp_out[57]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \tstamp_out[58]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \tstamp_out[59]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \tstamp_out[5]_i_1\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \tstamp_out[60]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \tstamp_out[61]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \tstamp_out[62]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \tstamp_out[63]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \tstamp_out[6]_i_1\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \tstamp_out[7]_i_1\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \tstamp_out[8]_i_1\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \tstamp_out[9]_i_1\ : label is "soft_lutpair43";
 begin
   dout(11 downto 0) <= \^dout\(11 downto 0);
   fifo_valid <= \^fifo_valid\;
@@ -7681,6 +7683,30 @@ cmd_bit_sync_reg: unisim.vcomponents.FDRE
       Q => cmd_bit_sync,
       R => cmd_bit_idle_i_1_n_0
     );
+\fts_en_reg[0]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk62p5,
+      CE => '1',
+      D => fake_time_stamp_en,
+      Q => fts_en(0),
+      R => '0'
+    );
+\fts_en_reg[1]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk62p5,
+      CE => '1',
+      D => fts_en(0),
+      Q => fts_en(1),
+      R => '0'
+    );
+\fts_en_reg[2]\: unisim.vcomponents.FDRE
+     port map (
+      C => clk62p5,
+      CE => '1',
+      D => fts_en(1),
+      Q => fts_en(2),
+      R => '0'
+    );
 ts_valid_i_1: unisim.vcomponents.LUT6
     generic map(
       INIT => X"0000000000000008"
@@ -7790,13 +7816,838 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
       wr_en => '1',
       wr_rst_busy => NLW_tsrf_wr_rst_busy_UNCONNECTED
     );
-\tstamp_fake[0]_i_2\: unisim.vcomponents.LUT1
+tstamp_fake0_carry: unisim.vcomponents.CARRY8
+     port map (
+      CI => tstamp_fake(0),
+      CI_TOP => '0',
+      CO(7) => tstamp_fake0_carry_n_0,
+      CO(6) => tstamp_fake0_carry_n_1,
+      CO(5) => tstamp_fake0_carry_n_2,
+      CO(4) => tstamp_fake0_carry_n_3,
+      CO(3) => tstamp_fake0_carry_n_4,
+      CO(2) => tstamp_fake0_carry_n_5,
+      CO(1) => tstamp_fake0_carry_n_6,
+      CO(0) => tstamp_fake0_carry_n_7,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(8 downto 1),
+      S(7 downto 0) => tstamp_fake(8 downto 1)
+    );
+\tstamp_fake0_carry__0\: unisim.vcomponents.CARRY8
+     port map (
+      CI => tstamp_fake0_carry_n_0,
+      CI_TOP => '0',
+      CO(7) => \tstamp_fake0_carry__0_n_0\,
+      CO(6) => \tstamp_fake0_carry__0_n_1\,
+      CO(5) => \tstamp_fake0_carry__0_n_2\,
+      CO(4) => \tstamp_fake0_carry__0_n_3\,
+      CO(3) => \tstamp_fake0_carry__0_n_4\,
+      CO(2) => \tstamp_fake0_carry__0_n_5\,
+      CO(1) => \tstamp_fake0_carry__0_n_6\,
+      CO(0) => \tstamp_fake0_carry__0_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(16 downto 9),
+      S(7 downto 0) => tstamp_fake(16 downto 9)
+    );
+\tstamp_fake0_carry__1\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \tstamp_fake0_carry__0_n_0\,
+      CI_TOP => '0',
+      CO(7) => \tstamp_fake0_carry__1_n_0\,
+      CO(6) => \tstamp_fake0_carry__1_n_1\,
+      CO(5) => \tstamp_fake0_carry__1_n_2\,
+      CO(4) => \tstamp_fake0_carry__1_n_3\,
+      CO(3) => \tstamp_fake0_carry__1_n_4\,
+      CO(2) => \tstamp_fake0_carry__1_n_5\,
+      CO(1) => \tstamp_fake0_carry__1_n_6\,
+      CO(0) => \tstamp_fake0_carry__1_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(24 downto 17),
+      S(7 downto 0) => tstamp_fake(24 downto 17)
+    );
+\tstamp_fake0_carry__2\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \tstamp_fake0_carry__1_n_0\,
+      CI_TOP => '0',
+      CO(7) => \tstamp_fake0_carry__2_n_0\,
+      CO(6) => \tstamp_fake0_carry__2_n_1\,
+      CO(5) => \tstamp_fake0_carry__2_n_2\,
+      CO(4) => \tstamp_fake0_carry__2_n_3\,
+      CO(3) => \tstamp_fake0_carry__2_n_4\,
+      CO(2) => \tstamp_fake0_carry__2_n_5\,
+      CO(1) => \tstamp_fake0_carry__2_n_6\,
+      CO(0) => \tstamp_fake0_carry__2_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(32 downto 25),
+      S(7 downto 0) => tstamp_fake(32 downto 25)
+    );
+\tstamp_fake0_carry__3\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \tstamp_fake0_carry__2_n_0\,
+      CI_TOP => '0',
+      CO(7) => \tstamp_fake0_carry__3_n_0\,
+      CO(6) => \tstamp_fake0_carry__3_n_1\,
+      CO(5) => \tstamp_fake0_carry__3_n_2\,
+      CO(4) => \tstamp_fake0_carry__3_n_3\,
+      CO(3) => \tstamp_fake0_carry__3_n_4\,
+      CO(2) => \tstamp_fake0_carry__3_n_5\,
+      CO(1) => \tstamp_fake0_carry__3_n_6\,
+      CO(0) => \tstamp_fake0_carry__3_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(40 downto 33),
+      S(7 downto 0) => tstamp_fake(40 downto 33)
+    );
+\tstamp_fake0_carry__4\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \tstamp_fake0_carry__3_n_0\,
+      CI_TOP => '0',
+      CO(7) => \tstamp_fake0_carry__4_n_0\,
+      CO(6) => \tstamp_fake0_carry__4_n_1\,
+      CO(5) => \tstamp_fake0_carry__4_n_2\,
+      CO(4) => \tstamp_fake0_carry__4_n_3\,
+      CO(3) => \tstamp_fake0_carry__4_n_4\,
+      CO(2) => \tstamp_fake0_carry__4_n_5\,
+      CO(1) => \tstamp_fake0_carry__4_n_6\,
+      CO(0) => \tstamp_fake0_carry__4_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(48 downto 41),
+      S(7 downto 0) => tstamp_fake(48 downto 41)
+    );
+\tstamp_fake0_carry__5\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \tstamp_fake0_carry__4_n_0\,
+      CI_TOP => '0',
+      CO(7) => \tstamp_fake0_carry__5_n_0\,
+      CO(6) => \tstamp_fake0_carry__5_n_1\,
+      CO(5) => \tstamp_fake0_carry__5_n_2\,
+      CO(4) => \tstamp_fake0_carry__5_n_3\,
+      CO(3) => \tstamp_fake0_carry__5_n_4\,
+      CO(2) => \tstamp_fake0_carry__5_n_5\,
+      CO(1) => \tstamp_fake0_carry__5_n_6\,
+      CO(0) => \tstamp_fake0_carry__5_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => tstamp_fake0(56 downto 49),
+      S(7 downto 0) => tstamp_fake(56 downto 49)
+    );
+\tstamp_fake0_carry__6\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \tstamp_fake0_carry__5_n_0\,
+      CI_TOP => '0',
+      CO(7 downto 6) => \NLW_tstamp_fake0_carry__6_CO_UNCONNECTED\(7 downto 6),
+      CO(5) => \tstamp_fake0_carry__6_n_2\,
+      CO(4) => \tstamp_fake0_carry__6_n_3\,
+      CO(3) => \tstamp_fake0_carry__6_n_4\,
+      CO(2) => \tstamp_fake0_carry__6_n_5\,
+      CO(1) => \tstamp_fake0_carry__6_n_6\,
+      CO(0) => \tstamp_fake0_carry__6_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7) => \NLW_tstamp_fake0_carry__6_O_UNCONNECTED\(7),
+      O(6 downto 0) => tstamp_fake0(63 downto 57),
+      S(7) => '0',
+      S(6 downto 0) => tstamp_fake(63 downto 57)
+    );
+\tstamp_fake[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"1"
+      INIT => X"40EF"
     )
         port map (
-      I0 => tstamp_fake_reg(0),
-      O => \tstamp_fake[0]_i_2_n_0\
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(0),
+      I2 => fts_en(1),
+      I3 => tstamp_fake(0),
+      O => p_0_in(0)
+    );
+\tstamp_fake[10]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(10),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(10),
+      O => p_0_in(10)
+    );
+\tstamp_fake[11]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(11),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(11),
+      O => p_0_in(11)
+    );
+\tstamp_fake[12]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(12),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(12),
+      O => p_0_in(12)
+    );
+\tstamp_fake[13]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(13),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(13),
+      O => p_0_in(13)
+    );
+\tstamp_fake[14]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(14),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(14),
+      O => p_0_in(14)
+    );
+\tstamp_fake[15]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(15),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(15),
+      O => p_0_in(15)
+    );
+\tstamp_fake[16]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(16),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(16),
+      O => p_0_in(16)
+    );
+\tstamp_fake[17]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(17),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(17),
+      O => p_0_in(17)
+    );
+\tstamp_fake[18]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(18),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(18),
+      O => p_0_in(18)
+    );
+\tstamp_fake[19]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(19),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(19),
+      O => p_0_in(19)
+    );
+\tstamp_fake[1]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(1),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(1),
+      O => p_0_in(1)
+    );
+\tstamp_fake[20]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(20),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(20),
+      O => p_0_in(20)
+    );
+\tstamp_fake[21]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(21),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(21),
+      O => p_0_in(21)
+    );
+\tstamp_fake[22]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(22),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(22),
+      O => p_0_in(22)
+    );
+\tstamp_fake[23]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(23),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(23),
+      O => p_0_in(23)
+    );
+\tstamp_fake[24]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(24),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(24),
+      O => p_0_in(24)
+    );
+\tstamp_fake[25]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(25),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(25),
+      O => p_0_in(25)
+    );
+\tstamp_fake[26]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(26),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(26),
+      O => p_0_in(26)
+    );
+\tstamp_fake[27]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(27),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(27),
+      O => p_0_in(27)
+    );
+\tstamp_fake[28]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(28),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(28),
+      O => p_0_in(28)
+    );
+\tstamp_fake[29]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(29),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(29),
+      O => p_0_in(29)
+    );
+\tstamp_fake[2]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(2),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(2),
+      O => p_0_in(2)
+    );
+\tstamp_fake[30]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(30),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(30),
+      O => p_0_in(30)
+    );
+\tstamp_fake[31]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(31),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(31),
+      O => p_0_in(31)
+    );
+\tstamp_fake[32]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(32),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(32),
+      O => p_0_in(32)
+    );
+\tstamp_fake[33]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(33),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(33),
+      O => p_0_in(33)
+    );
+\tstamp_fake[34]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(34),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(34),
+      O => p_0_in(34)
+    );
+\tstamp_fake[35]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(35),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(35),
+      O => p_0_in(35)
+    );
+\tstamp_fake[36]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(36),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(36),
+      O => p_0_in(36)
+    );
+\tstamp_fake[37]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(37),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(37),
+      O => p_0_in(37)
+    );
+\tstamp_fake[38]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(38),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(38),
+      O => p_0_in(38)
+    );
+\tstamp_fake[39]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(39),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(39),
+      O => p_0_in(39)
+    );
+\tstamp_fake[3]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(3),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(3),
+      O => p_0_in(3)
+    );
+\tstamp_fake[40]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(40),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(40),
+      O => p_0_in(40)
+    );
+\tstamp_fake[41]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(41),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(41),
+      O => p_0_in(41)
+    );
+\tstamp_fake[42]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(42),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(42),
+      O => p_0_in(42)
+    );
+\tstamp_fake[43]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(43),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(43),
+      O => p_0_in(43)
+    );
+\tstamp_fake[44]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(44),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(44),
+      O => p_0_in(44)
+    );
+\tstamp_fake[45]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(45),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(45),
+      O => p_0_in(45)
+    );
+\tstamp_fake[46]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(46),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(46),
+      O => p_0_in(46)
+    );
+\tstamp_fake[47]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(47),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(47),
+      O => p_0_in(47)
+    );
+\tstamp_fake[48]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(48),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(48),
+      O => p_0_in(48)
+    );
+\tstamp_fake[49]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(49),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(49),
+      O => p_0_in(49)
+    );
+\tstamp_fake[4]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(4),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(4),
+      O => p_0_in(4)
+    );
+\tstamp_fake[50]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(50),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(50),
+      O => p_0_in(50)
+    );
+\tstamp_fake[51]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(51),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(51),
+      O => p_0_in(51)
+    );
+\tstamp_fake[52]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(52),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(52),
+      O => p_0_in(52)
+    );
+\tstamp_fake[53]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(53),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(53),
+      O => p_0_in(53)
+    );
+\tstamp_fake[54]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(54),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(54),
+      O => p_0_in(54)
+    );
+\tstamp_fake[55]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(55),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(55),
+      O => p_0_in(55)
+    );
+\tstamp_fake[56]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(56),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(56),
+      O => p_0_in(56)
+    );
+\tstamp_fake[57]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(57),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(57),
+      O => p_0_in(57)
+    );
+\tstamp_fake[58]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(58),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(58),
+      O => p_0_in(58)
+    );
+\tstamp_fake[59]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(59),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(59),
+      O => p_0_in(59)
+    );
+\tstamp_fake[5]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(5),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(5),
+      O => p_0_in(5)
+    );
+\tstamp_fake[60]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(60),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(60),
+      O => p_0_in(60)
+    );
+\tstamp_fake[61]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(61),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(61),
+      O => p_0_in(61)
+    );
+\tstamp_fake[62]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(62),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(62),
+      O => p_0_in(62)
+    );
+\tstamp_fake[63]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(63),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(63),
+      O => p_0_in(63)
+    );
+\tstamp_fake[6]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(6),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(6),
+      O => p_0_in(6)
+    );
+\tstamp_fake[7]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(7),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(7),
+      O => p_0_in(7)
+    );
+\tstamp_fake[8]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(8),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(8),
+      O => p_0_in(8)
+    );
+\tstamp_fake[9]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EF40"
+    )
+        port map (
+      I0 => fts_en(2),
+      I1 => fake_time_stamp_init(9),
+      I2 => fts_en(1),
+      I3 => tstamp_fake0(9),
+      O => p_0_in(9)
     );
 \tstamp_fake_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -7805,33 +8656,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_15\,
-      Q => tstamp_fake_reg(0),
+      D => p_0_in(0),
+      Q => tstamp_fake(0),
       R => '0'
-    );
-\tstamp_fake_reg[0]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => '0',
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[0]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[0]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[0]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[0]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[0]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[0]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[0]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[0]_i_1_n_7\,
-      DI(7 downto 0) => B"00000001",
-      O(7) => \tstamp_fake_reg[0]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[0]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[0]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[0]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[0]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[0]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[0]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[0]_i_1_n_15\,
-      S(7 downto 1) => tstamp_fake_reg(7 downto 1),
-      S(0) => \tstamp_fake[0]_i_2_n_0\
     );
 \tstamp_fake_reg[10]\: unisim.vcomponents.FDRE
     generic map(
@@ -7840,8 +8667,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_13\,
-      Q => tstamp_fake_reg(10),
+      D => p_0_in(10),
+      Q => tstamp_fake(10),
       R => '0'
     );
 \tstamp_fake_reg[11]\: unisim.vcomponents.FDRE
@@ -7851,8 +8678,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_12\,
-      Q => tstamp_fake_reg(11),
+      D => p_0_in(11),
+      Q => tstamp_fake(11),
       R => '0'
     );
 \tstamp_fake_reg[12]\: unisim.vcomponents.FDRE
@@ -7862,8 +8689,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_11\,
-      Q => tstamp_fake_reg(12),
+      D => p_0_in(12),
+      Q => tstamp_fake(12),
       R => '0'
     );
 \tstamp_fake_reg[13]\: unisim.vcomponents.FDRE
@@ -7873,8 +8700,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_10\,
-      Q => tstamp_fake_reg(13),
+      D => p_0_in(13),
+      Q => tstamp_fake(13),
       R => '0'
     );
 \tstamp_fake_reg[14]\: unisim.vcomponents.FDRE
@@ -7884,8 +8711,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_9\,
-      Q => tstamp_fake_reg(14),
+      D => p_0_in(14),
+      Q => tstamp_fake(14),
       R => '0'
     );
 \tstamp_fake_reg[15]\: unisim.vcomponents.FDRE
@@ -7895,8 +8722,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_8\,
-      Q => tstamp_fake_reg(15),
+      D => p_0_in(15),
+      Q => tstamp_fake(15),
       R => '0'
     );
 \tstamp_fake_reg[16]\: unisim.vcomponents.FDRE
@@ -7906,32 +8733,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_15\,
-      Q => tstamp_fake_reg(16),
+      D => p_0_in(16),
+      Q => tstamp_fake(16),
       R => '0'
-    );
-\tstamp_fake_reg[16]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[8]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[16]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[16]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[16]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[16]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[16]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[16]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[16]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[16]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[16]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[16]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[16]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[16]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[16]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[16]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[16]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[16]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(23 downto 16)
     );
 \tstamp_fake_reg[17]\: unisim.vcomponents.FDRE
     generic map(
@@ -7940,8 +8744,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_14\,
-      Q => tstamp_fake_reg(17),
+      D => p_0_in(17),
+      Q => tstamp_fake(17),
       R => '0'
     );
 \tstamp_fake_reg[18]\: unisim.vcomponents.FDRE
@@ -7951,8 +8755,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_13\,
-      Q => tstamp_fake_reg(18),
+      D => p_0_in(18),
+      Q => tstamp_fake(18),
       R => '0'
     );
 \tstamp_fake_reg[19]\: unisim.vcomponents.FDRE
@@ -7962,8 +8766,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_12\,
-      Q => tstamp_fake_reg(19),
+      D => p_0_in(19),
+      Q => tstamp_fake(19),
       R => '0'
     );
 \tstamp_fake_reg[1]\: unisim.vcomponents.FDRE
@@ -7973,8 +8777,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_14\,
-      Q => tstamp_fake_reg(1),
+      D => p_0_in(1),
+      Q => tstamp_fake(1),
       R => '0'
     );
 \tstamp_fake_reg[20]\: unisim.vcomponents.FDRE
@@ -7984,8 +8788,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_11\,
-      Q => tstamp_fake_reg(20),
+      D => p_0_in(20),
+      Q => tstamp_fake(20),
       R => '0'
     );
 \tstamp_fake_reg[21]\: unisim.vcomponents.FDRE
@@ -7995,8 +8799,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_10\,
-      Q => tstamp_fake_reg(21),
+      D => p_0_in(21),
+      Q => tstamp_fake(21),
       R => '0'
     );
 \tstamp_fake_reg[22]\: unisim.vcomponents.FDRE
@@ -8006,8 +8810,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_9\,
-      Q => tstamp_fake_reg(22),
+      D => p_0_in(22),
+      Q => tstamp_fake(22),
       R => '0'
     );
 \tstamp_fake_reg[23]\: unisim.vcomponents.FDRE
@@ -8017,8 +8821,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[16]_i_1_n_8\,
-      Q => tstamp_fake_reg(23),
+      D => p_0_in(23),
+      Q => tstamp_fake(23),
       R => '0'
     );
 \tstamp_fake_reg[24]\: unisim.vcomponents.FDRE
@@ -8028,32 +8832,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_15\,
-      Q => tstamp_fake_reg(24),
+      D => p_0_in(24),
+      Q => tstamp_fake(24),
       R => '0'
-    );
-\tstamp_fake_reg[24]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[16]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[24]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[24]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[24]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[24]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[24]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[24]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[24]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[24]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[24]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[24]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[24]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[24]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[24]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[24]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[24]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[24]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(31 downto 24)
     );
 \tstamp_fake_reg[25]\: unisim.vcomponents.FDRE
     generic map(
@@ -8062,8 +8843,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_14\,
-      Q => tstamp_fake_reg(25),
+      D => p_0_in(25),
+      Q => tstamp_fake(25),
       R => '0'
     );
 \tstamp_fake_reg[26]\: unisim.vcomponents.FDRE
@@ -8073,8 +8854,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_13\,
-      Q => tstamp_fake_reg(26),
+      D => p_0_in(26),
+      Q => tstamp_fake(26),
       R => '0'
     );
 \tstamp_fake_reg[27]\: unisim.vcomponents.FDRE
@@ -8084,8 +8865,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_12\,
-      Q => tstamp_fake_reg(27),
+      D => p_0_in(27),
+      Q => tstamp_fake(27),
       R => '0'
     );
 \tstamp_fake_reg[28]\: unisim.vcomponents.FDRE
@@ -8095,8 +8876,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_11\,
-      Q => tstamp_fake_reg(28),
+      D => p_0_in(28),
+      Q => tstamp_fake(28),
       R => '0'
     );
 \tstamp_fake_reg[29]\: unisim.vcomponents.FDRE
@@ -8106,8 +8887,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_10\,
-      Q => tstamp_fake_reg(29),
+      D => p_0_in(29),
+      Q => tstamp_fake(29),
       R => '0'
     );
 \tstamp_fake_reg[2]\: unisim.vcomponents.FDRE
@@ -8117,8 +8898,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_13\,
-      Q => tstamp_fake_reg(2),
+      D => p_0_in(2),
+      Q => tstamp_fake(2),
       R => '0'
     );
 \tstamp_fake_reg[30]\: unisim.vcomponents.FDRE
@@ -8128,8 +8909,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_9\,
-      Q => tstamp_fake_reg(30),
+      D => p_0_in(30),
+      Q => tstamp_fake(30),
       R => '0'
     );
 \tstamp_fake_reg[31]\: unisim.vcomponents.FDRE
@@ -8139,8 +8920,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[24]_i_1_n_8\,
-      Q => tstamp_fake_reg(31),
+      D => p_0_in(31),
+      Q => tstamp_fake(31),
       R => '0'
     );
 \tstamp_fake_reg[32]\: unisim.vcomponents.FDRE
@@ -8150,32 +8931,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_15\,
-      Q => tstamp_fake_reg(32),
+      D => p_0_in(32),
+      Q => tstamp_fake(32),
       R => '0'
-    );
-\tstamp_fake_reg[32]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[24]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[32]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[32]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[32]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[32]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[32]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[32]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[32]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[32]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[32]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[32]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[32]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[32]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[32]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[32]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[32]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[32]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(39 downto 32)
     );
 \tstamp_fake_reg[33]\: unisim.vcomponents.FDRE
     generic map(
@@ -8184,8 +8942,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_14\,
-      Q => tstamp_fake_reg(33),
+      D => p_0_in(33),
+      Q => tstamp_fake(33),
       R => '0'
     );
 \tstamp_fake_reg[34]\: unisim.vcomponents.FDRE
@@ -8195,8 +8953,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_13\,
-      Q => tstamp_fake_reg(34),
+      D => p_0_in(34),
+      Q => tstamp_fake(34),
       R => '0'
     );
 \tstamp_fake_reg[35]\: unisim.vcomponents.FDRE
@@ -8206,8 +8964,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_12\,
-      Q => tstamp_fake_reg(35),
+      D => p_0_in(35),
+      Q => tstamp_fake(35),
       R => '0'
     );
 \tstamp_fake_reg[36]\: unisim.vcomponents.FDRE
@@ -8217,8 +8975,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_11\,
-      Q => tstamp_fake_reg(36),
+      D => p_0_in(36),
+      Q => tstamp_fake(36),
       R => '0'
     );
 \tstamp_fake_reg[37]\: unisim.vcomponents.FDRE
@@ -8228,8 +8986,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_10\,
-      Q => tstamp_fake_reg(37),
+      D => p_0_in(37),
+      Q => tstamp_fake(37),
       R => '0'
     );
 \tstamp_fake_reg[38]\: unisim.vcomponents.FDRE
@@ -8239,8 +8997,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_9\,
-      Q => tstamp_fake_reg(38),
+      D => p_0_in(38),
+      Q => tstamp_fake(38),
       R => '0'
     );
 \tstamp_fake_reg[39]\: unisim.vcomponents.FDRE
@@ -8250,8 +9008,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[32]_i_1_n_8\,
-      Q => tstamp_fake_reg(39),
+      D => p_0_in(39),
+      Q => tstamp_fake(39),
       R => '0'
     );
 \tstamp_fake_reg[3]\: unisim.vcomponents.FDRE
@@ -8261,8 +9019,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_12\,
-      Q => tstamp_fake_reg(3),
+      D => p_0_in(3),
+      Q => tstamp_fake(3),
       R => '0'
     );
 \tstamp_fake_reg[40]\: unisim.vcomponents.FDRE
@@ -8272,32 +9030,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_15\,
-      Q => tstamp_fake_reg(40),
+      D => p_0_in(40),
+      Q => tstamp_fake(40),
       R => '0'
-    );
-\tstamp_fake_reg[40]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[32]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[40]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[40]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[40]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[40]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[40]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[40]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[40]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[40]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[40]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[40]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[40]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[40]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[40]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[40]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[40]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[40]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(47 downto 40)
     );
 \tstamp_fake_reg[41]\: unisim.vcomponents.FDRE
     generic map(
@@ -8306,8 +9041,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_14\,
-      Q => tstamp_fake_reg(41),
+      D => p_0_in(41),
+      Q => tstamp_fake(41),
       R => '0'
     );
 \tstamp_fake_reg[42]\: unisim.vcomponents.FDRE
@@ -8317,8 +9052,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_13\,
-      Q => tstamp_fake_reg(42),
+      D => p_0_in(42),
+      Q => tstamp_fake(42),
       R => '0'
     );
 \tstamp_fake_reg[43]\: unisim.vcomponents.FDRE
@@ -8328,8 +9063,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_12\,
-      Q => tstamp_fake_reg(43),
+      D => p_0_in(43),
+      Q => tstamp_fake(43),
       R => '0'
     );
 \tstamp_fake_reg[44]\: unisim.vcomponents.FDRE
@@ -8339,8 +9074,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_11\,
-      Q => tstamp_fake_reg(44),
+      D => p_0_in(44),
+      Q => tstamp_fake(44),
       R => '0'
     );
 \tstamp_fake_reg[45]\: unisim.vcomponents.FDRE
@@ -8350,8 +9085,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_10\,
-      Q => tstamp_fake_reg(45),
+      D => p_0_in(45),
+      Q => tstamp_fake(45),
       R => '0'
     );
 \tstamp_fake_reg[46]\: unisim.vcomponents.FDRE
@@ -8361,8 +9096,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_9\,
-      Q => tstamp_fake_reg(46),
+      D => p_0_in(46),
+      Q => tstamp_fake(46),
       R => '0'
     );
 \tstamp_fake_reg[47]\: unisim.vcomponents.FDRE
@@ -8372,8 +9107,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[40]_i_1_n_8\,
-      Q => tstamp_fake_reg(47),
+      D => p_0_in(47),
+      Q => tstamp_fake(47),
       R => '0'
     );
 \tstamp_fake_reg[48]\: unisim.vcomponents.FDRE
@@ -8383,32 +9118,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_15\,
-      Q => tstamp_fake_reg(48),
+      D => p_0_in(48),
+      Q => tstamp_fake(48),
       R => '0'
-    );
-\tstamp_fake_reg[48]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[40]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[48]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[48]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[48]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[48]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[48]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[48]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[48]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[48]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[48]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[48]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[48]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[48]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[48]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[48]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[48]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[48]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(55 downto 48)
     );
 \tstamp_fake_reg[49]\: unisim.vcomponents.FDRE
     generic map(
@@ -8417,8 +9129,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_14\,
-      Q => tstamp_fake_reg(49),
+      D => p_0_in(49),
+      Q => tstamp_fake(49),
       R => '0'
     );
 \tstamp_fake_reg[4]\: unisim.vcomponents.FDRE
@@ -8428,8 +9140,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_11\,
-      Q => tstamp_fake_reg(4),
+      D => p_0_in(4),
+      Q => tstamp_fake(4),
       R => '0'
     );
 \tstamp_fake_reg[50]\: unisim.vcomponents.FDRE
@@ -8439,8 +9151,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_13\,
-      Q => tstamp_fake_reg(50),
+      D => p_0_in(50),
+      Q => tstamp_fake(50),
       R => '0'
     );
 \tstamp_fake_reg[51]\: unisim.vcomponents.FDRE
@@ -8450,8 +9162,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_12\,
-      Q => tstamp_fake_reg(51),
+      D => p_0_in(51),
+      Q => tstamp_fake(51),
       R => '0'
     );
 \tstamp_fake_reg[52]\: unisim.vcomponents.FDRE
@@ -8461,8 +9173,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_11\,
-      Q => tstamp_fake_reg(52),
+      D => p_0_in(52),
+      Q => tstamp_fake(52),
       R => '0'
     );
 \tstamp_fake_reg[53]\: unisim.vcomponents.FDRE
@@ -8472,8 +9184,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_10\,
-      Q => tstamp_fake_reg(53),
+      D => p_0_in(53),
+      Q => tstamp_fake(53),
       R => '0'
     );
 \tstamp_fake_reg[54]\: unisim.vcomponents.FDRE
@@ -8483,8 +9195,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_9\,
-      Q => tstamp_fake_reg(54),
+      D => p_0_in(54),
+      Q => tstamp_fake(54),
       R => '0'
     );
 \tstamp_fake_reg[55]\: unisim.vcomponents.FDRE
@@ -8494,8 +9206,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[48]_i_1_n_8\,
-      Q => tstamp_fake_reg(55),
+      D => p_0_in(55),
+      Q => tstamp_fake(55),
       R => '0'
     );
 \tstamp_fake_reg[56]\: unisim.vcomponents.FDRE
@@ -8505,32 +9217,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_15\,
-      Q => tstamp_fake_reg(56),
+      D => p_0_in(56),
+      Q => tstamp_fake(56),
       R => '0'
-    );
-\tstamp_fake_reg[56]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[48]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \NLW_tstamp_fake_reg[56]_i_1_CO_UNCONNECTED\(7),
-      CO(6) => \tstamp_fake_reg[56]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[56]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[56]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[56]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[56]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[56]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[56]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[56]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[56]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[56]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[56]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[56]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[56]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[56]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[56]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(63 downto 56)
     );
 \tstamp_fake_reg[57]\: unisim.vcomponents.FDRE
     generic map(
@@ -8539,8 +9228,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_14\,
-      Q => tstamp_fake_reg(57),
+      D => p_0_in(57),
+      Q => tstamp_fake(57),
       R => '0'
     );
 \tstamp_fake_reg[58]\: unisim.vcomponents.FDRE
@@ -8550,8 +9239,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_13\,
-      Q => tstamp_fake_reg(58),
+      D => p_0_in(58),
+      Q => tstamp_fake(58),
       R => '0'
     );
 \tstamp_fake_reg[59]\: unisim.vcomponents.FDRE
@@ -8561,8 +9250,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_12\,
-      Q => tstamp_fake_reg(59),
+      D => p_0_in(59),
+      Q => tstamp_fake(59),
       R => '0'
     );
 \tstamp_fake_reg[5]\: unisim.vcomponents.FDRE
@@ -8572,8 +9261,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_10\,
-      Q => tstamp_fake_reg(5),
+      D => p_0_in(5),
+      Q => tstamp_fake(5),
       R => '0'
     );
 \tstamp_fake_reg[60]\: unisim.vcomponents.FDRE
@@ -8583,8 +9272,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_11\,
-      Q => tstamp_fake_reg(60),
+      D => p_0_in(60),
+      Q => tstamp_fake(60),
       R => '0'
     );
 \tstamp_fake_reg[61]\: unisim.vcomponents.FDRE
@@ -8594,8 +9283,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_10\,
-      Q => tstamp_fake_reg(61),
+      D => p_0_in(61),
+      Q => tstamp_fake(61),
       R => '0'
     );
 \tstamp_fake_reg[62]\: unisim.vcomponents.FDRE
@@ -8605,8 +9294,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_9\,
-      Q => tstamp_fake_reg(62),
+      D => p_0_in(62),
+      Q => tstamp_fake(62),
       R => '0'
     );
 \tstamp_fake_reg[63]\: unisim.vcomponents.FDRE
@@ -8616,8 +9305,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[56]_i_1_n_8\,
-      Q => tstamp_fake_reg(63),
+      D => p_0_in(63),
+      Q => tstamp_fake(63),
       R => '0'
     );
 \tstamp_fake_reg[6]\: unisim.vcomponents.FDRE
@@ -8627,8 +9316,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_9\,
-      Q => tstamp_fake_reg(6),
+      D => p_0_in(6),
+      Q => tstamp_fake(6),
       R => '0'
     );
 \tstamp_fake_reg[7]\: unisim.vcomponents.FDRE
@@ -8638,8 +9327,8 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[0]_i_1_n_8\,
-      Q => tstamp_fake_reg(7),
+      D => p_0_in(7),
+      Q => tstamp_fake(7),
       R => '0'
     );
 \tstamp_fake_reg[8]\: unisim.vcomponents.FDRE
@@ -8649,32 +9338,9 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_15\,
-      Q => tstamp_fake_reg(8),
+      D => p_0_in(8),
+      Q => tstamp_fake(8),
       R => '0'
-    );
-\tstamp_fake_reg[8]_i_1\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \tstamp_fake_reg[0]_i_1_n_0\,
-      CI_TOP => '0',
-      CO(7) => \tstamp_fake_reg[8]_i_1_n_0\,
-      CO(6) => \tstamp_fake_reg[8]_i_1_n_1\,
-      CO(5) => \tstamp_fake_reg[8]_i_1_n_2\,
-      CO(4) => \tstamp_fake_reg[8]_i_1_n_3\,
-      CO(3) => \tstamp_fake_reg[8]_i_1_n_4\,
-      CO(2) => \tstamp_fake_reg[8]_i_1_n_5\,
-      CO(1) => \tstamp_fake_reg[8]_i_1_n_6\,
-      CO(0) => \tstamp_fake_reg[8]_i_1_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7) => \tstamp_fake_reg[8]_i_1_n_8\,
-      O(6) => \tstamp_fake_reg[8]_i_1_n_9\,
-      O(5) => \tstamp_fake_reg[8]_i_1_n_10\,
-      O(4) => \tstamp_fake_reg[8]_i_1_n_11\,
-      O(3) => \tstamp_fake_reg[8]_i_1_n_12\,
-      O(2) => \tstamp_fake_reg[8]_i_1_n_13\,
-      O(1) => \tstamp_fake_reg[8]_i_1_n_14\,
-      O(0) => \tstamp_fake_reg[8]_i_1_n_15\,
-      S(7 downto 0) => tstamp_fake_reg(15 downto 8)
     );
 \tstamp_fake_reg[9]\: unisim.vcomponents.FDRE
     generic map(
@@ -8683,655 +9349,655 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
         port map (
       C => clk62p5,
       CE => '1',
-      D => \tstamp_fake_reg[8]_i_1_n_14\,
-      Q => tstamp_fake_reg(9),
+      D => p_0_in(9),
+      Q => tstamp_fake(9),
       R => '0'
     );
 \tstamp_out[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(0),
-      I1 => tsrf_n_75,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(0)
+      I0 => tstamp_fake(0),
+      I1 => fts_en(2),
+      I2 => tsrf_n_75,
+      O => \tstamp_out[0]_i_1_n_0\
     );
 \tstamp_out[10]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(10),
-      I1 => tsrf_n_65,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(10)
+      I0 => tstamp_fake(10),
+      I1 => fts_en(2),
+      I2 => tsrf_n_65,
+      O => \tstamp_out[10]_i_1_n_0\
     );
 \tstamp_out[11]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(11),
-      I1 => tsrf_n_64,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(11)
+      I0 => tstamp_fake(11),
+      I1 => fts_en(2),
+      I2 => tsrf_n_64,
+      O => \tstamp_out[11]_i_1_n_0\
     );
 \tstamp_out[12]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(12),
-      I1 => tsrf_n_63,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(12)
+      I0 => tstamp_fake(12),
+      I1 => fts_en(2),
+      I2 => tsrf_n_63,
+      O => \tstamp_out[12]_i_1_n_0\
     );
 \tstamp_out[13]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(13),
-      I1 => tsrf_n_62,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(13)
+      I0 => tstamp_fake(13),
+      I1 => fts_en(2),
+      I2 => tsrf_n_62,
+      O => \tstamp_out[13]_i_1_n_0\
     );
 \tstamp_out[14]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(14),
-      I1 => tsrf_n_61,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(14)
+      I0 => tstamp_fake(14),
+      I1 => fts_en(2),
+      I2 => tsrf_n_61,
+      O => \tstamp_out[14]_i_1_n_0\
     );
 \tstamp_out[15]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(15),
-      I1 => tsrf_n_60,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(15)
+      I0 => tstamp_fake(15),
+      I1 => fts_en(2),
+      I2 => tsrf_n_60,
+      O => \tstamp_out[15]_i_1_n_0\
     );
 \tstamp_out[16]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(16),
-      I1 => tsrf_n_59,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(16)
+      I0 => tstamp_fake(16),
+      I1 => fts_en(2),
+      I2 => tsrf_n_59,
+      O => \tstamp_out[16]_i_1_n_0\
     );
 \tstamp_out[17]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(17),
-      I1 => tsrf_n_58,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(17)
+      I0 => tstamp_fake(17),
+      I1 => fts_en(2),
+      I2 => tsrf_n_58,
+      O => \tstamp_out[17]_i_1_n_0\
     );
 \tstamp_out[18]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(18),
-      I1 => tsrf_n_57,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(18)
+      I0 => tstamp_fake(18),
+      I1 => fts_en(2),
+      I2 => tsrf_n_57,
+      O => \tstamp_out[18]_i_1_n_0\
     );
 \tstamp_out[19]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(19),
-      I1 => tsrf_n_56,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(19)
+      I0 => tstamp_fake(19),
+      I1 => fts_en(2),
+      I2 => tsrf_n_56,
+      O => \tstamp_out[19]_i_1_n_0\
     );
 \tstamp_out[1]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(1),
-      I1 => tsrf_n_74,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(1)
+      I0 => tstamp_fake(1),
+      I1 => fts_en(2),
+      I2 => tsrf_n_74,
+      O => \tstamp_out[1]_i_1_n_0\
     );
 \tstamp_out[20]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(20),
-      I1 => tsrf_n_55,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(20)
+      I0 => tstamp_fake(20),
+      I1 => fts_en(2),
+      I2 => tsrf_n_55,
+      O => \tstamp_out[20]_i_1_n_0\
     );
 \tstamp_out[21]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(21),
-      I1 => tsrf_n_54,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(21)
+      I0 => tstamp_fake(21),
+      I1 => fts_en(2),
+      I2 => tsrf_n_54,
+      O => \tstamp_out[21]_i_1_n_0\
     );
 \tstamp_out[22]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(22),
-      I1 => tsrf_n_53,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(22)
+      I0 => tstamp_fake(22),
+      I1 => fts_en(2),
+      I2 => tsrf_n_53,
+      O => \tstamp_out[22]_i_1_n_0\
     );
 \tstamp_out[23]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(23),
-      I1 => tsrf_n_52,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(23)
+      I0 => tstamp_fake(23),
+      I1 => fts_en(2),
+      I2 => tsrf_n_52,
+      O => \tstamp_out[23]_i_1_n_0\
     );
 \tstamp_out[24]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(24),
-      I1 => tsrf_n_51,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(24)
+      I0 => tstamp_fake(24),
+      I1 => fts_en(2),
+      I2 => tsrf_n_51,
+      O => \tstamp_out[24]_i_1_n_0\
     );
 \tstamp_out[25]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(25),
-      I1 => tsrf_n_50,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(25)
+      I0 => tstamp_fake(25),
+      I1 => fts_en(2),
+      I2 => tsrf_n_50,
+      O => \tstamp_out[25]_i_1_n_0\
     );
 \tstamp_out[26]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(26),
-      I1 => tsrf_n_49,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(26)
+      I0 => tstamp_fake(26),
+      I1 => fts_en(2),
+      I2 => tsrf_n_49,
+      O => \tstamp_out[26]_i_1_n_0\
     );
 \tstamp_out[27]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(27),
-      I1 => tsrf_n_48,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(27)
+      I0 => tstamp_fake(27),
+      I1 => fts_en(2),
+      I2 => tsrf_n_48,
+      O => \tstamp_out[27]_i_1_n_0\
     );
 \tstamp_out[28]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(28),
-      I1 => tsrf_n_47,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(28)
+      I0 => tstamp_fake(28),
+      I1 => fts_en(2),
+      I2 => tsrf_n_47,
+      O => \tstamp_out[28]_i_1_n_0\
     );
 \tstamp_out[29]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(29),
-      I1 => tsrf_n_46,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(29)
+      I0 => tstamp_fake(29),
+      I1 => fts_en(2),
+      I2 => tsrf_n_46,
+      O => \tstamp_out[29]_i_1_n_0\
     );
 \tstamp_out[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(2),
-      I1 => tsrf_n_73,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(2)
+      I0 => tstamp_fake(2),
+      I1 => fts_en(2),
+      I2 => tsrf_n_73,
+      O => \tstamp_out[2]_i_1_n_0\
     );
 \tstamp_out[30]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(30),
-      I1 => tsrf_n_45,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(30)
+      I0 => tstamp_fake(30),
+      I1 => fts_en(2),
+      I2 => tsrf_n_45,
+      O => \tstamp_out[30]_i_1_n_0\
     );
 \tstamp_out[31]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(31),
-      I1 => tsrf_n_44,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(31)
+      I0 => tstamp_fake(31),
+      I1 => fts_en(2),
+      I2 => tsrf_n_44,
+      O => \tstamp_out[31]_i_1_n_0\
     );
 \tstamp_out[32]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(32),
-      I1 => tsrf_n_43,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(32)
+      I0 => tstamp_fake(32),
+      I1 => fts_en(2),
+      I2 => tsrf_n_43,
+      O => \tstamp_out[32]_i_1_n_0\
     );
 \tstamp_out[33]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(33),
-      I1 => tsrf_n_42,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(33)
+      I0 => tstamp_fake(33),
+      I1 => fts_en(2),
+      I2 => tsrf_n_42,
+      O => \tstamp_out[33]_i_1_n_0\
     );
 \tstamp_out[34]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(34),
-      I1 => tsrf_n_41,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(34)
+      I0 => tstamp_fake(34),
+      I1 => fts_en(2),
+      I2 => tsrf_n_41,
+      O => \tstamp_out[34]_i_1_n_0\
     );
 \tstamp_out[35]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(35),
-      I1 => tsrf_n_40,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(35)
+      I0 => tstamp_fake(35),
+      I1 => fts_en(2),
+      I2 => tsrf_n_40,
+      O => \tstamp_out[35]_i_1_n_0\
     );
 \tstamp_out[36]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(36),
-      I1 => tsrf_n_39,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(36)
+      I0 => tstamp_fake(36),
+      I1 => fts_en(2),
+      I2 => tsrf_n_39,
+      O => \tstamp_out[36]_i_1_n_0\
     );
 \tstamp_out[37]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(37),
-      I1 => tsrf_n_38,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(37)
+      I0 => tstamp_fake(37),
+      I1 => fts_en(2),
+      I2 => tsrf_n_38,
+      O => \tstamp_out[37]_i_1_n_0\
     );
 \tstamp_out[38]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(38),
-      I1 => tsrf_n_37,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(38)
+      I0 => tstamp_fake(38),
+      I1 => fts_en(2),
+      I2 => tsrf_n_37,
+      O => \tstamp_out[38]_i_1_n_0\
     );
 \tstamp_out[39]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(39),
-      I1 => tsrf_n_36,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(39)
+      I0 => tstamp_fake(39),
+      I1 => fts_en(2),
+      I2 => tsrf_n_36,
+      O => \tstamp_out[39]_i_1_n_0\
     );
 \tstamp_out[3]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(3),
-      I1 => tsrf_n_72,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(3)
+      I0 => tstamp_fake(3),
+      I1 => fts_en(2),
+      I2 => tsrf_n_72,
+      O => \tstamp_out[3]_i_1_n_0\
     );
 \tstamp_out[40]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(40),
-      I1 => tsrf_n_35,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(40)
+      I0 => tstamp_fake(40),
+      I1 => fts_en(2),
+      I2 => tsrf_n_35,
+      O => \tstamp_out[40]_i_1_n_0\
     );
 \tstamp_out[41]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(41),
-      I1 => tsrf_n_34,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(41)
+      I0 => tstamp_fake(41),
+      I1 => fts_en(2),
+      I2 => tsrf_n_34,
+      O => \tstamp_out[41]_i_1_n_0\
     );
 \tstamp_out[42]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(42),
-      I1 => tsrf_n_33,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(42)
+      I0 => tstamp_fake(42),
+      I1 => fts_en(2),
+      I2 => tsrf_n_33,
+      O => \tstamp_out[42]_i_1_n_0\
     );
 \tstamp_out[43]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(43),
-      I1 => tsrf_n_32,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(43)
+      I0 => tstamp_fake(43),
+      I1 => fts_en(2),
+      I2 => tsrf_n_32,
+      O => \tstamp_out[43]_i_1_n_0\
     );
 \tstamp_out[44]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(44),
-      I1 => tsrf_n_31,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(44)
+      I0 => tstamp_fake(44),
+      I1 => fts_en(2),
+      I2 => tsrf_n_31,
+      O => \tstamp_out[44]_i_1_n_0\
     );
 \tstamp_out[45]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(45),
-      I1 => tsrf_n_30,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(45)
+      I0 => tstamp_fake(45),
+      I1 => fts_en(2),
+      I2 => tsrf_n_30,
+      O => \tstamp_out[45]_i_1_n_0\
     );
 \tstamp_out[46]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(46),
-      I1 => tsrf_n_29,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(46)
+      I0 => tstamp_fake(46),
+      I1 => fts_en(2),
+      I2 => tsrf_n_29,
+      O => \tstamp_out[46]_i_1_n_0\
     );
 \tstamp_out[47]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(47),
-      I1 => tsrf_n_28,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(47)
+      I0 => tstamp_fake(47),
+      I1 => fts_en(2),
+      I2 => tsrf_n_28,
+      O => \tstamp_out[47]_i_1_n_0\
     );
 \tstamp_out[48]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(48),
-      I1 => tsrf_n_27,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(48)
+      I0 => tstamp_fake(48),
+      I1 => fts_en(2),
+      I2 => tsrf_n_27,
+      O => \tstamp_out[48]_i_1_n_0\
     );
 \tstamp_out[49]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(49),
-      I1 => tsrf_n_26,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(49)
+      I0 => tstamp_fake(49),
+      I1 => fts_en(2),
+      I2 => tsrf_n_26,
+      O => \tstamp_out[49]_i_1_n_0\
     );
 \tstamp_out[4]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(4),
-      I1 => tsrf_n_71,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(4)
+      I0 => tstamp_fake(4),
+      I1 => fts_en(2),
+      I2 => tsrf_n_71,
+      O => \tstamp_out[4]_i_1_n_0\
     );
 \tstamp_out[50]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(50),
-      I1 => tsrf_n_25,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(50)
+      I0 => tstamp_fake(50),
+      I1 => fts_en(2),
+      I2 => tsrf_n_25,
+      O => \tstamp_out[50]_i_1_n_0\
     );
 \tstamp_out[51]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(51),
-      I1 => tsrf_n_24,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(51)
+      I0 => tstamp_fake(51),
+      I1 => fts_en(2),
+      I2 => tsrf_n_24,
+      O => \tstamp_out[51]_i_1_n_0\
     );
 \tstamp_out[52]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(52),
-      I1 => tsrf_n_23,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(52)
+      I0 => tstamp_fake(52),
+      I1 => fts_en(2),
+      I2 => tsrf_n_23,
+      O => \tstamp_out[52]_i_1_n_0\
     );
 \tstamp_out[53]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(53),
-      I1 => tsrf_n_22,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(53)
+      I0 => tstamp_fake(53),
+      I1 => fts_en(2),
+      I2 => tsrf_n_22,
+      O => \tstamp_out[53]_i_1_n_0\
     );
 \tstamp_out[54]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(54),
-      I1 => tsrf_n_21,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(54)
+      I0 => tstamp_fake(54),
+      I1 => fts_en(2),
+      I2 => tsrf_n_21,
+      O => \tstamp_out[54]_i_1_n_0\
     );
 \tstamp_out[55]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(55),
-      I1 => tsrf_n_20,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(55)
+      I0 => tstamp_fake(55),
+      I1 => fts_en(2),
+      I2 => tsrf_n_20,
+      O => \tstamp_out[55]_i_1_n_0\
     );
 \tstamp_out[56]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(56),
-      I1 => tsrf_n_19,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(56)
+      I0 => tstamp_fake(56),
+      I1 => fts_en(2),
+      I2 => tsrf_n_19,
+      O => \tstamp_out[56]_i_1_n_0\
     );
 \tstamp_out[57]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(57),
-      I1 => tsrf_n_18,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(57)
+      I0 => tstamp_fake(57),
+      I1 => fts_en(2),
+      I2 => tsrf_n_18,
+      O => \tstamp_out[57]_i_1_n_0\
     );
 \tstamp_out[58]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(58),
-      I1 => tsrf_n_17,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(58)
+      I0 => tstamp_fake(58),
+      I1 => fts_en(2),
+      I2 => tsrf_n_17,
+      O => \tstamp_out[58]_i_1_n_0\
     );
 \tstamp_out[59]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(59),
-      I1 => tsrf_n_16,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(59)
+      I0 => tstamp_fake(59),
+      I1 => fts_en(2),
+      I2 => tsrf_n_16,
+      O => \tstamp_out[59]_i_1_n_0\
     );
 \tstamp_out[5]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(5),
-      I1 => tsrf_n_70,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(5)
+      I0 => tstamp_fake(5),
+      I1 => fts_en(2),
+      I2 => tsrf_n_70,
+      O => \tstamp_out[5]_i_1_n_0\
     );
 \tstamp_out[60]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(60),
-      I1 => tsrf_n_15,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(60)
+      I0 => tstamp_fake(60),
+      I1 => fts_en(2),
+      I2 => tsrf_n_15,
+      O => \tstamp_out[60]_i_1_n_0\
     );
 \tstamp_out[61]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(61),
-      I1 => tsrf_n_14,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(61)
+      I0 => tstamp_fake(61),
+      I1 => fts_en(2),
+      I2 => tsrf_n_14,
+      O => \tstamp_out[61]_i_1_n_0\
     );
 \tstamp_out[62]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(62),
-      I1 => tsrf_n_13,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(62)
+      I0 => tstamp_fake(62),
+      I1 => fts_en(2),
+      I2 => tsrf_n_13,
+      O => \tstamp_out[62]_i_1_n_0\
     );
 \tstamp_out[63]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(63),
-      I1 => tsrf_n_12,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(63)
+      I0 => tstamp_fake(63),
+      I1 => fts_en(2),
+      I2 => tsrf_n_12,
+      O => \tstamp_out[63]_i_1_n_0\
     );
 \tstamp_out[6]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(6),
-      I1 => tsrf_n_69,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(6)
+      I0 => tstamp_fake(6),
+      I1 => fts_en(2),
+      I2 => tsrf_n_69,
+      O => \tstamp_out[6]_i_1_n_0\
     );
 \tstamp_out[7]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(7),
-      I1 => tsrf_n_68,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(7)
+      I0 => tstamp_fake(7),
+      I1 => fts_en(2),
+      I2 => tsrf_n_68,
+      O => \tstamp_out[7]_i_1_n_0\
     );
 \tstamp_out[8]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(8),
-      I1 => tsrf_n_67,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(8)
+      I0 => tstamp_fake(8),
+      I1 => fts_en(2),
+      I2 => tsrf_n_67,
+      O => \tstamp_out[8]_i_1_n_0\
     );
 \tstamp_out[9]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AC"
+      INIT => X"B8"
     )
         port map (
-      I0 => tstamp_fake_reg(9),
-      I1 => tsrf_n_66,
-      I2 => fake_time_stamp_en,
-      O => p_0_in(9)
+      I0 => tstamp_fake(9),
+      I1 => fts_en(2),
+      I2 => tsrf_n_66,
+      O => \tstamp_out[9]_i_1_n_0\
     );
 \tstamp_out_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(0),
+      D => \tstamp_out[0]_i_1_n_0\,
       Q => tstamp_out(0),
       R => '0'
     );
@@ -9339,7 +10005,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(10),
+      D => \tstamp_out[10]_i_1_n_0\,
       Q => tstamp_out(10),
       R => '0'
     );
@@ -9347,7 +10013,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(11),
+      D => \tstamp_out[11]_i_1_n_0\,
       Q => tstamp_out(11),
       R => '0'
     );
@@ -9355,7 +10021,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(12),
+      D => \tstamp_out[12]_i_1_n_0\,
       Q => tstamp_out(12),
       R => '0'
     );
@@ -9363,7 +10029,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(13),
+      D => \tstamp_out[13]_i_1_n_0\,
       Q => tstamp_out(13),
       R => '0'
     );
@@ -9371,7 +10037,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(14),
+      D => \tstamp_out[14]_i_1_n_0\,
       Q => tstamp_out(14),
       R => '0'
     );
@@ -9379,7 +10045,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(15),
+      D => \tstamp_out[15]_i_1_n_0\,
       Q => tstamp_out(15),
       R => '0'
     );
@@ -9387,7 +10053,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(16),
+      D => \tstamp_out[16]_i_1_n_0\,
       Q => tstamp_out(16),
       R => '0'
     );
@@ -9395,7 +10061,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(17),
+      D => \tstamp_out[17]_i_1_n_0\,
       Q => tstamp_out(17),
       R => '0'
     );
@@ -9403,7 +10069,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(18),
+      D => \tstamp_out[18]_i_1_n_0\,
       Q => tstamp_out(18),
       R => '0'
     );
@@ -9411,7 +10077,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(19),
+      D => \tstamp_out[19]_i_1_n_0\,
       Q => tstamp_out(19),
       R => '0'
     );
@@ -9419,7 +10085,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(1),
+      D => \tstamp_out[1]_i_1_n_0\,
       Q => tstamp_out(1),
       R => '0'
     );
@@ -9427,7 +10093,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(20),
+      D => \tstamp_out[20]_i_1_n_0\,
       Q => tstamp_out(20),
       R => '0'
     );
@@ -9435,7 +10101,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(21),
+      D => \tstamp_out[21]_i_1_n_0\,
       Q => tstamp_out(21),
       R => '0'
     );
@@ -9443,7 +10109,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(22),
+      D => \tstamp_out[22]_i_1_n_0\,
       Q => tstamp_out(22),
       R => '0'
     );
@@ -9451,7 +10117,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(23),
+      D => \tstamp_out[23]_i_1_n_0\,
       Q => tstamp_out(23),
       R => '0'
     );
@@ -9459,7 +10125,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(24),
+      D => \tstamp_out[24]_i_1_n_0\,
       Q => tstamp_out(24),
       R => '0'
     );
@@ -9467,7 +10133,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(25),
+      D => \tstamp_out[25]_i_1_n_0\,
       Q => tstamp_out(25),
       R => '0'
     );
@@ -9475,7 +10141,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(26),
+      D => \tstamp_out[26]_i_1_n_0\,
       Q => tstamp_out(26),
       R => '0'
     );
@@ -9483,7 +10149,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(27),
+      D => \tstamp_out[27]_i_1_n_0\,
       Q => tstamp_out(27),
       R => '0'
     );
@@ -9491,7 +10157,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(28),
+      D => \tstamp_out[28]_i_1_n_0\,
       Q => tstamp_out(28),
       R => '0'
     );
@@ -9499,7 +10165,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(29),
+      D => \tstamp_out[29]_i_1_n_0\,
       Q => tstamp_out(29),
       R => '0'
     );
@@ -9507,7 +10173,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(2),
+      D => \tstamp_out[2]_i_1_n_0\,
       Q => tstamp_out(2),
       R => '0'
     );
@@ -9515,7 +10181,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(30),
+      D => \tstamp_out[30]_i_1_n_0\,
       Q => tstamp_out(30),
       R => '0'
     );
@@ -9523,7 +10189,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(31),
+      D => \tstamp_out[31]_i_1_n_0\,
       Q => tstamp_out(31),
       R => '0'
     );
@@ -9531,7 +10197,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(32),
+      D => \tstamp_out[32]_i_1_n_0\,
       Q => tstamp_out(32),
       R => '0'
     );
@@ -9539,7 +10205,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(33),
+      D => \tstamp_out[33]_i_1_n_0\,
       Q => tstamp_out(33),
       R => '0'
     );
@@ -9547,7 +10213,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(34),
+      D => \tstamp_out[34]_i_1_n_0\,
       Q => tstamp_out(34),
       R => '0'
     );
@@ -9555,7 +10221,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(35),
+      D => \tstamp_out[35]_i_1_n_0\,
       Q => tstamp_out(35),
       R => '0'
     );
@@ -9563,7 +10229,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(36),
+      D => \tstamp_out[36]_i_1_n_0\,
       Q => tstamp_out(36),
       R => '0'
     );
@@ -9571,7 +10237,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(37),
+      D => \tstamp_out[37]_i_1_n_0\,
       Q => tstamp_out(37),
       R => '0'
     );
@@ -9579,7 +10245,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(38),
+      D => \tstamp_out[38]_i_1_n_0\,
       Q => tstamp_out(38),
       R => '0'
     );
@@ -9587,7 +10253,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(39),
+      D => \tstamp_out[39]_i_1_n_0\,
       Q => tstamp_out(39),
       R => '0'
     );
@@ -9595,7 +10261,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(3),
+      D => \tstamp_out[3]_i_1_n_0\,
       Q => tstamp_out(3),
       R => '0'
     );
@@ -9603,7 +10269,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(40),
+      D => \tstamp_out[40]_i_1_n_0\,
       Q => tstamp_out(40),
       R => '0'
     );
@@ -9611,7 +10277,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(41),
+      D => \tstamp_out[41]_i_1_n_0\,
       Q => tstamp_out(41),
       R => '0'
     );
@@ -9619,7 +10285,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(42),
+      D => \tstamp_out[42]_i_1_n_0\,
       Q => tstamp_out(42),
       R => '0'
     );
@@ -9627,7 +10293,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(43),
+      D => \tstamp_out[43]_i_1_n_0\,
       Q => tstamp_out(43),
       R => '0'
     );
@@ -9635,7 +10301,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(44),
+      D => \tstamp_out[44]_i_1_n_0\,
       Q => tstamp_out(44),
       R => '0'
     );
@@ -9643,7 +10309,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(45),
+      D => \tstamp_out[45]_i_1_n_0\,
       Q => tstamp_out(45),
       R => '0'
     );
@@ -9651,7 +10317,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(46),
+      D => \tstamp_out[46]_i_1_n_0\,
       Q => tstamp_out(46),
       R => '0'
     );
@@ -9659,7 +10325,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(47),
+      D => \tstamp_out[47]_i_1_n_0\,
       Q => tstamp_out(47),
       R => '0'
     );
@@ -9667,7 +10333,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(48),
+      D => \tstamp_out[48]_i_1_n_0\,
       Q => tstamp_out(48),
       R => '0'
     );
@@ -9675,7 +10341,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(49),
+      D => \tstamp_out[49]_i_1_n_0\,
       Q => tstamp_out(49),
       R => '0'
     );
@@ -9683,7 +10349,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(4),
+      D => \tstamp_out[4]_i_1_n_0\,
       Q => tstamp_out(4),
       R => '0'
     );
@@ -9691,7 +10357,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(50),
+      D => \tstamp_out[50]_i_1_n_0\,
       Q => tstamp_out(50),
       R => '0'
     );
@@ -9699,7 +10365,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(51),
+      D => \tstamp_out[51]_i_1_n_0\,
       Q => tstamp_out(51),
       R => '0'
     );
@@ -9707,7 +10373,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(52),
+      D => \tstamp_out[52]_i_1_n_0\,
       Q => tstamp_out(52),
       R => '0'
     );
@@ -9715,7 +10381,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(53),
+      D => \tstamp_out[53]_i_1_n_0\,
       Q => tstamp_out(53),
       R => '0'
     );
@@ -9723,7 +10389,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(54),
+      D => \tstamp_out[54]_i_1_n_0\,
       Q => tstamp_out(54),
       R => '0'
     );
@@ -9731,7 +10397,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(55),
+      D => \tstamp_out[55]_i_1_n_0\,
       Q => tstamp_out(55),
       R => '0'
     );
@@ -9739,7 +10405,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(56),
+      D => \tstamp_out[56]_i_1_n_0\,
       Q => tstamp_out(56),
       R => '0'
     );
@@ -9747,7 +10413,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(57),
+      D => \tstamp_out[57]_i_1_n_0\,
       Q => tstamp_out(57),
       R => '0'
     );
@@ -9755,7 +10421,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(58),
+      D => \tstamp_out[58]_i_1_n_0\,
       Q => tstamp_out(58),
       R => '0'
     );
@@ -9763,7 +10429,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(59),
+      D => \tstamp_out[59]_i_1_n_0\,
       Q => tstamp_out(59),
       R => '0'
     );
@@ -9771,7 +10437,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(5),
+      D => \tstamp_out[5]_i_1_n_0\,
       Q => tstamp_out(5),
       R => '0'
     );
@@ -9779,7 +10445,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(60),
+      D => \tstamp_out[60]_i_1_n_0\,
       Q => tstamp_out(60),
       R => '0'
     );
@@ -9787,7 +10453,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(61),
+      D => \tstamp_out[61]_i_1_n_0\,
       Q => tstamp_out(61),
       R => '0'
     );
@@ -9795,7 +10461,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(62),
+      D => \tstamp_out[62]_i_1_n_0\,
       Q => tstamp_out(62),
       R => '0'
     );
@@ -9803,7 +10469,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(63),
+      D => \tstamp_out[63]_i_1_n_0\,
       Q => tstamp_out(63),
       R => '0'
     );
@@ -9811,7 +10477,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(6),
+      D => \tstamp_out[6]_i_1_n_0\,
       Q => tstamp_out(6),
       R => '0'
     );
@@ -9819,7 +10485,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(7),
+      D => \tstamp_out[7]_i_1_n_0\,
       Q => tstamp_out(7),
       R => '0'
     );
@@ -9827,7 +10493,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(8),
+      D => \tstamp_out[8]_i_1_n_0\,
       Q => tstamp_out(8),
       R => '0'
     );
@@ -9835,7 +10501,7 @@ tsrf: entity work.design_1_ts_reclock_0_0_ts_reclock_fifo
      port map (
       C => clk62p5,
       CE => '1',
-      D => p_0_in(9),
+      D => \tstamp_out[9]_i_1_n_0\,
       Q => tstamp_out(9),
       R => '0'
     );
@@ -9877,7 +10543,8 @@ entity design_1_ts_reclock_0_0 is
     cmd_bit_act : out STD_LOGIC;
     cmd_bit_reset : out STD_LOGIC;
     cmd_bit_adc_reset : out STD_LOGIC;
-    fake_time_stamp_en : in STD_LOGIC
+    fake_time_stamp_en : in STD_LOGIC;
+    fake_time_stamp_init : in STD_LOGIC_VECTOR ( 63 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_ts_reclock_0_0 : entity is true;
@@ -9935,6 +10602,7 @@ inst: entity work.design_1_ts_reclock_0_0_ts_reclock
       dout(1) => sync_stb_out,
       dout(0) => sync_first_out,
       fake_time_stamp_en => fake_time_stamp_en,
+      fake_time_stamp_init(63 downto 0) => fake_time_stamp_init(63 downto 0),
       fifo_rst => fifo_rst,
       fifo_valid => fifo_valid,
       ts_valid => ts_valid,

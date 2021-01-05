@@ -38,7 +38,8 @@ module ts_reclock
     output reg cmd_bit_reset    ,
     output reg cmd_bit_adc_reset,
     
-    input fake_time_stamp_en // enable fake time stamp
+    input fake_time_stamp_en, // enable fake time stamp
+    input [63:0] fake_time_stamp_init // initial value for fake time stamp
 );
 
     wire [75:0] din = 
@@ -88,6 +89,8 @@ module ts_reclock
     
     reg [63:0] tstamp_fake = 64'h12340000_00000000;
     
+    reg [2:0] fts_en;
+    
     always @(posedge clk62p5)
     begin
     
@@ -110,8 +113,14 @@ module ts_reclock
         
         //decode time stamp valid
         ts_valid = ts_valid_int && sync_stb_out && sync_first_out && (sync_out == 4'b0);
-        tstamp_out = (fake_time_stamp_en == 1'b1) ? tstamp_fake : tstamp_int; // to match valid signal latency
+        tstamp_out = (fts_en[2] == 1'b1) ? tstamp_fake : tstamp_int; // to match valid signal latency
         tstamp_fake = tstamp_fake + 64'h1;
+        
+        if (fts_en[2:1] == 2'b01) // enable just went up
+            tstamp_fake = fake_time_stamp_init; // update time stamp from init register
+        
+        // fake time stamp enable reset pipeline
+        fts_en = {fts_en[1:0], fake_time_stamp_en};
     end
 
 endmodule
