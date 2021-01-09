@@ -3,7 +3,7 @@
     "design_info": {
       "boundary_crc": "0x1F6A4C7075083F7D",
       "design_src": "SBD",
-      "device": "xczu6cg-ffvb1156-1-e",
+      "device": "xczu9cg-ffvb1156-1-e",
       "name": "bd_0482",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "scoped": "true",
@@ -124,16 +124,16 @@
       }
     },
     "interface_nets": {
-      "lut_buffer_m_bscan": {
-        "interface_ports": [
-          "lut_buffer/m_bscan",
-          "xsdbm/s_bscan"
-        ]
-      },
       "S_BSCAN_1": {
         "interface_ports": [
           "S_BSCAN",
           "lut_buffer/s_bscan"
+        ]
+      },
+      "lut_buffer_m_bscan": {
+        "interface_ports": [
+          "lut_buffer/m_bscan",
+          "xsdbm/s_bscan"
         ]
       }
     },

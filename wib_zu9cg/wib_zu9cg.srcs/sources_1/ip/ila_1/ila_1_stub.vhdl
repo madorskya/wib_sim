@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Wed Dec 23 23:16:28 2020
+-- Date        : Fri Jan  8 23:41:47 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/ip/ila_1/ila_1_stub.vhdl

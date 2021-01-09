@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Wed Dec 23 23:20:21 2020
+-- Date        : Fri Jan  8 23:42:39 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top bd_c443_bs_switch_1_0 -prefix
---               bd_c443_bs_switch_1_0_ bd_c443_bs_switch_1_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_2/bd_c443_bs_switch_1_0_stub.vhdl
 -- Design      : bd_c443_bs_switch_1_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu9cg-ffvb1156-1-e

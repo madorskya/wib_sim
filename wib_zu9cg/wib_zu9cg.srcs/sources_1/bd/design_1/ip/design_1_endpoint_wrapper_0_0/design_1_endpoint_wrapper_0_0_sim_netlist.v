@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Wed Dec 23 23:16:37 2020
+// Date        : Fri Jan  8 23:46:28 2021
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top design_1_endpoint_wrapper_0_0 -prefix
-//               design_1_endpoint_wrapper_0_0_ design_1_endpoint_wrapper_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_endpoint_wrapper_0_0/design_1_endpoint_wrapper_0_0_sim_netlist.v
 // Design      : design_1_endpoint_wrapper_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -89,6 +89,7 @@ module design_1_endpoint_wrapper_0_0
         .tstamp(tstamp));
 endmodule
 
+(* ORIG_REF_NAME = "endpoint_wrapper" *) 
 module design_1_endpoint_wrapper_0_0_endpoint_wrapper
    (sync,
     tstamp,
@@ -163,6 +164,7 @@ module design_1_endpoint_wrapper_0_0_endpoint_wrapper
         .tstamp(tstamp));
 endmodule
 
+(* ORIG_REF_NAME = "outputlogic_crc16" *) 
 module design_1_endpoint_wrapper_0_0_outputlogic_crc16
    (E,
     D,
@@ -586,6 +588,7 @@ module design_1_endpoint_wrapper_0_0_outputlogic_crc16
         .O(err_i__1));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_acmd_rx" *) 
 module design_1_endpoint_wrapper_0_0_pdts_acmd_rx
    (s_reg_0,
     Q,
@@ -781,6 +784,7 @@ module design_1_endpoint_wrapper_0_0_pdts_acmd_rx
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_adjust" *) 
 module design_1_endpoint_wrapper_0_0_pdts_adjust
    (adj_req_reg_0,
     \cdel_reg[5]_0 ,
@@ -963,6 +967,7 @@ module design_1_endpoint_wrapper_0_0_pdts_adjust
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_chklock" *) 
 module design_1_endpoint_wrapper_0_0_pdts_chklock
    (\FSM_onehot_state_reg[8] ,
     \ctrs_reg[0][6]_0 ,
@@ -1213,6 +1218,7 @@ module design_1_endpoint_wrapper_0_0_pdts_chklock
         .O(link_ok));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_cksum" *) 
 module design_1_endpoint_wrapper_0_0_pdts_cksum
    (E,
     D,
@@ -1287,6 +1293,7 @@ module design_1_endpoint_wrapper_0_0_pdts_cksum
         .stbo(stbo));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_dec8b10b" *) 
 module design_1_endpoint_wrapper_0_0_pdts_dec8b10b
    (clk,
     rst,
@@ -1833,6 +1840,7 @@ module design_1_endpoint_wrapper_0_0_pdts_dec8b10b
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_del" *) 
 module design_1_endpoint_wrapper_0_0_pdts_del
    (E,
     sclk,
@@ -9136,6 +9144,7 @@ module design_1_endpoint_wrapper_0_0_pdts_del__parameterized1
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_endpoint" *) 
 module design_1_endpoint_wrapper_0_0_pdts_endpoint
    (sync,
     tstamp,
@@ -9334,6 +9343,7 @@ module design_1_endpoint_wrapper_0_0_pdts_endpoint
         .\tstamp_i_reg[0]_0 (tstamp[0]));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_ep_startup" *) 
 module design_1_endpoint_wrapper_0_0_pdts_ep_startup
    (E,
     out,
@@ -10248,6 +10258,7 @@ module design_1_endpoint_wrapper_0_0_pdts_ep_startup
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_rx" *) 
 module design_1_endpoint_wrapper_0_0_pdts_rx
    (E,
     sync_stb,
@@ -11132,6 +11143,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx
         .R(stbo));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_rx_div_mmcm" *) 
 module design_1_endpoint_wrapper_0_0_pdts_rx_div_mmcm
    (phase_locked,
     clk,
@@ -11269,7 +11281,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx_div_mmcm
         .RST(debug));
 endmodule
 
-(* UPSTREAM_MODE = "FALSE" *) (* keep_hierarchy = "soft" *) 
+(* ORIG_REF_NAME = "pdts_rx_phy" *) (* UPSTREAM_MODE = "FALSE" *) (* keep_hierarchy = "soft" *) 
 module design_1_endpoint_wrapper_0_0_pdts_rx_phy
    (fclk,
     fdel,
@@ -12800,6 +12812,7 @@ module design_1_endpoint_wrapper_0_0_pdts_rx_phy
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_synchro" *) 
 module design_1_endpoint_wrapper_0_0_pdts_synchro
    (SR,
     link_ok,
@@ -13424,6 +13437,7 @@ module design_1_endpoint_wrapper_0_0_pdts_synchro__parameterized2
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "pdts_tstamp" *) 
 module design_1_endpoint_wrapper_0_0_pdts_tstamp
    (\tstamp_i_reg[0]_0 ,
     tstamp,

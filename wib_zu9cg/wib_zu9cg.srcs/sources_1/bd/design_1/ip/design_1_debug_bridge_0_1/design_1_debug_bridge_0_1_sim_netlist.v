@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Wed Dec 23 23:21:48 2020
+// Date        : Fri Jan  8 23:49:02 2021
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top design_1_debug_bridge_0_1 -prefix
-//               design_1_debug_bridge_0_1_ design_1_debug_bridge_0_1_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_1/design_1_debug_bridge_0_1_sim_netlist.v
 // Design      : design_1_debug_bridge_0_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,68 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* HW_HANDOFF = "design_1_debug_bridge_0_1.hwdef" *) 
+(* CHECK_LICENSE_TYPE = "design_1_debug_bridge_0_1,bd_0482,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "bd_0482,Vivado 2020.1.1_AR73018" *) 
+(* NotValidForBitStream *)
+module design_1_debug_bridge_0_1
+   (clk,
+    S_BSCAN_bscanid_en,
+    S_BSCAN_capture,
+    S_BSCAN_drck,
+    S_BSCAN_reset,
+    S_BSCAN_runtest,
+    S_BSCAN_sel,
+    S_BSCAN_shift,
+    S_BSCAN_tck,
+    S_BSCAN_tdi,
+    S_BSCAN_tdo,
+    S_BSCAN_tms,
+    S_BSCAN_update);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN BSCANID_EN" *) input S_BSCAN_bscanid_en;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN CAPTURE" *) input S_BSCAN_capture;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN DRCK" *) input S_BSCAN_drck;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN RESET" *) input S_BSCAN_reset;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN RUNTEST" *) input S_BSCAN_runtest;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN SEL" *) input S_BSCAN_sel;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN SHIFT" *) input S_BSCAN_shift;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TCK" *) input S_BSCAN_tck;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TDI" *) input S_BSCAN_tdi;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TDO" *) output S_BSCAN_tdo;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TMS" *) input S_BSCAN_tms;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN UPDATE" *) input S_BSCAN_update;
+
+  wire S_BSCAN_bscanid_en;
+  wire S_BSCAN_capture;
+  wire S_BSCAN_drck;
+  wire S_BSCAN_reset;
+  wire S_BSCAN_runtest;
+  wire S_BSCAN_sel;
+  wire S_BSCAN_shift;
+  wire S_BSCAN_tck;
+  wire S_BSCAN_tdi;
+  wire S_BSCAN_tdo;
+  wire S_BSCAN_tms;
+  wire S_BSCAN_update;
+  wire clk;
+
+  (* HW_HANDOFF = "design_1_debug_bridge_0_1.hwdef" *) 
+  design_1_debug_bridge_0_1_bd_0482 inst
+       (.S_BSCAN_bscanid_en(S_BSCAN_bscanid_en),
+        .S_BSCAN_capture(S_BSCAN_capture),
+        .S_BSCAN_drck(S_BSCAN_drck),
+        .S_BSCAN_reset(S_BSCAN_reset),
+        .S_BSCAN_runtest(S_BSCAN_runtest),
+        .S_BSCAN_sel(S_BSCAN_sel),
+        .S_BSCAN_shift(S_BSCAN_shift),
+        .S_BSCAN_tck(S_BSCAN_tck),
+        .S_BSCAN_tdi(S_BSCAN_tdi),
+        .S_BSCAN_tdo(S_BSCAN_tdo),
+        .S_BSCAN_tms(S_BSCAN_tms),
+        .S_BSCAN_update(S_BSCAN_update),
+        .clk(clk));
+endmodule
+
+(* HW_HANDOFF = "design_1_debug_bridge_0_1.hwdef" *) (* ORIG_REF_NAME = "bd_0482" *) 
 module design_1_debug_bridge_0_1_bd_0482
    (S_BSCAN_bscanid_en,
     S_BSCAN_capture,
@@ -110,7 +171,7 @@ module design_1_debug_bridge_0_1_bd_0482
         .update(lut_buffer_m_bscan_UPDATE));
 endmodule
 
-(* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_0482_lut_buffer_0" *) (* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018" *) 
 module design_1_debug_bridge_0_1_bd_0482_lut_buffer_0
    (tdi_i,
     tms_i,
@@ -164,7 +225,7 @@ module design_1_debug_bridge_0_1_bd_0482_lut_buffer_0
 
 endmodule
 
-(* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_0482_xsdbm_0" *) (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018" *) 
 module design_1_debug_bridge_0_1_bd_0482_xsdbm_0
    (update,
     capture,
@@ -194,67 +255,6 @@ module design_1_debug_bridge_0_1_bd_0482_xsdbm_0
   input clk;
 
 
-endmodule
-
-(* CHECK_LICENSE_TYPE = "design_1_debug_bridge_0_1,bd_0482,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "bd_0482,Vivado 2020.1.1_AR73018" *) 
-(* NotValidForBitStream *)
-module design_1_debug_bridge_0_1
-   (clk,
-    S_BSCAN_bscanid_en,
-    S_BSCAN_capture,
-    S_BSCAN_drck,
-    S_BSCAN_reset,
-    S_BSCAN_runtest,
-    S_BSCAN_sel,
-    S_BSCAN_shift,
-    S_BSCAN_tck,
-    S_BSCAN_tdi,
-    S_BSCAN_tdo,
-    S_BSCAN_tms,
-    S_BSCAN_update);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN BSCANID_EN" *) input S_BSCAN_bscanid_en;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN CAPTURE" *) input S_BSCAN_capture;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN DRCK" *) input S_BSCAN_drck;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN RESET" *) input S_BSCAN_reset;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN RUNTEST" *) input S_BSCAN_runtest;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN SEL" *) input S_BSCAN_sel;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN SHIFT" *) input S_BSCAN_shift;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TCK" *) input S_BSCAN_tck;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TDI" *) input S_BSCAN_tdi;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TDO" *) output S_BSCAN_tdo;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN TMS" *) input S_BSCAN_tms;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 S_BSCAN UPDATE" *) input S_BSCAN_update;
-
-  wire S_BSCAN_bscanid_en;
-  wire S_BSCAN_capture;
-  wire S_BSCAN_drck;
-  wire S_BSCAN_reset;
-  wire S_BSCAN_runtest;
-  wire S_BSCAN_sel;
-  wire S_BSCAN_shift;
-  wire S_BSCAN_tck;
-  wire S_BSCAN_tdi;
-  wire S_BSCAN_tdo;
-  wire S_BSCAN_tms;
-  wire S_BSCAN_update;
-  wire clk;
-
-  (* HW_HANDOFF = "design_1_debug_bridge_0_1.hwdef" *) 
-  design_1_debug_bridge_0_1_bd_0482 inst
-       (.S_BSCAN_bscanid_en(S_BSCAN_bscanid_en),
-        .S_BSCAN_capture(S_BSCAN_capture),
-        .S_BSCAN_drck(S_BSCAN_drck),
-        .S_BSCAN_reset(S_BSCAN_reset),
-        .S_BSCAN_runtest(S_BSCAN_runtest),
-        .S_BSCAN_sel(S_BSCAN_sel),
-        .S_BSCAN_shift(S_BSCAN_shift),
-        .S_BSCAN_tck(S_BSCAN_tck),
-        .S_BSCAN_tdi(S_BSCAN_tdi),
-        .S_BSCAN_tdo(S_BSCAN_tdo),
-        .S_BSCAN_tms(S_BSCAN_tms),
-        .S_BSCAN_update(S_BSCAN_update),
-        .clk(clk));
 endmodule
 `ifndef GLBL
 `define GLBL

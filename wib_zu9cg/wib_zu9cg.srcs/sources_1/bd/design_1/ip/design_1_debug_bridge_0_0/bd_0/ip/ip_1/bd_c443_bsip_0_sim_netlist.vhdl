@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Wed Dec 23 23:20:19 2020
+-- Date        : Fri Jan  8 23:42:43 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top bd_c443_bsip_0 -prefix
---               bd_c443_bsip_0_ bd_c443_bsip_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_sim_netlist.vhdl
 -- Design      : bd_c443_bsip_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -26,6 +26,8 @@ entity bd_c443_bsip_0_bsip_v1_1_0_jtag_reg is
     capir_lcl : in STD_LOGIC;
     tap_tdi : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_bsip_0_bsip_v1_1_0_jtag_reg : entity is "bsip_v1_1_0_jtag_reg";
 end bd_c443_bsip_0_bsip_v1_1_0_jtag_reg;
 
 architecture STRUCTURE of bd_c443_bsip_0_bsip_v1_1_0_jtag_reg is
@@ -617,6 +619,8 @@ entity bd_c443_bsip_0_bsip_v1_1_0_jtag_tapctl is
     TDO_O_reg : in STD_LOGIC;
     tap_tms : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_bsip_0_bsip_v1_1_0_jtag_tapctl : entity is "bsip_v1_1_0_jtag_tapctl";
 end bd_c443_bsip_0_bsip_v1_1_0_jtag_tapctl;
 
 architecture STRUCTURE of bd_c443_bsip_0_bsip_v1_1_0_jtag_tapctl is
@@ -1006,6 +1010,8 @@ entity bd_c443_bsip_0_bsip_v1_1_0_jtag_tap is
     tdo : in STD_LOGIC;
     tap_tms : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_bsip_0_bsip_v1_1_0_jtag_tap : entity is "bsip_v1_1_0_jtag_tap";
 end bd_c443_bsip_0_bsip_v1_1_0_jtag_tap;
 
 architecture STRUCTURE of bd_c443_bsip_0_bsip_v1_1_0_jtag_tap is
@@ -1155,6 +1161,8 @@ entity bd_c443_bsip_0_bsip_v1_1_0_bscan_tap is
     tap_tdi : in STD_LOGIC;
     tdo : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_bsip_0_bsip_v1_1_0_bscan_tap : entity is "bsip_v1_1_0_bscan_tap";
 end bd_c443_bsip_0_bsip_v1_1_0_bscan_tap;
 
 architecture STRUCTURE of bd_c443_bsip_0_bsip_v1_1_0_bscan_tap is
@@ -1261,6 +1269,8 @@ entity bd_c443_bsip_0_bsip_v1_1_0_bsip is
   attribute C_USER_SCAN_CHAIN of bd_c443_bsip_0_bsip_v1_1_0_bsip : entity is 1;
   attribute C_USE_SOFTBSCAN : integer;
   attribute C_USE_SOFTBSCAN of bd_c443_bsip_0_bsip_v1_1_0_bsip : entity is 1;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_bsip_0_bsip_v1_1_0_bsip : entity is "bsip_v1_1_0_bsip";
 end bd_c443_bsip_0_bsip_v1_1_0_bsip;
 
 architecture STRUCTURE of bd_c443_bsip_0_bsip_v1_1_0_bsip is

@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Wed Dec 23 23:20:04 2020
+// Date        : Fri Jan  8 23:47:39 2021
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top bd_0482_lut_buffer_0 -prefix
-//               bd_0482_lut_buffer_0_ bd_0482_lut_buffer_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_1/bd_0/ip/ip_1/bd_0482_lut_buffer_0_sim_netlist.v
 // Design      : bd_0482_lut_buffer_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -122,7 +122,7 @@ module bd_0482_lut_buffer_0
         .update_o(update_o));
 endmodule
 
-(* C_EN_BSCANID_VEC = "0" *) (* dont_touch = "true" *) 
+(* C_EN_BSCANID_VEC = "0" *) (* ORIG_REF_NAME = "lut_buffer_v2_0_0_lut_buffer" *) (* dont_touch = "true" *) 
 module bd_0482_lut_buffer_0_lut_buffer_v2_0_0_lut_buffer
    (tms_i,
     tdi_i,

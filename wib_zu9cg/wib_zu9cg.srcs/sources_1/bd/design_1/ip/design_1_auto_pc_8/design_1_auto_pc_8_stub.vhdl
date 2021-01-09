@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Tue Jan  5 16:25:28 2021
+-- Date        : Fri Jan  8 23:48:04 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_auto_pc_8 -prefix
---               design_1_auto_pc_8_ design_1_auto_pc_0_stub.vhdl
--- Design      : design_1_auto_pc_0
+--               design_1_auto_pc_8_ design_1_auto_pc_3_stub.vhdl
+-- Design      : design_1_auto_pc_3
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu9cg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------

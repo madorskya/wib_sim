@@ -16,9 +16,8 @@ module wib_top
     input  [3:0] i2c_lvds_l2_sda_c2w_p,
     input  [3:0] i2c_lvds_l2_sda_c2w_n,
     
-    // clocks for COLDATA PLL [femb]
-    output [3:0] coldata_clk40_p,
-    output [3:0] coldata_clk40_n,
+    // clocks for COLDATA PLL [femb*coldata]
+    output [7:0] coldata_clk40,
 
     // fast command output    
     output femb_cmd_fpga_out_p,
@@ -195,8 +194,7 @@ module wib_top
 
     bd_tux wrp
     (
-        .coldata_clk_40_p (coldata_clk40_p),
-        .coldata_clk_40_n (coldata_clk40_n),
+        .coldata_clk_40 (coldata_clk40),
         
         // coldata fast command
         .fastcommand_out_p (femb_cmd_fpga_out_p),
