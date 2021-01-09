@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Wed Dec 23 23:18:28 2020
+-- Date        : Fri Jan  8 23:46:08 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_axi_bram_ctrl_0_bram_0 -prefix
 --               design_1_axi_bram_ctrl_0_bram_0_ design_1_axi_bram_ctrl_0_bram_1_stub.vhdl

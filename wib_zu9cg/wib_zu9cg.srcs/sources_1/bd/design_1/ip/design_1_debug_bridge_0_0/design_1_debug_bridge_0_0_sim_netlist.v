@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Wed Dec 23 23:21:44 2020
+// Date        : Fri Jan  8 23:47:00 2021
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top design_1_debug_bridge_0_0 -prefix
-//               design_1_debug_bridge_0_0_ design_1_debug_bridge_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0_sim_netlist.v
 // Design      : design_1_debug_bridge_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,148 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* HW_HANDOFF = "design_1_debug_bridge_0_0.hwdef" *) 
+(* CHECK_LICENSE_TYPE = "design_1_debug_bridge_0_0,bd_c443,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "bd_c443,Vivado 2020.1.1_AR73018" *) 
+(* NotValidForBitStream *)
+module design_1_debug_bridge_0_0
+   (s_axi_aclk,
+    s_axi_aresetn,
+    S_AXI_araddr,
+    S_AXI_arprot,
+    S_AXI_arready,
+    S_AXI_arvalid,
+    S_AXI_awaddr,
+    S_AXI_awprot,
+    S_AXI_awready,
+    S_AXI_awvalid,
+    S_AXI_bready,
+    S_AXI_bresp,
+    S_AXI_bvalid,
+    S_AXI_rdata,
+    S_AXI_rready,
+    S_AXI_rresp,
+    S_AXI_rvalid,
+    S_AXI_wdata,
+    S_AXI_wready,
+    S_AXI_wstrb,
+    S_AXI_wvalid,
+    m0_bscan_bscanid_en,
+    m0_bscan_capture,
+    m0_bscan_drck,
+    m0_bscan_reset,
+    m0_bscan_runtest,
+    m0_bscan_sel,
+    m0_bscan_shift,
+    m0_bscan_tck,
+    m0_bscan_tdi,
+    m0_bscan_tdo,
+    m0_bscan_tms,
+    m0_bscan_update);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.s_axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.s_axi_aclk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn:s_axi_lite_resetn, INSERT_VIP 0" *) input s_axi_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.s_axi_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.s_axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s_axi_aresetn;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *) input [4:0]S_AXI_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARPROT" *) input [2:0]S_AXI_arprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARREADY" *) output S_AXI_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARVALID" *) input S_AXI_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) input [4:0]S_AXI_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWPROT" *) input [2:0]S_AXI_awprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWREADY" *) output S_AXI_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWVALID" *) input S_AXI_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BREADY" *) input S_AXI_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BRESP" *) output [1:0]S_AXI_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BVALID" *) output S_AXI_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RDATA" *) output [31:0]S_AXI_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RREADY" *) input S_AXI_rready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RRESP" *) output [1:0]S_AXI_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RVALID" *) output S_AXI_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WDATA" *) input [31:0]S_AXI_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WREADY" *) output S_AXI_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WSTRB" *) input [3:0]S_AXI_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WVALID" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 16, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0, ASSOCIATED_BUSIF S_AXI" *) input S_AXI_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan BSCANID_en" *) output m0_bscan_bscanid_en;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan CAPTURE" *) output m0_bscan_capture;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan DRCK" *) output m0_bscan_drck;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan RESET" *) output m0_bscan_reset;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan RUNTEST" *) output m0_bscan_runtest;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan SEL" *) output m0_bscan_sel;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan SHIFT" *) output m0_bscan_shift;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TCK" *) output m0_bscan_tck;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TDI" *) output m0_bscan_tdi;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TDO" *) input m0_bscan_tdo;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TMS" *) output m0_bscan_tms;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan UPDATE" *) output m0_bscan_update;
+
+  wire [4:0]S_AXI_araddr;
+  wire [2:0]S_AXI_arprot;
+  wire S_AXI_arready;
+  wire S_AXI_arvalid;
+  wire [4:0]S_AXI_awaddr;
+  wire [2:0]S_AXI_awprot;
+  wire S_AXI_awready;
+  wire S_AXI_awvalid;
+  wire S_AXI_bready;
+  wire [1:0]S_AXI_bresp;
+  wire S_AXI_bvalid;
+  wire [31:0]S_AXI_rdata;
+  wire S_AXI_rready;
+  wire [1:0]S_AXI_rresp;
+  wire S_AXI_rvalid;
+  wire [31:0]S_AXI_wdata;
+  wire S_AXI_wready;
+  wire [3:0]S_AXI_wstrb;
+  wire S_AXI_wvalid;
+  wire m0_bscan_bscanid_en;
+  wire m0_bscan_capture;
+  wire m0_bscan_drck;
+  wire m0_bscan_reset;
+  wire m0_bscan_runtest;
+  wire m0_bscan_sel;
+  wire m0_bscan_shift;
+  wire m0_bscan_tck;
+  wire m0_bscan_tdi;
+  wire m0_bscan_tdo;
+  wire m0_bscan_tms;
+  wire m0_bscan_update;
+  wire s_axi_aclk;
+  wire s_axi_aresetn;
+
+  (* HW_HANDOFF = "design_1_debug_bridge_0_0.hwdef" *) 
+  design_1_debug_bridge_0_0_bd_c443 inst
+       (.S_AXI_araddr(S_AXI_araddr),
+        .S_AXI_arprot(S_AXI_arprot),
+        .S_AXI_arready(S_AXI_arready),
+        .S_AXI_arvalid(S_AXI_arvalid),
+        .S_AXI_awaddr(S_AXI_awaddr),
+        .S_AXI_awprot(S_AXI_awprot),
+        .S_AXI_awready(S_AXI_awready),
+        .S_AXI_awvalid(S_AXI_awvalid),
+        .S_AXI_bready(S_AXI_bready),
+        .S_AXI_bresp(S_AXI_bresp),
+        .S_AXI_bvalid(S_AXI_bvalid),
+        .S_AXI_rdata(S_AXI_rdata),
+        .S_AXI_rready(S_AXI_rready),
+        .S_AXI_rresp(S_AXI_rresp),
+        .S_AXI_rvalid(S_AXI_rvalid),
+        .S_AXI_wdata(S_AXI_wdata),
+        .S_AXI_wready(S_AXI_wready),
+        .S_AXI_wstrb(S_AXI_wstrb),
+        .S_AXI_wvalid(S_AXI_wvalid),
+        .m0_bscan_bscanid_en(m0_bscan_bscanid_en),
+        .m0_bscan_capture(m0_bscan_capture),
+        .m0_bscan_drck(m0_bscan_drck),
+        .m0_bscan_reset(m0_bscan_reset),
+        .m0_bscan_runtest(m0_bscan_runtest),
+        .m0_bscan_sel(m0_bscan_sel),
+        .m0_bscan_shift(m0_bscan_shift),
+        .m0_bscan_tck(m0_bscan_tck),
+        .m0_bscan_tdi(m0_bscan_tdi),
+        .m0_bscan_tdo(m0_bscan_tdo),
+        .m0_bscan_tms(m0_bscan_tms),
+        .m0_bscan_update(m0_bscan_update),
+        .s_axi_aclk(s_axi_aclk),
+        .s_axi_aresetn(s_axi_aresetn));
+endmodule
+
+(* HW_HANDOFF = "design_1_debug_bridge_0_0.hwdef" *) (* ORIG_REF_NAME = "bd_c443" *) 
 module design_1_debug_bridge_0_0_bd_c443
    (S_AXI_araddr,
     S_AXI_arprot,
@@ -202,7 +343,7 @@ module design_1_debug_bridge_0_0_bd_c443
         .update(bsip_m_bscan_UPDATE));
 endmodule
 
-(* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_c443_axi_jtag_0" *) (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018" *) 
 module design_1_debug_bridge_0_0_bd_c443_axi_jtag_0
    (s_axi_aclk,
     s_axi_aresetn,
@@ -258,7 +399,7 @@ module design_1_debug_bridge_0_0_bd_c443_axi_jtag_0
 
 endmodule
 
-(* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_c443_bs_switch_1_0" *) (* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018" *) 
 module design_1_debug_bridge_0_0_bd_c443_bs_switch_1_0
    (s_bscan_drck,
     s_bscan_reset,
@@ -312,7 +453,7 @@ module design_1_debug_bridge_0_0_bd_c443_bs_switch_1_0
 
 endmodule
 
-(* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_c443_bsip_0" *) (* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018" *) 
 module design_1_debug_bridge_0_0_bd_c443_bsip_0
    (drck,
     reset,
@@ -346,147 +487,6 @@ module design_1_debug_bridge_0_0_bd_c443_bsip_0
   input tap_tck;
 
 
-endmodule
-
-(* CHECK_LICENSE_TYPE = "design_1_debug_bridge_0_0,bd_c443,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "bd_c443,Vivado 2020.1.1_AR73018" *) 
-(* NotValidForBitStream *)
-module design_1_debug_bridge_0_0
-   (s_axi_aclk,
-    s_axi_aresetn,
-    S_AXI_araddr,
-    S_AXI_arprot,
-    S_AXI_arready,
-    S_AXI_arvalid,
-    S_AXI_awaddr,
-    S_AXI_awprot,
-    S_AXI_awready,
-    S_AXI_awvalid,
-    S_AXI_bready,
-    S_AXI_bresp,
-    S_AXI_bvalid,
-    S_AXI_rdata,
-    S_AXI_rready,
-    S_AXI_rresp,
-    S_AXI_rvalid,
-    S_AXI_wdata,
-    S_AXI_wready,
-    S_AXI_wstrb,
-    S_AXI_wvalid,
-    m0_bscan_bscanid_en,
-    m0_bscan_capture,
-    m0_bscan_drck,
-    m0_bscan_reset,
-    m0_bscan_runtest,
-    m0_bscan_sel,
-    m0_bscan_shift,
-    m0_bscan_tck,
-    m0_bscan_tdi,
-    m0_bscan_tdo,
-    m0_bscan_tms,
-    m0_bscan_update);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.s_axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.s_axi_aclk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn:s_axi_lite_resetn, INSERT_VIP 0" *) input s_axi_aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.s_axi_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.s_axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s_axi_aresetn;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *) input [4:0]S_AXI_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARPROT" *) input [2:0]S_AXI_arprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARREADY" *) output S_AXI_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARVALID" *) input S_AXI_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) input [4:0]S_AXI_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWPROT" *) input [2:0]S_AXI_awprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWREADY" *) output S_AXI_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWVALID" *) input S_AXI_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BREADY" *) input S_AXI_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BRESP" *) output [1:0]S_AXI_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BVALID" *) output S_AXI_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RDATA" *) output [31:0]S_AXI_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RREADY" *) input S_AXI_rready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RRESP" *) output [1:0]S_AXI_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RVALID" *) output S_AXI_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WDATA" *) input [31:0]S_AXI_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WREADY" *) output S_AXI_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WSTRB" *) input [3:0]S_AXI_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI WVALID" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 16, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0, ASSOCIATED_BUSIF S_AXI" *) input S_AXI_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan BSCANID_en" *) output m0_bscan_bscanid_en;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan CAPTURE" *) output m0_bscan_capture;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan DRCK" *) output m0_bscan_drck;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan RESET" *) output m0_bscan_reset;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan RUNTEST" *) output m0_bscan_runtest;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan SEL" *) output m0_bscan_sel;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan SHIFT" *) output m0_bscan_shift;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TCK" *) output m0_bscan_tck;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TDI" *) output m0_bscan_tdi;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TDO" *) input m0_bscan_tdo;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan TMS" *) output m0_bscan_tms;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:bscan:1.0 m0_bscan UPDATE" *) output m0_bscan_update;
-
-  wire [4:0]S_AXI_araddr;
-  wire [2:0]S_AXI_arprot;
-  wire S_AXI_arready;
-  wire S_AXI_arvalid;
-  wire [4:0]S_AXI_awaddr;
-  wire [2:0]S_AXI_awprot;
-  wire S_AXI_awready;
-  wire S_AXI_awvalid;
-  wire S_AXI_bready;
-  wire [1:0]S_AXI_bresp;
-  wire S_AXI_bvalid;
-  wire [31:0]S_AXI_rdata;
-  wire S_AXI_rready;
-  wire [1:0]S_AXI_rresp;
-  wire S_AXI_rvalid;
-  wire [31:0]S_AXI_wdata;
-  wire S_AXI_wready;
-  wire [3:0]S_AXI_wstrb;
-  wire S_AXI_wvalid;
-  wire m0_bscan_bscanid_en;
-  wire m0_bscan_capture;
-  wire m0_bscan_drck;
-  wire m0_bscan_reset;
-  wire m0_bscan_runtest;
-  wire m0_bscan_sel;
-  wire m0_bscan_shift;
-  wire m0_bscan_tck;
-  wire m0_bscan_tdi;
-  wire m0_bscan_tdo;
-  wire m0_bscan_tms;
-  wire m0_bscan_update;
-  wire s_axi_aclk;
-  wire s_axi_aresetn;
-
-  (* HW_HANDOFF = "design_1_debug_bridge_0_0.hwdef" *) 
-  design_1_debug_bridge_0_0_bd_c443 inst
-       (.S_AXI_araddr(S_AXI_araddr),
-        .S_AXI_arprot(S_AXI_arprot),
-        .S_AXI_arready(S_AXI_arready),
-        .S_AXI_arvalid(S_AXI_arvalid),
-        .S_AXI_awaddr(S_AXI_awaddr),
-        .S_AXI_awprot(S_AXI_awprot),
-        .S_AXI_awready(S_AXI_awready),
-        .S_AXI_awvalid(S_AXI_awvalid),
-        .S_AXI_bready(S_AXI_bready),
-        .S_AXI_bresp(S_AXI_bresp),
-        .S_AXI_bvalid(S_AXI_bvalid),
-        .S_AXI_rdata(S_AXI_rdata),
-        .S_AXI_rready(S_AXI_rready),
-        .S_AXI_rresp(S_AXI_rresp),
-        .S_AXI_rvalid(S_AXI_rvalid),
-        .S_AXI_wdata(S_AXI_wdata),
-        .S_AXI_wready(S_AXI_wready),
-        .S_AXI_wstrb(S_AXI_wstrb),
-        .S_AXI_wvalid(S_AXI_wvalid),
-        .m0_bscan_bscanid_en(m0_bscan_bscanid_en),
-        .m0_bscan_capture(m0_bscan_capture),
-        .m0_bscan_drck(m0_bscan_drck),
-        .m0_bscan_reset(m0_bscan_reset),
-        .m0_bscan_runtest(m0_bscan_runtest),
-        .m0_bscan_sel(m0_bscan_sel),
-        .m0_bscan_shift(m0_bscan_shift),
-        .m0_bscan_tck(m0_bscan_tck),
-        .m0_bscan_tdi(m0_bscan_tdi),
-        .m0_bscan_tdo(m0_bscan_tdo),
-        .m0_bscan_tms(m0_bscan_tms),
-        .m0_bscan_update(m0_bscan_update),
-        .s_axi_aclk(s_axi_aclk),
-        .s_axi_aresetn(s_axi_aresetn));
 endmodule
 `ifndef GLBL
 `define GLBL

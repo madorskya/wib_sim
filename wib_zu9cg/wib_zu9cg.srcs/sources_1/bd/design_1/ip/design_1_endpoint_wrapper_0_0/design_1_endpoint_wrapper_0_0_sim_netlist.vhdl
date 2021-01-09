@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Wed Dec 23 23:16:37 2020
+-- Date        : Fri Jan  8 23:46:28 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top design_1_endpoint_wrapper_0_0 -prefix
---               design_1_endpoint_wrapper_0_0_ design_1_endpoint_wrapper_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/bd/design_1/ip/design_1_endpoint_wrapper_0_0/design_1_endpoint_wrapper_0_0_sim_netlist.vhdl
 -- Design      : design_1_endpoint_wrapper_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -34,6 +34,8 @@ entity design_1_endpoint_wrapper_0_0_outputlogic_crc16 is
     \err_reg[0]\ : in STD_LOGIC;
     clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_outputlogic_crc16 : entity is "outputlogic_crc16";
 end design_1_endpoint_wrapper_0_0_outputlogic_crc16;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_outputlogic_crc16 is
@@ -543,6 +545,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_acmd_rx is
     debug : in STD_LOGIC_VECTOR ( 0 to 0 );
     \^q\ : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_acmd_rx : entity is "pdts_acmd_rx";
 end design_1_endpoint_wrapper_0_0_pdts_acmd_rx;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_acmd_rx is
@@ -793,6 +797,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_chklock is
     \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     sclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_chklock : entity is "pdts_chklock";
 end design_1_endpoint_wrapper_0_0_pdts_chklock;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_chklock is
@@ -1075,6 +1081,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_dec8b10b is
     cerr : out STD_LOGIC;
     derr : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_dec8b10b : entity is "pdts_dec8b10b";
 end design_1_endpoint_wrapper_0_0_pdts_dec8b10b;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_dec8b10b is
@@ -1762,6 +1770,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_del is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     \s_reg[4][0]_0\ : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_del : entity is "pdts_del";
 end design_1_endpoint_wrapper_0_0_pdts_del;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_del is
@@ -11336,6 +11346,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_rx_div_mmcm is
     rec_clk : in STD_LOGIC;
     debug : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_rx_div_mmcm : entity is "pdts_rx_div_mmcm";
 end design_1_endpoint_wrapper_0_0_pdts_rx_div_mmcm;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_rx_div_mmcm is
@@ -11483,6 +11495,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_synchro is
     sclk : in STD_LOGIC;
     rec_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_synchro : entity is "pdts_synchro";
 end design_1_endpoint_wrapper_0_0_pdts_synchro;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_synchro is
@@ -12246,6 +12260,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_tstamp is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     D : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_tstamp : entity is "pdts_tstamp";
 end design_1_endpoint_wrapper_0_0_pdts_tstamp;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_tstamp is
@@ -15400,6 +15416,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_adjust is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     Q : in STD_LOGIC_VECTOR ( 10 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_adjust : entity is "pdts_adjust";
 end design_1_endpoint_wrapper_0_0_pdts_adjust;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_adjust is
@@ -15627,6 +15645,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_cksum is
     \err_reg[0]\ : in STD_LOGIC;
     clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_cksum : entity is "pdts_cksum";
 end design_1_endpoint_wrapper_0_0_pdts_cksum;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_cksum is
@@ -15676,6 +15696,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_ep_startup is
     \da_reg[3]\ : in STD_LOGIC;
     \da_reg[1]\ : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_ep_startup : entity is "pdts_ep_startup";
 end design_1_endpoint_wrapper_0_0_pdts_ep_startup;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_ep_startup is
@@ -16883,6 +16905,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_rx_phy is
     k : out STD_LOGIC;
     stbo : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_rx_phy : entity is "pdts_rx_phy";
   attribute UPSTREAM_MODE : string;
   attribute UPSTREAM_MODE of design_1_endpoint_wrapper_0_0_pdts_rx_phy : entity is "FALSE";
   attribute keep_hierarchy : string;
@@ -18889,6 +18913,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_rx is
     tgrp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     D : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_rx : entity is "pdts_rx";
 end design_1_endpoint_wrapper_0_0_pdts_rx;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_rx is
@@ -20004,6 +20030,8 @@ entity design_1_endpoint_wrapper_0_0_pdts_endpoint is
     addr : in STD_LOGIC_VECTOR ( 7 downto 0 );
     tgrp : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_pdts_endpoint : entity is "pdts_endpoint";
 end design_1_endpoint_wrapper_0_0_pdts_endpoint;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_pdts_endpoint is
@@ -20238,6 +20266,8 @@ entity design_1_endpoint_wrapper_0_0_endpoint_wrapper is
     addr : in STD_LOGIC_VECTOR ( 7 downto 0 );
     tgrp : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_endpoint_wrapper_0_0_endpoint_wrapper : entity is "endpoint_wrapper";
 end design_1_endpoint_wrapper_0_0_endpoint_wrapper;
 
 architecture STRUCTURE of design_1_endpoint_wrapper_0_0_endpoint_wrapper is
