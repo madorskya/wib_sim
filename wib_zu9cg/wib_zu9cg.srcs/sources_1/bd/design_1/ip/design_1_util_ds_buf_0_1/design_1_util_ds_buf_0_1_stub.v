@@ -1,11 +1,11 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Fri Jan  8 23:44:20 2021
+// Date        : Sat Jan  9 23:43:51 2021
 // Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub -rename_top design_1_util_ds_buf_0_1 -prefix
-//               design_1_util_ds_buf_0_1_ design_1_util_ds_buf_0_0_stub.v
-// Design      : design_1_util_ds_buf_0_0
+//               design_1_util_ds_buf_0_1_ design_1_util_ds_buf_0_2_stub.v
+// Design      : design_1_util_ds_buf_0_2
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu9cg-ffvb1156-1-e
 // --------------------------------------------------------------------------------

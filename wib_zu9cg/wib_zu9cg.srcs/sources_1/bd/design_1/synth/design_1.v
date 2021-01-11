@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Fri Jan  8 23:35:55 2021
+//Date        : Sun Jan 10 17:47:58 2021
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1744,7 +1744,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=95,numReposBlks=69,numNonXlnxBlks=11,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=96,numReposBlks=70,numNonXlnxBlks=11,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -1835,7 +1835,7 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.AXI_CLK_OUT CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.AXI_CLK_OUT, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output AXI_CLK_OUT;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.AXI_RSTN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.AXI_RSTN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output [0:0]AXI_RSTn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 WIB_LED TRI_O" *) output [31:0]WIB_LED_tri_o;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_40 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_40, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk1, FREQ_HZ 40000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output clk_40;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_40 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_40, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk1, FREQ_HZ 40000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output [0:0]clk_40;
   input [7:0]cmd_code_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_ADC_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_ADC_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_adc_reset;
   input [7:0]cmd_code_edge;
@@ -2316,6 +2316,7 @@ module design_1
   wire timing_module_cmd_bit_sync;
   wire [3:0]timing_module_stat_0;
   wire timing_module_ts_valid_0;
+  wire [0:0]util_ds_buf_0_BUFG_O;
   wire [39:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR;
   wire [1:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST;
   wire [3:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARCACHE;
@@ -2366,7 +2367,7 @@ module design_1
   assign axi_iic_0_IIC_SDA_I = iic_rtl_0_sda_i;
   assign cdr_lol_0_1 = ts_cdr_lol;
   assign cdr_los_0_1 = ts_cdr_los;
-  assign clk_40 = zynq_ultra_ps_e_0_pl_clk1;
+  assign clk_40[0] = util_ds_buf_0_BUFG_O;
   assign cmd_code_act_0_1 = cmd_code_act[7:0];
   assign cmd_code_adc_reset_0_1 = cmd_code_adc_reset[7:0];
   assign cmd_code_edge_0_1 = cmd_code_edge[7:0];
@@ -3285,6 +3286,9 @@ module design_1
         .ts_sync_v(pdts_endpoint_0_sync_v),
         .ts_tstamp(pdts_endpoint_0_tstamp),
         .ts_valid_0(timing_module_ts_valid_0));
+  design_1_util_ds_buf_0_4 util_ds_buf_0
+       (.BUFG_I(zynq_ultra_ps_e_0_pl_clk1),
+        .BUFG_O(util_ds_buf_0_BUFG_O));
   design_1_zynq_ultra_ps_e_0_0 zynq_ultra_ps_e_0
        (.maxigp0_araddr(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR),
         .maxigp0_arburst(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST),

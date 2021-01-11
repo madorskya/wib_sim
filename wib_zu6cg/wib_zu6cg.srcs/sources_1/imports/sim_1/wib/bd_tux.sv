@@ -3,8 +3,6 @@
 
 module bd_tux
 (
-    output [7:0] coldata_clk_40,
-    
     // coldata fast command
     output fastcommand_out_p,
     output fastcommand_out_n,
@@ -67,10 +65,6 @@ module bd_tux
     input [63:0] fake_time_stamp_init
 );
     
-    wire clk_40;
-    // output the same 40M clock to all FEMBs
-    OBUF clk_40_buf[7:0] (.I(clk_40), .O(coldata_clk_40[7:0]));
-
     design_1 design_1_i
     (
         .fastcommand_out_n_0(fastcommand_out_n),
@@ -164,9 +158,8 @@ module bd_tux
         .cmd_code_adc_reset (cmd_code_adc_reset),
         
         .fake_time_stamp_en (fake_time_stamp_en),
-        .fake_time_stamp_init (fake_time_stamp_init),
+        .fake_time_stamp_init (fake_time_stamp_init)
         
-        .clk_40 (clk_40)
     );
 
 endmodule

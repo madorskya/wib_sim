@@ -101,8 +101,7 @@ maxigp0_arqos,
 emio_enet0_enet_tsu_timer_cnt, 
 pl_ps_irq0, 
 pl_resetn0, 
-pl_clk0, 
-pl_clk1 
+pl_clk0 
 );
 input maxihpm0_fpd_aclk;
 output [15 : 0] maxigp0_awid;
@@ -148,7 +147,6 @@ output [93 : 0] emio_enet0_enet_tsu_timer_cnt;
 input [0 : 0] pl_ps_irq0;
 output pl_resetn0;
 output pl_clk0;
-output pl_clk1;
 wire pl_clk_t[3:0] ;
 
 wire saxihpc0_fpd_rclk_temp;
@@ -169,7 +167,7 @@ wire saxi_lpd_wclk_temp;
 
 assign pl_clk0 = pl_clk_t[0] ;
 
- assign pl_clk1 = pl_clk_t[1] ;
+ assign  pl_clk1 = 1'b0 ;
 
  assign  pl_clk2 = 1'b0 ;
 

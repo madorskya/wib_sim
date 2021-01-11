@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Thu Jan  7 21:43:14 2021
+//Date        : Sun Jan 10 20:24:33 2021
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1749,7 +1749,6 @@ module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
-    clk_40,
     cmd_code_act,
     cmd_code_adc_reset,
     cmd_code_edge,
@@ -1835,7 +1834,6 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.AXI_CLK_OUT CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.AXI_CLK_OUT, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output AXI_CLK_OUT;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.AXI_RSTN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.AXI_RSTN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output [0:0]AXI_RSTn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 WIB_LED TRI_O" *) output [31:0]WIB_LED_tri_o;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_40 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_40, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk1, FREQ_HZ 40000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output clk_40;
   input [7:0]cmd_code_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_ADC_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_ADC_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_adc_reset;
   input [7:0]cmd_code_edge;
@@ -2356,7 +2354,6 @@ module design_1
   wire [15:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WSTRB;
   wire zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WVALID;
   wire zynq_ultra_ps_e_0_pl_clk0;
-  wire zynq_ultra_ps_e_0_pl_clk1;
   wire zynq_ultra_ps_e_0_pl_resetn0;
 
   assign AXI_CLK_OUT = zynq_ultra_ps_e_0_pl_clk0;
@@ -2366,7 +2363,6 @@ module design_1
   assign axi_iic_0_IIC_SDA_I = iic_rtl_0_sda_i;
   assign cdr_lol_0_1 = ts_cdr_lol;
   assign cdr_los_0_1 = ts_cdr_los;
-  assign clk_40 = zynq_ultra_ps_e_0_pl_clk1;
   assign cmd_code_act_0_1 = cmd_code_act[7:0];
   assign cmd_code_adc_reset_0_1 = cmd_code_adc_reset[7:0];
   assign cmd_code_edge_0_1 = cmd_code_edge[7:0];
@@ -3329,7 +3325,6 @@ module design_1
         .maxigp0_wvalid(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WVALID),
         .maxihpm0_fpd_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .pl_clk0(zynq_ultra_ps_e_0_pl_clk0),
-        .pl_clk1(zynq_ultra_ps_e_0_pl_clk1),
         .pl_ps_irq0(axi_iic_0_iic2intc_irpt),
         .pl_resetn0(zynq_ultra_ps_e_0_pl_resetn0));
 endmodule

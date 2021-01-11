@@ -24,9 +24,9 @@ module coldata_rx_tux
 
     output [7 : 0] rx_cdr_stable_out   , 
     output [15 :0] gtpowergood_out,     
-    input    [3:0] rx_prbs_sel,
-    output  [15:0] rxprbserr_out,
-    output [15:0] rxclk_unroll 
+    input  [3:0]   rx_prbs_sel,
+    output [15:0]  rxprbserr_out,
+    output         clk_40 
 
 );
 
@@ -50,6 +50,9 @@ module coldata_rx_tux
     wire [15:0] rxoutclk_out; // recovered clocks
     wire [15:0] rxoutclk_mapped; // recovered clocks mapped to proper channels
     wire [7:0] rxclk; // buffered recovered clocks
+    wire [3:0] refclk_odiv2;
+    wire refclk_odiv2_b;
+    wire [15:0]  rxclk_unroll;
     
     // mapping of the rx channels to FEMB channels
     integer rx_map[0:15] = '{4,5,6,7,8,9,10,11,12,13,14,15,0,1,2,3};
@@ -87,11 +90,31 @@ module coldata_rx_tux
                 .IB    (gtrefclk00n_in [gi]),
                 .CEB   (1'b0),
                 .O     (gtrefclk00_in [gi]),
-                .ODIV2 ()
+                .ODIV2 (refclk_odiv2  [gi])
             );
         end            
             
     endgenerate
+
+    BUFG_GT bufg_gt_refclk_odiv2
+    (
+        .CE      (1'b1),
+        .CEMASK  (1'b0),
+        .CLR     (1'b0),
+        .CLRMASK (1'b0),
+        .DIV     (3'b0),
+        .I       (refclk_odiv2  [0]),
+        .O       (refclk_odiv2_b)
+    );
+    // reference clock for COLDATA chips, generated from serial links reference clock
+    mmcm_40m mmcm_40m_i
+    (
+        .clk_out1 (clk_40),
+        .reset    (1'b0),
+        .locked   (),
+        .clk_in1  (refclk_odiv2_b)
+    );
+    
 
     
     // take recovered clock from each COLDATA chip separately, 
