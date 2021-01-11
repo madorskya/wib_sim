@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jan  8 23:37:09 2021" VIVADOVERSION="2020.1.1_AR73018">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Jan 10 17:48:12 2021" VIVADOVERSION="2020.1.1_AR73018">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu9cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -394,6 +394,11 @@
         <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fake_time_stamp_init"/>
       </CONNECTIONS>
     </PORT>
+    <PORT CLKFREQUENCY="40000000" DIR="O" LEFT="0" NAME="clk_40" RIGHT="0" SIGIS="clk" SIGNAME="util_ds_buf_0_BUFG_O">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="util_ds_buf_0" PORT="BUFG_O"/>
+      </CONNECTIONS>
+    </PORT>
     <PORT DIR="I" NAME="iic_rtl_0_scl_i" SIGIS="undef" SIGNAME="axi_iic_0_scl_i">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axi_iic_0" PORT="scl_i"/>
@@ -427,11 +432,6 @@
     <PORT DIR="O" LEFT="31" NAME="WIB_LED_tri_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_1_gpio_io_o">
       <CONNECTIONS>
         <CONNECTION INSTANCE="axi_gpio_1" PORT="gpio_io_o"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT CLKFREQUENCY="40000000" DIR="O" NAME="clk_40" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk1">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk1"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -17129,6 +17129,35 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
+    <MODULE COREREVISION="22" FULLNAME="/util_ds_buf_0" HWVERSION="2.1" INSTANCE="util_ds_buf_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="util_ds_buf" VLNV="xilinx.com:ip:util_ds_buf:2.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="C_BUF_TYPE" VALUE="BUFG"/>
+        <PARAMETER NAME="C_SIZE" VALUE="1"/>
+        <PARAMETER NAME="C_BUFGCE_DIV" VALUE="1"/>
+        <PARAMETER NAME="C_BUFG_GT_SYNC" VALUE="0"/>
+        <PARAMETER NAME="C_SIM_DEVICE" VALUE="VERSAL_AI_CORE_ES1"/>
+        <PARAMETER NAME="C_OBUFDS_GTE5_ADV" VALUE="&quot;00&quot;"/>
+        <PARAMETER NAME="C_REFCLK_ICNTL_TX" VALUE="&quot;00000&quot;"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_util_ds_buf_0_4"/>
+        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
+        <PARAMETER NAME="DIFF_CLK_IN_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="40000000" DIR="I" LEFT="0" NAME="BUFG_I" RIGHT="0" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="pl_clk1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="40000000" DIR="O" LEFT="0" NAME="BUFG_O" RIGHT="0" SIGIS="clk" SIGNAME="util_ds_buf_0_BUFG_O">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_40"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
     <MODULE CONFIGURABLE="TRUE" COREREVISION="2" FULLNAME="/zynq_ultra_ps_e_0" HWVERSION="3.3" INSTANCE="zynq_ultra_ps_e_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" IS_PL="FALSE" MODTYPE="zynq_ultra_ps_e" VLNV="xilinx.com:ip:zynq_ultra_ps_e:3.3">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=zynq_ultra_ps_e;v=v3_3;d=pg201-zynq-ultrascale-plus-processing-system.pdf"/>
@@ -19107,7 +19136,7 @@
         </PORT>
         <PORT CLKFREQUENCY="40000000" DIR="O" NAME="pl_clk1" SIGIS="clk" SIGNAME="zynq_ultra_ps_e_0_pl_clk1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk_40"/>
+            <CONNECTION INSTANCE="util_ds_buf_0" PORT="BUFG_I"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

@@ -124,7 +124,6 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<1> > pl_ps_irq0;
   sc_core::sc_out< bool > pl_resetn0;
   sc_core::sc_out< bool > pl_clk0;
-  sc_core::sc_out< bool > pl_clk1;
 
 protected:
 
@@ -195,7 +194,6 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<1> > pl_ps_irq0;
   sc_core::sc_out< bool > pl_resetn0;
   sc_core::sc_out< bool > pl_clk0;
-  sc_core::sc_out< bool > pl_clk1;
 
 protected:
 
@@ -266,7 +264,6 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<1> > pl_ps_irq0;
   sc_core::sc_out< bool > pl_resetn0;
   sc_core::sc_out< bool > pl_clk0;
-  sc_core::sc_out< bool > pl_clk1;
 
 protected:
 
@@ -339,7 +336,6 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<1> > pl_ps_irq0;
   sc_core::sc_out< bool > pl_resetn0;
   sc_core::sc_out< bool > pl_clk0;
-  sc_core::sc_out< bool > pl_clk1;
 
 protected:
 
@@ -418,7 +414,6 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<1> > pl_ps_irq0;
   sc_core::sc_out< bool > pl_resetn0;
   sc_core::sc_out< bool > pl_clk0;
-  sc_core::sc_out< bool > pl_clk1;
 
 protected:
 

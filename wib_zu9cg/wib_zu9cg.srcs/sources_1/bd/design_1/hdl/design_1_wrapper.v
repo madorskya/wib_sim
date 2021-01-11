@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Fri Jan  8 23:35:57 2021
+//Date        : Sun Jan 10 17:48:00 2021
 //Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -95,7 +95,7 @@ module design_1_wrapper
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
   output [31:0]WIB_LED_tri_o;
-  output clk_40;
+  output [0:0]clk_40;
   input [7:0]cmd_code_act;
   input [7:0]cmd_code_adc_reset;
   input [7:0]cmd_code_edge;
@@ -178,7 +178,7 @@ module design_1_wrapper
   wire AXI_CLK_OUT;
   wire [0:0]AXI_RSTn;
   wire [31:0]WIB_LED_tri_o;
-  wire clk_40;
+  wire [0:0]clk_40;
   wire [7:0]cmd_code_act;
   wire [7:0]cmd_code_adc_reset;
   wire [7:0]cmd_code_edge;

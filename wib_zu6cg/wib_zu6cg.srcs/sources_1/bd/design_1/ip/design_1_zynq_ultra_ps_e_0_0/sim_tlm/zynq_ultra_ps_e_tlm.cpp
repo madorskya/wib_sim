@@ -147,10 +147,8 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
         ,pl_ps_irq0("pl_ps_irq0")
         ,pl_resetn0("pl_resetn0")
         ,pl_clk0("pl_clk0")
-        ,pl_clk1("pl_clk1")
     ,m_rp_bridge_M_AXI_HPM0_FPD("m_rp_bridge_M_AXI_HPM0_FPD")
         ,pl_clk0_clk("pl_clk0_clk", sc_time(10.0,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
-        ,pl_clk1_clk("pl_clk1_clk", sc_time(25.0,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
     {
         //creating instances of xtlm slave sockets
 
@@ -184,9 +182,6 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
         SC_METHOD(trigger_pl_clk0_pin);
         sensitive << pl_clk0_clk;
         dont_initialize();
-        SC_METHOD(trigger_pl_clk1_pin);
-        sensitive << pl_clk1_clk;
-        dont_initialize();
         
         m_rp_bridge_M_AXI_HPM0_FPD.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
 
@@ -204,11 +199,6 @@ void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic
     //pl_clk0 pin written based on pl_clk0_clk clock value 
     void zynq_ultra_ps_e_tlm ::trigger_pl_clk0_pin()    {
         pl_clk0.write(pl_clk0_clk.read());
-    }
-    //Method which is sentive to pl_clk1_clk sc_clock object
-    //pl_clk1 pin written based on pl_clk1_clk clock value 
-    void zynq_ultra_ps_e_tlm ::trigger_pl_clk1_pin()    {
-        pl_clk1.write(pl_clk1_clk.read());
     }
 
     void zynq_ultra_ps_e_tlm ::pl_ps_irq0_method()    {

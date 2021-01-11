@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Fri Jan  8 23:43:01 2021
+-- Date        : Sat Jan  9 23:40:52 2021
 -- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_util_vector_logic_0_2 -prefix
---               design_1_util_vector_logic_0_2_ design_1_util_vector_logic_0_1_stub.vhdl
--- Design      : design_1_util_vector_logic_0_1
+--               design_1_util_vector_logic_0_2_ design_1_util_vector_logic_0_4_stub.vhdl
+-- Design      : design_1_util_vector_logic_0_4
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu9cg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------

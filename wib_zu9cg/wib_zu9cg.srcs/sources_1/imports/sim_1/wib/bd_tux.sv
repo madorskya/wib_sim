@@ -3,8 +3,7 @@
 
 module bd_tux
 (
-    output [3:0] coldata_clk_40_p,
-    output [3:0] coldata_clk_40_n,
+    output [7:0] coldata_clk_40,
     
     // coldata fast command
     output fastcommand_out_p,
@@ -70,7 +69,7 @@ module bd_tux
     
     wire clk_40;
     // output the same 40M clock to all FEMBs
-    OBUFDS clk_40_buf[3:0] (.I(clk_40), .O(coldata_clk_40_p[3:0]), .OB(coldata_clk_40_n[3:0]));
+    assign coldata_clk_40 = {8{clk_40}};
 
     design_1 design_1_i
     (

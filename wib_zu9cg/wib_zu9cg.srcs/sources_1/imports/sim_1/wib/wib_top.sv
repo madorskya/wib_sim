@@ -16,9 +16,8 @@ module wib_top
     input  [3:0] i2c_lvds_l2_sda_c2w_p,
     input  [3:0] i2c_lvds_l2_sda_c2w_n,
     
-    // clocks for COLDATA PLL [femb]
-    output [3:0] coldata_clk40_p,
-    output [3:0] coldata_clk40_n,
+    // clocks for COLDATA PLL [femb*coldata]
+    output [7:0] coldata_clk40,
 
     // fast command output    
     output femb_cmd_fpga_out_p,
@@ -195,8 +194,7 @@ module wib_top
 
     bd_tux wrp
     (
-        .coldata_clk_40_p (coldata_clk40_p),
-        .coldata_clk_40_n (coldata_clk40_n),
+        .coldata_clk_40 (),
         
         // coldata fast command
         .fastcommand_out_p (femb_cmd_fpga_out_p),
@@ -304,6 +302,8 @@ module wib_top
     assign `STATUS_BITS( 4, 4,  1) = ts_rst;
     assign `STATUS_BITS( 4, 0,  4) = ts_stat;
     
+    assign coldata_clk40 = {8{clk_40}};
+    
     coldata_rx_tux coldata_rx
     (
         .gtrefclk00p_in      (gtrefclk00p_in     ), // reference clocks(), 128M
@@ -327,7 +327,8 @@ module wib_top
         .rx_cdr_stable_out   (rx_cdr_stable_out  ), 
         .gtpowergood_out     (gtpowergood_out    ),
         .rx_prbs_sel         (rx_prbs_sel),
-        .rxprbserr_out       (rxprbserr_out)
+        .rxprbserr_out       (rxprbserr_out),
+        .clk_40              (clk_40)
     );
     
     coldata_deframer coldata_df
