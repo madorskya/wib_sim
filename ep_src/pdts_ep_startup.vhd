@@ -22,9 +22,10 @@ entity pdts_ep_startup is
 		sclk: in std_logic; -- Free-running system clock
 		srst: in std_logic; -- System reset (sclk domain)
 		stat: out std_logic_vector(3 downto 0); -- Status output (sclk domain)
-		sfp_los: in std_logic; -- SFP LOS line (async, sampled in sclk domain)
-		cdr_los: in std_logic; -- CDR LOS line (asnc, sampled in sclk domain)
-		cdr_lol: in std_logic; -- CDR LOL line (async, sampled in sclk domain)
+--		sfp_los: in std_logic; -- SFP LOS line (async, sampled in sclk domain)
+--		cdr_los: in std_logic; -- CDR LOS line (asnc, sampled in sclk domain)
+--		cdr_lol: in std_logic; -- CDR LOL line (async, sampled in sclk domain)
+		io_rdy: in std_logic;
 		adj_req: in std_logic; -- Handshake with phase adjust block
 		adj_ack: out std_logic;
 		rec_clk: in std_logic; -- CDR recovered clock
@@ -38,7 +39,8 @@ entity pdts_ep_startup is
 		ext_rst: out std_logic; -- 50MHz reset for external logic
 		rx_err: in std_logic_vector(2 downto 0); -- RX decoder error status 
 		tsrdy: in std_logic; -- Timestamp ready
-		rdy: out std_logic -- Output ready signal
+		rdy: out std_logic; -- Output ready signal
+		debug: out std_logic_vector(7 downto 0)
 	);
 
 end pdts_ep_startup;
@@ -226,7 +228,8 @@ begin
 	
 -- External signal debounce	
 
-	link_bad <= cdr_los or cdr_lol or sfp_los;
+--	link_bad <= cdr_los or cdr_lol or sfp_los;
+	link_bad <= not io_rdy;
 
 	chk: entity work.pdts_chklock
 		generic map(
@@ -313,5 +316,7 @@ begin
 		"1100" when ERR_R, -- Error in rx
 		"1101" when ERR_T, -- Error in time stamp check
 		"1110" when ERR_P; -- Physical layer error after lock
+		
+	debug <= rxphy_aligned_i & rxphy_locked_i & rx_err_i & tsrdy_i & link_bad & link_ok & f_ok & srst;
 
 end rtl;

@@ -3,12 +3,12 @@
     "design_info": {
       "boundary_crc": "0xF2885E83AE9027B6",
       "design_src": "SBD",
-      "device": "xczu9cg-ffvb1156-1-e",
+      "device": "xczu9eg-ffvb1156-1-e",
       "name": "bd_c443",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "scoped": "true",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2020.1.1_AR73018",
+      "tool_version": "2020.1",
       "validated": "true"
     },
     "design_tree": {

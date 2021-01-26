@@ -21,18 +21,31 @@ entity pdts_endpoint_stdlogic is
 		rec_d: in std_logic; -- CDR recovered data from timing link (rec_clk domain)
 		sfp_los: in std_logic := '0'; -- SFP LOS line (async, sampled in sclk domain)
 		cdr_los: in std_logic := '0'; -- CDR LOS line (async, sampled in sclk domain)
-		cdr_lol: in std_logic := '0'; -- CDR LOL line (async, sampled in sclk domain)
+		cdr_lol: in std_logic := '0'; -- CDR LOL line (async, --sampled in sclk domain)
+        pll_locked: in std_logic;
+--		io_rdy: in std_logic; -- Sampled in sclk domaain
 		clk: out std_logic; -- 50MHz clock output
 		rst: out std_logic; -- 50MHz domain reset
 		rdy: out std_logic; -- Timestamp valid flag
-		debug: out std_logic_vector(31 downto 0) := (others => '0') -- port for debug info, e.g. applied delay values
+		sync: out std_logic_vector(3 downto 0); -- Sync command output (clk domain)
+		sync_stb: out std_logic; -- Sync command strobe (clk domain)
+		sync_first: out std_logic; -- Sync command valid flag (clk domain)
+		tstamp: out std_logic_vector(63 downto 0); -- Timestamp out
+		debug: out std_logic_vector(7 downto 0) -- port for debug info, e.g. applied delay values
 	);
 
 end pdts_endpoint_stdlogic;
 
 architecture rtl of pdts_endpoint_stdlogic is
 
+    attribute X_INTERFACE_PARAMETER: string;
+    attribute X_INTERFACE_PARAMETER of clk: signal is "FREQ_HZ 50000000";
+    
+    signal io_rdy: std_logic;
+    
 begin
+
+    io_rdy <= not (sfp_los or cdr_lol or cdr_los) and pll_locked;
 
 	ep: entity work.pdts_endpoint
 		generic map(
@@ -49,19 +62,20 @@ begin
 			rec_clk => rec_clk,
 			rec_d => rec_d,
 			txd => open,
-			sfp_los => sfp_los,
-			cdr_los => cdr_los,
-			cdr_lol => cdr_lol,
+--			sfp_los => sfp_los,
+--			cdr_los => cdr_los,
+--			cdr_lol => cdr_lol,
+			io_rdy => io_rdy,
 			sfp_tx_dis => open,
 			clk => clk,
 			rst => rst,
 			rdy => rdy,
-			sync => open,
-			sync_stb => open,
-			sync_first => open,
-			tstamp => open,
+			sync => sync,
+			sync_stb => sync_stb,
+			sync_first => sync_first,
+			tstamp => tstamp,
 			tsync_out => open,
-			debug => debug
+			debug(7 downto 0) => debug
 		);
 
 end rtl;

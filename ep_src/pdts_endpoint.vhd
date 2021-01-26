@@ -27,9 +27,10 @@ entity pdts_endpoint is
 		rec_clk: in std_logic; -- CDR recovered clock from timing link
 		rec_d: in std_logic; -- CDR recovered data from timing link (rec_clk domain)
 		txd: out std_logic; -- Output data to timing link (rec_clk domain)
-		sfp_los: in std_logic := '0'; -- SFP LOS line (async, sampled in sclk domain)
-		cdr_los: in std_logic := '0'; -- CDR LOS line (async, sampled in sclk domain)
-		cdr_lol: in std_logic := '0'; -- CDR LOL line (async, sampled in sclk domain)
+--		sfp_los: in std_logic := '0'; -- SFP LOS line (async, sampled in sclk domain)
+--		cdr_los: in std_logic := '0'; -- CDR LOS line (async, sampled in sclk domain)
+--		cdr_lol: in std_logic := '0'; -- CDR LOL line (async, sampled in sclk domain)
+		io_rdy: in std_logic;
 		sfp_tx_dis: out std_logic; -- SFP tx disable line (clk domain)
 		clk: out std_logic; -- 50MHz clock output
 		rst: out std_logic; -- 50MHz domain reset
@@ -40,7 +41,7 @@ entity pdts_endpoint is
 		tstamp: out std_logic_vector(8 * TSTAMP_WDS - 1 downto 0); -- Timestamp out
 		tsync_in: in cmd_w := CMD_W_NULL; -- Tx sync command input
 		tsync_out: out cmd_r; -- Tx sync command handshake
-		debug: out std_logic_vector(31 downto 0) := (others => '0') -- port for debug info, e.g. applied delay values
+		debug: out std_logic_vector(7 downto 0) -- port for debug info, e.g. applied delay values
 	);
 
 end pdts_endpoint;
@@ -65,6 +66,7 @@ architecture rtl of pdts_endpoint is
 	signal tx_q: std_logic_vector(7 downto 0);
 	signal tx_err, tx_stb, tx_k, txdi: std_logic;
 	signal stat_i: std_logic_vector(3 downto 0);
+	signal debug_i: std_logic_vector(7 downto 0);
 
 begin
 
@@ -81,9 +83,10 @@ begin
 			sclk => sclk,
 			srst => srst,
 			stat => stat_i,
-			sfp_los => sfp_los,
-			cdr_los => cdr_los,
-			cdr_lol => cdr_lol,
+--			sfp_los => sfp_los,
+--			cdr_los => cdr_los,
+--			cdr_lol => cdr_lol,
+			io_rdy => io_rdy,
 			adj_req => adj_req,
 			adj_ack => adj_ack,
 			rec_clk => rec_clk,
@@ -97,7 +100,8 @@ begin
 			ext_rst => ext_rst_i,
 			rx_err => rx_err,
 			tsrdy => rdy_i,
-			rdy => rdy
+			rdy => rdy,
+			debug => debug
 		);
 
 	stat <= stat_i;
@@ -279,7 +283,7 @@ begin
 
 -- Debug port
 
-	debug <= "0" & stat_i & rdy_i & ext_rst_i & rst_i & tx_err & adj_ack & tx_en & adj_req & fdel & cdel & ph_update & rx_err & phase_locked & phase_rst & rxphy_locked & rxphy_aligned & rxphy_rst & rec_rst;
+--	debug <= "0" & stat_i & rdy_i & ext_rst_i & rst_i & tx_err & adj_ack & tx_en & adj_req & fdel & cdel & ph_update & rx_err & phase_locked & phase_rst & rxphy_locked & rxphy_aligned & rxphy_rst & rec_rst;
 
 
 end rtl;
