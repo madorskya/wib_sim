@@ -41,7 +41,7 @@ entity pdts_endpoint is
 		tstamp: out std_logic_vector(8 * TSTAMP_WDS - 1 downto 0); -- Timestamp out
 		tsync_in: in cmd_w := CMD_W_NULL; -- Tx sync command input
 		tsync_out: out cmd_r; -- Tx sync command handshake
-		debug: out std_logic_vector(7 downto 0) -- port for debug info, e.g. applied delay values
+		debug: out std_logic_vector(31 downto 0) -- port for debug info, e.g. applied delay values
 	);
 
 end pdts_endpoint;

@@ -14,7 +14,7 @@ package pdts_defs is
 
 -- Allowed values for SCLK_RATIO are 10 (500Mb/s IO at CLK_FREQ=50), 5 (250Mb/s IO), 2 (100Mb/s IO), 1 (50Mb/s IO)
 
-	constant CLK_FREQ: real := 50.0; -- System clock frequency, MHz
+	constant CLK_FREQ: real := 62.5; -- System clock frequency, MHz
 	constant SCLK_RATIO: integer := 5; -- Ratio of IO clock to base clock
 	constant VCO_RATIO: integer := 4; -- Needs to be such that VCO frequency is 600 < f < 1200
 

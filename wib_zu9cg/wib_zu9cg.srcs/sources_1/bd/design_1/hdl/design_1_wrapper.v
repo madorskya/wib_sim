@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Jan 26 16:11:35 2021
+//Date        : Wed Jan 27 18:30:04 2021
 //Host        : heplnw039.pp.rl.ac.uk running 64-bit CentOS Linux release 7.9.2009 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper

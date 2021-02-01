@@ -40,7 +40,7 @@ entity pdts_ep_startup is
 		rx_err: in std_logic_vector(2 downto 0); -- RX decoder error status 
 		tsrdy: in std_logic; -- Timestamp ready
 		rdy: out std_logic; -- Output ready signal
-		debug: out std_logic_vector(7 downto 0)
+		debug: out std_logic_vector(31 downto 0)
 	);
 
 end pdts_ep_startup;
@@ -224,7 +224,7 @@ begin
 		end if;
 	end process;
 	
-	f_ok <= '1' when cctr_rnd = to_unsigned(integer((CLK_FREQ * real(SCLK_RATIO) / SCLK_FREQ) * 256.0), 16) else '0';
+	f_ok <= '1' when cctr_rnd = to_unsigned(integer(CLK_FREQ * real(SCLK_RATIO) * 256.0 / real(SCLK_FREQ)), 16) else '0';
 	
 -- External signal debounce	
 
@@ -317,6 +317,6 @@ begin
 		"1101" when ERR_T, -- Error in time stamp check
 		"1110" when ERR_P; -- Physical layer error after lock
 		
-	debug <= rxphy_aligned_i & rxphy_locked_i & rx_err_i & tsrdy_i & link_bad & link_ok & f_ok & srst;
+	debug <= std_logic_vector(cctr_rnd) & X"00" & rxphy_aligned_i & rxphy_locked_i & rx_err_i & tsrdy_i & link_bad & link_ok & f_ok & srst;
 
 end rtl;

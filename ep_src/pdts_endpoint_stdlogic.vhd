@@ -31,7 +31,7 @@ entity pdts_endpoint_stdlogic is
 		sync_stb: out std_logic; -- Sync command strobe (clk domain)
 		sync_first: out std_logic; -- Sync command valid flag (clk domain)
 		tstamp: out std_logic_vector(63 downto 0); -- Timestamp out
-		debug: out std_logic_vector(7 downto 0) -- port for debug info, e.g. applied delay values
+		debug: out std_logic_vector(31 downto 0) -- port for debug info, e.g. applied delay values
 	);
 
 end pdts_endpoint_stdlogic;
@@ -39,7 +39,7 @@ end pdts_endpoint_stdlogic;
 architecture rtl of pdts_endpoint_stdlogic is
 
     attribute X_INTERFACE_PARAMETER: string;
-    attribute X_INTERFACE_PARAMETER of clk: signal is "FREQ_HZ 50000000";
+    attribute X_INTERFACE_PARAMETER of clk: signal is "FREQ_HZ 62500000";
     
     signal io_rdy: std_logic;
     
@@ -75,7 +75,7 @@ begin
 			sync_first => sync_first,
 			tstamp => tstamp,
 			tsync_out => open,
-			debug(7 downto 0) => debug
+			debug => debug
 		);
 
 end rtl;
