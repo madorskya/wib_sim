@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Sun Jan 10 19:06:25 2021
--- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb  5 09:41:57 2021
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/github/wib_sim/wib_zu9cg/wib_zu9cg.srcs/sources_1/ip/mmcm_40m/mmcm_40m_sim_netlist.vhdl
+--               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/mmcm_40m/mmcm_40m_sim_netlist.vhdl
 -- Design      : mmcm_40m
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xczu9cg-ffvb1156-1-e
+-- Device      : xczu6cg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -70,7 +70,7 @@ mmcme4_adv_inst: unisim.vcomponents.MMCME4_ADV
       CLKFBOUT_MULT_F => 9.375000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => "FALSE",
-      CLKIN1_PERIOD => 7.813000,
+      CLKIN1_PERIOD => 7.812000,
       CLKIN2_PERIOD => 0.000000,
       CLKOUT0_DIVIDE_F => 30.000000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
