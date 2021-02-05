@@ -12,7 +12,9 @@ module frame_builder_single #(parameter NUM = 0)
     input             daq_clk,
     input [63:0] ts_tstamp,
     input reset,
-    input fake_daq_stream
+    input fake_daq_stream,
+    input [3:0] bp_crate_addr,
+    input [3:0] bp_slot_addr 
 );
 
     reg [13:0] deframed_aligned [7:0][31:0]; // [link][sample]
@@ -135,11 +137,11 @@ module frame_builder_single #(parameter NUM = 0)
 
     // various fields assigned temporarily
     wire [13:0] wib_code = {6'h0, link_mask}; // link mask transmitted at the top of each frame 
-    wire  [3:0] fr_ver = 0; 
+    wire  [3:0] fr_ver = 4'h1; 
     wire  [1:0] femb_val = 0; 
     wire        fnum = 0; 
-    wire  [2:0] wib_slot = 0; 
-    wire  [7:0] wiec_crate = 8'h23;
+    wire  [2:0] wib_slot = bp_slot_addr[2:0]; 
+    wire  [7:0] wiec_crate = {bp_crate_addr, bp_slot_addr};
     wire [31:0] wib_coldata_code = 32'hbabeface;
     wire [63:0] timestamp = ts_tstamp;
     wire [11:0] flex_12 = 12'hF12;
@@ -149,7 +151,7 @@ module frame_builder_single #(parameter NUM = 0)
     assign header  [0] = {24'h0, 8'h3c};
     assign header_k[0] = 4'b0001;
 
-    assign header  [1] = {wib_code, fr_ver, femb_val, fnum, wib_slot, wiec_crate};
+    assign header  [1] = {wib_code, femb_val, fnum, wib_slot, fr_ver, wiec_crate};
     assign header_k[1] = 4'b0000;
 
     assign header  [2] = wib_coldata_code;

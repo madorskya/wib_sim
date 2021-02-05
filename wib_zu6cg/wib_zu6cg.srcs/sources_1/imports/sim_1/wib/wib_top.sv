@@ -81,7 +81,10 @@ module wib_top
     input  clk_in_50mhz,
     
     // test points
-    output [15:0] misc_io
+    output [15:0] misc_io,
+    
+    input [3:0] bp_crate_addr,
+    input [3:0] bp_slot_addr 
     
 );
 
@@ -272,27 +275,30 @@ module wib_top
     
     // config and status registers mapping
     
-    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // i2c chain selector, see I2C_CONTROL module below
-    assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1);
-    assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1);
-    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2);
-    wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4);
-    wire fb_reset           = `CONFIG_BITS(1,12, 1); // frame builder reset
-    assign coldata_rx_reset = `CONFIG_BITS(1,13, 1);
+    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
+    assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1); // 0xA00C0004
+    assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1); // 0xA00C0004
+    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2); // 0xA00C0004
+    wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4); // 0xA00C0004
+    wire fb_reset           = `CONFIG_BITS(1,12, 1); // 0xA00C0004 frame builder reset
+    assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
     
-    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // this input allows to disable some links in case the are broken
+    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
-    assign ts_edge_sel      = `CONFIG_BITS(3, 0,  1); // timing data clock edge selection
+    assign ts_edge_sel      = `CONFIG_BITS(3, 0,  1); // 0xA00C000c timing data clock edge selection
     
-    assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;
-    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;
-    assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;
-    assign `STATUS_BITS( 2, 0, 32) = fw_date;
+    assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
+    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
+    assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;  // 0xA00C0084
+    assign `STATUS_BITS( 2, 0, 32) = fw_date;        // 0xA00C0088
+
+    assign `STATUS_BITS( 3, 0, 8) = {bp_crate_addr, bp_slot_addr}; // 0xA00C008c 
+
 
     // according to Adrian's Slack message from 2020-10-15
-    assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32];
-    assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];
-    assign `STATUS_BITS( 4,20,  8) = 8'hff;
+    assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32]; // 0xA00C00B0
+    assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];  // 0xA00C00A0
+    assign `STATUS_BITS( 4,20,  8) = 8'hff;            // 0xA00C0090
     assign `STATUS_BITS( 4,18,  1) = adn2814_los;
     assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
     assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
@@ -358,9 +364,10 @@ module wib_top
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
         .reset        (fb_reset),
-        .fake_daq_stream (fake_daq_stream)
-    );
-    
+        .fake_daq_stream (fake_daq_stream),
+        .bp_crate_addr (bp_crate_addr),
+        .bp_slot_addr  (bp_slot_addr )
+    );    
     
     I2C_CONTROL i2c_ctrl
     ( 
