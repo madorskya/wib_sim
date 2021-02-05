@@ -460,7 +460,17 @@ module wib_top
     assign misc_io[15]   = clk62p5;
 
     // firmware timestamp 
-    // need to set -g USR_ACCESS option to TIMESTAMP in BitGen settings
+    // ISE: set -g USR_ACCESS option to TIMESTAMP in BitGen settings
+    // Vivado: set_property BITSTREAM.CONFIG.USR_ACCESS TIMESTAMP [current_design]
+    // ddddd_MMMM_yyyyyy_hhhhh_mmmmmm_ssssss
+    // (bit 31) .. (bit 0)
+    // Where:
+    //  ddddd = 5 bits to represent 31 days in a month
+    //   MMMM = 4 bits to represent 12 months in a year
+    // yyyyyy = 6 bits to represent 0 to 63 (to note year 2000 to 2063)
+    //  hhhhh = 5 bits to represent 24 hours in a day
+    // mmmmmm = 6 bits to represent 60 minutes in an hour
+    // ssssss = 6 bits to represent 60 seconds in a minute
 	USR_ACCESSE2 usr_access
 	(
 		.DATA (fw_date),
