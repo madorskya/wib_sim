@@ -135,7 +135,7 @@ module wib_top
     
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
     IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk_pad));
-    BUFG (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk));
+    BUFG ts_rec_bufg (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk));
     
     // have to add an input FF for timing data, it's missing in the timing endpoint
     always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
