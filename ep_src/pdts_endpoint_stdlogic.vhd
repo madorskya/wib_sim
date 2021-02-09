@@ -31,7 +31,9 @@ entity pdts_endpoint_stdlogic is
 		sync_stb: out std_logic; -- Sync command strobe (clk domain)
 		sync_first: out std_logic; -- Sync command valid flag (clk domain)
 		tstamp: out std_logic_vector(63 downto 0); -- Timestamp out
-		debug: out std_logic_vector(31 downto 0) -- port for debug info, e.g. applied delay values
+		debug: out std_logic_vector(31 downto 0); -- port for debug info, e.g. applied delay values
+		txd: out std_logic;
+		tx_dis: out std_logic
 	);
 
 end pdts_endpoint_stdlogic;
@@ -61,12 +63,12 @@ begin
 			stat => stat,
 			rec_clk => rec_clk,
 			rec_d => rec_d,
-			txd => open,
+			txd => txd,
 --			sfp_los => sfp_los,
 --			cdr_los => cdr_los,
 --			cdr_lol => cdr_lol,
 			io_rdy => io_rdy,
-			sfp_tx_dis => open,
+			sfp_tx_dis => tx_dis,
 			clk => clk,
 			rst => rst,
 			rdy => rdy,

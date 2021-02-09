@@ -76,6 +76,7 @@ module wib_top
     // return signals from timing point
     output tx_timing_p,
     output tx_timing_n,
+    output tx_timing_disable,
     
     // standalone oscillator 
     input  clk_in_50mhz,
@@ -227,6 +228,8 @@ module wib_top
         .ts_sync_v         (ts_sync_v        ),
         .ts_tstamp         (ts_tstamp        ),
         .ts_stat           (ts_stat          ),
+        .txd                 (tx_timing),
+        .tx_dis              (tx_timing_disable),
 
         .axi_clk_out (axi_clk_out),
         .axi_rstn    (axi_rstn   ),
@@ -411,7 +414,7 @@ module wib_top
     timing_master_fake tmf
     (
         .clk50     (clk50),
-        .tx_timing (tx_timing), // 125M clock = 50M*2.5, simulating timing master working at 50M
+        .tx_timing (), // 125M clock = 50M*2.5, simulating timing master working at 50M
         
         .clk_240 (daq_clk), // temporary replacement for real DAQ clock that should be coming from FELIX links
         .clk_130 (rxclk2x) // clock for deframer and frame builder, slightly faster than 64M*2 coming from COLDATA links
