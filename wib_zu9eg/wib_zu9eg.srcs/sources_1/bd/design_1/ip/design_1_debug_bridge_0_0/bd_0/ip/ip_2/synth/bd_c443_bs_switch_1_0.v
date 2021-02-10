@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:ip:bs_switch:1.0
 // IP Revision: 0
 
-(* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018" *)
+(* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "bd_c443_bs_switch_1_0,bs_switch_v1_0_0_bs_switch,{}" *)
-(* CORE_GENERATION_INFO = "bd_c443_bs_switch_1_0,bs_switch_v1_0_0_bs_switch,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=bs_switch,x_ipVersion=1.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_USE_EXT_BSCAN=1,C_ONLY_PRIMITIVE=0,C_NUM_BS_MASTER=1,C_XDEVICEFAMILY=zynquplus,C_USER_SCAN_CHAIN=1}" *)
+(* CORE_GENERATION_INFO = "bd_c443_bs_switch_1_0,bs_switch_v1_0_0_bs_switch,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=bs_switch,x_ipVersion=1.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_USE_EXT_BSCAN=1,C_ONLY_PRIMITIVE=0,C_NUM_BS_MASTER=1,C_XDEVICEFAMILY=zynquplus,C_USER_SCAN_CHAIN=1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_c443_bs_switch_1_0 (
   s_bscan_drck,

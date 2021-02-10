@@ -1,8 +1,8 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-//Date        : Fri Jan 29 00:10:27 2021
-//Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+//Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+//Date        : Wed Feb 10 14:44:59 2021
+//Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
 //Purpose     : IP block netlist
@@ -90,7 +90,9 @@ module design_1_wrapper
     ts_sync,
     ts_sync_v,
     ts_tstamp,
-    ts_valid);
+    ts_valid,
+    tx_dis,
+    txd);
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
   output [31:0]WIB_LED_tri_o;
@@ -172,6 +174,8 @@ module design_1_wrapper
   output [0:0]ts_sync_v;
   output [63:0]ts_tstamp;
   output ts_valid;
+  output tx_dis;
+  output txd;
 
   wire AXI_CLK_OUT;
   wire [0:0]AXI_RSTn;
@@ -260,6 +264,8 @@ module design_1_wrapper
   wire [0:0]ts_sync_v;
   wire [63:0]ts_tstamp;
   wire ts_valid;
+  wire tx_dis;
+  wire txd;
 
   design_1 design_1_i
        (.AXI_CLK_OUT(AXI_CLK_OUT),
@@ -346,7 +352,9 @@ module design_1_wrapper
         .ts_sync(ts_sync),
         .ts_sync_v(ts_sync_v),
         .ts_tstamp(ts_tstamp),
-        .ts_valid(ts_valid));
+        .ts_valid(ts_valid),
+        .tx_dis(tx_dis),
+        .txd(txd));
   IOBUF iic_rtl_0_scl_iobuf
        (.I(iic_rtl_0_scl_o),
         .IO(iic_rtl_0_scl_io),

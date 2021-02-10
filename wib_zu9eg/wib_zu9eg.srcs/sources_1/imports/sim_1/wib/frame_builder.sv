@@ -13,7 +13,10 @@ module frame_builder
     input         daq_clk,
     input  [63:0] ts_tstamp, // time stamp from timing endpoint
     input         reset,
-    input         fake_daq_stream
+    input         fake_daq_stream,
+
+    input [3:0] bp_crate_addr,
+    input [3:0] bp_slot_addr 
 
 );
 /*
@@ -75,7 +78,9 @@ module frame_builder
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
         .reset        (reset),
-        .fake_daq_stream (fake_daq_stream)
+        .fake_daq_stream (fake_daq_stream),
+        .bp_crate_addr (bp_crate_addr),
+        .bp_slot_addr  (bp_slot_addr )
     );
 
     frame_builder_single #(.NUM(1)) fbs1
@@ -92,7 +97,9 @@ module frame_builder
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
         .reset        (reset),
-        .fake_daq_stream (fake_daq_stream)
+        .fake_daq_stream (fake_daq_stream),
+        .bp_crate_addr (bp_crate_addr),
+        .bp_slot_addr  (bp_slot_addr )
     );
 
 endmodule

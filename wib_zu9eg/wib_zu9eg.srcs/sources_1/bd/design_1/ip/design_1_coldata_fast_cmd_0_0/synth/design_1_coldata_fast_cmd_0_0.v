@@ -50,7 +50,7 @@
 // IP VLNV: user.org:user:coldata_fast_cmd:1.0
 // IP Revision: 10
 
-(* X_CORE_INFO = "coldata_fast_cmd_v1_0,Vivado 2020.1.1_AR73018" *)
+(* X_CORE_INFO = "coldata_fast_cmd_v1_0,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_coldata_fast_cmd_0_0,coldata_fast_cmd_v1_0,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_coldata_fast_cmd_0_0 (

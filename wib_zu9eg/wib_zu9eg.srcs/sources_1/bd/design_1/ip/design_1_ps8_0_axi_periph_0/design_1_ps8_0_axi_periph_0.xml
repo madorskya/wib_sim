@@ -1636,7 +1636,7 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2020.1.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="2192f355"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="e3c1d15b"/>
     </xilinx:packagingInfo>

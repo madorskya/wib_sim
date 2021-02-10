@@ -135,7 +135,7 @@ wire clk_in2_mmcm_40m;
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (7.813))
+    .CLKIN1_PERIOD        (7.812))
   
   mmcme4_adv_inst
     // Output clocks

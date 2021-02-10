@@ -9,7 +9,7 @@ module ts_reclock
     input sync_stb_in,
     input sync_first_in,
     input [63:0] tstamp_in,
-    input clk50,
+//    input clk50,
     
     output [3:0] stat_out,
     output rst_out,
@@ -66,22 +66,24 @@ module ts_reclock
         tstamp_int
     } = dout;
 
-    wire ts_valid_int;
-    ts_reclock_fifo tsrf 
-    ( 
-        .rst         (fifo_rst),                  // input wire rst
-        .wr_clk      (clk50),            // input wire wr_clk
-        .rd_clk      (clk62p5),            // input wire rd_clk
-        .din         (din),                  // input wire [75 : 0] din
-        .wr_en       (1'b1),              // input wire wr_en
-        .rd_en       (1'b1),              // input wire rd_en
-        .dout        (dout),                // output wire [75 : 0] dout
-        .full        (),                // output wire full
-        .empty       (),              // output wire empty
-        .valid       (ts_valid_int),
-        .wr_rst_busy (),  // output wire wr_rst_busy
-        .rd_rst_busy ()  // output wire rd_rst_busy
-    );
+    wire ts_valid_int = 1'b1;
+//    ts_reclock_fifo tsrf 
+//    ( 
+//        .rst         (fifo_rst),                  // input wire rst
+//        .wr_clk      (clk50),            // input wire wr_clk
+//        .rd_clk      (clk62p5),            // input wire rd_clk
+//        .din         (din),                  // input wire [75 : 0] din
+//        .wr_en       (1'b1),              // input wire wr_en
+//        .rd_en       (1'b1),              // input wire rd_en
+//        .dout        (dout),                // output wire [75 : 0] dout
+//        .full        (),                // output wire full
+//        .empty       (),              // output wire empty
+//        .valid       (ts_valid_int),
+//        .wr_rst_busy (),  // output wire wr_rst_busy
+//        .rd_rst_busy ()  // output wire rd_rst_busy
+//    );
+
+    assign dout = din; // FIFO is removed for 62.5M migration
     
     assign fifo_valid = ts_valid_int;
     
