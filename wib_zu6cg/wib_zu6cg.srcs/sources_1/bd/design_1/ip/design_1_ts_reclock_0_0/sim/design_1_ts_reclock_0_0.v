@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -62,7 +62,6 @@ module design_1_ts_reclock_0_0 (
   sync_stb_in,
   sync_first_in,
   tstamp_in,
-  clk50,
   stat_out,
   rst_out,
   rdy_out,
@@ -97,7 +96,6 @@ input wire [3 : 0] sync_in;
 input wire sync_stb_in;
 input wire sync_first_in;
 input wire [63 : 0] tstamp_in;
-input wire clk50;
 output wire [3 : 0] stat_out;
 output wire rst_out;
 output wire rdy_out;
@@ -142,7 +140,6 @@ input wire [63 : 0] fake_time_stamp_init;
     .sync_stb_in(sync_stb_in),
     .sync_first_in(sync_first_in),
     .tstamp_in(tstamp_in),
-    .clk50(clk50),
     .stat_out(stat_out),
     .rst_out(rst_out),
     .rdy_out(rdy_out),

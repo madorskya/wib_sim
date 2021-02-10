@@ -78,21 +78,196 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/ts_reclock_fifo/ts_reclock_fifo.xci">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../wib_sim/wib_sim.srcs/sources_1/ip/ts_reclock_fifo/ts_reclock_fifo.xci"/>
-          <Attr Name="ImportTime" Val="1606430006"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/ts_reclock.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../wib_sim/wib_sim.srcs/sources_1/new/ts_reclock.v"/>
           <Attr Name="ImportTime" Val="1606512861"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/outputlogic_crc16.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/outputlogic_crc16.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_defs.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_defs.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_acmd_rx.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_acmd_rx.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_synchro.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_synchro.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_adjust.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_adjust.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_chklock.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_chklock.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_cksum.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_cksum.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_code8b10bpkg.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_code8b10bpkg.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_dec8b10b.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_dec8b10b.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_del.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_del.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_enc8b10b.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_enc8b10b.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_ep_startup.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_ep_startup.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_rx_div_mmcm.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_rx_div_mmcm.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_rx_phy.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_rx_phy.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_rx.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_rx.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_tstamp.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_tstamp.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_prio_enc.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_prio_enc.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_scmd_merge.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_scmd_merge.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_idle_gen.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_idle_gen.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_tx.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_tx.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_tx_phy.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_tx_phy.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_endpoint.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_endpoint.vhd"/>
+          <Attr Name="ImportTime" Val="1612904295"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/ep_src/pdts_endpoint_stdlogic.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../wib_sim_DN_branch/ep_src/pdts_endpoint_stdlogic.vhd"/>
+          <Attr Name="ImportTime" Val="1612904330"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -104,29 +279,38 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0.xci">
-          <Proxy FileSetName="design_1_ts_reclock_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_reg_bank_64_0_0/design_1_reg_bank_64_0_0.xci">
+          <Proxy FileSetName="design_1_reg_bank_64_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xci">
-          <Proxy FileSetName="design_1_clk_wiz_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_1/design_1_coldata_i2c_0_1.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_1"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_1/design_1_ila_0_1.xci">
-          <Proxy FileSetName="design_1_ila_0_1"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_1_1/design_1_coldata_i2c_1_1.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_1_1"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_xbar_0/design_1_xbar_0.xci">
-          <Proxy FileSetName="design_1_xbar_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1.xci">
+          <Proxy FileSetName="design_1_util_ds_buf_0_1"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci">
-          <Proxy FileSetName="design_1_zynq_ultra_ps_e_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_1/design_1_util_vector_logic_0_1.xci">
+          <Proxy FileSetName="design_1_util_vector_logic_0_1"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_3/design_1_util_vector_logic_0_3.xci">
-          <Proxy FileSetName="design_1_util_vector_logic_0_3"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_2/design_1_util_vector_logic_0_2.xci">
+          <Proxy FileSetName="design_1_util_vector_logic_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_1_2/design_1_coldata_i2c_1_2.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_1_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_2/design_1_coldata_i2c_0_2.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_3/design_1_coldata_i2c_0_3.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_3"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_2/design_1_util_ds_buf_0_2.xci">
           <Proxy FileSetName="design_1_util_ds_buf_0_2"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_3/design_1_coldata_i2c_0_3.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_3"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_3/design_1_util_vector_logic_0_3.xci">
+          <Proxy FileSetName="design_1_util_vector_logic_0_3"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_3/design_1_util_ds_buf_0_3.xci">
           <Proxy FileSetName="design_1_util_ds_buf_0_3"/>
@@ -143,65 +327,11 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_4/design_1_coldata_i2c_0_4.xci">
           <Proxy FileSetName="design_1_coldata_i2c_0_4"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_reg_bank_64_0_0/design_1_reg_bank_64_0_0.xci">
-          <Proxy FileSetName="design_1_reg_bank_64_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_0/design_1_axi_bram_ctrl_0_0.xci">
-          <Proxy FileSetName="design_1_axi_bram_ctrl_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_bram_0/design_1_axi_bram_ctrl_0_bram_0.xci">
-          <Proxy FileSetName="design_1_axi_bram_ctrl_0_bram_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_0/design_1_daq_spy_control_0_0.xci">
-          <Proxy FileSetName="design_1_daq_spy_control_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_0_1/design_1_debug_bridge_0_1.xci">
-          <Proxy FileSetName="design_1_debug_bridge_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0.xci">
-          <Proxy FileSetName="design_1_debug_bridge_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_1/design_1_axi_bram_ctrl_0_1.xci">
-          <Proxy FileSetName="design_1_axi_bram_ctrl_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_1/design_1_daq_spy_control_0_1.xci">
-          <Proxy FileSetName="design_1_daq_spy_control_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_bram_1/design_1_axi_bram_ctrl_0_bram_1.xci">
-          <Proxy FileSetName="design_1_axi_bram_ctrl_0_bram_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_0/design_1_ila_0_0.xci">
-          <Proxy FileSetName="design_1_ila_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_endpoint_wrapper_0_0/design_1_endpoint_wrapper_0_0.xci">
-          <Proxy FileSetName="design_1_endpoint_wrapper_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_auto_ds_10/design_1_auto_ds_10.xci">
-          <Proxy FileSetName="design_1_auto_ds_10"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_1/design_1_util_vector_logic_0_1.xci">
-          <Proxy FileSetName="design_1_util_vector_logic_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_2/design_1_coldata_i2c_0_2.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_1_2/design_1_coldata_i2c_1_2.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_1_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_1/design_1_coldata_i2c_0_1.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_vector_logic_0_2/design_1_util_vector_logic_0_2.xci">
-          <Proxy FileSetName="design_1_util_vector_logic_0_2"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_0/design_1_util_ds_buf_0_0.xci">
           <Proxy FileSetName="design_1_util_ds_buf_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1.xci">
-          <Proxy FileSetName="design_1_util_ds_buf_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_1_1/design_1_coldata_i2c_1_1.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_1_1"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_1_0/design_1_coldata_i2c_1_0.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_1_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0.xci">
           <Proxy FileSetName="design_1_rst_ps8_0_99M_0"/>
@@ -209,29 +339,47 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0.xci">
           <Proxy FileSetName="design_1_coldata_i2c_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_1_0/design_1_coldata_i2c_1_0.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_1_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0.xci">
           <Proxy FileSetName="design_1_coldata_fast_cmd_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_auto_pc_11/design_1_auto_pc_11.xci">
-          <Proxy FileSetName="design_1_auto_pc_11"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci">
+          <Proxy FileSetName="design_1_zynq_ultra_ps_e_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_auto_ds_13/design_1_auto_ds_13.xci">
-          <Proxy FileSetName="design_1_auto_ds_13"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0.xci">
+          <Proxy FileSetName="design_1_ts_reclock_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_auto_pc_12/design_1_auto_pc_12.xci">
-          <Proxy FileSetName="design_1_auto_pc_12"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_1/design_1_ila_0_1.xci">
+          <Proxy FileSetName="design_1_ila_0_1"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_auto_ds_14/design_1_auto_ds_14.xci">
-          <Proxy FileSetName="design_1_auto_ds_14"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_xbar_0/design_1_xbar_0.xci">
+          <Proxy FileSetName="design_1_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0482_xsdbm_0.xci">
-          <Proxy FileSetName="bd_0482_xsdbm_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0.xci">
+          <Proxy FileSetName="design_1_debug_bridge_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0482_lut_buffer_0.xci">
-          <Proxy FileSetName="bd_0482_lut_buffer_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_0_1/design_1_debug_bridge_0_1.xci">
+          <Proxy FileSetName="design_1_debug_bridge_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_1/design_1_axi_bram_ctrl_0_1.xci">
+          <Proxy FileSetName="design_1_axi_bram_ctrl_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_1/design_1_daq_spy_control_0_1.xci">
+          <Proxy FileSetName="design_1_daq_spy_control_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_0/design_1_daq_spy_control_0_0.xci">
+          <Proxy FileSetName="design_1_daq_spy_control_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_0/design_1_axi_bram_ctrl_0_0.xci">
+          <Proxy FileSetName="design_1_axi_bram_ctrl_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_bram_0/design_1_axi_bram_ctrl_0_bram_0.xci">
+          <Proxy FileSetName="design_1_axi_bram_ctrl_0_bram_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_bram_1/design_1_axi_bram_ctrl_0_bram_1.xci">
+          <Proxy FileSetName="design_1_axi_bram_ctrl_0_bram_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_0/design_1_ila_0_0.xci">
+          <Proxy FileSetName="design_1_ila_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_c443_axi_jtag_0.xci">
           <Proxy FileSetName="bd_c443_axi_jtag_0"/>
@@ -241,6 +389,15 @@
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_2/bd_c443_bs_switch_1_0.xci">
           <Proxy FileSetName="bd_c443_bs_switch_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0482_xsdbm_0.xci">
+          <Proxy FileSetName="bd_0482_xsdbm_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0482_lut_buffer_0.xci">
+          <Proxy FileSetName="bd_0482_lut_buffer_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_pdts_endpoint_stdlog_0_0/design_1_pdts_endpoint_stdlog_0_0.xci">
+          <Proxy FileSetName="design_1_pdts_endpoint_stdlog_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/sim_1/wib/bd_tux.sv">
@@ -335,6 +492,16 @@
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../wib_sim/wib_sim.srcs/sim_1/wib/wib_top.sv"/>
           <Attr Name="ImportTime" Val="1606583632"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/ts_reclock_fifo/ts_reclock_fifo.xci">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../wib_sim/wib_sim.srcs/sources_1/ip/ts_reclock_fifo/ts_reclock_fifo.xci"/>
+          <Attr Name="ImportTime" Val="1606430006"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -1311,21 +1478,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="design_1_clk_wiz_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_clk_wiz_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_1_clk_wiz_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="design_1_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_ila_0_0">
       <Config>
         <Option Name="TopModule" Val="design_1_ila_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_endpoint_wrapper_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_endpoint_wrapper_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_1_endpoint_wrapper_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -1551,42 +1706,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="design_1_ts_reclock_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_ts_reclock_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_1_ts_reclock_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_auto_ds_10" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_auto_ds_10">
-      <Config>
-        <Option Name="TopModule" Val="design_1_auto_ds_10"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_auto_pc_11" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_auto_pc_11">
-      <Config>
-        <Option Name="TopModule" Val="design_1_auto_pc_11"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_auto_ds_13" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_auto_ds_13">
-      <Config>
-        <Option Name="TopModule" Val="design_1_auto_ds_13"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_auto_pc_12" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_auto_pc_12">
-      <Config>
-        <Option Name="TopModule" Val="design_1_auto_pc_12"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_auto_ds_14" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_auto_ds_14">
-      <Config>
-        <Option Name="TopModule" Val="design_1_auto_ds_14"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="mmcm_40m" Type="BlockSrcs" RelSrcDir="$PSRCDIR/mmcm_40m">
       <File Path="$PSRCDIR/sources_1/ip/mmcm_40m/mmcm_40m.xci">
         <FileInfo>
@@ -1599,6 +1718,18 @@
       </File>
       <Config>
         <Option Name="TopModule" Val="mmcm_40m"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_1_ts_reclock_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_ts_reclock_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_1_ts_reclock_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_1_pdts_endpoint_stdlog_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_pdts_endpoint_stdlog_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_1_pdts_endpoint_stdlog_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -1718,27 +1849,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_clk_wiz_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_clk_wiz_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_clk_wiz_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_clk_wiz_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="design_1_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_ila_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ila_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_ila_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_endpoint_wrapper_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_endpoint_wrapper_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_endpoint_wrapper_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_endpoint_wrapper_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
@@ -2118,7 +2229,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_ts_reclock_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_ts_reclock_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ts_reclock_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_ts_reclock_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="mmcm_40m_synth_1" Type="Ft3:Synth" SrcSet="mmcm_40m" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="mmcm_40m" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/mmcm_40m_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
@@ -2128,7 +2239,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_auto_ds_10_synth_1" Type="Ft3:Synth" SrcSet="design_1_auto_ds_10" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_ds_10" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_auto_ds_10_synth_1" IncludeInArchive="true">
+    <Run Id="design_1_ts_reclock_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_ts_reclock_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ts_reclock_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_ts_reclock_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -2140,55 +2251,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_auto_pc_11_synth_1" Type="Ft3:Synth" SrcSet="design_1_auto_pc_11" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_pc_11" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_auto_pc_11_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_auto_ds_13_synth_1" Type="Ft3:Synth" SrcSet="design_1_auto_ds_13" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_ds_13" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_auto_ds_13_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_auto_pc_12_synth_1" Type="Ft3:Synth" SrcSet="design_1_auto_pc_12" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_pc_12" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_auto_pc_12_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_auto_ds_14_synth_1" Type="Ft3:Synth" SrcSet="design_1_auto_ds_14" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_ds_14" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_auto_ds_14_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="mmcm_40m_synth_1" Type="Ft3:Synth" SrcSet="mmcm_40m" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="mmcm_40m" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/mmcm_40m_synth_1" IncludeInArchive="true">
+    <Run Id="design_1_pdts_endpoint_stdlog_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_pdts_endpoint_stdlog_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_pdts_endpoint_stdlog_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_pdts_endpoint_stdlog_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -2360,41 +2423,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_clk_wiz_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_clk_wiz_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_clk_wiz_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="design_1_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ila_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_ila_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_endpoint_wrapper_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_endpoint_wrapper_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_endpoint_wrapper_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>
@@ -3040,7 +3069,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_ts_reclock_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ts_reclock_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_ts_reclock_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="mmcm_40m_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="mmcm_40m" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="mmcm_40m_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>
@@ -3057,7 +3086,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_auto_ds_10_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_ds_10" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_auto_ds_10_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="design_1_ts_reclock_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ts_reclock_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_ts_reclock_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
           <Desc>Default settings for Implementation.</Desc>
@@ -3076,83 +3105,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_auto_pc_11_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_pc_11" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_auto_pc_11_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_auto_ds_13_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_ds_13" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_auto_ds_13_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_auto_pc_12_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_pc_12" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_auto_pc_12_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_auto_ds_14_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_auto_ds_14" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_auto_ds_14_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="mmcm_40m_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="mmcm_40m" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="mmcm_40m_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="design_1_pdts_endpoint_stdlog_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_pdts_endpoint_stdlog_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_pdts_endpoint_stdlog_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
           <Desc>Default settings for Implementation.</Desc>

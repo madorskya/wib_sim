@@ -8,7 +8,7 @@
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "scoped": "true",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2020.1.1_AR73018",
+      "tool_version": "2020.1",
       "validated": "true"
     },
     "design_tree": {
@@ -124,16 +124,16 @@
       }
     },
     "interface_nets": {
-      "lut_buffer_m_bscan": {
-        "interface_ports": [
-          "lut_buffer/m_bscan",
-          "xsdbm/s_bscan"
-        ]
-      },
       "S_BSCAN_1": {
         "interface_ports": [
           "S_BSCAN",
           "lut_buffer/s_bscan"
+        ]
+      },
+      "lut_buffer_m_bscan": {
+        "interface_ports": [
+          "lut_buffer/m_bscan",
+          "xsdbm/s_bscan"
         ]
       }
     },
