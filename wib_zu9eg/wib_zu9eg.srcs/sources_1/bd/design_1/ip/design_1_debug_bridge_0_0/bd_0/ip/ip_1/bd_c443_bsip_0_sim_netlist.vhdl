@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Fri Jan 29 00:21:56 2021
--- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Wed Feb 10 15:24:04 2021
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_sim_netlist.vhdl
+--               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_sim_netlist.vhdl
 -- Design      : bd_c443_bsip_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -1348,7 +1348,7 @@ entity bd_c443_bsip_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of bd_c443_bsip_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of bd_c443_bsip_0 : entity is "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of bd_c443_bsip_0 : entity is "bsip_v1_1_0_bsip,Vivado 2020.1";
   attribute dont_touch : string;
   attribute dont_touch of bd_c443_bsip_0 : entity is "true";
 end bd_c443_bsip_0;

@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Fri Jan 29 00:23:55 2021
--- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Wed Feb 10 14:55:52 2021
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_auto_ds_5 -prefix
 --               design_1_auto_ds_5_ design_1_auto_ds_2_sim_netlist.vhdl
 -- Design      : design_1_auto_ds_2
@@ -30277,7 +30277,7 @@ entity design_1_auto_ds_5 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_auto_ds_5 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_auto_ds_5 : entity is "axi_dwidth_converter_v2_1_21_top,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of design_1_auto_ds_5 : entity is "axi_dwidth_converter_v2_1_21_top,Vivado 2020.1";
 end design_1_auto_ds_5;
 
 architecture STRUCTURE of design_1_auto_ds_5 is

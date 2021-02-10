@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Fri Jan 29 00:19:34 2021
--- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Wed Feb 10 15:13:27 2021
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_axi_gpio_1_0/design_1_axi_gpio_1_0_sim_netlist.vhdl
+--               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_axi_gpio_1_0/design_1_axi_gpio_1_0_sim_netlist.vhdl
 -- Design      : design_1_axi_gpio_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -3355,7 +3355,7 @@ entity design_1_axi_gpio_1_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_axi_gpio_1_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of design_1_axi_gpio_1_0 : entity is "axi_gpio,Vivado 2020.1.1_AR73018";
+  attribute x_core_info of design_1_axi_gpio_1_0 : entity is "axi_gpio,Vivado 2020.1";
 end design_1_axi_gpio_1_0;
 
 architecture STRUCTURE of design_1_axi_gpio_1_0 is

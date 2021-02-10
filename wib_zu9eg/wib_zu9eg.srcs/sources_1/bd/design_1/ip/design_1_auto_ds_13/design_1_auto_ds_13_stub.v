@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
-// Date        : Fri Jan 29 00:20:28 2021
-// Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Wed Feb 10 15:24:50 2021
+// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode synth_stub
-//               c:/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_13/design_1_auto_ds_13_stub.v
+//               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_13/design_1_auto_ds_13_stub.v
 // Design      : design_1_auto_ds_13
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu9eg-ffvb1156-1-e
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "axi_dwidth_converter_v2_1_21_top,Vivado 2020.1.1_AR73018" *)
+(* X_CORE_INFO = "axi_dwidth_converter_v2_1_21_top,Vivado 2020.1" *)
 module design_1_auto_ds_13(s_axi_aclk, s_axi_aresetn, s_axi_awid, 
   s_axi_awaddr, s_axi_awlen, s_axi_awsize, s_axi_awburst, s_axi_awlock, s_axi_awcache, 
   s_axi_awprot, s_axi_awregion, s_axi_awqos, s_axi_awvalid, s_axi_awready, s_axi_wdata, 

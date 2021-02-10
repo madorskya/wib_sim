@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
--- Date        : Fri Jan 29 00:14:49 2021
--- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Wed Feb 10 14:53:39 2021
+-- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_coldata_i2c_0_3 -prefix
---               design_1_coldata_i2c_0_3_ design_1_coldata_i2c_1_2_stub.vhdl
--- Design      : design_1_coldata_i2c_1_2
+--               design_1_coldata_i2c_0_3_ design_1_coldata_i2c_0_0_stub.vhdl
+-- Design      : design_1_coldata_i2c_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu9eg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
@@ -50,6 +50,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "scl,sda_out_p,sda_out_n,sda_in_p,sda_in_n,s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "coldata_i2c_v1_0,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "coldata_i2c_v1_0,Vivado 2020.1";
 begin
 end;

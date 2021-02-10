@@ -69,11 +69,15 @@ set_property CLOCK_DEDICATED_ROUTE ANY_CMT_COLUMN [get_nets clk50]
 create_clock -period 20 -name clk50 [get_ports clk_in_50mhz]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk50]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk_pl_0]
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk_pl_1]
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk_out1_design_1_clk_wiz_1_0]
-set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_1/inst/mmcme4_adv_inst/CLKOUT0] -include_generated_clocks]
+
+
+
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT0]]
+
+set_false_path -from [get_ports bp_crate_addr[*]]
+set_false_path -from [get_ports bp_slot_addr[*]]
+
 
 create_clock -period 4 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
@@ -88,8 +92,8 @@ set_false_path -to [get_ports misc_io[*]]
 set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_0/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]]
-set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT3]]
-set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT3]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]]
+
+
 # below copied from Jack's project
 
 #BANK  44 HD  2.5V
@@ -699,6 +703,6 @@ set_property LOC G8  [get_ports gtrefclk00p_in[2]]
 set_property LOC C8  [get_ports gtrefclk00p_in[3]]
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
-set_property BITSTREAM.CONFIG.OVERTEMPPOWERDOWN ENABLE [current_design]
+
 set_property BITSTREAM.CONFIG.USR_ACCESS TIMESTAMP [current_design]
  

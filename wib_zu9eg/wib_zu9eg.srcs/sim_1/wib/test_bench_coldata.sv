@@ -453,13 +453,21 @@ begin
     else
         refclk_cnt++;
 
-    if (sysclk_cnt == 5'd3)
+    if (sysclk_cnt == 5'd4) // set 3 for 312.5, 4 for 250M clock
     begin
         clk312p5 = ~clk312p5; // 312.5 M clock from SI5344
         sysclk_cnt = 5'd0;
     end
     else
         sysclk_cnt++;
+
+end
+
+reg clk_50_osc = 0;
+
+always 
+begin
+    #20000 clk_50_osc = ~clk_50_osc;
 end
 
 always 
@@ -776,9 +784,6 @@ end
         .i2c_lvds_l2_sda_c2w_p (1'b1),
         .i2c_lvds_l2_sda_c2w_n (1'b0),
 
-        .coldata_clk40_p (),
-        .coldata_clk40_n (),
-
         .femb_cmd_fpga_out_n (FASTCOMMAND_IN_N),
         .femb_cmd_fpga_out_p (FASTCOMMAND_IN_P),
 
@@ -800,7 +805,7 @@ end
         .gthrxn_in      (gthrxn_in    ), // RX diff lines
         .gthrxp_in      (gthrxp_in    ),
         
-        .daq_clk        (daq_clk),    
+//        .daq_clk        (daq_clk),    
 
         .si5344_scl (), 
         .si5344_sda (), 
@@ -821,7 +826,8 @@ end
         .flash_scl (), 
         .flash_sda (), 
         .adn2814_scl (),   
-        .adn2814_sda ()
+        .adn2814_sda (),
+        .clk_in_50mhz (clk_50_osc)
     );
 
 /*

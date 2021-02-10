@@ -50,7 +50,7 @@
 // IP VLNV: user.org:user:coldata_i2c:1.0
 // IP Revision: 14
 
-(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1.1_AR73018" *)
+(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_coldata_i2c_0_1,coldata_i2c_v1_0,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_coldata_i2c_0_1 (

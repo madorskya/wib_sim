@@ -578,7 +578,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Jan 28 23:11:24 UTC 2021</spirit:value>
+            <spirit:value>Wed Feb 10 19:45:34 UTC 2021</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -609,7 +609,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Jan 28 23:11:24 UTC 2021</spirit:value>
+            <spirit:value>Wed Feb 10 19:45:34 UTC 2021</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -629,7 +629,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Jan 28 23:11:24 UTC 2021</spirit:value>
+            <spirit:value>Wed Feb 10 19:45:34 UTC 2021</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -649,7 +649,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Jan 28 23:11:24 UTC 2021</spirit:value>
+            <spirit:value>Wed Feb 10 19:45:34 UTC 2021</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -667,7 +667,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Thu Jan 28 23:22:04 UTC 2021</spirit:value>
+            <spirit:value>Wed Feb 10 20:24:43 UTC 2021</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1286,7 +1286,7 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2020.1.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="acd1c3ba"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="f36f38b9"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="7e7c9fdf"/>
