@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:module_ref:ts_reclock:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "ts_reclock,Vivado 2020.1.1_AR73018" *)
+(* X_CORE_INFO = "ts_reclock,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_ts_reclock_0_0,ts_reclock,{}" *)
-(* CORE_GENERATION_INFO = "design_1_ts_reclock_0_0,ts_reclock,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=ts_reclock,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "design_1_ts_reclock_0_0,ts_reclock,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=ts_reclock,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_ts_reclock_0_0 (
@@ -63,7 +63,6 @@ module design_1_ts_reclock_0_0 (
   sync_stb_in,
   sync_first_in,
   tstamp_in,
-  clk50,
   stat_out,
   rst_out,
   rdy_out,
@@ -98,7 +97,6 @@ input wire [3 : 0] sync_in;
 input wire sync_stb_in;
 input wire sync_first_in;
 input wire [63 : 0] tstamp_in;
-input wire clk50;
 output wire [3 : 0] stat_out;
 output wire rst_out;
 output wire rdy_out;
@@ -143,7 +141,6 @@ input wire [63 : 0] fake_time_stamp_init;
     .sync_stb_in(sync_stb_in),
     .sync_first_in(sync_first_in),
     .tstamp_in(tstamp_in),
-    .clk50(clk50),
     .stat_out(stat_out),
     .rst_out(rst_out),
     .rdy_out(rdy_out),
