@@ -246,8 +246,8 @@ set_property PACKAGE_PIN F10 [get_ports {fp_io[3]}]
 
 set_property PACKAGE_PIN G10 [get_ports {bp_slot_addr[3]}]
 set_property PACKAGE_PIN H10 [get_ports {bp_slot_addr[2]}]
-set_property PACKAGE_PIN J10 [get_ports {bp_slot_addr[0]}]
-set_property PACKAGE_PIN J11 [get_ports {bp_slot_addr[1]}]
+set_property PACKAGE_PIN J10 [get_ports {bp_slot_addr[1]}]
+set_property PACKAGE_PIN J11 [get_ports {bp_slot_addr[0]}]
 
 #BANK  64 HD   1.8V
 
