@@ -58,6 +58,19 @@ set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtre
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in2]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in3]
 
+set_property package_pin R28 [get_ports mgtrefclk0_x0y1_n]
+set_property package_pin R27 [get_ports mgtrefclk0_x0y1_p] 
+create_clock -name clk_mgtrefclk0_x0y1_p -period 8.0 [get_ports mgtrefclk0_x0y1_p]
+
+set_property LOC T34 [get_ports ch0_gthrxn_in]
+set_property LOC T33 [get_ports ch0_gthrxp_in]
+set_property LOC P34 [get_ports ch1_gthrxn_in]
+set_property LOC P33 [get_ports ch1_gthrxp_in]
+set_property LOC T30 [get_ports ch0_gthtxn_out]
+set_property LOC T29 [get_ports ch0_gthtxp_out]
+set_property LOC R32 [get_ports ch1_gthtxn_out]
+set_property LOC R31 [get_ports ch1_gthtxp_out]
+
 create_clock -period 16.000 -name dune_clk_fpga_in_p [get_ports dune_clk_fpga_in_p]
 #create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
 

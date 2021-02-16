@@ -43,6 +43,22 @@ module wib_top
     input [15 : 0] gthrxn_in    , // RX diff lines
     input [15 : 0] gthrxp_in    ,
     
+    // 125MHz MGTREFCLK for FELIX GTH
+    input  wire mgtrefclk0_x0y1_p,
+    input  wire mgtrefclk0_x0y1_n,
+    
+    // Serial data ports for FELIX GTH bank 128 channel 0
+    input  wire ch0_gthrxn_in,
+    input  wire ch0_gthrxp_in,
+    output wire ch0_gthtxn_out,
+    output wire ch0_gthtxp_out,
+    
+    // Serial data ports for FELIX GTH bank 128 channel 1
+    input  wire ch1_gthrxn_in,
+    input  wire ch1_gthrxp_in,
+    output wire ch1_gthtxn_out,
+    output wire ch1_gthtxp_out,
+    
     // I2C busses for onboard devices
     inout si5344_scl, 
     inout si5344_sda, 
@@ -161,6 +177,37 @@ module wib_top
     
     wire clk50;
     BUFG clk50_bufg (.I(clk_in_50mhz), .O(clk50));
+    
+    // FELIX GTH buffering
+    wire mgtrefclk0_x0y1_int;
+    IBUFDS_GTE4 #(
+        .REFCLK_EN_TX_PATH  (1'b0),
+        .REFCLK_HROW_CK_SEL (2'b00),
+        .REFCLK_ICNTL_RX    (2'b00)
+    ) IBUFDS_GTE4_MGTREFCLK0_X0Y1_INST (
+        .I     (mgtrefclk0_x0y1_p),
+        .IB    (mgtrefclk0_x0y1_n),
+        .CEB   (1'b0),
+        .O     (mgtrefclk0_x0y1_int),
+        .ODIV2 ()
+    );
+    
+    // FELIX channel breakout
+    wire [1:0] gthrxn_int;
+    assign gthrxn_int[0:0] = ch0_gthrxn_in;
+    assign gthrxn_int[1:1] = ch1_gthrxn_in;
+    
+    wire [1:0] gthrxp_int;
+    assign gthrxp_int[0:0] = ch0_gthrxp_in;
+    assign gthrxp_int[1:1] = ch1_gthrxp_in;   
+    
+    wire [1:0] gthtxn_int;
+    assign gthtxn_int[0:0] = ch0_gthtxn_out;
+    assign gthtxn_int[1:1] = ch1_gthtxn_out;
+    
+    wire [1:0] gthtxp_int;
+    assign gthtxp_int[0:0] = ch0_gthtxp_out;
+    assign gthtxp_int[1:1] = ch1_gthtxp_out; 
 
     genvar gi;
     // swizzle bytes in rx_data for easier viewing in the simulation traces
@@ -195,6 +242,34 @@ module wib_top
     assign fake_time_stamp_init[31: 0] = `CONFIG_BITS(6,  0, 32); // 0xA00C0018
     assign fake_time_stamp_init[63:32] = `CONFIG_BITS(7,  0, 32); // 0xA00C001C
     wire fake_daq_stream               = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
+    
+    // FELIX-related stuff
+    wire gtwiz_userclk_tx_srcclk_out;
+    wire gtwiz_userclk_tx_usrclk_out;
+    wire gtwiz_reset_tx_done_out;
+    wire gtwiz_reset_tx_pll_and_datapath_in;
+    wire gtwiz_reset_tx_datapath_in;
+    wire [1:0] tx8b10ben_in;  
+    wire [31:0] txctrl0_in;
+    wire [31:0] txctrl1_in;
+    wire [15:0] txctrl2_in;
+    wire [64:0] gtwiz_userdata_tx_in;
+    
+    wire usr_clk_out;
+    wire gtwiz_userclk_tx_active_out;
+    wire felix_powergood_out;
+    
+    assign gtwiz_userdata_tx_in[31:0]  = `CONFIG_BITS(9,  0, 32);  // 0xA00C0024
+    assign gtwiz_userdata_tx_in[63:32] = `CONFIG_BITS(10,  0, 32); // 0xA00C0028
+    assign txctrl0_in                  = `CONFIG_BITS(11,  0, 32); // 0xA00C002C
+    assign txctrl1_in                  = `CONFIG_BITS(12,  0, 32); // 0xA00C0030
+    assign txctrl2_in                  = `CONFIG_BITS(13,  0, 16); // 0xA00C0034
+    assign gtwiz_reset_tx_pll_and_datapath_in = `CONFIG_BITS(14,  0, 1); // 0xA00C0038
+    assign gtwiz_reset_tx_datapath_in  = `CONFIG_BITS(14,  4, 1);
+    assign tx8b10ben_in                = `CONFIG_BITS(14,  8, 2);
+    assign `STATUS_BITS(16, 0, 1)      = gtwiz_reset_tx_done_out; // 0xA00C00C0
+    assign `STATUS_BITS(16, 4, 1)      = gtwiz_userclk_tx_active_out;
+    assign `STATUS_BITS(16, 8, 1)      = felix_powergood_out;
 
     bd_tux wrp
     (
@@ -369,6 +444,49 @@ module wib_top
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
         .bp_slot_addr  (bp_slot_addr )
+    );     
+    
+    FELIX_GTH_v1f felix_gth_inst (
+       .gthrxn_in                               (gthrxn_int),
+       .gthrxp_in                               (gthrxp_int),
+       .gthtxn_out                              (gthtxn_int),
+       .gthtxp_out                              (gthtxp_int),
+       .gtwiz_userclk_tx_reset_in               (~txpmaresetdone_out),
+       .gtwiz_userclk_tx_srcclk_out             (),
+       .gtwiz_userclk_tx_usrclk_out             (usr_clk_out),
+       .gtwiz_userclk_tx_usrclk2_out            (),
+       .gtwiz_userclk_tx_active_out             (gtwiz_userclk_tx_active_out),
+       .gtwiz_userclk_rx_reset_in               (1'b1),
+       .gtwiz_userclk_rx_srcclk_out             (),
+       .gtwiz_userclk_rx_usrclk_out             (),
+       .gtwiz_userclk_rx_usrclk2_out            (),
+       .gtwiz_userclk_rx_active_out             (),
+       .gtwiz_reset_clk_freerun_in              (axi_clk_out),
+       .gtwiz_reset_all_in                      (~axi_rstn),
+       .gtwiz_reset_tx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
+       .gtwiz_reset_tx_datapath_in              (gtwiz_reset_tx_datapath_in),
+       .gtwiz_reset_rx_pll_and_datapath_in      (1'b0),
+       .gtwiz_reset_rx_datapath_in              (1'b0),
+       .gtwiz_reset_rx_cdr_stable_out           (),
+       .gtwiz_reset_tx_done_out                 (gtwiz_reset_tx_done_out),
+       .gtwiz_reset_rx_done_out                 (),
+       .gtwiz_userdata_tx_in                    (gtwiz_userdata_tx_in),
+       .gtwiz_userdata_rx_out                   (),
+       .gtrefclk01_in                           (mgtrefclk0_x0y1_int),
+       .qpll1outclk_out                         (),
+       .qpll1outrefclk_out                      (),
+       .rx8b10ben_in                            (2'b00),
+       .tx8b10ben_in                            (tx8b10ben_in),
+       .txctrl0_in                              (txctrl0_in),
+       .txctrl1_in                              (txctrl1_in),
+       .txctrl2_in                              (txctrl2_in),
+       .gtpowergood_out                         (felix_powergood_out),
+       .rxctrl0_out                             (),
+       .rxctrl1_out                             (),
+       .rxctrl2_out                             (),
+       .rxctrl3_out                             (),
+       .rxpmaresetdone_out                      (),
+       .txpmaresetdone_out                      (txpmaresetdone_out)
     );    
     
     I2C_CONTROL i2c_ctrl
@@ -451,6 +569,25 @@ module wib_top
         .probe4 (daq_data_type[0]), // input wire [1:0]  probe4
         .probe5 (daq_data_type[1]) // input wire [1:0]  probe5
     );
+
+   ila_14probe ila_felix
+   (
+        .clk    (axi_clk_out),
+        .probe0 (usr_clk_out), // 1-bit
+        .probe1 (txpmaresetdone_out), // 1-bit
+        .probe2 (gtwiz_userclk_tx_active_out), // 1-bit
+        .probe3 (felix_powergood_out), // 1-bit
+        .probe4 (axi_rstn), // 1-bit
+        .probe5 (gtwiz_reset_tx_pll_and_datapath_in), // 1-bit
+        .probe6 (gtwiz_reset_tx_datapath_in), // 1-bit
+        .probe7 (gtwiz_reset_tx_done_out), // 1-bit
+        .probe8 (tx8b10ben_in[0]), // 1-bit
+        .probe9 (tx8b10ben_in[1]), // 1-bit
+        .probe10 (txctrl0_in), // 32-bit
+        .probe11 (txctrl1_in), // 32-bit
+        .probe12 (txctrl2_in), // 16-bit
+        .probe13 (gtwiz_userdata_tx_in) // 64-bit
+    );  
 
     // test points
     assign misc_io[1:0]  = rx_k[0];
