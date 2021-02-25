@@ -33,6 +33,7 @@ module wib_top
      
     input si5344_out1_p, // clock from tp
     input si5344_out1_n,
+    input si5344_lol, // lock of lock from tp PLL
 
     input adn2814_los,
     input adn2814_lol,
@@ -84,7 +85,8 @@ module wib_top
     output [15:0] misc_io,
     
     input [3:0] bp_crate_addr,
-    input [3:0] bp_slot_addr 
+    input [3:0] bp_slot_addr,
+    inout [7:0] bp_io 
     
 );
 
@@ -196,6 +198,8 @@ module wib_top
     assign fake_time_stamp_init[63:32] = `CONFIG_BITS(7,  0, 32); // 0xA00C001C
     wire fake_daq_stream               = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
 
+    wire sfp_dis;
+
     bd_tux wrp
     (
         // coldata fast command
@@ -230,7 +234,7 @@ module wib_top
         .ts_tstamp         (ts_tstamp        ),
         .ts_stat           (ts_stat          ),
         .txd               (tx_timing        ),
-        .tx_dis            (tx_timing_disable),
+        .tx_dis            (sfp_dis          ),
 
         .axi_clk_out (axi_clk_out),
         .axi_rstn    (axi_rstn   ),
@@ -249,6 +253,7 @@ module wib_top
         .daq_spy_reset (daq_spy_reset),
         .daq_stream    (daq_stream   ),
         .daq_stream_k  (daq_stream_k ),
+        .daq_data_type (daq_data_type), 
 
         .cmd_code_idle      (cmd_code_idle     ),
         .cmd_code_edge      (cmd_code_edge     ),
@@ -266,6 +271,7 @@ module wib_top
     wire [1:0]   rx_disp [15:0];
 
     wire [13:0] deframed [15:0][31:0]; // [link][sample]
+    wire [ 7:0] time8 [15:0]; // [link] time stamps from each link
     wire [15:0] valid14;
     wire [15:0] valid12;
     reg [15:0] valid14_r [1:0];
@@ -346,6 +352,7 @@ module wib_top
         .rx_k       (rx_k              ),
         .mmcm_reset (!reset_rx_done_out),
         .deframed   (deframed),
+        .time8      (time8),
         .valid14    (valid14 ),
         .valid12    (valid12 ),
         .crc_err    (crc_err ),
@@ -356,6 +363,7 @@ module wib_top
     frame_builder fbld
     (
         .deframed     (deframed),
+        .time8        (time8),
         .valid14      (valid14 ),
         .valid12      (valid12 ),
         .rxclk2x      (rxclk2x),
@@ -368,7 +376,8 @@ module wib_top
         .reset        (fb_reset),
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr )
+        .bp_slot_addr  (bp_slot_addr ),
+        .si5344_lol    (si5344_lol)
     );    
     
     I2C_CONTROL i2c_ctrl
@@ -451,6 +460,23 @@ module wib_top
         .probe4 (daq_data_type[0]), // input wire [1:0]  probe4
         .probe5 (daq_data_type[1]) // input wire [1:0]  probe5
     );
+
+    reg [7:0] sfp_dis_od;
+    always @(*)
+    begin
+        sfp_dis_od = 8'hff;
+        sfp_dis_od [bp_slot_addr[2:0]] = sfp_dis; // drive the pin matching the slot number
+    end
+
+    // open-drain buffers for sfp enable signals
+   IOBUF bp_io_buf[7:0] 
+   (
+      .O  (),     
+      .IO (bp_io[7:0]),
+      .I  (1'b0),     
+      .T  (sfp_dis_od[7:0])
+   );
+
 
     // test points
     assign misc_io[1:0]  = rx_k[0];

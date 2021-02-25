@@ -1,6 +1,7 @@
 module frame_builder_single #(parameter NUM = 0)
 (
     input [13:0] deframed [7:0][31:0], // [link][sample]
+    input [7:0]  time8 [7:0], //[link]
     input [7:0]  valid14,
     input [7:0]  valid12,
     input [7:0]  link_mask, // this input allows to disable some links in case the are broken
@@ -14,7 +15,8 @@ module frame_builder_single #(parameter NUM = 0)
     input reset,
     input fake_daq_stream,
     input [3:0] bp_crate_addr,
-    input [3:0] bp_slot_addr 
+    input [3:0] bp_slot_addr,
+    input       si5344_lol 
 );
 
     reg [13:0] deframed_aligned [7:0][31:0]; // [link][sample]
@@ -136,25 +138,21 @@ module frame_builder_single #(parameter NUM = 0)
     reg [6:0] data_cnt;
 
     // various fields assigned temporarily
-    wire [13:0] wib_code = {6'h0, link_mask}; // link mask transmitted at the top of each frame 
-    wire  [3:0] fr_ver = 4'h1; 
+    wire  [3:0] fr_ver = 4'h2; 
     wire  [1:0] femb_val = 0; 
     wire        fnum = NUM; // FELIX fiber number
     wire  [2:0] wib_slot = bp_slot_addr[2:0]; // ignoring MSb of the slot address, no space in data format for it
     wire  [7:0] wiec_crate = {4'b0, bp_crate_addr}; // crate address input currently has only 4 bits
-    wire [31:0] wib_coldata_code = 32'hbabeface;
     wire [63:0] timestamp = ts_tstamp;
-    wire [11:0] flex_12 = 12'hF12;
-    wire [23:0] flex_24 = 24'hF24F24;
     reg  [19:0] crc_20 = 0; // this is just a place holder, actual CRC is in crc_out
 
     assign header  [0] = {24'h0, 8'h3c};
     assign header_k[0] = 4'b0001;
 
-    assign header  [1] = {wib_code, femb_val, fnum, wib_slot, fr_ver, wiec_crate};
+    assign header  [1] = {si5344_lol, link_mask, femb_val, fnum, wib_slot, fr_ver, wiec_crate};
     assign header_k[1] = 4'b0000;
 
-    assign header  [2] = wib_coldata_code;
+    assign header  [2] = {time8[3], time8[2], time8[1], time8[0]};
     assign header_k[2] = 4'b0000;
 
     assign header  [3] = timestamp[31:0];
@@ -163,10 +161,10 @@ module frame_builder_single #(parameter NUM = 0)
     assign header  [4] = timestamp[63:32];
     assign header_k[4] = 4'b0000;
     
-    assign trailer  [0] = {flex_12, crc_20};
+    assign trailer  [0] = {time8[7], time8[6], time8[5], time8[4]};
     assign trailer_k[0] = 4'b0000;
     
-    assign trailer  [1] = {flex_24, 8'hdc};
+    assign trailer  [1] = {4'b0, crc_20, 8'hdc};
     assign trailer_k[1] = 4'b0001;
     
     assign trailer  [2] = {24'h0, 8'hbc};
@@ -252,8 +250,8 @@ module frame_builder_single #(parameter NUM = 0)
                 crc_calc = 1'b0;
                 if (data_ready[2] == 1'b1) // request on
                     fb_state = SOF; // start frame
-                daq_stream_d[0] = 32'h0;
-                daq_stream_k_d[0] = 4'b0;
+                daq_stream_d[0]   = trailer  [2]; // transmitting IDLE between frames
+                daq_stream_k_d[0] = trailer_k[2];
                 daq_data_type_d[0] = DT_IGNORE; // ignore word
             end
             
@@ -326,7 +324,6 @@ module frame_builder_single #(parameter NUM = 0)
                 daq_stream_d[0] = trailer[0];
                 daq_stream_k_d[0] = trailer_k[0];
                 daq_data_type_d[0] = DT_INTERMEDIATE; 
-                crc_inject[0] = 1'b1; 
                 fb_state = FLEX;
             end
             
@@ -334,6 +331,7 @@ module frame_builder_single #(parameter NUM = 0)
             begin
                 daq_stream_d[0] = trailer[1];
                 daq_stream_k_d[0] = trailer_k[1];
+                crc_inject[0] = 1'b1; 
                 daq_data_type_d[0] = DT_INTERMEDIATE; 
                 fb_state = TAIL;
             end
@@ -349,7 +347,7 @@ module frame_builder_single #(parameter NUM = 0)
         endcase
 
         if (crc_inject[2]) // time to inject CRC into daq stream
-            daq_stream[19:0] = crc_out;
+            daq_stream[27:8] = crc_out;
         crc_inject = {crc_inject[1:0], 1'b0};
 
         // demetastab the request

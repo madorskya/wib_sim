@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Feb  9 18:00:56 2021
+//Date        : Thu Feb 25 12:50:14 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1124,6 +1124,7 @@ module daq_spy_0_imp_KA15XV
     S_AXI_wstrb,
     S_AXI_wvalid,
     daq_clk,
+    daq_data_type_1,
     daq_spy_full,
     daq_spy_reset,
     daq_stream0,
@@ -1164,6 +1165,7 @@ module daq_spy_0_imp_KA15XV
   input [3:0]S_AXI_wstrb;
   input S_AXI_wvalid;
   input daq_clk;
+  input [1:0]daq_data_type_1;
   output daq_spy_full;
   input daq_spy_reset;
   input [31:0]daq_stream0;
@@ -1179,6 +1181,7 @@ module daq_spy_0_imp_KA15XV
   wire axi_bram_ctrl_0_BRAM_PORTA_RST;
   wire [3:0]axi_bram_ctrl_0_BRAM_PORTA_WE;
   wire daq_clk_0_1;
+  wire [1:0]daq_data_type_1_1;
   wire [19:0]daq_spy_control_0_bram_addr;
   wire daq_spy_control_0_bram_clk;
   wire [31:0]daq_spy_control_0_bram_din;
@@ -1236,6 +1239,7 @@ module daq_spy_0_imp_KA15XV
   assign S_AXI_rvalid = ps8_0_axi_periph_M00_AXI_RVALID;
   assign S_AXI_wready = ps8_0_axi_periph_M00_AXI_WREADY;
   assign daq_clk_0_1 = daq_clk;
+  assign daq_data_type_1_1 = daq_data_type_1[1:0];
   assign daq_spy_full = daq_spy_full_0;
   assign daq_stream0_0_1 = daq_stream0[31:0];
   assign daq_stream_k0_0_1 = daq_stream_k0[3:0];
@@ -1330,6 +1334,7 @@ module daq_spy_0_imp_KA15XV
         .bram_we(daq_spy_control_0_bram_we),
         .clk65p5(pdts_endpoint_0_clk),
         .daq_clk(daq_clk_0_1),
+        .daq_data_type(daq_data_type_1_1),
         .daq_stream(daq_stream0_0_1),
         .daq_stream_k(daq_stream_k0_0_1),
         .full(daq_spy_full_0),
@@ -1383,6 +1388,7 @@ module daq_spy_1_imp_Q79PU8
     S_AXI_wstrb,
     S_AXI_wvalid,
     daq_clk,
+    daq_data_type_0,
     daq_spy_full,
     daq_spy_reset,
     daq_stream0,
@@ -1423,6 +1429,7 @@ module daq_spy_1_imp_Q79PU8
   input [3:0]S_AXI_wstrb;
   input S_AXI_wvalid;
   input daq_clk;
+  input [1:0]daq_data_type_0;
   output daq_spy_full;
   input daq_spy_reset;
   input [31:0]daq_stream0;
@@ -1439,6 +1446,7 @@ module daq_spy_1_imp_Q79PU8
   wire axi_bram_ctrl_0_BRAM_PORTA_RST;
   wire [3:0]axi_bram_ctrl_0_BRAM_PORTA_WE;
   wire daq_clk_0_1;
+  wire [1:0]daq_data_type_0_1;
   wire [19:0]daq_spy_control_0_bram_addr;
   wire daq_spy_control_0_bram_clk;
   wire [31:0]daq_spy_control_0_bram_din;
@@ -1495,6 +1503,7 @@ module daq_spy_1_imp_Q79PU8
   assign S_AXI_rvalid = ps8_0_axi_periph_M00_AXI_RVALID;
   assign S_AXI_wready = ps8_0_axi_periph_M00_AXI_WREADY;
   assign daq_clk_0_1 = daq_clk;
+  assign daq_data_type_0_1 = daq_data_type_0[1:0];
   assign daq_spy_full = daq_spy_full_0;
   assign daq_stream0_0_1 = daq_stream0[31:0];
   assign daq_stream_k0_0_1 = daq_stream_k0[3:0];
@@ -1588,6 +1597,7 @@ module daq_spy_1_imp_Q79PU8
         .bram_we(daq_spy_control_0_bram_we),
         .clk65p5(pdts_endpoint_0_clk),
         .daq_clk(daq_clk_0_1),
+        .daq_data_type(daq_data_type_0_1),
         .daq_stream(daq_stream0_0_1),
         .daq_stream_k(daq_stream_k0_0_1),
         .full(daq_spy_full_0),
@@ -1756,6 +1766,8 @@ module design_1
     cmd_code_reset,
     cmd_code_sync,
     daq_clk,
+    daq_data_type0,
+    daq_data_type1,
     daq_spy_full_0,
     daq_spy_full_1,
     daq_spy_reset_0,
@@ -1843,6 +1855,8 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_reset;
   input [7:0]cmd_code_sync;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DAQ_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DAQ_CLK, ASSOCIATED_RESET daq_spy_reset_0:daq_spy_reset_1, CLK_DOMAIN design_1_daq_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input daq_clk;
+  input [1:0]daq_data_type0;
+  input [1:0]daq_data_type1;
   output daq_spy_full_0;
   output daq_spy_full_1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.DAQ_SPY_RESET_0 RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.DAQ_SPY_RESET_0, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input daq_spy_reset_0;
@@ -2078,6 +2092,8 @@ module design_1
   wire coldata_i2c_dual_sda_out_n_1;
   wire coldata_i2c_dual_sda_out_p_1;
   wire daq_clk_0_1;
+  wire [1:0]daq_data_type_0_1;
+  wire [1:0]daq_data_type_1_1;
   wire daq_spy_1_daq_spy_full;
   wire daq_spy_full_0;
   wire daq_spy_reset_0_1;
@@ -2376,6 +2392,8 @@ module design_1
   assign cmd_code_reset_0_1 = cmd_code_reset[7:0];
   assign cmd_code_sync_0_1 = cmd_code_sync[7:0];
   assign daq_clk_0_1 = daq_clk;
+  assign daq_data_type_0_1 = daq_data_type1[1:0];
+  assign daq_data_type_1_1 = daq_data_type0[1:0];
   assign daq_spy_full_1 = daq_spy_1_daq_spy_full;
   assign daq_spy_reset_0_1 = daq_spy_reset_1;
   assign daq_stream0_0_1 = daq_stream0[31:0];
@@ -2766,6 +2784,7 @@ module design_1
         .S_AXI_wstrb(ps8_0_axi_periph_M00_AXI_WSTRB),
         .S_AXI_wvalid(ps8_0_axi_periph_M00_AXI_WVALID),
         .daq_clk(daq_clk_0_1),
+        .daq_data_type_1(daq_data_type_1_1),
         .daq_spy_full(daq_spy_full_0),
         .daq_spy_reset(reset_0_1),
         .daq_stream0(daq_stream0_0_1),
@@ -2807,6 +2826,7 @@ module design_1
         .S_AXI_wstrb(ps8_0_axi_periph_M15_AXI_WSTRB),
         .S_AXI_wvalid(ps8_0_axi_periph_M15_AXI_WVALID),
         .daq_clk(daq_clk_0_1),
+        .daq_data_type_0(daq_data_type_0_1),
         .daq_spy_full(daq_spy_1_daq_spy_full),
         .daq_spy_reset(daq_spy_reset_0_1),
         .daq_stream0(daq_stream1_0_1),
@@ -13764,6 +13784,8 @@ module timing_module_imp_2RES6C
   wire ts_sfp_los_1;
   wire [0:0]xlconstant_1_dout;
   wire [31:0]xlconstant_2_dout;
+  wire [1:0]xlslice_0_Dout;
+  wire [7:0]xlslice_1_Dout;
   wire [0:0]xlslice_2_Dout;
 
   assign axi_gpio_1_gpio_io_o = Din[1023:0];
@@ -13817,7 +13839,8 @@ module timing_module_imp_2RES6C
         .probe8(ts_reclock_0_cmd_bit_idle),
         .probe9(ts_reclock_0_cmd_bit_edge));
   design_1_pdts_endpoint_stdlog_0_0 pdts_endpoint_stdlog_0
-       (.cdr_lol(ts_cdr_lol_1),
+       (.addr(xlslice_1_Dout),
+        .cdr_lol(ts_cdr_lol_1),
         .cdr_los(ts_cdr_los_1),
         .clk(clk_wiz_0_clk_out1),
         .pll_locked(ts_rec_clk_locked_1),
@@ -13832,6 +13855,7 @@ module timing_module_imp_2RES6C
         .sync(pdts_endpoint_stdlog_0_sync),
         .sync_first(pdts_endpoint_stdlog_0_sync_first),
         .sync_stb(pdts_endpoint_stdlog_0_sync_stb),
+        .tgrp(xlslice_0_Dout),
         .tstamp(pdts_endpoint_stdlog_0_tstamp),
         .tx_dis(pdts_endpoint_stdlog_0_tx_dis),
         .txd(pdts_endpoint_stdlog_0_txd));
@@ -13873,9 +13897,11 @@ module timing_module_imp_2RES6C
   design_1_xlconstant_1_1 xlconstant_2
        (.dout(xlconstant_2_dout));
   design_1_xlslice_0_0 xlslice_0
-       (.Din(axi_gpio_1_gpio_io_o));
+       (.Din(axi_gpio_1_gpio_io_o),
+        .Dout(xlslice_0_Dout));
   design_1_xlslice_1_2 xlslice_1
-       (.Din(axi_gpio_1_gpio_io_o));
+       (.Din(axi_gpio_1_gpio_io_o),
+        .Dout(xlslice_1_Dout));
   design_1_xlslice_0_1 xlslice_2
        (.Din(axi_gpio_1_gpio_io_o),
         .Dout(xlslice_2_Dout));

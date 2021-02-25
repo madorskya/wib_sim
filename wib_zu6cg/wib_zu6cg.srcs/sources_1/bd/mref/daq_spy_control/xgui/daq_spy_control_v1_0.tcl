@@ -3,6 +3,10 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
+  ipgui::add_param $IPINST -name "DT_FIRST" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "DT_IGNORE" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "DT_INTERMEDIATE" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "DT_LAST" -parent ${Page_0}
   ipgui::add_param $IPINST -name "FRAME_LNG" -parent ${Page_0}
   ipgui::add_param $IPINST -name "FULL" -parent ${Page_0}
   ipgui::add_param $IPINST -name "IDLE" -parent ${Page_0}
@@ -11,6 +15,42 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "RECORD" -parent ${Page_0}
 
 
+}
+
+proc update_PARAM_VALUE.DT_FIRST { PARAM_VALUE.DT_FIRST } {
+	# Procedure called to update DT_FIRST when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.DT_FIRST { PARAM_VALUE.DT_FIRST } {
+	# Procedure called to validate DT_FIRST
+	return true
+}
+
+proc update_PARAM_VALUE.DT_IGNORE { PARAM_VALUE.DT_IGNORE } {
+	# Procedure called to update DT_IGNORE when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.DT_IGNORE { PARAM_VALUE.DT_IGNORE } {
+	# Procedure called to validate DT_IGNORE
+	return true
+}
+
+proc update_PARAM_VALUE.DT_INTERMEDIATE { PARAM_VALUE.DT_INTERMEDIATE } {
+	# Procedure called to update DT_INTERMEDIATE when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.DT_INTERMEDIATE { PARAM_VALUE.DT_INTERMEDIATE } {
+	# Procedure called to validate DT_INTERMEDIATE
+	return true
+}
+
+proc update_PARAM_VALUE.DT_LAST { PARAM_VALUE.DT_LAST } {
+	# Procedure called to update DT_LAST when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.DT_LAST { PARAM_VALUE.DT_LAST } {
+	# Procedure called to validate DT_LAST
+	return true
 }
 
 proc update_PARAM_VALUE.FRAME_LNG { PARAM_VALUE.FRAME_LNG } {
@@ -96,5 +136,25 @@ proc update_MODELPARAM_VALUE.FULL { MODELPARAM_VALUE.FULL PARAM_VALUE.FULL } {
 proc update_MODELPARAM_VALUE.FRAME_LNG { MODELPARAM_VALUE.FRAME_LNG PARAM_VALUE.FRAME_LNG } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.FRAME_LNG}] ${MODELPARAM_VALUE.FRAME_LNG}
+}
+
+proc update_MODELPARAM_VALUE.DT_INTERMEDIATE { MODELPARAM_VALUE.DT_INTERMEDIATE PARAM_VALUE.DT_INTERMEDIATE } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.DT_INTERMEDIATE}] ${MODELPARAM_VALUE.DT_INTERMEDIATE}
+}
+
+proc update_MODELPARAM_VALUE.DT_FIRST { MODELPARAM_VALUE.DT_FIRST PARAM_VALUE.DT_FIRST } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.DT_FIRST}] ${MODELPARAM_VALUE.DT_FIRST}
+}
+
+proc update_MODELPARAM_VALUE.DT_LAST { MODELPARAM_VALUE.DT_LAST PARAM_VALUE.DT_LAST } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.DT_LAST}] ${MODELPARAM_VALUE.DT_LAST}
+}
+
+proc update_MODELPARAM_VALUE.DT_IGNORE { MODELPARAM_VALUE.DT_IGNORE PARAM_VALUE.DT_IGNORE } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.DT_IGNORE}] ${MODELPARAM_VALUE.DT_IGNORE}
 }
 

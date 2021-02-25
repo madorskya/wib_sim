@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:06:41 2021
+-- Date        : Thu Feb  4 22:06:40 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_util_ds_buf_0_1 -prefix
+--               design_1_util_ds_buf_0_1_ design_1_util_ds_buf_0_1_sim_netlist.vhdl
 -- Design      : design_1_util_ds_buf_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -117,8 +117,6 @@ entity design_1_util_ds_buf_0_1_util_ds_buf is
   attribute C_SIM_DEVICE of design_1_util_ds_buf_0_1_util_ds_buf : entity is "VERSAL_AI_CORE_ES1";
   attribute C_SIZE : integer;
   attribute C_SIZE of design_1_util_ds_buf_0_1_util_ds_buf : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_util_ds_buf_0_1_util_ds_buf : entity is "util_ds_buf";
 end design_1_util_ds_buf_0_1_util_ds_buf;
 
 architecture STRUCTURE of design_1_util_ds_buf_0_1_util_ds_buf is

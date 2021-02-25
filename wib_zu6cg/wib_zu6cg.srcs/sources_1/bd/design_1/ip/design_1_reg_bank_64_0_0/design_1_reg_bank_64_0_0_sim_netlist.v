@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Feb  4 22:06:38 2021
+// Date        : Thu Feb  4 22:06:35 2021
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_reg_bank_64_0_0/design_1_reg_bank_64_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_reg_bank_64_0_0 -prefix
+//               design_1_reg_bank_64_0_0_ design_1_reg_bank_64_0_0_sim_netlist.v
 // Design      : design_1_reg_bank_64_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -111,7 +111,6 @@ module design_1_reg_bank_64_0_0
         .s00_axi_wvalid(s00_axi_wvalid));
 endmodule
 
-(* ORIG_REF_NAME = "reg_bank_64_v1_0" *) 
 module design_1_reg_bank_64_0_0_reg_bank_64_v1_0
    (S_AXI_AWREADY,
     S_AXI_WREADY,
@@ -234,7 +233,6 @@ module design_1_reg_bank_64_0_0_reg_bank_64_v1_0
         .O(p_0_in));
 endmodule
 
-(* ORIG_REF_NAME = "reg_bank_64_v1_0_S00_AXI" *) 
 module design_1_reg_bank_64_0_0_reg_bank_64_v1_0_S00_AXI
    (S_AXI_AWREADY,
     S_AXI_WREADY,

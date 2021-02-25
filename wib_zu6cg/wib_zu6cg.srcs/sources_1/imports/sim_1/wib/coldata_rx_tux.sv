@@ -22,7 +22,7 @@ module coldata_rx_tux
     output [1:0]   rx_disp [15:0],
                  
 
-    output [7 : 0] rx_cdr_stable_out   , 
+    output [0 : 0] rx_cdr_stable_out   , 
     output [15 :0] gtpowergood_out,     
     input  [3:0]   rx_prbs_sel,
     output [15:0]  rxprbserr_out,

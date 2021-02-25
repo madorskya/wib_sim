@@ -57,6 +57,8 @@
 module design_1_pdts_endpoint_stdlog_0_0 (
   sclk,
   srst,
+  addr,
+  tgrp,
   stat,
   rec_clk,
   rec_d,
@@ -78,6 +80,8 @@ module design_1_pdts_endpoint_stdlog_0_0 (
 
 input wire sclk;
 input wire srst;
+input wire [7 : 0] addr;
+input wire [1 : 0] tgrp;
 output wire [3 : 0] stat;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 250000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 rec_clk CLK" *)
@@ -105,6 +109,8 @@ output wire tx_dis;
   pdts_endpoint_stdlogic inst (
     .sclk(sclk),
     .srst(srst),
+    .addr(addr),
+    .tgrp(tgrp),
     .stat(stat),
     .rec_clk(rec_clk),
     .rec_d(rec_d),

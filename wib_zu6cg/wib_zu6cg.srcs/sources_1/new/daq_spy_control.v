@@ -3,6 +3,7 @@ module daq_spy_control
 (
     input [31:0] daq_stream, // data to felix
     input [3:0]  daq_stream_k, // K symbol flags to felix
+    input [1:0]  daq_data_type, // data type
     input        daq_clk,
     
     output reg [19:0] bram_addr,
@@ -25,6 +26,12 @@ module daq_spy_control
     parameter LAST       = 3'h3;
     parameter FULL       = 3'h4;
     parameter FRAME_LNG = 20'd480; // length of one DAQ frame, in bytes
+    
+    parameter DT_INTERMEDIATE = 2'b00;
+    parameter DT_FIRST        = 2'b01;
+    parameter DT_LAST         = 2'b10;
+    parameter DT_IGNORE       = 2'b11;
+    
     
     reg [31:0] daq_stream_r;
     (* async_reg *) reg [2:0] reset_r;
@@ -49,7 +56,8 @@ module daq_spy_control
             case (state)
                 IDLE:
                 begin
-                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h0000003c) // start of frame
+//                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h0000003c) // start of frame
+                    if (daq_data_type == DT_FIRST)
                     begin
                         state = RECORD;                        
                     end
@@ -59,7 +67,8 @@ module daq_spy_control
                 
                 IDLE_CHECK:
                 begin
-                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h0000003c) // start of frame
+//                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h0000003c) // start of frame
+                    if (daq_data_type == DT_FIRST)
                     begin
                         state = RECORD;                        
                     end
@@ -70,7 +79,8 @@ module daq_spy_control
                 end
                 RECORD:
                 begin
-                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h000000bc) // end of frame
+//                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h000000bc) // end of frame
+                    if (daq_data_type == DT_LAST)
                     begin
                         state = LAST;                        
                     end

@@ -55,13 +55,14 @@ module bd_tux
     input  [1:0]  daq_spy_reset,
     input  [31:0] daq_stream [1:0],
     input  [3:0]  daq_stream_k [1:0],
+    input  [1:0]  daq_data_type [1:0], // data_type flags for spy memory
     output clk_240,
-    input  cmd_code_idle,
-    input  cmd_code_edge,
-    input  cmd_code_sync,
-    input  cmd_code_act ,
-    input  cmd_code_reset,
-    input  cmd_code_adc_reset,
+    input [7:0] cmd_code_idle,
+    input [7:0] cmd_code_edge,
+    input [7:0] cmd_code_sync,
+    input [7:0] cmd_code_act ,
+    input [7:0] cmd_code_reset,
+    input [7:0] cmd_code_adc_reset,
     
     input fake_time_stamp_en, // enable fake time stamp
     input [63:0] fake_time_stamp_init
@@ -153,6 +154,8 @@ module bd_tux
         .daq_stream_k0   (daq_stream_k[0] ),
         .daq_stream1     (daq_stream[1]   ),
         .daq_stream_k1   (daq_stream_k[1] ),
+        .daq_data_type0  (daq_data_type[0]),
+        .daq_data_type1  (daq_data_type[1]),
         
         .cmd_code_idle      (cmd_code_idle     ),
         .cmd_code_edge      (cmd_code_edge     ),

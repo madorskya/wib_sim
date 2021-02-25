@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:06:29 2021
+-- Date        : Thu Feb 25 10:34:10 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_daq_spy_control_0_1/design_1_daq_spy_control_0_1_sim_netlist.vhdl
@@ -24,7 +24,7 @@ entity design_1_daq_spy_control_0_1_daq_spy_control is
     daq_clk : in STD_LOGIC;
     reset : in STD_LOGIC;
     daq_stream : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    daq_stream_k : in STD_LOGIC_VECTOR ( 3 downto 0 )
+    daq_data_type : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of design_1_daq_spy_control_0_1_daq_spy_control : entity is "daq_spy_control";
@@ -36,18 +36,7 @@ architecture STRUCTURE of design_1_daq_spy_control_0_1_daq_spy_control is
   signal \FSM_onehot_state[1]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[1]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[2]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[2]_i_2_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_10_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_11_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[3]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_2_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_3_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_4_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_5_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_6_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_7_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_8_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[3]_i_9_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_10_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_11_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_15_n_0\ : STD_LOGIC;
@@ -68,14 +57,14 @@ architecture STRUCTURE of design_1_daq_spy_control_0_1_daq_spy_control is
   signal \FSM_onehot_state_reg[4]_i_12_n_5\ : STD_LOGIC;
   signal \FSM_onehot_state_reg[4]_i_12_n_6\ : STD_LOGIC;
   signal \FSM_onehot_state_reg[4]_i_12_n_7\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg[4]_i_13_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg[4]_i_13_n_1\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg[4]_i_13_n_2\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg[4]_i_13_n_3\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg[4]_i_13_n_4\ : STD_LOGIC;
-  signal \FSM_onehot_state_reg[4]_i_13_n_5\ : STD_LOGIC;
   signal \FSM_onehot_state_reg[4]_i_13_n_6\ : STD_LOGIC;
   signal \FSM_onehot_state_reg[4]_i_13_n_7\ : STD_LOGIC;
+  signal \FSM_onehot_state_reg[4]_i_14_n_0\ : STD_LOGIC;
+  signal \FSM_onehot_state_reg[4]_i_14_n_1\ : STD_LOGIC;
+  signal \FSM_onehot_state_reg[4]_i_14_n_2\ : STD_LOGIC;
+  signal \FSM_onehot_state_reg[4]_i_14_n_3\ : STD_LOGIC;
+  signal \FSM_onehot_state_reg[4]_i_14_n_4\ : STD_LOGIC;
+  signal \FSM_onehot_state_reg[4]_i_14_n_5\ : STD_LOGIC;
   signal \FSM_onehot_state_reg[4]_i_14_n_6\ : STD_LOGIC;
   signal \FSM_onehot_state_reg[4]_i_14_n_7\ : STD_LOGIC;
   signal \FSM_onehot_state_reg_n_0_[0]\ : STD_LOGIC;
@@ -146,15 +135,17 @@ architecture STRUCTURE of design_1_daq_spy_control_0_1_daq_spy_control is
   attribute async_reg of reset_r : signal is "true";
   signal \^state\ : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal \NLW_FSM_onehot_state_reg[4]_i_12_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal \NLW_FSM_onehot_state_reg[4]_i_14_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 2 );
-  signal \NLW_FSM_onehot_state_reg[4]_i_14_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 3 );
+  signal \NLW_FSM_onehot_state_reg[4]_i_13_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 2 );
+  signal \NLW_FSM_onehot_state_reg[4]_i_13_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 3 );
   signal \NLW_bram_addr_reg[19]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 1 );
   signal \NLW_bram_addr_reg[19]_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 2 );
   signal NLW_next_frame_addr_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \NLW_next_frame_addr_carry__0_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 to 7 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_onehot_state[2]_i_2\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \FSM_onehot_state[3]_i_2\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[0]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[1]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[1]_i_3\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[2]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \FSM_onehot_state[4]_i_2\ : label is "soft_lutpair0";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[0]\ : label is "IDLE:00001,RECORD:00010,LAST:00100,IDLE_CHECK:01000,FULL:10000";
@@ -183,219 +174,92 @@ architecture STRUCTURE of design_1_daq_spy_control_0_1_daq_spy_control is
 begin
   bram_addr(17 downto 0) <= \^bram_addr\(17 downto 0);
   state(2 downto 0) <= \^state\(2 downto 0);
-\FSM_onehot_state[0]_i_1\: unisim.vcomponents.LUT2
+\FSM_onehot_state[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"2"
+      INIT => X"D0"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[0]\,
-      I1 => \FSM_onehot_state[3]_i_2_n_0\,
+      I0 => daq_data_type(0),
+      I1 => daq_data_type(1),
+      I2 => \FSM_onehot_state_reg_n_0_[0]\,
       O => \FSM_onehot_state[0]_i_1_n_0\
     );
 \FSM_onehot_state[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFF4040404040"
+      INIT => X"FFFF332033203320"
     )
         port map (
       I0 => \FSM_onehot_state[4]_i_4_n_0\,
-      I1 => \FSM_onehot_state_reg_n_0_[1]\,
-      I2 => \FSM_onehot_state[2]_i_2_n_0\,
+      I1 => \FSM_onehot_state[1]_i_2_n_0\,
+      I2 => \FSM_onehot_state_reg_n_0_[3]\,
       I3 => \FSM_onehot_state_reg_n_0_[0]\,
-      I4 => \FSM_onehot_state[1]_i_2_n_0\,
-      I5 => \FSM_onehot_state[3]_i_2_n_0\,
+      I4 => \FSM_onehot_state[1]_i_3_n_0\,
+      I5 => \FSM_onehot_state[4]_i_3_n_0\,
       O => \FSM_onehot_state[1]_i_1_n_0\
     );
-\FSM_onehot_state[1]_i_2\: unisim.vcomponents.LUT5
+\FSM_onehot_state[1]_i_2\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"AAAAA8AA"
+      INIT => X"B"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[3]\,
-      I1 => \FSM_onehot_state[4]_i_7_n_0\,
-      I2 => \FSM_onehot_state[1]_i_3_n_0\,
-      I3 => \FSM_onehot_state[4]_i_6_n_0\,
-      I4 => \FSM_onehot_state[4]_i_5_n_0\,
+      I0 => daq_data_type(1),
+      I1 => daq_data_type(0),
       O => \FSM_onehot_state[1]_i_2_n_0\
     );
 \FSM_onehot_state[1]_i_3\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"FE"
+      INIT => X"D0"
     )
         port map (
-      I0 => next_frame_addr(16),
-      I1 => next_frame_addr(13),
-      I2 => next_frame_addr(15),
+      I0 => daq_data_type(1),
+      I1 => daq_data_type(0),
+      I2 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \FSM_onehot_state[1]_i_3_n_0\
     );
-\FSM_onehot_state[2]_i_1\: unisim.vcomponents.LUT3
+\FSM_onehot_state[2]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"04"
+      INIT => X"2000"
     )
         port map (
-      I0 => \FSM_onehot_state[2]_i_2_n_0\,
-      I1 => \FSM_onehot_state_reg_n_0_[1]\,
-      I2 => \FSM_onehot_state[4]_i_4_n_0\,
+      I0 => \FSM_onehot_state[4]_i_3_n_0\,
+      I1 => daq_data_type(0),
+      I2 => daq_data_type(1),
+      I3 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \FSM_onehot_state[2]_i_1_n_0\
     );
-\FSM_onehot_state[2]_i_2\: unisim.vcomponents.LUT5
+\FSM_onehot_state[3]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFEF"
+      INIT => X"FF8F888888888888"
     )
         port map (
-      I0 => \FSM_onehot_state[3]_i_6_n_0\,
-      I1 => \FSM_onehot_state[3]_i_4_n_0\,
-      I2 => daq_stream(7),
-      I3 => \FSM_onehot_state[3]_i_3_n_0\,
-      I4 => \FSM_onehot_state[3]_i_5_n_0\,
-      O => \FSM_onehot_state[2]_i_2_n_0\
-    );
-\FSM_onehot_state[3]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"04FF0404"
-    )
-        port map (
-      I0 => \FSM_onehot_state[3]_i_2_n_0\,
-      I1 => \FSM_onehot_state_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state[4]_i_3_n_0\,
-      I3 => \FSM_onehot_state[4]_i_4_n_0\,
-      I4 => \FSM_onehot_state_reg_n_0_[2]\,
+      I0 => \FSM_onehot_state_reg_n_0_[2]\,
+      I1 => \FSM_onehot_state[4]_i_3_n_0\,
+      I2 => daq_data_type(0),
+      I3 => daq_data_type(1),
+      I4 => \FSM_onehot_state_reg_n_0_[3]\,
+      I5 => \FSM_onehot_state[4]_i_4_n_0\,
       O => \FSM_onehot_state[3]_i_1_n_0\
-    );
-\FSM_onehot_state[3]_i_10\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000001"
-    )
-        port map (
-      I0 => daq_stream(20),
-      I1 => daq_stream(25),
-      I2 => daq_stream(18),
-      I3 => daq_stream(30),
-      I4 => \FSM_onehot_state[3]_i_11_n_0\,
-      O => \FSM_onehot_state[3]_i_10_n_0\
-    );
-\FSM_onehot_state[3]_i_11\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => daq_stream(29),
-      I1 => daq_stream(19),
-      I2 => daq_stream(23),
-      I3 => daq_stream(17),
-      O => \FSM_onehot_state[3]_i_11_n_0\
-    );
-\FSM_onehot_state[3]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000001"
-    )
-        port map (
-      I0 => \FSM_onehot_state[3]_i_3_n_0\,
-      I1 => daq_stream(7),
-      I2 => \FSM_onehot_state[3]_i_4_n_0\,
-      I3 => \FSM_onehot_state[3]_i_5_n_0\,
-      I4 => \FSM_onehot_state[3]_i_6_n_0\,
-      O => \FSM_onehot_state[3]_i_2_n_0\
-    );
-\FSM_onehot_state[3]_i_3\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"FE"
-    )
-        port map (
-      I0 => daq_stream(0),
-      I1 => daq_stream(6),
-      I2 => daq_stream(1),
-      O => \FSM_onehot_state[3]_i_3_n_0\
-    );
-\FSM_onehot_state[3]_i_4\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFEFFF"
-    )
-        port map (
-      I0 => daq_stream_k(1),
-      I1 => daq_stream_k(2),
-      I2 => daq_stream(2),
-      I3 => daq_stream(5),
-      I4 => \FSM_onehot_state[3]_i_7_n_0\,
-      O => \FSM_onehot_state[3]_i_4_n_0\
-    );
-\FSM_onehot_state[3]_i_5\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFFFE"
-    )
-        port map (
-      I0 => daq_stream(8),
-      I1 => daq_stream(10),
-      I2 => daq_stream(13),
-      I3 => daq_stream(15),
-      I4 => \FSM_onehot_state[3]_i_8_n_0\,
-      O => \FSM_onehot_state[3]_i_5_n_0\
-    );
-\FSM_onehot_state[3]_i_6\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFEFFFFFFFF"
-    )
-        port map (
-      I0 => \FSM_onehot_state[3]_i_9_n_0\,
-      I1 => daq_stream(31),
-      I2 => daq_stream(16),
-      I3 => daq_stream(27),
-      I4 => daq_stream(21),
-      I5 => \FSM_onehot_state[3]_i_10_n_0\,
-      O => \FSM_onehot_state[3]_i_6_n_0\
-    );
-\FSM_onehot_state[3]_i_7\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"DFFF"
-    )
-        port map (
-      I0 => daq_stream_k(0),
-      I1 => daq_stream_k(3),
-      I2 => daq_stream(3),
-      I3 => daq_stream(4),
-      O => \FSM_onehot_state[3]_i_7_n_0\
-    );
-\FSM_onehot_state[3]_i_8\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => daq_stream(11),
-      I1 => daq_stream(9),
-      I2 => daq_stream(14),
-      I3 => daq_stream(12),
-      O => \FSM_onehot_state[3]_i_8_n_0\
-    );
-\FSM_onehot_state[3]_i_9\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => daq_stream(28),
-      I1 => daq_stream(26),
-      I2 => daq_stream(24),
-      I3 => daq_stream(22),
-      O => \FSM_onehot_state[3]_i_9_n_0\
     );
 \FSM_onehot_state[4]_i_1\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[1]\,
-      I1 => \FSM_onehot_state_reg_n_0_[2]\,
-      I2 => \FSM_onehot_state_reg_n_0_[0]\,
-      I3 => \FSM_onehot_state_reg_n_0_[3]\,
+      I0 => \FSM_onehot_state_reg_n_0_[3]\,
+      I1 => \FSM_onehot_state_reg_n_0_[0]\,
+      I2 => \FSM_onehot_state_reg_n_0_[2]\,
+      I3 => \FSM_onehot_state_reg_n_0_[1]\,
       O => \FSM_onehot_state[4]_i_1_n_0\
     );
 \FSM_onehot_state[4]_i_10\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7FFF"
+      INIT => X"FFFE"
     )
         port map (
-      I0 => p_0_in(14),
-      I1 => p_0_in(7),
-      I2 => p_0_in(11),
-      I3 => p_0_in(8),
+      I0 => next_frame_addr(11),
+      I1 => next_frame_addr(10),
+      I2 => next_frame_addr(13),
+      I3 => next_frame_addr(12),
       O => \FSM_onehot_state[4]_i_10_n_0\
     );
 \FSM_onehot_state[4]_i_11\: unisim.vcomponents.LUT4
@@ -403,10 +267,10 @@ begin
       INIT => X"7FFF"
     )
         port map (
-      I0 => p_0_in(19),
-      I1 => p_0_in(9),
-      I2 => p_0_in(17),
-      I3 => p_0_in(18),
+      I0 => next_frame_addr(6),
+      I1 => next_frame_addr(5),
+      I2 => next_frame_addr(8),
+      I3 => next_frame_addr(7),
       O => \FSM_onehot_state[4]_i_11_n_0\
     );
 \FSM_onehot_state[4]_i_15\: unisim.vcomponents.LUT1
@@ -419,95 +283,95 @@ begin
     );
 \FSM_onehot_state[4]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"F8F8F888"
+      INIT => X"54FF5454"
     )
         port map (
       I0 => \FSM_onehot_state[4]_i_3_n_0\,
-      I1 => \FSM_onehot_state_reg_n_0_[3]\,
-      I2 => \FSM_onehot_state[4]_i_4_n_0\,
-      I3 => \FSM_onehot_state_reg_n_0_[2]\,
-      I4 => \FSM_onehot_state_reg_n_0_[1]\,
+      I1 => \FSM_onehot_state_reg_n_0_[1]\,
+      I2 => \FSM_onehot_state_reg_n_0_[2]\,
+      I3 => \FSM_onehot_state[4]_i_4_n_0\,
+      I4 => \FSM_onehot_state_reg_n_0_[3]\,
       O => \FSM_onehot_state[4]_i_2_n_0\
     );
-\FSM_onehot_state[4]_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000004"
-    )
-        port map (
-      I0 => \FSM_onehot_state[4]_i_5_n_0\,
-      I1 => \FSM_onehot_state[4]_i_6_n_0\,
-      I2 => next_frame_addr(16),
-      I3 => next_frame_addr(13),
-      I4 => next_frame_addr(15),
-      I5 => \FSM_onehot_state[4]_i_7_n_0\,
-      O => \FSM_onehot_state[4]_i_3_n_0\
-    );
-\FSM_onehot_state[4]_i_4\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0002"
-    )
-        port map (
-      I0 => \FSM_onehot_state[4]_i_8_n_0\,
-      I1 => \FSM_onehot_state[4]_i_9_n_0\,
-      I2 => \FSM_onehot_state[4]_i_10_n_0\,
-      I3 => \FSM_onehot_state[4]_i_11_n_0\,
-      O => \FSM_onehot_state[4]_i_4_n_0\
-    );
-\FSM_onehot_state[4]_i_5\: unisim.vcomponents.LUT4
+\FSM_onehot_state[4]_i_3\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => next_frame_addr(10),
-      I1 => next_frame_addr(11),
-      I2 => next_frame_addr(9),
-      I3 => next_frame_addr(19),
-      O => \FSM_onehot_state[4]_i_5_n_0\
+      I0 => \FSM_onehot_state[4]_i_5_n_0\,
+      I1 => \FSM_onehot_state[4]_i_6_n_0\,
+      I2 => \FSM_onehot_state[4]_i_7_n_0\,
+      I3 => \FSM_onehot_state[4]_i_8_n_0\,
+      O => \FSM_onehot_state[4]_i_3_n_0\
     );
-\FSM_onehot_state[4]_i_6\: unisim.vcomponents.LUT4
+\FSM_onehot_state[4]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0001"
+      INIT => X"FFFFFFFFFFFFFFEF"
     )
         port map (
-      I0 => next_frame_addr(12),
-      I1 => next_frame_addr(17),
-      I2 => next_frame_addr(14),
-      I3 => next_frame_addr(18),
+      I0 => \FSM_onehot_state[4]_i_9_n_0\,
+      I1 => \FSM_onehot_state[4]_i_10_n_0\,
+      I2 => \FSM_onehot_state[4]_i_11_n_0\,
+      I3 => next_frame_addr(19),
+      I4 => next_frame_addr(18),
+      I5 => next_frame_addr(9),
+      O => \FSM_onehot_state[4]_i_4_n_0\
+    );
+\FSM_onehot_state[4]_i_5\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => p_0_in(5),
+      I1 => p_0_in(4),
+      I2 => p_0_in(7),
+      I3 => p_0_in(6),
+      O => \FSM_onehot_state[4]_i_5_n_0\
+    );
+\FSM_onehot_state[4]_i_6\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7FFFFFFFFFFFFFFF"
+    )
+        port map (
+      I0 => p_0_in(18),
+      I1 => p_0_in(19),
+      I2 => p_0_in(16),
+      I3 => p_0_in(17),
+      I4 => p_0_in(3),
+      I5 => p_0_in(2),
       O => \FSM_onehot_state[4]_i_6_n_0\
     );
 \FSM_onehot_state[4]_i_7\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"8000"
-    )
-        port map (
-      I0 => next_frame_addr(5),
-      I1 => next_frame_addr(8),
-      I2 => next_frame_addr(6),
-      I3 => next_frame_addr(7),
-      O => \FSM_onehot_state[4]_i_7_n_0\
-    );
-\FSM_onehot_state[4]_i_8\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"8000000000000000"
-    )
-        port map (
-      I0 => p_0_in(4),
-      I1 => p_0_in(5),
-      I2 => p_0_in(2),
-      I3 => p_0_in(12),
-      I4 => p_0_in(3),
-      I5 => p_0_in(16),
-      O => \FSM_onehot_state[4]_i_8_n_0\
-    );
-\FSM_onehot_state[4]_i_9\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
         port map (
       I0 => p_0_in(13),
-      I1 => p_0_in(10),
+      I1 => p_0_in(12),
       I2 => p_0_in(15),
-      I3 => p_0_in(6),
+      I3 => p_0_in(14),
+      O => \FSM_onehot_state[4]_i_7_n_0\
+    );
+\FSM_onehot_state[4]_i_8\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => p_0_in(9),
+      I1 => p_0_in(8),
+      I2 => p_0_in(11),
+      I3 => p_0_in(10),
+      O => \FSM_onehot_state[4]_i_8_n_0\
+    );
+\FSM_onehot_state[4]_i_9\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => next_frame_addr(15),
+      I1 => next_frame_addr(14),
+      I2 => next_frame_addr(17),
+      I3 => next_frame_addr(16),
       O => \FSM_onehot_state[4]_i_9_n_0\
     );
 \FSM_onehot_state_reg[0]\: unisim.vcomponents.FDSE
@@ -588,32 +452,32 @@ begin
     );
 \FSM_onehot_state_reg[4]_i_13\: unisim.vcomponents.CARRY8
      port map (
-      CI => \FSM_onehot_state_reg[4]_i_12_n_0\,
+      CI => \FSM_onehot_state_reg[4]_i_14_n_0\,
       CI_TOP => '0',
-      CO(7) => \FSM_onehot_state_reg[4]_i_13_n_0\,
-      CO(6) => \FSM_onehot_state_reg[4]_i_13_n_1\,
-      CO(5) => \FSM_onehot_state_reg[4]_i_13_n_2\,
-      CO(4) => \FSM_onehot_state_reg[4]_i_13_n_3\,
-      CO(3) => \FSM_onehot_state_reg[4]_i_13_n_4\,
-      CO(2) => \FSM_onehot_state_reg[4]_i_13_n_5\,
+      CO(7 downto 2) => \NLW_FSM_onehot_state_reg[4]_i_13_CO_UNCONNECTED\(7 downto 2),
       CO(1) => \FSM_onehot_state_reg[4]_i_13_n_6\,
       CO(0) => \FSM_onehot_state_reg[4]_i_13_n_7\,
       DI(7 downto 0) => B"00000000",
-      O(7 downto 0) => p_0_in(16 downto 9),
-      S(7 downto 0) => \^bram_addr\(14 downto 7)
-    );
-\FSM_onehot_state_reg[4]_i_14\: unisim.vcomponents.CARRY8
-     port map (
-      CI => \FSM_onehot_state_reg[4]_i_13_n_0\,
-      CI_TOP => '0',
-      CO(7 downto 2) => \NLW_FSM_onehot_state_reg[4]_i_14_CO_UNCONNECTED\(7 downto 2),
-      CO(1) => \FSM_onehot_state_reg[4]_i_14_n_6\,
-      CO(0) => \FSM_onehot_state_reg[4]_i_14_n_7\,
-      DI(7 downto 0) => B"00000000",
-      O(7 downto 3) => \NLW_FSM_onehot_state_reg[4]_i_14_O_UNCONNECTED\(7 downto 3),
+      O(7 downto 3) => \NLW_FSM_onehot_state_reg[4]_i_13_O_UNCONNECTED\(7 downto 3),
       O(2 downto 0) => p_0_in(19 downto 17),
       S(7 downto 3) => B"00000",
       S(2 downto 0) => \^bram_addr\(17 downto 15)
+    );
+\FSM_onehot_state_reg[4]_i_14\: unisim.vcomponents.CARRY8
+     port map (
+      CI => \FSM_onehot_state_reg[4]_i_12_n_0\,
+      CI_TOP => '0',
+      CO(7) => \FSM_onehot_state_reg[4]_i_14_n_0\,
+      CO(6) => \FSM_onehot_state_reg[4]_i_14_n_1\,
+      CO(5) => \FSM_onehot_state_reg[4]_i_14_n_2\,
+      CO(4) => \FSM_onehot_state_reg[4]_i_14_n_3\,
+      CO(3) => \FSM_onehot_state_reg[4]_i_14_n_4\,
+      CO(2) => \FSM_onehot_state_reg[4]_i_14_n_5\,
+      CO(1) => \FSM_onehot_state_reg[4]_i_14_n_6\,
+      CO(0) => \FSM_onehot_state_reg[4]_i_14_n_7\,
+      DI(7 downto 0) => B"00000000",
+      O(7 downto 0) => p_0_in(16 downto 9),
+      S(7 downto 0) => \^bram_addr\(14 downto 7)
     );
 \bram_addr[9]_i_2\: unisim.vcomponents.LUT1
     generic map(
@@ -1465,8 +1329,8 @@ next_frame_addr_carry_i_4: unisim.vcomponents.LUT1
       INIT => X"E"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[2]\,
-      I1 => \FSM_onehot_state_reg_n_0_[1]\,
+      I0 => \FSM_onehot_state_reg_n_0_[1]\,
+      I1 => \FSM_onehot_state_reg_n_0_[2]\,
       O => \^state\(1)
     );
 end STRUCTURE;
@@ -1478,6 +1342,7 @@ entity design_1_daq_spy_control_0_1 is
   port (
     daq_stream : in STD_LOGIC_VECTOR ( 31 downto 0 );
     daq_stream_k : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    daq_data_type : in STD_LOGIC_VECTOR ( 1 downto 0 );
     daq_clk : in STD_LOGIC;
     bram_addr : out STD_LOGIC_VECTOR ( 19 downto 0 );
     bram_clk : out STD_LOGIC;
@@ -1500,7 +1365,7 @@ entity design_1_daq_spy_control_0_1 is
   attribute IP_DEFINITION_SOURCE : string;
   attribute IP_DEFINITION_SOURCE of design_1_daq_spy_control_0_1 : entity is "module_ref";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_daq_spy_control_0_1 : entity is "daq_spy_control,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of design_1_daq_spy_control_0_1 : entity is "daq_spy_control,Vivado 2020.1";
 end design_1_daq_spy_control_0_1;
 
 architecture STRUCTURE of design_1_daq_spy_control_0_1 is
@@ -1540,8 +1405,8 @@ inst: entity work.design_1_daq_spy_control_0_1_daq_spy_control
       bram_din(31 downto 0) => bram_din(31 downto 0),
       bram_we(0) => \^bram_we\(3),
       daq_clk => \^daq_clk\,
+      daq_data_type(1 downto 0) => daq_data_type(1 downto 0),
       daq_stream(31 downto 0) => daq_stream(31 downto 0),
-      daq_stream_k(3 downto 0) => daq_stream_k(3 downto 0),
       full => full,
       reset => reset,
       state(2 downto 0) => state(2 downto 0)

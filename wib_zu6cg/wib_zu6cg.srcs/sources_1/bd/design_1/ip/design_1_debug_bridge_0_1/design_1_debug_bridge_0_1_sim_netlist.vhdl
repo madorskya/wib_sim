@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:26:36 2021
+-- Date        : Thu Feb  4 22:26:35 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_1/design_1_debug_bridge_0_1_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_debug_bridge_0_1 -prefix
+--               design_1_debug_bridge_0_1_ design_1_debug_bridge_0_1_sim_netlist.vhdl
 -- Design      : design_1_debug_bridge_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -32,8 +32,6 @@ entity design_1_debug_bridge_0_1_bd_0482 is
   );
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1_debug_bridge_0_1_bd_0482 : entity is "design_1_debug_bridge_0_1.hwdef";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_debug_bridge_0_1_bd_0482 : entity is "bd_0482";
 end design_1_debug_bridge_0_1_bd_0482;
 
 architecture STRUCTURE of design_1_debug_bridge_0_1_bd_0482 is

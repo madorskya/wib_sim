@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:15:04 2021
+-- Date        : Thu Feb 25 10:34:09 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_daq_spy_control_0_0/design_1_daq_spy_control_0_0_stub.vhdl
@@ -16,6 +16,7 @@ entity design_1_daq_spy_control_0_0 is
   Port ( 
     daq_stream : in STD_LOGIC_VECTOR ( 31 downto 0 );
     daq_stream_k : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    daq_data_type : in STD_LOGIC_VECTOR ( 1 downto 0 );
     daq_clk : in STD_LOGIC;
     bram_addr : out STD_LOGIC_VECTOR ( 19 downto 0 );
     bram_clk : out STD_LOGIC;
@@ -36,8 +37,8 @@ architecture stub of design_1_daq_spy_control_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "daq_stream[31:0],daq_stream_k[3:0],daq_clk,bram_addr[19:0],bram_clk,bram_din[31:0],bram_en,bram_rst,bram_we[3:0],time_stamp[63:0],clk65p5,reset,full,state[2:0]";
+attribute black_box_pad_pin of stub : architecture is "daq_stream[31:0],daq_stream_k[3:0],daq_data_type[1:0],daq_clk,bram_addr[19:0],bram_clk,bram_din[31:0],bram_en,bram_rst,bram_we[3:0],time_stamp[63:0],clk65p5,reset,full,state[2:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "daq_spy_control,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "daq_spy_control,Vivado 2020.1";
 begin
 end;

@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -57,6 +57,7 @@
 module design_1_daq_spy_control_0_1 (
   daq_stream,
   daq_stream_k,
+  daq_data_type,
   daq_clk,
   bram_addr,
   bram_clk,
@@ -73,6 +74,7 @@ module design_1_daq_spy_control_0_1 (
 
 input wire [31 : 0] daq_stream;
 input wire [3 : 0] daq_stream_k;
+input wire [1 : 0] daq_data_type;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME daq_clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_daq_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 daq_clk CLK" *)
 input wire daq_clk;
@@ -100,10 +102,15 @@ output wire [2 : 0] state;
     .RECORD(3'B010),
     .LAST(3'B011),
     .FULL(3'B100),
-    .FRAME_LNG(20'H001E0)
+    .FRAME_LNG(20'H001E0),
+    .DT_INTERMEDIATE(2'B00),
+    .DT_FIRST(2'B01),
+    .DT_LAST(2'B10),
+    .DT_IGNORE(2'B11)
   ) inst (
     .daq_stream(daq_stream),
     .daq_stream_k(daq_stream_k),
+    .daq_data_type(daq_data_type),
     .daq_clk(daq_clk),
     .bram_addr(bram_addr),
     .bram_clk(bram_clk),

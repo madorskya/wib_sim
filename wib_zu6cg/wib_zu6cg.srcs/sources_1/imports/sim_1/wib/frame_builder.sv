@@ -1,6 +1,7 @@
 module frame_builder
 (
     input [13:0] deframed [15:0][31:0], // [link][sample]
+    input [ 7:0] time8 [15:0], //[link]
     input [15:0] valid14,
     input [15:0] valid12,
     input [1:0]  crc_err [15:0],
@@ -16,7 +17,8 @@ module frame_builder
     input         fake_daq_stream,
 
     input [3:0] bp_crate_addr,
-    input [3:0] bp_slot_addr 
+    input [3:0] bp_slot_addr,
+    input si5344_lol 
 
 );
 /*
@@ -67,6 +69,7 @@ module frame_builder
     frame_builder_single #(.NUM(0)) fbs0
     (
         .deframed     (deframed0),
+        .time8        (time8    [7:0]),
         .valid14      (valid14  [7:0]),
         .valid12      (valid12  [7:0]),
         .crc_err      (crc_err  [7:0]),
@@ -80,12 +83,14 @@ module frame_builder
         .reset        (reset),
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr )
+        .bp_slot_addr  (bp_slot_addr ),
+        .si5344_lol    (si5344_lol)
     );
 
     frame_builder_single #(.NUM(1)) fbs1
     (
         .deframed     (deframed1),
+        .time8        (time8    [15:8]),
         .valid14      (valid14  [15:8]),
         .valid12      (valid12  [15:8]),
         .crc_err      (crc_err  [15:8]),
@@ -99,7 +104,8 @@ module frame_builder
         .reset        (reset),
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr )
+        .bp_slot_addr  (bp_slot_addr ),
+        .si5344_lol    (si5344_lol)
     );
 
 endmodule

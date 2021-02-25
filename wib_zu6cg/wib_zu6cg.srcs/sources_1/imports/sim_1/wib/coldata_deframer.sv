@@ -6,6 +6,7 @@ module coldata_deframer
     input mmcm_reset,
 
     output [13:0] deframed [15:0][31:0],
+    output [ 7:0] time8 [15:0],
     output [15:0] valid14,
     output [15:0] valid12,
     output [1:0]  crc_err [15:0],
@@ -24,6 +25,7 @@ module coldata_deframer
                 .rx_data    (rx_data  [gi]),
                 .rx_k       (rx_k     [gi]),
                 .deframed   (deframed [gi]),
+                .time8      (time8    [gi]),
                 .valid14    (valid14  [gi]),
                 .valid12    (valid12  [gi]),
                 .crc_err    (crc_err  [gi])

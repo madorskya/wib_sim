@@ -315,6 +315,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net ts_sfp_los_1 [get_bd_pins ts_sfp_los] [get_bd_pins pdts_endpoint_stdlog_0/sfp_los]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins ts_sync_v] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_pins ts_evtctr] [get_bd_pins xlconstant_2/dout]
+  connect_bd_net -net xlslice_0_Dout [get_bd_pins pdts_endpoint_stdlog_0/tgrp] [get_bd_pins xlslice_0/Dout]
+  connect_bd_net -net xlslice_1_Dout [get_bd_pins pdts_endpoint_stdlog_0/addr] [get_bd_pins xlslice_1/Dout]
   connect_bd_net -net xlslice_2_Dout [get_bd_pins pdts_endpoint_stdlog_0/srst] [get_bd_pins ts_reclock_0/fifo_rst] [get_bd_pins xlslice_2/Dout]
 
   # Restore current instance
@@ -427,6 +429,7 @@ proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
   create_bd_pin -dir I -type clk AXI_CLK_OUT
   create_bd_pin -dir I -type rst AXI_RSTn
   create_bd_pin -dir I -type clk daq_clk
+  create_bd_pin -dir I -from 1 -to 0 daq_data_type_0
   create_bd_pin -dir O daq_spy_full
   create_bd_pin -dir I -type rst daq_spy_reset
   create_bd_pin -dir I -from 31 -to 0 daq_stream0
@@ -469,6 +472,7 @@ proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
   # Create port connections
   connect_bd_net -net AXI_RSTn_1 [get_bd_pins AXI_RSTn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn]
   connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk]
+  connect_bd_net -net daq_data_type_0_1 [get_bd_pins daq_data_type_0] [get_bd_pins daq_spy_control_0/daq_data_type]
   connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr]
   connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
   connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din]
@@ -529,6 +533,7 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
   create_bd_pin -dir I -type clk AXI_CLK_OUT
   create_bd_pin -dir I -type rst AXI_RSTn
   create_bd_pin -dir I -type clk daq_clk
+  create_bd_pin -dir I -from 1 -to 0 daq_data_type_1
   create_bd_pin -dir O daq_spy_full
   create_bd_pin -dir I -type rst daq_spy_reset
   create_bd_pin -dir I -from 31 -to 0 daq_stream0
@@ -579,6 +584,7 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
 
   # Create port connections
   connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk] [get_bd_pins ila_0/clk]
+  connect_bd_net -net daq_data_type_1_1 [get_bd_pins daq_data_type_1] [get_bd_pins daq_spy_control_0/daq_data_type]
   connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr] [get_bd_pins ila_0/probe2]
   connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
   connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din] [get_bd_pins ila_0/probe3]
@@ -1079,6 +1085,8 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.ASSOCIATED_RESET {daq_spy_reset_0:daq_spy_reset_1} \
  ] $daq_clk
+  set daq_data_type0 [ create_bd_port -dir I -from 1 -to 0 daq_data_type0 ]
+  set daq_data_type1 [ create_bd_port -dir I -from 1 -to 0 daq_data_type1 ]
   set daq_spy_full_0 [ create_bd_port -dir O daq_spy_full_0 ]
   set daq_spy_full_1 [ create_bd_port -dir O daq_spy_full_1 ]
   set daq_spy_reset_0 [ create_bd_port -dir I -type rst daq_spy_reset_0 ]
@@ -2806,6 +2814,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net coldata_i2c_dual_sda_out_n_1 [get_bd_ports sda_out_n_1] [get_bd_pins coldata_i2c_dual0/sda_out_n_1]
   connect_bd_net -net coldata_i2c_dual_sda_out_p_1 [get_bd_ports sda_out_p_1] [get_bd_pins coldata_i2c_dual0/sda_out_p_1]
   connect_bd_net -net daq_clk_0_1 [get_bd_ports daq_clk] [get_bd_pins daq_spy_0/daq_clk] [get_bd_pins daq_spy_1/daq_clk]
+  connect_bd_net -net daq_data_type_0_1 [get_bd_ports daq_data_type1] [get_bd_pins daq_spy_1/daq_data_type_0]
+  connect_bd_net -net daq_data_type_1_1 [get_bd_ports daq_data_type0] [get_bd_pins daq_spy_0/daq_data_type_1]
   connect_bd_net -net daq_spy_1_daq_spy_full [get_bd_ports daq_spy_full_1] [get_bd_pins daq_spy_1/daq_spy_full]
   connect_bd_net -net daq_spy_full_0 [get_bd_ports daq_spy_full_0] [get_bd_pins daq_spy_0/daq_spy_full]
   connect_bd_net -net daq_spy_reset_0_1 [get_bd_ports daq_spy_reset_1] [get_bd_pins daq_spy_1/daq_spy_reset]

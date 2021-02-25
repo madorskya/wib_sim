@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Feb  9 18:00:56 2021
+//Date        : Thu Feb 25 12:50:15 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -20,6 +20,8 @@ module design_1_wrapper
     cmd_code_reset,
     cmd_code_sync,
     daq_clk,
+    daq_data_type0,
+    daq_data_type1,
     daq_spy_full_0,
     daq_spy_full_1,
     daq_spy_reset_0,
@@ -103,6 +105,8 @@ module design_1_wrapper
   input [7:0]cmd_code_reset;
   input [7:0]cmd_code_sync;
   input daq_clk;
+  input [1:0]daq_data_type0;
+  input [1:0]daq_data_type1;
   output daq_spy_full_0;
   output daq_spy_full_1;
   input daq_spy_reset_0;
@@ -187,6 +191,8 @@ module design_1_wrapper
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
   wire daq_clk;
+  wire [1:0]daq_data_type0;
+  wire [1:0]daq_data_type1;
   wire daq_spy_full_0;
   wire daq_spy_full_1;
   wire daq_spy_reset_0;
@@ -278,6 +284,8 @@ module design_1_wrapper
         .cmd_code_reset(cmd_code_reset),
         .cmd_code_sync(cmd_code_sync),
         .daq_clk(daq_clk),
+        .daq_data_type0(daq_data_type0),
+        .daq_data_type1(daq_data_type1),
         .daq_spy_full_0(daq_spy_full_0),
         .daq_spy_full_1(daq_spy_full_1),
         .daq_spy_reset_0(daq_spy_reset_0),
