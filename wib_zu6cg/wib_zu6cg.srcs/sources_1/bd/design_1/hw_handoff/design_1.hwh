@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Feb 25 12:50:21 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Feb 25 15:34:57 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -403,9 +403,9 @@
         <CONNECTION INSTANCE="timing_module_pdts_endpoint_stdlog_0" PORT="txd"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="tx_dis" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_stdlog_0_tx_dis">
+    <PORT DIR="O" LEFT="0" NAME="tx_dis" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlconstant_3_dout">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="timing_module_pdts_endpoint_stdlog_0" PORT="tx_dis"/>
+        <CONNECTION INSTANCE="timing_module_xlconstant_3" PORT="dout"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="iic_rtl_0_scl_i" SIGIS="undef" SIGNAME="axi_iic_0_scl_i">
@@ -15784,16 +15784,8 @@
             <CONNECTION INSTANCE="timing_module_xlslice_2" PORT="Dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="addr" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_1_Dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_xlslice_1" PORT="Dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="tgrp" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_0_Dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_xlslice_0" PORT="Dout"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="addr" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="1" NAME="tgrp" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="3" NAME="stat" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_stdlog_0_stat">
           <CONNECTIONS>
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="stat_in"/>
@@ -15875,11 +15867,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="txd"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="tx_dis" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_stdlog_0_tx_dis">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="tx_dis"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="tx_dis" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -16101,6 +16089,23 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
+    <MODULE COREREVISION="7" FULLNAME="/timing_module/xlconstant_3" HWVERSION="1.1" INSTANCE="timing_module_xlconstant_3" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_xlconstant_1_2"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlconstant_3_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="tx_dis"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
     <MODULE COREREVISION="2" FULLNAME="/timing_module/xlslice_0" HWVERSION="1.0" INSTANCE="timing_module_xlslice_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -16117,11 +16122,7 @@
             <CONNECTION INSTANCE="reg_bank_64_0" PORT="reg_rw"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_0_Dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_pdts_endpoint_stdlog_0" PORT="tgrp"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="Dout" RIGHT="0" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -16141,11 +16142,7 @@
             <CONNECTION INSTANCE="reg_bank_64_0" PORT="reg_rw"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_1_Dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_pdts_endpoint_stdlog_0" PORT="addr"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="Dout" RIGHT="0" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>

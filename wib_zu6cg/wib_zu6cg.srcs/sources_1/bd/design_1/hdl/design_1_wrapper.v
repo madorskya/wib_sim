@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Feb 25 12:50:15 2021
+//Date        : Thu Feb 25 15:34:50 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -178,7 +178,7 @@ module design_1_wrapper
   output [0:0]ts_sync_v;
   output [63:0]ts_tstamp;
   output ts_valid;
-  output tx_dis;
+  output [0:0]tx_dis;
   output txd;
 
   wire AXI_CLK_OUT;
@@ -270,7 +270,7 @@ module design_1_wrapper
   wire [0:0]ts_sync_v;
   wire [63:0]ts_tstamp;
   wire ts_valid;
-  wire tx_dis;
+  wire [0:0]tx_dis;
   wire txd;
 
   design_1 design_1_i

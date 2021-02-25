@@ -196,7 +196,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir O -from 0 -to 0 ts_sync_v
   create_bd_pin -dir O -from 63 -to 0 ts_tstamp
   create_bd_pin -dir O ts_valid_0
-  create_bd_pin -dir O tx_dis_0
+  create_bd_pin -dir O -from 0 -to 0 tx_dis_0
   create_bd_pin -dir O txd_0
 
   # Create instance: ila_0, and set properties
@@ -245,6 +245,12 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.CONST_WIDTH {32} \
  ] $xlconstant_2
 
+  # Create instance: xlconstant_3, and set properties
+  set xlconstant_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_3 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {1} \
+ ] $xlconstant_3
+
   # Create instance: xlslice_0, and set properties
   set xlslice_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_0 ]
   set_property -dict [ list \
@@ -289,7 +295,6 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net pdts_endpoint_stdlog_0_sync_first [get_bd_pins pdts_endpoint_stdlog_0/sync_first] [get_bd_pins ts_reclock_0/sync_first_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_sync_stb [get_bd_pins pdts_endpoint_stdlog_0/sync_stb] [get_bd_pins ts_reclock_0/sync_stb_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_tstamp [get_bd_pins pdts_endpoint_stdlog_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
   connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins pdts_endpoint_stdlog_0/txd]
   connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
   connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_stdlog_0/cdr_lol]
@@ -315,8 +320,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net ts_sfp_los_1 [get_bd_pins ts_sfp_los] [get_bd_pins pdts_endpoint_stdlog_0/sfp_los]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins ts_sync_v] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_pins ts_evtctr] [get_bd_pins xlconstant_2/dout]
-  connect_bd_net -net xlslice_0_Dout [get_bd_pins pdts_endpoint_stdlog_0/tgrp] [get_bd_pins xlslice_0/Dout]
-  connect_bd_net -net xlslice_1_Dout [get_bd_pins pdts_endpoint_stdlog_0/addr] [get_bd_pins xlslice_1/Dout]
+  connect_bd_net -net xlconstant_3_dout [get_bd_pins tx_dis_0] [get_bd_pins xlconstant_3/dout]
   connect_bd_net -net xlslice_2_Dout [get_bd_pins pdts_endpoint_stdlog_0/srst] [get_bd_pins ts_reclock_0/fifo_rst] [get_bd_pins xlslice_2/Dout]
 
   # Restore current instance
@@ -1162,7 +1166,7 @@ proc create_root_design { parentCell } {
   set ts_sync_v [ create_bd_port -dir O -from 0 -to 0 ts_sync_v ]
   set ts_tstamp [ create_bd_port -dir O -from 63 -to 0 ts_tstamp ]
   set ts_valid [ create_bd_port -dir O ts_valid ]
-  set tx_dis [ create_bd_port -dir O tx_dis ]
+  set tx_dis [ create_bd_port -dir O -from 0 -to 0 tx_dis ]
   set txd [ create_bd_port -dir O txd ]
 
   # Create instance: axi_gpio_1, and set properties
