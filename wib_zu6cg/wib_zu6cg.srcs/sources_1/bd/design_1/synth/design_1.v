@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Feb 25 15:34:49 2021
+//Date        : Fri Feb 26 09:46:08 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1754,7 +1754,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=95,numReposBlks=69,numNonXlnxBlks=10,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=94,numReposBlks=68,numNonXlnxBlks=10,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -13758,6 +13758,7 @@ module timing_module_imp_2RES6C
   wire pdts_endpoint_stdlog_0_sync_first;
   wire pdts_endpoint_stdlog_0_sync_stb;
   wire [63:0]pdts_endpoint_stdlog_0_tstamp;
+  wire pdts_endpoint_stdlog_0_tx_dis;
   wire pdts_endpoint_stdlog_0_txd;
   wire sclk_1;
   wire ts_cdr_lol_1;
@@ -13783,7 +13784,8 @@ module timing_module_imp_2RES6C
   wire ts_sfp_los_1;
   wire [0:0]xlconstant_1_dout;
   wire [31:0]xlconstant_2_dout;
-  wire [0:0]xlconstant_3_dout;
+  wire [1:0]xlslice_0_Dout;
+  wire [7:0]xlslice_1_Dout;
   wire [0:0]xlslice_2_Dout;
 
   assign axi_gpio_1_gpio_io_o = Din[1023:0];
@@ -13817,7 +13819,7 @@ module timing_module_imp_2RES6C
   assign ts_sync_v[0] = xlconstant_1_dout;
   assign ts_tstamp[63:0] = ts_reclock_0_tstamp_out;
   assign ts_valid_0 = ts_reclock_0_ts_valid;
-  assign tx_dis_0[0] = xlconstant_3_dout;
+  assign tx_dis_0[0] = pdts_endpoint_stdlog_0_tx_dis;
   assign txd_0 = pdts_endpoint_stdlog_0_txd;
   design_1_ila_0_1 ila_0
        (.clk(clk_wiz_0_clk_out1),
@@ -13837,7 +13839,7 @@ module timing_module_imp_2RES6C
         .probe8(ts_reclock_0_cmd_bit_idle),
         .probe9(ts_reclock_0_cmd_bit_edge));
   design_1_pdts_endpoint_stdlog_0_0 pdts_endpoint_stdlog_0
-       (.addr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+       (.addr(xlslice_1_Dout),
         .cdr_lol(ts_cdr_lol_1),
         .cdr_los(ts_cdr_los_1),
         .clk(clk_wiz_0_clk_out1),
@@ -13853,8 +13855,9 @@ module timing_module_imp_2RES6C
         .sync(pdts_endpoint_stdlog_0_sync),
         .sync_first(pdts_endpoint_stdlog_0_sync_first),
         .sync_stb(pdts_endpoint_stdlog_0_sync_stb),
-        .tgrp({1'b0,1'b0}),
+        .tgrp(xlslice_0_Dout),
         .tstamp(pdts_endpoint_stdlog_0_tstamp),
+        .tx_dis(pdts_endpoint_stdlog_0_tx_dis),
         .txd(pdts_endpoint_stdlog_0_txd));
   design_1_ts_reclock_0_0 ts_reclock_0
        (.clk62p5(clk_wiz_0_clk_out1),
@@ -13893,12 +13896,12 @@ module timing_module_imp_2RES6C
        (.dout(xlconstant_1_dout));
   design_1_xlconstant_1_1 xlconstant_2
        (.dout(xlconstant_2_dout));
-  design_1_xlconstant_1_2 xlconstant_3
-       (.dout(xlconstant_3_dout));
   design_1_xlslice_0_0 xlslice_0
-       (.Din(axi_gpio_1_gpio_io_o));
+       (.Din(axi_gpio_1_gpio_io_o),
+        .Dout(xlslice_0_Dout));
   design_1_xlslice_1_2 xlslice_1
-       (.Din(axi_gpio_1_gpio_io_o));
+       (.Din(axi_gpio_1_gpio_io_o),
+        .Dout(xlslice_1_Dout));
   design_1_xlslice_0_1 xlslice_2
        (.Din(axi_gpio_1_gpio_io_o),
         .Dout(xlslice_2_Dout));

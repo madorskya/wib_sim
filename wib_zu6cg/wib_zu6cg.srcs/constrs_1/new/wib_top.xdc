@@ -79,7 +79,7 @@ set_false_path -from [get_ports bp_crate_addr[*]]
 set_false_path -from [get_ports bp_slot_addr[*]]
 
 
-create_clock -period 4 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
+create_clock -period 3.1 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
  
 # timing data input constraints relative to clock
