@@ -257,6 +257,7 @@ module frame_builder_single #(parameter NUM = 0)
             
             SOF: // start of frame
             begin
+                crc_calc = 1'b0; // don't include SOF
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 // store prepared tx words in register for shifting out
                 tx_words [55:0] = tx_words_0;
@@ -319,7 +320,7 @@ module frame_builder_single #(parameter NUM = 0)
                 data_cnt++;    
             end
             
-            CRC:
+            CRC: // name out of date. CRC is actually transmitted in FLEX state
             begin
                 daq_stream_d[0] = trailer[0];
                 daq_stream_k_d[0] = trailer_k[0];
@@ -327,8 +328,9 @@ module frame_builder_single #(parameter NUM = 0)
                 fb_state = FLEX;
             end
             
-            FLEX:
+            FLEX: // name out of date. It's CRC+EOP state now
             begin
+                crc_calc = 1'b0; // don't include EOP
                 daq_stream_d[0] = trailer[1];
                 daq_stream_k_d[0] = trailer_k[1];
                 crc_inject[0] = 1'b1; 
@@ -338,6 +340,7 @@ module frame_builder_single #(parameter NUM = 0)
             
             TAIL:
             begin
+                crc_calc = 1'b0; // don't include IDLE
                 daq_stream_d[0] = trailer[2];
                 daq_stream_k_d[0] = trailer_k[2];
                 daq_data_type_d[0] = DT_LAST; 

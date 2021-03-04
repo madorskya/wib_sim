@@ -224,7 +224,7 @@ module wib_top
         .ts_clk            (clk62p5          ), // this is 62.5 M clock for WIB logic
         .ts_evtctr         (ts_evtctr        ),
         .ts_rdy            (ts_rdy           ),
-        .ts_rec_clk_locked (~si5344_lol      ),
+        .ts_rec_clk_locked (si5344_lol       ), // si5344_lol is inverted already
         .ts_rec_d          (ts_rec_d         ),
         .ts_rec_d_clk      (ts_rec_d_clk     ), // 312.5 (or 250) M clock from CDR
         .ts_rst            (ts_rst           ),
@@ -377,7 +377,7 @@ module wib_top
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
         .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (si5344_lol)
+        .si5344_lol    (~si5344_lol)
     );    
     
     I2C_CONTROL i2c_ctrl
