@@ -61,6 +61,11 @@ set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtre
 set_property package_pin R28 [get_ports mgtrefclk0_x0y1_n]
 set_property package_pin R27 [get_ports mgtrefclk0_x0y1_p] 
 create_clock -name clk_mgtrefclk0_x0y1_p -period 8.0 [get_ports mgtrefclk0_x0y1_p]
+#set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks mgtrefclk0_x0y1_p]
+#set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT3]] -to [get_clocks -of_objects [get_pins felix_gth_inst/inst/gen_gtwizard_gthe4_top.FELIX_GTH_v1f_gtwizard_gthe4_inst/gen_gtwizard_gthe4.gen_channel_container[1].gen_enabled_channel.gthe4_channel_wrapper_inst/channel_inst/gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST/TXOUTCLK]]
+#set_false_path -from [get_clocks -of_objects [get_pins felix_gth_inst/inst/gen_gtwizard_gthe4_top.FELIX_GTH_v1f_gtwizard_gthe4_inst/gen_gtwizard_gthe4.gen_channel_container[1].gen_enabled_channel.gthe4_channel_wrapper_inst/channel_inst/gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST/TXOUTCLK]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT3]]
+create_clock -period 4 -name felix_tx_clk [get_pins -filter {REF_PIN_NAME=~*TXOUTCLK} -of_objects [get_cells -hierarchical -filter {NAME =~ *gen_channel_container[1]*gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST*}]]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks felix_tx_clk]
 
 set_property LOC T34 [get_ports ch0_gthrxn_in]
 set_property LOC T33 [get_ports ch0_gthrxp_in]
@@ -92,7 +97,7 @@ set_false_path -from [get_ports bp_crate_addr[*]]
 set_false_path -from [get_ports bp_slot_addr[*]]
 
 
-create_clock -period 4 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
+create_clock -period 3.1 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
  
 # timing data input constraints relative to clock
