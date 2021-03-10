@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Fri Feb 26 09:46:09 2021
+//Date        : Wed Mar 10 15:43:50 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -2065,6 +2065,7 @@ module design_1
   wire [7:0]cmd_code_idle_0_1;
   wire [7:0]cmd_code_reset_0_1;
   wire [7:0]cmd_code_sync_0_1;
+  wire coldata_fast_cmd_0_fastcommand_out;
   wire coldata_fast_cmd_0_fastcommand_out_n;
   wire coldata_fast_cmd_0_fastcommand_out_p;
   wire [0:0]coldata_i2c_0_scl_n;
@@ -2522,6 +2523,7 @@ module design_1
         .cmd_idle(timing_module_cmd_bit_idle),
         .cmd_reset(timing_module_cmd_bit_reset),
         .cmd_sync(timing_module_cmd_bit_sync),
+        .fastcommand_out(coldata_fast_cmd_0_fastcommand_out),
         .fastcommand_out_n(coldata_fast_cmd_0_fastcommand_out_n),
         .fastcommand_out_p(coldata_fast_cmd_0_fastcommand_out_p),
         .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
@@ -3295,6 +3297,7 @@ module design_1
         .cmd_code_sync_0(cmd_code_sync_0_1),
         .fake_time_stamp_en_0(fake_time_stamp_en_0_1),
         .fake_time_stamp_init_0(fake_time_stamp_init_0_1),
+        .probe15(coldata_fast_cmd_0_fastcommand_out),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .stat_0(timing_module_stat_0),
         .ts_cdr_lol(cdr_lol_0_1),
@@ -13689,6 +13692,7 @@ module timing_module_imp_2RES6C
     cmd_code_sync_0,
     fake_time_stamp_en_0,
     fake_time_stamp_init_0,
+    probe15,
     sclk,
     stat_0,
     ts_cdr_lol,
@@ -13722,6 +13726,7 @@ module timing_module_imp_2RES6C
   input [7:0]cmd_code_sync_0;
   input fake_time_stamp_en_0;
   input [63:0]fake_time_stamp_init_0;
+  input [0:0]probe15;
   input sclk;
   output [3:0]stat_0;
   input ts_cdr_lol;
@@ -13760,6 +13765,7 @@ module timing_module_imp_2RES6C
   wire [63:0]pdts_endpoint_stdlog_0_tstamp;
   wire pdts_endpoint_stdlog_0_tx_dis;
   wire pdts_endpoint_stdlog_0_txd;
+  wire [0:0]probe15_1;
   wire sclk_1;
   wire ts_cdr_lol_1;
   wire ts_cdr_los_1;
@@ -13776,6 +13782,7 @@ module timing_module_imp_2RES6C
   wire ts_reclock_0_rdy_out;
   wire ts_reclock_0_rst_out;
   wire [3:0]ts_reclock_0_stat_out;
+  wire [1:0]ts_reclock_0_state;
   wire ts_reclock_0_sync_first_out;
   wire [3:0]ts_reclock_0_sync_out;
   wire ts_reclock_0_sync_stb_out;
@@ -13803,6 +13810,7 @@ module timing_module_imp_2RES6C
   assign cmd_code_sync_0_1 = cmd_code_sync_0[7:0];
   assign fake_time_stamp_en_0_1 = fake_time_stamp_en_0;
   assign fake_time_stamp_init_0_1 = fake_time_stamp_init_0[63:0];
+  assign probe15_1 = probe15[0];
   assign sclk_1 = sclk;
   assign stat_0[3:0] = ts_reclock_0_stat_out;
   assign ts_cdr_lol_1 = ts_cdr_lol;
@@ -13830,6 +13838,8 @@ module timing_module_imp_2RES6C
         .probe12(ts_reclock_0_cmd_bit_reset),
         .probe13(ts_reclock_0_cmd_bit_adc_reset),
         .probe14(ts_reclock_0_fifo_valid),
+        .probe15(probe15_1),
+        .probe16(ts_reclock_0_state),
         .probe2(ts_reclock_0_rdy_out),
         .probe3(ts_reclock_0_sync_out),
         .probe4(ts_reclock_0_sync_stb_out),
@@ -13883,6 +13893,7 @@ module timing_module_imp_2RES6C
         .rst_out(ts_reclock_0_rst_out),
         .stat_in(pdts_endpoint_stdlog_0_stat),
         .stat_out(ts_reclock_0_stat_out),
+        .state(ts_reclock_0_state),
         .sync_first_in(pdts_endpoint_stdlog_0_sync_first),
         .sync_first_out(ts_reclock_0_sync_first_out),
         .sync_in(pdts_endpoint_stdlog_0_sync),

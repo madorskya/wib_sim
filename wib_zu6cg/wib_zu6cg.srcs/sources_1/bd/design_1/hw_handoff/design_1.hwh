@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Feb 26 09:46:16 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Mar 10 15:43:59 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -1794,7 +1794,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="10" FULLNAME="/coldata_fast_cmd_0" HWVERSION="1.0" INSTANCE="coldata_fast_cmd_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_fast_cmd" VLNV="user.org:user:coldata_fast_cmd:1.0">
+    <MODULE COREREVISION="11" FULLNAME="/coldata_fast_cmd_0" HWVERSION="1.0" INSTANCE="coldata_fast_cmd_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_fast_cmd" VLNV="user.org:user:coldata_fast_cmd:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -1821,6 +1821,11 @@
         <PORT DIR="O" NAME="fastcommand_out_n" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_fastcommand_out_n">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="fastcommand_out_n_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="fastcommand_out" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_fastcommand_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe15"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="cmd_idle" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_cmd_bit_idle">
@@ -12520,7 +12525,6 @@
             <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="axi_gpio_1" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="axi_iic_0" PORT="s_axi_aresetn"/>
-            <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M01_ARESETN"/>
@@ -12539,6 +12543,7 @@
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M14_ARESETN"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M15_ARESETN"/>
             <CONNECTION INSTANCE="reg_bank_64_0" PORT="s00_axi_aresetn"/>
+            <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_aresetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -12564,7 +12569,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="15"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="17"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="1"/>
@@ -12604,7 +12609,7 @@
         <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE14_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE15_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE16_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE16_WIDTH" VALUE="2"/>
         <PARAMETER NAME="C_PROBE17_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE18_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE19_WIDTH" VALUE="1"/>
@@ -15666,7 +15671,7 @@
         <PARAMETER NAME="C_CLK_FREQ" VALUE="200"/>
         <PARAMETER NAME="C_ILA_CLK_FREQ" VALUE="2000000"/>
         <PARAMETER NAME="C_CLK_PERIOD" VALUE="5.0"/>
-        <PARAMETER NAME="C_INPUT_PIPE_STAGES" VALUE="0"/>
+        <PARAMETER NAME="C_INPUT_PIPE_STAGES" VALUE="6"/>
         <PARAMETER NAME="C_EN_STRG_QUAL" VALUE="0"/>
         <PARAMETER NAME="C_EN_TIME_TAG" VALUE="0"/>
         <PARAMETER NAME="C_TIME_TAG_WIDTH" VALUE="32"/>
@@ -15762,6 +15767,16 @@
         <PORT DIR="I" LEFT="0" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_fifo_valid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fifo_valid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_fastcommand_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="fastcommand_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="probe16" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_state">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="state"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -16064,6 +16079,11 @@
             <CONNECTION INSTANCE="External_Ports" PORT="fake_time_stamp_init"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="1" NAME="state" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_state">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe16"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -16167,8 +16187,8 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_2_Dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fifo_rst"/>
             <CONNECTION INSTANCE="timing_module_pdts_endpoint_stdlog_0" PORT="srst"/>
+            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fifo_rst"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -18126,7 +18146,6 @@
             <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="axi_gpio_1" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="axi_iic_0" PORT="s_axi_aclk"/>
-            <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="ACLK"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="ps8_0_axi_periph" PORT="M00_ACLK"/>
@@ -18148,6 +18167,7 @@
             <CONNECTION INSTANCE="reg_bank_64_0" PORT="s00_axi_aclk"/>
             <CONNECTION INSTANCE="rst_ps8_0_99M" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="zynq_ultra_ps_e_0" PORT="maxihpm0_fpd_aclk"/>
+            <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="s00_axi_aclk"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

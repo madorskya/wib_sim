@@ -29,6 +29,7 @@ register 49[4:0] and page 2 register 1[4:0]."
         input clk62p5, // main clock input
         output fastcommand_out_p, 
         output fastcommand_out_n,
+        output fastcommand_out,
         
         // inputs for instant command generation by firmware signals
         input cmd_idle,  // = 1010_1010

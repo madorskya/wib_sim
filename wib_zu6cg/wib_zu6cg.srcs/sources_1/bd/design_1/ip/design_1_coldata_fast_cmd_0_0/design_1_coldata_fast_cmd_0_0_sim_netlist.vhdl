@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:13:36 2021
+-- Date        : Wed Mar 10 13:48:36 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode funcsim -rename_top design_1_coldata_fast_cmd_0_0 -prefix
---               design_1_coldata_fast_cmd_0_0_ design_1_coldata_fast_cmd_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0_sim_netlist.vhdl
 -- Design      : design_1_coldata_fast_cmd_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -44,6 +44,8 @@ entity design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI : entity is "coldata_fast_cmd_v1_0_S00_AXI";
 end design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI;
 
 architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI is
@@ -151,7 +153,6 @@ architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S0
   signal cmd_rsp_i_1_n_0 : STD_LOGIC;
   signal cmd_rsp_r : STD_LOGIC_VECTOR ( 3 to 3 );
   signal \cmd_rsp_r_reg[2]_srl3_n_0\ : STD_LOGIC;
-  signal fastcommand_out : STD_LOGIC;
   signal p_0_in : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal p_1_in : STD_LOGIC_VECTOR ( 31 downto 7 );
   signal p_1_out : STD_LOGIC_VECTOR ( 4 to 4 );
@@ -198,6 +199,7 @@ architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S0
   signal \shr_reg_n_0_[14]\ : STD_LOGIC;
   signal \shr_reg_n_0_[15]\ : STD_LOGIC;
   signal \shr_reg_n_0_[16]\ : STD_LOGIC;
+  signal \shr_reg_n_0_[17]\ : STD_LOGIC;
   signal \shr_reg_n_0_[1]\ : STD_LOGIC;
   signal \shr_reg_n_0_[2]\ : STD_LOGIC;
   signal \shr_reg_n_0_[3]\ : STD_LOGIC;
@@ -2164,7 +2166,7 @@ fastcommand_obufds: unisim.vcomponents.OBUFDS
       IOSTANDARD => "DEFAULT"
     )
         port map (
-      I => fastcommand_out,
+      I => \shr_reg_n_0_[17]\,
       O => fastcommand_out_p,
       OB => fastcommand_out_n
     );
@@ -2337,8 +2339,8 @@ ready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => sh_mark_0,
-      I1 => \shr_reg_n_0_[9]\,
+      I0 => \shr_reg_n_0_[9]\,
+      I1 => sh_mark_0,
       O => \shr[10]_i_1_n_0\
     );
 \shr[11]_i_1\: unisim.vcomponents.LUT2
@@ -2346,8 +2348,8 @@ ready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => sh_mark_0,
-      I1 => \shr_reg_n_0_[10]\,
+      I0 => \shr_reg_n_0_[10]\,
+      I1 => sh_mark_0,
       O => \shr[11]_i_1_n_0\
     );
 \shr[12]_i_1\: unisim.vcomponents.LUT2
@@ -2355,8 +2357,8 @@ ready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => sh_mark_0,
-      I1 => \shr_reg_n_0_[11]\,
+      I0 => \shr_reg_n_0_[11]\,
+      I1 => sh_mark_0,
       O => \shr[12]_i_1_n_0\
     );
 \shr[13]_i_1\: unisim.vcomponents.LUT6
@@ -2459,8 +2461,8 @@ ready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => sh_mark_0,
-      I1 => \shr_reg_n_0_[16]\,
+      I0 => \shr_reg_n_0_[16]\,
+      I1 => sh_mark_0,
       O => \shr[17]_i_3_n_0\
     );
 \shr[1]_i_1\: unisim.vcomponents.LUT3
@@ -2563,8 +2565,8 @@ ready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => sh_mark_0,
-      I1 => \shr_reg_n_0_[4]\,
+      I0 => \shr_reg_n_0_[4]\,
+      I1 => sh_mark_0,
       O => \shr[5]_i_1_n_0\
     );
 \shr[6]_i_1\: unisim.vcomponents.LUT6
@@ -2610,8 +2612,8 @@ ready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => sh_mark_0,
-      I1 => \shr_reg_n_0_[8]\,
+      I0 => \shr_reg_n_0_[8]\,
+      I1 => sh_mark_0,
       O => \shr[9]_i_1_n_0\
     );
 \shr_reg[10]\: unisim.vcomponents.FDRE
@@ -2675,7 +2677,7 @@ ready_reg: unisim.vcomponents.FDRE
       C => clk62p5,
       CE => \shr[17]_i_2_n_0\,
       D => \shr[17]_i_3_n_0\,
-      Q => fastcommand_out,
+      Q => \shr_reg_n_0_[17]\,
       R => shr(17)
     );
 \shr_reg[1]\: unisim.vcomponents.FDRE
@@ -5653,6 +5655,8 @@ entity design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 : entity is "coldata_fast_cmd_v1_0";
 end design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0;
 
 architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 is
@@ -5697,6 +5701,7 @@ entity design_1_coldata_fast_cmd_0_0 is
     clk62p5 : in STD_LOGIC;
     fastcommand_out_p : out STD_LOGIC;
     fastcommand_out_n : out STD_LOGIC;
+    fastcommand_out : out STD_LOGIC;
     cmd_idle : in STD_LOGIC;
     cmd_edge : in STD_LOGIC;
     cmd_sync : in STD_LOGIC;
@@ -5733,7 +5738,7 @@ entity design_1_coldata_fast_cmd_0_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_coldata_fast_cmd_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_coldata_fast_cmd_0_0 : entity is "coldata_fast_cmd_v1_0,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of design_1_coldata_fast_cmd_0_0 : entity is "coldata_fast_cmd_v1_0,Vivado 2020.1";
 end design_1_coldata_fast_cmd_0_0;
 
 architecture STRUCTURE of design_1_coldata_fast_cmd_0_0 is
@@ -5769,6 +5774,7 @@ architecture STRUCTURE of design_1_coldata_fast_cmd_0_0 is
   attribute X_INTERFACE_INFO of s00_axi_wdata : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WDATA";
   attribute X_INTERFACE_INFO of s00_axi_wstrb : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB";
 begin
+  fastcommand_out <= \<const0>\;
   s00_axi_bresp(1) <= \<const0>\;
   s00_axi_bresp(0) <= \<const0>\;
   s00_axi_rresp(1) <= \<const0>\;

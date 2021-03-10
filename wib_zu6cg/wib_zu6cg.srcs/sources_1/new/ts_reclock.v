@@ -39,7 +39,8 @@ module ts_reclock
     output reg cmd_bit_adc_reset,
     
     input fake_time_stamp_en, // enable fake time stamp
-    input [63:0] fake_time_stamp_init // initial value for fake time stamp
+    input [63:0] fake_time_stamp_init, // initial value for fake time stamp
+    output reg [1:0] state = 0
 );
 
     wire [75:0] din = 
@@ -93,6 +94,14 @@ module ts_reclock
     
     reg [2:0] fts_en;
     
+    // states for command FSM
+    localparam IDLE = 2'b00;  
+    localparam CMD0 = 2'b01;
+    localparam CMD1 = 2'b10;
+    localparam CMD2 = 2'b11;
+    
+    reg [3:0] sync_r;   
+    
     always @(posedge clk62p5)
     begin
     
@@ -103,15 +112,64 @@ module ts_reclock
         cmd_bit_act       = 1'b0;
         cmd_bit_reset     = 1'b0;
         cmd_bit_adc_reset = 1'b0;
-        if (sync_stb_out == 1'b1 && ts_valid_int == 1'b1) // fifo valid and command strobe
-        begin
-            `CMD_DECODE(cmd_code_idle     , cmd_bit_idle     );
-            `CMD_DECODE(cmd_code_edge     , cmd_bit_edge     );
-            `CMD_DECODE(cmd_code_sync     , cmd_bit_sync     );
-            `CMD_DECODE(cmd_code_act      , cmd_bit_act      );
-            `CMD_DECODE(cmd_code_reset    , cmd_bit_reset    );
-            `CMD_DECODE(cmd_code_adc_reset, cmd_bit_adc_reset);
-        end   
+        
+        case (state)
+        
+            IDLE:
+            begin
+                if 
+                (
+                    sync_stb_out == 1'b1   && // command strobe 
+                    sync_out != 4'b0       && // and not time stamp command
+                    (
+                        sync_out == cmd_code_idle      [3:0] ||
+                        sync_out == cmd_code_edge      [3:0] ||
+                        sync_out == cmd_code_sync      [3:0] ||
+                        sync_out == cmd_code_act       [3:0] ||
+                        sync_out == cmd_code_reset     [3:0] ||
+                        sync_out == cmd_code_adc_reset [3:0]
+                    ) // and code matches one of the command codes set by user
+                )
+                begin
+                    sync_r = sync_out;
+                    state = CMD0;
+                end  
+            end 
+            
+            CMD0:
+            begin
+                if (sync_r == sync_out && sync_stb_out == 1'b0) // still the same code and no stb
+                    state = CMD1;                
+                else
+                    state = IDLE; // nope, garbage
+            end
+
+            CMD1:
+            begin
+                if (sync_r == sync_out && sync_stb_out == 1'b0) // still the same code and no stb
+                    state = CMD2;                 
+                else
+                    state = IDLE; // nope, garbage
+            end
+
+            CMD2:
+            begin
+                if (sync_r == sync_out && sync_stb_out == 1'b0) // still the same code and no stb
+                begin
+                    // command code held for 4 clocks, seems legit
+                    // decode and flag
+                    `CMD_DECODE(cmd_code_idle     , cmd_bit_idle     );
+                    `CMD_DECODE(cmd_code_edge     , cmd_bit_edge     );
+                    `CMD_DECODE(cmd_code_sync     , cmd_bit_sync     );
+                    `CMD_DECODE(cmd_code_act      , cmd_bit_act      );
+                    `CMD_DECODE(cmd_code_reset    , cmd_bit_reset    );
+                    `CMD_DECODE(cmd_code_adc_reset, cmd_bit_adc_reset);
+                end
+                sync_r = 4'b0;
+                state = IDLE;                 
+            end
+        endcase
+
         
         //decode time stamp valid
         ts_valid = ts_valid_int && sync_stb_out && sync_first_out && (sync_out == 4'b0);

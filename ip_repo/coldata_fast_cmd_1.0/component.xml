@@ -298,7 +298,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6c733a4d</spirit:value>
+            <spirit:value>ae20e021</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -314,7 +314,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>6c733a4d</spirit:value>
+            <spirit:value>ae20e021</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -390,6 +390,19 @@
       </spirit:port>
       <spirit:port>
         <spirit:name>fastcommand_out_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>fastcommand_out</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
@@ -843,7 +856,7 @@
       <spirit:file>
         <spirit:name>hdl/coldata_fast_cmd_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_2b7bb900</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_778b76f3</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -972,8 +985,8 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>coldata_fast_cmd_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>10</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2020-07-28T00:02:54Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>11</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-03-10T18:41:07Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1164a235_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6d66cf76_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
@@ -1122,14 +1135,31 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6b0b99c4_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@705e734d_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@72cb5a98_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b35b963_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20a7278f_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1faeb472_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1292b63f_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@59c6cf78_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f0054c0_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@796f2d_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48316b34_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2189a918_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7856fd91_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@755b31c5_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d4f977f_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@132bff10_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fa704d4_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69d6f57b_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2782d05d_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cc846b9_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_fast_cmd_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4a44d28b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e840e75e"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="2e657dad"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="88ccb29d"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="5b389e9a"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2e811c89"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="7b0fa59f"/>
     </xilinx:packagingInfo>

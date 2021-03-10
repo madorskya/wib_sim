@@ -18,6 +18,7 @@
         input clk62p5, // main clock input
         output fastcommand_out_p, 
         output fastcommand_out_n,
+        output fastcommand_out,
         
         // inputs for instant command generation by firmware signals
         input cmd_idle,  // = 1010_1010
@@ -472,7 +473,6 @@
 	end    
 
 	// Add user logic here
-    wire fastcommand_out;
     OBUFDS fastcommand_obufds (.I(fastcommand_out), .O(fastcommand_out_p), .OB(fastcommand_out_n));
     
     reg [5:0] cmd_code [3:0]; // demetastabber line
