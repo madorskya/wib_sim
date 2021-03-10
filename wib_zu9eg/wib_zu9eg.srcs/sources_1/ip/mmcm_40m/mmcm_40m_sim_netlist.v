@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 10 14:53:34 2021
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/ip/mmcm_40m/mmcm_40m_sim_netlist.v
+// Date        : Tue Feb 16 13:21:54 2021
+// Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top mmcm_40m -prefix
+//               mmcm_40m_ mmcm_40m_sim_netlist.v
 // Design      : mmcm_40m
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -35,7 +35,6 @@ module mmcm_40m
         .reset(reset));
 endmodule
 
-(* ORIG_REF_NAME = "mmcm_40m_clk_wiz" *) 
 module mmcm_40m_mmcm_40m_clk_wiz
    (clk_out1,
     reset,

@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 10 14:53:27 2021
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode synth_stub
-//               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_2/bd_c443_bs_switch_1_0_stub.v
+// Date        : Tue Feb 16 13:19:32 2021
+// Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+// Command     : write_verilog -force -mode synth_stub -rename_top bd_c443_bs_switch_1_0 -prefix
+//               bd_c443_bs_switch_1_0_ bd_c443_bs_switch_1_0_stub.v
 // Design      : bd_c443_bs_switch_1_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu9eg-ffvb1156-1-e

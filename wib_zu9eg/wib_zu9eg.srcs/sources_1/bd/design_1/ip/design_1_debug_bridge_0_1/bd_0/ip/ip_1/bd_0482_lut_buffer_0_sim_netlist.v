@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 10 15:22:13 2021
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_1/bd_0/ip/ip_1/bd_0482_lut_buffer_0_sim_netlist.v
+// Date        : Tue Feb 16 13:40:44 2021
+// Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top bd_0482_lut_buffer_0 -prefix
+//               bd_0482_lut_buffer_0_ bd_0482_lut_buffer_0_sim_netlist.v
 // Design      : bd_0482_lut_buffer_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -122,7 +122,7 @@ module bd_0482_lut_buffer_0
         .update_o(update_o));
 endmodule
 
-(* C_EN_BSCANID_VEC = "0" *) (* ORIG_REF_NAME = "lut_buffer_v2_0_0_lut_buffer" *) (* dont_touch = "true" *) 
+(* C_EN_BSCANID_VEC = "0" *) (* dont_touch = "true" *) 
 module bd_0482_lut_buffer_0_lut_buffer_v2_0_0_lut_buffer
    (tms_i,
     tdi_i,

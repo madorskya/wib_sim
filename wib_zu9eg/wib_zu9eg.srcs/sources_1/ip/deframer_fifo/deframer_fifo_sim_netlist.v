@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 10 15:02:43 2021
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/ip/deframer_fifo/deframer_fifo_sim_netlist.v
+// Date        : Tue Feb 16 13:24:11 2021
+// Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top deframer_fifo -prefix
+//               deframer_fifo_ deframer_fifo_sim_netlist.v
 // Design      : deframer_fifo
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -610,10 +610,10 @@ module deframer_fifo
         .wr_rst_busy(wr_rst_busy));
 endmodule
 
-(* DEST_SYNC_FF = "4" *) (* INIT_SYNC_FF = "0" *) (* ORIG_REF_NAME = "xpm_cdc_gray" *) 
-(* REG_OUTPUT = "1" *) (* SIM_ASSERT_CHK = "0" *) (* SIM_LOSSLESS_GRAY_CHK = "0" *) 
-(* VERSION = "0" *) (* WIDTH = "10" *) (* XPM_MODULE = "TRUE" *) 
-(* keep_hierarchy = "true" *) (* xpm_cdc = "GRAY" *) 
+(* DEST_SYNC_FF = "4" *) (* INIT_SYNC_FF = "0" *) (* REG_OUTPUT = "1" *) 
+(* SIM_ASSERT_CHK = "0" *) (* SIM_LOSSLESS_GRAY_CHK = "0" *) (* VERSION = "0" *) 
+(* WIDTH = "10" *) (* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "true" *) 
+(* xpm_cdc = "GRAY" *) 
 module deframer_fifo_xpm_cdc_gray
    (src_clk,
     src_in_bin,
@@ -1956,9 +1956,9 @@ module deframer_fifo_xpm_cdc_gray__parameterized1
         .R(1'b0));
 endmodule
 
-(* DEST_SYNC_FF = "5" *) (* INIT_SYNC_FF = "0" *) (* ORIG_REF_NAME = "xpm_cdc_single" *) 
-(* SIM_ASSERT_CHK = "0" *) (* SRC_INPUT_REG = "0" *) (* VERSION = "0" *) 
-(* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "true" *) (* xpm_cdc = "SINGLE" *) 
+(* DEST_SYNC_FF = "5" *) (* INIT_SYNC_FF = "0" *) (* SIM_ASSERT_CHK = "0" *) 
+(* SRC_INPUT_REG = "0" *) (* VERSION = "0" *) (* XPM_MODULE = "TRUE" *) 
+(* keep_hierarchy = "true" *) (* xpm_cdc = "SINGLE" *) 
 module deframer_fifo_xpm_cdc_single
    (src_clk,
     src_in,
@@ -2087,9 +2087,8 @@ module deframer_fifo_xpm_cdc_single__2
 endmodule
 
 (* DEF_VAL = "1'b1" *) (* DEST_SYNC_FF = "5" *) (* INIT = "1" *) 
-(* INIT_SYNC_FF = "0" *) (* ORIG_REF_NAME = "xpm_cdc_sync_rst" *) (* SIM_ASSERT_CHK = "0" *) 
-(* VERSION = "0" *) (* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "true" *) 
-(* xpm_cdc = "SYNC_RST" *) 
+(* INIT_SYNC_FF = "0" *) (* SIM_ASSERT_CHK = "0" *) (* VERSION = "0" *) 
+(* XPM_MODULE = "TRUE" *) (* keep_hierarchy = "true" *) (* xpm_cdc = "SYNC_RST" *) 
 module deframer_fifo_xpm_cdc_sync_rst
    (src_rst,
     dest_clk,
@@ -2234,7 +2233,6 @@ module deframer_fifo_xpm_cdc_sync_rst__2
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module deframer_fifo_blk_mem_gen_generic_cstr
    (dout,
     POR_B,
@@ -2301,7 +2299,6 @@ module deframer_fifo_blk_mem_gen_generic_cstr
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module deframer_fifo_blk_mem_gen_prim_width
    (dout,
     POR_B,
@@ -2500,7 +2497,6 @@ module deframer_fifo_blk_mem_gen_prim_width
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
 module deframer_fifo_blk_mem_gen_prim_wrapper
    (dout,
     wr_clk,
@@ -2735,7 +2731,6 @@ module deframer_fifo_blk_mem_gen_prim_wrapper
         .O(ENB_I));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module deframer_fifo_blk_mem_gen_top
    (dout,
     POR_B,
@@ -2802,7 +2797,6 @@ module deframer_fifo_blk_mem_gen_top
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_4" *) 
 module deframer_fifo_blk_mem_gen_v8_4_4
    (dout,
     POR_B,
@@ -2869,7 +2863,6 @@ module deframer_fifo_blk_mem_gen_v8_4_4
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_4_synth" *) 
 module deframer_fifo_blk_mem_gen_v8_4_4_synth
    (dout,
     POR_B,
@@ -2936,7 +2929,6 @@ module deframer_fifo_blk_mem_gen_v8_4_4_synth
         .wr_en(wr_en));
 endmodule
 
-(* ORIG_REF_NAME = "clk_x_pntrs" *) 
 module deframer_fifo_clk_x_pntrs
    (v1_reg,
     v1_reg_0,
@@ -3102,7 +3094,6 @@ module deframer_fifo_clk_x_pntrs
         .src_in_bin(\src_gray_ff_reg[9] ));
 endmodule
 
-(* ORIG_REF_NAME = "compare" *) 
 module deframer_fifo_compare
    (rd_en_0,
     v1_reg,
@@ -3270,7 +3261,6 @@ module deframer_fifo_compare__parameterized0_0
         .O(ram_full_fb_i_reg));
 endmodule
 
-(* ORIG_REF_NAME = "fifo_generator_ramfifo" *) 
 module deframer_fifo_fifo_generator_ramfifo
    (\ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.sckt_rd_rst_ic_reg ,
     wr_rst_busy,
@@ -3401,7 +3391,6 @@ module deframer_fifo_fifo_generator_ramfifo
         .wr_rst_busy(wr_rst_busy));
 endmodule
 
-(* ORIG_REF_NAME = "fifo_generator_top" *) 
 module deframer_fifo_fifo_generator_top
    (SR,
     wr_rst_busy,
@@ -3523,7 +3512,7 @@ endmodule
 (* C_WR_DEPTH_WRCH = "16" *) (* C_WR_FREQ = "1" *) (* C_WR_PNTR_WIDTH = "10" *) 
 (* C_WR_PNTR_WIDTH_AXIS = "10" *) (* C_WR_PNTR_WIDTH_RACH = "4" *) (* C_WR_PNTR_WIDTH_RDCH = "10" *) 
 (* C_WR_PNTR_WIDTH_WACH = "4" *) (* C_WR_PNTR_WIDTH_WDCH = "10" *) (* C_WR_PNTR_WIDTH_WRCH = "4" *) 
-(* C_WR_RESPONSE_LATENCY = "1" *) (* ORIG_REF_NAME = "fifo_generator_v13_2_5" *) 
+(* C_WR_RESPONSE_LATENCY = "1" *) 
 module deframer_fifo_fifo_generator_v13_2_5
    (backup,
     backup_marker,
@@ -4545,7 +4534,6 @@ module deframer_fifo_fifo_generator_v13_2_5
         .wr_rst_busy(wr_rst_busy));
 endmodule
 
-(* ORIG_REF_NAME = "fifo_generator_v13_2_5_synth" *) 
 module deframer_fifo_fifo_generator_v13_2_5_synth
    (\ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.sckt_rd_rst_ic_reg ,
     wr_rst_busy,
@@ -4600,7 +4588,6 @@ module deframer_fifo_fifo_generator_v13_2_5_synth
         .wr_rst_busy(wr_rst_busy));
 endmodule
 
-(* ORIG_REF_NAME = "memory" *) 
 module deframer_fifo_memory
    (dout,
     POR_B,
@@ -4681,7 +4668,6 @@ module deframer_fifo_memory
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "rd_bin_cntr" *) 
 module deframer_fifo_rd_bin_cntr
    (Q,
     v1_reg,
@@ -5071,7 +5057,6 @@ module deframer_fifo_rd_bin_cntr
         .O(v1_reg_0[4]));
 endmodule
 
-(* ORIG_REF_NAME = "rd_handshaking_flags" *) 
 module deframer_fifo_rd_handshaking_flags
    (valid,
     SR,
@@ -5106,7 +5091,6 @@ module deframer_fifo_rd_handshaking_flags
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "rd_logic" *) 
 module deframer_fifo_rd_logic
    (empty,
     out,
@@ -5177,7 +5161,6 @@ module deframer_fifo_rd_logic
         .v1_reg_0(\c1/v1_reg ));
 endmodule
 
-(* ORIG_REF_NAME = "rd_status_flags_as" *) 
 module deframer_fifo_rd_status_flags_as
    (empty,
     out,
@@ -5265,7 +5248,6 @@ module deframer_fifo_rd_status_flags_as
         .S(SR));
 endmodule
 
-(* ORIG_REF_NAME = "reset_blk_ramfifo" *) 
 module deframer_fifo_reset_blk_ramfifo
    (\ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.sckt_wr_rst_ic_reg_0 ,
     SR,
@@ -5597,7 +5579,6 @@ module deframer_fifo_reset_blk_ramfifo
         .O(wr_rst_busy_i_n_0));
 endmodule
 
-(* ORIG_REF_NAME = "wr_bin_cntr" *) 
 module deframer_fifo_wr_bin_cntr
    (Q,
     \gic0.gc0.count_d1_reg[9]_0 ,
@@ -5956,7 +5937,6 @@ module deframer_fifo_wr_bin_cntr
         .R(\gic0.gc0.count_d2_reg[0]_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "wr_logic" *) 
 module deframer_fifo_wr_logic
    (full,
     FULL_FB,
@@ -6015,7 +5995,6 @@ module deframer_fifo_wr_logic
         .wr_clk(wr_clk));
 endmodule
 
-(* ORIG_REF_NAME = "wr_status_flags_as" *) 
 module deframer_fifo_wr_status_flags_as
    (full,
     FULL_FB,

@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 10 15:02:43 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/ip/deframer_fifo/deframer_fifo_sim_netlist.vhdl
+-- Date        : Tue Feb 16 13:24:11 2021
+-- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top deframer_fifo -prefix
+--               deframer_fifo_ deframer_fifo_sim_netlist.vhdl
 -- Design      : deframer_fifo
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,8 +25,6 @@ entity deframer_fifo_xpm_cdc_gray is
   attribute DEST_SYNC_FF of deframer_fifo_xpm_cdc_gray : entity is 4;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of deframer_fifo_xpm_cdc_gray : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_xpm_cdc_gray : entity is "xpm_cdc_gray";
   attribute REG_OUTPUT : integer;
   attribute REG_OUTPUT of deframer_fifo_xpm_cdc_gray : entity is 1;
   attribute SIM_ASSERT_CHK : integer;
@@ -1805,8 +1803,6 @@ entity deframer_fifo_xpm_cdc_single is
   attribute DEST_SYNC_FF of deframer_fifo_xpm_cdc_single : entity is 5;
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of deframer_fifo_xpm_cdc_single : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_xpm_cdc_single : entity is "xpm_cdc_single";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of deframer_fifo_xpm_cdc_single : entity is 0;
   attribute SRC_INPUT_REG : integer;
@@ -2004,8 +2000,6 @@ entity deframer_fifo_xpm_cdc_sync_rst is
   attribute INIT of deframer_fifo_xpm_cdc_sync_rst : entity is "1";
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of deframer_fifo_xpm_cdc_sync_rst : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_xpm_cdc_sync_rst : entity is "xpm_cdc_sync_rst";
   attribute SIM_ASSERT_CHK : integer;
   attribute SIM_ASSERT_CHK of deframer_fifo_xpm_cdc_sync_rst : entity is 0;
   attribute VERSION : integer;
@@ -2239,8 +2233,6 @@ entity deframer_fifo_blk_mem_gen_prim_wrapper is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end deframer_fifo_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of deframer_fifo_blk_mem_gen_prim_wrapper is
@@ -2451,8 +2443,6 @@ entity deframer_fifo_compare is
     \out\ : in STD_LOGIC;
     comp1 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_compare : entity is "compare";
 end deframer_fifo_compare;
 
 architecture STRUCTURE of deframer_fifo_compare is
@@ -2677,8 +2667,6 @@ entity deframer_fifo_rd_bin_cntr is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     rd_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_rd_bin_cntr : entity is "rd_bin_cntr";
 end deframer_fifo_rd_bin_cntr;
 
 architecture STRUCTURE of deframer_fifo_rd_bin_cntr is
@@ -3192,8 +3180,6 @@ entity deframer_fifo_rd_handshaking_flags is
     ram_valid_i : in STD_LOGIC;
     rd_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_rd_handshaking_flags : entity is "rd_handshaking_flags";
 end deframer_fifo_rd_handshaking_flags;
 
 architecture STRUCTURE of deframer_fifo_rd_handshaking_flags is
@@ -3235,8 +3221,6 @@ entity deframer_fifo_wr_bin_cntr is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     wr_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_wr_bin_cntr : entity is "wr_bin_cntr";
 end deframer_fifo_wr_bin_cntr;
 
 architecture STRUCTURE of deframer_fifo_wr_bin_cntr is
@@ -3727,8 +3711,6 @@ entity deframer_fifo_blk_mem_gen_prim_width is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end deframer_fifo_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of deframer_fifo_blk_mem_gen_prim_width is
@@ -3949,8 +3931,6 @@ entity deframer_fifo_clk_x_pntrs is
     \src_gray_ff_reg[9]\ : in STD_LOGIC_VECTOR ( 9 downto 0 );
     rd_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_clk_x_pntrs : entity is "clk_x_pntrs";
 end deframer_fifo_clk_x_pntrs;
 
 architecture STRUCTURE of deframer_fifo_clk_x_pntrs is
@@ -4149,8 +4129,6 @@ entity deframer_fifo_rd_status_flags_as is
     rd_clk : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_rd_status_flags_as : entity is "rd_status_flags_as";
 end deframer_fifo_rd_status_flags_as;
 
 architecture STRUCTURE of deframer_fifo_rd_status_flags_as is
@@ -4246,8 +4224,6 @@ entity deframer_fifo_reset_blk_ramfifo is
     POR_B : in STD_LOGIC;
     ram_rd_en_d1 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_reset_blk_ramfifo : entity is "reset_blk_ramfifo";
 end deframer_fifo_reset_blk_ramfifo;
 
 architecture STRUCTURE of deframer_fifo_reset_blk_ramfifo is
@@ -4709,8 +4685,6 @@ entity deframer_fifo_wr_status_flags_as is
     wr_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_wr_status_flags_as : entity is "wr_status_flags_as";
 end deframer_fifo_wr_status_flags_as;
 
 architecture STRUCTURE of deframer_fifo_wr_status_flags_as is
@@ -4800,8 +4774,6 @@ entity deframer_fifo_blk_mem_gen_generic_cstr is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end deframer_fifo_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of deframer_fifo_blk_mem_gen_generic_cstr is
@@ -4844,8 +4816,6 @@ entity deframer_fifo_rd_logic is
     rd_en : in STD_LOGIC;
     WR_PNTR_RD : in STD_LOGIC_VECTOR ( 8 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_rd_logic : entity is "rd_logic";
 end deframer_fifo_rd_logic;
 
 architecture STRUCTURE of deframer_fifo_rd_logic is
@@ -4907,8 +4877,6 @@ entity deframer_fifo_wr_logic is
     wr_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_wr_logic : entity is "wr_logic";
 end deframer_fifo_wr_logic;
 
 architecture STRUCTURE of deframer_fifo_wr_logic is
@@ -4959,8 +4927,6 @@ entity deframer_fifo_blk_mem_gen_top is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end deframer_fifo_blk_mem_gen_top;
 
 architecture STRUCTURE of deframer_fifo_blk_mem_gen_top is
@@ -5006,8 +4972,6 @@ entity deframer_fifo_blk_mem_gen_v8_4_4_synth is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_blk_mem_gen_v8_4_4_synth : entity is "blk_mem_gen_v8_4_4_synth";
 end deframer_fifo_blk_mem_gen_v8_4_4_synth;
 
 architecture STRUCTURE of deframer_fifo_blk_mem_gen_v8_4_4_synth is
@@ -5053,8 +5017,6 @@ entity deframer_fifo_blk_mem_gen_v8_4_4 is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_blk_mem_gen_v8_4_4 : entity is "blk_mem_gen_v8_4_4";
 end deframer_fifo_blk_mem_gen_v8_4_4;
 
 architecture STRUCTURE of deframer_fifo_blk_mem_gen_v8_4_4 is
@@ -5102,8 +5064,6 @@ entity deframer_fifo_memory is
     rd_en : in STD_LOGIC;
     \out\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_memory : entity is "memory";
 end deframer_fifo_memory;
 
 architecture STRUCTURE of deframer_fifo_memory is
@@ -5157,8 +5117,6 @@ entity deframer_fifo_fifo_generator_ramfifo is
     wr_en : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_fifo_generator_ramfifo : entity is "fifo_generator_ramfifo";
 end deframer_fifo_fifo_generator_ramfifo;
 
 architecture STRUCTURE of deframer_fifo_fifo_generator_ramfifo is
@@ -5284,8 +5242,6 @@ entity deframer_fifo_fifo_generator_top is
     wr_en : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_fifo_generator_top : entity is "fifo_generator_top";
 end deframer_fifo_fifo_generator_top;
 
 architecture STRUCTURE of deframer_fifo_fifo_generator_top is
@@ -5325,8 +5281,6 @@ entity deframer_fifo_fifo_generator_v13_2_5_synth is
     wr_en : in STD_LOGIC;
     rd_en : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_fifo_generator_v13_2_5_synth : entity is "fifo_generator_v13_2_5_synth";
 end deframer_fifo_fifo_generator_v13_2_5_synth;
 
 architecture STRUCTURE of deframer_fifo_fifo_generator_v13_2_5_synth is
@@ -5989,8 +5943,6 @@ entity deframer_fifo_fifo_generator_v13_2_5 is
   attribute C_WR_PNTR_WIDTH_WRCH of deframer_fifo_fifo_generator_v13_2_5 : entity is 4;
   attribute C_WR_RESPONSE_LATENCY : integer;
   attribute C_WR_RESPONSE_LATENCY of deframer_fifo_fifo_generator_v13_2_5 : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of deframer_fifo_fifo_generator_v13_2_5 : entity is "fifo_generator_v13_2_5";
 end deframer_fifo_fifo_generator_v13_2_5;
 
 architecture STRUCTURE of deframer_fifo_fifo_generator_v13_2_5 is

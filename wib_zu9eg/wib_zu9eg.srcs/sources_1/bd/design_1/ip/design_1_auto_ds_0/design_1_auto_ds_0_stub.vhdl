@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 10 15:25:24 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Date        : Tue Feb 16 13:43:30 2021
+-- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_auto_ds_0 -prefix
 --               design_1_auto_ds_0_ design_1_auto_ds_14_stub.vhdl
 -- Design      : design_1_auto_ds_14

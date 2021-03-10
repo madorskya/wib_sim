@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 10 15:23:53 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_1/bd_0/ip/ip_0/bd_0482_xsdbm_0_sim_netlist.vhdl
+-- Date        : Tue Feb 16 13:40:24 2021
+-- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top bd_0482_xsdbm_0 -prefix
+--               bd_0482_xsdbm_0_ bd_0482_xsdbm_0_sim_netlist.vhdl
 -- Design      : bd_0482_xsdbm_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -796,8 +796,6 @@ entity bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm_id is
   attribute C_XSDB_PERIOD_INT of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is 10;
   attribute LC_CLKIN1_PERIOD : string;
   attribute LC_CLKIN1_PERIOD of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is "3.333333";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is "xsdbm_v3_0_0_xsdbm_id";
   attribute dont_touch : string;
   attribute dont_touch of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is "true";
 end bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm_id;
@@ -2781,8 +2779,6 @@ entity bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm is
   attribute C_XSDB_PERIOD_FRC of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is 0;
   attribute C_XSDB_PERIOD_INT : integer;
   attribute C_XSDB_PERIOD_INT of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is 10;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is "xsdbm_v3_0_0_xsdbm";
   attribute dont_touch : string;
   attribute dont_touch of bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is "true";
 end bd_0482_xsdbm_0_xsdbm_v3_0_0_xsdbm;
