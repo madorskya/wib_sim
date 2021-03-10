@@ -573,7 +573,7 @@ module wib_top
    ila_14probe ila_felix
    (
         .clk    (clk240_from_felix_gth),
-        .probe0 (usr_clk_out), // 1-bit
+        .probe0 (fake_daq_stream), // 1-bit
         .probe1 (txpmaresetdone_out), // 1-bit
         .probe2 (gtwiz_userclk_tx_active_out), // 1-bit
         .probe3 (felix_powergood_out), // 1-bit
