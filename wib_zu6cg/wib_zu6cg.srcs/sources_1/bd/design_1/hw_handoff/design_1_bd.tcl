@@ -206,8 +206,9 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_INPUT_PIPE_STAGES {6} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {17} \
+   CONFIG.C_NUM_OF_PROBES {16} \
    CONFIG.C_PROBE0_WIDTH {4} \
+   CONFIG.C_PROBE16_WIDTH {1} \
    CONFIG.C_PROBE3_WIDTH {4} \
    CONFIG.C_PROBE6_WIDTH {64} \
  ] $ila_0
@@ -310,7 +311,6 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net ts_reclock_0_rdy_out [get_bd_pins ts_rdy] [get_bd_pins ila_0/probe2] [get_bd_pins ts_reclock_0/rdy_out]
   connect_bd_net -net ts_reclock_0_rst_out [get_bd_pins ts_rst] [get_bd_pins ila_0/probe1] [get_bd_pins ts_reclock_0/rst_out]
   connect_bd_net -net ts_reclock_0_stat_out [get_bd_pins stat_0] [get_bd_pins ila_0/probe0] [get_bd_pins ts_reclock_0/stat_out]
-  connect_bd_net -net ts_reclock_0_state [get_bd_pins ila_0/probe16] [get_bd_pins ts_reclock_0/state]
   connect_bd_net -net ts_reclock_0_sync_first_out [get_bd_pins ila_0/probe5] [get_bd_pins ts_reclock_0/sync_first_out]
   connect_bd_net -net ts_reclock_0_sync_out [get_bd_pins ts_sync] [get_bd_pins ila_0/probe3] [get_bd_pins ts_reclock_0/sync_out]
   connect_bd_net -net ts_reclock_0_sync_stb_out [get_bd_pins ila_0/probe4] [get_bd_pins ts_reclock_0/sync_stb_out]

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Mar 11 09:00:39 2021
+//Date        : Thu Mar 11 12:55:20 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -13782,7 +13782,6 @@ module timing_module_imp_2RES6C
   wire ts_reclock_0_rdy_out;
   wire ts_reclock_0_rst_out;
   wire [3:0]ts_reclock_0_stat_out;
-  wire [1:0]ts_reclock_0_state;
   wire ts_reclock_0_sync_first_out;
   wire [3:0]ts_reclock_0_sync_out;
   wire ts_reclock_0_sync_stb_out;
@@ -13839,7 +13838,6 @@ module timing_module_imp_2RES6C
         .probe13(ts_reclock_0_cmd_bit_adc_reset),
         .probe14(ts_reclock_0_fifo_valid),
         .probe15(probe15_1),
-        .probe16(ts_reclock_0_state),
         .probe2(ts_reclock_0_rdy_out),
         .probe3(ts_reclock_0_sync_out),
         .probe4(ts_reclock_0_sync_stb_out),
@@ -13893,7 +13891,6 @@ module timing_module_imp_2RES6C
         .rst_out(ts_reclock_0_rst_out),
         .stat_in(pdts_endpoint_stdlog_0_stat),
         .stat_out(ts_reclock_0_stat_out),
-        .state(ts_reclock_0_state),
         .sync_first_in(pdts_endpoint_stdlog_0_sync_first),
         .sync_first_out(ts_reclock_0_sync_first_out),
         .sync_in(pdts_endpoint_stdlog_0_sync),
