@@ -75,6 +75,7 @@ register 49[4:0] and page 2 register 1[4:0]."
         .clk62p5           (clk62p5          ),
         .fastcommand_out_p (fastcommand_out_p), 
         .fastcommand_out_n (fastcommand_out_n),
+        .fastcommand_out   (fastcommand_out),
 
         .cmd_idle      (cmd_idle     ),
         .cmd_edge      (cmd_edge     ),

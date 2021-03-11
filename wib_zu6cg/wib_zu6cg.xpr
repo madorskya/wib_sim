@@ -1454,15 +1454,15 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="design_1_coldata_fast_cmd_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_coldata_fast_cmd_0_0">
-      <Config>
-        <Option Name="TopModule" Val="design_1_coldata_fast_cmd_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="design_1_ila_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_ila_0_1">
       <Config>
         <Option Name="TopModule" Val="design_1_ila_0_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_1_coldata_fast_cmd_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_coldata_fast_cmd_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_1_coldata_fast_cmd_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -1684,7 +1684,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_coldata_fast_cmd_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_coldata_fast_cmd_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_coldata_fast_cmd_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_coldata_fast_cmd_0_0_synth_1" IncludeInArchive="true">
+    <Run Id="design_1_ila_0_1_synth_1" Type="Ft3:Synth" SrcSet="design_1_ila_0_1" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ila_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_ila_0_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -1696,7 +1696,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_ila_0_1_synth_1" Type="Ft3:Synth" SrcSet="design_1_ila_0_1" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ila_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_ila_0_1_synth_1" IncludeInArchive="true">
+    <Run Id="design_1_coldata_fast_cmd_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_coldata_fast_cmd_0_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_coldata_fast_cmd_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_coldata_fast_cmd_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -2039,7 +2039,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_coldata_fast_cmd_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_coldata_fast_cmd_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_coldata_fast_cmd_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="design_1_ila_0_1_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ila_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_ila_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
           <Desc>Default settings for Implementation.</Desc>
@@ -2058,7 +2058,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_ila_0_1_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_ila_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_ila_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="design_1_coldata_fast_cmd_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_coldata_fast_cmd_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_coldata_fast_cmd_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
           <Desc>Default settings for Implementation.</Desc>

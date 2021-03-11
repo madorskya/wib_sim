@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Mar 10 15:43:59 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Mar 11 09:00:47 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -1794,7 +1794,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="11" FULLNAME="/coldata_fast_cmd_0" HWVERSION="1.0" INSTANCE="coldata_fast_cmd_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_fast_cmd" VLNV="user.org:user:coldata_fast_cmd:1.0">
+    <MODULE COREREVISION="12" FULLNAME="/coldata_fast_cmd_0" HWVERSION="1.0" INSTANCE="coldata_fast_cmd_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_fast_cmd" VLNV="user.org:user:coldata_fast_cmd:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>

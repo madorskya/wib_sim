@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Mar 10 13:48:36 2021
+// Date        : Wed Mar 10 23:38:34 2021
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0_sim_netlist.v
@@ -88,6 +88,7 @@ module design_1_coldata_fast_cmd_0_0
   wire cmd_idle;
   wire cmd_reset;
   wire cmd_sync;
+  (* SLEW = "SLOW" *) wire fastcommand_out;
   (* SLEW = "SLOW" *) wire fastcommand_out_n;
   (* SLEW = "SLOW" *) wire fastcommand_out_p;
   wire ready;
@@ -109,7 +110,6 @@ module design_1_coldata_fast_cmd_0_0
   wire [3:0]s00_axi_wstrb;
   wire s00_axi_wvalid;
 
-  assign fastcommand_out = \<const0> ;
   assign s00_axi_bresp[1] = \<const0> ;
   assign s00_axi_bresp[0] = \<const0> ;
   assign s00_axi_rresp[1] = \<const0> ;
@@ -127,6 +127,7 @@ module design_1_coldata_fast_cmd_0_0
         .cmd_idle(cmd_idle),
         .cmd_reset(cmd_reset),
         .cmd_sync(cmd_sync),
+        .fastcommand_out(fastcommand_out),
         .fastcommand_out_n(fastcommand_out_n),
         .fastcommand_out_p(fastcommand_out_p),
         .ready(ready),
@@ -150,6 +151,7 @@ endmodule
 module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
    (fastcommand_out_p,
     fastcommand_out_n,
+    fastcommand_out,
     S_AXI_AWREADY,
     S_AXI_WREADY,
     ready,
@@ -177,6 +179,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
     s00_axi_rready);
   output fastcommand_out_p;
   output fastcommand_out_n;
+  output fastcommand_out;
   output S_AXI_AWREADY;
   output S_AXI_WREADY;
   output ready;
@@ -213,6 +216,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
   wire cmd_idle;
   wire cmd_reset;
   wire cmd_sync;
+  wire fastcommand_out;
   wire fastcommand_out_n;
   wire fastcommand_out_p;
   wire ready;
@@ -242,6 +246,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
         .cmd_idle(cmd_idle),
         .cmd_reset(cmd_reset),
         .cmd_sync(cmd_sync),
+        .fastcommand_out(fastcommand_out),
         .fastcommand_out_n(fastcommand_out_n),
         .fastcommand_out_p(fastcommand_out_p),
         .ready(ready),
@@ -265,6 +270,7 @@ endmodule
 module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
    (fastcommand_out_p,
     fastcommand_out_n,
+    fastcommand_out,
     S_AXI_AWREADY,
     S_AXI_WREADY,
     ready,
@@ -292,6 +298,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
     s00_axi_rready);
   output fastcommand_out_p;
   output fastcommand_out_n;
+  output fastcommand_out;
   output S_AXI_AWREADY;
   output S_AXI_WREADY;
   output ready;
@@ -429,6 +436,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   wire [3:3]cmd_rsp_r;
   wire \cmd_rsp_r_reg[2]_srl3_n_0 ;
   wire cmd_sync;
+  wire fastcommand_out;
   wire fastcommand_out_n;
   wire fastcommand_out_p;
   wire [2:0]p_0_in;
@@ -489,7 +497,6 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   wire \shr_reg_n_0_[14] ;
   wire \shr_reg_n_0_[15] ;
   wire \shr_reg_n_0_[16] ;
-  wire \shr_reg_n_0_[17] ;
   wire \shr_reg_n_0_[1] ;
   wire \shr_reg_n_0_[2] ;
   wire \shr_reg_n_0_[3] ;
@@ -1743,7 +1750,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .O(\cmd_code[3][5]_i_1_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][0]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][0]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][0]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1754,7 +1763,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][0]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][1]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][1]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][1]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1765,7 +1776,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][1]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][2]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][2]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][2]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1776,7 +1789,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][2]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][3]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][3]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][3]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1787,7 +1802,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][3]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][4]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][4]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][4]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1798,7 +1815,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][4]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][5]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][5]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][5]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1807,73 +1826,97 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .CLK(clk62p5),
         .D(\slv_reg0_reg_n_0_[5] ),
         .Q(\cmd_code_reg[1][5]_srl2_n_0 ));
-  FDRE \cmd_code_reg[2][0] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][0] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][0]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][0] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][1] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][1] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][1]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][1] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][2] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][2] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][2]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][2] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][3] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][3]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][3] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][4] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][4] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][4]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][4] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][5] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][5] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][5]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][5] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][0] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][0] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][0]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [0]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][1] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][1] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][1]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [1]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][2] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][2] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][2]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [2]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][3] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][3]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [3]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][4] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][4] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][4]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [4]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][5] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][5] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][5]_i_1_n_0 ),
@@ -1915,7 +1958,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .O(\cmd_req_r[4]_i_2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req_r_reg " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req_r_reg[2]_srl3 " *) 
-  SRL16E \cmd_req_r_reg[2]_srl3 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_req_r_reg[2]_srl3 
        (.A0(1'b0),
         .A1(1'b1),
         .A2(1'b0),
@@ -1924,19 +1969,25 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .CLK(clk62p5),
         .D(cmd_req_reg_n_0),
         .Q(\cmd_req_r_reg[2]_srl3_n_0 ));
-  FDRE \cmd_req_r_reg[3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_req_r_reg[3] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_req_r_reg[2]_srl3_n_0 ),
         .Q(cmd_req_r[3]),
         .R(1'b0));
-  FDRE \cmd_req_r_reg[4] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_req_r_reg[4] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(p_1_out),
         .Q(cmd_req_r[4]),
         .R(1'b0));
-  FDRE cmd_req_reg
+  FDRE #(
+    .INIT(1'b0)) 
+    cmd_req_reg
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(cmd_req_i_1_n_0),
@@ -1952,7 +2003,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .O(cmd_rsp_i_1_n_0));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp_r_reg " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp_r_reg[2]_srl3 " *) 
-  SRL16E \cmd_rsp_r_reg[2]_srl3 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_rsp_r_reg[2]_srl3 
        (.A0(1'b0),
         .A1(1'b1),
         .A2(1'b0),
@@ -1961,13 +2014,17 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .CLK(s00_axi_aclk),
         .D(cmd_rsp),
         .Q(\cmd_rsp_r_reg[2]_srl3_n_0 ));
-  FDRE \cmd_rsp_r_reg[3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_rsp_r_reg[3] 
        (.C(s00_axi_aclk),
         .CE(s00_axi_aresetn),
         .D(\cmd_rsp_r_reg[2]_srl3_n_0 ),
         .Q(cmd_rsp_r),
         .R(1'b0));
-  FDRE cmd_rsp_reg
+  FDRE #(
+    .INIT(1'b0)) 
+    cmd_rsp_reg
        (.C(clk62p5),
         .CE(1'b1),
         .D(cmd_rsp_i_1_n_0),
@@ -1979,7 +2036,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   OBUFDS #(
     .IOSTANDARD("DEFAULT")) 
     fastcommand_obufds
-       (.I(\shr_reg_n_0_[17] ),
+       (.I(fastcommand_out),
         .O(fastcommand_out_p),
         .OB(fastcommand_out_n));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
@@ -2368,7 +2425,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
        (.C(clk62p5),
         .CE(\shr[17]_i_2_n_0 ),
         .D(\shr[17]_i_3_n_0 ),
-        .Q(\shr_reg_n_0_[17] ),
+        .Q(fastcommand_out),
         .R(shr));
   FDRE \shr_reg[1] 
        (.C(clk62p5),
@@ -3026,12 +3083,12 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .I3(p_0_in[1]),
         .I4(p_0_in[2]),
         .O(p_1_in[7]));
-  FDRE \slv_reg1_reg[0] 
+  FDSE \slv_reg1_reg[0] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
         .D(s00_axi_wdata[0]),
         .Q(\slv_reg1_reg_n_0_[0] ),
-        .R(axi_awready_i_1_n_0));
+        .S(axi_awready_i_1_n_0));
   FDRE \slv_reg1_reg[10] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[15]),
@@ -3092,12 +3149,12 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .D(s00_axi_wdata[19]),
         .Q(\slv_reg1_reg_n_0_[19] ),
         .R(axi_awready_i_1_n_0));
-  FDRE \slv_reg1_reg[1] 
+  FDSE \slv_reg1_reg[1] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
         .D(s00_axi_wdata[1]),
         .Q(\slv_reg1_reg_n_0_[1] ),
-        .R(axi_awready_i_1_n_0));
+        .S(axi_awready_i_1_n_0));
   FDRE \slv_reg1_reg[20] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[23]),
@@ -3182,12 +3239,12 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .D(s00_axi_wdata[3]),
         .Q(\slv_reg1_reg_n_0_[3] ),
         .R(axi_awready_i_1_n_0));
-  FDRE \slv_reg1_reg[4] 
+  FDSE \slv_reg1_reg[4] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
         .D(s00_axi_wdata[4]),
         .Q(\slv_reg1_reg_n_0_[4] ),
-        .R(axi_awready_i_1_n_0));
+        .S(axi_awready_i_1_n_0));
   FDRE \slv_reg1_reg[5] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),

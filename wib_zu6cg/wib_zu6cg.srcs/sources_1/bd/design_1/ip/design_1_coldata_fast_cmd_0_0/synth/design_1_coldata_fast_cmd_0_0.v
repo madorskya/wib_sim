@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_fast_cmd:1.0
-// IP Revision: 11
+// IP Revision: 12
 
 (* X_CORE_INFO = "coldata_fast_cmd_v1_0,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_coldata_fast_cmd_0_0,coldata_fast_cmd_v1_0,{}" *)

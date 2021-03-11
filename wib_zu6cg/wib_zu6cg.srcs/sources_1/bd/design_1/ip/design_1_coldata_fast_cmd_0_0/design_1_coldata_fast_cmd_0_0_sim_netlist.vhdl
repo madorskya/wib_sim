@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Mar 10 13:48:36 2021
+-- Date        : Wed Mar 10 23:38:34 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0_sim_netlist.vhdl
@@ -18,6 +18,7 @@ entity design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI is
   port (
     fastcommand_out_p : out STD_LOGIC;
     fastcommand_out_n : out STD_LOGIC;
+    fastcommand_out : out STD_LOGIC;
     S_AXI_AWREADY : out STD_LOGIC;
     S_AXI_WREADY : out STD_LOGIC;
     ready : out STD_LOGIC;
@@ -153,6 +154,7 @@ architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S0
   signal cmd_rsp_i_1_n_0 : STD_LOGIC;
   signal cmd_rsp_r : STD_LOGIC_VECTOR ( 3 to 3 );
   signal \cmd_rsp_r_reg[2]_srl3_n_0\ : STD_LOGIC;
+  signal \^fastcommand_out\ : STD_LOGIC;
   signal p_0_in : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal p_1_in : STD_LOGIC_VECTOR ( 31 downto 7 );
   signal p_1_out : STD_LOGIC_VECTOR ( 4 to 4 );
@@ -199,7 +201,6 @@ architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S0
   signal \shr_reg_n_0_[14]\ : STD_LOGIC;
   signal \shr_reg_n_0_[15]\ : STD_LOGIC;
   signal \shr_reg_n_0_[16]\ : STD_LOGIC;
-  signal \shr_reg_n_0_[17]\ : STD_LOGIC;
   signal \shr_reg_n_0_[1]\ : STD_LOGIC;
   signal \shr_reg_n_0_[2]\ : STD_LOGIC;
   signal \shr_reg_n_0_[3]\ : STD_LOGIC;
@@ -373,6 +374,7 @@ begin
   S_AXI_ARREADY <= \^s_axi_arready\;
   S_AXI_AWREADY <= \^s_axi_awready\;
   S_AXI_WREADY <= \^s_axi_wready\;
+  fastcommand_out <= \^fastcommand_out\;
   ready <= \^ready\;
   s00_axi_bvalid <= \^s00_axi_bvalid\;
   s00_axi_rvalid <= \^s00_axi_rvalid\;
@@ -1884,7 +1886,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       O => \cmd_code[3][5]_i_1_n_0\
     );
 \cmd_code_reg[1][0]_srl2\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '1',
       A1 => '0',
       A2 => '0',
@@ -1895,7 +1900,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       Q => \cmd_code_reg[1][0]_srl2_n_0\
     );
 \cmd_code_reg[1][1]_srl2\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '1',
       A1 => '0',
       A2 => '0',
@@ -1906,7 +1914,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       Q => \cmd_code_reg[1][1]_srl2_n_0\
     );
 \cmd_code_reg[1][2]_srl2\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '1',
       A1 => '0',
       A2 => '0',
@@ -1917,7 +1928,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       Q => \cmd_code_reg[1][2]_srl2_n_0\
     );
 \cmd_code_reg[1][3]_srl2\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '1',
       A1 => '0',
       A2 => '0',
@@ -1928,7 +1942,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       Q => \cmd_code_reg[1][3]_srl2_n_0\
     );
 \cmd_code_reg[1][4]_srl2\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '1',
       A1 => '0',
       A2 => '0',
@@ -1939,7 +1956,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       Q => \cmd_code_reg[1][4]_srl2_n_0\
     );
 \cmd_code_reg[1][5]_srl2\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '1',
       A1 => '0',
       A2 => '0',
@@ -1950,7 +1970,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       Q => \cmd_code_reg[1][5]_srl2_n_0\
     );
 \cmd_code_reg[2][0]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code_reg[1][0]_srl2_n_0\,
@@ -1958,7 +1981,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[2][1]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code_reg[1][1]_srl2_n_0\,
@@ -1966,7 +1992,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[2][2]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code_reg[1][2]_srl2_n_0\,
@@ -1974,7 +2003,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[2][3]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code_reg[1][3]_srl2_n_0\,
@@ -1982,7 +2014,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[2][4]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code_reg[1][4]_srl2_n_0\,
@@ -1990,7 +2025,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[2][5]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code_reg[1][5]_srl2_n_0\,
@@ -1998,7 +2036,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[3][0]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code[3][0]_i_1_n_0\,
@@ -2006,7 +2047,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[3][1]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code[3][1]_i_1_n_0\,
@@ -2014,7 +2058,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[3][2]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code[3][2]_i_1_n_0\,
@@ -2022,7 +2069,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[3][3]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code[3][3]_i_1_n_0\,
@@ -2030,7 +2080,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[3][4]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code[3][4]_i_1_n_0\,
@@ -2038,7 +2091,10 @@ axi_wready_reg: unisim.vcomponents.FDRE
       R => '0'
     );
 \cmd_code_reg[3][5]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_code[3][5]_i_1_n_0\,
@@ -2090,7 +2146,10 @@ cmd_req_i_2: unisim.vcomponents.LUT2
       O => \cmd_req_r[4]_i_2_n_0\
     );
 \cmd_req_r_reg[2]_srl3\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '0',
       A1 => '1',
       A2 => '0',
@@ -2101,7 +2160,10 @@ cmd_req_i_2: unisim.vcomponents.LUT2
       Q => \cmd_req_r_reg[2]_srl3_n_0\
     );
 \cmd_req_r_reg[3]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => \cmd_req_r_reg[2]_srl3_n_0\,
@@ -2109,7 +2171,10 @@ cmd_req_i_2: unisim.vcomponents.LUT2
       R => '0'
     );
 \cmd_req_r_reg[4]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => p_1_out(4),
@@ -2117,7 +2182,10 @@ cmd_req_i_2: unisim.vcomponents.LUT2
       R => '0'
     );
 cmd_req_reg: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => s00_axi_aclk,
       CE => '1',
       D => cmd_req_i_1_n_0,
@@ -2135,7 +2203,10 @@ cmd_rsp_i_1: unisim.vcomponents.LUT3
       O => cmd_rsp_i_1_n_0
     );
 \cmd_rsp_r_reg[2]_srl3\: unisim.vcomponents.SRL16E
-     port map (
+    generic map(
+      INIT => X"0000"
+    )
+        port map (
       A0 => '0',
       A1 => '1',
       A2 => '0',
@@ -2146,7 +2217,10 @@ cmd_rsp_i_1: unisim.vcomponents.LUT3
       Q => \cmd_rsp_r_reg[2]_srl3_n_0\
     );
 \cmd_rsp_r_reg[3]\: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => s00_axi_aclk,
       CE => s00_axi_aresetn,
       D => \cmd_rsp_r_reg[2]_srl3_n_0\,
@@ -2154,7 +2228,10 @@ cmd_rsp_i_1: unisim.vcomponents.LUT3
       R => '0'
     );
 cmd_rsp_reg: unisim.vcomponents.FDRE
-     port map (
+    generic map(
+      INIT => '0'
+    )
+        port map (
       C => clk62p5,
       CE => '1',
       D => cmd_rsp_i_1_n_0,
@@ -2166,7 +2243,7 @@ fastcommand_obufds: unisim.vcomponents.OBUFDS
       IOSTANDARD => "DEFAULT"
     )
         port map (
-      I => \shr_reg_n_0_[17]\,
+      I => \^fastcommand_out\,
       O => fastcommand_out_p,
       OB => fastcommand_out_n
     );
@@ -2677,7 +2754,7 @@ ready_reg: unisim.vcomponents.FDRE
       C => clk62p5,
       CE => \shr[17]_i_2_n_0\,
       D => \shr[17]_i_3_n_0\,
-      Q => \shr_reg_n_0_[17]\,
+      Q => \^fastcommand_out\,
       R => shr(17)
     );
 \shr_reg[1]\: unisim.vcomponents.FDRE
@@ -3544,13 +3621,13 @@ ready_reg: unisim.vcomponents.FDRE
       I4 => p_0_in(2),
       O => p_1_in(7)
     );
-\slv_reg1_reg[0]\: unisim.vcomponents.FDRE
+\slv_reg1_reg[0]\: unisim.vcomponents.FDSE
      port map (
       C => s00_axi_aclk,
       CE => p_1_in(7),
       D => s00_axi_wdata(0),
       Q => \slv_reg1_reg_n_0_[0]\,
-      R => axi_awready_i_1_n_0
+      S => axi_awready_i_1_n_0
     );
 \slv_reg1_reg[10]\: unisim.vcomponents.FDRE
      port map (
@@ -3632,13 +3709,13 @@ ready_reg: unisim.vcomponents.FDRE
       Q => \slv_reg1_reg_n_0_[19]\,
       R => axi_awready_i_1_n_0
     );
-\slv_reg1_reg[1]\: unisim.vcomponents.FDRE
+\slv_reg1_reg[1]\: unisim.vcomponents.FDSE
      port map (
       C => s00_axi_aclk,
       CE => p_1_in(7),
       D => s00_axi_wdata(1),
       Q => \slv_reg1_reg_n_0_[1]\,
-      R => axi_awready_i_1_n_0
+      S => axi_awready_i_1_n_0
     );
 \slv_reg1_reg[20]\: unisim.vcomponents.FDRE
      port map (
@@ -3752,13 +3829,13 @@ ready_reg: unisim.vcomponents.FDRE
       Q => \slv_reg1_reg_n_0_[3]\,
       R => axi_awready_i_1_n_0
     );
-\slv_reg1_reg[4]\: unisim.vcomponents.FDRE
+\slv_reg1_reg[4]\: unisim.vcomponents.FDSE
      port map (
       C => s00_axi_aclk,
       CE => p_1_in(7),
       D => s00_axi_wdata(4),
       Q => \slv_reg1_reg_n_0_[4]\,
-      R => axi_awready_i_1_n_0
+      S => axi_awready_i_1_n_0
     );
 \slv_reg1_reg[5]\: unisim.vcomponents.FDRE
      port map (
@@ -5629,6 +5706,7 @@ entity design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 is
   port (
     fastcommand_out_p : out STD_LOGIC;
     fastcommand_out_n : out STD_LOGIC;
+    fastcommand_out : out STD_LOGIC;
     S_AXI_AWREADY : out STD_LOGIC;
     S_AXI_WREADY : out STD_LOGIC;
     ready : out STD_LOGIC;
@@ -5673,6 +5751,7 @@ coldata_fast_cmd_v1_0_S00_AXI_inst: entity work.design_1_coldata_fast_cmd_0_0_co
       cmd_idle => cmd_idle,
       cmd_reset => cmd_reset,
       cmd_sync => cmd_sync,
+      fastcommand_out => fastcommand_out,
       fastcommand_out_n => fastcommand_out_n,
       fastcommand_out_p => fastcommand_out_p,
       ready => ready,
@@ -5774,7 +5853,6 @@ architecture STRUCTURE of design_1_coldata_fast_cmd_0_0 is
   attribute X_INTERFACE_INFO of s00_axi_wdata : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WDATA";
   attribute X_INTERFACE_INFO of s00_axi_wstrb : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB";
 begin
-  fastcommand_out <= \<const0>\;
   s00_axi_bresp(1) <= \<const0>\;
   s00_axi_bresp(0) <= \<const0>\;
   s00_axi_rresp(1) <= \<const0>\;
@@ -5795,6 +5873,7 @@ inst: entity work.design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
       cmd_idle => cmd_idle,
       cmd_reset => cmd_reset,
       cmd_sync => cmd_sync,
+      fastcommand_out => fastcommand_out,
       fastcommand_out_n => fastcommand_out_n,
       fastcommand_out_p => fastcommand_out_p,
       ready => ready,

@@ -88,7 +88,7 @@ module ts_reclock
     
     assign fifo_valid = ts_valid_int;
     
-`define CMD_DECODE(c,b) if (c != 8'h0 && c[3:0] == sync_out) b = 1'b1
+`define CMD_DECODE(c,b) if (c != 8'h0 && c[3:0] == sync_r) b = 1'b1
     
     reg [63:0] tstamp_fake = 64'h12340000_00000000;
     
@@ -101,6 +101,7 @@ module ts_reclock
     localparam CMD2 = 2'b11;
     
     reg [3:0] sync_r;   
+    reg [4:0] stb_r; // history of stb signal
     
     always @(posedge clk62p5)
     begin
@@ -112,15 +113,18 @@ module ts_reclock
         cmd_bit_act       = 1'b0;
         cmd_bit_reset     = 1'b0;
         cmd_bit_adc_reset = 1'b0;
+        stb_r = {stb_r[3:0], sync_stb_out};
         
         case (state)
         
             IDLE:
             begin
+                sync_r = 4'b0;
                 if 
                 (
                     sync_stb_out == 1'b1   && // command strobe 
-                    sync_out != 4'b0       && // and not time stamp command
+                    //sync_out != 4'b0       && // commented out to allow the time stamp command be used for some purpose
+                    // need to set command code to XXXX0000, where XXXX must be != 0 to use timing command
                     (
                         sync_out == cmd_code_idle      [3:0] ||
                         sync_out == cmd_code_edge      [3:0] ||
@@ -146,17 +150,9 @@ module ts_reclock
 
             CMD1:
             begin
-                if (sync_r == sync_out && sync_stb_out == 1'b0) // still the same code and no stb
-                    state = CMD2;                 
-                else
-                    state = IDLE; // nope, garbage
-            end
-
-            CMD2:
-            begin
-                if (sync_r == sync_out && sync_stb_out == 1'b0) // still the same code and no stb
+                if (sync_stb_out == 1'b0 && stb_r[4] == 1'b0) // no stb before or after the command
                 begin
-                    // command code held for 4 clocks, seems legit
+                    // command code held for 2 clocks, no STBs before or after, seems legit
                     // decode and flag
                     `CMD_DECODE(cmd_code_idle     , cmd_bit_idle     );
                     `CMD_DECODE(cmd_code_edge     , cmd_bit_edge     );
@@ -165,9 +161,9 @@ module ts_reclock
                     `CMD_DECODE(cmd_code_reset    , cmd_bit_reset    );
                     `CMD_DECODE(cmd_code_adc_reset, cmd_bit_adc_reset);
                 end
-                sync_r = 4'b0;
                 state = IDLE;                 
             end
+
         endcase
 
         

@@ -234,17 +234,17 @@
 	// Slave register write enable is asserted when valid address and data are available
 	// and the slave is ready to accept the write address and write data.
 	assign slv_reg_wren = axi_wready && S_AXI_WVALID && axi_awready && S_AXI_AWVALID;
-    reg [4:0] cmd_req_r; 
-    reg cmd_req; 
-    reg [3:0] cmd_rsp_r;
-    reg cmd_rsp;
+    reg [4:0] cmd_req_r = 0; 
+    reg cmd_req = 0; 
+    reg [3:0] cmd_rsp_r = 0;
+    reg cmd_rsp = 0;
 
 	always @( posedge S_AXI_ACLK )
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
 	      slv_reg0 <= 0;
-	      slv_reg1 <= 0;
+	      slv_reg1 <= 32'd19; // default delay between EDGE and ACT commands
 	      slv_reg2 <= 0;
 	      slv_reg3 <= 0;
 	      slv_reg4 <= 0;
@@ -476,6 +476,13 @@
     OBUFDS fastcommand_obufds (.I(fastcommand_out), .O(fastcommand_out_p), .OB(fastcommand_out_n));
     
     reg [5:0] cmd_code [3:0]; // demetastabber line
+    initial
+    begin
+        cmd_code[0] = 0;   
+        cmd_code[1] = 0;   
+        cmd_code[2] = 0;   
+        cmd_code[3] = 0;   
+    end
     reg [17:0] shr; // shift register for fast command alert + command itself
     assign fastcommand_out = shr[17]; 
     // 16 bits of alert + command, one bit before and one after, to make sure bits are not getting stuck on line
