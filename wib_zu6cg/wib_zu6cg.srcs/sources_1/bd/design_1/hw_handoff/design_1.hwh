@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Mar 16 23:33:52 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Mar 17 10:19:01 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -453,7 +453,7 @@
         <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="daq_data_type"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" LEFT="15" NAME="spy_rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
+    <PORT DIR="I" LEFT="17" NAME="spy_rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
       <CONNECTIONS>
         <CONNECTION INSTANCE="daq_spy_1_daq_spy_control_0" PORT="rec_time"/>
         <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="rec_time"/>
@@ -4957,7 +4957,7 @@
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_bit_trigger"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
+        <PORT DIR="I" LEFT="17" NAME="rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="spy_rec_time"/>
           </CONNECTIONS>
@@ -9149,7 +9149,7 @@
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_bit_trigger"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
+        <PORT DIR="I" LEFT="17" NAME="rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="spy_rec_time"/>
           </CONNECTIONS>

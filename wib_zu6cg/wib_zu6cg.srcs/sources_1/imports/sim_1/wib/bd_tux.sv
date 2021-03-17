@@ -53,7 +53,7 @@ module bd_tux
     input         daq_clk,
     output [1:0]  daq_spy_full,
     input  [1:0]  daq_spy_reset,
-    input  [15:0] spy_rec_time,
+    input  [17:0] spy_rec_time,
     output [19:0] spy_addr [1:0],
     input  [31:0] daq_stream [1:0],
     input  [3:0]  daq_stream_k [1:0],

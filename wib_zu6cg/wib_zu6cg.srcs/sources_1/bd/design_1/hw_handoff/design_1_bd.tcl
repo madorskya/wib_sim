@@ -442,7 +442,7 @@ proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
   create_bd_pin -dir I -type rst daq_spy_reset
   create_bd_pin -dir I -from 31 -to 0 daq_stream0
   create_bd_pin -dir I -from 3 -to 0 daq_stream_k0
-  create_bd_pin -dir I -from 15 -to 0 rec_time_0
+  create_bd_pin -dir I -from 17 -to 0 rec_time_0
   create_bd_pin -dir O -from 19 -to 0 spy_addr_0
   create_bd_pin -dir I trigger
   create_bd_pin -dir I -type clk ts_clk
@@ -551,7 +551,7 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
   create_bd_pin -dir I -type rst daq_spy_reset
   create_bd_pin -dir I -from 31 -to 0 daq_stream0
   create_bd_pin -dir I -from 3 -to 0 daq_stream_k0
-  create_bd_pin -dir I -from 15 -to 0 rec_time_0
+  create_bd_pin -dir I -from 17 -to 0 rec_time_0
   create_bd_pin -dir O -from 19 -to 0 spy_addr_1
   create_bd_pin -dir I trigger
   create_bd_pin -dir I -type clk ts_clk
@@ -1165,7 +1165,7 @@ proc create_root_design { parentCell } {
   set sda_out_p_7 [ create_bd_port -dir O sda_out_p_7 ]
   set spy_addr_0 [ create_bd_port -dir O -from 19 -to 0 spy_addr_0 ]
   set spy_addr_1 [ create_bd_port -dir O -from 19 -to 0 spy_addr_1 ]
-  set spy_rec_time [ create_bd_port -dir I -from 15 -to 0 spy_rec_time ]
+  set spy_rec_time [ create_bd_port -dir I -from 17 -to 0 spy_rec_time ]
   set ts_cdr_lol [ create_bd_port -dir I ts_cdr_lol ]
   set ts_cdr_los [ create_bd_port -dir I ts_cdr_los ]
   set ts_clk [ create_bd_port -dir O -type clk ts_clk ]

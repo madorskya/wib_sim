@@ -20,7 +20,7 @@ module daq_spy_control
     output reg [2:0] state,
     
     input trigger, // this stops recording after rec_time
-    input [15:0] rec_time // recording time, in 32-bit words
+    input [17:0] rec_time // recording time, in 32-bit words
 );
 
     parameter IDLE       = 3'h0;
@@ -44,7 +44,7 @@ module daq_spy_control
     assign bram_clk = daq_clk;
     
     wire [19:0] next_frame_addr = bram_addr + FRAME_LNG;
-    reg  [15:0] rec_cnt; // recording counter
+    reg  [17:0] rec_cnt; // recording counter
     
     always @(posedge daq_clk)
     begin
@@ -75,7 +75,7 @@ module daq_spy_control
                     if (trigger_r[2] == 1'b1)
                     begin
                         state = LAST;
-                        rec_cnt = 16'b0;
+                        rec_cnt = 18'b0;
                     end
                     // keep recording until trigger comes
                     bram_addr = bram_addr + 19'h4; // increment BRAM address
@@ -90,7 +90,7 @@ module daq_spy_control
                     begin
                         state = FULL;
                     end
-                    rec_cnt = rec_cnt + 16'h1;
+                    rec_cnt = rec_cnt + 18'h1;
                     bram_addr = bram_addr + 19'h4; // increment BRAM address
                     bram_we = 4'b1111; // enable BRAM writing
                     bram_en = 1'b1;

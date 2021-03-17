@@ -200,10 +200,10 @@ module wib_top
     wire fake_daq_stream               = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
 
     wire sfp_dis;
-    wire [15:0] spy_rec_time     = `CONFIG_BITS(9,  0, 16); // 0xA00C0024;
+    wire [17:0] spy_rec_time     = `CONFIG_BITS(9,  0, 18); // 0xA00C0024;
     wire [19:0] spy_addr [1:0];
-    assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0014
-    assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0018
+    assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0094
+    assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
     
     bd_tux wrp
     (

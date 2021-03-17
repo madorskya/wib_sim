@@ -99,7 +99,7 @@ input wire reset;
 output wire full;
 output wire [2 : 0] state;
 input wire trigger;
-input wire [15 : 0] rec_time;
+input wire [17 : 0] rec_time;
 
   daq_spy_control #(
     .IDLE(3'B000),

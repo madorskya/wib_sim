@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Mar 16 23:33:42 2021
+//Date        : Wed Mar 17 10:18:52 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1173,7 +1173,7 @@ module daq_spy_0_imp_KA15XV
   input daq_spy_reset;
   input [31:0]daq_stream0;
   input [3:0]daq_stream_k0;
-  input [15:0]rec_time_0;
+  input [17:0]rec_time_0;
   output [19:0]spy_addr_1;
   input trigger;
   input ts_clk;
@@ -1231,7 +1231,7 @@ module daq_spy_0_imp_KA15XV
   wire ps8_0_axi_periph_M00_AXI_WREADY;
   wire [3:0]ps8_0_axi_periph_M00_AXI_WSTRB;
   wire ps8_0_axi_periph_M00_AXI_WVALID;
-  wire [15:0]rec_time_0_1;
+  wire [17:0]rec_time_0_1;
   wire reset_0_1;
   wire rst_ps8_0_99M_peripheral_aresetn;
   wire trigger_1;
@@ -1275,7 +1275,7 @@ module daq_spy_0_imp_KA15XV
   assign ps8_0_axi_periph_M00_AXI_WLAST = S_AXI_wlast;
   assign ps8_0_axi_periph_M00_AXI_WSTRB = S_AXI_wstrb[3:0];
   assign ps8_0_axi_periph_M00_AXI_WVALID = S_AXI_wvalid;
-  assign rec_time_0_1 = rec_time_0[15:0];
+  assign rec_time_0_1 = rec_time_0[17:0];
   assign reset_0_1 = daq_spy_reset;
   assign rst_ps8_0_99M_peripheral_aresetn = AXI_RSTn;
   assign spy_addr_1[19:0] = daq_spy_control_0_bram_addr;
@@ -1451,7 +1451,7 @@ module daq_spy_1_imp_Q79PU8
   input daq_spy_reset;
   input [31:0]daq_stream0;
   input [3:0]daq_stream_k0;
-  input [15:0]rec_time_0;
+  input [17:0]rec_time_0;
   output [19:0]spy_addr_0;
   input trigger;
   input ts_clk;
@@ -1509,7 +1509,7 @@ module daq_spy_1_imp_Q79PU8
   wire ps8_0_axi_periph_M00_AXI_WREADY;
   wire [3:0]ps8_0_axi_periph_M00_AXI_WSTRB;
   wire ps8_0_axi_periph_M00_AXI_WVALID;
-  wire [15:0]rec_time_0_1;
+  wire [17:0]rec_time_0_1;
   wire reset_0_1;
   wire trigger_1;
   wire zynq_ultra_ps_e_0_pl_clk0;
@@ -1553,7 +1553,7 @@ module daq_spy_1_imp_Q79PU8
   assign ps8_0_axi_periph_M00_AXI_WLAST = S_AXI_wlast;
   assign ps8_0_axi_periph_M00_AXI_WSTRB = S_AXI_wstrb[3:0];
   assign ps8_0_axi_periph_M00_AXI_WVALID = S_AXI_wvalid;
-  assign rec_time_0_1 = rec_time_0[15:0];
+  assign rec_time_0_1 = rec_time_0[17:0];
   assign reset_0_1 = daq_spy_reset;
   assign spy_addr_0[19:0] = daq_spy_control_0_bram_addr;
   assign trigger_1 = trigger;
@@ -1951,7 +1951,7 @@ module design_1
   output sda_out_p_7;
   output [19:0]spy_addr_0;
   output [19:0]spy_addr_1;
-  input [15:0]spy_rec_time;
+  input [17:0]spy_rec_time;
   input ts_cdr_lol;
   input ts_cdr_los;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_CLK, CLK_DOMAIN design_1_pdts_endpoint_stdlog_0_0_clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output ts_clk;
@@ -2343,7 +2343,7 @@ module design_1
   wire rec_clk_locked_0_1;
   wire rec_d_0_1;
   wire rec_d_clk_0_1;
-  wire [15:0]rec_time_0_1;
+  wire [17:0]rec_time_0_1;
   wire [1023:0]reg_bank_64_0_reg_rw;
   wire [1023:0]reg_ro_0_1;
   wire reset_0_1;
@@ -2453,7 +2453,7 @@ module design_1
   assign rec_clk_locked_0_1 = ts_rec_clk_locked;
   assign rec_d_0_1 = ts_rec_d;
   assign rec_d_clk_0_1 = ts_rec_d_clk;
-  assign rec_time_0_1 = spy_rec_time[15:0];
+  assign rec_time_0_1 = spy_rec_time[17:0];
   assign reg_ro_0_1 = reg_ro[1023:0];
   assign reg_rw[1023:0] = reg_bank_64_0_reg_rw;
   assign reset_0_1 = daq_spy_reset_0;

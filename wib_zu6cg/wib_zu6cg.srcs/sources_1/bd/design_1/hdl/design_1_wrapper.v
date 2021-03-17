@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Mar 16 23:33:43 2021
+//Date        : Wed Mar 17 10:18:53 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -170,7 +170,7 @@ module design_1_wrapper
   output sda_out_p_7;
   output [19:0]spy_addr_0;
   output [19:0]spy_addr_1;
-  input [15:0]spy_rec_time;
+  input [17:0]spy_rec_time;
   input ts_cdr_lol;
   input ts_cdr_los;
   output ts_clk;
@@ -266,7 +266,7 @@ module design_1_wrapper
   wire sda_out_p_7;
   wire [19:0]spy_addr_0;
   wire [19:0]spy_addr_1;
-  wire [15:0]spy_rec_time;
+  wire [17:0]spy_rec_time;
   wire ts_cdr_lol;
   wire ts_cdr_los;
   wire ts_clk;
