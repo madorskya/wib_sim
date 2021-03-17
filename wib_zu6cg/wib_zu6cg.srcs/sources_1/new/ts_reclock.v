@@ -105,6 +105,7 @@ module ts_reclock
         cmd_bit_act       = 1'b0;
         cmd_bit_reset     = 1'b0;
         cmd_bit_adc_reset = 1'b0;
+        cmd_bit_trigger   = 1'b0;
 
         if (sync_stb_out == 1'b1 && sync_first_out == 1'b1) // stb && first
         begin

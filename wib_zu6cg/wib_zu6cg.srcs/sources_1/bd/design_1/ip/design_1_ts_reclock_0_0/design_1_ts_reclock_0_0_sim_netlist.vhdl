@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Tue Mar 16 23:39:14 2021
+-- Date        : Wed Mar 17 17:21:11 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.vhdl
@@ -24,6 +24,7 @@ entity design_1_ts_reclock_0_0_ts_reclock is
     cmd_bit_act : out STD_LOGIC;
     cmd_bit_reset : out STD_LOGIC;
     cmd_bit_adc_reset : out STD_LOGIC;
+    cmd_bit_trigger : out STD_LOGIC;
     clk62p5 : in STD_LOGIC;
     fake_time_stamp_en : in STD_LOGIC;
     sync_first_in : in STD_LOGIC;
@@ -35,6 +36,7 @@ entity design_1_ts_reclock_0_0_ts_reclock is
     cmd_code_act : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_adc_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    cmd_code_trigger : in STD_LOGIC_VECTOR ( 7 downto 0 );
     fake_time_stamp_init : in STD_LOGIC_VECTOR ( 63 downto 0 );
     tstamp_in : in STD_LOGIC_VECTOR ( 63 downto 0 )
   );
@@ -68,6 +70,10 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal cmd_bit_sync_i_2_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_4_n_0 : STD_LOGIC;
+  signal cmd_bit_trigger0 : STD_LOGIC;
+  signal cmd_bit_trigger_i_2_n_0 : STD_LOGIC;
+  signal cmd_bit_trigger_i_3_n_0 : STD_LOGIC;
+  signal cmd_bit_trigger_i_4_n_0 : STD_LOGIC;
   signal fts_en : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal p_0_in : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal ts_valid0 : STD_LOGIC;
@@ -613,6 +619,61 @@ cmd_bit_sync_reg: unisim.vcomponents.FDRE
       CE => '1',
       D => cmd_bit_sync0,
       Q => cmd_bit_sync,
+      R => cmd_bit_idle_i_1_n_0
+    );
+cmd_bit_trigger_i_1: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"E00000E0"
+    )
+        port map (
+      I0 => cmd_bit_trigger_i_2_n_0,
+      I1 => cmd_bit_trigger_i_3_n_0,
+      I2 => cmd_bit_trigger_i_4_n_0,
+      I3 => sync_in(3),
+      I4 => cmd_code_trigger(3),
+      O => cmd_bit_trigger0
+    );
+cmd_bit_trigger_i_2: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => cmd_code_trigger(2),
+      I1 => cmd_code_trigger(3),
+      I2 => cmd_code_trigger(0),
+      I3 => cmd_code_trigger(1),
+      O => cmd_bit_trigger_i_2_n_0
+    );
+cmd_bit_trigger_i_3: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => cmd_code_trigger(7),
+      I1 => cmd_code_trigger(6),
+      I2 => cmd_code_trigger(4),
+      I3 => cmd_code_trigger(5),
+      O => cmd_bit_trigger_i_3_n_0
+    );
+cmd_bit_trigger_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"9009000000009009"
+    )
+        port map (
+      I0 => cmd_code_trigger(0),
+      I1 => sync_in(0),
+      I2 => sync_in(2),
+      I3 => cmd_code_trigger(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_trigger(1),
+      O => cmd_bit_trigger_i_4_n_0
+    );
+cmd_bit_trigger_reg: unisim.vcomponents.FDRE
+     port map (
+      C => clk62p5,
+      CE => '1',
+      D => cmd_bit_trigger0,
+      Q => cmd_bit_trigger,
       R => cmd_bit_idle_i_1_n_0
     );
 \fts_en_reg[0]\: unisim.vcomponents.FDRE
@@ -3430,7 +3491,6 @@ begin
   \^sync_first_in\ <= sync_first_in;
   \^sync_in\(3 downto 0) <= sync_in(3 downto 0);
   \^sync_stb_in\ <= sync_stb_in;
-  cmd_bit_trigger <= \<const1>\;
   fifo_valid <= \<const1>\;
   rdy_out <= \^rdy_in\;
   rst_out <= \^rst_in\;
@@ -3451,12 +3511,14 @@ inst: entity work.design_1_ts_reclock_0_0_ts_reclock
       cmd_bit_idle => cmd_bit_idle,
       cmd_bit_reset => cmd_bit_reset,
       cmd_bit_sync => cmd_bit_sync,
+      cmd_bit_trigger => cmd_bit_trigger,
       cmd_code_act(7 downto 0) => cmd_code_act(7 downto 0),
       cmd_code_adc_reset(7 downto 0) => cmd_code_adc_reset(7 downto 0),
       cmd_code_edge(7 downto 0) => cmd_code_edge(7 downto 0),
       cmd_code_idle(7 downto 0) => cmd_code_idle(7 downto 0),
       cmd_code_reset(7 downto 0) => cmd_code_reset(7 downto 0),
       cmd_code_sync(7 downto 0) => cmd_code_sync(7 downto 0),
+      cmd_code_trigger(7 downto 0) => cmd_code_trigger(7 downto 0),
       fake_time_stamp_en => fake_time_stamp_en,
       fake_time_stamp_init(63 downto 0) => fake_time_stamp_init(63 downto 0),
       sync_first_in => \^sync_first_in\,
