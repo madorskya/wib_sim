@@ -56,7 +56,6 @@ module bd_tux
     input  [31:0] daq_stream [1:0],
     input  [3:0]  daq_stream_k [1:0],
     input  [1:0]  daq_data_type [1:0], // data_type flags for spy memory
-    output clk_240,
     input [7:0] cmd_code_idle,
     input [7:0] cmd_code_edge,
     input [7:0] cmd_code_sync,

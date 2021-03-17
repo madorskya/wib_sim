@@ -11,7 +11,7 @@ module frame_builder_single #(parameter NUM = 0)
     output reg [3:0]  daq_stream_k, // K symbol flags to felix
     output reg [1:0]  daq_data_type, // data type flags needed by felix
     input             daq_clk,
-    input [63:0] ts_tstamp,
+    input [63:0] ts_tstamp, // time stamp is in deframed data domain
     input reset,
     input fake_daq_stream,
     input [3:0] bp_crate_addr,
@@ -85,7 +85,7 @@ module frame_builder_single #(parameter NUM = 0)
     reg [3:0]  daq_stream_k_d [1:0];
     reg [1:0]  daq_data_type_d [1:0];
     reg [2:0]  crc_inject;
-
+    reg [7:0]  time8_reclocked [7:0]; //[link]
 
     CRC crc20
     (
@@ -138,12 +138,12 @@ module frame_builder_single #(parameter NUM = 0)
     reg [6:0] data_cnt;
 
     // various fields assigned temporarily
-    wire  [3:0] fr_ver = 4'h2; 
-    wire  [1:0] femb_val = 0; 
-    wire        fnum = NUM; // FELIX fiber number
-    wire  [2:0] wib_slot = bp_slot_addr[2:0]; // ignoring MSb of the slot address, no space in data format for it
-    wire  [7:0] wiec_crate = {4'b0, bp_crate_addr}; // crate address input currently has only 4 bits
-    wire [63:0] timestamp = ts_tstamp;
+    wire [3:0] fr_ver = 4'h2; 
+    wire [1:0] femb_val = 0; 
+    wire       fnum = NUM; // FELIX fiber number
+    wire [2:0] wib_slot = bp_slot_addr[2:0]; // ignoring MSb of the slot address, no space in data format for it
+    wire [7:0] wiec_crate = {4'b0, bp_crate_addr}; // crate address input currently has only 4 bits
+    reg  [63:0] timestamp_reclocked;
     reg  [19:0] crc_20 = 0; // this is just a place holder, actual CRC is in crc_out
 
     assign header  [0] = {24'h0, 8'h3c};
@@ -152,16 +152,16 @@ module frame_builder_single #(parameter NUM = 0)
     assign header  [1] = {si5344_lol, link_mask, femb_val, fnum, wib_slot, fr_ver, wiec_crate};
     assign header_k[1] = 4'b0000;
 
-    assign header  [2] = {time8[3], time8[2], time8[1], time8[0]};
+    assign header  [2] = {time8_reclocked[3], time8_reclocked[2], time8_reclocked[1], time8_reclocked[0]};
     assign header_k[2] = 4'b0000;
 
-    assign header  [3] = timestamp[31:0];
+    assign header  [3] = timestamp_reclocked [31:0];
     assign header_k[3] = 4'b0000;
 
-    assign header  [4] = timestamp[63:32];
+    assign header  [4] = timestamp_reclocked [63:32];
     assign header_k[4] = 4'b0000;
     
-    assign trailer  [0] = {time8[7], time8[6], time8[5], time8[4]};
+    assign trailer  [0] = {time8_reclocked[7], time8_reclocked[6], time8_reclocked[5], time8_reclocked[4]};
     assign trailer_k[0] = 4'b0000;
     
     assign trailer  [1] = {4'b0, crc_20, 8'hdc};
@@ -193,6 +193,7 @@ module frame_builder_single #(parameter NUM = 0)
                 begin
                     rq_state = DAQ_RQ;
                     data_ready[0] = 1'b1; // set the request bit
+                    timestamp_reclocked = ts_tstamp; // store time stamp so it can be used in FELIX domain
                 end
                 
                 // update aligned valid flags    
@@ -203,7 +204,10 @@ module frame_builder_single #(parameter NUM = 0)
                 for (i = 0; i < 8; i++) // link loop
                 begin
                     if (valid12[i] || valid14[i]) // valid bit came from that link 
+                    begin
                         deframed_aligned[i] = deframed[i]; // store data
+                        time8_reclocked[i] = time8[i]; // store the COLDATA time stamp for this link
+                    end
 //                    else if (fake_daq_stream == 1'b1)
 //                        deframed_aligned[i] = fake_data[i];
                 end

@@ -10,7 +10,7 @@ module coldata_deframer
     output [15:0] valid14,
     output [15:0] valid12,
     output [1:0]  crc_err [15:0],
-    input  rxclk2x // slightly faster than doubled rx clock for deframed data
+    input         rxclk2x // slightly faster than doubled rx clock for deframed data
 );
 
 
@@ -33,15 +33,6 @@ module coldata_deframer
             
         end
     endgenerate
-/*
-    coldata_deframer_mmcm df_mmcm
-    (
-        .clk_out1 (rxclk2x),
-        .reset    (mmcm_reset),
-        .locked   (),
-        .clk_in1  (rx_usrclk2)
-    );
-  */  
 
 endmodule
 

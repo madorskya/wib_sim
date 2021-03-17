@@ -373,6 +373,7 @@ module wib_top
         .daq_data_type(daq_data_type), // data type flags for felix
         .daq_clk      (daq_clk),
         .ts_tstamp    (ts_tstamp),
+        .ts_clk       (clk62p5  ), // this is 62.5 M clock coming with time stamp
         .reset        (fb_reset),
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
