@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Mar 11 13:00:45 2021
+-- Date        : Tue Mar 16 23:39:14 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.vhdl
@@ -3380,12 +3380,14 @@ entity design_1_ts_reclock_0_0 is
     cmd_code_act : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_adc_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    cmd_code_trigger : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_bit_idle : out STD_LOGIC;
     cmd_bit_edge : out STD_LOGIC;
     cmd_bit_sync : out STD_LOGIC;
     cmd_bit_act : out STD_LOGIC;
     cmd_bit_reset : out STD_LOGIC;
     cmd_bit_adc_reset : out STD_LOGIC;
+    cmd_bit_trigger : out STD_LOGIC;
     fake_time_stamp_en : in STD_LOGIC;
     fake_time_stamp_init : in STD_LOGIC_VECTOR ( 63 downto 0 )
   );
@@ -3428,6 +3430,7 @@ begin
   \^sync_first_in\ <= sync_first_in;
   \^sync_in\(3 downto 0) <= sync_in(3 downto 0);
   \^sync_stb_in\ <= sync_stb_in;
+  cmd_bit_trigger <= \<const1>\;
   fifo_valid <= \<const1>\;
   rdy_out <= \^rdy_in\;
   rst_out <= \^rst_in\;

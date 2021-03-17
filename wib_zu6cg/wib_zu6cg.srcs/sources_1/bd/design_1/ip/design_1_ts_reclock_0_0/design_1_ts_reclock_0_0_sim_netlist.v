@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Mar 11 13:00:45 2021
+// Date        : Tue Mar 16 23:39:14 2021
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.v
@@ -40,12 +40,14 @@ module design_1_ts_reclock_0_0
     cmd_code_act,
     cmd_code_reset,
     cmd_code_adc_reset,
+    cmd_code_trigger,
     cmd_bit_idle,
     cmd_bit_edge,
     cmd_bit_sync,
     cmd_bit_act,
     cmd_bit_reset,
     cmd_bit_adc_reset,
+    cmd_bit_trigger,
     fake_time_stamp_en,
     fake_time_stamp_init);
   input [3:0]stat_in;
@@ -72,12 +74,14 @@ module design_1_ts_reclock_0_0
   input [7:0]cmd_code_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_code_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_code_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input [7:0]cmd_code_reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_code_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_code_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input [7:0]cmd_code_adc_reset;
+  input [7:0]cmd_code_trigger;
   output cmd_bit_idle;
   output cmd_bit_edge;
   output cmd_bit_sync;
   output cmd_bit_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cmd_bit_reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cmd_bit_adc_reset;
+  output cmd_bit_trigger;
   input fake_time_stamp_en;
   input [63:0]fake_time_stamp_init;
 
@@ -107,6 +111,7 @@ module design_1_ts_reclock_0_0
   wire [63:0]tstamp_in;
   wire [63:0]tstamp_out;
 
+  assign cmd_bit_trigger = \<const1> ;
   assign fifo_valid = \<const1> ;
   assign rdy_out = rdy_in;
   assign rst_out = rst_in;

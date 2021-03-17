@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Mar 11 12:55:29 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Mar 16 23:33:52 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -451,6 +451,27 @@
     <PORT DIR="I" LEFT="1" NAME="daq_data_type0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_daq_data_type0">
       <CONNECTIONS>
         <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="daq_data_type"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="spy_rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="daq_spy_1_daq_spy_control_0" PORT="rec_time"/>
+        <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="rec_time"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="19" NAME="spy_addr_0" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_daq_spy_control_0_bram_addr">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="daq_spy_1_daq_spy_control_0" PORT="bram_addr"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="19" NAME="spy_addr_1" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_0_daq_spy_control_0_bram_addr">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="bram_addr"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="7" NAME="cmd_code_trigger" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_cmd_code_trigger">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_code_trigger"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -4874,6 +4895,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="daq_spy_0_axi_bram_ctrl_0_bram" PORT="addrb"/>
             <CONNECTION INSTANCE="daq_spy_0_ila_0" PORT="probe2"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="spy_addr_1"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="bram_clk" SIGIS="clk" SIGNAME="daq_spy_0_daq_spy_control_0_bram_clk">
@@ -4930,6 +4952,16 @@
             <CONNECTION INSTANCE="daq_spy_0_ila_0" PORT="probe7"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="trigger" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_cmd_bit_trigger">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_bit_trigger"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="spy_rec_time"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -4953,7 +4985,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="8"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="9"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="1"/>
@@ -8118,6 +8150,11 @@
             <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="state"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_cmd_bit_trigger">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_bit_trigger"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -9058,6 +9095,7 @@
         <PORT DIR="O" LEFT="19" NAME="bram_addr" RIGHT="0" SIGIS="undef" SIGNAME="daq_spy_1_daq_spy_control_0_bram_addr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="daq_spy_1_axi_bram_ctrl_0_bram" PORT="addrb"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="spy_addr_0"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="bram_clk" SIGIS="clk" SIGNAME="daq_spy_1_daq_spy_control_0_bram_clk">
@@ -9106,6 +9144,16 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="2" NAME="state" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="trigger" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_cmd_bit_trigger">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_bit_trigger"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="rec_time" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_spy_rec_time">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="spy_rec_time"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -16028,6 +16076,11 @@
             <CONNECTION INSTANCE="External_Ports" PORT="cmd_code_adc_reset"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="7" NAME="cmd_code_trigger" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_cmd_code_trigger">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="cmd_code_trigger"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="cmd_bit_idle" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_cmd_bit_idle">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="cmd_idle"/>
@@ -16062,6 +16115,13 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_fast_cmd_0" PORT="cmd_adc_reset"/>
             <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe13"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="cmd_bit_trigger" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_cmd_bit_trigger">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="daq_spy_1_daq_spy_control_0" PORT="trigger"/>
+            <CONNECTION INSTANCE="daq_spy_0_ila_0" PORT="probe8"/>
+            <CONNECTION INSTANCE="daq_spy_0_daq_spy_control_0" PORT="trigger"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="fake_time_stamp_en" SIGIS="undef" SIGNAME="External_Ports_fake_time_stamp_en">

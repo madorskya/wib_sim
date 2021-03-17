@@ -191,6 +191,7 @@ module wib_top
     wire [7:0] cmd_code_act       = `CONFIG_BITS(4, 24, 8); // 0xA00C0010
     wire [7:0] cmd_code_reset     = `CONFIG_BITS(5,  0, 8); // 0xA00C0014
     wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(5,  8, 8); // 0xA00C0014
+    wire [7:0] cmd_code_trigger   = `CONFIG_BITS(5, 16, 8); // 0xA00C0014
     
     wire       fake_time_stamp_en = `CONFIG_BITS(3,  1, 1); // 0xA00C000C
     wire [63:0] fake_time_stamp_init; // initial value for FTS
@@ -199,7 +200,11 @@ module wib_top
     wire fake_daq_stream               = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
 
     wire sfp_dis;
-
+    wire [15:0] spy_rec_time     = `CONFIG_BITS(9,  0, 16); // 0xA00C0024;
+    wire [19:0] spy_addr [1:0];
+    assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0014
+    assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0018
+    
     bd_tux wrp
     (
         // coldata fast command
@@ -251,6 +256,10 @@ module wib_top
         .daq_clk       (daq_clk      ),
         .daq_spy_full  (daq_spy_full ),
         .daq_spy_reset (daq_spy_reset),
+
+        .spy_rec_time    (spy_rec_time),
+        .spy_addr        (spy_addr    ),
+
         .daq_stream    (daq_stream   ),
         .daq_stream_k  (daq_stream_k ),
         .daq_data_type (daq_data_type), 
@@ -261,6 +270,8 @@ module wib_top
         .cmd_code_act       (cmd_code_act      ),
         .cmd_code_reset     (cmd_code_reset    ),
         .cmd_code_adc_reset (cmd_code_adc_reset),
+        .cmd_code_trigger   (cmd_code_trigger  ),
+
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init)
     );

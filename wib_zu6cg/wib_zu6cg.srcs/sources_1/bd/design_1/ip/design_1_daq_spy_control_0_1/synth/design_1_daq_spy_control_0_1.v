@@ -70,7 +70,9 @@ module design_1_daq_spy_control_0_1 (
   clk65p5,
   reset,
   full,
-  state
+  state,
+  trigger,
+  rec_time
 );
 
 input wire [31 : 0] daq_stream;
@@ -96,6 +98,8 @@ input wire clk65p5;
 input wire reset;
 output wire full;
 output wire [2 : 0] state;
+input wire trigger;
+input wire [15 : 0] rec_time;
 
   daq_spy_control #(
     .IDLE(3'B000),
@@ -123,6 +127,8 @@ output wire [2 : 0] state;
     .clk65p5(clk65p5),
     .reset(reset),
     .full(full),
-    .state(state)
+    .state(state),
+    .trigger(trigger),
+    .rec_time(rec_time)
   );
 endmodule

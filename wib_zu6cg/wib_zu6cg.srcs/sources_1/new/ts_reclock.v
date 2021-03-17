@@ -30,6 +30,7 @@ module ts_reclock
     input [7:0] cmd_code_act      ,
     input [7:0] cmd_code_reset    ,
     input [7:0] cmd_code_adc_reset,
+    input [7:0] cmd_code_trigger  ,
 
     output reg cmd_bit_idle     ,
     output reg cmd_bit_edge     ,
@@ -37,6 +38,7 @@ module ts_reclock
     output reg cmd_bit_act      ,
     output reg cmd_bit_reset    ,
     output reg cmd_bit_adc_reset,
+    output reg cmd_bit_trigger  ,
     
     input fake_time_stamp_en, // enable fake time stamp
     input [63:0] fake_time_stamp_init // initial value for fake time stamp
@@ -113,6 +115,7 @@ module ts_reclock
             `CMD_DECODE(cmd_code_act      , cmd_bit_act      );
             `CMD_DECODE(cmd_code_reset    , cmd_bit_reset    );
             `CMD_DECODE(cmd_code_adc_reset, cmd_bit_adc_reset);
+            `CMD_DECODE(cmd_code_trigger  , cmd_bit_trigger  );
         end
 
         //decode time stamp valid

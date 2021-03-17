@@ -172,12 +172,14 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir O cmd_bit_idle
   create_bd_pin -dir O -type rst cmd_bit_reset
   create_bd_pin -dir O cmd_bit_sync
+  create_bd_pin -dir O cmd_bit_trigger
   create_bd_pin -dir I -from 7 -to 0 cmd_code_act_0
   create_bd_pin -dir I -from 7 -to 0 -type rst cmd_code_adc_reset_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_edge_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_idle_0
   create_bd_pin -dir I -from 7 -to 0 -type rst cmd_code_reset_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_sync_0
+  create_bd_pin -dir I -from 7 -to 0 cmd_code_trigger_0
   create_bd_pin -dir I fake_time_stamp_en_0
   create_bd_pin -dir I -from 63 -to 0 fake_time_stamp_init_0
   create_bd_pin -dir I -from 0 -to 0 probe15
@@ -283,6 +285,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net cmd_code_idle_0_1 [get_bd_pins cmd_code_idle_0] [get_bd_pins ts_reclock_0/cmd_code_idle]
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_pins cmd_code_reset_0] [get_bd_pins ts_reclock_0/cmd_code_reset]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_pins cmd_code_sync_0] [get_bd_pins ts_reclock_0/cmd_code_sync]
+  connect_bd_net -net cmd_code_trigger [get_bd_pins cmd_code_trigger_0] [get_bd_pins ts_reclock_0/cmd_code_trigger]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_pins fake_time_stamp_en_0] [get_bd_pins ts_reclock_0/fake_time_stamp_en]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_pins fake_time_stamp_init_0] [get_bd_pins ts_reclock_0/fake_time_stamp_init]
   connect_bd_net -net pdts_endpoint_stdlog_0_rdy [get_bd_pins pdts_endpoint_stdlog_0/rdy] [get_bd_pins ts_reclock_0/rdy_in]
@@ -307,6 +310,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net ts_reclock_0_cmd_bit_idle [get_bd_pins cmd_bit_idle] [get_bd_pins ila_0/probe8] [get_bd_pins ts_reclock_0/cmd_bit_idle]
   connect_bd_net -net ts_reclock_0_cmd_bit_reset [get_bd_pins cmd_bit_reset] [get_bd_pins ila_0/probe12] [get_bd_pins ts_reclock_0/cmd_bit_reset]
   connect_bd_net -net ts_reclock_0_cmd_bit_sync [get_bd_pins cmd_bit_sync] [get_bd_pins ila_0/probe10] [get_bd_pins ts_reclock_0/cmd_bit_sync]
+  connect_bd_net -net ts_reclock_0_cmd_bit_trigger [get_bd_pins cmd_bit_trigger] [get_bd_pins ts_reclock_0/cmd_bit_trigger]
   connect_bd_net -net ts_reclock_0_fifo_valid [get_bd_pins ila_0/probe14] [get_bd_pins ts_reclock_0/fifo_valid]
   connect_bd_net -net ts_reclock_0_rdy_out [get_bd_pins ts_rdy] [get_bd_pins ila_0/probe2] [get_bd_pins ts_reclock_0/rdy_out]
   connect_bd_net -net ts_reclock_0_rst_out [get_bd_pins ts_rst] [get_bd_pins ila_0/probe1] [get_bd_pins ts_reclock_0/rst_out]
@@ -438,6 +442,9 @@ proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
   create_bd_pin -dir I -type rst daq_spy_reset
   create_bd_pin -dir I -from 31 -to 0 daq_stream0
   create_bd_pin -dir I -from 3 -to 0 daq_stream_k0
+  create_bd_pin -dir I -from 15 -to 0 rec_time_0
+  create_bd_pin -dir O -from 19 -to 0 spy_addr_0
+  create_bd_pin -dir I trigger
   create_bd_pin -dir I -type clk ts_clk
   create_bd_pin -dir I -from 63 -to 0 ts_tstamp
 
@@ -477,7 +484,7 @@ proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
   connect_bd_net -net AXI_RSTn_1 [get_bd_pins AXI_RSTn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn]
   connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk]
   connect_bd_net -net daq_data_type_0_1 [get_bd_pins daq_data_type_0] [get_bd_pins daq_spy_control_0/daq_data_type]
-  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr]
+  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins spy_addr_0] [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr]
   connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
   connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din]
   connect_bd_net -net daq_spy_control_0_bram_en [get_bd_pins axi_bram_ctrl_0_bram/enb] [get_bd_pins daq_spy_control_0/bram_en]
@@ -488,7 +495,9 @@ proc create_hier_cell_daq_spy_1 { parentCell nameHier } {
   connect_bd_net -net daq_stream_k0_0_1 [get_bd_pins daq_stream_k0] [get_bd_pins daq_spy_control_0/daq_stream_k]
   connect_bd_net -net pdts_endpoint_0_clk [get_bd_pins ts_clk] [get_bd_pins daq_spy_control_0/clk65p5]
   connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins daq_spy_control_0/time_stamp]
+  connect_bd_net -net rec_time_0_1 [get_bd_pins rec_time_0] [get_bd_pins daq_spy_control_0/rec_time]
   connect_bd_net -net reset_0_1 [get_bd_pins daq_spy_reset] [get_bd_pins daq_spy_control_0/reset]
+  connect_bd_net -net trigger_1 [get_bd_pins trigger] [get_bd_pins daq_spy_control_0/trigger]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins AXI_CLK_OUT] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk]
 
   # Restore current instance
@@ -542,6 +551,9 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
   create_bd_pin -dir I -type rst daq_spy_reset
   create_bd_pin -dir I -from 31 -to 0 daq_stream0
   create_bd_pin -dir I -from 3 -to 0 daq_stream_k0
+  create_bd_pin -dir I -from 15 -to 0 rec_time_0
+  create_bd_pin -dir O -from 19 -to 0 spy_addr_1
+  create_bd_pin -dir I trigger
   create_bd_pin -dir I -type clk ts_clk
   create_bd_pin -dir I -from 63 -to 0 ts_tstamp
 
@@ -579,7 +591,7 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_INPUT_PIPE_STAGES {6} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {8} \
+   CONFIG.C_NUM_OF_PROBES {9} \
  ] $ila_0
 
   # Create interface connections
@@ -589,7 +601,7 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
   # Create port connections
   connect_bd_net -net daq_clk_0_1 [get_bd_pins daq_clk] [get_bd_pins daq_spy_control_0/daq_clk] [get_bd_pins ila_0/clk]
   connect_bd_net -net daq_data_type_1_1 [get_bd_pins daq_data_type_1] [get_bd_pins daq_spy_control_0/daq_data_type]
-  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr] [get_bd_pins ila_0/probe2]
+  connect_bd_net -net daq_spy_control_0_bram_addr [get_bd_pins spy_addr_1] [get_bd_pins axi_bram_ctrl_0_bram/addrb] [get_bd_pins daq_spy_control_0/bram_addr] [get_bd_pins ila_0/probe2]
   connect_bd_net -net daq_spy_control_0_bram_clk [get_bd_pins axi_bram_ctrl_0_bram/clkb] [get_bd_pins daq_spy_control_0/bram_clk]
   connect_bd_net -net daq_spy_control_0_bram_din [get_bd_pins axi_bram_ctrl_0_bram/dinb] [get_bd_pins daq_spy_control_0/bram_din] [get_bd_pins ila_0/probe3]
   connect_bd_net -net daq_spy_control_0_bram_en [get_bd_pins axi_bram_ctrl_0_bram/enb] [get_bd_pins daq_spy_control_0/bram_en] [get_bd_pins ila_0/probe4]
@@ -601,8 +613,10 @@ proc create_hier_cell_daq_spy_0 { parentCell nameHier } {
   connect_bd_net -net daq_stream_k0_0_1 [get_bd_pins daq_stream_k0] [get_bd_pins daq_spy_control_0/daq_stream_k] [get_bd_pins ila_0/probe1]
   connect_bd_net -net pdts_endpoint_0_clk [get_bd_pins ts_clk] [get_bd_pins daq_spy_control_0/clk65p5]
   connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_pins ts_tstamp] [get_bd_pins daq_spy_control_0/time_stamp]
+  connect_bd_net -net rec_time_0_1 [get_bd_pins rec_time_0] [get_bd_pins daq_spy_control_0/rec_time]
   connect_bd_net -net reset_0_1 [get_bd_pins daq_spy_reset] [get_bd_pins daq_spy_control_0/reset]
   connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_pins AXI_RSTn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn]
+  connect_bd_net -net trigger_1 [get_bd_pins trigger] [get_bd_pins daq_spy_control_0/trigger] [get_bd_pins ila_0/probe8]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins AXI_CLK_OUT] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk]
 
   # Restore current instance
@@ -1085,6 +1099,7 @@ proc create_root_design { parentCell } {
   set cmd_code_idle [ create_bd_port -dir I -from 7 -to 0 cmd_code_idle ]
   set cmd_code_reset [ create_bd_port -dir I -from 7 -to 0 -type rst cmd_code_reset ]
   set cmd_code_sync [ create_bd_port -dir I -from 7 -to 0 cmd_code_sync ]
+  set cmd_code_trigger [ create_bd_port -dir I -from 7 -to 0 cmd_code_trigger ]
   set daq_clk [ create_bd_port -dir I -type clk daq_clk ]
   set_property -dict [ list \
    CONFIG.ASSOCIATED_RESET {daq_spy_reset_0:daq_spy_reset_1} \
@@ -1148,6 +1163,9 @@ proc create_root_design { parentCell } {
   set sda_out_p_5 [ create_bd_port -dir O sda_out_p_5 ]
   set sda_out_p_6 [ create_bd_port -dir O sda_out_p_6 ]
   set sda_out_p_7 [ create_bd_port -dir O sda_out_p_7 ]
+  set spy_addr_0 [ create_bd_port -dir O -from 19 -to 0 spy_addr_0 ]
+  set spy_addr_1 [ create_bd_port -dir O -from 19 -to 0 spy_addr_1 ]
+  set spy_rec_time [ create_bd_port -dir I -from 15 -to 0 spy_rec_time ]
   set ts_cdr_lol [ create_bd_port -dir I ts_cdr_lol ]
   set ts_cdr_los [ create_bd_port -dir I ts_cdr_los ]
   set ts_clk [ create_bd_port -dir O -type clk ts_clk ]
@@ -2791,6 +2809,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net cmd_code_idle_0_1 [get_bd_ports cmd_code_idle] [get_bd_pins timing_module/cmd_code_idle_0]
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_ports cmd_code_reset] [get_bd_pins timing_module/cmd_code_reset_0]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_ports cmd_code_sync] [get_bd_pins timing_module/cmd_code_sync_0]
+  connect_bd_net -net cmd_code_trigger_0_1 [get_bd_ports cmd_code_trigger] [get_bd_pins timing_module/cmd_code_trigger_0]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out [get_bd_pins coldata_fast_cmd_0/fastcommand_out] [get_bd_pins timing_module/probe15]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_n [get_bd_ports fastcommand_out_n_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_n]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_p [get_bd_ports fastcommand_out_p_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_p]
@@ -2821,7 +2840,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net daq_clk_0_1 [get_bd_ports daq_clk] [get_bd_pins daq_spy_0/daq_clk] [get_bd_pins daq_spy_1/daq_clk]
   connect_bd_net -net daq_data_type_0_1 [get_bd_ports daq_data_type1] [get_bd_pins daq_spy_1/daq_data_type_0]
   connect_bd_net -net daq_data_type_1_1 [get_bd_ports daq_data_type0] [get_bd_pins daq_spy_0/daq_data_type_1]
+  connect_bd_net -net daq_spy_0_spy_addr_1 [get_bd_ports spy_addr_1] [get_bd_pins daq_spy_0/spy_addr_1]
   connect_bd_net -net daq_spy_1_daq_spy_full [get_bd_ports daq_spy_full_1] [get_bd_pins daq_spy_1/daq_spy_full]
+  connect_bd_net -net daq_spy_1_spy_addr_0 [get_bd_ports spy_addr_0] [get_bd_pins daq_spy_1/spy_addr_0]
   connect_bd_net -net daq_spy_full_0 [get_bd_ports daq_spy_full_0] [get_bd_pins daq_spy_0/daq_spy_full]
   connect_bd_net -net daq_spy_reset_0_1 [get_bd_ports daq_spy_reset_1] [get_bd_pins daq_spy_1/daq_spy_reset]
   connect_bd_net -net daq_stream0_0_1 [get_bd_ports daq_stream0] [get_bd_pins daq_spy_0/daq_stream0]
@@ -2840,6 +2861,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net rec_clk_locked_0_1 [get_bd_ports ts_rec_clk_locked] [get_bd_pins timing_module/ts_rec_clk_locked]
   connect_bd_net -net rec_d_0_1 [get_bd_ports ts_rec_d] [get_bd_pins timing_module/ts_rec_d]
   connect_bd_net -net rec_d_clk_0_1 [get_bd_ports ts_rec_d_clk] [get_bd_pins timing_module/ts_rec_d_clk]
+  connect_bd_net -net rec_time_0_1 [get_bd_ports spy_rec_time] [get_bd_pins daq_spy_0/rec_time_0] [get_bd_pins daq_spy_1/rec_time_0]
   connect_bd_net -net reg_bank_64_0_reg_rw [get_bd_ports reg_rw] [get_bd_pins reg_bank_64_0/reg_rw] [get_bd_pins timing_module/Din]
   connect_bd_net -net reg_ro_0_1 [get_bd_ports reg_ro] [get_bd_pins reg_bank_64_0/reg_ro]
   connect_bd_net -net reset_0_1 [get_bd_ports daq_spy_reset_0] [get_bd_pins daq_spy_0/daq_spy_reset]
@@ -2872,6 +2894,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net timing_module_ts_valid_0 [get_bd_ports ts_valid] [get_bd_pins timing_module/ts_valid_0]
   connect_bd_net -net timing_module_tx_dis_0 [get_bd_ports tx_dis] [get_bd_pins timing_module/tx_dis_0]
   connect_bd_net -net timing_module_txd_0 [get_bd_ports txd] [get_bd_pins timing_module/txd_0]
+  connect_bd_net -net trigger_1 [get_bd_pins daq_spy_0/trigger] [get_bd_pins daq_spy_1/trigger] [get_bd_pins timing_module/cmd_bit_trigger]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins daq_spy_0/AXI_CLK_OUT] [get_bd_pins daq_spy_1/AXI_CLK_OUT] [get_bd_pins dbg/AXI_CLK_OUT] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/M15_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_99M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 

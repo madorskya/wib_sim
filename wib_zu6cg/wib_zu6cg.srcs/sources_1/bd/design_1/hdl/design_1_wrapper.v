@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Mar 11 12:55:21 2021
+//Date        : Tue Mar 16 23:33:43 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -19,6 +19,7 @@ module design_1_wrapper
     cmd_code_idle,
     cmd_code_reset,
     cmd_code_sync,
+    cmd_code_trigger,
     daq_clk,
     daq_data_type0,
     daq_data_type1,
@@ -78,6 +79,9 @@ module design_1_wrapper
     sda_out_p_5,
     sda_out_p_6,
     sda_out_p_7,
+    spy_addr_0,
+    spy_addr_1,
+    spy_rec_time,
     ts_cdr_lol,
     ts_cdr_los,
     ts_clk,
@@ -104,6 +108,7 @@ module design_1_wrapper
   input [7:0]cmd_code_idle;
   input [7:0]cmd_code_reset;
   input [7:0]cmd_code_sync;
+  input [7:0]cmd_code_trigger;
   input daq_clk;
   input [1:0]daq_data_type0;
   input [1:0]daq_data_type1;
@@ -163,6 +168,9 @@ module design_1_wrapper
   output sda_out_p_5;
   output sda_out_p_6;
   output sda_out_p_7;
+  output [19:0]spy_addr_0;
+  output [19:0]spy_addr_1;
+  input [15:0]spy_rec_time;
   input ts_cdr_lol;
   input ts_cdr_los;
   output ts_clk;
@@ -190,6 +198,7 @@ module design_1_wrapper
   wire [7:0]cmd_code_idle;
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
+  wire [7:0]cmd_code_trigger;
   wire daq_clk;
   wire [1:0]daq_data_type0;
   wire [1:0]daq_data_type1;
@@ -255,6 +264,9 @@ module design_1_wrapper
   wire sda_out_p_5;
   wire sda_out_p_6;
   wire sda_out_p_7;
+  wire [19:0]spy_addr_0;
+  wire [19:0]spy_addr_1;
+  wire [15:0]spy_rec_time;
   wire ts_cdr_lol;
   wire ts_cdr_los;
   wire ts_clk;
@@ -283,6 +295,7 @@ module design_1_wrapper
         .cmd_code_idle(cmd_code_idle),
         .cmd_code_reset(cmd_code_reset),
         .cmd_code_sync(cmd_code_sync),
+        .cmd_code_trigger(cmd_code_trigger),
         .daq_clk(daq_clk),
         .daq_data_type0(daq_data_type0),
         .daq_data_type1(daq_data_type1),
@@ -346,6 +359,9 @@ module design_1_wrapper
         .sda_out_p_5(sda_out_p_5),
         .sda_out_p_6(sda_out_p_6),
         .sda_out_p_7(sda_out_p_7),
+        .spy_addr_0(spy_addr_0),
+        .spy_addr_1(spy_addr_1),
+        .spy_rec_time(spy_rec_time),
         .ts_cdr_lol(ts_cdr_lol),
         .ts_cdr_los(ts_cdr_los),
         .ts_clk(ts_clk),
