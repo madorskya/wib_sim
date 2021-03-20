@@ -93,6 +93,12 @@ set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_mod
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
 set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]]
 
+# from Adrian's FELIX branch
+set_property package_pin R28 [get_ports mgtrefclk0_x0y1_n]
+set_property package_pin R27 [get_ports mgtrefclk0_x0y1_p]
+create_clock -name clk_mgtrefclk0_x0y1_p -period 8.0 [get_ports mgtrefclk0_x0y1_p]
+create_clock -period 4 -name felix_tx_clk [get_pins -filter {REF_PIN_NAME=~*TXOUTCLK} -of_objects [get_cells -hierarchical -filter {NAME =~ *gen_channel_container[1]*gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST*}]]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks felix_tx_clk]
 
 # below copied from Jack's project
 

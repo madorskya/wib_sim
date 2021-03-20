@@ -19,7 +19,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity CRC is
+entity CRC_OL is
    generic(
      Nbits :  positive 	:= 32;
      CRC_Width		  :  positive 	:= 20;
@@ -32,9 +32,9 @@ entity CRC is
      Clk   : in     std_logic;
      DIn   : in     std_logic_vector(Nbits-1 downto 0);
      Reset : in     std_logic);
-end CRC;
+end CRC_OL;
 
-architecture imp_crc of CRC is
+architecture imp_crc of CRC_OL is
   signal lfsr_c: std_logic_vector (19 downto 0);
 begin
     CRC <= lfsr_c;
