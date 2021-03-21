@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 10 15:07:23 2021
+// Date        : Sat Mar 20 16:22:51 2021
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.v
@@ -40,12 +40,14 @@ module design_1_ts_reclock_0_0
     cmd_code_act,
     cmd_code_reset,
     cmd_code_adc_reset,
+    cmd_code_trigger,
     cmd_bit_idle,
     cmd_bit_edge,
     cmd_bit_sync,
     cmd_bit_act,
     cmd_bit_reset,
     cmd_bit_adc_reset,
+    cmd_bit_trigger,
     fake_time_stamp_en,
     fake_time_stamp_init);
   input [3:0]stat_in;
@@ -72,12 +74,14 @@ module design_1_ts_reclock_0_0
   input [7:0]cmd_code_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_code_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_code_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input [7:0]cmd_code_reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_code_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_code_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input [7:0]cmd_code_adc_reset;
+  input [7:0]cmd_code_trigger;
   output cmd_bit_idle;
   output cmd_bit_edge;
   output cmd_bit_sync;
   output cmd_bit_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cmd_bit_reset;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cmd_bit_adc_reset;
+  output cmd_bit_trigger;
   input fake_time_stamp_en;
   input [63:0]fake_time_stamp_init;
 
@@ -89,12 +93,14 @@ module design_1_ts_reclock_0_0
   wire cmd_bit_idle;
   wire cmd_bit_reset;
   wire cmd_bit_sync;
+  wire cmd_bit_trigger;
   wire [7:0]cmd_code_act;
   wire [7:0]cmd_code_adc_reset;
   wire [7:0]cmd_code_edge;
   wire [7:0]cmd_code_idle;
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
+  wire [7:0]cmd_code_trigger;
   wire fake_time_stamp_en;
   wire [63:0]fake_time_stamp_init;
   wire rdy_in;
@@ -124,12 +130,14 @@ module design_1_ts_reclock_0_0
         .cmd_bit_idle(cmd_bit_idle),
         .cmd_bit_reset(cmd_bit_reset),
         .cmd_bit_sync(cmd_bit_sync),
+        .cmd_bit_trigger(cmd_bit_trigger),
         .cmd_code_act(cmd_code_act),
         .cmd_code_adc_reset(cmd_code_adc_reset),
         .cmd_code_edge(cmd_code_edge),
         .cmd_code_idle(cmd_code_idle),
         .cmd_code_reset(cmd_code_reset),
         .cmd_code_sync(cmd_code_sync),
+        .cmd_code_trigger(cmd_code_trigger),
         .fake_time_stamp_en(fake_time_stamp_en),
         .fake_time_stamp_init(fake_time_stamp_init),
         .sync_first_in(sync_first_in),
@@ -150,10 +158,11 @@ module design_1_ts_reclock_0_0_ts_reclock
     cmd_bit_act,
     cmd_bit_reset,
     cmd_bit_adc_reset,
+    cmd_bit_trigger,
     clk62p5,
     fake_time_stamp_en,
-    sync_stb_in,
     sync_first_in,
+    sync_stb_in,
     sync_in,
     cmd_code_idle,
     cmd_code_edge,
@@ -161,6 +170,7 @@ module design_1_ts_reclock_0_0_ts_reclock
     cmd_code_act,
     cmd_code_reset,
     cmd_code_adc_reset,
+    cmd_code_trigger,
     fake_time_stamp_init,
     tstamp_in);
   output [63:0]tstamp_out;
@@ -171,10 +181,11 @@ module design_1_ts_reclock_0_0_ts_reclock
   output cmd_bit_act;
   output cmd_bit_reset;
   output cmd_bit_adc_reset;
+  output cmd_bit_trigger;
   input clk62p5;
   input fake_time_stamp_en;
-  input sync_stb_in;
   input sync_first_in;
+  input sync_stb_in;
   input [3:0]sync_in;
   input [7:0]cmd_code_idle;
   input [7:0]cmd_code_edge;
@@ -182,6 +193,7 @@ module design_1_ts_reclock_0_0_ts_reclock
   input [7:0]cmd_code_act;
   input [7:0]cmd_code_reset;
   input [7:0]cmd_code_adc_reset;
+  input [7:0]cmd_code_trigger;
   input [63:0]fake_time_stamp_init;
   input [63:0]tstamp_in;
 
@@ -217,12 +229,18 @@ module design_1_ts_reclock_0_0_ts_reclock
   wire cmd_bit_sync_i_2_n_0;
   wire cmd_bit_sync_i_3_n_0;
   wire cmd_bit_sync_i_4_n_0;
+  wire cmd_bit_trigger;
+  wire cmd_bit_trigger0;
+  wire cmd_bit_trigger_i_2_n_0;
+  wire cmd_bit_trigger_i_3_n_0;
+  wire cmd_bit_trigger_i_4_n_0;
   wire [7:0]cmd_code_act;
   wire [7:0]cmd_code_adc_reset;
   wire [7:0]cmd_code_edge;
   wire [7:0]cmd_code_idle;
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
+  wire [7:0]cmd_code_trigger;
   wire fake_time_stamp_en;
   wire [63:0]fake_time_stamp_init;
   wire [2:0]fts_en;
@@ -488,10 +506,11 @@ module design_1_ts_reclock_0_0_ts_reclock
         .D(cmd_bit_edge0),
         .Q(cmd_bit_edge),
         .R(cmd_bit_idle_i_1_n_0));
-  LUT1 #(
-    .INIT(2'h1)) 
+  LUT2 #(
+    .INIT(4'h7)) 
     cmd_bit_idle_i_1
-       (.I0(sync_stb_in),
+       (.I0(sync_first_in),
+        .I1(sync_stb_in),
         .O(cmd_bit_idle_i_1_n_0));
   LUT5 #(
     .INIT(32'hE00000E0)) 
@@ -616,6 +635,47 @@ module design_1_ts_reclock_0_0_ts_reclock
         .D(cmd_bit_sync0),
         .Q(cmd_bit_sync),
         .R(cmd_bit_idle_i_1_n_0));
+  LUT5 #(
+    .INIT(32'hE00000E0)) 
+    cmd_bit_trigger_i_1
+       (.I0(cmd_bit_trigger_i_2_n_0),
+        .I1(cmd_bit_trigger_i_3_n_0),
+        .I2(cmd_bit_trigger_i_4_n_0),
+        .I3(sync_in[3]),
+        .I4(cmd_code_trigger[3]),
+        .O(cmd_bit_trigger0));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    cmd_bit_trigger_i_2
+       (.I0(cmd_code_trigger[2]),
+        .I1(cmd_code_trigger[3]),
+        .I2(cmd_code_trigger[0]),
+        .I3(cmd_code_trigger[1]),
+        .O(cmd_bit_trigger_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    cmd_bit_trigger_i_3
+       (.I0(cmd_code_trigger[7]),
+        .I1(cmd_code_trigger[6]),
+        .I2(cmd_code_trigger[4]),
+        .I3(cmd_code_trigger[5]),
+        .O(cmd_bit_trigger_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    cmd_bit_trigger_i_4
+       (.I0(cmd_code_trigger[0]),
+        .I1(sync_in[0]),
+        .I2(sync_in[2]),
+        .I3(cmd_code_trigger[2]),
+        .I4(sync_in[1]),
+        .I5(cmd_code_trigger[1]),
+        .O(cmd_bit_trigger_i_4_n_0));
+  FDRE cmd_bit_trigger_reg
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(cmd_bit_trigger0),
+        .Q(cmd_bit_trigger),
+        .R(cmd_bit_idle_i_1_n_0));
   FDRE \fts_en_reg[0] 
        (.C(clk62p5),
         .CE(1'b1),
@@ -637,12 +697,12 @@ module design_1_ts_reclock_0_0_ts_reclock
   LUT6 #(
     .INIT(64'h0000000000000008)) 
     ts_valid_i_1
-       (.I0(sync_stb_in),
-        .I1(sync_first_in),
-        .I2(sync_in[3]),
-        .I3(sync_in[2]),
-        .I4(sync_in[0]),
-        .I5(sync_in[1]),
+       (.I0(sync_first_in),
+        .I1(sync_stb_in),
+        .I2(sync_in[1]),
+        .I3(sync_in[0]),
+        .I4(sync_in[2]),
+        .I5(sync_in[3]),
         .O(ts_valid0));
   FDRE ts_valid_reg
        (.C(clk62p5),

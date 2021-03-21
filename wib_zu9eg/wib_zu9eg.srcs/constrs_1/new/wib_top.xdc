@@ -58,6 +58,21 @@ set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtre
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in2]
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks gtrefclk00p_in3]
 
+set_property package_pin R28 [get_ports mgtrefclk0_x0y1_n]
+set_property package_pin R27 [get_ports mgtrefclk0_x0y1_p] 
+create_clock -name clk_mgtrefclk0_x0y1_p -period 8.0 [get_ports mgtrefclk0_x0y1_p]
+create_clock -period 4 -name felix_tx_clk [get_pins -filter {REF_PIN_NAME=~*TXOUTCLK} -of_objects [get_cells -hierarchical -filter {NAME =~ *gen_channel_container[1]*gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST*}]]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks felix_tx_clk]
+
+set_property LOC T34 [get_ports ch0_gthrxn_in]
+set_property LOC T33 [get_ports ch0_gthrxp_in]
+set_property LOC P34 [get_ports ch1_gthrxn_in]
+set_property LOC P33 [get_ports ch1_gthrxp_in]
+set_property LOC T30 [get_ports ch0_gthtxn_out]
+set_property LOC T29 [get_ports ch0_gthtxp_out]
+set_property LOC R32 [get_ports ch1_gthtxn_out]
+set_property LOC R31 [get_ports ch1_gthtxp_out]
+
 create_clock -period 16.000 -name dune_clk_fpga_in_p [get_ports dune_clk_fpga_in_p]
 #create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
 
@@ -79,7 +94,7 @@ set_false_path -from [get_ports bp_crate_addr[*]]
 set_false_path -from [get_ports bp_slot_addr[*]]
 
 
-create_clock -period 4 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
+create_clock -period 3.1 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
  
 # timing data input constraints relative to clock

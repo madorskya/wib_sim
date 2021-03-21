@@ -52,12 +52,13 @@
 
 (* X_CORE_INFO = "daq_spy_control,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_daq_spy_control_0_0,daq_spy_control,{}" *)
-(* CORE_GENERATION_INFO = "design_1_daq_spy_control_0_0,daq_spy_control,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=daq_spy_control,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,IDLE=000,IDLE_CHECK=001,RECORD=010,LAST=011,FULL=100,FRAME_LNG=0x001E0}" *)
+(* CORE_GENERATION_INFO = "design_1_daq_spy_control_0_0,daq_spy_control,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=daq_spy_control,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,IDLE=000,IDLE_CHECK=001,RECORD=010,LAST=011,FULL=100,FRAME_LNG=0x001E0,DT_INTERMEDIATE=00,DT_FIRST=01,DT_LAST=10,DT_IGNORE=11}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_daq_spy_control_0_0 (
   daq_stream,
   daq_stream_k,
+  daq_data_type,
   daq_clk,
   bram_addr,
   bram_clk,
@@ -69,11 +70,14 @@ module design_1_daq_spy_control_0_0 (
   clk65p5,
   reset,
   full,
-  state
+  state,
+  trigger,
+  rec_time
 );
 
 input wire [31 : 0] daq_stream;
 input wire [3 : 0] daq_stream_k;
+input wire [1 : 0] daq_data_type;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME daq_clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_daq_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 daq_clk CLK" *)
 input wire daq_clk;
@@ -94,6 +98,8 @@ input wire clk65p5;
 input wire reset;
 output wire full;
 output wire [2 : 0] state;
+input wire trigger;
+input wire [17 : 0] rec_time;
 
   daq_spy_control #(
     .IDLE(3'B000),
@@ -101,10 +107,15 @@ output wire [2 : 0] state;
     .RECORD(3'B010),
     .LAST(3'B011),
     .FULL(3'B100),
-    .FRAME_LNG(20'H001E0)
+    .FRAME_LNG(20'H001E0),
+    .DT_INTERMEDIATE(2'B00),
+    .DT_FIRST(2'B01),
+    .DT_LAST(2'B10),
+    .DT_IGNORE(2'B11)
   ) inst (
     .daq_stream(daq_stream),
     .daq_stream_k(daq_stream_k),
+    .daq_data_type(daq_data_type),
     .daq_clk(daq_clk),
     .bram_addr(bram_addr),
     .bram_clk(bram_clk),
@@ -116,6 +127,8 @@ output wire [2 : 0] state;
     .clk65p5(clk65p5),
     .reset(reset),
     .full(full),
-    .state(state)
+    .state(state),
+    .trigger(trigger),
+    .rec_time(rec_time)
   );
 endmodule

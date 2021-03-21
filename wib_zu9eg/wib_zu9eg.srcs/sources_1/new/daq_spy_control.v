@@ -3,9 +3,10 @@ module daq_spy_control
 (
     input [31:0] daq_stream, // data to felix
     input [3:0]  daq_stream_k, // K symbol flags to felix
+    input [1:0]  daq_data_type, // data type
     input        daq_clk,
     
-    output reg [19:0] bram_addr,
+    output reg [19:0] bram_addr, // current BRAM address
     output            bram_clk,
     output reg [31:0] bram_din,
     output reg        bram_en,
@@ -14,9 +15,12 @@ module daq_spy_control
     
     input [63:0] time_stamp,
     input clk65p5,
-    input reset,
+    input reset, // this starts continuous recording
     output reg full,
-    output reg [2:0] state
+    output reg [2:0] state,
+    
+    input trigger, // this stops recording after rec_time
+    input [17:0] rec_time // recording time, in 32-bit words
 );
 
     parameter IDLE       = 3'h0;
@@ -26,13 +30,21 @@ module daq_spy_control
     parameter FULL       = 3'h4;
     parameter FRAME_LNG = 20'd480; // length of one DAQ frame, in bytes
     
+    parameter DT_INTERMEDIATE = 2'b00;
+    parameter DT_FIRST        = 2'b01;
+    parameter DT_LAST         = 2'b10;
+    parameter DT_IGNORE       = 2'b11;
+    
+    
     reg [31:0] daq_stream_r;
     (* async_reg *) reg [2:0] reset_r;
+    (* async_reg *) reg [2:0] trigger_r;
     
     assign bram_rst = 1'b0;
     assign bram_clk = daq_clk;
     
     wire [19:0] next_frame_addr = bram_addr + FRAME_LNG;
+    reg  [17:0] rec_cnt; // recording counter
     
     always @(posedge daq_clk)
     begin
@@ -49,53 +61,42 @@ module daq_spy_control
             case (state)
                 IDLE:
                 begin
-                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h0000003c) // start of frame
+
+                    if (daq_data_type == DT_FIRST)
                     begin
                         state = RECORD;                        
                     end
-                    // this state is reached from reset. It does not check for overflow
-                    // because it would jump to FULL immediately
+                    // this state is reached from reset.
+                    // just wait for start of frame and start recording 
                 end
                 
-                IDLE_CHECK:
-                begin
-                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h0000003c) // start of frame
-                    begin
-                        state = RECORD;                        
-                    end
-                    if (next_frame_addr < FRAME_LNG) // going to overflow on the next frame
-                    begin
-                        state = FULL;
-                    end
-                end
                 RECORD:
                 begin
-                    if (daq_stream_k == 4'b0001 && daq_stream == 32'h000000bc) // end of frame
+                    if (trigger_r[2] == 1'b1)
                     begin
-                        state = LAST;                        
+                        state = LAST;
+                        rec_cnt = 18'b0;
                     end
+                    // keep recording until trigger comes
                     bram_addr = bram_addr + 19'h4; // increment BRAM address
-                    if (bram_addr[19:2] == 18'h3ffff) // should not happen, but
-                    begin
-                        state = FULL;
-                    end
                     bram_we = 4'b1111; // enable BRAM writing
                     bram_en = 1'b1;
                 end
                 
-                LAST: // last word in frame
+                LAST: // leftover state name, actually here we record for rec_time time 
                 begin
-                    state = IDLE_CHECK;                        
-                    bram_addr = bram_addr + 19'h4; // increment BRAM address
-                    if (bram_addr[19:2] == 18'h3ffff) // should not happen, but
+                    // keep recording until rec_cnt expires
+                    if (rec_cnt == rec_time)
                     begin
                         state = FULL;
                     end
+                    rec_cnt = rec_cnt + 18'h1;
+                    bram_addr = bram_addr + 19'h4; // increment BRAM address
                     bram_we = 4'b1111; // enable BRAM writing
                     bram_en = 1'b1;
                 end
 
-                FULL:
+                FULL: // leftover name, actually means done recording
                 begin
                     full = 1'b1; 
                     // exit only on reset
@@ -105,7 +106,8 @@ module daq_spy_control
         bram_din = daq_stream_r;
         daq_stream_r = daq_stream; // compensate for IDLE to RECORD transition
         
-        // demetastab reset
-        reset_r = {reset_r[1:0], reset};
+        // demetastab reset and trigger
+        reset_r   = {reset_r   [1:0], reset  };
+        trigger_r = {trigger_r [1:0], trigger};
     end
 endmodule

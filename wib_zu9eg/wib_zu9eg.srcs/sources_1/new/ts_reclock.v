@@ -30,6 +30,7 @@ module ts_reclock
     input [7:0] cmd_code_act      ,
     input [7:0] cmd_code_reset    ,
     input [7:0] cmd_code_adc_reset,
+    input [7:0] cmd_code_trigger  ,
 
     output reg cmd_bit_idle     ,
     output reg cmd_bit_edge     ,
@@ -37,6 +38,7 @@ module ts_reclock
     output reg cmd_bit_act      ,
     output reg cmd_bit_reset    ,
     output reg cmd_bit_adc_reset,
+    output reg cmd_bit_trigger  ,
     
     input fake_time_stamp_en, // enable fake time stamp
     input [63:0] fake_time_stamp_init // initial value for fake time stamp
@@ -103,16 +105,20 @@ module ts_reclock
         cmd_bit_act       = 1'b0;
         cmd_bit_reset     = 1'b0;
         cmd_bit_adc_reset = 1'b0;
-        if (sync_stb_out == 1'b1 && ts_valid_int == 1'b1) // fifo valid and command strobe
+        cmd_bit_trigger   = 1'b0;
+
+        if (sync_stb_out == 1'b1 && sync_first_out == 1'b1) // stb && first
         begin
+            // decode and flag
             `CMD_DECODE(cmd_code_idle     , cmd_bit_idle     );
             `CMD_DECODE(cmd_code_edge     , cmd_bit_edge     );
             `CMD_DECODE(cmd_code_sync     , cmd_bit_sync     );
             `CMD_DECODE(cmd_code_act      , cmd_bit_act      );
             `CMD_DECODE(cmd_code_reset    , cmd_bit_reset    );
             `CMD_DECODE(cmd_code_adc_reset, cmd_bit_adc_reset);
-        end   
-        
+            `CMD_DECODE(cmd_code_trigger  , cmd_bit_trigger  );
+        end
+
         //decode time stamp valid
         ts_valid = ts_valid_int && sync_stb_out && sync_first_out && (sync_out == 4'b0);
         tstamp_out = (fts_en[2] == 1'b1) ? tstamp_fake : tstamp_int; // to match valid signal latency

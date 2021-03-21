@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 10 14:53:38 2021
+// Date        : Sat Mar 20 15:13:23 2021
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu9eg/wib_zu9eg.srcs/sources_1/bd/design_1/ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_coldata_fast_cmd_0_0 -prefix
+//               design_1_coldata_fast_cmd_0_0_ design_1_coldata_fast_cmd_0_0_sim_netlist.v
 // Design      : design_1_coldata_fast_cmd_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,141 +12,10 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_coldata_fast_cmd_0_0,coldata_fast_cmd_v1_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_fast_cmd_v1_0,Vivado 2020.1" *) 
-(* NotValidForBitStream *)
-module design_1_coldata_fast_cmd_0_0
-   (clk62p5,
-    fastcommand_out_p,
-    fastcommand_out_n,
-    cmd_idle,
-    cmd_edge,
-    cmd_sync,
-    cmd_act,
-    cmd_reset,
-    cmd_adc_reset,
-    ready,
-    s00_axi_aclk,
-    s00_axi_aresetn,
-    s00_axi_awaddr,
-    s00_axi_awprot,
-    s00_axi_awvalid,
-    s00_axi_awready,
-    s00_axi_wdata,
-    s00_axi_wstrb,
-    s00_axi_wvalid,
-    s00_axi_wready,
-    s00_axi_bresp,
-    s00_axi_bvalid,
-    s00_axi_bready,
-    s00_axi_araddr,
-    s00_axi_arprot,
-    s00_axi_arvalid,
-    s00_axi_arready,
-    s00_axi_rdata,
-    s00_axi_rresp,
-    s00_axi_rvalid,
-    s00_axi_rready);
-  input clk62p5;
-  output fastcommand_out_p;
-  output fastcommand_out_n;
-  input cmd_idle;
-  input cmd_edge;
-  input cmd_sync;
-  input cmd_act;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input cmd_reset;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input cmd_adc_reset;
-  output ready;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *) input s00_axi_aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S00_AXI_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s00_axi_aresetn;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *) input [4:0]s00_axi_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *) input [2:0]s00_axi_awprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWVALID" *) input s00_axi_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWREADY" *) output s00_axi_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WDATA" *) input [31:0]s00_axi_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]s00_axi_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input s00_axi_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output s00_axi_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BRESP" *) output [1:0]s00_axi_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BVALID" *) output s00_axi_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BREADY" *) input s00_axi_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) input [4:0]s00_axi_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT" *) input [2:0]s00_axi_arprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARVALID" *) input s00_axi_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY" *) output s00_axi_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RDATA" *) output [31:0]s00_axi_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RRESP" *) output [1:0]s00_axi_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RVALID" *) output s00_axi_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 8, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 5, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input s00_axi_rready;
-
-  wire \<const0> ;
-  wire clk62p5;
-  wire cmd_act;
-  wire cmd_adc_reset;
-  wire cmd_edge;
-  wire cmd_idle;
-  wire cmd_reset;
-  wire cmd_sync;
-  (* SLEW = "SLOW" *) wire fastcommand_out_n;
-  (* SLEW = "SLOW" *) wire fastcommand_out_p;
-  wire ready;
-  wire s00_axi_aclk;
-  wire [4:0]s00_axi_araddr;
-  wire s00_axi_aresetn;
-  wire s00_axi_arready;
-  wire s00_axi_arvalid;
-  wire [4:0]s00_axi_awaddr;
-  wire s00_axi_awready;
-  wire s00_axi_awvalid;
-  wire s00_axi_bready;
-  wire s00_axi_bvalid;
-  wire [31:0]s00_axi_rdata;
-  wire s00_axi_rready;
-  wire s00_axi_rvalid;
-  wire [31:0]s00_axi_wdata;
-  wire s00_axi_wready;
-  wire [3:0]s00_axi_wstrb;
-  wire s00_axi_wvalid;
-
-  assign s00_axi_bresp[1] = \<const0> ;
-  assign s00_axi_bresp[0] = \<const0> ;
-  assign s00_axi_rresp[1] = \<const0> ;
-  assign s00_axi_rresp[0] = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
-  design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 inst
-       (.S_AXI_ARREADY(s00_axi_arready),
-        .S_AXI_AWREADY(s00_axi_awready),
-        .S_AXI_WREADY(s00_axi_wready),
-        .clk62p5(clk62p5),
-        .cmd_act(cmd_act),
-        .cmd_adc_reset(cmd_adc_reset),
-        .cmd_edge(cmd_edge),
-        .cmd_idle(cmd_idle),
-        .cmd_reset(cmd_reset),
-        .cmd_sync(cmd_sync),
-        .fastcommand_out_n(fastcommand_out_n),
-        .fastcommand_out_p(fastcommand_out_p),
-        .ready(ready),
-        .s00_axi_aclk(s00_axi_aclk),
-        .s00_axi_araddr(s00_axi_araddr[4:2]),
-        .s00_axi_aresetn(s00_axi_aresetn),
-        .s00_axi_arvalid(s00_axi_arvalid),
-        .s00_axi_awaddr(s00_axi_awaddr[4:2]),
-        .s00_axi_awvalid(s00_axi_awvalid),
-        .s00_axi_bready(s00_axi_bready),
-        .s00_axi_bvalid(s00_axi_bvalid),
-        .s00_axi_rdata(s00_axi_rdata),
-        .s00_axi_rready(s00_axi_rready),
-        .s00_axi_rvalid(s00_axi_rvalid),
-        .s00_axi_wdata(s00_axi_wdata),
-        .s00_axi_wstrb(s00_axi_wstrb),
-        .s00_axi_wvalid(s00_axi_wvalid));
-endmodule
-
-(* ORIG_REF_NAME = "coldata_fast_cmd_v1_0" *) 
 module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
    (fastcommand_out_p,
     fastcommand_out_n,
+    fastcommand_out,
     S_AXI_AWREADY,
     S_AXI_WREADY,
     ready,
@@ -174,6 +43,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
     s00_axi_rready);
   output fastcommand_out_p;
   output fastcommand_out_n;
+  output fastcommand_out;
   output S_AXI_AWREADY;
   output S_AXI_WREADY;
   output ready;
@@ -210,6 +80,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
   wire cmd_idle;
   wire cmd_reset;
   wire cmd_sync;
+  wire fastcommand_out;
   wire fastcommand_out_n;
   wire fastcommand_out_p;
   wire ready;
@@ -239,6 +110,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
         .cmd_idle(cmd_idle),
         .cmd_reset(cmd_reset),
         .cmd_sync(cmd_sync),
+        .fastcommand_out(fastcommand_out),
         .fastcommand_out_n(fastcommand_out_n),
         .fastcommand_out_p(fastcommand_out_p),
         .ready(ready),
@@ -258,10 +130,10 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0
         .s00_axi_wvalid(s00_axi_wvalid));
 endmodule
 
-(* ORIG_REF_NAME = "coldata_fast_cmd_v1_0_S00_AXI" *) 
 module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
    (fastcommand_out_p,
     fastcommand_out_n,
+    fastcommand_out,
     S_AXI_AWREADY,
     S_AXI_WREADY,
     ready,
@@ -289,6 +161,7 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
     s00_axi_rready);
   output fastcommand_out_p;
   output fastcommand_out_n;
+  output fastcommand_out;
   output S_AXI_AWREADY;
   output S_AXI_WREADY;
   output ready;
@@ -1740,7 +1613,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .O(\cmd_code[3][5]_i_1_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][0]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][0]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][0]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1751,7 +1626,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][0]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][1]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][1]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][1]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1762,7 +1639,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][1]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][2]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][2]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][2]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1773,7 +1652,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][2]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][3]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][3]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][3]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1784,7 +1665,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][3]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][4]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][4]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][4]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1795,7 +1678,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .Q(\cmd_code_reg[1][4]_srl2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1] " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_code_reg[1][5]_srl2 " *) 
-  SRL16E \cmd_code_reg[1][5]_srl2 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_code_reg[1][5]_srl2 
        (.A0(1'b1),
         .A1(1'b0),
         .A2(1'b0),
@@ -1804,73 +1689,97 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .CLK(clk62p5),
         .D(\slv_reg0_reg_n_0_[5] ),
         .Q(\cmd_code_reg[1][5]_srl2_n_0 ));
-  FDRE \cmd_code_reg[2][0] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][0] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][0]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][0] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][1] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][1] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][1]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][1] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][2] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][2] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][2]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][2] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][3] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][3]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][3] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][4] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][4] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][4]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][4] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[2][5] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[2][5] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code_reg[1][5]_srl2_n_0 ),
         .Q(\cmd_code_reg_n_0_[2][5] ),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][0] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][0] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][0]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [0]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][1] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][1] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][1]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [1]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][2] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][2] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][2]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [2]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][3] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][3]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [3]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][4] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][4] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][4]_i_1_n_0 ),
         .Q(\cmd_code_reg[3] [4]),
         .R(1'b0));
-  FDRE \cmd_code_reg[3][5] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_code_reg[3][5] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_code[3][5]_i_1_n_0 ),
@@ -1912,7 +1821,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .O(\cmd_req_r[4]_i_2_n_0 ));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req_r_reg " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_req_r_reg[2]_srl3 " *) 
-  SRL16E \cmd_req_r_reg[2]_srl3 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_req_r_reg[2]_srl3 
        (.A0(1'b0),
         .A1(1'b1),
         .A2(1'b0),
@@ -1921,19 +1832,25 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .CLK(clk62p5),
         .D(cmd_req_reg_n_0),
         .Q(\cmd_req_r_reg[2]_srl3_n_0 ));
-  FDRE \cmd_req_r_reg[3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_req_r_reg[3] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(\cmd_req_r_reg[2]_srl3_n_0 ),
         .Q(cmd_req_r[3]),
         .R(1'b0));
-  FDRE \cmd_req_r_reg[4] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_req_r_reg[4] 
        (.C(clk62p5),
         .CE(1'b1),
         .D(p_1_out),
         .Q(cmd_req_r[4]),
         .R(1'b0));
-  FDRE cmd_req_reg
+  FDRE #(
+    .INIT(1'b0)) 
+    cmd_req_reg
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(cmd_req_i_1_n_0),
@@ -1949,7 +1866,9 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .O(cmd_rsp_i_1_n_0));
   (* srl_bus_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp_r_reg " *) 
   (* srl_name = "\inst/coldata_fast_cmd_v1_0_S00_AXI_inst/cmd_rsp_r_reg[2]_srl3 " *) 
-  SRL16E \cmd_rsp_r_reg[2]_srl3 
+  SRL16E #(
+    .INIT(16'h0000)) 
+    \cmd_rsp_r_reg[2]_srl3 
        (.A0(1'b0),
         .A1(1'b1),
         .A2(1'b0),
@@ -1958,13 +1877,17 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .CLK(s00_axi_aclk),
         .D(cmd_rsp),
         .Q(\cmd_rsp_r_reg[2]_srl3_n_0 ));
-  FDRE \cmd_rsp_r_reg[3] 
+  FDRE #(
+    .INIT(1'b0)) 
+    \cmd_rsp_r_reg[3] 
        (.C(s00_axi_aclk),
         .CE(s00_axi_aresetn),
         .D(\cmd_rsp_r_reg[2]_srl3_n_0 ),
         .Q(cmd_rsp_r),
         .R(1'b0));
-  FDRE cmd_rsp_reg
+  FDRE #(
+    .INIT(1'b0)) 
+    cmd_rsp_reg
        (.C(clk62p5),
         .CE(1'b1),
         .D(cmd_rsp_i_1_n_0),
@@ -2106,22 +2029,22 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   LUT2 #(
     .INIT(4'h8)) 
     \shr[10]_i_1 
-       (.I0(sh_mark_0),
-        .I1(\shr_reg_n_0_[9] ),
+       (.I0(\shr_reg_n_0_[9] ),
+        .I1(sh_mark_0),
         .O(\shr[10]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \shr[11]_i_1 
-       (.I0(sh_mark_0),
-        .I1(\shr_reg_n_0_[10] ),
+       (.I0(\shr_reg_n_0_[10] ),
+        .I1(sh_mark_0),
         .O(\shr[11]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \shr[12]_i_1 
-       (.I0(sh_mark_0),
-        .I1(\shr_reg_n_0_[11] ),
+       (.I0(\shr_reg_n_0_[11] ),
+        .I1(sh_mark_0),
         .O(\shr[12]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h88888888BBB888B8)) 
@@ -2200,8 +2123,8 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   LUT2 #(
     .INIT(4'h8)) 
     \shr[17]_i_3 
-       (.I0(sh_mark_0),
-        .I1(\shr_reg_n_0_[16] ),
+       (.I0(\shr_reg_n_0_[16] ),
+        .I1(sh_mark_0),
         .O(\shr[17]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
@@ -2280,8 +2203,8 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   LUT2 #(
     .INIT(4'h8)) 
     \shr[5]_i_1 
-       (.I0(sh_mark_0),
-        .I1(\shr_reg_n_0_[4] ),
+       (.I0(\shr_reg_n_0_[4] ),
+        .I1(sh_mark_0),
         .O(\shr[5]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h88888888BBB888B8)) 
@@ -2316,8 +2239,8 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
   LUT2 #(
     .INIT(4'h8)) 
     \shr[9]_i_1 
-       (.I0(sh_mark_0),
-        .I1(\shr_reg_n_0_[8] ),
+       (.I0(\shr_reg_n_0_[8] ),
+        .I1(sh_mark_0),
         .O(\shr[9]_i_1_n_0 ));
   FDRE \shr_reg[10] 
        (.C(clk62p5),
@@ -3023,12 +2946,12 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .I3(p_0_in[1]),
         .I4(p_0_in[2]),
         .O(p_1_in[7]));
-  FDRE \slv_reg1_reg[0] 
+  FDSE \slv_reg1_reg[0] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
         .D(s00_axi_wdata[0]),
         .Q(\slv_reg1_reg_n_0_[0] ),
-        .R(axi_awready_i_1_n_0));
+        .S(axi_awready_i_1_n_0));
   FDRE \slv_reg1_reg[10] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[15]),
@@ -3089,12 +3012,12 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .D(s00_axi_wdata[19]),
         .Q(\slv_reg1_reg_n_0_[19] ),
         .R(axi_awready_i_1_n_0));
-  FDRE \slv_reg1_reg[1] 
+  FDSE \slv_reg1_reg[1] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
         .D(s00_axi_wdata[1]),
         .Q(\slv_reg1_reg_n_0_[1] ),
-        .R(axi_awready_i_1_n_0));
+        .S(axi_awready_i_1_n_0));
   FDRE \slv_reg1_reg[20] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[23]),
@@ -3179,12 +3102,12 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .D(s00_axi_wdata[3]),
         .Q(\slv_reg1_reg_n_0_[3] ),
         .R(axi_awready_i_1_n_0));
-  FDRE \slv_reg1_reg[4] 
+  FDSE \slv_reg1_reg[4] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
         .D(s00_axi_wdata[4]),
         .Q(\slv_reg1_reg_n_0_[4] ),
-        .R(axi_awready_i_1_n_0));
+        .S(axi_awready_i_1_n_0));
   FDRE \slv_reg1_reg[5] 
        (.C(s00_axi_aclk),
         .CE(p_1_in[7]),
@@ -4583,6 +4506,141 @@ module design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI
         .D(\wait_cnt[7]_i_2_n_0 ),
         .Q(wait_cnt[7]),
         .R(1'b0));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "design_1_coldata_fast_cmd_0_0,coldata_fast_cmd_v1_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_fast_cmd_v1_0,Vivado 2020.1" *) 
+(* NotValidForBitStream *)
+module design_1_coldata_fast_cmd_0_0
+   (clk62p5,
+    fastcommand_out_p,
+    fastcommand_out_n,
+    fastcommand_out,
+    cmd_idle,
+    cmd_edge,
+    cmd_sync,
+    cmd_act,
+    cmd_reset,
+    cmd_adc_reset,
+    ready,
+    s00_axi_aclk,
+    s00_axi_aresetn,
+    s00_axi_awaddr,
+    s00_axi_awprot,
+    s00_axi_awvalid,
+    s00_axi_awready,
+    s00_axi_wdata,
+    s00_axi_wstrb,
+    s00_axi_wvalid,
+    s00_axi_wready,
+    s00_axi_bresp,
+    s00_axi_bvalid,
+    s00_axi_bready,
+    s00_axi_araddr,
+    s00_axi_arprot,
+    s00_axi_arvalid,
+    s00_axi_arready,
+    s00_axi_rdata,
+    s00_axi_rresp,
+    s00_axi_rvalid,
+    s00_axi_rready);
+  input clk62p5;
+  output fastcommand_out_p;
+  output fastcommand_out_n;
+  output fastcommand_out;
+  input cmd_idle;
+  input cmd_edge;
+  input cmd_sync;
+  input cmd_act;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input cmd_reset;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_adc_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input cmd_adc_reset;
+  output ready;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *) input s00_axi_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S00_AXI_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s00_axi_aresetn;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *) input [4:0]s00_axi_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *) input [2:0]s00_axi_awprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWVALID" *) input s00_axi_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWREADY" *) output s00_axi_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WDATA" *) input [31:0]s00_axi_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]s00_axi_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input s00_axi_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output s00_axi_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BRESP" *) output [1:0]s00_axi_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BVALID" *) output s00_axi_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BREADY" *) input s00_axi_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) input [4:0]s00_axi_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT" *) input [2:0]s00_axi_arprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARVALID" *) input s00_axi_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY" *) output s00_axi_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RDATA" *) output [31:0]s00_axi_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RRESP" *) output [1:0]s00_axi_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RVALID" *) output s00_axi_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 8, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 5, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input s00_axi_rready;
+
+  wire \<const0> ;
+  wire clk62p5;
+  wire cmd_act;
+  wire cmd_adc_reset;
+  wire cmd_edge;
+  wire cmd_idle;
+  wire cmd_reset;
+  wire cmd_sync;
+  (* SLEW = "SLOW" *) wire fastcommand_out;
+  (* SLEW = "SLOW" *) wire fastcommand_out_n;
+  (* SLEW = "SLOW" *) wire fastcommand_out_p;
+  wire ready;
+  wire s00_axi_aclk;
+  wire [4:0]s00_axi_araddr;
+  wire s00_axi_aresetn;
+  wire s00_axi_arready;
+  wire s00_axi_arvalid;
+  wire [4:0]s00_axi_awaddr;
+  wire s00_axi_awready;
+  wire s00_axi_awvalid;
+  wire s00_axi_bready;
+  wire s00_axi_bvalid;
+  wire [31:0]s00_axi_rdata;
+  wire s00_axi_rready;
+  wire s00_axi_rvalid;
+  wire [31:0]s00_axi_wdata;
+  wire s00_axi_wready;
+  wire [3:0]s00_axi_wstrb;
+  wire s00_axi_wvalid;
+
+  assign s00_axi_bresp[1] = \<const0> ;
+  assign s00_axi_bresp[0] = \<const0> ;
+  assign s00_axi_rresp[1] = \<const0> ;
+  assign s00_axi_rresp[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 inst
+       (.S_AXI_ARREADY(s00_axi_arready),
+        .S_AXI_AWREADY(s00_axi_awready),
+        .S_AXI_WREADY(s00_axi_wready),
+        .clk62p5(clk62p5),
+        .cmd_act(cmd_act),
+        .cmd_adc_reset(cmd_adc_reset),
+        .cmd_edge(cmd_edge),
+        .cmd_idle(cmd_idle),
+        .cmd_reset(cmd_reset),
+        .cmd_sync(cmd_sync),
+        .fastcommand_out(fastcommand_out),
+        .fastcommand_out_n(fastcommand_out_n),
+        .fastcommand_out_p(fastcommand_out_p),
+        .ready(ready),
+        .s00_axi_aclk(s00_axi_aclk),
+        .s00_axi_araddr(s00_axi_araddr[4:2]),
+        .s00_axi_aresetn(s00_axi_aresetn),
+        .s00_axi_arvalid(s00_axi_arvalid),
+        .s00_axi_awaddr(s00_axi_awaddr[4:2]),
+        .s00_axi_awvalid(s00_axi_awvalid),
+        .s00_axi_bready(s00_axi_bready),
+        .s00_axi_bvalid(s00_axi_bvalid),
+        .s00_axi_rdata(s00_axi_rdata),
+        .s00_axi_rready(s00_axi_rready),
+        .s00_axi_rvalid(s00_axi_rvalid),
+        .s00_axi_wdata(s00_axi_wdata),
+        .s00_axi_wstrb(s00_axi_wstrb),
+        .s00_axi_wvalid(s00_axi_wvalid));
 endmodule
 `ifndef GLBL
 `define GLBL

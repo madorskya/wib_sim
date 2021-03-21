@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_fast_cmd:1.0
-// IP Revision: 10
+// IP Revision: 12
 
 `timescale 1ns/1ps
 
@@ -57,6 +57,7 @@ module design_1_coldata_fast_cmd_0_0 (
   clk62p5,
   fastcommand_out_p,
   fastcommand_out_n,
+  fastcommand_out,
   cmd_idle,
   cmd_edge,
   cmd_sync,
@@ -90,6 +91,7 @@ module design_1_coldata_fast_cmd_0_0 (
 input wire clk62p5;
 output wire fastcommand_out_p;
 output wire fastcommand_out_n;
+output wire fastcommand_out;
 input wire cmd_idle;
 input wire cmd_edge;
 input wire cmd_sync;
@@ -155,6 +157,7 @@ input wire s00_axi_rready;
     .clk62p5(clk62p5),
     .fastcommand_out_p(fastcommand_out_p),
     .fastcommand_out_n(fastcommand_out_n),
+    .fastcommand_out(fastcommand_out),
     .cmd_idle(cmd_idle),
     .cmd_edge(cmd_edge),
     .cmd_sync(cmd_sync),

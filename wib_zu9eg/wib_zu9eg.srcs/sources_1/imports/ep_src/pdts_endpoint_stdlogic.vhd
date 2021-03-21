@@ -16,6 +16,8 @@ entity pdts_endpoint_stdlogic is
 	port(
 		sclk: in std_logic; -- Free-running system clock
 		srst: in std_logic; -- System reset (sclk domain)
+		addr: in std_logic_vector(7 downto 0); -- Endpoint address (async, sampled in clk domain)
+		tgrp: in std_logic_vector(1 downto 0); -- Timing group (async, sampled in clk domain)
 		stat: out std_logic_vector(3 downto 0); -- Status output (sclk domain)
 		rec_clk: in std_logic; -- CDR recovered clock from timing link
 		rec_d: in std_logic; -- CDR recovered data from timing link (rec_clk domain)
@@ -58,8 +60,8 @@ begin
 		port map(
 			sclk => sclk,
 			srst => srst,
-			addr => X"00",
-			tgrp => "00",
+			addr => addr,
+			tgrp => tgrp,
 			stat => stat,
 			rec_clk => rec_clk,
 			rec_d => rec_d,

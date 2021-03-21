@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 10 15:12:21 2021
+-- Date        : Sat Mar 20 15:13:33 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_util_ds_buf_0_2 -prefix
---               design_1_util_ds_buf_0_2_ design_1_util_ds_buf_0_3_sim_netlist.vhdl
--- Design      : design_1_util_ds_buf_0_3
+--               design_1_util_ds_buf_0_2_ design_1_util_ds_buf_0_1_sim_netlist.vhdl
+-- Design      : design_1_util_ds_buf_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xczu9eg-ffvb1156-1-e
@@ -190,7 +190,7 @@ entity design_1_util_ds_buf_0_2 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_util_ds_buf_0_2 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of design_1_util_ds_buf_0_2 : entity is "design_1_util_ds_buf_0_3,util_ds_buf,{}";
+  attribute CHECK_LICENSE_TYPE of design_1_util_ds_buf_0_2 : entity is "design_1_util_ds_buf_0_1,util_ds_buf,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_util_ds_buf_0_2 : entity is "yes";
   attribute x_core_info : string;
@@ -251,9 +251,9 @@ architecture STRUCTURE of design_1_util_ds_buf_0_2 is
   attribute x_interface_info : string;
   attribute x_interface_info of OBUF_DS_N : signal is "xilinx.com:signal:clock:1.0 OBUF_DS_N CLK";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of OBUF_DS_N : signal is "XIL_INTERFACENAME OBUF_DS_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_util_ds_buf_0_3_OBUF_DS_N, INSERT_VIP 0";
+  attribute x_interface_parameter of OBUF_DS_N : signal is "XIL_INTERFACENAME OBUF_DS_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_util_ds_buf_0_1_OBUF_DS_N, INSERT_VIP 0";
   attribute x_interface_info of OBUF_DS_P : signal is "xilinx.com:signal:clock:1.0 OBUF_DS_P CLK";
-  attribute x_interface_parameter of OBUF_DS_P : signal is "XIL_INTERFACENAME OBUF_DS_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_util_ds_buf_0_3_OBUF_DS_P, INSERT_VIP 0";
+  attribute x_interface_parameter of OBUF_DS_P : signal is "XIL_INTERFACENAME OBUF_DS_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_util_ds_buf_0_1_OBUF_DS_P, INSERT_VIP 0";
   attribute x_interface_info of OBUF_IN : signal is "xilinx.com:signal:clock:1.0 OBUF_IN CLK";
   attribute x_interface_parameter of OBUF_IN : signal is "XIL_INTERFACENAME OBUF_IN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0";
 begin

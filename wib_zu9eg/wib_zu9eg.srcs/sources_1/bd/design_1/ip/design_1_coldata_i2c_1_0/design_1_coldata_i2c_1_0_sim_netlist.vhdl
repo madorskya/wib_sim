@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 10 14:53:39 2021
+-- Date        : Sat Mar 20 15:13:24 2021
 -- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_coldata_i2c_1_0 -prefix
---               design_1_coldata_i2c_1_0_ design_1_coldata_i2c_0_0_sim_netlist.vhdl
--- Design      : design_1_coldata_i2c_0_0
+--               design_1_coldata_i2c_1_0_ design_1_coldata_i2c_0_1_sim_netlist.vhdl
+-- Design      : design_1_coldata_i2c_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xczu9eg-ffvb1156-1-e
@@ -5253,7 +5253,7 @@ entity design_1_coldata_i2c_1_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of design_1_coldata_i2c_1_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of design_1_coldata_i2c_1_0 : entity is "design_1_coldata_i2c_0_0,coldata_i2c_v1_0,{}";
+  attribute CHECK_LICENSE_TYPE of design_1_coldata_i2c_1_0 : entity is "design_1_coldata_i2c_0_1,coldata_i2c_v1_0,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_coldata_i2c_1_0 : entity is "yes";
   attribute X_CORE_INFO : string;

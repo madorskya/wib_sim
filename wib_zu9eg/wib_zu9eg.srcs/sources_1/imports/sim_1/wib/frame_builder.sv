@@ -1,6 +1,7 @@
 module frame_builder
 (
     input [13:0] deframed [15:0][31:0], // [link][sample]
+    input [ 7:0] time8 [15:0], //[link]
     input [15:0] valid14,
     input [15:0] valid12,
     input [1:0]  crc_err [15:0],
@@ -12,32 +13,15 @@ module frame_builder
     output [1:0]  daq_data_type [1:0], // data_type flags for felix
     input         daq_clk,
     input  [63:0] ts_tstamp, // time stamp from timing endpoint
+    input         ts_clk, // time stamp clock
     input         reset,
     input         fake_daq_stream,
 
     input [3:0] bp_crate_addr,
-    input [3:0] bp_slot_addr 
+    input [3:0] bp_slot_addr,
+    input si5344_lol 
 
 );
-/*
-    genvar gi;
-    generate
-        for (gi = 0; gi < 2; gi++) // one builder per output link
-        begin: frm_bld_loop
-            frame_builder_single fbs
-            (
-                .deframed     (deframed [gi*8+7:gi*8]),
-                .valid14      (valid14  [gi*8+7:gi*8]),
-                .valid12      (valid12  [gi*8+7:gi*8]),
-                .crc_err      (crc_err  [gi*8+7:gi*8]),
-                .rx_usrclk2   (rx_usrclk2          ), 
-                .link_mask    (link_mask[gi*8+7:gi*8]),
-                .daq_stream   (daq_stream   [gi]),
-                .daq_stream_k (daq_stream_k [gi])
-            );
-        end
-    endgenerate
-*/
 
     // passing deframed [7:0] into frame_builder_single does not work in simulation for some reason
     // even though it should, and does work in synthesis.
@@ -63,10 +47,13 @@ module frame_builder
     assign deframed1[6] = deframed[14];
     assign deframed1[7] = deframed[15];
 
+    wire [63:0] tstamp_deframed;
+
     // modules below generate daq streams for each of the FELIX links
     frame_builder_single #(.NUM(0)) fbs0
     (
         .deframed     (deframed0),
+        .time8        (time8    [7:0]),
         .valid14      (valid14  [7:0]),
         .valid12      (valid12  [7:0]),
         .crc_err      (crc_err  [7:0]),
@@ -76,16 +63,18 @@ module frame_builder
         .daq_stream_k (daq_stream_k [0]),
         .daq_data_type(daq_data_type[0]),
         .daq_clk      (daq_clk),
-        .ts_tstamp    (ts_tstamp),
+        .ts_tstamp    (tstamp_deframed),
         .reset        (reset),
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr )
+        .bp_slot_addr  (bp_slot_addr ),
+        .si5344_lol    (si5344_lol)
     );
 
     frame_builder_single #(.NUM(1)) fbs1
     (
         .deframed     (deframed1),
+        .time8        (time8    [15:8]),
         .valid14      (valid14  [15:8]),
         .valid12      (valid12  [15:8]),
         .crc_err      (crc_err  [15:8]),
@@ -95,12 +84,31 @@ module frame_builder
         .daq_stream_k (daq_stream_k [1]),
         .daq_data_type(daq_data_type[1]),
         .daq_clk      (daq_clk),
-        .ts_tstamp    (ts_tstamp),
+        .ts_tstamp    (tstamp_deframed),
         .reset        (reset),
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr )
+        .bp_slot_addr  (bp_slot_addr ),
+        .si5344_lol    (si5344_lol)
     );
+
+    // async fifo for time stamp reclocking into deframed data domain
+    time_stamp_fifo ts_fifo 
+    (
+        .srst        (1'b0),  
+        .wr_clk      (ts_clk),
+        .rd_clk      (rxclk2x),
+        .din         (ts_tstamp),   
+        .wr_en       (1'b1), 
+        .rd_en       (1'b1), 
+        .dout        (tstamp_deframed),  
+        .full        (),  
+        .empty       (), 
+        .valid       (), 
+        .wr_rst_busy (),
+        .rd_rst_busy () 
+    );
+    
 
 endmodule
 

@@ -53,15 +53,18 @@ module bd_tux
     input         daq_clk,
     output [1:0]  daq_spy_full,
     input  [1:0]  daq_spy_reset,
+    input  [17:0] spy_rec_time,
+    output [19:0] spy_addr [1:0],
     input  [31:0] daq_stream [1:0],
     input  [3:0]  daq_stream_k [1:0],
-    output clk_240,
-    input  cmd_code_idle,
-    input  cmd_code_edge,
-    input  cmd_code_sync,
-    input  cmd_code_act ,
-    input  cmd_code_reset,
-    input  cmd_code_adc_reset,
+    input  [1:0]  daq_data_type [1:0], // data_type flags for spy memory
+    input [7:0] cmd_code_idle,
+    input [7:0] cmd_code_edge,
+    input [7:0] cmd_code_sync,
+    input [7:0] cmd_code_act ,
+    input [7:0] cmd_code_reset,
+    input [7:0] cmd_code_adc_reset,
+    input [7:0] cmd_code_trigger,
     
     input fake_time_stamp_en, // enable fake time stamp
     input [63:0] fake_time_stamp_init
@@ -149,10 +152,15 @@ module bd_tux
         .daq_spy_full_1  (daq_spy_full[1] ),
         .daq_spy_reset_0 (daq_spy_reset[0]),
         .daq_spy_reset_1 (daq_spy_reset[1]),
+        .spy_rec_time    (spy_rec_time),
+        .spy_addr_0      (spy_addr [0]),
+        .spy_addr_1      (spy_addr [1]),
         .daq_stream0     (daq_stream[0]   ),
         .daq_stream_k0   (daq_stream_k[0] ),
         .daq_stream1     (daq_stream[1]   ),
         .daq_stream_k1   (daq_stream_k[1] ),
+        .daq_data_type0  (daq_data_type[0]),
+        .daq_data_type1  (daq_data_type[1]),
         
         .cmd_code_idle      (cmd_code_idle     ),
         .cmd_code_edge      (cmd_code_edge     ),
@@ -160,6 +168,7 @@ module bd_tux
         .cmd_code_act       (cmd_code_act      ),
         .cmd_code_reset     (cmd_code_reset    ),
         .cmd_code_adc_reset (cmd_code_adc_reset),
+        .cmd_code_trigger   (cmd_code_trigger  ),
         
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init)

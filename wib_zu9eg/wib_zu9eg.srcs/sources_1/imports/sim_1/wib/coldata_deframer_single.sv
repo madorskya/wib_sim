@@ -6,6 +6,7 @@ module coldata_deframer_single #(parameter NUM = 0)
     input [1:0]   rx_k,
 
     output [13:0] deframed [31:0],
+    output reg [7:0] time8,
     output reg valid14,
     output reg valid12,
     
@@ -29,7 +30,6 @@ module coldata_deframer_single #(parameter NUM = 0)
     df_state_t df_state = IDLE;
     reg [7:0] rx_byte0;
     reg rx_k0;
-    reg [7:0] time8;
     reg [7:0] byte_cnt;
     wire dfifo_valid;
 
@@ -77,6 +77,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             IDLE: 
             begin
                 parallel_frame = 0;
+                time8 = 8'h0;
                 // wait for header
                 if (rx_k0 == 1'b1 && rx_byte0 == SYM_IDLE) // header starts
                     df_state = HEAD;        

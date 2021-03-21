@@ -79,12 +79,14 @@ module design_1_ts_reclock_0_0 (
   cmd_code_act,
   cmd_code_reset,
   cmd_code_adc_reset,
+  cmd_code_trigger,
   cmd_bit_idle,
   cmd_bit_edge,
   cmd_bit_sync,
   cmd_bit_act,
   cmd_bit_reset,
   cmd_bit_adc_reset,
+  cmd_bit_trigger,
   fake_time_stamp_en,
   fake_time_stamp_init
 );
@@ -119,6 +121,7 @@ input wire [7 : 0] cmd_code_reset;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_code_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_code_adc_reset RST" *)
 input wire [7 : 0] cmd_code_adc_reset;
+input wire [7 : 0] cmd_code_trigger;
 output wire cmd_bit_idle;
 output wire cmd_bit_edge;
 output wire cmd_bit_sync;
@@ -129,6 +132,7 @@ output wire cmd_bit_reset;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_bit_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST" *)
 output wire cmd_bit_adc_reset;
+output wire cmd_bit_trigger;
 input wire fake_time_stamp_en;
 input wire [63 : 0] fake_time_stamp_init;
 
@@ -157,12 +161,14 @@ input wire [63 : 0] fake_time_stamp_init;
     .cmd_code_act(cmd_code_act),
     .cmd_code_reset(cmd_code_reset),
     .cmd_code_adc_reset(cmd_code_adc_reset),
+    .cmd_code_trigger(cmd_code_trigger),
     .cmd_bit_idle(cmd_bit_idle),
     .cmd_bit_edge(cmd_bit_edge),
     .cmd_bit_sync(cmd_bit_sync),
     .cmd_bit_act(cmd_bit_act),
     .cmd_bit_reset(cmd_bit_reset),
     .cmd_bit_adc_reset(cmd_bit_adc_reset),
+    .cmd_bit_trigger(cmd_bit_trigger),
     .fake_time_stamp_en(fake_time_stamp_en),
     .fake_time_stamp_init(fake_time_stamp_init)
   );
