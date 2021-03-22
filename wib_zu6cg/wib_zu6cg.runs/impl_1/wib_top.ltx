@@ -5876,14 +5876,22 @@
                                 "id": 195,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
-                                "isVector": false,
+                                "isVector": true,
                                 "leftIndex": 0,
-                                "rightIndex": 0,
+                                "rightIndex": 1,
                                 "portIndex": 1,
                                 "nets": [
                                     {
                                         "name": "txpmaresetdone_out",
-                                        "isBus": false
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "txpmaresetdone_out[1]"
+                                            },
+                                            {
+                                                "name": "txpmaresetdone_out[0]"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -5932,7 +5940,7 @@
                                     {
                                         "name": "axi_rstn",
                                         "isBus": false,
-                                        "parentNetId": 814
+                                        "parentNetId": 815
                                     }
                                 ]
                             },
@@ -7188,7 +7196,7 @@
                                     {
                                         "name": "wrp/design_1_i/timing_module/ts_reclock_0_rdy_out",
                                         "isBus": false,
-                                        "parentNetId": 1055
+                                        "parentNetId": 1056
                                     }
                                 ]
                             },
@@ -7613,7 +7621,7 @@
                 ],
                 "parent_nets": [
                     {
-                        "id": 814,
+                        "id": 815,
                         "name": "wrp/design_1_i/rst_ps8_0_99M/U0/peripheral_aresetn[0]",
                         "state_reg": [
                             {
@@ -7640,7 +7648,7 @@
                         ]
                     },
                     {
-                        "id": 1055,
+                        "id": 1056,
                         "name": "wrp/design_1_i/timing_module/pdts_endpoint_stdlog_0/inst/ep/startup/Q[0]",
                         "state_reg": [
                             {

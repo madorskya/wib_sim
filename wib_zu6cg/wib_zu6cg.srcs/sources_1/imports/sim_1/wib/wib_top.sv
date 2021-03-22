@@ -473,12 +473,12 @@ module wib_top
        .gthrxp_in                               (gthrxp_int),
        .gthtxn_out                              (gthtxn_int),
        .gthtxp_out                              (gthtxp_int),
-       .gtwiz_userclk_tx_reset_in               (~txpmaresetdone_out),
+       .gtwiz_userclk_tx_reset_in               (~(&txpmaresetdone_out)),
        .gtwiz_userclk_tx_srcclk_out             (),
        .gtwiz_userclk_tx_usrclk_out             (usr_clk_out),
        .gtwiz_userclk_tx_usrclk2_out            (clk240_from_felix_gth),
        .gtwiz_userclk_tx_active_out             (gtwiz_userclk_tx_active_out),
-       .gtwiz_userclk_rx_reset_in               (1'b1),
+       .gtwiz_userclk_rx_reset_in               (~(&rxpmaresetdone_out)),
        .gtwiz_userclk_rx_srcclk_out             (),
        .gtwiz_userclk_rx_usrclk_out             (),
        .gtwiz_userclk_rx_usrclk2_out            (),
@@ -487,8 +487,8 @@ module wib_top
        .gtwiz_reset_all_in                      (~axi_rstn),
        .gtwiz_reset_tx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
        .gtwiz_reset_tx_datapath_in              (gtwiz_reset_tx_datapath_in),
-       .gtwiz_reset_rx_pll_and_datapath_in      (1'b0),
-       .gtwiz_reset_rx_datapath_in              (1'b0),
+       .gtwiz_reset_rx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
+       .gtwiz_reset_rx_datapath_in              (gtwiz_reset_tx_datapath_in),
        .gtwiz_reset_rx_cdr_stable_out           (),
        .gtwiz_reset_tx_done_out                 (gtwiz_reset_tx_done_out),
        .gtwiz_reset_rx_done_out                 (),
@@ -497,7 +497,7 @@ module wib_top
        .gtrefclk01_in                           (mgtrefclk0_x0y1_int),
        .qpll1outclk_out                         (),
        .qpll1outrefclk_out                      (),
-       .rx8b10ben_in                            (2'b00),
+       .rx8b10ben_in                            (tx8b10ben_in),
        .tx8b10ben_in                            (tx8b10ben_in),
        .txctrl0_in                              (txctrl0_in),
        .txctrl1_in                              (txctrl1_in),
@@ -507,7 +507,7 @@ module wib_top
        .rxctrl1_out                             (),
        .rxctrl2_out                             (),
        .rxctrl3_out                             (),
-       .rxpmaresetdone_out                      (),
+       .rxpmaresetdone_out                      (rxpmaresetdone_out),
        .txpmaresetdone_out                      (txpmaresetdone_out)
     );    
 
@@ -591,6 +591,9 @@ module wib_top
         .probe4 (daq_data_type[0]), // input wire [1:0]  probe4
         .probe5 (daq_data_type[1]) // input wire [1:0]  probe5
     );
+
+    wire [1:0] txpmaresetdone_out;
+    wire [1:0] rxpmaresetdone_out;
 
    ila_14probe ila_felix
    (
