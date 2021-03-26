@@ -279,10 +279,10 @@
       }
     },
     "interface_nets": {
-      "S_AXI_1": {
+      "bs_switch_1_m0_bscan": {
         "interface_ports": [
-          "S_AXI",
-          "axi_jtag/s_axi"
+          "m0_bscan",
+          "bs_switch_1/m0_bscan"
         ]
       },
       "bsip_m_bscan": {
@@ -291,10 +291,10 @@
           "bs_switch_1/s_bscan"
         ]
       },
-      "bs_switch_1_m0_bscan": {
+      "S_AXI_1": {
         "interface_ports": [
-          "m0_bscan",
-          "bs_switch_1/m0_bscan"
+          "S_AXI",
+          "axi_jtag/s_axi"
         ]
       }
     },
