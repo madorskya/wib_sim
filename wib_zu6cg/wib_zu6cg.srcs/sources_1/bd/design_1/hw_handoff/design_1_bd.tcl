@@ -166,6 +166,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
 
   # Create pins
   create_bd_pin -dir I -from 1023 -to 0 Din
+  create_bd_pin -dir I -from 7 -to 0 bp_io_o
+  create_bd_pin -dir I -from 7 -to 0 bp_io_t
   create_bd_pin -dir O cmd_bit_act
   create_bd_pin -dir O -type rst cmd_bit_adc_reset
   create_bd_pin -dir O cmd_bit_edge
@@ -208,9 +210,11 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_INPUT_PIPE_STAGES {6} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {16} \
+   CONFIG.C_NUM_OF_PROBES {20} \
    CONFIG.C_PROBE0_WIDTH {4} \
    CONFIG.C_PROBE16_WIDTH {1} \
+   CONFIG.C_PROBE18_WIDTH {8} \
+   CONFIG.C_PROBE19_WIDTH {8} \
    CONFIG.C_PROBE3_WIDTH {4} \
    CONFIG.C_PROBE6_WIDTH {64} \
  ] $ila_0
@@ -278,6 +282,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
 
   # Create port connections
   connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins Din] [get_bd_pins xlslice_0/Din] [get_bd_pins xlslice_1/Din] [get_bd_pins xlslice_2/Din]
+  connect_bd_net -net bp_io_o_1 [get_bd_pins bp_io_o] [get_bd_pins ila_0/probe19]
+  connect_bd_net -net bp_io_t_1 [get_bd_pins bp_io_t] [get_bd_pins ila_0/probe18]
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins ts_clk] [get_bd_pins ila_0/clk] [get_bd_pins pdts_endpoint_stdlog_0/clk] [get_bd_pins ts_reclock_0/clk62p5]
   connect_bd_net -net cmd_code_act_0_1 [get_bd_pins cmd_code_act_0] [get_bd_pins ts_reclock_0/cmd_code_act]
   connect_bd_net -net cmd_code_adc_reset_0_1 [get_bd_pins cmd_code_adc_reset_0] [get_bd_pins ts_reclock_0/cmd_code_adc_reset]
@@ -288,6 +294,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net cmd_code_trigger [get_bd_pins cmd_code_trigger_0] [get_bd_pins ts_reclock_0/cmd_code_trigger]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_pins fake_time_stamp_en_0] [get_bd_pins ts_reclock_0/fake_time_stamp_en]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_pins fake_time_stamp_init_0] [get_bd_pins ts_reclock_0/fake_time_stamp_init]
+  connect_bd_net -net fast_command_out [get_bd_pins probe15] [get_bd_pins ila_0/probe15]
   connect_bd_net -net pdts_endpoint_stdlog_0_rdy [get_bd_pins pdts_endpoint_stdlog_0/rdy] [get_bd_pins ts_reclock_0/rdy_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_rst [get_bd_pins pdts_endpoint_stdlog_0/rst] [get_bd_pins ts_reclock_0/rst_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_stat [get_bd_pins pdts_endpoint_stdlog_0/stat] [get_bd_pins ts_reclock_0/stat_in]
@@ -295,9 +302,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net pdts_endpoint_stdlog_0_sync_first [get_bd_pins pdts_endpoint_stdlog_0/sync_first] [get_bd_pins ts_reclock_0/sync_first_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_sync_stb [get_bd_pins pdts_endpoint_stdlog_0/sync_stb] [get_bd_pins ts_reclock_0/sync_stb_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_tstamp [get_bd_pins pdts_endpoint_stdlog_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
-  connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins pdts_endpoint_stdlog_0/txd]
-  connect_bd_net -net probe15_1 [get_bd_pins probe15] [get_bd_pins ila_0/probe15]
+  connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins ila_0/probe17] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
+  connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins ila_0/probe16] [get_bd_pins pdts_endpoint_stdlog_0/txd]
   connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
   connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_stdlog_0/cdr_lol]
   connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins pdts_endpoint_stdlog_0/cdr_los]
@@ -1093,6 +1099,8 @@ proc create_root_design { parentCell } {
   # Create ports
   set AXI_CLK_OUT [ create_bd_port -dir O -type clk AXI_CLK_OUT ]
   set AXI_RSTn [ create_bd_port -dir O -from 0 -to 0 -type rst AXI_RSTn ]
+  set bp_io_o [ create_bd_port -dir I -from 7 -to 0 bp_io_o ]
+  set bp_io_t [ create_bd_port -dir I -from 7 -to 0 bp_io_t ]
   set cmd_code_act [ create_bd_port -dir I -from 7 -to 0 cmd_code_act ]
   set cmd_code_adc_reset [ create_bd_port -dir I -from 7 -to 0 -type rst cmd_code_adc_reset ]
   set cmd_code_edge [ create_bd_port -dir I -from 7 -to 0 cmd_code_edge ]
@@ -2801,6 +2809,8 @@ proc create_root_design { parentCell } {
 
   # Create port connections
   connect_bd_net -net axi_iic_0_iic2intc_irpt [get_bd_pins axi_iic_0/iic2intc_irpt] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
+  connect_bd_net -net bp_io_o [get_bd_ports bp_io_o] [get_bd_pins timing_module/bp_io_o]
+  connect_bd_net -net bp_io_t [get_bd_ports bp_io_t] [get_bd_pins timing_module/bp_io_t]
   connect_bd_net -net cdr_lol_0_1 [get_bd_ports ts_cdr_lol] [get_bd_pins timing_module/ts_cdr_lol]
   connect_bd_net -net cdr_los_0_1 [get_bd_ports ts_cdr_los] [get_bd_pins timing_module/ts_cdr_los]
   connect_bd_net -net cmd_code_act_0_1 [get_bd_ports cmd_code_act] [get_bd_pins timing_module/cmd_code_act_0]

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Wed Mar 17 17:15:40 2021
+//Date        : Thu Mar 25 19:24:37 2021
 //Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -13,6 +13,8 @@ module design_1_wrapper
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
+    bp_io_o,
+    bp_io_t,
     cmd_code_act,
     cmd_code_adc_reset,
     cmd_code_edge,
@@ -102,6 +104,8 @@ module design_1_wrapper
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
   output [31:0]WIB_LED_tri_o;
+  input [7:0]bp_io_o;
+  input [7:0]bp_io_t;
   input [7:0]cmd_code_act;
   input [7:0]cmd_code_adc_reset;
   input [7:0]cmd_code_edge;
@@ -192,6 +196,8 @@ module design_1_wrapper
   wire AXI_CLK_OUT;
   wire [0:0]AXI_RSTn;
   wire [31:0]WIB_LED_tri_o;
+  wire [7:0]bp_io_o;
+  wire [7:0]bp_io_t;
   wire [7:0]cmd_code_act;
   wire [7:0]cmd_code_adc_reset;
   wire [7:0]cmd_code_edge;
@@ -289,6 +295,8 @@ module design_1_wrapper
        (.AXI_CLK_OUT(AXI_CLK_OUT),
         .AXI_RSTn(AXI_RSTn),
         .WIB_LED_tri_o(WIB_LED_tri_o),
+        .bp_io_o(bp_io_o),
+        .bp_io_t(bp_io_t),
         .cmd_code_act(cmd_code_act),
         .cmd_code_adc_reset(cmd_code_adc_reset),
         .cmd_code_edge(cmd_code_edge),

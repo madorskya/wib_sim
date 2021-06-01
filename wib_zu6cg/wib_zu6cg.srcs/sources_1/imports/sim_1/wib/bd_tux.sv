@@ -36,6 +36,8 @@ module bd_tux
     output [3:0]  ts_stat,
     output txd,
     output tx_dis,
+    input  [7:0] bp_io_t, // tri-states for bp_io pins
+    input  [7:0] bp_io_o, // actual states of bp_io pins
     
     output        axi_clk_out,
     output        axi_rstn,
@@ -134,6 +136,8 @@ module bd_tux
         .ts_stat      (ts_stat),
         .txd          (txd),
         .tx_dis       (tx_dis),
+        .bp_io_t      (bp_io_t),
+        .bp_io_o      (bp_io_o),
         
         .AXI_CLK_OUT  (axi_clk_out),
         .AXI_RSTn     (axi_rstn),

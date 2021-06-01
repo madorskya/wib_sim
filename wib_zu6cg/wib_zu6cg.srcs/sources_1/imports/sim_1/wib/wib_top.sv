@@ -281,6 +281,9 @@ module wib_top
     assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0094
     assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
     
+    reg [7:0] sfp_dis_od;
+    wire [7:0] bp_io_o;    
+    
     bd_tux wrp
     (
         // coldata fast command
@@ -316,6 +319,8 @@ module wib_top
         .ts_stat           (ts_stat          ),
         .txd               (tx_timing        ),
         .tx_dis            (sfp_dis          ),
+        .bp_io_t           (sfp_dis_od       ),
+        .bp_io_o           (bp_io_o          ),
 
         .axi_clk_out (axi_clk_out),
         .axi_rstn    (axi_rstn   ),
@@ -614,7 +619,6 @@ module wib_top
         .probe13 ({daq_stream[1],daq_stream[0]}) // 64-bit
     );  
 
-    reg [7:0] sfp_dis_od;
     always @(*)
     begin
         sfp_dis_od = 8'hff;
@@ -624,7 +628,7 @@ module wib_top
     // open-drain buffers for sfp enable signals
    IOBUF bp_io_buf[7:0] 
    (
-      .O  (),     
+      .O  (bp_io_o [7:0]),     
       .IO (bp_io[7:0]),
       .I  (1'b0),     
       .T  (sfp_dis_od[7:0])
