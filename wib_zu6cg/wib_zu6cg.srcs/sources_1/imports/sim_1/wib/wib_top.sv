@@ -246,6 +246,12 @@ module wib_top
     assign fake_time_stamp_init[31: 0] = `CONFIG_BITS(6,  0, 32); // 0xA00C0018
     assign fake_time_stamp_init[63:32] = `CONFIG_BITS(7,  0, 32); // 0xA00C001C
     wire fake_daq_stream               = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
+    
+    wire ept_auto_rst_err_out;
+    wire ept_auto_rst_in          = `CONFIG_BITS(15, 0, 1); // 0xA00C003C
+    wire ept_pass_thru            = `CONFIG_BITS(15, 4, 1); // 0xA00C003C
+    wire [3:0] ept_retry_in       = `CONFIG_BITS(15, 8, 4); // 0xA00C003C
+    wire [31:0] ept_timeout_in    = `CONFIG_BITS(16, 0, 32); // 0xA00C0040
 
     // FELIX-related stuff
     wire gtwiz_userclk_tx_srcclk_out;
@@ -317,6 +323,11 @@ module wib_top
         .ts_sync_v         (ts_sync_v        ),
         .ts_tstamp         (ts_tstamp        ),
         .ts_stat           (ts_stat          ),
+        .ept_auto_rst_in   (ept_auto_rst_in  ),
+        .ept_pass_thru     (ept_pass_thru    ),
+        .ept_timeout_in    (ept_timeout_in   ),
+        .ept_retry_in      (ept_retry_in     ),
+        .ept_auto_rst_err_out  (ept_auto_rst_err_out ),
         .txd               (tx_timing        ),
         .tx_dis            (sfp_dis          ),
         .bp_io_t           (sfp_dis_od       ),
@@ -404,6 +415,7 @@ module wib_top
     assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
     assign `STATUS_BITS( 4,12,  4) = ts_sync;
     assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
+    assign `STATUS_BITS( 4, 5,  1) = ept_auto_rst_err_out;
     assign `STATUS_BITS( 4, 4,  1) = ts_rst;
     assign `STATUS_BITS( 4, 0,  4) = ts_stat;
     
