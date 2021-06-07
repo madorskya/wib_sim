@@ -1,8 +1,8 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Mar 25 19:24:37 2021
-//Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+//Date        : Sun Jun  6 11:09:28 2021
+//Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
 //Purpose     : IP block netlist
@@ -33,6 +33,11 @@ module design_1_wrapper
     daq_stream1,
     daq_stream_k0,
     daq_stream_k1,
+    ept_auto_rst_err_out,
+    ept_auto_rst_in,
+    ept_pass_thru,
+    ept_retry_in,
+    ept_timeout_in,
     fake_time_stamp_en,
     fake_time_stamp_init,
     fastcommand_out_n_0,
@@ -124,6 +129,11 @@ module design_1_wrapper
   input [31:0]daq_stream1;
   input [3:0]daq_stream_k0;
   input [3:0]daq_stream_k1;
+  output ept_auto_rst_err_out;
+  input ept_auto_rst_in;
+  input ept_pass_thru;
+  input [3:0]ept_retry_in;
+  input [31:0]ept_timeout_in;
   input fake_time_stamp_en;
   input [63:0]fake_time_stamp_init;
   output fastcommand_out_n_0;
@@ -216,6 +226,11 @@ module design_1_wrapper
   wire [31:0]daq_stream1;
   wire [3:0]daq_stream_k0;
   wire [3:0]daq_stream_k1;
+  wire ept_auto_rst_err_out;
+  wire ept_auto_rst_in;
+  wire ept_pass_thru;
+  wire [3:0]ept_retry_in;
+  wire [31:0]ept_timeout_in;
   wire fake_time_stamp_en;
   wire [63:0]fake_time_stamp_init;
   wire fastcommand_out_n_0;
@@ -315,6 +330,11 @@ module design_1_wrapper
         .daq_stream1(daq_stream1),
         .daq_stream_k0(daq_stream_k0),
         .daq_stream_k1(daq_stream_k1),
+        .ept_auto_rst_err_out(ept_auto_rst_err_out),
+        .ept_auto_rst_in(ept_auto_rst_in),
+        .ept_pass_thru(ept_pass_thru),
+        .ept_retry_in(ept_retry_in),
+        .ept_timeout_in(ept_timeout_in),
         .fake_time_stamp_en(fake_time_stamp_en),
         .fake_time_stamp_init(fake_time_stamp_init),
         .fastcommand_out_n_0(fastcommand_out_n_0),

@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:26:35 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode funcsim -rename_top design_1_debug_bridge_0_1 -prefix
---               design_1_debug_bridge_0_1_ design_1_debug_bridge_0_1_sim_netlist.vhdl
+-- Date        : Thu Jun  3 13:58:27 2021
+-- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/lxeng99/DUNE/wib_sim_timing_sync/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_1/design_1_debug_bridge_0_1_sim_netlist.vhdl
 -- Design      : design_1_debug_bridge_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xczu6cg-ffvb1156-1-e
+-- Device      : xczu9eg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -32,6 +32,8 @@ entity design_1_debug_bridge_0_1_bd_0482 is
   );
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1_debug_bridge_0_1_bd_0482 : entity is "design_1_debug_bridge_0_1.hwdef";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_debug_bridge_0_1_bd_0482 : entity is "bd_0482";
 end design_1_debug_bridge_0_1_bd_0482;
 
 architecture STRUCTURE of design_1_debug_bridge_0_1_bd_0482 is
@@ -93,8 +95,8 @@ architecture STRUCTURE of design_1_debug_bridge_0_1_bd_0482 is
   signal lut_buffer_m_bscan_TMS : STD_LOGIC;
   signal lut_buffer_m_bscan_UPDATE : STD_LOGIC;
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of lut_buffer : label is "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018";
-  attribute X_CORE_INFO of xsdbm : label is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of lut_buffer : label is "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1";
+  attribute X_CORE_INFO of xsdbm : label is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1";
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of S_BSCAN_bscanid_en : signal is "xilinx.com:interface:bscan:1.0 S_BSCAN BSCANID_EN";
   attribute X_INTERFACE_INFO of S_BSCAN_capture : signal is "xilinx.com:interface:bscan:1.0 S_BSCAN CAPTURE";
@@ -183,7 +185,7 @@ entity design_1_debug_bridge_0_1 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_debug_bridge_0_1 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_debug_bridge_0_1 : entity is "bd_0482,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of design_1_debug_bridge_0_1 : entity is "bd_0482,Vivado 2020.1";
 end design_1_debug_bridge_0_1;
 
 architecture STRUCTURE of design_1_debug_bridge_0_1 is

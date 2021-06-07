@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:28:18 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Date        : Thu Jun  3 13:54:23 2021
+-- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_auto_pc_12 -prefix
 --               design_1_auto_pc_12_ design_1_auto_pc_12_sim_netlist.vhdl
 -- Design      : design_1_auto_pc_12
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xczu6cg-ffvb1156-1-e
+-- Device      : xczu9eg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -12654,7 +12654,7 @@ entity design_1_auto_pc_12 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_auto_pc_12 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_auto_pc_12 : entity is "axi_protocol_converter_v2_1_21_axi_protocol_converter,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of design_1_auto_pc_12 : entity is "axi_protocol_converter_v2_1_21_axi_protocol_converter,Vivado 2020.1";
 end design_1_auto_pc_12;
 
 architecture STRUCTURE of design_1_auto_pc_12 is

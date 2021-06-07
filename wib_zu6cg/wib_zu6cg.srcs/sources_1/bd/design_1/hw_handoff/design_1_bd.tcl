@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# daq_spy_control, daq_spy_control, pdts_endpoint_stdlogic, ts_reclock
+# daq_spy_control, daq_spy_control, ept_auto_rst, pdts_endpoint_stdlogic, ts_reclock
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -50,7 +50,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project project_1 myproj -part xczu6cg-ffvb1156-1-e
+   create_project project_1 myproj -part xczu9eg-ffvb1156-1-e
 }
 
 
@@ -182,11 +182,16 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -from 7 -to 0 -type rst cmd_code_reset_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_sync_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_trigger_0
+  create_bd_pin -dir I ept_auto_rst_in_0
+  create_bd_pin -dir O err_out_0
   create_bd_pin -dir I fake_time_stamp_en_0
   create_bd_pin -dir I -from 63 -to 0 fake_time_stamp_init_0
+  create_bd_pin -dir I pass_thru_0
   create_bd_pin -dir I -from 0 -to 0 probe15
+  create_bd_pin -dir I -from 3 -to 0 retry_in_0
   create_bd_pin -dir I sclk
   create_bd_pin -dir O -from 3 -to 0 stat_0
+  create_bd_pin -dir I -from 31 -to 0 timeout_0
   create_bd_pin -dir I ts_cdr_lol
   create_bd_pin -dir I ts_cdr_los
   create_bd_pin -dir O -type clk ts_clk
@@ -204,6 +209,17 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir O -from 0 -to 0 tx_dis_0
   create_bd_pin -dir O txd_0
 
+  # Create instance: ept_auto_rst_0, and set properties
+  set block_name ept_auto_rst
+  set block_cell_name ept_auto_rst_0
+  if { [catch {set ept_auto_rst_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $ept_auto_rst_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: ila_0, and set properties
   set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
   set_property -dict [ list \
@@ -218,6 +234,19 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.C_PROBE3_WIDTH {4} \
    CONFIG.C_PROBE6_WIDTH {64} \
  ] $ila_0
+
+  # Create instance: ila_1, and set properties
+  set ila_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_1 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_INPUT_PIPE_STAGES {6} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {8} \
+   CONFIG.C_PROBE0_WIDTH {4} \
+   CONFIG.C_PROBE2_WIDTH {32} \
+   CONFIG.C_PROBE3_WIDTH {4} \
+   CONFIG.C_PROBE4_WIDTH {1} \
+ ] $ila_1
 
   # Create instance: pdts_endpoint_stdlog_0, and set properties
   set block_name pdts_endpoint_stdlogic
@@ -292,19 +321,25 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_pins cmd_code_reset_0] [get_bd_pins ts_reclock_0/cmd_code_reset]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_pins cmd_code_sync_0] [get_bd_pins ts_reclock_0/cmd_code_sync]
   connect_bd_net -net cmd_code_trigger [get_bd_pins cmd_code_trigger_0] [get_bd_pins ts_reclock_0/cmd_code_trigger]
+  connect_bd_net -net ept_auto_rst_0_err_out [get_bd_pins err_out_0] [get_bd_pins ept_auto_rst_0/err_out] [get_bd_pins ila_1/probe7]
+  connect_bd_net -net ept_auto_rst_0_rst_out [get_bd_pins ept_auto_rst_0/rst_out] [get_bd_pins ila_1/probe6] [get_bd_pins pdts_endpoint_stdlog_0/srst]
+  connect_bd_net -net ept_auto_rst_in_0_1 [get_bd_pins ept_auto_rst_in_0] [get_bd_pins ept_auto_rst_0/ept_auto_rst_in] [get_bd_pins ila_1/probe5]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_pins fake_time_stamp_en_0] [get_bd_pins ts_reclock_0/fake_time_stamp_en]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_pins fake_time_stamp_init_0] [get_bd_pins ts_reclock_0/fake_time_stamp_init]
   connect_bd_net -net fast_command_out [get_bd_pins probe15] [get_bd_pins ila_0/probe15]
+  connect_bd_net -net pass_thru_0_1 [get_bd_pins pass_thru_0] [get_bd_pins ept_auto_rst_0/pass_thru] [get_bd_pins ila_1/probe4]
   connect_bd_net -net pdts_endpoint_stdlog_0_rdy [get_bd_pins pdts_endpoint_stdlog_0/rdy] [get_bd_pins ts_reclock_0/rdy_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_rst [get_bd_pins pdts_endpoint_stdlog_0/rst] [get_bd_pins ts_reclock_0/rst_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_stat [get_bd_pins pdts_endpoint_stdlog_0/stat] [get_bd_pins ts_reclock_0/stat_in]
+  connect_bd_net -net pdts_endpoint_stdlog_0_stat [get_bd_pins ept_auto_rst_0/stat_in] [get_bd_pins ila_1/probe0] [get_bd_pins pdts_endpoint_stdlog_0/stat] [get_bd_pins ts_reclock_0/stat_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_sync [get_bd_pins pdts_endpoint_stdlog_0/sync] [get_bd_pins ts_reclock_0/sync_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_sync_first [get_bd_pins pdts_endpoint_stdlog_0/sync_first] [get_bd_pins ts_reclock_0/sync_first_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_sync_stb [get_bd_pins pdts_endpoint_stdlog_0/sync_stb] [get_bd_pins ts_reclock_0/sync_stb_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_tstamp [get_bd_pins pdts_endpoint_stdlog_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins ila_0/probe17] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
   connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins ila_0/probe16] [get_bd_pins pdts_endpoint_stdlog_0/txd]
-  connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
+  connect_bd_net -net retry_in_0_1 [get_bd_pins retry_in_0] [get_bd_pins ept_auto_rst_0/retry_in] [get_bd_pins ila_1/probe3]
+  connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins ept_auto_rst_0/clk_in] [get_bd_pins ila_1/clk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
+  connect_bd_net -net timeout_0_1 [get_bd_pins timeout_0] [get_bd_pins ept_auto_rst_0/timeout] [get_bd_pins ila_1/probe2]
   connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_stdlog_0/cdr_lol]
   connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins pdts_endpoint_stdlog_0/cdr_los]
   connect_bd_net -net ts_rec_clk_locked_1 [get_bd_pins ts_rec_clk_locked] [get_bd_pins pdts_endpoint_stdlog_0/pll_locked]
@@ -331,7 +366,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net xlconstant_2_dout [get_bd_pins ts_evtctr] [get_bd_pins xlconstant_2/dout]
   connect_bd_net -net xlslice_0_Dout [get_bd_pins pdts_endpoint_stdlog_0/tgrp] [get_bd_pins xlslice_0/Dout]
   connect_bd_net -net xlslice_1_Dout [get_bd_pins pdts_endpoint_stdlog_0/addr] [get_bd_pins xlslice_1/Dout]
-  connect_bd_net -net xlslice_2_Dout [get_bd_pins pdts_endpoint_stdlog_0/srst] [get_bd_pins ts_reclock_0/fifo_rst] [get_bd_pins xlslice_2/Dout]
+  connect_bd_net -net xlslice_2_Dout [get_bd_pins ept_auto_rst_0/srst_in] [get_bd_pins ila_1/probe1] [get_bd_pins ts_reclock_0/fifo_rst] [get_bd_pins xlslice_2/Dout]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -1125,6 +1160,11 @@ proc create_root_design { parentCell } {
   set daq_stream1 [ create_bd_port -dir I -from 31 -to 0 daq_stream1 ]
   set daq_stream_k0 [ create_bd_port -dir I -from 3 -to 0 daq_stream_k0 ]
   set daq_stream_k1 [ create_bd_port -dir I -from 3 -to 0 daq_stream_k1 ]
+  set ept_auto_rst_err_out [ create_bd_port -dir O ept_auto_rst_err_out ]
+  set ept_auto_rst_in [ create_bd_port -dir I ept_auto_rst_in ]
+  set ept_pass_thru [ create_bd_port -dir I ept_pass_thru ]
+  set ept_retry_in [ create_bd_port -dir I -from 3 -to 0 ept_retry_in ]
+  set ept_timeout_in [ create_bd_port -dir I -from 31 -to 0 ept_timeout_in ]
   set fake_time_stamp_en [ create_bd_port -dir I fake_time_stamp_en ]
   set fake_time_stamp_init [ create_bd_port -dir I -from 63 -to 0 fake_time_stamp_init ]
   set fastcommand_out_n_0 [ create_bd_port -dir O fastcommand_out_n_0 ]
@@ -1868,8 +1908,8 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRF_APB__GDMA_REF_CTRL__DIVISOR0 {2} \
    CONFIG.PSU__CRF_APB__GDMA_REF_CTRL__FREQMHZ {600} \
    CONFIG.PSU__CRF_APB__GDMA_REF_CTRL__SRCSEL {APLL} \
-   CONFIG.PSU__CRF_APB__GPU_REF_CTRL__ACT_FREQMHZ {0} \
-   CONFIG.PSU__CRF_APB__GPU_REF_CTRL__DIVISOR0 {3} \
+   CONFIG.PSU__CRF_APB__GPU_REF_CTRL__ACT_FREQMHZ {500.000000} \
+   CONFIG.PSU__CRF_APB__GPU_REF_CTRL__DIVISOR0 {1} \
    CONFIG.PSU__CRF_APB__GPU_REF_CTRL__FREQMHZ {500} \
    CONFIG.PSU__CRF_APB__GPU_REF_CTRL__SRCSEL {IOPLL} \
    CONFIG.PSU__CRF_APB__GTGREF0_REF_CTRL__ACT_FREQMHZ {-1} \
@@ -2016,7 +2056,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ {100} \
    CONFIG.PSU__CRL_APB__PL0_REF_CTRL__SRCSEL {IOPLL} \
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__ACT_FREQMHZ {40.000000} \
-   CONFIG.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR0 {35} \
+   CONFIG.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR0 {4} \
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR1 {1} \
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__FREQMHZ {100} \
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__SRCSEL {RPLL} \
@@ -2224,7 +2264,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__DDR_QOS_WR_THRSHLD {} \
    CONFIG.PSU__DDR_SW_REFRESH_ENABLED {0} \
    CONFIG.PSU__DDR__INTERFACE__FREQMHZ {533.500} \
-   CONFIG.PSU__DEVICE_TYPE {CG} \
+   CONFIG.PSU__DEVICE_TYPE {EG} \
    CONFIG.PSU__DISPLAYPORT__LANE0__ENABLE {0} \
    CONFIG.PSU__DISPLAYPORT__LANE0__IO {<Select>} \
    CONFIG.PSU__DISPLAYPORT__LANE1__ENABLE {0} \
@@ -2591,14 +2631,14 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__PROTECTION__DDR_SEGMENTS {NONE} \
    CONFIG.PSU__PROTECTION__DEBUG {0} \
    CONFIG.PSU__PROTECTION__ENABLE {0} \
-   CONFIG.PSU__PROTECTION__FPD_SEGMENTS {SA:0xFD1A0000 ;SIZE:1280;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD000000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD010000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD020000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD030000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD040000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD050000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD610000 ;SIZE:512;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware   |   SA:0xFD5D0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware} \
+   CONFIG.PSU__PROTECTION__FPD_SEGMENTS {SA:0xFD1A0000 ;SIZE:1280;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD000000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD010000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD020000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD030000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD040000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD050000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD610000 ;SIZE:512;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware    |    SA:0xFD5D0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware} \
    CONFIG.PSU__PROTECTION__LOCK_UNUSED_SEGMENTS {0} \
    CONFIG.PSU__PROTECTION__LPD_SEGMENTS {SA:0xFF980000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF5E0000 ;SIZE:2560;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFFCC0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF180000 ;SIZE:768;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF410000 ;SIZE:640;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFFA70000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware|SA:0xFF9A0000 ;SIZE:64;UNIT:KB ;RegionTZ:Secure ;WrAllowed:Read/Write;subsystemId:PMU Firmware} \
    CONFIG.PSU__PROTECTION__MASTERS {USB1:NonSecure;0|USB0:NonSecure;0|S_AXI_LPD:NA;0|S_AXI_HPC1_FPD:NA;0|S_AXI_HPC0_FPD:NA;0|S_AXI_HP3_FPD:NA;0|S_AXI_HP2_FPD:NA;0|S_AXI_HP1_FPD:NA;0|S_AXI_HP0_FPD:NA;0|S_AXI_ACP:NA;0|S_AXI_ACE:NA;0|SD1:NonSecure;1|SD0:NonSecure;0|SATA1:NonSecure;0|SATA0:NonSecure;0|RPU1:Secure;1|RPU0:Secure;1|QSPI:NonSecure;1|PMU:NA;1|PCIe:NonSecure;0|NAND:NonSecure;0|LDMA:NonSecure;1|GPU:NonSecure;1|GEM3:NonSecure;0|GEM2:NonSecure;0|GEM1:NonSecure;0|GEM0:NonSecure;1|FDMA:NonSecure;1|DP:NonSecure;0|DAP:NA;1|Coresight:NA;1|CSU:NA;1|APU:NA;1} \
    CONFIG.PSU__PROTECTION__MASTERS_TZ {GEM0:NonSecure|SD1:NonSecure|GEM2:NonSecure|GEM1:NonSecure|GEM3:NonSecure|PCIe:NonSecure|DP:NonSecure|NAND:NonSecure|GPU:NonSecure|USB1:NonSecure|USB0:NonSecure|LDMA:NonSecure|FDMA:NonSecure|QSPI:NonSecure|SD0:NonSecure} \
    CONFIG.PSU__PROTECTION__OCM_SEGMENTS {NONE} \
    CONFIG.PSU__PROTECTION__PRESUBSYSTEMS {NONE} \
-   CONFIG.PSU__PROTECTION__SLAVES {LPD;USB3_1_XHCI;FE300000;FE3FFFFF;0|LPD;USB3_1;FF9E0000;FF9EFFFF;0|LPD;USB3_0_XHCI;FE200000;FE2FFFFF;0|LPD;USB3_0;FF9D0000;FF9DFFFF;0|LPD;UART1;FF010000;FF01FFFF;0|LPD;UART0;FF000000;FF00FFFF;1|LPD;TTC3;FF140000;FF14FFFF;0|LPD;TTC2;FF130000;FF13FFFF;0|LPD;TTC1;FF120000;FF12FFFF;0|LPD;TTC0;FF110000;FF11FFFF;0|FPD;SWDT1;FD4D0000;FD4DFFFF;0|LPD;SWDT0;FF150000;FF15FFFF;0|LPD;SPI1;FF050000;FF05FFFF;0|LPD;SPI0;FF040000;FF04FFFF;0|FPD;SMMU_REG;FD5F0000;FD5FFFFF;1|FPD;SMMU;FD800000;FDFFFFFF;1|FPD;SIOU;FD3D0000;FD3DFFFF;1|FPD;SERDES;FD400000;FD47FFFF;1|LPD;SD1;FF170000;FF17FFFF;1|LPD;SD0;FF160000;FF16FFFF;0|FPD;SATA;FD0C0000;FD0CFFFF;0|LPD;RTC;FFA60000;FFA6FFFF;1|LPD;RSA_CORE;FFCE0000;FFCEFFFF;1|LPD;RPU;FF9A0000;FF9AFFFF;1|LPD;R5_TCM_RAM_GLOBAL;FFE00000;FFE3FFFF;1|LPD;R5_1_Instruction_Cache;FFEC0000;FFECFFFF;1|LPD;R5_1_Data_Cache;FFED0000;FFEDFFFF;1|LPD;R5_1_BTCM_GLOBAL;FFEB0000;FFEBFFFF;1|LPD;R5_1_ATCM_GLOBAL;FFE90000;FFE9FFFF;1|LPD;R5_0_Instruction_Cache;FFE40000;FFE4FFFF;1|LPD;R5_0_Data_Cache;FFE50000;FFE5FFFF;1|LPD;R5_0_BTCM_GLOBAL;FFE20000;FFE2FFFF;1|LPD;R5_0_ATCM_GLOBAL;FFE00000;FFE0FFFF;1|LPD;QSPI_Linear_Address;C0000000;DFFFFFFF;1|LPD;QSPI;FF0F0000;FF0FFFFF;1|LPD;PMU_RAM;FFDC0000;FFDDFFFF;1|LPD;PMU_GLOBAL;FFD80000;FFDBFFFF;1|FPD;PCIE_MAIN;FD0E0000;FD0EFFFF;0|FPD;PCIE_LOW;E0000000;EFFFFFFF;0|FPD;PCIE_HIGH2;8000000000;BFFFFFFFFF;0|FPD;PCIE_HIGH1;600000000;7FFFFFFFF;0|FPD;PCIE_DMA;FD0F0000;FD0FFFFF;0|FPD;PCIE_ATTRIB;FD480000;FD48FFFF;0|LPD;OCM_XMPU_CFG;FFA70000;FFA7FFFF;1|LPD;OCM_SLCR;FF960000;FF96FFFF;1|OCM;OCM;FFFC0000;FFFFFFFF;1|LPD;NAND;FF100000;FF10FFFF;0|LPD;MBISTJTAG;FFCF0000;FFCFFFFF;1|LPD;LPD_XPPU_SINK;FF9C0000;FF9CFFFF;1|LPD;LPD_XPPU;FF980000;FF98FFFF;1|LPD;LPD_SLCR_SECURE;FF4B0000;FF4DFFFF;1|LPD;LPD_SLCR;FF410000;FF4AFFFF;1|LPD;LPD_GPV;FE100000;FE1FFFFF;1|LPD;LPD_DMA_7;FFAF0000;FFAFFFFF;1|LPD;LPD_DMA_6;FFAE0000;FFAEFFFF;1|LPD;LPD_DMA_5;FFAD0000;FFADFFFF;1|LPD;LPD_DMA_4;FFAC0000;FFACFFFF;1|LPD;LPD_DMA_3;FFAB0000;FFABFFFF;1|LPD;LPD_DMA_2;FFAA0000;FFAAFFFF;1|LPD;LPD_DMA_1;FFA90000;FFA9FFFF;1|LPD;LPD_DMA_0;FFA80000;FFA8FFFF;1|LPD;IPI_CTRL;FF380000;FF3FFFFF;1|LPD;IOU_SLCR;FF180000;FF23FFFF;1|LPD;IOU_SECURE_SLCR;FF240000;FF24FFFF;1|LPD;IOU_SCNTRS;FF260000;FF26FFFF;1|LPD;IOU_SCNTR;FF250000;FF25FFFF;1|LPD;IOU_GPV;FE000000;FE0FFFFF;1|LPD;I2C1;FF030000;FF03FFFF;1|LPD;I2C0;FF020000;FF02FFFF;1|FPD;GPU;FD4B0000;FD4BFFFF;0|LPD;GPIO;FF0A0000;FF0AFFFF;1|LPD;GEM3;FF0E0000;FF0EFFFF;0|LPD;GEM2;FF0D0000;FF0DFFFF;0|LPD;GEM1;FF0C0000;FF0CFFFF;0|LPD;GEM0;FF0B0000;FF0BFFFF;1|FPD;FPD_XMPU_SINK;FD4F0000;FD4FFFFF;1|FPD;FPD_XMPU_CFG;FD5D0000;FD5DFFFF;1|FPD;FPD_SLCR_SECURE;FD690000;FD6CFFFF;1|FPD;FPD_SLCR;FD610000;FD68FFFF;1|FPD;FPD_GPV;FD700000;FD7FFFFF;1|FPD;FPD_DMA_CH7;FD570000;FD57FFFF;1|FPD;FPD_DMA_CH6;FD560000;FD56FFFF;1|FPD;FPD_DMA_CH5;FD550000;FD55FFFF;1|FPD;FPD_DMA_CH4;FD540000;FD54FFFF;1|FPD;FPD_DMA_CH3;FD530000;FD53FFFF;1|FPD;FPD_DMA_CH2;FD520000;FD52FFFF;1|FPD;FPD_DMA_CH1;FD510000;FD51FFFF;1|FPD;FPD_DMA_CH0;FD500000;FD50FFFF;1|LPD;EFUSE;FFCC0000;FFCCFFFF;1|FPD;Display Port;FD4A0000;FD4AFFFF;0|FPD;DPDMA;FD4C0000;FD4CFFFF;0|FPD;DDR_XMPU5_CFG;FD050000;FD05FFFF;1|FPD;DDR_XMPU4_CFG;FD040000;FD04FFFF;1|FPD;DDR_XMPU3_CFG;FD030000;FD03FFFF;1|FPD;DDR_XMPU2_CFG;FD020000;FD02FFFF;1|FPD;DDR_XMPU1_CFG;FD010000;FD01FFFF;1|FPD;DDR_XMPU0_CFG;FD000000;FD00FFFF;1|FPD;DDR_QOS_CTRL;FD090000;FD09FFFF;1|FPD;DDR_PHY;FD080000;FD08FFFF;1|DDR;DDR_LOW;0;7FFFFFFF;1|DDR;DDR_HIGH;800000000;87FFFFFFF;1|FPD;DDDR_CTRL;FD070000;FD070FFF;1|LPD;Coresight;FE800000;FEFFFFFF;1|LPD;CSU_DMA;FFC80000;FFC9FFFF;1|LPD;CSU;FFCA0000;FFCAFFFF;1|LPD;CRL_APB;FF5E0000;FF85FFFF;1|FPD;CRF_APB;FD1A0000;FD2DFFFF;1|FPD;CCI_REG;FD5E0000;FD5EFFFF;1|FPD;CCI_GPV;FD6E0000;FD6EFFFF;1|LPD;CAN1;FF070000;FF07FFFF;1|LPD;CAN0;FF060000;FF06FFFF;0|FPD;APU;FD5C0000;FD5CFFFF;1|LPD;APM_INTC_IOU;FFA20000;FFA2FFFF;1|LPD;APM_FPD_LPD;FFA30000;FFA3FFFF;1|FPD;APM_5;FD490000;FD49FFFF;1|FPD;APM_0;FD0B0000;FD0BFFFF;1|LPD;APM2;FFA10000;FFA1FFFF;1|LPD;APM1;FFA00000;FFA0FFFF;1|LPD;AMS;FFA50000;FFA5FFFF;1|FPD;AFI_5;FD3B0000;FD3BFFFF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380000;FD38FFFF;1|FPD;AFI_1;FD370000;FD37FFFF;1|FPD;AFI_0;FD360000;FD36FFFF;1|LPD;AFIFM6;FF9B0000;FF9BFFFF;1|FPD;ACPU_GIC;F9010000;F907FFFF;1} \
+   CONFIG.PSU__PROTECTION__SLAVES {LPD;USB3_1_XHCI;FE300000;FE3FFFFF;0|LPD;USB3_1;FF9E0000;FF9EFFFF;0|LPD;USB3_0_XHCI;FE200000;FE2FFFFF;0|LPD;USB3_0;FF9D0000;FF9DFFFF;0|LPD;UART1;FF010000;FF01FFFF;0|LPD;UART0;FF000000;FF00FFFF;1|LPD;TTC3;FF140000;FF14FFFF;0|LPD;TTC2;FF130000;FF13FFFF;0|LPD;TTC1;FF120000;FF12FFFF;0|LPD;TTC0;FF110000;FF11FFFF;0|FPD;SWDT1;FD4D0000;FD4DFFFF;0|LPD;SWDT0;FF150000;FF15FFFF;0|LPD;SPI1;FF050000;FF05FFFF;0|LPD;SPI0;FF040000;FF04FFFF;0|FPD;SMMU_REG;FD5F0000;FD5FFFFF;1|FPD;SMMU;FD800000;FDFFFFFF;1|FPD;SIOU;FD3D0000;FD3DFFFF;1|FPD;SERDES;FD400000;FD47FFFF;1|LPD;SD1;FF170000;FF17FFFF;1|LPD;SD0;FF160000;FF16FFFF;0|FPD;SATA;FD0C0000;FD0CFFFF;0|LPD;RTC;FFA60000;FFA6FFFF;1|LPD;RSA_CORE;FFCE0000;FFCEFFFF;1|LPD;RPU;FF9A0000;FF9AFFFF;1|LPD;R5_TCM_RAM_GLOBAL;FFE00000;FFE3FFFF;1|LPD;R5_1_Instruction_Cache;FFEC0000;FFECFFFF;1|LPD;R5_1_Data_Cache;FFED0000;FFEDFFFF;1|LPD;R5_1_BTCM_GLOBAL;FFEB0000;FFEBFFFF;1|LPD;R5_1_ATCM_GLOBAL;FFE90000;FFE9FFFF;1|LPD;R5_0_Instruction_Cache;FFE40000;FFE4FFFF;1|LPD;R5_0_Data_Cache;FFE50000;FFE5FFFF;1|LPD;R5_0_BTCM_GLOBAL;FFE20000;FFE2FFFF;1|LPD;R5_0_ATCM_GLOBAL;FFE00000;FFE0FFFF;1|LPD;QSPI_Linear_Address;C0000000;DFFFFFFF;1|LPD;QSPI;FF0F0000;FF0FFFFF;1|LPD;PMU_RAM;FFDC0000;FFDDFFFF;1|LPD;PMU_GLOBAL;FFD80000;FFDBFFFF;1|FPD;PCIE_MAIN;FD0E0000;FD0EFFFF;0|FPD;PCIE_LOW;E0000000;EFFFFFFF;0|FPD;PCIE_HIGH2;8000000000;BFFFFFFFFF;0|FPD;PCIE_HIGH1;600000000;7FFFFFFFF;0|FPD;PCIE_DMA;FD0F0000;FD0FFFFF;0|FPD;PCIE_ATTRIB;FD480000;FD48FFFF;0|LPD;OCM_XMPU_CFG;FFA70000;FFA7FFFF;1|LPD;OCM_SLCR;FF960000;FF96FFFF;1|OCM;OCM;FFFC0000;FFFFFFFF;1|LPD;NAND;FF100000;FF10FFFF;0|LPD;MBISTJTAG;FFCF0000;FFCFFFFF;1|LPD;LPD_XPPU_SINK;FF9C0000;FF9CFFFF;1|LPD;LPD_XPPU;FF980000;FF98FFFF;1|LPD;LPD_SLCR_SECURE;FF4B0000;FF4DFFFF;1|LPD;LPD_SLCR;FF410000;FF4AFFFF;1|LPD;LPD_GPV;FE100000;FE1FFFFF;1|LPD;LPD_DMA_7;FFAF0000;FFAFFFFF;1|LPD;LPD_DMA_6;FFAE0000;FFAEFFFF;1|LPD;LPD_DMA_5;FFAD0000;FFADFFFF;1|LPD;LPD_DMA_4;FFAC0000;FFACFFFF;1|LPD;LPD_DMA_3;FFAB0000;FFABFFFF;1|LPD;LPD_DMA_2;FFAA0000;FFAAFFFF;1|LPD;LPD_DMA_1;FFA90000;FFA9FFFF;1|LPD;LPD_DMA_0;FFA80000;FFA8FFFF;1|LPD;IPI_CTRL;FF380000;FF3FFFFF;1|LPD;IOU_SLCR;FF180000;FF23FFFF;1|LPD;IOU_SECURE_SLCR;FF240000;FF24FFFF;1|LPD;IOU_SCNTRS;FF260000;FF26FFFF;1|LPD;IOU_SCNTR;FF250000;FF25FFFF;1|LPD;IOU_GPV;FE000000;FE0FFFFF;1|LPD;I2C1;FF030000;FF03FFFF;1|LPD;I2C0;FF020000;FF02FFFF;1|FPD;GPU;FD4B0000;FD4BFFFF;1|LPD;GPIO;FF0A0000;FF0AFFFF;1|LPD;GEM3;FF0E0000;FF0EFFFF;0|LPD;GEM2;FF0D0000;FF0DFFFF;0|LPD;GEM1;FF0C0000;FF0CFFFF;0|LPD;GEM0;FF0B0000;FF0BFFFF;1|FPD;FPD_XMPU_SINK;FD4F0000;FD4FFFFF;1|FPD;FPD_XMPU_CFG;FD5D0000;FD5DFFFF;1|FPD;FPD_SLCR_SECURE;FD690000;FD6CFFFF;1|FPD;FPD_SLCR;FD610000;FD68FFFF;1|FPD;FPD_GPV;FD700000;FD7FFFFF;1|FPD;FPD_DMA_CH7;FD570000;FD57FFFF;1|FPD;FPD_DMA_CH6;FD560000;FD56FFFF;1|FPD;FPD_DMA_CH5;FD550000;FD55FFFF;1|FPD;FPD_DMA_CH4;FD540000;FD54FFFF;1|FPD;FPD_DMA_CH3;FD530000;FD53FFFF;1|FPD;FPD_DMA_CH2;FD520000;FD52FFFF;1|FPD;FPD_DMA_CH1;FD510000;FD51FFFF;1|FPD;FPD_DMA_CH0;FD500000;FD50FFFF;1|LPD;EFUSE;FFCC0000;FFCCFFFF;1|FPD;Display Port;FD4A0000;FD4AFFFF;0|FPD;DPDMA;FD4C0000;FD4CFFFF;0|FPD;DDR_XMPU5_CFG;FD050000;FD05FFFF;1|FPD;DDR_XMPU4_CFG;FD040000;FD04FFFF;1|FPD;DDR_XMPU3_CFG;FD030000;FD03FFFF;1|FPD;DDR_XMPU2_CFG;FD020000;FD02FFFF;1|FPD;DDR_XMPU1_CFG;FD010000;FD01FFFF;1|FPD;DDR_XMPU0_CFG;FD000000;FD00FFFF;1|FPD;DDR_QOS_CTRL;FD090000;FD09FFFF;1|FPD;DDR_PHY;FD080000;FD08FFFF;1|DDR;DDR_LOW;0;7FFFFFFF;1|DDR;DDR_HIGH;800000000;87FFFFFFF;1|FPD;DDDR_CTRL;FD070000;FD070FFF;1|LPD;Coresight;FE800000;FEFFFFFF;1|LPD;CSU_DMA;FFC80000;FFC9FFFF;1|LPD;CSU;FFCA0000;FFCAFFFF;1|LPD;CRL_APB;FF5E0000;FF85FFFF;1|FPD;CRF_APB;FD1A0000;FD2DFFFF;1|FPD;CCI_REG;FD5E0000;FD5EFFFF;1|FPD;CCI_GPV;FD6E0000;FD6EFFFF;1|LPD;CAN1;FF070000;FF07FFFF;1|LPD;CAN0;FF060000;FF06FFFF;0|FPD;APU;FD5C0000;FD5CFFFF;1|LPD;APM_INTC_IOU;FFA20000;FFA2FFFF;1|LPD;APM_FPD_LPD;FFA30000;FFA3FFFF;1|FPD;APM_5;FD490000;FD49FFFF;1|FPD;APM_0;FD0B0000;FD0BFFFF;1|LPD;APM2;FFA10000;FFA1FFFF;1|LPD;APM1;FFA00000;FFA0FFFF;1|LPD;AMS;FFA50000;FFA5FFFF;1|FPD;AFI_5;FD3B0000;FD3BFFFF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380000;FD38FFFF;1|FPD;AFI_1;FD370000;FD37FFFF;1|FPD;AFI_0;FD360000;FD36FFFF;1|LPD;AFIFM6;FF9B0000;FF9BFFFF;1|FPD;ACPU_GIC;F9010000;F907FFFF;1} \
    CONFIG.PSU__PROTECTION__SUBSYSTEMS {PMU Firmware:PMU} \
    CONFIG.PSU__PSS_ALT_REF_CLK__ENABLE {0} \
    CONFIG.PSU__PSS_ALT_REF_CLK__FREQMHZ {33.333} \
@@ -2859,8 +2899,10 @@ proc create_root_design { parentCell } {
   connect_bd_net -net daq_stream1_0_1 [get_bd_ports daq_stream1] [get_bd_pins daq_spy_1/daq_stream0]
   connect_bd_net -net daq_stream_k0_0_1 [get_bd_ports daq_stream_k0] [get_bd_pins daq_spy_0/daq_stream_k0]
   connect_bd_net -net daq_stream_k1_0_1 [get_bd_ports daq_stream_k1] [get_bd_pins daq_spy_1/daq_stream_k0]
+  connect_bd_net -net ept_auto_rst_in_0_1 [get_bd_ports ept_auto_rst_in] [get_bd_pins timing_module/ept_auto_rst_in_0]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_ports fake_time_stamp_en] [get_bd_pins timing_module/fake_time_stamp_en_0]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_ports fake_time_stamp_init] [get_bd_pins timing_module/fake_time_stamp_init_0]
+  connect_bd_net -net pass_thru_0_1 [get_bd_ports ept_pass_thru] [get_bd_pins timing_module/pass_thru_0]
   connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins timing_module/ts_clk]
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_ports ts_evtctr] [get_bd_pins timing_module/ts_evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_ports ts_rdy] [get_bd_pins timing_module/ts_rdy]
@@ -2875,6 +2917,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net reg_bank_64_0_reg_rw [get_bd_ports reg_rw] [get_bd_pins reg_bank_64_0/reg_rw] [get_bd_pins timing_module/Din]
   connect_bd_net -net reg_ro_0_1 [get_bd_ports reg_ro] [get_bd_pins reg_bank_64_0/reg_ro]
   connect_bd_net -net reset_0_1 [get_bd_ports daq_spy_reset_0] [get_bd_pins daq_spy_0/daq_spy_reset]
+  connect_bd_net -net retry_in_0_1 [get_bd_ports ept_retry_in] [get_bd_pins timing_module/retry_in_0]
   connect_bd_net -net rst_ps8_0_99M_interconnect_aresetn [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins rst_ps8_0_99M/interconnect_aresetn]
   connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_ports AXI_RSTn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual1/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual2/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual3/s00_axi_aresetn] [get_bd_pins daq_spy_0/AXI_RSTn] [get_bd_pins daq_spy_1/AXI_RSTn] [get_bd_pins dbg/AXI_RSTn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/M14_ARESETN] [get_bd_pins ps8_0_axi_periph/M15_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins reg_bank_64_0/s00_axi_aresetn] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn]
   connect_bd_net -net sda_in_n_0_0_1 [get_bd_ports sda_in_n_2] [get_bd_pins coldata_i2c_dual1/sda_in_n_0]
@@ -2894,12 +2937,14 @@ proc create_root_design { parentCell } {
   connect_bd_net -net sda_in_p_1_1_1 [get_bd_ports sda_in_p_5] [get_bd_pins coldata_i2c_dual2/sda_in_p_1]
   connect_bd_net -net sda_in_p_1_2_1 [get_bd_ports sda_in_p_7] [get_bd_pins coldata_i2c_dual3/sda_in_p_1]
   connect_bd_net -net sfp_los_0_1 [get_bd_ports ts_sfp_los] [get_bd_pins timing_module/ts_sfp_los]
+  connect_bd_net -net timeout_0_1 [get_bd_ports ept_timeout_in] [get_bd_pins timing_module/timeout_0]
   connect_bd_net -net timing_module_cmd_bit_act [get_bd_pins coldata_fast_cmd_0/cmd_act] [get_bd_pins timing_module/cmd_bit_act]
   connect_bd_net -net timing_module_cmd_bit_adc_reset [get_bd_pins coldata_fast_cmd_0/cmd_adc_reset] [get_bd_pins timing_module/cmd_bit_adc_reset]
   connect_bd_net -net timing_module_cmd_bit_edge [get_bd_pins coldata_fast_cmd_0/cmd_edge] [get_bd_pins timing_module/cmd_bit_edge]
   connect_bd_net -net timing_module_cmd_bit_idle [get_bd_pins coldata_fast_cmd_0/cmd_idle] [get_bd_pins timing_module/cmd_bit_idle]
   connect_bd_net -net timing_module_cmd_bit_reset [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins timing_module/cmd_bit_reset]
   connect_bd_net -net timing_module_cmd_bit_sync [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins timing_module/cmd_bit_sync]
+  connect_bd_net -net timing_module_err_out_0 [get_bd_ports ept_auto_rst_err_out] [get_bd_pins timing_module/err_out_0]
   connect_bd_net -net timing_module_stat_0 [get_bd_ports ts_stat] [get_bd_pins timing_module/stat_0]
   connect_bd_net -net timing_module_ts_valid_0 [get_bd_ports ts_valid] [get_bd_pins timing_module/ts_valid_0]
   connect_bd_net -net timing_module_tx_dis_0 [get_bd_ports tx_dis] [get_bd_pins timing_module/tx_dis_0]

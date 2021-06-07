@@ -1,18 +1,18 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Feb  4 21:55:18 2021
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+// Date        : Thu Jun  3 13:26:12 2021
+// Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/coldata_rx_single/coldata_rx_single_sim_netlist.v
+//               /home/lxeng99/DUNE/wib_sim_timing_sync/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/coldata_rx_single/coldata_rx_single_sim_netlist.v
 // Design      : coldata_rx_single
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xczu6cg-ffvb1156-1-e
+// Device      : xczu9eg-ffvb1156-1-e
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "coldata_rx_single,coldata_rx_single_gtwizard_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_rx_single_gtwizard_top,Vivado 2020.1.1_AR73018" *) 
+(* CHECK_LICENSE_TYPE = "coldata_rx_single,coldata_rx_single_gtwizard_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_rx_single_gtwizard_top,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module coldata_rx_single
    (gtwiz_userclk_tx_reset_in,

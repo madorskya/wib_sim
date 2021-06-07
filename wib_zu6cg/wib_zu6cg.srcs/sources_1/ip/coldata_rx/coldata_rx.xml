@@ -14,7 +14,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9d7e7ebc</spirit:value>
+            <spirit:value>9:c8a027f2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -29,11 +29,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 29 00:10:39 UTC 2020</spirit:value>
+            <spirit:value>Thu Jun 03 17:12:59 UTC 2021</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:c7f6870e</spirit:value>
+            <spirit:value>9:c6d76e3d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -22893,7 +22893,7 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2020.1.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d5d17063"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="240e62dd"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="81cdd016"/>

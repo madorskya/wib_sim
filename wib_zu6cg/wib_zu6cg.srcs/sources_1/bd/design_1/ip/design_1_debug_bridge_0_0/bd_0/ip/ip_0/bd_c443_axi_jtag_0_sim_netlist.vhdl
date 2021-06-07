@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:20:50 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Date        : Thu Jun  3 13:58:01 2021
+-- Host        : lxeng99 running 64-bit Ubuntu 16.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_sim_netlist.vhdl
+--               /home/lxeng99/DUNE/wib_sim_timing_sync/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_sim_netlist.vhdl
 -- Design      : bd_c443_axi_jtag_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xczu6cg-ffvb1156-1-e
+-- Device      : xczu9eg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -7429,7 +7429,7 @@ entity bd_c443_axi_jtag_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of bd_c443_axi_jtag_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of bd_c443_axi_jtag_0 : entity is "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of bd_c443_axi_jtag_0 : entity is "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1";
 end bd_c443_axi_jtag_0;
 
 architecture STRUCTURE of bd_c443_axi_jtag_0 is

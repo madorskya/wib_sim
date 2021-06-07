@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Mar 25 19:24:38 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Jun  6 11:09:28 2021" VIVADOVERSION="2020.1">
 
-  <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="bd_c443" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
+  <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu9eg" NAME="bd_c443" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
     <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="External_Ports_s_axi_aclk">

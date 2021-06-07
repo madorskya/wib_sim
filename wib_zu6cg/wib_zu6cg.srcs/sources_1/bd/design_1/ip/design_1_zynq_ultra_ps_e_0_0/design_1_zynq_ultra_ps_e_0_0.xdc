@@ -8,7 +8,7 @@
 ##  Details :     Constraints file
 ##                    FPGA family:       zynq
 ##                    FPGA:              PROD-1
-##                    Device Size:       xczu6cg
+##                    Device Size:       xczu9eg
 ##                    Package:           ffvb1156
 ##                    Speedgrade:        -1
 ##
