@@ -265,12 +265,11 @@ module wib_top
     
     //assign gtwiz_userdata_tx_in[31:0]  = `CONFIG_BITS(9,  0, 32);  // 0xA00C0024
     //assign gtwiz_userdata_tx_in[63:32] = `CONFIG_BITS(10,  0, 32); // 0xA00C0028
-    assign txctrl0_in                  = `CONFIG_BITS(11,  0, 32); // 0xA00C002C
-    assign txctrl1_in                  = `CONFIG_BITS(12,  0, 32); // 0xA00C0030
-    //assign txctrl2_in                  = `CONFIG_BITS(13,  0, 16); // 0xA00C0034
-    assign gtwiz_reset_tx_pll_and_datapath_in = `CONFIG_BITS(14,  0, 1); // 0xA00C0038
-    assign gtwiz_reset_tx_datapath_in  = `CONFIG_BITS(14,  4, 1);
-    assign tx8b10ben_in                = `CONFIG_BITS(14,  8, 2);
+    assign txctrl0_in                         = `CONFIG_BITS(11,  0, 32); // 0xA00C002C
+    assign txctrl1_in                         = `CONFIG_BITS(12,  0, 32); // 0xA00C0030
+    assign gtwiz_reset_tx_pll_and_datapath_in = `CONFIG_BITS(14,  0, 1);  // 0xA00C0038
+    assign gtwiz_reset_tx_datapath_in         = `CONFIG_BITS(14,  4, 1);
+    assign tx8b10ben_in                       = `CONFIG_BITS(14,  8, 2);
     assign `STATUS_BITS(16, 0, 1)      = gtwiz_reset_tx_done_out; // 0xA00C00C0
     assign `STATUS_BITS(16, 4, 1)      = gtwiz_userclk_tx_active_out;
     assign `STATUS_BITS(16, 8, 1)      = felix_powergood_out;
@@ -513,7 +512,8 @@ module wib_top
        .rxctrl2_out                             (),
        .rxctrl3_out                             (),
        .rxpmaresetdone_out                      (rxpmaresetdone_out),
-       .txpmaresetdone_out                      (txpmaresetdone_out)
+       .txpmaresetdone_out                      (txpmaresetdone_out),
+       .txprbssel_in                            ({2{rx_prbs_sel}})
     );    
 
     I2C_CONTROL i2c_ctrl

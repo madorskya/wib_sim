@@ -86,6 +86,7 @@ FELIX_GTH_v1f your_instance_name (
   .txctrl0_in(txctrl0_in),                                                  // input wire [31 : 0] txctrl0_in
   .txctrl1_in(txctrl1_in),                                                  // input wire [31 : 0] txctrl1_in
   .txctrl2_in(txctrl2_in),                                                  // input wire [15 : 0] txctrl2_in
+  .txprbssel_in(txprbssel_in),                                              // input wire [7 : 0] txprbssel_in
   .gthtxn_out(gthtxn_out),                                                  // output wire [1 : 0] gthtxn_out
   .gthtxp_out(gthtxp_out),                                                  // output wire [1 : 0] gthtxp_out
   .gtpowergood_out(gtpowergood_out),                                        // output wire [1 : 0] gtpowergood_out

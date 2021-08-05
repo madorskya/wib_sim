@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Fri Mar 19 17:35:27 2021
+// Date        : Wed Aug  4 22:51:56 2021
 // Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
 // Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_sim_netlist.v
+//               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_sim_netlist.v
 // Design      : FELIX_GTH_v1f
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -46,6 +46,7 @@ module FELIX_GTH_v1f
     txctrl0_in,
     txctrl1_in,
     txctrl2_in,
+    txprbssel_in,
     gthtxn_out,
     gthtxp_out,
     gtpowergood_out,
@@ -86,6 +87,7 @@ module FELIX_GTH_v1f
   input [31:0]txctrl0_in;
   input [31:0]txctrl1_in;
   input [15:0]txctrl2_in;
+  input [7:0]txprbssel_in;
   output [1:0]gthtxn_out;
   output [1:0]gthtxp_out;
   output [1:0]gtpowergood_out;
@@ -136,6 +138,7 @@ module FELIX_GTH_v1f
   wire [31:0]txctrl1_in;
   wire [15:0]txctrl2_in;
   wire [1:0]txpmaresetdone_out;
+  wire [7:0]txprbssel_in;
   wire [1:0]NLW_inst_bufgtce_out_UNCONNECTED;
   wire [5:0]NLW_inst_bufgtcemask_out_UNCONNECTED;
   wire [17:0]NLW_inst_bufgtdiv_out_UNCONNECTED;
@@ -852,7 +855,7 @@ module FELIX_GTH_v1f
         .txpostcursor_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .txpostcursorinv_in(1'b0),
         .txprbsforceerr_in({1'b0,1'b0}),
-        .txprbssel_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .txprbssel_in(txprbssel_in),
         .txprecursor_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .txprecursorinv_in(1'b0),
         .txprgdivresetdone_out(NLW_inst_txprgdivresetdone_out_UNCONNECTED[1:0]),

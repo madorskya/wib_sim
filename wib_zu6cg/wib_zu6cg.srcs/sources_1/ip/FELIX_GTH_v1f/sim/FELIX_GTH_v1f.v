@@ -85,6 +85,7 @@ module FELIX_GTH_v1f (
   txctrl0_in,
   txctrl1_in,
   txctrl2_in,
+  txprbssel_in,
   gthtxn_out,
   gthtxp_out,
   gtpowergood_out,
@@ -127,6 +128,7 @@ input wire [1 : 0] tx8b10ben_in;
 input wire [31 : 0] txctrl0_in;
 input wire [31 : 0] txctrl1_in;
 input wire [15 : 0] txctrl2_in;
+input wire [7 : 0] txprbssel_in;
 output wire [1 : 0] gthtxn_out;
 output wire [1 : 0] gthtxp_out;
 output wire [1 : 0] gtpowergood_out;
@@ -641,7 +643,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .txpostcursor_in(10'H000),
     .txpostcursorinv_in(1'B0),
     .txprbsforceerr_in(2'H0),
-    .txprbssel_in(8'H00),
+    .txprbssel_in(txprbssel_in),
     .txprecursor_in(10'H000),
     .txprecursorinv_in(1'B0),
     .txprogdivreset_in(2'H0),

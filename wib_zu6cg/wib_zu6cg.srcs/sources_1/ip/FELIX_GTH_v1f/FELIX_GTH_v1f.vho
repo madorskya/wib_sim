@@ -85,6 +85,7 @@ COMPONENT FELIX_GTH_v1f
     txctrl0_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     txctrl1_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     txctrl2_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    txprbssel_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     gthtxn_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     gthtxp_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     gtpowergood_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
@@ -135,6 +136,7 @@ your_instance_name : FELIX_GTH_v1f
     txctrl0_in => txctrl0_in,
     txctrl1_in => txctrl1_in,
     txctrl2_in => txctrl2_in,
+    txprbssel_in => txprbssel_in,
     gthtxn_out => gthtxn_out,
     gthtxp_out => gthtxp_out,
     gtpowergood_out => gtpowergood_out,
