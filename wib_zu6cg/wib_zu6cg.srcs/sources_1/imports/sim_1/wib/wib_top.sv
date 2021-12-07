@@ -228,24 +228,6 @@ module wib_top
     
     wire [3:0] ts_stat;
 
-// macros for configuration and status bits
-// parameters: a = offset of 32-bit register, b = low bit in the register, n = number of bits
-`define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
-`define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
-    // command codes from timing system
-    wire [7:0] cmd_code_idle      = `CONFIG_BITS(4,  0, 8); // 0xA00C0010
-    wire [7:0] cmd_code_edge      = `CONFIG_BITS(4,  8, 8); // 0xA00C0010
-    wire [7:0] cmd_code_sync      = `CONFIG_BITS(4, 16, 8); // 0xA00C0010
-    wire [7:0] cmd_code_act       = `CONFIG_BITS(4, 24, 8); // 0xA00C0010
-    wire [7:0] cmd_code_reset     = `CONFIG_BITS(5,  0, 8); // 0xA00C0014
-    wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(5,  8, 8); // 0xA00C0014
-    wire [7:0] cmd_code_trigger   = `CONFIG_BITS(5, 16, 8); // 0xA00C0014
-    
-    wire       fake_time_stamp_en = `CONFIG_BITS(3,  1, 1); // 0xA00C000C
-    wire [63:0] fake_time_stamp_init; // initial value for FTS
-    assign fake_time_stamp_init[31: 0] = `CONFIG_BITS(6,  0, 32); // 0xA00C0018
-    assign fake_time_stamp_init[63:32] = `CONFIG_BITS(7,  0, 32); // 0xA00C001C
-    wire fake_daq_stream               = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
 
     // FELIX-related stuff
     wire gtwiz_userclk_tx_srcclk_out;
@@ -262,23 +244,113 @@ module wib_top
     wire usr_clk_out;
     wire gtwiz_userclk_tx_active_out;
     wire felix_powergood_out;
+    (* mark_debug *) wire [15:0] rxprbserr_out;
+    wire [31:0] fw_date;
+
+    // new DAQ header parameters, see Josh's message from 2021-12-06
+    wire [5:0]  link [1:0]; //
+    wire [9:0]  crate_id; // 
+    wire [5:0]  det_id; //
+    wire [5:0]  version; //
+    wire [7:0]  femb_pulser_in_frame; //
+    wire [7:0]  context_fld; 
+    wire        ready; // 
+    wire [3:0]  psr_cal; //
+    wire        ws; //
+    wire [15:0] flex; // 
     
-    //assign gtwiz_userdata_tx_in[31:0]  = `CONFIG_BITS(9,  0, 32);  // 0xA00C0024
-    //assign gtwiz_userdata_tx_in[63:32] = `CONFIG_BITS(10,  0, 32); // 0xA00C0028
+    // config and status registers mapping
+    
+// macros for configuration and status bits
+// parameters: a = offset of 32-bit register, b = low bit in the register, n = number of bits
+`define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
+`define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
+
+    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
+    assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1); // 0xA00C0004
+    assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1); // 0xA00C0004
+    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2); // 0xA00C0004
+    wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4); // 0xA00C0004
+    wire fb_reset           = `CONFIG_BITS(1,12, 1); // 0xA00C0004 frame builder reset
+    assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
+    
+    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
+    
+    assign ts_edge_sel        = `CONFIG_BITS(3, 0,  1); // 0xA00C000c timing data clock edge selection
+    wire   fake_time_stamp_en = `CONFIG_BITS(3,  1, 1); // 0xA00C000C
+    // command codes from timing system
+    wire [7:0] cmd_code_idle      = `CONFIG_BITS(4,  0, 8); // 0xA00C0010
+    wire [7:0] cmd_code_edge      = `CONFIG_BITS(4,  8, 8); // 0xA00C0010
+    wire [7:0] cmd_code_sync      = `CONFIG_BITS(4, 16, 8); // 0xA00C0010
+    wire [7:0] cmd_code_act       = `CONFIG_BITS(4, 24, 8); // 0xA00C0010
+    
+    wire [7:0] cmd_code_reset     = `CONFIG_BITS(5,  0, 8); // 0xA00C0014
+    wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(5,  8, 8); // 0xA00C0014
+    wire [7:0] cmd_code_trigger   = `CONFIG_BITS(5, 16, 8); // 0xA00C0014
+    
+    wire [63:0] fake_time_stamp_init; // initial value for FTS
+    assign fake_time_stamp_init[31: 0] = `CONFIG_BITS(6,  0, 32); // 0xA00C0018
+    
+    assign fake_time_stamp_init[63:32] = `CONFIG_BITS(7,  0, 32); // 0xA00C001C
+    
+    wire fake_daq_stream = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
+    assign context_fld   = `CONFIG_BITS(8,  1,  8); // 0xA00C0020
+    
+    wire [17:0] spy_rec_time     = `CONFIG_BITS(9,  0, 18); // 0xA00C0024;
+
+    assign flex                 = `CONFIG_BITS(10,  0, 16); // 0xA00C0028
+    assign version              = `CONFIG_BITS(10,  16, 6); // 0xA00C0028
+    assign femb_pulser_in_frame = `CONFIG_BITS(10,  22, 8); // 0xA00C0028
+    assign ready                = `CONFIG_BITS(10,  30, 1); // 0xA00C0028
+    assign ws                   = `CONFIG_BITS(10,  31, 1); // 0xA00C0028
+    
     assign txctrl0_in                         = `CONFIG_BITS(11,  0, 32); // 0xA00C002C
+
     assign txctrl1_in                         = `CONFIG_BITS(12,  0, 32); // 0xA00C0030
+
+    assign link[0]  = `CONFIG_BITS(13,  0, 6);    // 0xA00C0034
+    assign link[1]  = `CONFIG_BITS(13,  6, 6);    // 0xA00C0034
+    assign crate_id = `CONFIG_BITS(13,  12, 10);  // 0xA00C0034
+    assign det_id   = `CONFIG_BITS(13,  22, 6);   // 0xA00C0034
+    assign psr_cal  = `CONFIG_BITS(13,  28, 4);   // 0xA00C0034
+    
     assign gtwiz_reset_tx_pll_and_datapath_in = `CONFIG_BITS(14,  0, 1);  // 0xA00C0038
     assign gtwiz_reset_tx_datapath_in         = `CONFIG_BITS(14,  4, 1);
     assign tx8b10ben_in                       = `CONFIG_BITS(14,  8, 2);
+    
+
+    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
+    assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;  // 0xA00C0084
+    assign `STATUS_BITS( 2, 0, 32) = fw_date;        // 0xA00C0088
+
+    assign `STATUS_BITS( 3, 0, 8) = {bp_crate_addr, bp_slot_addr}; // 0xA00C008c 
+
+    assign `STATUS_BITS( 4,20,  8) = 8'hff;            // 0xA00C0090
+    assign `STATUS_BITS( 4,18,  1) = adn2814_los;
+    assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
+    assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
+    assign `STATUS_BITS( 4,12,  4) = ts_sync;
+    assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
+    assign `STATUS_BITS( 4, 4,  1) = ts_rst;
+    assign `STATUS_BITS( 4, 0,  4) = ts_stat;
+    
+    wire [19:0] spy_addr [1:0];
+    assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0094
+    
+    assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
+
+    assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];  // 0xA00C00A0
+    
+    // according to Adrian's Slack message from 2020-10-15
+    assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32]; // 0xA00C00B0
+
+    assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
+
     assign `STATUS_BITS(16, 0, 1)      = gtwiz_reset_tx_done_out; // 0xA00C00C0
     assign `STATUS_BITS(16, 4, 1)      = gtwiz_userclk_tx_active_out;
     assign `STATUS_BITS(16, 8, 1)      = felix_powergood_out;
 
     wire sfp_dis;
-    wire [17:0] spy_rec_time     = `CONFIG_BITS(9,  0, 18); // 0xA00C0024;
-    wire [19:0] spy_addr [1:0];
-    assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0094
-    assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
     
     reg [7:0] sfp_dis_od;
     wire [7:0] bp_io_o;    
@@ -369,42 +441,10 @@ module wib_top
     reg [15:0] valid12_r [1:0];
     wire [1:0]  crc_err [15:0];
     wire rxclk2x;
-    (* mark_debug *) wire [15:0] rxprbserr_out;
-    wire [31:0] fw_date;
-    
-    // config and status registers mapping
-    
-    wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
-    assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1); // 0xA00C0004
-    assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1); // 0xA00C0004
-    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2); // 0xA00C0004
-    wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4); // 0xA00C0004
-    wire fb_reset           = `CONFIG_BITS(1,12, 1); // 0xA00C0004 frame builder reset
-    assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
-    
-    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
-    
-    assign ts_edge_sel      = `CONFIG_BITS(3, 0,  1); // 0xA00C000c timing data clock edge selection
-    
-    assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
-    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
-    assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;  // 0xA00C0084
-    assign `STATUS_BITS( 2, 0, 32) = fw_date;        // 0xA00C0088
-
-    assign `STATUS_BITS( 3, 0, 8) = {bp_crate_addr, bp_slot_addr}; // 0xA00C008c 
 
 
-    // according to Adrian's Slack message from 2020-10-15
-    assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32]; // 0xA00C00B0
-    assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];  // 0xA00C00A0
-    assign `STATUS_BITS( 4,20,  8) = 8'hff;            // 0xA00C0090
-    assign `STATUS_BITS( 4,18,  1) = adn2814_los;
-    assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
-    assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
-    assign `STATUS_BITS( 4,12,  4) = ts_sync;
-    assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
-    assign `STATUS_BITS( 4, 4,  1) = ts_rst;
-    assign `STATUS_BITS( 4, 0,  4) = ts_stat;
+
+
     
     wire clk_40;
     assign coldata_clk40 = {8{clk_40}};
@@ -469,7 +509,17 @@ module wib_top
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
         .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (~si5344_lol)
+        .si5344_lol    (~si5344_lol),
+        .link          (link    ),
+        .crate_id      (crate_id),
+        .det_id        (det_id  ),
+        .version       (version ),
+        .femb_pulser_in_frame (femb_pulser_in_frame),
+        .context_fld   (context_fld), 
+        .ready         (ready      ), 
+        .psr_cal       (psr_cal    ), 
+        .ws            (ws         ), 
+        .flex          (flex       )
     );    
     
     FELIX_GTH_v1f felix_gth_inst (

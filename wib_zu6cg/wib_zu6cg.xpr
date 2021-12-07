@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="49" Path="/home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.xpr">
+<Project Version="7" Minor="49" Path="/home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="b8acd2546b1d4b908e39fe4b3a5adfc3"/>
@@ -279,21 +279,6 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0482_xsdbm_0.xci">
-          <Proxy FileSetName="bd_0482_xsdbm_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0482_lut_buffer_0.xci">
-          <Proxy FileSetName="bd_0482_lut_buffer_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_c443_axi_jtag_0.xci">
-          <Proxy FileSetName="bd_c443_axi_jtag_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_c443_bsip_0.xci">
-          <Proxy FileSetName="bd_c443_bsip_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_2/bd_c443_bs_switch_1_0.xci">
-          <Proxy FileSetName="bd_c443_bs_switch_1_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_0/design_1_daq_spy_control_0_0.xci">
           <Proxy FileSetName="design_1_daq_spy_control_0_0"/>
         </CompFileExtendedInfo>
@@ -314,6 +299,21 @@
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0.xci">
           <Proxy FileSetName="design_1_coldata_fast_cmd_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_c443_axi_jtag_0.xci">
+          <Proxy FileSetName="bd_c443_axi_jtag_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_c443_bsip_0.xci">
+          <Proxy FileSetName="bd_c443_bsip_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_2/bd_c443_bs_switch_1_0.xci">
+          <Proxy FileSetName="bd_c443_bs_switch_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0482_xsdbm_0.xci">
+          <Proxy FileSetName="bd_0482_xsdbm_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0482_lut_buffer_0.xci">
+          <Proxy FileSetName="bd_0482_lut_buffer_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/sim_1/wib/bd_tux.sv">
@@ -1807,12 +1807,11 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="synth_zu9" Type="Ft3:Synth" SrcSet="sources_1" Part="xczu9eg-ffvb1156-1-e" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/synth_zu9" IncludeInArchive="true">
+    <Run Id="synth_zu9" Type="Ft3:Synth" SrcSet="sources_1" Part="xczu9eg-ffvb1156-1-e" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
@@ -2249,7 +2248,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_zu9" Type="Ft2:EntireDesign" Part="xczu9eg-ffvb1156-1-e" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/impl_zu9" SynthRun="synth_zu9" IncludeInArchive="true" GenFullBitstream="true">
+    <Run Id="impl_zu9" Type="Ft2:EntireDesign" Part="xczu9eg-ffvb1156-1-e" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="synth_zu9" IncludeInArchive="true" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>
@@ -2262,7 +2261,6 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>

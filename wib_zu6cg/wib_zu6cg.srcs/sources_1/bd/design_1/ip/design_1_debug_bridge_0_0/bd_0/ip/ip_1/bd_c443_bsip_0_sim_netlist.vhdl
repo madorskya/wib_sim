@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:20:39 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Date        : Mon Dec  6 10:40:20 2021
+-- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_sim_netlist.vhdl
 -- Design      : bd_c443_bsip_0

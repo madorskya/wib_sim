@@ -19,7 +19,19 @@ module frame_builder
 
     input [3:0] bp_crate_addr,
     input [3:0] bp_slot_addr,
-    input si5344_lol 
+    input si5344_lol, 
+
+    // new header parameters, see Josh's message from 2021-12-06
+    input [5:0]  link [1:0],
+    input [9:0]  crate_id,
+    input [5:0]  det_id,
+    input [5:0]  version,
+    input [7:0]  femb_pulser_in_frame,
+    input [7:0]  context_fld, 
+    input        ready, 
+    input [3:0]  psr_cal, 
+    input        ws, 
+    input [15:0] flex
 
 );
 
@@ -68,7 +80,17 @@ module frame_builder
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
         .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (si5344_lol)
+        .si5344_lol    (si5344_lol),
+        .link          (link [0]),
+        .crate_id      (crate_id),
+        .det_id        (det_id  ),
+        .version       (version ),
+        .femb_pulser_in_frame (femb_pulser_in_frame),
+        .context_fld   (context_fld), 
+        .ready         (ready      ), 
+        .psr_cal       (psr_cal    ), 
+        .ws            (ws         ), 
+        .flex          (flex       )
     );
 
     frame_builder_single #(.NUM(1)) fbs1
@@ -89,7 +111,17 @@ module frame_builder
         .fake_daq_stream (fake_daq_stream),
         .bp_crate_addr (bp_crate_addr),
         .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (si5344_lol)
+        .si5344_lol    (si5344_lol),
+        .link          (link [1]),
+        .crate_id      (crate_id),
+        .det_id        (det_id  ),
+        .version       (version ),
+        .femb_pulser_in_frame (femb_pulser_in_frame),
+        .context_fld   (context_fld), 
+        .ready         (ready      ), 
+        .psr_cal       (psr_cal    ), 
+        .ws            (ws         ), 
+        .flex          (flex       )
     );
 
     // async fifo for time stamp reclocking into deframed data domain

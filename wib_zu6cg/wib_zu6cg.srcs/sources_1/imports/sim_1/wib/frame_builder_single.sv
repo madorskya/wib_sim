@@ -4,7 +4,7 @@ module frame_builder_single #(parameter NUM = 0)
     input [7:0]  time8 [7:0], //[link]
     input [7:0]  valid14,
     input [7:0]  valid12,
-    input [7:0]  link_mask, // this input allows to disable some links in case the are broken
+    input [7:0]  link_mask, // this input allows to disable some links in case they are broken
     input [1:0]  crc_err [7:0],
     input        rxclk2x, // deframed data clock
     output reg [31:0] daq_stream, // data to felix
@@ -16,7 +16,18 @@ module frame_builder_single #(parameter NUM = 0)
     input fake_daq_stream,
     input [3:0] bp_crate_addr,
     input [3:0] bp_slot_addr,
-    input       si5344_lol 
+    input       si5344_lol, 
+    // new header parameters, see Josh's message from 2021-12-06
+    input [5:0]  link,
+    input [9:0]  crate_id,
+    input [5:0]  det_id,
+    input [5:0]  version,
+    input [7:0]  femb_pulser_in_frame,
+    input [7:0]  context_fld, 
+    input        ready, 
+    input [3:0]  psr_cal, 
+    input        ws, 
+    input [15:0] flex
 );
 
     reg [13:0] deframed_aligned [7:0][31:0]; // [link][sample]
@@ -105,6 +116,7 @@ module frame_builder_single #(parameter NUM = 0)
         CODE,
         TIME0,
         TIME1,
+        HEAD5,
         DATA,
         CRC,
         FLEX,
@@ -131,8 +143,8 @@ module frame_builder_single #(parameter NUM = 0)
     
     rq_state_t rq_state = DAQ_WAIT;
 
-    wire [31:0] header    [4:0];
-    wire [3:0]  header_k  [4:0];
+    wire [31:0] header    [5:0];
+    wire [3:0]  header_k  [5:0];
     wire [31:0] trailer   [2:0];
     wire [3:0]  trailer_k [2:0];
     reg [6:0] data_cnt;
@@ -141,27 +153,38 @@ module frame_builder_single #(parameter NUM = 0)
     wire [3:0] fr_ver = 4'h2; 
     wire [1:0] femb_val = 0; 
     wire       fnum = NUM; // FELIX fiber number
-    wire [2:0] wib_slot = bp_slot_addr[2:0]; // ignoring MSb of the slot address, no space in data format for it
-    wire [7:0] wiec_crate = {4'b0, bp_crate_addr}; // crate address input currently has only 4 bits
     reg  [63:0] timestamp_reclocked;
     reg  [19:0] crc_20 = 0; // this is just a place holder, actual CRC is in crc_out
+    reg [2:0] cdts_id; // shows which time stamp to report, is cycling through all values
+    (* async_reg *) reg [3:0] data_ready;
+    (* async_reg *) reg [3:0] rq_served;
+    reg [7:0] time8_mismatch [7:0];
+    reg [7:0] min_mismatch;
+    
+
+    // 15-bit coldata time stamp simulation for now, constructed from 8-bit stamp from Coldata r1
+    wire [14:0] coldata_time_stamp = {7'h0, time8_reclocked[cdts_id]};
 
     assign header  [0] = {24'h0, 8'h3c};
     assign header_k[0] = 4'b0001;
 
-    assign header  [1] = {si5344_lol, link_mask, femb_val, fnum, wib_slot, fr_ver, wiec_crate};
+    assign header  [1] = {link, bp_slot_addr, crate_id, det_id, version};
     assign header_k[1] = 4'b0000;
 
-    assign header  [2] = {time8_reclocked[3], time8_reclocked[2], time8_reclocked[1], time8_reclocked[0]};
+    assign header  [2] = timestamp_reclocked [31:0];
     assign header_k[2] = 4'b0000;
 
-    assign header  [3] = timestamp_reclocked [31:0];
+    assign header  [3] = timestamp_reclocked [63:32];
     assign header_k[3] = 4'b0000;
 
-    assign header  [4] = timestamp_reclocked [63:32];
+    assign header  [4] = {5'h0, si5344_lol, link_mask, femb_val, cdts_id, 13'h0};
     assign header_k[4] = 4'b0000;
+
+    assign header  [5] = {1'b0, coldata_time_stamp, min_mismatch, femb_pulser_in_frame};
+    assign header_k[5] = 4'b0000;
+
     
-    assign trailer  [0] = {time8_reclocked[7], time8_reclocked[6], time8_reclocked[5], time8_reclocked[4]};
+    assign trailer  [0] = {context_fld, ready, psr_cal, ws, 1'b0, flex};
     assign trailer_k[0] = 4'b0000;
     
     assign trailer  [1] = {4'b0, crc_20, 8'hdc};
@@ -170,10 +193,7 @@ module frame_builder_single #(parameter NUM = 0)
     assign trailer  [2] = {24'h0, 8'hbc};
     assign trailer_k[2] = 4'b0001;
     
-    (* async_reg *) reg [3:0] data_ready;
-    (* async_reg *) reg [3:0] rq_served;
     
-
     // DAQ request FSM
     always @(posedge rxclk2x)
     begin
@@ -194,6 +214,20 @@ module frame_builder_single #(parameter NUM = 0)
                     rq_state = DAQ_RQ;
                     data_ready[0] = 1'b1; // set the request bit
                     timestamp_reclocked = ts_tstamp; // store time stamp so it can be used in FELIX domain
+
+                    // time stamp sync error logic, super-primitive at this time
+                    // compare each time stamp with all others, count mismatches for each time stamp
+                    // synthesizer should optimize away duplicated comparators
+                    min_mismatch = 8'hff;
+                    for (i = 0; i < 8; i++)
+                    begin
+                        for (j = 0; j < 8; j++)
+                        begin
+                            time8_mismatch[i][j] = (time8_reclocked[i] == time8_reclocked[j]) ? 1'b0 : 1'b1;
+                        end
+                        time8_mismatch[i][i] = 1'h1; // this is to prevent zeroing out min_mismatch since [i]==[i] always
+                        min_mismatch &= time8_mismatch[i]; // this is minimum mismatch word for any of the time stamps
+                    end
                 end
                 
                 // update aligned valid flags    
@@ -211,6 +245,7 @@ module frame_builder_single #(parameter NUM = 0)
 //                    else if (fake_daq_stream == 1'b1)
 //                        deframed_aligned[i] = fake_data[i];
                 end
+                
             end
             
             DAQ_RQ:
@@ -270,6 +305,7 @@ module frame_builder_single #(parameter NUM = 0)
                 daq_stream_k_d[0] = header_k[0];
                 daq_data_type_d[0] = DT_FIRST; 
                 fb_state = HEAD;
+                cdts_id++ ;
             end
             
             HEAD:
@@ -304,6 +340,16 @@ module frame_builder_single #(parameter NUM = 0)
                 rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 daq_stream_d[0] = header[4];
                 daq_stream_k_d[0] = header_k[4];
+                daq_data_type_d[0] = DT_INTERMEDIATE; 
+                data_cnt = 7'd0;
+                fb_state = HEAD5;
+            end
+            
+            HEAD5:
+            begin
+                rq_served[0] = 1'b1; // tell request FSM that it's been served 
+                daq_stream_d[0] = header[5];
+                daq_stream_k_d[0] = header_k[5];
                 daq_data_type_d[0] = DT_INTERMEDIATE; 
                 data_cnt = 7'd0;
                 fb_state = DATA;
