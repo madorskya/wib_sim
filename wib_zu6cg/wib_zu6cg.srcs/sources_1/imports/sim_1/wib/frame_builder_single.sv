@@ -233,17 +233,23 @@ module frame_builder_single #(parameter NUM = 0)
                 // update aligned valid flags    
                 // masked links always considered aligned
                 valid_aligned |= (valid12 | valid14 | link_mask);
+                
+                if (fake_daq_stream == 1'b1) valid_aligned = 8'hff; // set all valid flags to fake the DAQ stream
+                else
                 if (link_mask == 8'hff) valid_aligned = 8'h0; // if all links are masked, disable the requests, nothing is working
-                //if (fake_daq_stream == 1'b1) valid_aligned = 8'hff; // set all valid flags to fake the DAQ stream
+                
                 for (i = 0; i < 8; i++) // link loop
                 begin
-                    if (valid12[i] || valid14[i]) // valid bit came from that link 
+                    if (fake_daq_stream == 1'b1)
+                    begin
+                        deframed_aligned[i] = fake_data[i];
+                        time8_reclocked[i] = 8'hab;
+                    end
+                    else if (valid12[i] || valid14[i]) // valid bit came from that link 
                     begin
                         deframed_aligned[i] = deframed[i]; // store data
                         time8_reclocked[i] = time8[i]; // store the COLDATA time stamp for this link
                     end
-//                    else if (fake_daq_stream == 1'b1)
-//                        deframed_aligned[i] = fake_data[i];
                 end
                 
             end

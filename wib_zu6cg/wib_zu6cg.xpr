@@ -279,23 +279,11 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_0/design_1_daq_spy_control_0_0.xci">
-          <Proxy FileSetName="design_1_daq_spy_control_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0482_xsdbm_0.xci">
+          <Proxy FileSetName="bd_0482_xsdbm_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_1/design_1_daq_spy_control_0_1.xci">
-          <Proxy FileSetName="design_1_daq_spy_control_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_0/design_1_ila_0_0.xci">
-          <Proxy FileSetName="design_1_ila_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0.xci">
-          <Proxy FileSetName="design_1_ts_reclock_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_1/design_1_ila_0_1.xci">
-          <Proxy FileSetName="design_1_ila_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_pdts_endpoint_stdlog_0_0/design_1_pdts_endpoint_stdlog_0_0.xci">
-          <Proxy FileSetName="design_1_pdts_endpoint_stdlog_0_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0482_lut_buffer_0.xci">
+          <Proxy FileSetName="bd_0482_lut_buffer_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0.xci">
           <Proxy FileSetName="design_1_coldata_fast_cmd_0_0"/>
@@ -309,11 +297,23 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_2/bd_c443_bs_switch_1_0.xci">
           <Proxy FileSetName="bd_c443_bs_switch_1_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0482_xsdbm_0.xci">
-          <Proxy FileSetName="bd_0482_xsdbm_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_0/design_1_ila_0_0.xci">
+          <Proxy FileSetName="design_1_ila_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0482_lut_buffer_0.xci">
-          <Proxy FileSetName="bd_0482_lut_buffer_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0.xci">
+          <Proxy FileSetName="design_1_ts_reclock_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ila_0_1/design_1_ila_0_1.xci">
+          <Proxy FileSetName="design_1_ila_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_pdts_endpoint_stdlog_0_0/design_1_pdts_endpoint_stdlog_0_0.xci">
+          <Proxy FileSetName="design_1_pdts_endpoint_stdlog_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_0/design_1_daq_spy_control_0_0.xci">
+          <Proxy FileSetName="design_1_daq_spy_control_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_1/design_1_daq_spy_control_0_1.xci">
+          <Proxy FileSetName="design_1_daq_spy_control_0_1"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/sim_1/wib/bd_tux.sv">
