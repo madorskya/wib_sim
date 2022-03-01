@@ -235,13 +235,15 @@ module wib_top
     wire gtwiz_reset_tx_done_out;
     wire gtwiz_reset_tx_pll_and_datapath_in;
     wire gtwiz_reset_tx_datapath_in;
+    wire gtwiz_reset_rx_pll_and_datapath_in;
+    wire gtwiz_reset_rx_datapath_in;
+    wire felix_rx_reset;
     wire [1:0] tx8b10ben_in;  
     wire [31:0] txctrl0_in;
     wire [31:0] txctrl1_in;
     //wire [15:0] txctrl2_in;
     //wire [64:0] gtwiz_userdata_tx_in;
     
-    wire usr_clk_out;
     wire gtwiz_userclk_tx_active_out;
     wire felix_powergood_out;
     (* mark_debug *) wire [15:0] rxprbserr_out;
@@ -315,7 +317,10 @@ module wib_top
     assign psr_cal  = `CONFIG_BITS(13,  28, 4);   // 0xA00C0034
     
     assign gtwiz_reset_tx_pll_and_datapath_in = `CONFIG_BITS(14,  0, 1);  // 0xA00C0038
+    assign gtwiz_reset_rx_pll_and_datapath_in = `CONFIG_BITS(14,  1, 1);  // 0xA00C0038
     assign gtwiz_reset_tx_datapath_in         = `CONFIG_BITS(14,  4, 1);
+    assign gtwiz_reset_rx_datapath_in         = `CONFIG_BITS(14,  5, 1);
+    assign felix_rx_reset                     = `CONFIG_BITS(14,  6, 1);
     assign tx8b10ben_in                       = `CONFIG_BITS(14,  8, 2);
     
 
@@ -354,6 +359,14 @@ module wib_top
     
     reg [7:0] sfp_dis_od;
     wire [7:0] bp_io_o;    
+    
+    wire [1:0] felix_rxbyteisaligned_out;
+    wire [1:0] felix_rxbyterealign_out;
+    wire [1:0] felix_rxcommadet_out;
+    wire [31:0] felix_rxctrl0_out;
+    wire [63 : 0] felix_gtwiz_userdata_rx_out;
+    wire felix_rx_clk;
+    wire felix_gtwiz_reset_rx_done_out;
     
     bd_tux wrp
     (
@@ -521,6 +534,8 @@ module wib_top
         .ws            (ws         ), 
         .flex          (flex       )
     );    
+
+
     
     FELIX_GTH_v1f felix_gth_inst (
        .gthrxn_in                               (gthrxn_int),
@@ -529,41 +544,49 @@ module wib_top
        .gthtxp_out                              (gthtxp_int),
        .gtwiz_userclk_tx_reset_in               (~(&txpmaresetdone_out)),
        .gtwiz_userclk_tx_srcclk_out             (),
-       .gtwiz_userclk_tx_usrclk_out             (usr_clk_out),
+       .gtwiz_userclk_tx_usrclk_out             (),
        .gtwiz_userclk_tx_usrclk2_out            (clk240_from_felix_gth),
        .gtwiz_userclk_tx_active_out             (gtwiz_userclk_tx_active_out),
-       .gtwiz_userclk_rx_reset_in               (~(&rxpmaresetdone_out)),
+       .gtwiz_userclk_rx_reset_in               (felix_rx_reset), // (~(&rxpmaresetdone_out)),
        .gtwiz_userclk_rx_srcclk_out             (),
        .gtwiz_userclk_rx_usrclk_out             (),
-       .gtwiz_userclk_rx_usrclk2_out            (),
+       .gtwiz_userclk_rx_usrclk2_out            (felix_rx_clk),
        .gtwiz_userclk_rx_active_out             (),
        .gtwiz_reset_clk_freerun_in              (axi_clk_out),
        .gtwiz_reset_all_in                      (~axi_rstn),
        .gtwiz_reset_tx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
        .gtwiz_reset_tx_datapath_in              (gtwiz_reset_tx_datapath_in),
-       .gtwiz_reset_rx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
-       .gtwiz_reset_rx_datapath_in              (gtwiz_reset_tx_datapath_in),
+       .gtwiz_reset_rx_pll_and_datapath_in      (gtwiz_reset_rx_pll_and_datapath_in),
+       .gtwiz_reset_rx_datapath_in              (gtwiz_reset_rx_datapath_in),
        .gtwiz_reset_rx_cdr_stable_out           (),
        .gtwiz_reset_tx_done_out                 (gtwiz_reset_tx_done_out),
-       .gtwiz_reset_rx_done_out                 (),
+       .gtwiz_reset_rx_done_out                 (felix_gtwiz_reset_rx_done_out),
        .gtwiz_userdata_tx_in                    ({daq_stream[1],daq_stream[0]}),
-       .gtwiz_userdata_rx_out                   (),
+       .gtwiz_userdata_rx_out                   (felix_gtwiz_userdata_rx_out),
        .gtrefclk01_in                           (mgtrefclk0_x0y1_int),
        .qpll1outclk_out                         (),
        .qpll1outrefclk_out                      (),
-       .rx8b10ben_in                            (tx8b10ben_in),
-       .tx8b10ben_in                            (tx8b10ben_in),
-       .txctrl0_in                              (txctrl0_in),
-       .txctrl1_in                              (txctrl1_in),
+       .rx8b10ben_in                            (2'b11),
+       .tx8b10ben_in                            (2'b11),
+       .txctrl0_in                              (32'h0),
+       .txctrl1_in                              (32'h0),
        .txctrl2_in                              ({4'b0000,daq_stream_k[1],4'b0000,daq_stream_k[0]}),
        .gtpowergood_out                         (felix_powergood_out),
-       .rxctrl0_out                             (),
+       .rxctrl0_out                             (felix_rxctrl0_out),
        .rxctrl1_out                             (),
        .rxctrl2_out                             (),
        .rxctrl3_out                             (),
        .rxpmaresetdone_out                      (rxpmaresetdone_out),
        .txpmaresetdone_out                      (txpmaresetdone_out),
-       .txprbssel_in                            ({2{rx_prbs_sel}})
+       .txprbssel_in                            ({2{rx_prbs_sel}}),
+       
+       // receiver ports for loopback test
+       .rxbyteisaligned_out (felix_rxbyteisaligned_out),
+       .rxbyterealign_out   (felix_rxbyterealign_out),
+       .rxcommadet_out      (felix_rxcommadet_out),
+       .rxcommadeten_in     (2'b11),
+       .rxmcommaalignen_in  (2'b00),
+       .rxpcommaalignen_in  (2'b11)
     );    
 
     I2C_CONTROL i2c_ctrl
@@ -665,9 +688,23 @@ module wib_top
         .probe9 (tx8b10ben_in[1]), // 1-bit
         .probe10 (txctrl0_in), // 32-bit
         .probe11 (txctrl1_in), // 32-bit
-        .probe12 ({4'b0000,daq_stream_k[1],4'b0000,daq_stream_k[0]}), // 16-bit
+        .probe12 ({daq_stream_k[1], daq_stream_k[0]}), // 8-bit
         .probe13 ({daq_stream[1],daq_stream[0]}) // 64-bit
+    );
+    
+    ila_felix_rx ila_felix_rx_i
+    (    
+        .clk     (felix_rx_clk       ),
+        .probe0  (felix_rxbyteisaligned_out),
+        .probe1  (felix_rxbyterealign_out),
+        .probe2  (felix_rxcommadet_out),
+        .probe3  (felix_rxctrl0_out [3:0]),
+        .probe4  (felix_rxctrl0_out [19:16]),
+        .probe5  (felix_gtwiz_userdata_rx_out [31:0]),
+        .probe6  (felix_gtwiz_userdata_rx_out [63:32]),
+        .probe7  (felix_gtwiz_reset_rx_done_out)
     );  
+
 
     always @(*)
     begin

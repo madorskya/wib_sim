@@ -69,7 +69,7 @@ ila_14probe your_instance_name (
 	.probe9(probe9), // input wire [0:0]  probe9 
 	.probe10(probe10), // input wire [31:0]  probe10 
 	.probe11(probe11), // input wire [31:0]  probe11 
-	.probe12(probe12), // input wire [15:0]  probe12 
+	.probe12(probe12), // input wire [7:0]  probe12 
 	.probe13(probe13) // input wire [63:0]  probe13
 );
 

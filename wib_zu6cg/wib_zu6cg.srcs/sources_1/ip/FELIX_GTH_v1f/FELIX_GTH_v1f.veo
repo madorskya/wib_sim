@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -82,6 +82,9 @@ FELIX_GTH_v1f your_instance_name (
   .gthrxn_in(gthrxn_in),                                                    // input wire [1 : 0] gthrxn_in
   .gthrxp_in(gthrxp_in),                                                    // input wire [1 : 0] gthrxp_in
   .rx8b10ben_in(rx8b10ben_in),                                              // input wire [1 : 0] rx8b10ben_in
+  .rxcommadeten_in(rxcommadeten_in),                                        // input wire [1 : 0] rxcommadeten_in
+  .rxmcommaalignen_in(rxmcommaalignen_in),                                  // input wire [1 : 0] rxmcommaalignen_in
+  .rxpcommaalignen_in(rxpcommaalignen_in),                                  // input wire [1 : 0] rxpcommaalignen_in
   .tx8b10ben_in(tx8b10ben_in),                                              // input wire [1 : 0] tx8b10ben_in
   .txctrl0_in(txctrl0_in),                                                  // input wire [31 : 0] txctrl0_in
   .txctrl1_in(txctrl1_in),                                                  // input wire [31 : 0] txctrl1_in
@@ -90,6 +93,9 @@ FELIX_GTH_v1f your_instance_name (
   .gthtxn_out(gthtxn_out),                                                  // output wire [1 : 0] gthtxn_out
   .gthtxp_out(gthtxp_out),                                                  // output wire [1 : 0] gthtxp_out
   .gtpowergood_out(gtpowergood_out),                                        // output wire [1 : 0] gtpowergood_out
+  .rxbyteisaligned_out(rxbyteisaligned_out),                                // output wire [1 : 0] rxbyteisaligned_out
+  .rxbyterealign_out(rxbyterealign_out),                                    // output wire [1 : 0] rxbyterealign_out
+  .rxcommadet_out(rxcommadet_out),                                          // output wire [1 : 0] rxcommadet_out
   .rxctrl0_out(rxctrl0_out),                                                // output wire [31 : 0] rxctrl0_out
   .rxctrl1_out(rxctrl1_out),                                                // output wire [31 : 0] rxctrl1_out
   .rxctrl2_out(rxctrl2_out),                                                // output wire [15 : 0] rxctrl2_out

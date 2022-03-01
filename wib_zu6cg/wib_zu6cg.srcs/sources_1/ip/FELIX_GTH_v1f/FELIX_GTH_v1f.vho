@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -81,6 +81,9 @@ COMPONENT FELIX_GTH_v1f
     gthrxn_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     gthrxp_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     rx8b10ben_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    rxcommadeten_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    rxmcommaalignen_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    rxpcommaalignen_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     tx8b10ben_in : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     txctrl0_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     txctrl1_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -89,6 +92,9 @@ COMPONENT FELIX_GTH_v1f
     gthtxn_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     gthtxp_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     gtpowergood_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    rxbyteisaligned_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    rxbyterealign_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    rxcommadet_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     rxctrl0_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     rxctrl1_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     rxctrl2_out : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -132,6 +138,9 @@ your_instance_name : FELIX_GTH_v1f
     gthrxn_in => gthrxn_in,
     gthrxp_in => gthrxp_in,
     rx8b10ben_in => rx8b10ben_in,
+    rxcommadeten_in => rxcommadeten_in,
+    rxmcommaalignen_in => rxmcommaalignen_in,
+    rxpcommaalignen_in => rxpcommaalignen_in,
     tx8b10ben_in => tx8b10ben_in,
     txctrl0_in => txctrl0_in,
     txctrl1_in => txctrl1_in,
@@ -140,6 +149,9 @@ your_instance_name : FELIX_GTH_v1f
     gthtxn_out => gthtxn_out,
     gthtxp_out => gthtxp_out,
     gtpowergood_out => gtpowergood_out,
+    rxbyteisaligned_out => rxbyteisaligned_out,
+    rxbyterealign_out => rxbyterealign_out,
+    rxcommadet_out => rxcommadet_out,
     rxctrl0_out => rxctrl0_out,
     rxctrl1_out => rxctrl1_out,
     rxctrl2_out => rxctrl2_out,

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:42:43 2021
+-- Date        : Sun Feb 27 17:04:07 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_stub.vhdl
@@ -41,6 +41,9 @@ entity FELIX_GTH_v1f is
     gthrxn_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gthrxp_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     rx8b10ben_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxcommadeten_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxmcommaalignen_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxpcommaalignen_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     tx8b10ben_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     txctrl0_in : in STD_LOGIC_VECTOR ( 31 downto 0 );
     txctrl1_in : in STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -49,6 +52,9 @@ entity FELIX_GTH_v1f is
     gthtxn_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     gthtxp_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     gtpowergood_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxbyteisaligned_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxbyterealign_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxcommadet_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     rxctrl0_out : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rxctrl1_out : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rxctrl2_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -63,7 +69,7 @@ architecture stub of FELIX_GTH_v1f is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "gtwiz_userclk_tx_reset_in[0:0],gtwiz_userclk_tx_srcclk_out[0:0],gtwiz_userclk_tx_usrclk_out[0:0],gtwiz_userclk_tx_usrclk2_out[0:0],gtwiz_userclk_tx_active_out[0:0],gtwiz_userclk_rx_reset_in[0:0],gtwiz_userclk_rx_srcclk_out[0:0],gtwiz_userclk_rx_usrclk_out[0:0],gtwiz_userclk_rx_usrclk2_out[0:0],gtwiz_userclk_rx_active_out[0:0],gtwiz_reset_clk_freerun_in[0:0],gtwiz_reset_all_in[0:0],gtwiz_reset_tx_pll_and_datapath_in[0:0],gtwiz_reset_tx_datapath_in[0:0],gtwiz_reset_rx_pll_and_datapath_in[0:0],gtwiz_reset_rx_datapath_in[0:0],gtwiz_reset_rx_cdr_stable_out[0:0],gtwiz_reset_tx_done_out[0:0],gtwiz_reset_rx_done_out[0:0],gtwiz_userdata_tx_in[63:0],gtwiz_userdata_rx_out[63:0],gtrefclk01_in[0:0],qpll1outclk_out[0:0],qpll1outrefclk_out[0:0],gthrxn_in[1:0],gthrxp_in[1:0],rx8b10ben_in[1:0],tx8b10ben_in[1:0],txctrl0_in[31:0],txctrl1_in[31:0],txctrl2_in[15:0],txprbssel_in[7:0],gthtxn_out[1:0],gthtxp_out[1:0],gtpowergood_out[1:0],rxctrl0_out[31:0],rxctrl1_out[31:0],rxctrl2_out[15:0],rxctrl3_out[15:0],rxpmaresetdone_out[1:0],txpmaresetdone_out[1:0]";
+attribute black_box_pad_pin of stub : architecture is "gtwiz_userclk_tx_reset_in[0:0],gtwiz_userclk_tx_srcclk_out[0:0],gtwiz_userclk_tx_usrclk_out[0:0],gtwiz_userclk_tx_usrclk2_out[0:0],gtwiz_userclk_tx_active_out[0:0],gtwiz_userclk_rx_reset_in[0:0],gtwiz_userclk_rx_srcclk_out[0:0],gtwiz_userclk_rx_usrclk_out[0:0],gtwiz_userclk_rx_usrclk2_out[0:0],gtwiz_userclk_rx_active_out[0:0],gtwiz_reset_clk_freerun_in[0:0],gtwiz_reset_all_in[0:0],gtwiz_reset_tx_pll_and_datapath_in[0:0],gtwiz_reset_tx_datapath_in[0:0],gtwiz_reset_rx_pll_and_datapath_in[0:0],gtwiz_reset_rx_datapath_in[0:0],gtwiz_reset_rx_cdr_stable_out[0:0],gtwiz_reset_tx_done_out[0:0],gtwiz_reset_rx_done_out[0:0],gtwiz_userdata_tx_in[63:0],gtwiz_userdata_rx_out[63:0],gtrefclk01_in[0:0],qpll1outclk_out[0:0],qpll1outrefclk_out[0:0],gthrxn_in[1:0],gthrxp_in[1:0],rx8b10ben_in[1:0],rxcommadeten_in[1:0],rxmcommaalignen_in[1:0],rxpcommaalignen_in[1:0],tx8b10ben_in[1:0],txctrl0_in[31:0],txctrl1_in[31:0],txctrl2_in[15:0],txprbssel_in[7:0],gthtxn_out[1:0],gthtxp_out[1:0],gtpowergood_out[1:0],rxbyteisaligned_out[1:0],rxbyterealign_out[1:0],rxcommadet_out[1:0],rxctrl0_out[31:0],rxctrl1_out[31:0],rxctrl2_out[15:0],rxctrl3_out[15:0],rxpmaresetdone_out[1:0],txpmaresetdone_out[1:0]";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "FELIX_GTH_v1f_gtwizard_top,Vivado 2020.1";
 begin

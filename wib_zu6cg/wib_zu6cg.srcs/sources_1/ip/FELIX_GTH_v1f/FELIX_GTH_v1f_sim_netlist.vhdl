@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:42:43 2021
+-- Date        : Sun Feb 27 17:04:07 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_sim_netlist.vhdl
@@ -17,17 +17,14 @@ use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    i_in_out_reg_0 : out STD_LOGIC;
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_rx_done_int_reg : in STD_LOGIC_VECTOR ( 0 to 0 )
+    gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer is
-  signal \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -48,16 +45,6 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
 begin
-  \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) <= \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0);
-gtwiz_reset_rx_done_int_i_2: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"8"
-    )
-        port map (
-      I0 => \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
-      I1 => gtwiz_reset_rx_done_int_reg(0),
-      O => i_in_out_reg_0
-    );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -77,7 +64,7 @@ i_in_out_reg: unisim.vcomponents.FDRE
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
       D => i_in_sync3,
-      Q => \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
+      Q => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
       R => '0'
     );
 i_in_sync1_reg: unisim.vcomponents.FDRE
@@ -121,17 +108,14 @@ use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1 is
   port (
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    i_in_out_reg_0 : out STD_LOGIC;
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    sm_reset_tx_timer_clr_i_2 : in STD_LOGIC_VECTOR ( 0 to 0 )
+    gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1 is
-  signal \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -152,16 +136,6 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
 begin
-  \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) <= \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0);
-\FSM_sequential_sm_reset_tx[2]_i_7\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"8"
-    )
-        port map (
-      I0 => \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
-      I1 => sm_reset_tx_timer_clr_i_2(0),
-      O => i_in_out_reg_0
-    );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -181,7 +155,7 @@ i_in_out_reg: unisim.vcomponents.FDRE
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
       D => i_in_sync3,
-      Q => \^gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
+      Q => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
       R => '0'
     );
 i_in_sync1_reg: unisim.vcomponents.FDRE
@@ -224,34 +198,20 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10 is
   port (
-    E : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_sequential_sm_reset_tx_reg[2]\ : out STD_LOGIC;
-    \FSM_sequential_sm_reset_tx_reg[1]\ : out STD_LOGIC;
+    gtwiz_reset_userclk_tx_active_sync : out STD_LOGIC;
+    i_in_out_reg_0 : out STD_LOGIC;
     gtwiz_userclk_tx_active_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_sequential_sm_reset_tx_reg[0]\ : in STD_LOGIC;
-    gtwiz_reset_tx_pll_and_datapath_dly : in STD_LOGIC;
-    gtwiz_reset_tx_datapath_dly : in STD_LOGIC;
-    sm_reset_tx_pll_timer_clr : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    sm_reset_tx_timer_clr_reg : in STD_LOGIC;
-    sm_reset_tx_timer_clr_reg_0 : in STD_LOGIC;
-    plllock_tx_sync : in STD_LOGIC;
-    \FSM_sequential_sm_reset_tx_reg[0]_0\ : in STD_LOGIC;
-    \FSM_sequential_sm_reset_tx_reg[0]_1\ : in STD_LOGIC;
-    sm_reset_tx_pll_timer_sat : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
     sm_reset_tx_timer_sat : in STD_LOGIC;
-    sm_reset_tx_timer_clr_reg_1 : in STD_LOGIC;
-    gtwiz_reset_tx_any_sync : in STD_LOGIC;
-    GTHE4_CHANNEL_TXUSERRDY : in STD_LOGIC_VECTOR ( 0 to 0 )
+    txuserrdy_out_reg : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10 is
-  signal \FSM_sequential_sm_reset_tx[2]_i_3_n_0\ : STD_LOGIC;
-  signal gtwiz_reset_userclk_tx_active_sync : STD_LOGIC;
+  signal \^gtwiz_reset_userclk_tx_active_sync\ : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -261,8 +221,6 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute async_reg of i_in_sync2 : signal is "true";
   signal i_in_sync3 : STD_LOGIC;
   attribute async_reg of i_in_sync3 : signal is "true";
-  signal sm_reset_tx_timer_clr_i_2_n_0 : STD_LOGIC;
-  signal txuserrdy_out_i_2_n_0 : STD_LOGIC;
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of i_in_meta_reg : label is std.standard.true;
   attribute KEEP : string;
@@ -274,32 +232,7 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
 begin
-\FSM_sequential_sm_reset_tx[2]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"EEEEEEEEFFFEEEEE"
-    )
-        port map (
-      I0 => \FSM_sequential_sm_reset_tx[2]_i_3_n_0\,
-      I1 => \FSM_sequential_sm_reset_tx_reg[0]\,
-      I2 => gtwiz_reset_tx_pll_and_datapath_dly,
-      I3 => gtwiz_reset_tx_datapath_dly,
-      I4 => sm_reset_tx_pll_timer_clr,
-      I5 => Q(0),
-      O => E(0)
-    );
-\FSM_sequential_sm_reset_tx[2]_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00F0000088888888"
-    )
-        port map (
-      I0 => \FSM_sequential_sm_reset_tx_reg[0]_0\,
-      I1 => gtwiz_reset_userclk_tx_active_sync,
-      I2 => sm_reset_tx_pll_timer_clr,
-      I3 => \FSM_sequential_sm_reset_tx_reg[0]_1\,
-      I4 => sm_reset_tx_pll_timer_sat,
-      I5 => Q(0),
-      O => \FSM_sequential_sm_reset_tx[2]_i_3_n_0\
-    );
+  gtwiz_reset_userclk_tx_active_sync <= \^gtwiz_reset_userclk_tx_active_sync\;
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -319,7 +252,7 @@ i_in_out_reg: unisim.vcomponents.FDRE
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
       D => i_in_sync3,
-      Q => gtwiz_reset_userclk_tx_active_sync,
+      Q => \^gtwiz_reset_userclk_tx_active_sync\,
       R => '0'
     );
 i_in_sync1_reg: unisim.vcomponents.FDRE
@@ -355,55 +288,17 @@ i_in_sync3_reg: unisim.vcomponents.FDRE
       Q => i_in_sync3,
       R => '0'
     );
-sm_reset_tx_timer_clr_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"EBEB282B"
-    )
-        port map (
-      I0 => sm_reset_tx_timer_clr_i_2_n_0,
-      I1 => Q(2),
-      I2 => Q(1),
-      I3 => Q(0),
-      I4 => sm_reset_tx_timer_clr_reg_1,
-      O => \FSM_sequential_sm_reset_tx_reg[2]\
-    );
-sm_reset_tx_timer_clr_i_2: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"A0C0A0C0F0F000F0"
-    )
-        port map (
-      I0 => sm_reset_tx_timer_clr_reg,
-      I1 => gtwiz_reset_userclk_tx_active_sync,
-      I2 => sm_reset_tx_timer_clr_reg_0,
-      I3 => Q(0),
-      I4 => plllock_tx_sync,
-      I5 => Q(2),
-      O => sm_reset_tx_timer_clr_i_2_n_0
-    );
-txuserrdy_out_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFEFB000002AA"
-    )
-        port map (
-      I0 => txuserrdy_out_i_2_n_0,
-      I1 => Q(1),
-      I2 => Q(2),
-      I3 => Q(0),
-      I4 => gtwiz_reset_tx_any_sync,
-      I5 => GTHE4_CHANNEL_TXUSERRDY(0),
-      O => \FSM_sequential_sm_reset_tx_reg[1]\
-    );
 txuserrdy_out_i_2: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"00200000"
+      INIT => X"00000800"
     )
         port map (
-      I0 => sm_reset_tx_timer_sat,
-      I1 => sm_reset_tx_timer_clr_reg_1,
-      I2 => Q(2),
-      I3 => Q(1),
-      I4 => gtwiz_reset_userclk_tx_active_sync,
-      O => txuserrdy_out_i_2_n_0
+      I0 => \^gtwiz_reset_userclk_tx_active_sync\,
+      I1 => Q(1),
+      I2 => Q(0),
+      I3 => sm_reset_tx_timer_sat,
+      I4 => txuserrdy_out_reg,
+      O => i_in_out_reg_0
     );
 end STRUCTURE;
 library IEEE;
@@ -413,24 +308,24 @@ use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11 is
   port (
     plllock_rx_sync : out STD_LOGIC;
-    i_in_out_reg_0 : out STD_LOGIC;
-    i_in_out_reg_1 : out STD_LOGIC;
+    \FSM_sequential_sm_reset_rx_reg[2]\ : out STD_LOGIC;
+    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     qpll1lock_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gtwiz_reset_rx_done_int_reg : in STD_LOGIC;
-    gtrxreset_out_reg : in STD_LOGIC;
-    sm_reset_rx_timer_sat : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gtwiz_reset_rx_done_int_reg_0 : in STD_LOGIC;
-    gtwiz_reset_rx_done_int_reg_1 : in STD_LOGIC;
-    gtwiz_reset_rx_done_int_reg_2 : in STD_LOGIC
+    \FSM_sequential_sm_reset_rx_reg[0]\ : in STD_LOGIC;
+    \FSM_sequential_sm_reset_rx_reg[0]_0\ : in STD_LOGIC;
+    \FSM_sequential_sm_reset_rx_reg[0]_1\ : in STD_LOGIC;
+    \FSM_sequential_sm_reset_rx_reg[0]_2\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11 is
-  signal gtwiz_reset_rx_done_int : STD_LOGIC;
+  signal \FSM_sequential_sm_reset_rx[2]_i_3_n_0\ : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -453,42 +348,44 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute KEEP of i_in_sync3_reg : label is "yes";
 begin
   plllock_rx_sync <= \^plllock_rx_sync\;
-gtrxreset_out_i_2: unisim.vcomponents.LUT5
+\FSM_sequential_sm_reset_rx[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"20FFFF00"
+      INIT => X"FEFEFEFEFFFEFEFE"
+    )
+        port map (
+      I0 => \FSM_sequential_sm_reset_rx[2]_i_3_n_0\,
+      I1 => \FSM_sequential_sm_reset_rx_reg[0]\,
+      I2 => \FSM_sequential_sm_reset_rx_reg[0]_0\,
+      I3 => \FSM_sequential_sm_reset_rx_reg[0]_1\,
+      I4 => Q(0),
+      I5 => Q(1),
+      O => E(0)
+    );
+\FSM_sequential_sm_reset_rx[2]_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"080800000CFF0000"
     )
         port map (
       I0 => \^plllock_rx_sync\,
-      I1 => gtrxreset_out_reg,
-      I2 => sm_reset_rx_timer_sat,
-      I3 => Q(1),
-      I4 => Q(0),
-      O => i_in_out_reg_0
+      I1 => \FSM_sequential_sm_reset_rx_reg[0]_2\,
+      I2 => Q(2),
+      I3 => gtwiz_reset_rx_done_int_reg,
+      I4 => Q(1),
+      I5 => Q(0),
+      O => \FSM_sequential_sm_reset_rx[2]_i_3_n_0\
     );
 gtwiz_reset_rx_done_int_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AAC0FFFFAAC00000"
+      INIT => X"FFFF3FFF00400040"
     )
         port map (
-      I0 => \^plllock_rx_sync\,
-      I1 => gtwiz_reset_rx_done_int_reg_0,
-      I2 => gtwiz_reset_rx_done_int_reg_1,
+      I0 => gtwiz_reset_rx_done_int_reg,
+      I1 => Q(2),
+      I2 => Q(1),
       I3 => Q(0),
-      I4 => gtwiz_reset_rx_done_int,
-      I5 => gtwiz_reset_rx_done_int_reg_2,
-      O => i_in_out_reg_1
-    );
-gtwiz_reset_rx_done_int_i_3: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"4400F000"
-    )
-        port map (
-      I0 => \^plllock_rx_sync\,
-      I1 => Q(1),
-      I2 => gtwiz_reset_rx_done_int_reg,
-      I3 => Q(2),
-      I4 => Q(0),
-      O => gtwiz_reset_rx_done_int
+      I4 => \^plllock_rx_sync\,
+      I5 => gtwiz_reset_rx_done_int_reg_0,
+      O => \FSM_sequential_sm_reset_rx_reg[2]\
     );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
@@ -552,27 +449,36 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12 is
   port (
-    plllock_tx_sync : out STD_LOGIC;
-    i_in_out_reg_0 : out STD_LOGIC;
-    sm_reset_tx_timer_sat_reg : out STD_LOGIC;
     \FSM_sequential_sm_reset_tx_reg[0]\ : out STD_LOGIC;
+    sm_reset_tx_timer_sat_reg : out STD_LOGIC;
+    \FSM_sequential_sm_reset_tx_reg[0]_0\ : out STD_LOGIC;
+    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     qpll1lock_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_tx_done_int_reg : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    \FSM_sequential_sm_reset_tx_reg[0]_0\ : in STD_LOGIC;
-    sm_reset_tx_timer_sat : in STD_LOGIC;
-    gttxreset_out_reg : in STD_LOGIC;
-    gtwiz_reset_tx_any_sync : in STD_LOGIC;
+    gtwiz_reset_tx_done_int_reg : in STD_LOGIC;
     gtwiz_reset_tx_done_int_reg_0 : in STD_LOGIC;
-    gtwiz_reset_tx_done_int_reg_1 : in STD_LOGIC
+    gtwiz_reset_tx_done_int_reg_1 : in STD_LOGIC;
+    sm_reset_tx_timer_sat : in STD_LOGIC;
+    sm_reset_tx_timer_clr_reg : in STD_LOGIC;
+    gtwiz_reset_tx_any_sync : in STD_LOGIC;
+    GTHE4_CHANNEL_GTTXRESET : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \FSM_sequential_sm_reset_tx_reg[0]_1\ : in STD_LOGIC;
+    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    gtwiz_reset_userclk_tx_active_sync : in STD_LOGIC;
+    \FSM_sequential_sm_reset_tx_reg[0]_2\ : in STD_LOGIC;
+    \FSM_sequential_sm_reset_tx_reg[0]_3\ : in STD_LOGIC;
+    \FSM_sequential_sm_reset_tx_reg[0]_4\ : in STD_LOGIC;
+    sm_reset_tx_pll_timer_sat : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12 is
-  signal gtwiz_reset_tx_done_int : STD_LOGIC;
+  signal \FSM_sequential_sm_reset_tx[2]_i_3_n_0\ : STD_LOGIC;
+  signal gttxreset_out_i_2_n_0 : STD_LOGIC;
+  signal gtwiz_reset_tx_done_int_i_4_n_0 : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -582,7 +488,8 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute async_reg of i_in_sync2 : signal is "true";
   signal i_in_sync3 : STD_LOGIC;
   attribute async_reg of i_in_sync3 : signal is "true";
-  signal \^plllock_tx_sync\ : STD_LOGIC;
+  signal plllock_tx_sync : STD_LOGIC;
+  signal sm_reset_tx_timer_clr_i_2_n_0 : STD_LOGIC;
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of i_in_meta_reg : label is std.standard.true;
   attribute KEEP : string;
@@ -594,57 +501,80 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
 begin
-  plllock_tx_sync <= \^plllock_tx_sync\;
-\FSM_sequential_sm_reset_tx[2]_i_4\: unisim.vcomponents.LUT6
+\FSM_sequential_sm_reset_tx[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00CFA00000000000"
+      INIT => X"EEAEAEAEEAAAAAAA"
     )
         port map (
-      I0 => gtwiz_reset_tx_done_int_reg,
-      I1 => \^plllock_tx_sync\,
+      I0 => \FSM_sequential_sm_reset_tx[2]_i_3_n_0\,
+      I1 => \FSM_sequential_sm_reset_tx_reg[0]_1\,
       I2 => Q(0),
-      I3 => Q(2),
-      I4 => Q(1),
-      I5 => \FSM_sequential_sm_reset_tx_reg[0]_0\,
-      O => i_in_out_reg_0
+      I3 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
+      I4 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
+      I5 => gtwiz_reset_userclk_tx_active_sync,
+      O => E(0)
     );
-gttxreset_out_i_2: unisim.vcomponents.LUT6
+\FSM_sequential_sm_reset_tx[2]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000002000000000"
+      INIT => X"888F8888CFCFCFCF"
     )
         port map (
-      I0 => sm_reset_tx_timer_sat,
-      I1 => gttxreset_out_reg,
-      I2 => \^plllock_tx_sync\,
-      I3 => gtwiz_reset_tx_any_sync,
-      I4 => Q(2),
-      I5 => Q(1),
-      O => sm_reset_tx_timer_sat_reg
+      I0 => plllock_tx_sync,
+      I1 => \FSM_sequential_sm_reset_tx_reg[0]_2\,
+      I2 => \FSM_sequential_sm_reset_tx_reg[0]_3\,
+      I3 => \FSM_sequential_sm_reset_tx_reg[0]_4\,
+      I4 => sm_reset_tx_pll_timer_sat,
+      I5 => Q(0),
+      O => \FSM_sequential_sm_reset_tx[2]_i_3_n_0\
     );
-gtwiz_reset_tx_done_int_i_1: unisim.vcomponents.LUT5
+gttxreset_out_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"F4FFF400"
+      INIT => X"FF7F0070"
     )
         port map (
       I0 => Q(0),
-      I1 => \^plllock_tx_sync\,
-      I2 => gtwiz_reset_tx_done_int_reg_0,
-      I3 => gtwiz_reset_tx_done_int,
-      I4 => gtwiz_reset_tx_done_int_reg_1,
-      O => \FSM_sequential_sm_reset_tx_reg[0]\
+      I1 => Q(1),
+      I2 => gttxreset_out_i_2_n_0,
+      I3 => gtwiz_reset_tx_any_sync,
+      I4 => GTHE4_CHANNEL_GTTXRESET(0),
+      O => \FSM_sequential_sm_reset_tx_reg[0]_0\
     );
-gtwiz_reset_tx_done_int_i_3: unisim.vcomponents.LUT6
+gttxreset_out_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"3000000040404040"
+      INIT => X"1212321212121212"
     )
         port map (
-      I0 => \^plllock_tx_sync\,
+      I0 => Q(0),
+      I1 => Q(2),
+      I2 => Q(1),
+      I3 => sm_reset_tx_timer_sat,
+      I4 => sm_reset_tx_timer_clr_reg,
+      I5 => plllock_tx_sync,
+      O => gttxreset_out_i_2_n_0
+    );
+gtwiz_reset_tx_done_int_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"F4F4F4FFF4F4F400"
+    )
+        port map (
+      I0 => Q(0),
+      I1 => plllock_tx_sync,
+      I2 => gtwiz_reset_tx_done_int_reg,
+      I3 => gtwiz_reset_tx_done_int_reg_0,
+      I4 => gtwiz_reset_tx_done_int_i_4_n_0,
+      I5 => gtwiz_reset_tx_done_int_reg_1,
+      O => \FSM_sequential_sm_reset_tx_reg[0]\
+    );
+gtwiz_reset_tx_done_int_i_4: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0040"
+    )
+        port map (
+      I0 => Q(0),
       I1 => Q(1),
       I2 => Q(2),
-      I3 => \FSM_sequential_sm_reset_tx_reg[0]_0\,
-      I4 => gtwiz_reset_tx_done_int_reg,
-      I5 => Q(0),
-      O => gtwiz_reset_tx_done_int
+      I3 => plllock_tx_sync,
+      O => gtwiz_reset_tx_done_int_i_4_n_0
     );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
@@ -665,7 +595,7 @@ i_in_out_reg: unisim.vcomponents.FDRE
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
       D => i_in_sync3,
-      Q => \^plllock_tx_sync\,
+      Q => plllock_tx_sync,
       R => '0'
     );
 i_in_sync1_reg: unisim.vcomponents.FDRE
@@ -701,6 +631,32 @@ i_in_sync3_reg: unisim.vcomponents.FDRE
       Q => i_in_sync3,
       R => '0'
     );
+sm_reset_tx_timer_clr_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FF0000FF0044440F"
+    )
+        port map (
+      I0 => sm_reset_tx_timer_clr_i_2_n_0,
+      I1 => sm_reset_tx_timer_sat,
+      I2 => Q(0),
+      I3 => Q(2),
+      I4 => Q(1),
+      I5 => sm_reset_tx_timer_clr_reg,
+      O => sm_reset_tx_timer_sat_reg
+    );
+sm_reset_tx_timer_clr_i_2: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"707F0000707FF0F0"
+    )
+        port map (
+      I0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
+      I1 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
+      I2 => Q(2),
+      I3 => plllock_tx_sync,
+      I4 => Q(0),
+      I5 => gtwiz_reset_userclk_tx_active_sync,
+      O => sm_reset_tx_timer_clr_i_2_n_0
+    );
 end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -709,17 +665,19 @@ use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13 is
   port (
     gtwiz_reset_rx_cdr_stable_out : out STD_LOGIC_VECTOR ( 0 to 0 );
+    i_in_out_reg_0 : out STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[1]\ : out STD_LOGIC;
     sm_reset_rx_cdr_to_sat_reg : out STD_LOGIC;
-    \FSM_sequential_sm_reset_rx_reg[2]\ : out STD_LOGIC;
     i_in_meta_reg_0 : in STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_sequential_sm_reset_rx_reg[0]\ : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    plllock_rx_sync : in STD_LOGIC;
     sm_reset_rx_cdr_to_sat : in STD_LOGIC;
     sm_reset_rx_cdr_to_clr_reg : in STD_LOGIC;
-    sm_reset_rx_cdr_to_clr : in STD_LOGIC
+    plllock_rx_sync : in STD_LOGIC;
+    sm_reset_rx_cdr_to_clr_reg_0 : in STD_LOGIC;
+    sm_reset_rx_cdr_to_clr : in STD_LOGIC;
+    gtwiz_reset_rx_any_sync : in STD_LOGIC;
+    GTHE4_CHANNEL_RXPROGDIVRESET : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
@@ -738,6 +696,8 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute async_reg of i_in_sync3 : signal is "true";
   signal sm_reset_rx_cdr_to_clr_i_2_n_0 : STD_LOGIC;
   signal \^sm_reset_rx_cdr_to_sat_reg\ : STD_LOGIC;
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_rx[2]_i_4\ : label is "soft_lutpair3";
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of i_in_meta_reg : label is std.standard.true;
   attribute KEEP : string;
@@ -748,24 +708,21 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute KEEP of i_in_sync2_reg : label is "yes";
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of rxprogdivreset_out_i_2 : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of sm_reset_rx_cdr_to_clr_i_2 : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of sm_reset_rx_cdr_to_clr_i_2 : label is "soft_lutpair3";
 begin
   gtwiz_reset_rx_cdr_stable_out(0) <= \^gtwiz_reset_rx_cdr_stable_out\(0);
   sm_reset_rx_cdr_to_sat_reg <= \^sm_reset_rx_cdr_to_sat_reg\;
-\FSM_sequential_sm_reset_rx[2]_i_5\: unisim.vcomponents.LUT6
+\FSM_sequential_sm_reset_rx[2]_i_4\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"000A000AC0C000C0"
+      INIT => X"00000E00"
     )
         port map (
-      I0 => \^sm_reset_rx_cdr_to_sat_reg\,
-      I1 => \FSM_sequential_sm_reset_rx_reg[0]\,
+      I0 => sm_reset_rx_cdr_to_sat,
+      I1 => \^gtwiz_reset_rx_cdr_stable_out\(0),
       I2 => Q(1),
-      I3 => Q(0),
-      I4 => plllock_rx_sync,
-      I5 => Q(2),
-      O => \FSM_sequential_sm_reset_rx_reg[1]\
+      I3 => Q(2),
+      I4 => Q(0),
+      O => \^sm_reset_rx_cdr_to_sat_reg\
     );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
@@ -822,37 +779,41 @@ i_in_sync3_reg: unisim.vcomponents.FDRE
       Q => i_in_sync3,
       R => '0'
     );
-rxprogdivreset_out_i_2: unisim.vcomponents.LUT2
+rxprogdivreset_out_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E"
+      INIT => X"FFFF55FF000000BE"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_sat,
-      I1 => \^gtwiz_reset_rx_cdr_stable_out\(0),
-      O => \^sm_reset_rx_cdr_to_sat_reg\
+      I0 => \^sm_reset_rx_cdr_to_sat_reg\,
+      I1 => Q(1),
+      I2 => Q(0),
+      I3 => Q(2),
+      I4 => gtwiz_reset_rx_any_sync,
+      I5 => GTHE4_CHANNEL_RXPROGDIVRESET(0),
+      O => \FSM_sequential_sm_reset_rx_reg[1]\
     );
 sm_reset_rx_cdr_to_clr_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FBFFFFFF0800AAAA"
+      INIT => X"EFFFFFFF20AA00AA"
     )
         port map (
       I0 => sm_reset_rx_cdr_to_clr_i_2_n_0,
       I1 => sm_reset_rx_cdr_to_clr_reg,
-      I2 => Q(2),
-      I3 => plllock_rx_sync,
-      I4 => Q(0),
+      I2 => plllock_rx_sync,
+      I3 => Q(0),
+      I4 => sm_reset_rx_cdr_to_clr_reg_0,
       I5 => sm_reset_rx_cdr_to_clr,
-      O => \FSM_sequential_sm_reset_rx_reg[2]\
+      O => i_in_out_reg_0
     );
 sm_reset_rx_cdr_to_clr_i_2: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"00EF"
+      INIT => X"5455"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_sat,
+      I0 => Q(1),
       I1 => \^gtwiz_reset_rx_cdr_stable_out\(0),
-      I2 => Q(2),
-      I3 => Q(1),
+      I2 => sm_reset_rx_cdr_to_sat,
+      I3 => Q(2),
       O => sm_reset_rx_cdr_to_clr_i_2_n_0
     );
 end STRUCTURE;
@@ -862,7 +823,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_2 is
   port (
-    i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
@@ -910,7 +871,7 @@ i_in_out_reg: unisim.vcomponents.FDRE
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
       D => i_in_sync3,
-      Q => i_in_out_reg_0(0),
+      Q => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
       R => '0'
     );
 i_in_sync1_reg: unisim.vcomponents.FDRE
@@ -953,7 +914,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_3 is
   port (
-    i_in_out_reg_0 : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     txresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
@@ -1001,7 +962,7 @@ i_in_out_reg: unisim.vcomponents.FDRE
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
       D => i_in_sync3,
-      Q => i_in_out_reg_0(0),
+      Q => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
       R => '0'
     );
 i_in_sync1_reg: unisim.vcomponents.FDRE
@@ -1244,21 +1205,21 @@ use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6 is
   port (
     D : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    E : out STD_LOGIC_VECTOR ( 0 to 0 );
+    sm_reset_rx_pll_timer_sat_reg : out STD_LOGIC;
     in0 : in STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \FSM_sequential_sm_reset_rx_reg[1]\ : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    sm_reset_rx_pll_timer_sat : in STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[0]\ : in STD_LOGIC;
-    \FSM_sequential_sm_reset_rx_reg[0]_0\ : in STD_LOGIC;
-    \FSM_sequential_sm_reset_rx_reg[0]_1\ : in STD_LOGIC;
-    gtwiz_reset_rx_datapath_dly : in STD_LOGIC
+    gtwiz_reset_rx_datapath_dly : in STD_LOGIC;
+    sm_reset_rx_pll_timer_clr : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6 is
-  signal \FSM_sequential_sm_reset_rx[2]_i_3_n_0\ : STD_LOGIC;
   signal gtwiz_reset_rx_pll_and_datapath_dly : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
@@ -1285,50 +1246,40 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
 begin
 \FSM_sequential_sm_reset_rx[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FF769976"
+      INIT => X"F00F5FFC"
     )
         port map (
-      I0 => Q(0),
-      I1 => Q(1),
-      I2 => gtwiz_reset_rx_pll_and_datapath_dly,
+      I0 => \FSM_sequential_sm_reset_rx_reg[1]\,
+      I1 => gtwiz_reset_rx_pll_and_datapath_dly,
+      I2 => Q(1),
       I3 => Q(2),
-      I4 => \FSM_sequential_sm_reset_rx_reg[0]\,
+      I4 => Q(0),
       O => D(0)
     );
 \FSM_sequential_sm_reset_rx[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"23EE23EF"
+      INIT => X"0F0F50F3"
     )
         port map (
-      I0 => \FSM_sequential_sm_reset_rx_reg[0]\,
-      I1 => Q(0),
-      I2 => Q(2),
-      I3 => Q(1),
-      I4 => gtwiz_reset_rx_pll_and_datapath_dly,
+      I0 => \FSM_sequential_sm_reset_rx_reg[1]\,
+      I1 => gtwiz_reset_rx_pll_and_datapath_dly,
+      I2 => Q(1),
+      I3 => Q(2),
+      I4 => Q(0),
       O => D(1)
     );
-\FSM_sequential_sm_reset_rx[2]_i_1\: unisim.vcomponents.LUT3
+\FSM_sequential_sm_reset_rx[2]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FE"
+      INIT => X"2F2F2F2000000000"
     )
         port map (
-      I0 => \FSM_sequential_sm_reset_rx[2]_i_3_n_0\,
-      I1 => \FSM_sequential_sm_reset_rx_reg[0]_0\,
-      I2 => \FSM_sequential_sm_reset_rx_reg[0]_1\,
-      O => E(0)
-    );
-\FSM_sequential_sm_reset_rx[2]_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000AAAAAAFE"
-    )
-        port map (
-      I0 => \FSM_sequential_sm_reset_rx_reg[0]\,
-      I1 => gtwiz_reset_rx_pll_and_datapath_dly,
-      I2 => gtwiz_reset_rx_datapath_dly,
-      I3 => Q(2),
-      I4 => Q(1),
-      I5 => Q(0),
-      O => \FSM_sequential_sm_reset_rx[2]_i_3_n_0\
+      I0 => sm_reset_rx_pll_timer_sat,
+      I1 => \FSM_sequential_sm_reset_rx_reg[0]\,
+      I2 => Q(0),
+      I3 => gtwiz_reset_rx_pll_and_datapath_dly,
+      I4 => gtwiz_reset_rx_datapath_dly,
+      I5 => sm_reset_rx_pll_timer_clr,
+      O => sm_reset_rx_pll_timer_sat_reg
     );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
@@ -1392,15 +1343,18 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7 is
   port (
-    gtwiz_reset_tx_datapath_dly : out STD_LOGIC;
+    \FSM_sequential_sm_reset_tx_reg[2]\ : out STD_LOGIC;
     in0 : in STD_LOGIC;
-    gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
+    gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
+    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    gtwiz_reset_tx_pll_and_datapath_dly : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7 is
+  signal gtwiz_reset_tx_datapath_dly : STD_LOGIC;
   signal i_in_meta : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of i_in_meta : signal is "true";
@@ -1421,6 +1375,18 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
 begin
+\FSM_sequential_sm_reset_tx[2]_i_6\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"EEEEEEEF"
+    )
+        port map (
+      I0 => Q(2),
+      I1 => Q(1),
+      I2 => gtwiz_reset_tx_datapath_dly,
+      I3 => gtwiz_reset_tx_pll_and_datapath_dly,
+      I4 => Q(0),
+      O => \FSM_sequential_sm_reset_tx_reg[2]\
+    );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -1521,24 +1487,24 @@ begin
   gtwiz_reset_tx_pll_and_datapath_dly <= \^gtwiz_reset_tx_pll_and_datapath_dly\;
 \FSM_sequential_sm_reset_tx[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0F3E"
+      INIT => X"11FE"
     )
         port map (
-      I0 => \^gtwiz_reset_tx_pll_and_datapath_dly\,
-      I1 => Q(1),
-      I2 => Q(0),
-      I3 => Q(2),
+      I0 => Q(1),
+      I1 => Q(2),
+      I2 => \^gtwiz_reset_tx_pll_and_datapath_dly\,
+      I3 => Q(0),
       O => D(0)
     );
 \FSM_sequential_sm_reset_tx[1]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0FF1"
+      INIT => X"6667"
     )
         port map (
-      I0 => \^gtwiz_reset_tx_pll_and_datapath_dly\,
-      I1 => Q(2),
-      I2 => Q(1),
-      I3 => Q(0),
+      I0 => Q(0),
+      I1 => Q(1),
+      I2 => Q(2),
+      I3 => \^gtwiz_reset_tx_pll_and_datapath_dly\,
       O => D(1)
     );
 i_in_meta_reg: unisim.vcomponents.FDRE
@@ -1603,21 +1569,19 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9 is
   port (
-    \FSM_sequential_sm_reset_rx_reg[1]\ : out STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[0]\ : out STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[2]\ : out STD_LOGIC;
+    \FSM_sequential_sm_reset_rx_reg[2]_0\ : out STD_LOGIC;
     gtwiz_userclk_rx_active_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    plllock_rx_sync : in STD_LOGIC;
     sm_reset_rx_timer_clr_reg : in STD_LOGIC;
-    \FSM_sequential_sm_reset_rx_reg[0]_0\ : in STD_LOGIC;
-    sm_reset_rx_pll_timer_sat : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
     sm_reset_rx_timer_clr_reg_0 : in STD_LOGIC;
-    sm_reset_rx_timer_sat : in STD_LOGIC;
-    sm_reset_rx_timer_clr_reg_1 : in STD_LOGIC;
     gtwiz_reset_rx_any_sync : in STD_LOGIC;
-    GTHE4_CHANNEL_RXUSERRDY : in STD_LOGIC_VECTOR ( 0 to 0 )
+    GTHE4_CHANNEL_RXUSERRDY : in STD_LOGIC_VECTOR ( 0 to 0 );
+    sm_reset_rx_timer_clr_reg_1 : in STD_LOGIC;
+    plllock_rx_sync : in STD_LOGIC;
+    sm_reset_rx_timer_sat : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9 : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
@@ -1636,6 +1600,8 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute async_reg of i_in_sync3 : signal is "true";
   signal rxuserrdy_out_i_2_n_0 : STD_LOGIC;
   signal sm_reset_rx_timer_clr_i_2_n_0 : STD_LOGIC;
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_rx[2]_i_6\ : label is "soft_lutpair2";
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of i_in_meta_reg : label is std.standard.true;
   attribute KEEP : string;
@@ -1646,19 +1612,18 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchroni
   attribute KEEP of i_in_sync2_reg : label is "yes";
   attribute ASYNC_REG_boolean of i_in_sync3_reg : label is std.standard.true;
   attribute KEEP of i_in_sync3_reg : label is "yes";
+  attribute SOFT_HLUTNM of rxuserrdy_out_i_2 : label is "soft_lutpair2";
 begin
-\FSM_sequential_sm_reset_rx[2]_i_4\: unisim.vcomponents.LUT6
+\FSM_sequential_sm_reset_rx[2]_i_6\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"2023202000000000"
+      INIT => X"0800"
     )
         port map (
-      I0 => rxuserrdy_out_i_2_n_0,
-      I1 => Q(1),
-      I2 => Q(2),
-      I3 => \FSM_sequential_sm_reset_rx_reg[0]_0\,
-      I4 => sm_reset_rx_pll_timer_sat,
-      I5 => Q(0),
-      O => \FSM_sequential_sm_reset_rx_reg[1]\
+      I0 => Q(2),
+      I1 => sm_reset_rx_timer_sat,
+      I2 => sm_reset_rx_timer_clr_reg_0,
+      I3 => gtwiz_reset_userclk_rx_active_sync,
+      O => \FSM_sequential_sm_reset_rx_reg[2]_0\
     );
 i_in_meta_reg: unisim.vcomponents.FDRE
     generic map(
@@ -1717,33 +1682,33 @@ i_in_sync3_reg: unisim.vcomponents.FDRE
     );
 rxuserrdy_out_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFAAF00000800"
+      INIT => X"FFFAFAFF00000200"
     )
         port map (
       I0 => Q(2),
       I1 => rxuserrdy_out_i_2_n_0,
-      I2 => Q(1),
+      I2 => gtwiz_reset_rx_any_sync,
       I3 => Q(0),
-      I4 => gtwiz_reset_rx_any_sync,
+      I4 => Q(1),
       I5 => GTHE4_CHANNEL_RXUSERRDY(0),
       O => \FSM_sequential_sm_reset_rx_reg[2]\
     );
 rxuserrdy_out_i_2: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"40"
+      INIT => X"DF"
     )
         port map (
-      I0 => sm_reset_rx_timer_clr_reg_0,
-      I1 => sm_reset_rx_timer_sat,
-      I2 => gtwiz_reset_userclk_rx_active_sync,
+      I0 => gtwiz_reset_userclk_rx_active_sync,
+      I1 => sm_reset_rx_timer_clr_reg_0,
+      I2 => sm_reset_rx_timer_sat,
       O => rxuserrdy_out_i_2_n_0
     );
 sm_reset_rx_timer_clr_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FEEFCCFF0EE0CC0F"
+      INIT => X"FDCFCCFC0DC0CC0C"
     )
         port map (
-      I0 => sm_reset_rx_timer_clr_reg_1,
+      I0 => sm_reset_rx_timer_clr_reg,
       I1 => sm_reset_rx_timer_clr_i_2_n_0,
       I2 => Q(0),
       I3 => Q(1),
@@ -1753,15 +1718,15 @@ sm_reset_rx_timer_clr_i_1: unisim.vcomponents.LUT6
     );
 sm_reset_rx_timer_clr_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"44440000F4FF0000"
+      INIT => X"30300030B3B3B3B3"
     )
         port map (
-      I0 => Q(1),
-      I1 => gtwiz_reset_userclk_rx_active_sync,
-      I2 => plllock_rx_sync,
+      I0 => gtwiz_reset_userclk_rx_active_sync,
+      I1 => Q(2),
+      I2 => sm_reset_rx_timer_clr_reg_1,
       I3 => Q(0),
-      I4 => sm_reset_rx_timer_clr_reg,
-      I5 => Q(2),
+      I4 => plllock_rx_sync,
+      I5 => Q(1),
       O => sm_reset_rx_timer_clr_i_2_n_0
     );
 end STRUCTURE;
@@ -2199,11 +2164,11 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       ADAPT_CFG1 => X"C800",
       ADAPT_CFG2 => X"0000",
       ALIGN_COMMA_DOUBLE => "FALSE",
-      ALIGN_COMMA_ENABLE => B"0000000000",
-      ALIGN_COMMA_WORD => 1,
+      ALIGN_COMMA_ENABLE => B"1111111111",
+      ALIGN_COMMA_WORD => 4,
       ALIGN_MCOMMA_DET => "FALSE",
       ALIGN_MCOMMA_VALUE => B"1010000011",
-      ALIGN_PCOMMA_DET => "FALSE",
+      ALIGN_PCOMMA_DET => "TRUE",
       ALIGN_PCOMMA_VALUE => B"0101111100",
       A_RXOSCALRESET => '0',
       A_RXPROGDIVRESET => '0',
@@ -2272,7 +2237,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       DDI_CTRL => B"00",
       DDI_REALIGN_WAIT => 15,
       DEC_MCOMMA_DETECT => "FALSE",
-      DEC_PCOMMA_DETECT => "FALSE",
+      DEC_PCOMMA_DETECT => "TRUE",
       DEC_VALID_COMMA_ONLY => "FALSE",
       DELAY_ELEC => '0',
       DMONITOR_CFG0 => B"00" & X"00",
@@ -2504,7 +2469,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 5,
+      RX_CLK25_DIV => 6,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -2615,7 +2580,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 5,
+      TX_CLK25_DIV => 6,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 40,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -3050,11 +3015,11 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       ADAPT_CFG1 => X"C800",
       ADAPT_CFG2 => X"0000",
       ALIGN_COMMA_DOUBLE => "FALSE",
-      ALIGN_COMMA_ENABLE => B"0000000000",
-      ALIGN_COMMA_WORD => 1,
+      ALIGN_COMMA_ENABLE => B"1111111111",
+      ALIGN_COMMA_WORD => 4,
       ALIGN_MCOMMA_DET => "FALSE",
       ALIGN_MCOMMA_VALUE => B"1010000011",
-      ALIGN_PCOMMA_DET => "FALSE",
+      ALIGN_PCOMMA_DET => "TRUE",
       ALIGN_PCOMMA_VALUE => B"0101111100",
       A_RXOSCALRESET => '0',
       A_RXPROGDIVRESET => '0',
@@ -3123,7 +3088,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       DDI_CTRL => B"00",
       DDI_REALIGN_WAIT => 15,
       DEC_MCOMMA_DETECT => "FALSE",
-      DEC_PCOMMA_DETECT => "FALSE",
+      DEC_PCOMMA_DETECT => "TRUE",
       DEC_VALID_COMMA_ONLY => "FALSE",
       DELAY_ELEC => '0',
       DMONITOR_CFG0 => B"00" & X"00",
@@ -3355,7 +3320,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       RX_BIAS_CFG0 => X"1554",
       RX_BUFFER_CFG => B"000000",
       RX_CAPFF_SARC_ENB => '0',
-      RX_CLK25_DIV => 5,
+      RX_CLK25_DIV => 6,
       RX_CLKMUX_EN => '1',
       RX_CLK_SLIP_OVRD => B"00000",
       RX_CM_BUF_CFG => B"1010",
@@ -3466,7 +3431,7 @@ BUFG_GT_SYNC_1: unisim.vcomponents.BUFG_GT_SYNC
       TXSYNC_MULTILANE => '1',
       TXSYNC_OVRD => '0',
       TXSYNC_SKIP_DA => '0',
-      TX_CLK25_DIV => 5,
+      TX_CLK25_DIV => 6,
       TX_CLKMUX_EN => '1',
       TX_DATA_WIDTH => 40,
       TX_DCC_LOOP_RST_CFG => X"0004",
@@ -4063,7 +4028,7 @@ begin
       QPLL1_CP => B"0011111111",
       QPLL1_CP_G3 => B"0001111111",
       QPLL1_FBDIV => 76,
-      QPLL1_FBDIV_G3 => 64,
+      QPLL1_FBDIV_G3 => 80,
       QPLL1_INIT_CFG0 => X"02B2",
       QPLL1_INIT_CFG1 => X"00",
       QPLL1_LOCK_CFG => X"25E8",
@@ -5356,14 +5321,12 @@ entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14 is
   port (
     gtwiz_reset_rx_any_sync : out STD_LOGIC;
     \FSM_sequential_sm_reset_rx_reg[1]\ : out STD_LOGIC;
-    \FSM_sequential_sm_reset_rx_reg[1]_0\ : out STD_LOGIC;
-    \FSM_sequential_sm_reset_rx_reg[1]_1\ : out STD_LOGIC;
+    i_in_out_reg : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int\ : in STD_LOGIC;
-    rxprogdivreset_out_reg : in STD_LOGIC;
-    GTHE4_CHANNEL_RXPROGDIVRESET : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtrxreset_out_reg : in STD_LOGIC;
+    plllock_rx_sync : in STD_LOGIC;
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\ : in STD_LOGIC;
     rst_in_out_reg_0 : in STD_LOGIC;
     gtwiz_reset_rx_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -5375,6 +5338,7 @@ entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14 is
 end FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14;
 
 architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14 is
+  signal gtrxreset_out_i_2_n_0 : STD_LOGIC;
   signal gtwiz_reset_rx_any : STD_LOGIC;
   signal \^gtwiz_reset_rx_any_sync\ : STD_LOGIC;
   signal rst_in_meta : STD_LOGIC;
@@ -5386,6 +5350,9 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchro
   attribute async_reg of rst_in_sync2 : signal is "true";
   signal rst_in_sync3 : STD_LOGIC;
   attribute async_reg of rst_in_sync3 : signal is "true";
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of gtrxreset_out_i_2 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of pllreset_rx_out_i_1 : label is "soft_lutpair4";
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of rst_in_meta_reg : label is std.standard.true;
   attribute KEEP : string;
@@ -5400,26 +5367,35 @@ begin
   gtwiz_reset_rx_any_sync <= \^gtwiz_reset_rx_any_sync\;
 gtrxreset_out_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFF7FFFF00070000"
+      INIT => X"BFFFFFFF00555500"
+    )
+        port map (
+      I0 => gtrxreset_out_i_2_n_0,
+      I1 => gtrxreset_out_reg,
+      I2 => plllock_rx_sync,
+      I3 => Q(1),
+      I4 => Q(0),
+      I5 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\,
+      O => i_in_out_reg
+    );
+gtrxreset_out_i_2: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => Q(2),
+      I1 => \^gtwiz_reset_rx_any_sync\,
+      O => gtrxreset_out_i_2_n_0
+    );
+pllreset_rx_out_i_1: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFF70004"
     )
         port map (
       I0 => Q(1),
       I1 => Q(0),
-      I2 => Q(2),
-      I3 => \^gtwiz_reset_rx_any_sync\,
-      I4 => gtrxreset_out_reg,
-      I5 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\,
-      O => \FSM_sequential_sm_reset_rx_reg[1]_1\
-    );
-pllreset_rx_out_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFDF0010"
-    )
-        port map (
-      I0 => Q(1),
-      I1 => Q(2),
-      I2 => Q(0),
-      I3 => \^gtwiz_reset_rx_any_sync\,
+      I2 => \^gtwiz_reset_rx_any_sync\,
+      I3 => Q(2),
       I4 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int\,
       O => \FSM_sequential_sm_reset_rx_reg[1]\
     );
@@ -5488,19 +5464,6 @@ rst_in_sync3_reg: unisim.vcomponents.FDPE
       D => rst_in_sync2,
       PRE => gtwiz_reset_rx_any,
       Q => rst_in_sync3
-    );
-rxprogdivreset_out_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFBFFFF00120012"
-    )
-        port map (
-      I0 => Q(1),
-      I1 => Q(2),
-      I2 => Q(0),
-      I3 => \^gtwiz_reset_rx_any_sync\,
-      I4 => rxprogdivreset_out_reg,
-      I5 => GTHE4_CHANNEL_RXPROGDIVRESET(0),
-      O => \FSM_sequential_sm_reset_rx_reg[1]_0\
     );
 end STRUCTURE;
 library IEEE;
@@ -5715,15 +5678,15 @@ entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17 is
   port (
     gtwiz_reset_tx_any_sync : out STD_LOGIC;
     \FSM_sequential_sm_reset_tx_reg[1]\ : out STD_LOGIC;
-    rst_in_out_reg_0 : out STD_LOGIC;
+    \FSM_sequential_sm_reset_tx_reg[0]\ : out STD_LOGIC;
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int\ : in STD_LOGIC;
-    gttxreset_out_reg : in STD_LOGIC;
-    GTHE4_CHANNEL_GTTXRESET : in STD_LOGIC_VECTOR ( 0 to 0 );
+    txuserrdy_out_reg : in STD_LOGIC;
+    GTHE4_CHANNEL_TXUSERRDY : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_tx_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_tx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    rst_in_out_reg_1 : in STD_LOGIC
+    rst_in_out_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17 : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
@@ -5753,19 +5716,6 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchro
   attribute KEEP of rst_in_sync3_reg : label is "yes";
 begin
   gtwiz_reset_tx_any_sync <= \^gtwiz_reset_tx_any_sync\;
-gttxreset_out_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"3F3FFFFF3F3F0014"
-    )
-        port map (
-      I0 => \^gtwiz_reset_tx_any_sync\,
-      I1 => Q(1),
-      I2 => Q(0),
-      I3 => Q(2),
-      I4 => gttxreset_out_reg,
-      I5 => GTHE4_CHANNEL_GTTXRESET(0),
-      O => rst_in_out_reg_0
-    );
 pllreset_tx_out_i_1: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FFDF0010"
@@ -5785,7 +5735,7 @@ rst_in_meta_i_1: unisim.vcomponents.LUT3
         port map (
       I0 => gtwiz_reset_tx_datapath_in(0),
       I1 => gtwiz_reset_tx_pll_and_datapath_in(0),
-      I2 => rst_in_out_reg_1,
+      I2 => rst_in_out_reg_0,
       O => gtwiz_reset_tx_any
     );
 rst_in_meta_reg: unisim.vcomponents.FDPE
@@ -5842,6 +5792,19 @@ rst_in_sync3_reg: unisim.vcomponents.FDPE
       D => rst_in_sync2,
       PRE => gtwiz_reset_tx_any,
       Q => rst_in_sync3
+    );
+txuserrdy_out_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFEFD11130000"
+    )
+        port map (
+      I0 => Q(0),
+      I1 => \^gtwiz_reset_tx_any_sync\,
+      I2 => Q(2),
+      I3 => Q(1),
+      I4 => txuserrdy_out_reg,
+      I5 => GTHE4_CHANNEL_TXUSERRDY(0),
+      O => \FSM_sequential_sm_reset_tx_reg[0]\
     );
 end STRUCTURE;
 library IEEE;
@@ -7069,15 +7032,13 @@ entity FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset is
     rst_in0 : in STD_LOGIC;
     gtwiz_userclk_tx_usrclk2_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_userclk_rx_usrclk2_out : in STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_tx_done_int_reg_0 : in STD_LOGIC;
-    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gtpowergood_out : in STD_LOGIC_VECTOR ( 1 downto 0 );
     GTHE4_CHANNEL_GTPOWERGOOD : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    gtwiz_reset_rx_done_int_reg_0 : in STD_LOGIC;
     gtwiz_reset_tx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_rx_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_rx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 )
+    gtwiz_reset_rx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\ : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset : entity is "gtwizard_ultrascale_v1_7_8_gtwiz_reset";
@@ -7087,23 +7048,23 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset i
   signal \FSM_sequential_sm_reset_all[2]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_sequential_sm_reset_all[2]_i_4_n_0\ : STD_LOGIC;
   signal \FSM_sequential_sm_reset_rx[1]_i_2_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_sm_reset_rx[2]_i_6_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_sm_reset_tx[2]_i_6_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_sm_reset_tx[2]_i_8_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_sm_reset_rx[2]_i_7_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_sm_reset_tx[2]_i_4_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_sm_reset_tx[2]_i_5_n_0\ : STD_LOGIC;
   signal \^gthe4_channel_gttxreset\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^gthe4_channel_rxprogdivreset\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^gthe4_channel_rxuserrdy\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^gthe4_channel_txuserrdy\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal bit_synchronizer_gtpowergood_inst_n_0 : STD_LOGIC;
   signal bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2 : STD_LOGIC;
+  signal bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst_n_0 : STD_LOGIC;
   signal bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0 : STD_LOGIC;
   signal bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1 : STD_LOGIC;
   signal bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2 : STD_LOGIC;
-  signal bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0 : STD_LOGIC;
   signal bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1 : STD_LOGIC;
-  signal bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2 : STD_LOGIC;
   signal bit_synchronizer_plllock_rx_inst_n_1 : STD_LOGIC;
   signal bit_synchronizer_plllock_rx_inst_n_2 : STD_LOGIC;
+  signal bit_synchronizer_plllock_tx_inst_n_0 : STD_LOGIC;
   signal bit_synchronizer_plllock_tx_inst_n_1 : STD_LOGIC;
   signal bit_synchronizer_plllock_tx_inst_n_2 : STD_LOGIC;
   signal bit_synchronizer_plllock_tx_inst_n_3 : STD_LOGIC;
@@ -7124,25 +7085,25 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset i
   signal gtwiz_reset_rx_pll_and_datapath_int_reg_n_0 : STD_LOGIC;
   signal gtwiz_reset_rx_pll_and_datapath_sync : STD_LOGIC;
   signal gtwiz_reset_tx_any_sync : STD_LOGIC;
-  signal gtwiz_reset_tx_datapath_dly : STD_LOGIC;
   signal gtwiz_reset_tx_datapath_sync : STD_LOGIC;
   signal gtwiz_reset_tx_done_int_i_2_n_0 : STD_LOGIC;
+  signal gtwiz_reset_tx_done_int_i_3_n_0 : STD_LOGIC;
   signal gtwiz_reset_tx_done_int_reg_n_0 : STD_LOGIC;
   signal gtwiz_reset_tx_pll_and_datapath_dly : STD_LOGIC;
   signal gtwiz_reset_tx_pll_and_datapath_int_i_1_n_0 : STD_LOGIC;
   signal gtwiz_reset_tx_pll_and_datapath_int_reg_n_0 : STD_LOGIC;
   signal gtwiz_reset_tx_pll_and_datapath_sync : STD_LOGIC;
+  signal gtwiz_reset_userclk_tx_active_sync : STD_LOGIC;
   signal p_0_in : STD_LOGIC;
   signal \p_0_in__0\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal \p_0_in__1\ : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal p_1_in : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal plllock_rx_sync : STD_LOGIC;
-  signal plllock_tx_sync : STD_LOGIC;
   signal reset_synchronizer_gtwiz_reset_rx_any_inst_n_1 : STD_LOGIC;
   signal reset_synchronizer_gtwiz_reset_rx_any_inst_n_2 : STD_LOGIC;
-  signal reset_synchronizer_gtwiz_reset_rx_any_inst_n_3 : STD_LOGIC;
   signal reset_synchronizer_gtwiz_reset_tx_any_inst_n_1 : STD_LOGIC;
   signal reset_synchronizer_gtwiz_reset_tx_any_inst_n_2 : STD_LOGIC;
+  signal sel : STD_LOGIC;
   signal sm_reset_all : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal \sm_reset_all__0\ : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal sm_reset_all_timer_clr_i_1_n_0 : STD_LOGIC;
@@ -7159,12 +7120,15 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset i
   signal \sm_reset_rx__0\ : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal sm_reset_rx_cdr_to_clr : STD_LOGIC;
   signal sm_reset_rx_cdr_to_clr_i_3_n_0 : STD_LOGIC;
+  signal \sm_reset_rx_cdr_to_ctr[0]_i_10_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr[0]_i_1_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr[0]_i_6_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\ : STD_LOGIC;
+  signal \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\ : STD_LOGIC;
+  signal \sm_reset_rx_cdr_to_ctr[0]_i_9_n_0\ : STD_LOGIC;
   signal sm_reset_rx_cdr_to_ctr_reg : STD_LOGIC_VECTOR ( 25 downto 0 );
   signal \sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_1\ : STD_LOGIC;
@@ -7219,23 +7183,17 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset i
   signal \sm_reset_rx_cdr_to_ctr_reg[8]_i_1_n_9\ : STD_LOGIC;
   signal sm_reset_rx_cdr_to_sat : STD_LOGIC;
   signal sm_reset_rx_cdr_to_sat_i_1_n_0 : STD_LOGIC;
-  signal sm_reset_rx_cdr_to_sat_i_2_n_0 : STD_LOGIC;
-  signal sm_reset_rx_cdr_to_sat_i_3_n_0 : STD_LOGIC;
-  signal sm_reset_rx_cdr_to_sat_i_4_n_0 : STD_LOGIC;
-  signal sm_reset_rx_cdr_to_sat_i_5_n_0 : STD_LOGIC;
-  signal sm_reset_rx_cdr_to_sat_i_6_n_0 : STD_LOGIC;
+  signal sm_reset_rx_pll_timer_clr : STD_LOGIC;
   signal sm_reset_rx_pll_timer_clr_i_1_n_0 : STD_LOGIC;
   signal sm_reset_rx_pll_timer_clr_reg_n_0 : STD_LOGIC;
-  signal \sm_reset_rx_pll_timer_ctr[2]_i_1_n_0\ : STD_LOGIC;
-  signal \sm_reset_rx_pll_timer_ctr[3]_i_1_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_pll_timer_ctr[9]_i_1_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_pll_timer_ctr[9]_i_3_n_0\ : STD_LOGIC;
   signal \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\ : STD_LOGIC;
+  signal \sm_reset_rx_pll_timer_ctr[9]_i_5_n_0\ : STD_LOGIC;
+  signal \sm_reset_rx_pll_timer_ctr[9]_i_6_n_0\ : STD_LOGIC;
   signal sm_reset_rx_pll_timer_ctr_reg : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal sm_reset_rx_pll_timer_sat : STD_LOGIC;
   signal sm_reset_rx_pll_timer_sat_i_1_n_0 : STD_LOGIC;
-  signal sm_reset_rx_pll_timer_sat_i_2_n_0 : STD_LOGIC;
-  signal sm_reset_rx_pll_timer_sat_i_3_n_0 : STD_LOGIC;
   signal sm_reset_rx_timer_clr_reg_n_0 : STD_LOGIC;
   signal sm_reset_rx_timer_ctr : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal \sm_reset_rx_timer_ctr0_inferred__0/i__n_0\ : STD_LOGIC;
@@ -7246,19 +7204,15 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset i
   signal sm_reset_rx_timer_sat_i_1_n_0 : STD_LOGIC;
   signal sm_reset_tx : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal \sm_reset_tx__0\ : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal sm_reset_tx_pll_timer_clr : STD_LOGIC;
   signal sm_reset_tx_pll_timer_clr_i_1_n_0 : STD_LOGIC;
   signal sm_reset_tx_pll_timer_clr_reg_n_0 : STD_LOGIC;
-  signal \sm_reset_tx_pll_timer_ctr[2]_i_1_n_0\ : STD_LOGIC;
-  signal \sm_reset_tx_pll_timer_ctr[3]_i_1_n_0\ : STD_LOGIC;
-  signal \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\ : STD_LOGIC;
   signal \sm_reset_tx_pll_timer_ctr[9]_i_3_n_0\ : STD_LOGIC;
   signal \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\ : STD_LOGIC;
+  signal \sm_reset_tx_pll_timer_ctr[9]_i_5_n_0\ : STD_LOGIC;
+  signal \sm_reset_tx_pll_timer_ctr[9]_i_6_n_0\ : STD_LOGIC;
   signal sm_reset_tx_pll_timer_ctr_reg : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal sm_reset_tx_pll_timer_sat : STD_LOGIC;
   signal sm_reset_tx_pll_timer_sat_i_1_n_0 : STD_LOGIC;
-  signal sm_reset_tx_pll_timer_sat_i_2_n_0 : STD_LOGIC;
-  signal sm_reset_tx_pll_timer_sat_i_3_n_0 : STD_LOGIC;
   signal sm_reset_tx_timer_clr_reg_n_0 : STD_LOGIC;
   signal sm_reset_tx_timer_ctr : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal sm_reset_tx_timer_sat : STD_LOGIC;
@@ -7268,61 +7222,57 @@ architecture STRUCTURE of FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset i
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[1]_i_1\ : label is "soft_lutpair18";
   attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_2\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_3\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_4\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_3\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_all[2]_i_4\ : label is "soft_lutpair15";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_all_reg[0]\ : label is "ST_RESET_ALL_BRANCH:000,ST_RESET_ALL_TX_PLL_WAIT:010,ST_RESET_ALL_RX_WAIT:101,ST_RESET_ALL_TX_PLL:001,ST_RESET_ALL_RX_PLL:100,ST_RESET_ALL_RX_DP:011,ST_RESET_ALL_INIT:111,iSTATE:110";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_all_reg[1]\ : label is "ST_RESET_ALL_BRANCH:000,ST_RESET_ALL_TX_PLL_WAIT:010,ST_RESET_ALL_RX_WAIT:101,ST_RESET_ALL_TX_PLL:001,ST_RESET_ALL_RX_PLL:100,ST_RESET_ALL_RX_DP:011,ST_RESET_ALL_INIT:111,iSTATE:110";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_all_reg[2]\ : label is "ST_RESET_ALL_BRANCH:000,ST_RESET_ALL_TX_PLL_WAIT:010,ST_RESET_ALL_RX_WAIT:101,ST_RESET_ALL_TX_PLL:001,ST_RESET_ALL_RX_PLL:100,ST_RESET_ALL_RX_DP:011,ST_RESET_ALL_INIT:111,iSTATE:110";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_rx[1]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_rx[2]_i_6\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_rx[2]_i_7\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_rx[2]_i_8\ : label is "soft_lutpair9";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_rx_reg[0]\ : label is "ST_RESET_RX_WAIT_LOCK:011,ST_RESET_RX_WAIT_CDR:100,ST_RESET_RX_WAIT_USERRDY:101,ST_RESET_RX_WAIT_RESETDONE:110,ST_RESET_RX_DATAPATH:010,ST_RESET_RX_PLL:001,ST_RESET_RX_BRANCH:000,ST_RESET_RX_IDLE:111";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_rx_reg[1]\ : label is "ST_RESET_RX_WAIT_LOCK:011,ST_RESET_RX_WAIT_CDR:100,ST_RESET_RX_WAIT_USERRDY:101,ST_RESET_RX_WAIT_RESETDONE:110,ST_RESET_RX_DATAPATH:010,ST_RESET_RX_PLL:001,ST_RESET_RX_BRANCH:000,ST_RESET_RX_IDLE:111";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_rx_reg[2]\ : label is "ST_RESET_RX_WAIT_LOCK:011,ST_RESET_RX_WAIT_CDR:100,ST_RESET_RX_WAIT_USERRDY:101,ST_RESET_RX_WAIT_RESETDONE:110,ST_RESET_RX_DATAPATH:010,ST_RESET_RX_PLL:001,ST_RESET_RX_BRANCH:000,ST_RESET_RX_IDLE:111";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_tx[2]_i_2\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_tx[2]_i_5\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_tx[2]_i_6\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_tx[2]_i_8\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_tx[2]_i_4\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \FSM_sequential_sm_reset_tx[2]_i_5\ : label is "soft_lutpair11";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_tx_reg[0]\ : label is "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_tx_reg[1]\ : label is "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001";
   attribute FSM_ENCODED_STATES of \FSM_sequential_sm_reset_tx_reg[2]\ : label is "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001";
   attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of \gthe4_channel_gen.gen_gthe4_channel_inst[1].GTHE4_CHANNEL_PRIM_INST_i_1\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of gtwiz_reset_rx_datapath_int_i_1 : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of gtwiz_reset_tx_done_int_i_2 : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of gtwiz_reset_tx_pll_and_datapath_int_i_1 : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \sm_reset_all_timer_ctr[1]_i_1\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \sm_reset_all_timer_ctr[2]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of sm_reset_rx_cdr_to_clr_i_3 : label is "soft_lutpair3";
   attribute ADDER_THRESHOLD : integer;
   attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[0]_i_2\ : label is 16;
   attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[16]_i_1\ : label is 16;
   attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[24]_i_1\ : label is 16;
   attribute ADDER_THRESHOLD of \sm_reset_rx_cdr_to_ctr_reg[8]_i_1\ : label is 16;
+  attribute SOFT_HLUTNM of sm_reset_rx_pll_timer_clr_i_1 : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[0]_i_1\ : label is "soft_lutpair24";
   attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[1]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of sm_reset_rx_pll_timer_sat_i_2 : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \sm_reset_rx_pll_timer_ctr[9]_i_5\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \sm_reset_rx_timer_ctr[1]_i_1\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of \sm_reset_rx_timer_ctr[2]_i_1\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of sm_reset_rx_timer_sat_i_1 : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of sm_reset_tx_pll_timer_clr_i_1 : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[0]_i_1\ : label is "soft_lutpair23";
   attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[1]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of sm_reset_tx_pll_timer_sat_i_2 : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[2]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[3]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[4]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[6]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[7]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[8]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[9]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \sm_reset_tx_pll_timer_ctr[9]_i_5\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \sm_reset_tx_timer_ctr[1]_i_1\ : label is "soft_lutpair19";
   attribute SOFT_HLUTNM of \sm_reset_tx_timer_ctr[2]_i_1\ : label is "soft_lutpair19";
 begin
@@ -7416,39 +7366,47 @@ begin
       Q => sm_reset_all(2),
       R => gtwiz_reset_all_sync
     );
-\FSM_sequential_sm_reset_rx[1]_i_2\: unisim.vcomponents.LUT5
+\FSM_sequential_sm_reset_rx[1]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"00008000"
+      INIT => X"F7FF"
     )
         port map (
-      I0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
-      I1 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
-      I2 => sm_reset_rx(1),
+      I0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
+      I1 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
+      I2 => sm_reset_rx_timer_clr_reg_n_0,
       I3 => sm_reset_rx_timer_sat,
-      I4 => sm_reset_rx_timer_clr_reg_n_0,
       O => \FSM_sequential_sm_reset_rx[1]_i_2_n_0\
     );
 \FSM_sequential_sm_reset_rx[2]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FDDDDDDD88888888"
+      INIT => X"FFFFFF008000FF00"
     )
         port map (
-      I0 => sm_reset_rx(1),
-      I1 => sm_reset_rx(0),
-      I2 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
-      I3 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
-      I4 => \FSM_sequential_sm_reset_rx[2]_i_6_n_0\,
-      I5 => sm_reset_rx(2),
+      I0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
+      I1 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
+      I2 => \FSM_sequential_sm_reset_rx[2]_i_7_n_0\,
+      I3 => sm_reset_rx(2),
+      I4 => sm_reset_rx(1),
+      I5 => sm_reset_rx(0),
       O => \sm_reset_rx__0\(2)
     );
-\FSM_sequential_sm_reset_rx[2]_i_6\: unisim.vcomponents.LUT2
+\FSM_sequential_sm_reset_rx[2]_i_7\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"2"
     )
         port map (
       I0 => sm_reset_rx_timer_sat,
       I1 => sm_reset_rx_timer_clr_reg_n_0,
-      O => \FSM_sequential_sm_reset_rx[2]_i_6_n_0\
+      O => \FSM_sequential_sm_reset_rx[2]_i_7_n_0\
+    );
+\FSM_sequential_sm_reset_rx[2]_i_8\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => sm_reset_rx(2),
+      I1 => sm_reset_rx(1),
+      O => sm_reset_rx_pll_timer_clr
     );
 \FSM_sequential_sm_reset_rx_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -7456,7 +7414,7 @@ begin
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2,
+      CE => bit_synchronizer_plllock_rx_inst_n_2,
       D => \sm_reset_rx__0\(0),
       Q => sm_reset_rx(0),
       R => gtwiz_reset_rx_any_sync
@@ -7467,7 +7425,7 @@ begin
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2,
+      CE => bit_synchronizer_plllock_rx_inst_n_2,
       D => \sm_reset_rx__0\(1),
       Q => sm_reset_rx(1),
       R => gtwiz_reset_rx_any_sync
@@ -7478,7 +7436,7 @@ begin
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2,
+      CE => bit_synchronizer_plllock_rx_inst_n_2,
       D => \sm_reset_rx__0\(2),
       Q => sm_reset_rx(2),
       R => gtwiz_reset_rx_any_sync
@@ -7493,34 +7451,27 @@ begin
       I2 => sm_reset_tx(2),
       O => \sm_reset_tx__0\(2)
     );
-\FSM_sequential_sm_reset_tx[2]_i_5\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => sm_reset_tx(1),
-      I1 => sm_reset_tx(2),
-      O => sm_reset_tx_pll_timer_clr
-    );
-\FSM_sequential_sm_reset_tx[2]_i_6\: unisim.vcomponents.LUT4
+\FSM_sequential_sm_reset_tx[2]_i_4\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0400"
     )
         port map (
-      I0 => sm_reset_tx(1),
-      I1 => sm_reset_tx(2),
-      I2 => sm_reset_tx_timer_clr_reg_n_0,
-      I3 => sm_reset_tx_timer_sat,
-      O => \FSM_sequential_sm_reset_tx[2]_i_6_n_0\
+      I0 => sm_reset_tx_timer_clr_reg_n_0,
+      I1 => sm_reset_tx_timer_sat,
+      I2 => sm_reset_tx(1),
+      I3 => sm_reset_tx(2),
+      O => \FSM_sequential_sm_reset_tx[2]_i_4_n_0\
     );
-\FSM_sequential_sm_reset_tx[2]_i_8\: unisim.vcomponents.LUT2
+\FSM_sequential_sm_reset_tx[2]_i_5\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"2"
+      INIT => X"0040"
     )
         port map (
-      I0 => sm_reset_tx_timer_sat,
-      I1 => sm_reset_tx_timer_clr_reg_n_0,
-      O => \FSM_sequential_sm_reset_tx[2]_i_8_n_0\
+      I0 => sm_reset_tx(2),
+      I1 => sm_reset_tx(1),
+      I2 => sm_reset_tx_timer_sat,
+      I3 => sm_reset_tx_timer_clr_reg_n_0,
+      O => \FSM_sequential_sm_reset_tx[2]_i_5_n_0\
     );
 \FSM_sequential_sm_reset_tx_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -7528,7 +7479,7 @@ begin
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0,
+      CE => bit_synchronizer_plllock_tx_inst_n_3,
       D => \sm_reset_tx__0\(0),
       Q => sm_reset_tx(0),
       R => gtwiz_reset_tx_any_sync
@@ -7539,7 +7490,7 @@ begin
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0,
+      CE => bit_synchronizer_plllock_tx_inst_n_3,
       D => \sm_reset_tx__0\(1),
       Q => sm_reset_tx(1),
       R => gtwiz_reset_tx_any_sync
@@ -7550,7 +7501,7 @@ begin
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0,
+      CE => bit_synchronizer_plllock_tx_inst_n_3,
       D => \sm_reset_tx__0\(2),
       Q => sm_reset_tx(2),
       R => gtwiz_reset_tx_any_sync
@@ -7573,19 +7524,22 @@ bit_synchronizer_gtwiz_reset_rx_datapath_dly_inst: entity work.FELIX_GTH_v1f_gtw
 bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6
      port map (
       D(1 downto 0) => \sm_reset_rx__0\(1 downto 0),
-      E(0) => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2,
-      \FSM_sequential_sm_reset_rx_reg[0]\ => \FSM_sequential_sm_reset_rx[1]_i_2_n_0\,
-      \FSM_sequential_sm_reset_rx_reg[0]_0\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0,
-      \FSM_sequential_sm_reset_rx_reg[0]_1\ => bit_synchronizer_rxcdrlock_inst_n_1,
+      \FSM_sequential_sm_reset_rx_reg[0]\ => sm_reset_rx_pll_timer_clr_reg_n_0,
+      \FSM_sequential_sm_reset_rx_reg[1]\ => \FSM_sequential_sm_reset_rx[1]_i_2_n_0\,
       Q(2 downto 0) => sm_reset_rx(2 downto 0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_datapath_dly => gtwiz_reset_rx_datapath_dly,
-      in0 => gtwiz_reset_rx_pll_and_datapath_sync
+      in0 => gtwiz_reset_rx_pll_and_datapath_sync,
+      sm_reset_rx_pll_timer_clr => sm_reset_rx_pll_timer_clr,
+      sm_reset_rx_pll_timer_sat => sm_reset_rx_pll_timer_sat,
+      sm_reset_rx_pll_timer_sat_reg => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2
     );
 bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7
      port map (
+      \FSM_sequential_sm_reset_tx_reg[2]\ => bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst_n_0,
+      Q(2 downto 0) => sm_reset_tx(2 downto 0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
-      gtwiz_reset_tx_datapath_dly => gtwiz_reset_tx_datapath_dly,
+      gtwiz_reset_tx_pll_and_datapath_dly => gtwiz_reset_tx_pll_and_datapath_dly,
       in0 => gtwiz_reset_tx_datapath_sync
     );
 bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_8
@@ -7598,91 +7552,85 @@ bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst: entity work.FELIX_GTH
     );
 bit_synchronizer_gtwiz_reset_userclk_rx_active_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9
      port map (
-      \FSM_sequential_sm_reset_rx_reg[0]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1,
-      \FSM_sequential_sm_reset_rx_reg[0]_0\ => sm_reset_rx_pll_timer_clr_reg_n_0,
-      \FSM_sequential_sm_reset_rx_reg[1]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0,
-      \FSM_sequential_sm_reset_rx_reg[2]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2,
+      \FSM_sequential_sm_reset_rx_reg[0]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0,
+      \FSM_sequential_sm_reset_rx_reg[2]\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1,
+      \FSM_sequential_sm_reset_rx_reg[2]_0\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2,
       GTHE4_CHANNEL_RXUSERRDY(0) => \^gthe4_channel_rxuserrdy\(0),
       Q(2 downto 0) => sm_reset_rx(2 downto 0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_any_sync => gtwiz_reset_rx_any_sync,
       gtwiz_userclk_rx_active_out(0) => gtwiz_userclk_rx_active_out(0),
       plllock_rx_sync => plllock_rx_sync,
-      sm_reset_rx_pll_timer_sat => sm_reset_rx_pll_timer_sat,
-      sm_reset_rx_timer_clr_reg => \FSM_sequential_sm_reset_rx[2]_i_6_n_0\,
+      sm_reset_rx_timer_clr_reg => \FSM_sequential_sm_reset_rx[1]_i_2_n_0\,
       sm_reset_rx_timer_clr_reg_0 => sm_reset_rx_timer_clr_reg_n_0,
-      sm_reset_rx_timer_clr_reg_1 => \FSM_sequential_sm_reset_rx[1]_i_2_n_0\,
+      sm_reset_rx_timer_clr_reg_1 => \FSM_sequential_sm_reset_rx[2]_i_7_n_0\,
       sm_reset_rx_timer_sat => sm_reset_rx_timer_sat
     );
 bit_synchronizer_gtwiz_reset_userclk_tx_active_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10
      port map (
-      E(0) => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0,
-      \FSM_sequential_sm_reset_tx_reg[0]\ => bit_synchronizer_plllock_tx_inst_n_1,
-      \FSM_sequential_sm_reset_tx_reg[0]_0\ => \FSM_sequential_sm_reset_tx[2]_i_6_n_0\,
-      \FSM_sequential_sm_reset_tx_reg[0]_1\ => sm_reset_tx_pll_timer_clr_reg_n_0,
-      \FSM_sequential_sm_reset_tx_reg[1]\ => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2,
-      \FSM_sequential_sm_reset_tx_reg[2]\ => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1,
-      GTHE4_CHANNEL_TXUSERRDY(0) => \^gthe4_channel_txuserrdy\(0),
-      Q(2 downto 0) => sm_reset_tx(2 downto 0),
+      Q(1 downto 0) => sm_reset_tx(2 downto 1),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
-      gtwiz_reset_tx_any_sync => gtwiz_reset_tx_any_sync,
-      gtwiz_reset_tx_datapath_dly => gtwiz_reset_tx_datapath_dly,
-      gtwiz_reset_tx_pll_and_datapath_dly => gtwiz_reset_tx_pll_and_datapath_dly,
+      gtwiz_reset_userclk_tx_active_sync => gtwiz_reset_userclk_tx_active_sync,
       gtwiz_userclk_tx_active_out(0) => gtwiz_userclk_tx_active_out(0),
-      plllock_tx_sync => plllock_tx_sync,
-      sm_reset_tx_pll_timer_clr => sm_reset_tx_pll_timer_clr,
-      sm_reset_tx_pll_timer_sat => sm_reset_tx_pll_timer_sat,
-      sm_reset_tx_timer_clr_reg => gtwiz_reset_tx_done_int_reg_0,
-      sm_reset_tx_timer_clr_reg_0 => \FSM_sequential_sm_reset_tx[2]_i_8_n_0\,
-      sm_reset_tx_timer_clr_reg_1 => sm_reset_tx_timer_clr_reg_n_0,
-      sm_reset_tx_timer_sat => sm_reset_tx_timer_sat
+      i_in_out_reg_0 => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1,
+      sm_reset_tx_timer_sat => sm_reset_tx_timer_sat,
+      txuserrdy_out_reg => sm_reset_tx_timer_clr_reg_n_0
     );
 bit_synchronizer_plllock_rx_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11
      port map (
+      E(0) => bit_synchronizer_plllock_rx_inst_n_2,
+      \FSM_sequential_sm_reset_rx_reg[0]\ => bit_synchronizer_rxcdrlock_inst_n_3,
+      \FSM_sequential_sm_reset_rx_reg[0]_0\ => bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2,
+      \FSM_sequential_sm_reset_rx_reg[0]_1\ => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2,
+      \FSM_sequential_sm_reset_rx_reg[0]_2\ => \FSM_sequential_sm_reset_rx[2]_i_7_n_0\,
+      \FSM_sequential_sm_reset_rx_reg[2]\ => bit_synchronizer_plllock_rx_inst_n_1,
       Q(2 downto 0) => sm_reset_rx(2 downto 0),
-      gtrxreset_out_reg => sm_reset_rx_timer_clr_reg_n_0,
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_done_int_reg => \FSM_sequential_sm_reset_rx[1]_i_2_n_0\,
-      gtwiz_reset_rx_done_int_reg_0 => gtwiz_reset_rx_done_int_reg_0,
-      gtwiz_reset_rx_done_int_reg_1 => \FSM_sequential_sm_reset_rx[2]_i_6_n_0\,
-      gtwiz_reset_rx_done_int_reg_2 => gtwiz_reset_rx_done_int_reg_n_0,
-      i_in_out_reg_0 => bit_synchronizer_plllock_rx_inst_n_1,
-      i_in_out_reg_1 => bit_synchronizer_plllock_rx_inst_n_2,
+      gtwiz_reset_rx_done_int_reg_0 => gtwiz_reset_rx_done_int_reg_n_0,
       plllock_rx_sync => plllock_rx_sync,
-      qpll1lock_out(0) => qpll1lock_out(0),
-      sm_reset_rx_timer_sat => sm_reset_rx_timer_sat
+      qpll1lock_out(0) => qpll1lock_out(0)
     );
 bit_synchronizer_plllock_tx_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12
      port map (
-      \FSM_sequential_sm_reset_tx_reg[0]\ => bit_synchronizer_plllock_tx_inst_n_3,
-      \FSM_sequential_sm_reset_tx_reg[0]_0\ => \FSM_sequential_sm_reset_tx[2]_i_8_n_0\,
+      E(0) => bit_synchronizer_plllock_tx_inst_n_3,
+      \FSM_sequential_sm_reset_tx_reg[0]\ => bit_synchronizer_plllock_tx_inst_n_0,
+      \FSM_sequential_sm_reset_tx_reg[0]_0\ => bit_synchronizer_plllock_tx_inst_n_2,
+      \FSM_sequential_sm_reset_tx_reg[0]_1\ => \FSM_sequential_sm_reset_tx[2]_i_4_n_0\,
+      \FSM_sequential_sm_reset_tx_reg[0]_2\ => \FSM_sequential_sm_reset_tx[2]_i_5_n_0\,
+      \FSM_sequential_sm_reset_tx_reg[0]_3\ => bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst_n_0,
+      \FSM_sequential_sm_reset_tx_reg[0]_4\ => sm_reset_tx_pll_timer_clr_reg_n_0,
+      GTHE4_CHANNEL_GTTXRESET(0) => \^gthe4_channel_gttxreset\(0),
       Q(2 downto 0) => sm_reset_tx(2 downto 0),
-      gttxreset_out_reg => sm_reset_tx_timer_clr_reg_n_0,
+      \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1 downto 0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1 downto 0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_tx_any_sync => gtwiz_reset_tx_any_sync,
-      gtwiz_reset_tx_done_int_reg => gtwiz_reset_tx_done_int_reg_0,
-      gtwiz_reset_tx_done_int_reg_0 => gtwiz_reset_tx_done_int_i_2_n_0,
+      gtwiz_reset_tx_done_int_reg => gtwiz_reset_tx_done_int_i_2_n_0,
+      gtwiz_reset_tx_done_int_reg_0 => gtwiz_reset_tx_done_int_i_3_n_0,
       gtwiz_reset_tx_done_int_reg_1 => gtwiz_reset_tx_done_int_reg_n_0,
-      i_in_out_reg_0 => bit_synchronizer_plllock_tx_inst_n_1,
-      plllock_tx_sync => plllock_tx_sync,
+      gtwiz_reset_userclk_tx_active_sync => gtwiz_reset_userclk_tx_active_sync,
       qpll1lock_out(0) => qpll1lock_out(0),
+      sm_reset_tx_pll_timer_sat => sm_reset_tx_pll_timer_sat,
+      sm_reset_tx_timer_clr_reg => sm_reset_tx_timer_clr_reg_n_0,
       sm_reset_tx_timer_sat => sm_reset_tx_timer_sat,
-      sm_reset_tx_timer_sat_reg => bit_synchronizer_plllock_tx_inst_n_2
+      sm_reset_tx_timer_sat_reg => bit_synchronizer_plllock_tx_inst_n_1
     );
 bit_synchronizer_rxcdrlock_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13
      port map (
-      \FSM_sequential_sm_reset_rx_reg[0]\ => \FSM_sequential_sm_reset_rx[2]_i_6_n_0\,
-      \FSM_sequential_sm_reset_rx_reg[1]\ => bit_synchronizer_rxcdrlock_inst_n_1,
-      \FSM_sequential_sm_reset_rx_reg[2]\ => bit_synchronizer_rxcdrlock_inst_n_3,
+      \FSM_sequential_sm_reset_rx_reg[1]\ => bit_synchronizer_rxcdrlock_inst_n_2,
+      GTHE4_CHANNEL_RXPROGDIVRESET(0) => \^gthe4_channel_rxprogdivreset\(0),
       Q(2 downto 0) => sm_reset_rx(2 downto 0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
+      gtwiz_reset_rx_any_sync => gtwiz_reset_rx_any_sync,
       gtwiz_reset_rx_cdr_stable_out(0) => gtwiz_reset_rx_cdr_stable_out(0),
       i_in_meta_reg_0 => i_in_meta_reg,
+      i_in_out_reg_0 => bit_synchronizer_rxcdrlock_inst_n_1,
       plllock_rx_sync => plllock_rx_sync,
       sm_reset_rx_cdr_to_clr => sm_reset_rx_cdr_to_clr,
       sm_reset_rx_cdr_to_clr_reg => sm_reset_rx_cdr_to_clr_i_3_n_0,
+      sm_reset_rx_cdr_to_clr_reg_0 => \FSM_sequential_sm_reset_rx[2]_i_7_n_0\,
       sm_reset_rx_cdr_to_sat => sm_reset_rx_cdr_to_sat,
-      sm_reset_rx_cdr_to_sat_reg => bit_synchronizer_rxcdrlock_inst_n_2
+      sm_reset_rx_cdr_to_sat_reg => bit_synchronizer_rxcdrlock_inst_n_3
     );
 \gthe4_channel_gen.gen_gthe4_channel_inst[0].GTHE4_CHANNEL_PRIM_INST_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -7711,7 +7659,7 @@ gtrxreset_out_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => reset_synchronizer_gtwiz_reset_rx_any_inst_n_3,
+      D => reset_synchronizer_gtwiz_reset_rx_any_inst_n_2,
       Q => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\,
       R => '0'
     );
@@ -7722,7 +7670,7 @@ gttxreset_out_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => reset_synchronizer_gtwiz_reset_tx_any_inst_n_2,
+      D => bit_synchronizer_plllock_tx_inst_n_2,
       Q => \^gthe4_channel_gttxreset\(0),
       R => '0'
     );
@@ -7764,7 +7712,7 @@ gtwiz_reset_rx_done_int_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_plllock_rx_inst_n_2,
+      D => bit_synchronizer_plllock_rx_inst_n_1,
       Q => gtwiz_reset_rx_done_int_reg_n_0,
       R => gtwiz_reset_rx_any_sync
     );
@@ -7795,12 +7743,23 @@ gtwiz_reset_tx_done_int_i_2: unisim.vcomponents.LUT5
       INIT => X"04000000"
     )
         port map (
-      I0 => sm_reset_tx(1),
+      I0 => sm_reset_tx_timer_clr_reg_n_0,
       I1 => sm_reset_tx_timer_sat,
-      I2 => sm_reset_tx_timer_clr_reg_n_0,
-      I3 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
-      I4 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
+      I2 => sm_reset_tx(1),
+      I3 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
+      I4 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
       O => gtwiz_reset_tx_done_int_i_2_n_0
+    );
+gtwiz_reset_tx_done_int_i_3: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8000"
+    )
+        port map (
+      I0 => \FSM_sequential_sm_reset_tx[2]_i_4_n_0\,
+      I1 => sm_reset_tx(0),
+      I2 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
+      I3 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
+      O => gtwiz_reset_tx_done_int_i_3_n_0
     );
 gtwiz_reset_tx_done_int_reg: unisim.vcomponents.FDRE
     generic map(
@@ -7809,7 +7768,7 @@ gtwiz_reset_tx_done_int_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_plllock_tx_inst_n_3,
+      D => bit_synchronizer_plllock_tx_inst_n_0,
       Q => gtwiz_reset_tx_done_int_reg_n_0,
       R => gtwiz_reset_tx_any_sync
     );
@@ -7866,20 +7825,18 @@ reset_synchronizer_gtwiz_reset_all_inst: entity work.FELIX_GTH_v1f_gtwizard_ultr
 reset_synchronizer_gtwiz_reset_rx_any_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14
      port map (
       \FSM_sequential_sm_reset_rx_reg[1]\ => reset_synchronizer_gtwiz_reset_rx_any_inst_n_1,
-      \FSM_sequential_sm_reset_rx_reg[1]_0\ => reset_synchronizer_gtwiz_reset_rx_any_inst_n_2,
-      \FSM_sequential_sm_reset_rx_reg[1]_1\ => reset_synchronizer_gtwiz_reset_rx_any_inst_n_3,
-      GTHE4_CHANNEL_RXPROGDIVRESET(0) => \^gthe4_channel_rxprogdivreset\(0),
       Q(2 downto 0) => sm_reset_rx(2 downto 0),
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\ => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int\,
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int\ => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int\,
-      gtrxreset_out_reg => bit_synchronizer_plllock_rx_inst_n_1,
+      gtrxreset_out_reg => \FSM_sequential_sm_reset_rx[2]_i_7_n_0\,
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_rx_any_sync => gtwiz_reset_rx_any_sync,
       gtwiz_reset_rx_datapath_in(0) => gtwiz_reset_rx_datapath_in(0),
       gtwiz_reset_rx_pll_and_datapath_in(0) => gtwiz_reset_rx_pll_and_datapath_in(0),
+      i_in_out_reg => reset_synchronizer_gtwiz_reset_rx_any_inst_n_2,
+      plllock_rx_sync => plllock_rx_sync,
       rst_in_out_reg_0 => gtwiz_reset_rx_datapath_int_reg_n_0,
-      rst_in_out_reg_1 => gtwiz_reset_rx_pll_and_datapath_int_reg_n_0,
-      rxprogdivreset_out_reg => bit_synchronizer_rxcdrlock_inst_n_2
+      rst_in_out_reg_1 => gtwiz_reset_rx_pll_and_datapath_int_reg_n_0
     );
 reset_synchronizer_gtwiz_reset_rx_datapath_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_15
      port map (
@@ -7897,17 +7854,17 @@ reset_synchronizer_gtwiz_reset_rx_pll_and_datapath_inst: entity work.FELIX_GTH_v
     );
 reset_synchronizer_gtwiz_reset_tx_any_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17
      port map (
+      \FSM_sequential_sm_reset_tx_reg[0]\ => reset_synchronizer_gtwiz_reset_tx_any_inst_n_2,
       \FSM_sequential_sm_reset_tx_reg[1]\ => reset_synchronizer_gtwiz_reset_tx_any_inst_n_1,
-      GTHE4_CHANNEL_GTTXRESET(0) => \^gthe4_channel_gttxreset\(0),
+      GTHE4_CHANNEL_TXUSERRDY(0) => \^gthe4_channel_txuserrdy\(0),
       Q(2 downto 0) => sm_reset_tx(2 downto 0),
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int\ => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int\,
-      gttxreset_out_reg => bit_synchronizer_plllock_tx_inst_n_2,
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
       gtwiz_reset_tx_any_sync => gtwiz_reset_tx_any_sync,
       gtwiz_reset_tx_datapath_in(0) => gtwiz_reset_tx_datapath_in(0),
       gtwiz_reset_tx_pll_and_datapath_in(0) => gtwiz_reset_tx_pll_and_datapath_in(0),
-      rst_in_out_reg_0 => reset_synchronizer_gtwiz_reset_tx_any_inst_n_2,
-      rst_in_out_reg_1 => gtwiz_reset_tx_pll_and_datapath_int_reg_n_0
+      rst_in_out_reg_0 => gtwiz_reset_tx_pll_and_datapath_int_reg_n_0,
+      txuserrdy_out_reg => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1
     );
 reset_synchronizer_gtwiz_reset_tx_datapath_inst: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_18
      port map (
@@ -7947,7 +7904,7 @@ rxprogdivreset_out_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => reset_synchronizer_gtwiz_reset_rx_any_inst_n_2,
+      D => bit_synchronizer_rxcdrlock_inst_n_2,
       Q => \^gthe4_channel_rxprogdivreset\(0),
       R => '0'
     );
@@ -7958,7 +7915,7 @@ rxuserrdy_out_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2,
+      D => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1,
       Q => \^gthe4_channel_rxuserrdy\(0),
       R => '0'
     );
@@ -8091,14 +8048,13 @@ sm_reset_all_timer_sat_reg: unisim.vcomponents.FDRE
       Q => sm_reset_all_timer_sat,
       R => '0'
     );
-sm_reset_rx_cdr_to_clr_i_3: unisim.vcomponents.LUT3
+sm_reset_rx_cdr_to_clr_i_3: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"40"
+      INIT => X"B"
     )
         port map (
-      I0 => sm_reset_rx_timer_clr_reg_n_0,
-      I1 => sm_reset_rx_timer_sat,
-      I2 => sm_reset_rx(1),
+      I0 => sm_reset_rx(2),
+      I1 => sm_reset_rx(1),
       O => sm_reset_rx_cdr_to_clr_i_3_n_0
     );
 sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
@@ -8108,82 +8064,106 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_rxcdrlock_inst_n_3,
+      D => bit_synchronizer_rxcdrlock_inst_n_1,
       Q => sm_reset_rx_cdr_to_clr,
       S => gtwiz_reset_rx_any_sync
     );
-\sm_reset_rx_cdr_to_ctr[0]_i_1\: unisim.vcomponents.LUT6
+\sm_reset_rx_cdr_to_ctr[0]_i_1\: unisim.vcomponents.LUT1
     generic map(
-      INIT => X"FFFFFFFFFFFFFFFD"
+      INIT => X"1"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(0),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(1),
-      I2 => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\,
-      I3 => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\,
-      I4 => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\,
-      I5 => \sm_reset_rx_cdr_to_ctr[0]_i_6_n_0\,
+      I0 => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\,
       O => \sm_reset_rx_cdr_to_ctr[0]_i_1_n_0\
     );
-\sm_reset_rx_cdr_to_ctr[0]_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFDFFFFFFFFFFFFF"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(18),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(19),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(16),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(17),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(15),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(14),
-      O => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\
-    );
-\sm_reset_rx_cdr_to_ctr[0]_i_4\: unisim.vcomponents.LUT6
+\sm_reset_rx_cdr_to_ctr[0]_i_10\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFFFFFFFFFFFFFE"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(24),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(25),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(22),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(23),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(21),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(20),
-      O => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\
+      I0 => sm_reset_rx_cdr_to_ctr_reg(21),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(5),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(7),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(2),
+      I4 => sm_reset_rx_cdr_to_ctr_reg(15),
+      I5 => sm_reset_rx_cdr_to_ctr_reg(24),
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_10_n_0\
     );
-\sm_reset_rx_cdr_to_ctr[0]_i_5\: unisim.vcomponents.LUT6
+\sm_reset_rx_cdr_to_ctr[0]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFDFFFFFFFFFFF"
+      INIT => X"0000000000000010"
     )
         port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(12),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(13),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(10),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(11),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(8),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(9),
-      O => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\
+      I0 => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\,
+      I1 => \sm_reset_rx_cdr_to_ctr[0]_i_6_n_0\,
+      I2 => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\,
+      I3 => \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\,
+      I4 => \sm_reset_rx_cdr_to_ctr[0]_i_9_n_0\,
+      I5 => \sm_reset_rx_cdr_to_ctr[0]_i_10_n_0\,
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\
     );
-\sm_reset_rx_cdr_to_ctr[0]_i_6\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFFFFFFDF"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(7),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(6),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(4),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(5),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(3),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(2),
-      O => \sm_reset_rx_cdr_to_ctr[0]_i_6_n_0\
-    );
-\sm_reset_rx_cdr_to_ctr[0]_i_7\: unisim.vcomponents.LUT1
+\sm_reset_rx_cdr_to_ctr[0]_i_4\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
         port map (
       I0 => sm_reset_rx_cdr_to_ctr_reg(0),
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\
+    );
+\sm_reset_rx_cdr_to_ctr[0]_i_5\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EFFF"
+    )
+        port map (
+      I0 => sm_reset_rx_cdr_to_ctr_reg(4),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(1),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(3),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(8),
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0\
+    );
+\sm_reset_rx_cdr_to_ctr[0]_i_6\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFEF"
+    )
+        port map (
+      I0 => sm_reset_rx_cdr_to_ctr_reg(20),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(16),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(19),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(25),
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_6_n_0\
+    );
+\sm_reset_rx_cdr_to_ctr[0]_i_7\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"1000"
+    )
+        port map (
+      I0 => sm_reset_rx_cdr_to_ctr_reg(9),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(13),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(17),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(12),
       O => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\
+    );
+\sm_reset_rx_cdr_to_ctr[0]_i_8\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => sm_reset_rx_cdr_to_ctr_reg(11),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(14),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(18),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(22),
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0\
+    );
+\sm_reset_rx_cdr_to_ctr[0]_i_9\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => sm_reset_rx_cdr_to_ctr_reg(6),
+      I1 => sm_reset_rx_cdr_to_ctr_reg(0),
+      I2 => sm_reset_rx_cdr_to_ctr_reg(10),
+      I3 => sm_reset_rx_cdr_to_ctr_reg(23),
+      O => \sm_reset_rx_cdr_to_ctr[0]_i_9_n_0\
     );
 \sm_reset_rx_cdr_to_ctr_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -8218,7 +8198,7 @@ sm_reset_rx_cdr_to_clr_reg: unisim.vcomponents.FDSE
       O(1) => \sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_14\,
       O(0) => \sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_15\,
       S(7 downto 1) => sm_reset_rx_cdr_to_ctr_reg(7 downto 1),
-      S(0) => \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0\
+      S(0) => \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0\
     );
 \sm_reset_rx_cdr_to_ctr_reg[10]\: unisim.vcomponents.FDRE
     generic map(
@@ -8560,74 +8540,9 @@ sm_reset_rx_cdr_to_sat_i_1: unisim.vcomponents.LUT3
     )
         port map (
       I0 => sm_reset_rx_cdr_to_sat,
-      I1 => sm_reset_rx_cdr_to_sat_i_2_n_0,
+      I1 => \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0\,
       I2 => sm_reset_rx_cdr_to_clr,
       O => sm_reset_rx_cdr_to_sat_i_1_n_0
-    );
-sm_reset_rx_cdr_to_sat_i_2: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000080000000"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_sat_i_3_n_0,
-      I1 => sm_reset_rx_cdr_to_sat_i_4_n_0,
-      I2 => sm_reset_rx_cdr_to_sat_i_5_n_0,
-      I3 => sm_reset_rx_cdr_to_sat_i_6_n_0,
-      I4 => sm_reset_rx_cdr_to_ctr_reg(0),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(1),
-      O => sm_reset_rx_cdr_to_sat_i_2_n_0
-    );
-sm_reset_rx_cdr_to_sat_i_3: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000200000000"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(4),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(5),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(2),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(3),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(6),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(7),
-      O => sm_reset_rx_cdr_to_sat_i_3_n_0
-    );
-sm_reset_rx_cdr_to_sat_i_4: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000001"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(22),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(23),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(20),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(21),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(25),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(24),
-      O => sm_reset_rx_cdr_to_sat_i_4_n_0
-    );
-sm_reset_rx_cdr_to_sat_i_5: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000200000000000"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(16),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(17),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(14),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(15),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(19),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(18),
-      O => sm_reset_rx_cdr_to_sat_i_5_n_0
-    );
-sm_reset_rx_cdr_to_sat_i_6: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000008000000000"
-    )
-        port map (
-      I0 => sm_reset_rx_cdr_to_ctr_reg(10),
-      I1 => sm_reset_rx_cdr_to_ctr_reg(11),
-      I2 => sm_reset_rx_cdr_to_ctr_reg(9),
-      I3 => sm_reset_rx_cdr_to_ctr_reg(8),
-      I4 => sm_reset_rx_cdr_to_ctr_reg(13),
-      I5 => sm_reset_rx_cdr_to_ctr_reg(12),
-      O => sm_reset_rx_cdr_to_sat_i_6_n_0
     );
 sm_reset_rx_cdr_to_sat_reg: unisim.vcomponents.FDRE
     generic map(
@@ -8647,8 +8562,8 @@ sm_reset_rx_pll_timer_clr_i_1: unisim.vcomponents.LUT5
         port map (
       I0 => sm_reset_rx_pll_timer_sat,
       I1 => sm_reset_rx(0),
-      I2 => sm_reset_rx(1),
-      I3 => sm_reset_rx(2),
+      I2 => sm_reset_rx(2),
+      I3 => sm_reset_rx(1),
       I4 => sm_reset_rx_pll_timer_clr_reg_n_0,
       O => sm_reset_rx_pll_timer_clr_i_1_n_0
     );
@@ -8676,54 +8591,54 @@ sm_reset_rx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       INIT => X"6"
     )
         port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I1 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I1 => sm_reset_rx_pll_timer_ctr_reg(0),
       O => \p_0_in__1\(1)
     );
 \sm_reset_rx_pll_timer_ctr[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"78"
-    )
-        port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(1),
-      I1 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(2),
-      O => \sm_reset_rx_pll_timer_ctr[2]_i_1_n_0\
-    );
-\sm_reset_rx_pll_timer_ctr[3]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7F80"
+      INIT => X"6A"
     )
         port map (
       I0 => sm_reset_rx_pll_timer_ctr_reg(2),
+      I1 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I2 => sm_reset_rx_pll_timer_ctr_reg(0),
+      O => \p_0_in__1\(2)
+    );
+\sm_reset_rx_pll_timer_ctr[3]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"6AAA"
+    )
+        port map (
+      I0 => sm_reset_rx_pll_timer_ctr_reg(3),
       I1 => sm_reset_rx_pll_timer_ctr_reg(0),
       I2 => sm_reset_rx_pll_timer_ctr_reg(1),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(3),
-      O => \sm_reset_rx_pll_timer_ctr[3]_i_1_n_0\
+      I3 => sm_reset_rx_pll_timer_ctr_reg(2),
+      O => \p_0_in__1\(3)
     );
 \sm_reset_rx_pll_timer_ctr[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"7FFF8000"
+      INIT => X"6AAAAAAA"
     )
         port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(4),
       I1 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(2),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(3),
-      I4 => sm_reset_rx_pll_timer_ctr_reg(4),
+      I2 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I3 => sm_reset_rx_pll_timer_ctr_reg(2),
+      I4 => sm_reset_rx_pll_timer_ctr_reg(3),
       O => \p_0_in__1\(4)
     );
 \sm_reset_rx_pll_timer_ctr[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7FFFFFFF80000000"
+      INIT => X"6AAAAAAAAAAAAAAA"
     )
         port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(4),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(5),
       I1 => sm_reset_rx_pll_timer_ctr_reg(3),
       I2 => sm_reset_rx_pll_timer_ctr_reg(2),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I4 => sm_reset_rx_pll_timer_ctr_reg(1),
-      I5 => sm_reset_rx_pll_timer_ctr_reg(5),
+      I3 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I4 => sm_reset_rx_pll_timer_ctr_reg(0),
+      I5 => sm_reset_rx_pll_timer_ctr_reg(4),
       O => \p_0_in__1\(5)
     );
 \sm_reset_rx_pll_timer_ctr[6]_i_1\: unisim.vcomponents.LUT2
@@ -8731,66 +8646,61 @@ sm_reset_rx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       INIT => X"6"
     )
         port map (
-      I0 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
-      I1 => sm_reset_rx_pll_timer_ctr_reg(6),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(6),
+      I1 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
       O => \p_0_in__1\(6)
     );
 \sm_reset_rx_pll_timer_ctr[7]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"78"
+      INIT => X"6A"
     )
         port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(6),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(7),
       I1 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
-      I2 => sm_reset_rx_pll_timer_ctr_reg(7),
+      I2 => sm_reset_rx_pll_timer_ctr_reg(6),
       O => \p_0_in__1\(7)
     );
 \sm_reset_rx_pll_timer_ctr[8]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7F80"
+      INIT => X"6AAA"
     )
         port map (
-      I0 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
-      I1 => sm_reset_rx_pll_timer_ctr_reg(6),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(7),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(8),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(8),
+      I1 => sm_reset_rx_pll_timer_ctr_reg(7),
+      I2 => sm_reset_rx_pll_timer_ctr_reg(6),
+      I3 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
       O => \p_0_in__1\(8)
     );
-\sm_reset_rx_pll_timer_ctr[9]_i_1\: unisim.vcomponents.LUT5
+\sm_reset_rx_pll_timer_ctr[9]_i_1\: unisim.vcomponents.LUT1
     generic map(
-      INIT => X"EFFFFFFF"
+      INIT => X"1"
     )
         port map (
       I0 => \sm_reset_rx_pll_timer_ctr[9]_i_3_n_0\,
-      I1 => sm_reset_rx_pll_timer_ctr_reg(3),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(1),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I4 => sm_reset_rx_pll_timer_ctr_reg(2),
       O => \sm_reset_rx_pll_timer_ctr[9]_i_1_n_0\
     );
 \sm_reset_rx_pll_timer_ctr[9]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"7FFF8000"
+      INIT => X"6AAAAAAA"
     )
         port map (
-      I0 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
-      I1 => sm_reset_rx_pll_timer_ctr_reg(8),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(9),
+      I1 => sm_reset_rx_pll_timer_ctr_reg(6),
       I2 => sm_reset_rx_pll_timer_ctr_reg(7),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(6),
-      I4 => sm_reset_rx_pll_timer_ctr_reg(9),
+      I3 => sm_reset_rx_pll_timer_ctr_reg(8),
+      I4 => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\,
       O => \p_0_in__1\(9)
     );
-\sm_reset_rx_pll_timer_ctr[9]_i_3\: unisim.vcomponents.LUT6
+\sm_reset_rx_pll_timer_ctr[9]_i_3\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFFFFFFFFFFFFE"
+      INIT => X"00000001"
     )
         port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(8),
-      I1 => sm_reset_rx_pll_timer_ctr_reg(9),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(6),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(7),
+      I0 => \sm_reset_rx_pll_timer_ctr[9]_i_5_n_0\,
+      I1 => \sm_reset_rx_pll_timer_ctr[9]_i_6_n_0\,
+      I2 => sm_reset_rx_pll_timer_ctr_reg(4),
+      I3 => sm_reset_rx_pll_timer_ctr_reg(6),
       I4 => sm_reset_rx_pll_timer_ctr_reg(5),
-      I5 => sm_reset_rx_pll_timer_ctr_reg(4),
       O => \sm_reset_rx_pll_timer_ctr[9]_i_3_n_0\
     );
 \sm_reset_rx_pll_timer_ctr[9]_i_4\: unisim.vcomponents.LUT6
@@ -8798,13 +8708,34 @@ sm_reset_rx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       INIT => X"8000000000000000"
     )
         port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(4),
+      I0 => sm_reset_rx_pll_timer_ctr_reg(5),
       I1 => sm_reset_rx_pll_timer_ctr_reg(3),
       I2 => sm_reset_rx_pll_timer_ctr_reg(2),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I4 => sm_reset_rx_pll_timer_ctr_reg(1),
-      I5 => sm_reset_rx_pll_timer_ctr_reg(5),
+      I3 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I4 => sm_reset_rx_pll_timer_ctr_reg(0),
+      I5 => sm_reset_rx_pll_timer_ctr_reg(4),
       O => \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0\
+    );
+\sm_reset_rx_pll_timer_ctr[9]_i_5\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"7F"
+    )
+        port map (
+      I0 => sm_reset_rx_pll_timer_ctr_reg(0),
+      I1 => sm_reset_rx_pll_timer_ctr_reg(1),
+      I2 => sm_reset_rx_pll_timer_ctr_reg(2),
+      O => \sm_reset_rx_pll_timer_ctr[9]_i_5_n_0\
+    );
+\sm_reset_rx_pll_timer_ctr[9]_i_6\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => sm_reset_rx_pll_timer_ctr_reg(8),
+      I1 => sm_reset_rx_pll_timer_ctr_reg(3),
+      I2 => sm_reset_rx_pll_timer_ctr_reg(9),
+      I3 => sm_reset_rx_pll_timer_ctr_reg(7),
+      O => \sm_reset_rx_pll_timer_ctr[9]_i_6_n_0\
     );
 \sm_reset_rx_pll_timer_ctr_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -8835,7 +8766,7 @@ sm_reset_rx_pll_timer_clr_reg: unisim.vcomponents.FDSE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => \sm_reset_rx_pll_timer_ctr[9]_i_1_n_0\,
-      D => \sm_reset_rx_pll_timer_ctr[2]_i_1_n_0\,
+      D => \p_0_in__1\(2),
       Q => sm_reset_rx_pll_timer_ctr_reg(2),
       R => sm_reset_rx_pll_timer_clr_reg_n_0
     );
@@ -8846,7 +8777,7 @@ sm_reset_rx_pll_timer_clr_reg: unisim.vcomponents.FDSE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => \sm_reset_rx_pll_timer_ctr[9]_i_1_n_0\,
-      D => \sm_reset_rx_pll_timer_ctr[3]_i_1_n_0\,
+      D => \p_0_in__1\(3),
       Q => sm_reset_rx_pll_timer_ctr_reg(3),
       R => sm_reset_rx_pll_timer_clr_reg_n_0
     );
@@ -8916,40 +8847,15 @@ sm_reset_rx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       Q => sm_reset_rx_pll_timer_ctr_reg(9),
       R => sm_reset_rx_pll_timer_clr_reg_n_0
     );
-sm_reset_rx_pll_timer_sat_i_1: unisim.vcomponents.LUT5
+sm_reset_rx_pll_timer_sat_i_1: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"0000ABAA"
+      INIT => X"0E"
     )
         port map (
       I0 => sm_reset_rx_pll_timer_sat,
-      I1 => sm_reset_rx_pll_timer_ctr_reg(3),
-      I2 => sm_reset_rx_pll_timer_sat_i_2_n_0,
-      I3 => sm_reset_rx_pll_timer_sat_i_3_n_0,
-      I4 => sm_reset_rx_pll_timer_clr_reg_n_0,
+      I1 => \sm_reset_rx_pll_timer_ctr[9]_i_3_n_0\,
+      I2 => sm_reset_rx_pll_timer_clr_reg_n_0,
       O => sm_reset_rx_pll_timer_sat_i_1_n_0
-    );
-sm_reset_rx_pll_timer_sat_i_2: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"7F"
-    )
-        port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(1),
-      I1 => sm_reset_rx_pll_timer_ctr_reg(0),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(2),
-      O => sm_reset_rx_pll_timer_sat_i_2_n_0
-    );
-sm_reset_rx_pll_timer_sat_i_3: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000001"
-    )
-        port map (
-      I0 => sm_reset_rx_pll_timer_ctr_reg(6),
-      I1 => sm_reset_rx_pll_timer_ctr_reg(7),
-      I2 => sm_reset_rx_pll_timer_ctr_reg(4),
-      I3 => sm_reset_rx_pll_timer_ctr_reg(5),
-      I4 => sm_reset_rx_pll_timer_ctr_reg(9),
-      I5 => sm_reset_rx_pll_timer_ctr_reg(8),
-      O => sm_reset_rx_pll_timer_sat_i_3_n_0
     );
 sm_reset_rx_pll_timer_sat_reg: unisim.vcomponents.FDRE
     generic map(
@@ -8969,7 +8875,7 @@ sm_reset_rx_timer_clr_reg: unisim.vcomponents.FDSE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1,
+      D => bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0,
       Q => sm_reset_rx_timer_clr_reg_n_0,
       S => gtwiz_reset_rx_any_sync
     );
@@ -9068,13 +8974,13 @@ sm_reset_rx_timer_sat_reg: unisim.vcomponents.FDRE
     );
 sm_reset_tx_pll_timer_clr_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFF5000D"
+      INIT => X"EFEF1101"
     )
         port map (
-      I0 => sm_reset_tx(0),
-      I1 => sm_reset_tx_pll_timer_sat,
-      I2 => sm_reset_tx(1),
-      I3 => sm_reset_tx(2),
+      I0 => sm_reset_tx(1),
+      I1 => sm_reset_tx(2),
+      I2 => sm_reset_tx(0),
+      I3 => sm_reset_tx_pll_timer_sat,
       I4 => sm_reset_tx_pll_timer_clr_reg_n_0,
       O => sm_reset_tx_pll_timer_clr_i_1_n_0
     );
@@ -9102,54 +9008,54 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       INIT => X"6"
     )
         port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I1 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I0 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I1 => sm_reset_tx_pll_timer_ctr_reg(0),
       O => \p_0_in__0\(1)
     );
 \sm_reset_tx_pll_timer_ctr[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"78"
-    )
-        port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(1),
-      I1 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(2),
-      O => \sm_reset_tx_pll_timer_ctr[2]_i_1_n_0\
-    );
-\sm_reset_tx_pll_timer_ctr[3]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7F80"
+      INIT => X"6A"
     )
         port map (
       I0 => sm_reset_tx_pll_timer_ctr_reg(2),
+      I1 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I2 => sm_reset_tx_pll_timer_ctr_reg(0),
+      O => \p_0_in__0\(2)
+    );
+\sm_reset_tx_pll_timer_ctr[3]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"6AAA"
+    )
+        port map (
+      I0 => sm_reset_tx_pll_timer_ctr_reg(3),
       I1 => sm_reset_tx_pll_timer_ctr_reg(0),
       I2 => sm_reset_tx_pll_timer_ctr_reg(1),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(3),
-      O => \sm_reset_tx_pll_timer_ctr[3]_i_1_n_0\
+      I3 => sm_reset_tx_pll_timer_ctr_reg(2),
+      O => \p_0_in__0\(3)
     );
 \sm_reset_tx_pll_timer_ctr[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"7FFF8000"
+      INIT => X"6AAAAAAA"
     )
         port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I0 => sm_reset_tx_pll_timer_ctr_reg(4),
       I1 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(2),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(3),
-      I4 => sm_reset_tx_pll_timer_ctr_reg(4),
+      I2 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I3 => sm_reset_tx_pll_timer_ctr_reg(2),
+      I4 => sm_reset_tx_pll_timer_ctr_reg(3),
       O => \p_0_in__0\(4)
     );
 \sm_reset_tx_pll_timer_ctr[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7FFFFFFF80000000"
+      INIT => X"6AAAAAAAAAAAAAAA"
     )
         port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(4),
+      I0 => sm_reset_tx_pll_timer_ctr_reg(5),
       I1 => sm_reset_tx_pll_timer_ctr_reg(3),
       I2 => sm_reset_tx_pll_timer_ctr_reg(2),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I4 => sm_reset_tx_pll_timer_ctr_reg(1),
-      I5 => sm_reset_tx_pll_timer_ctr_reg(5),
+      I3 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I4 => sm_reset_tx_pll_timer_ctr_reg(0),
+      I5 => sm_reset_tx_pll_timer_ctr_reg(4),
       O => \p_0_in__0\(5)
     );
 \sm_reset_tx_pll_timer_ctr[6]_i_1\: unisim.vcomponents.LUT2
@@ -9157,66 +9063,61 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       INIT => X"6"
     )
         port map (
-      I0 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
-      I1 => sm_reset_tx_pll_timer_ctr_reg(6),
+      I0 => sm_reset_tx_pll_timer_ctr_reg(6),
+      I1 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
       O => \p_0_in__0\(6)
     );
 \sm_reset_tx_pll_timer_ctr[7]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"78"
+      INIT => X"6A"
     )
         port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(6),
+      I0 => sm_reset_tx_pll_timer_ctr_reg(7),
       I1 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
-      I2 => sm_reset_tx_pll_timer_ctr_reg(7),
+      I2 => sm_reset_tx_pll_timer_ctr_reg(6),
       O => \p_0_in__0\(7)
     );
 \sm_reset_tx_pll_timer_ctr[8]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7F80"
-    )
-        port map (
-      I0 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
-      I1 => sm_reset_tx_pll_timer_ctr_reg(6),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(7),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(8),
-      O => \p_0_in__0\(8)
-    );
-\sm_reset_tx_pll_timer_ctr[9]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"EFFFFFFF"
-    )
-        port map (
-      I0 => \sm_reset_tx_pll_timer_ctr[9]_i_3_n_0\,
-      I1 => sm_reset_tx_pll_timer_ctr_reg(3),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(1),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I4 => sm_reset_tx_pll_timer_ctr_reg(2),
-      O => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\
-    );
-\sm_reset_tx_pll_timer_ctr[9]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"7FFF8000"
-    )
-        port map (
-      I0 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
-      I1 => sm_reset_tx_pll_timer_ctr_reg(8),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(7),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(6),
-      I4 => sm_reset_tx_pll_timer_ctr_reg(9),
-      O => \p_0_in__0\(9)
-    );
-\sm_reset_tx_pll_timer_ctr[9]_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFFFFFFFE"
+      INIT => X"6AAA"
     )
         port map (
       I0 => sm_reset_tx_pll_timer_ctr_reg(8),
-      I1 => sm_reset_tx_pll_timer_ctr_reg(9),
+      I1 => sm_reset_tx_pll_timer_ctr_reg(7),
       I2 => sm_reset_tx_pll_timer_ctr_reg(6),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(7),
+      I3 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
+      O => \p_0_in__0\(8)
+    );
+\sm_reset_tx_pll_timer_ctr[9]_i_1\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => \sm_reset_tx_pll_timer_ctr[9]_i_3_n_0\,
+      O => sel
+    );
+\sm_reset_tx_pll_timer_ctr[9]_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"6AAAAAAA"
+    )
+        port map (
+      I0 => sm_reset_tx_pll_timer_ctr_reg(9),
+      I1 => sm_reset_tx_pll_timer_ctr_reg(6),
+      I2 => sm_reset_tx_pll_timer_ctr_reg(7),
+      I3 => sm_reset_tx_pll_timer_ctr_reg(8),
+      I4 => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\,
+      O => \p_0_in__0\(9)
+    );
+\sm_reset_tx_pll_timer_ctr[9]_i_3\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"00000001"
+    )
+        port map (
+      I0 => \sm_reset_tx_pll_timer_ctr[9]_i_5_n_0\,
+      I1 => \sm_reset_tx_pll_timer_ctr[9]_i_6_n_0\,
+      I2 => sm_reset_tx_pll_timer_ctr_reg(4),
+      I3 => sm_reset_tx_pll_timer_ctr_reg(6),
       I4 => sm_reset_tx_pll_timer_ctr_reg(5),
-      I5 => sm_reset_tx_pll_timer_ctr_reg(4),
       O => \sm_reset_tx_pll_timer_ctr[9]_i_3_n_0\
     );
 \sm_reset_tx_pll_timer_ctr[9]_i_4\: unisim.vcomponents.LUT6
@@ -9224,13 +9125,34 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
       INIT => X"8000000000000000"
     )
         port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(4),
+      I0 => sm_reset_tx_pll_timer_ctr_reg(5),
       I1 => sm_reset_tx_pll_timer_ctr_reg(3),
       I2 => sm_reset_tx_pll_timer_ctr_reg(2),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I4 => sm_reset_tx_pll_timer_ctr_reg(1),
-      I5 => sm_reset_tx_pll_timer_ctr_reg(5),
+      I3 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I4 => sm_reset_tx_pll_timer_ctr_reg(0),
+      I5 => sm_reset_tx_pll_timer_ctr_reg(4),
       O => \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0\
+    );
+\sm_reset_tx_pll_timer_ctr[9]_i_5\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"7F"
+    )
+        port map (
+      I0 => sm_reset_tx_pll_timer_ctr_reg(0),
+      I1 => sm_reset_tx_pll_timer_ctr_reg(1),
+      I2 => sm_reset_tx_pll_timer_ctr_reg(2),
+      O => \sm_reset_tx_pll_timer_ctr[9]_i_5_n_0\
+    );
+\sm_reset_tx_pll_timer_ctr[9]_i_6\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => sm_reset_tx_pll_timer_ctr_reg(8),
+      I1 => sm_reset_tx_pll_timer_ctr_reg(3),
+      I2 => sm_reset_tx_pll_timer_ctr_reg(9),
+      I3 => sm_reset_tx_pll_timer_ctr_reg(7),
+      O => \sm_reset_tx_pll_timer_ctr[9]_i_6_n_0\
     );
 \sm_reset_tx_pll_timer_ctr_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -9238,7 +9160,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(0),
       Q => sm_reset_tx_pll_timer_ctr_reg(0),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9249,7 +9171,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(1),
       Q => sm_reset_tx_pll_timer_ctr_reg(1),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9260,8 +9182,8 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
-      D => \sm_reset_tx_pll_timer_ctr[2]_i_1_n_0\,
+      CE => sel,
+      D => \p_0_in__0\(2),
       Q => sm_reset_tx_pll_timer_ctr_reg(2),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
     );
@@ -9271,8 +9193,8 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
-      D => \sm_reset_tx_pll_timer_ctr[3]_i_1_n_0\,
+      CE => sel,
+      D => \p_0_in__0\(3),
       Q => sm_reset_tx_pll_timer_ctr_reg(3),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
     );
@@ -9282,7 +9204,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(4),
       Q => sm_reset_tx_pll_timer_ctr_reg(4),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9293,7 +9215,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(5),
       Q => sm_reset_tx_pll_timer_ctr_reg(5),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9304,7 +9226,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(6),
       Q => sm_reset_tx_pll_timer_ctr_reg(6),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9315,7 +9237,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(7),
       Q => sm_reset_tx_pll_timer_ctr_reg(7),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9326,7 +9248,7 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(8),
       Q => sm_reset_tx_pll_timer_ctr_reg(8),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
@@ -9337,45 +9259,20 @@ sm_reset_tx_pll_timer_clr_reg: unisim.vcomponents.FDSE
     )
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
-      CE => \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0\,
+      CE => sel,
       D => \p_0_in__0\(9),
       Q => sm_reset_tx_pll_timer_ctr_reg(9),
       R => sm_reset_tx_pll_timer_clr_reg_n_0
     );
-sm_reset_tx_pll_timer_sat_i_1: unisim.vcomponents.LUT5
+sm_reset_tx_pll_timer_sat_i_1: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"0000ABAA"
+      INIT => X"0E"
     )
         port map (
       I0 => sm_reset_tx_pll_timer_sat,
-      I1 => sm_reset_tx_pll_timer_ctr_reg(3),
-      I2 => sm_reset_tx_pll_timer_sat_i_2_n_0,
-      I3 => sm_reset_tx_pll_timer_sat_i_3_n_0,
-      I4 => sm_reset_tx_pll_timer_clr_reg_n_0,
+      I1 => \sm_reset_tx_pll_timer_ctr[9]_i_3_n_0\,
+      I2 => sm_reset_tx_pll_timer_clr_reg_n_0,
       O => sm_reset_tx_pll_timer_sat_i_1_n_0
-    );
-sm_reset_tx_pll_timer_sat_i_2: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"7F"
-    )
-        port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(1),
-      I1 => sm_reset_tx_pll_timer_ctr_reg(0),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(2),
-      O => sm_reset_tx_pll_timer_sat_i_2_n_0
-    );
-sm_reset_tx_pll_timer_sat_i_3: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000001"
-    )
-        port map (
-      I0 => sm_reset_tx_pll_timer_ctr_reg(6),
-      I1 => sm_reset_tx_pll_timer_ctr_reg(7),
-      I2 => sm_reset_tx_pll_timer_ctr_reg(4),
-      I3 => sm_reset_tx_pll_timer_ctr_reg(5),
-      I4 => sm_reset_tx_pll_timer_ctr_reg(9),
-      I5 => sm_reset_tx_pll_timer_ctr_reg(8),
-      O => sm_reset_tx_pll_timer_sat_i_3_n_0
     );
 sm_reset_tx_pll_timer_sat_reg: unisim.vcomponents.FDRE
     generic map(
@@ -9395,7 +9292,7 @@ sm_reset_tx_timer_clr_reg: unisim.vcomponents.FDSE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1,
+      D => bit_synchronizer_plllock_tx_inst_n_1,
       Q => sm_reset_tx_timer_clr_reg_n_0,
       S => gtwiz_reset_tx_any_sync
     );
@@ -9499,7 +9396,7 @@ txuserrdy_out_reg: unisim.vcomponents.FDRE
         port map (
       C => gtwiz_reset_clk_freerun_in(0),
       CE => '1',
-      D => bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2,
+      D => reset_synchronizer_gtwiz_reset_tx_any_inst_n_2,
       Q => \^gthe4_channel_txuserrdy\(0),
       R => '0'
     );
@@ -9510,6 +9407,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4 is
   port (
+    gtwiz_reset_rx_cdr_stable_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtpowergood_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     gtwiz_userclk_tx_usrclk2_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     txoutclk_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -9646,7 +9544,6 @@ entity FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4 is
     rxmonitorout_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     bufgtdiv_out : out STD_LOGIC_VECTOR ( 17 downto 0 );
     gtwiz_reset_tx_done_out : out STD_LOGIC_VECTOR ( 0 to 0 );
-    gtwiz_reset_rx_cdr_stable_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_rx_done_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     rxrate_in : in STD_LOGIC_VECTOR ( 5 downto 0 );
     rxpd_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -9957,8 +9854,6 @@ architecture STRUCTURE of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4 is
   signal \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_4\ : STD_LOGIC;
   signal \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_5\ : STD_LOGIC;
   signal \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_6\ : STD_LOGIC;
-  signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst_n_1\ : STD_LOGIC;
-  signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst_n_1\ : STD_LOGIC;
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtpowergood_int\ : STD_LOGIC;
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gttxreset_int\ : STD_LOGIC;
   signal \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_rxcdrlock_int\ : STD_LOGIC;
@@ -10499,28 +10394,24 @@ begin
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
-      gtwiz_reset_rx_done_int_reg(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
-      i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst_n_1\,
       rxresetdone_out(0) => \^rxresetdone_out\(0)
     );
 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst\: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1
      port map (
       \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
-      i_in_out_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst_n_1\,
-      sm_reset_tx_timer_clr_i_2(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
       txresetdone_out(0) => \^txresetdone_out\(0)
     );
 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst\: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_2
      port map (
+      \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
-      i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync\(1),
       rxresetdone_out(0) => \^rxresetdone_out\(1)
     );
 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst\: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_3
      port map (
+      \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
       gtwiz_reset_clk_freerun_in(0) => gtwiz_reset_clk_freerun_in(0),
-      i_in_out_reg_0(0) => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync\(1),
       txresetdone_out(0) => \^txresetdone_out\(1)
     );
 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst\: entity work.FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
@@ -10540,11 +10431,9 @@ begin
       gtwiz_reset_qpll1reset_out(0) => \^gtwiz_reset_qpll1reset_out\(0),
       gtwiz_reset_rx_cdr_stable_out(0) => gtwiz_reset_rx_cdr_stable_out(0),
       gtwiz_reset_rx_datapath_in(0) => gtwiz_reset_rx_datapath_in(0),
-      gtwiz_reset_rx_done_int_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst_n_1\,
       gtwiz_reset_rx_done_out(0) => gtwiz_reset_rx_done_out(0),
       gtwiz_reset_rx_pll_and_datapath_in(0) => gtwiz_reset_rx_pll_and_datapath_in(0),
       gtwiz_reset_tx_datapath_in(0) => gtwiz_reset_tx_datapath_in(0),
-      gtwiz_reset_tx_done_int_reg_0 => \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst_n_1\,
       gtwiz_reset_tx_done_out(0) => gtwiz_reset_tx_done_out(0),
       gtwiz_reset_tx_pll_and_datapath_in(0) => gtwiz_reset_tx_pll_and_datapath_in(0),
       gtwiz_userclk_rx_active_out(0) => \^gtwiz_userclk_rx_active_out\(0),
@@ -11129,7 +11018,7 @@ entity FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top is
   attribute C_FORCE_COMMONS : integer;
   attribute C_FORCE_COMMONS of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is 0;
   attribute C_FREERUN_FREQUENCY : string;
-  attribute C_FREERUN_FREQUENCY of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is "100.000000";
+  attribute C_FREERUN_FREQUENCY of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is "240.474000";
   attribute C_GT_REV : integer;
   attribute C_GT_REV of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is 57;
   attribute C_GT_TYPE : integer;
@@ -11197,7 +11086,7 @@ entity FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top is
   attribute C_RX_COMMA_M_VAL : string;
   attribute C_RX_COMMA_M_VAL of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is "10'b1010000011";
   attribute C_RX_COMMA_P_ENABLE : integer;
-  attribute C_RX_COMMA_P_ENABLE of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is 0;
+  attribute C_RX_COMMA_P_ENABLE of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is 1;
   attribute C_RX_COMMA_P_VAL : string;
   attribute C_RX_COMMA_P_VAL of FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top : entity is "10'b0101111100";
   attribute C_RX_DATA_DECODING : integer;
@@ -11813,6 +11702,9 @@ entity FELIX_GTH_v1f is
     gthrxn_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gthrxp_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     rx8b10ben_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxcommadeten_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxmcommaalignen_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxpcommaalignen_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     tx8b10ben_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     txctrl0_in : in STD_LOGIC_VECTOR ( 31 downto 0 );
     txctrl1_in : in STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -11821,6 +11713,9 @@ entity FELIX_GTH_v1f is
     gthtxn_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     gthtxp_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     gtpowergood_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxbyteisaligned_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxbyterealign_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    rxcommadet_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     rxctrl0_out : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rxctrl1_out : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rxctrl2_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -11891,8 +11786,6 @@ architecture STRUCTURE of FELIX_GTH_v1f is
   signal NLW_inst_refclkoutmonitor1_out_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_inst_resetexception_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxbufstatus_out_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal NLW_inst_rxbyteisaligned_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_rxbyterealign_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxcdrlock_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxcdrphdone_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxchanbondseq_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -11902,7 +11795,6 @@ architecture STRUCTURE of FELIX_GTH_v1f is
   signal NLW_inst_rxckcaldone_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxclkcorcnt_out_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_inst_rxcominitdet_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_rxcommadet_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxcomsasdet_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxcomwakedet_out_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_rxdata_out_UNCONNECTED : STD_LOGIC_VECTOR ( 255 downto 0 );
@@ -11986,7 +11878,7 @@ architecture STRUCTURE of FELIX_GTH_v1f is
   attribute C_FORCE_COMMONS : integer;
   attribute C_FORCE_COMMONS of inst : label is 0;
   attribute C_FREERUN_FREQUENCY : string;
-  attribute C_FREERUN_FREQUENCY of inst : label is "100.000000";
+  attribute C_FREERUN_FREQUENCY of inst : label is "240.474000";
   attribute C_GT_REV : integer;
   attribute C_GT_REV of inst : label is 57;
   attribute C_GT_TYPE : integer;
@@ -12054,7 +11946,7 @@ architecture STRUCTURE of FELIX_GTH_v1f is
   attribute C_RX_COMMA_M_VAL : string;
   attribute C_RX_COMMA_M_VAL of inst : label is "10'b1010000011";
   attribute C_RX_COMMA_P_ENABLE : integer;
-  attribute C_RX_COMMA_P_ENABLE of inst : label is 0;
+  attribute C_RX_COMMA_P_ENABLE of inst : label is 1;
   attribute C_RX_COMMA_P_VAL : string;
   attribute C_RX_COMMA_P_VAL of inst : label is "10'b0101111100";
   attribute C_RX_DATA_DECODING : integer;
@@ -12380,8 +12272,8 @@ inst: entity work.FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top
       rxafecfoken_in(1 downto 0) => B"11",
       rxbufreset_in(1 downto 0) => B"00",
       rxbufstatus_out(5 downto 0) => NLW_inst_rxbufstatus_out_UNCONNECTED(5 downto 0),
-      rxbyteisaligned_out(1 downto 0) => NLW_inst_rxbyteisaligned_out_UNCONNECTED(1 downto 0),
-      rxbyterealign_out(1 downto 0) => NLW_inst_rxbyterealign_out_UNCONNECTED(1 downto 0),
+      rxbyteisaligned_out(1 downto 0) => rxbyteisaligned_out(1 downto 0),
+      rxbyterealign_out(1 downto 0) => rxbyterealign_out(1 downto 0),
       rxcdrfreqreset_in(1 downto 0) => B"00",
       rxcdrhold_in(1 downto 0) => B"00",
       rxcdrlock_out(1 downto 0) => NLW_inst_rxcdrlock_out_UNCONNECTED(1 downto 0),
@@ -12403,8 +12295,8 @@ inst: entity work.FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top
       rxckcalstart_in(13 downto 0) => B"00000000000000",
       rxclkcorcnt_out(3 downto 0) => NLW_inst_rxclkcorcnt_out_UNCONNECTED(3 downto 0),
       rxcominitdet_out(1 downto 0) => NLW_inst_rxcominitdet_out_UNCONNECTED(1 downto 0),
-      rxcommadet_out(1 downto 0) => NLW_inst_rxcommadet_out_UNCONNECTED(1 downto 0),
-      rxcommadeten_in(1 downto 0) => B"00",
+      rxcommadet_out(1 downto 0) => rxcommadet_out(1 downto 0),
+      rxcommadeten_in(1 downto 0) => rxcommadeten_in(1 downto 0),
       rxcomsasdet_out(1 downto 0) => NLW_inst_rxcomsasdet_out_UNCONNECTED(1 downto 0),
       rxcomwakedet_out(1 downto 0) => NLW_inst_rxcomwakedet_out_UNCONNECTED(1 downto 0),
       rxctrl0_out(31 downto 0) => rxctrl0_out(31 downto 0),
@@ -12486,7 +12378,7 @@ inst: entity work.FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top
       rxlpmlfklovrden_in(1 downto 0) => B"00",
       rxlpmoshold_in(1 downto 0) => B"00",
       rxlpmosovrden_in(1 downto 0) => B"00",
-      rxmcommaalignen_in(1 downto 0) => B"00",
+      rxmcommaalignen_in(1 downto 0) => rxmcommaalignen_in(1 downto 0),
       rxmonitorout_out(15 downto 0) => NLW_inst_rxmonitorout_out_UNCONNECTED(15 downto 0),
       rxmonitorsel_in(3 downto 0) => B"0000",
       rxoobreset_in(1 downto 0) => B"00",
@@ -12507,7 +12399,7 @@ inst: entity work.FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top
       rxoutclkfabric_out(1 downto 0) => NLW_inst_rxoutclkfabric_out_UNCONNECTED(1 downto 0),
       rxoutclkpcs_out(1 downto 0) => NLW_inst_rxoutclkpcs_out_UNCONNECTED(1 downto 0),
       rxoutclksel_in(5 downto 0) => B"010010",
-      rxpcommaalignen_in(1 downto 0) => B"00",
+      rxpcommaalignen_in(1 downto 0) => rxpcommaalignen_in(1 downto 0),
       rxpcsreset_in(1 downto 0) => B"00",
       rxpd_in(3 downto 0) => B"0000",
       rxphalign_in(1 downto 0) => B"00",
@@ -12565,7 +12457,7 @@ inst: entity work.FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_top
       sdm0testdata_out(14 downto 0) => NLW_inst_sdm0testdata_out_UNCONNECTED(14 downto 0),
       sdm0toggle_in(0) => '0',
       sdm0width_in(1 downto 0) => B"00",
-      sdm1data_in(24 downto 0) => B"0111100111010000101001101",
+      sdm1data_in(24 downto 0) => B"0111100111010000101001100",
       sdm1finalout_out(3 downto 0) => NLW_inst_sdm1finalout_out_UNCONNECTED(3 downto 0),
       sdm1reset_in(0) => '0',
       sdm1testdata_out(14 downto 0) => NLW_inst_sdm1testdata_out_UNCONNECTED(14 downto 0),

@@ -176,7 +176,6 @@ module bd_tux
         
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init)
-        
     );
 
 endmodule

@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -81,6 +81,9 @@ module FELIX_GTH_v1f (
   gthrxn_in,
   gthrxp_in,
   rx8b10ben_in,
+  rxcommadeten_in,
+  rxmcommaalignen_in,
+  rxpcommaalignen_in,
   tx8b10ben_in,
   txctrl0_in,
   txctrl1_in,
@@ -89,6 +92,9 @@ module FELIX_GTH_v1f (
   gthtxn_out,
   gthtxp_out,
   gtpowergood_out,
+  rxbyteisaligned_out,
+  rxbyterealign_out,
+  rxcommadet_out,
   rxctrl0_out,
   rxctrl1_out,
   rxctrl2_out,
@@ -124,6 +130,9 @@ output wire [0 : 0] qpll1outrefclk_out;
 input wire [1 : 0] gthrxn_in;
 input wire [1 : 0] gthrxp_in;
 input wire [1 : 0] rx8b10ben_in;
+input wire [1 : 0] rxcommadeten_in;
+input wire [1 : 0] rxmcommaalignen_in;
+input wire [1 : 0] rxpcommaalignen_in;
 input wire [1 : 0] tx8b10ben_in;
 input wire [31 : 0] txctrl0_in;
 input wire [31 : 0] txctrl1_in;
@@ -132,6 +141,9 @@ input wire [7 : 0] txprbssel_in;
 output wire [1 : 0] gthtxn_out;
 output wire [1 : 0] gthtxp_out;
 output wire [1 : 0] gtpowergood_out;
+output wire [1 : 0] rxbyteisaligned_out;
+output wire [1 : 0] rxbyterealign_out;
+output wire [1 : 0] rxcommadet_out;
 output wire [31 : 0] rxctrl0_out;
 output wire [31 : 0] rxctrl1_out;
 output wire [15 : 0] rxctrl2_out;
@@ -146,7 +158,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .C_COMMON_SCALING_FACTOR(1),
     .C_CPLL_VCO_FREQUENCY(2578.125),
     .C_FORCE_COMMONS(0),
-    .C_FREERUN_FREQUENCY(100),
+    .C_FREERUN_FREQUENCY(240.474),
     .C_GT_TYPE(2),
     .C_GT_REV(57),
     .C_INCLUDE_CPLL_CAL(2),
@@ -181,7 +193,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .C_RX_CC_VAL(80'B00000000000000000000000000000000000000000000000000000000000000000000000000000000),
     .C_RX_COMMA_M_ENABLE(0),
     .C_RX_COMMA_M_VAL(10'B1010000011),
-    .C_RX_COMMA_P_ENABLE(0),
+    .C_RX_COMMA_P_ENABLE(1),
     .C_RX_COMMA_P_VAL(10'B0101111100),
     .C_RX_DATA_DECODING(1),
     .C_RX_ENABLE(1),
@@ -193,7 +205,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .C_RX_OUTCLK_SOURCE(1),
     .C_RX_PLL_TYPE(1),
     .C_RX_RECCLK_OUTPUT(192'H000000000000000000000000000000000000000000000000),
-    .C_RX_REFCLK_FREQUENCY(125),
+    .C_RX_REFCLK_FREQUENCY(125.0000001),
     .C_RX_SLIDE_MODE(0),
     .C_RX_USER_CLOCKING_CONTENTS(0),
     .C_RX_USER_CLOCKING_INSTANCE_CTRL(0),
@@ -223,7 +235,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .C_TX_OUTCLK_FREQUENCY(240.4740000),
     .C_TX_OUTCLK_SOURCE(1),
     .C_TX_PLL_TYPE(1),
-    .C_TX_REFCLK_FREQUENCY(125),
+    .C_TX_REFCLK_FREQUENCY(125.0000001),
     .C_TX_USER_CLOCKING_CONTENTS(0),
     .C_TX_USER_CLOCKING_INSTANCE_CTRL(0),
     .C_TX_USER_CLOCKING_RATIO_FSRC_FUSRCLK(1),
@@ -332,7 +344,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .sdm0reset_in(1'H0),
     .sdm0toggle_in(1'H0),
     .sdm0width_in(2'H0),
-    .sdm1data_in(25'H0F3A14D),
+    .sdm1data_in(25'H0F3A14C),
     .sdm1reset_in(1'H0),
     .sdm1toggle_in(1'H0),
     .sdm1width_in(2'H0),
@@ -475,7 +487,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .rxchbondslave_in(2'H0),
     .rxckcalreset_in(2'H0),
     .rxckcalstart_in(14'H0000),
-    .rxcommadeten_in(2'H0),
+    .rxcommadeten_in(rxcommadeten_in),
     .rxdfeagcctrl_in(4'H5),
     .rxdccforcestart_in(1'B0),
     .rxdfeagchold_in(2'H0),
@@ -541,7 +553,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .rxlpmlfklovrden_in(2'H0),
     .rxlpmoshold_in(2'H0),
     .rxlpmosovrden_in(2'H0),
-    .rxmcommaalignen_in(2'H0),
+    .rxmcommaalignen_in(rxmcommaalignen_in),
     .rxmonitorsel_in(4'H0),
     .rxoobreset_in(2'H0),
     .rxoscalreset_in(2'H0),
@@ -554,7 +566,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .rxosinttestovrden_in(1'B0),
     .rxosovrden_in(2'H0),
     .rxoutclksel_in(6'H12),
-    .rxpcommaalignen_in(2'H0),
+    .rxpcommaalignen_in(rxpcommaalignen_in),
     .rxpcsreset_in(2'H0),
     .rxpd_in(4'H0),
     .rxphalign_in(2'H0),
@@ -694,8 +706,8 @@ output wire [1 : 0] txpmaresetdone_out;
     .powerpresent_out(),
     .resetexception_out(),
     .rxbufstatus_out(),
-    .rxbyteisaligned_out(),
-    .rxbyterealign_out(),
+    .rxbyteisaligned_out(rxbyteisaligned_out),
+    .rxbyterealign_out(rxbyterealign_out),
     .rxcdrlock_out(),
     .rxcdrphdone_out(),
     .rxchanbondseq_out(),
@@ -705,7 +717,7 @@ output wire [1 : 0] txpmaresetdone_out;
     .rxckcaldone_out(),
     .rxclkcorcnt_out(),
     .rxcominitdet_out(),
-    .rxcommadet_out(),
+    .rxcommadet_out(rxcommadet_out),
     .rxcomsasdet_out(),
     .rxcomwakedet_out(),
     .rxctrl0_out(rxctrl0_out),

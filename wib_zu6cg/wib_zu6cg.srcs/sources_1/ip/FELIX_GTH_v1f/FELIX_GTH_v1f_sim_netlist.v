@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Dec  6 10:42:43 2021
+// Date        : Sun Feb 27 17:04:07 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_sim_netlist.v
@@ -42,6 +42,9 @@ module FELIX_GTH_v1f
     gthrxn_in,
     gthrxp_in,
     rx8b10ben_in,
+    rxcommadeten_in,
+    rxmcommaalignen_in,
+    rxpcommaalignen_in,
     tx8b10ben_in,
     txctrl0_in,
     txctrl1_in,
@@ -50,6 +53,9 @@ module FELIX_GTH_v1f
     gthtxn_out,
     gthtxp_out,
     gtpowergood_out,
+    rxbyteisaligned_out,
+    rxbyterealign_out,
+    rxcommadet_out,
     rxctrl0_out,
     rxctrl1_out,
     rxctrl2_out,
@@ -83,6 +89,9 @@ module FELIX_GTH_v1f
   input [1:0]gthrxn_in;
   input [1:0]gthrxp_in;
   input [1:0]rx8b10ben_in;
+  input [1:0]rxcommadeten_in;
+  input [1:0]rxmcommaalignen_in;
+  input [1:0]rxpcommaalignen_in;
   input [1:0]tx8b10ben_in;
   input [31:0]txctrl0_in;
   input [31:0]txctrl1_in;
@@ -91,6 +100,9 @@ module FELIX_GTH_v1f
   output [1:0]gthtxn_out;
   output [1:0]gthtxp_out;
   output [1:0]gtpowergood_out;
+  output [1:0]rxbyteisaligned_out;
+  output [1:0]rxbyterealign_out;
+  output [1:0]rxcommadet_out;
   output [31:0]rxctrl0_out;
   output [31:0]rxctrl1_out;
   output [15:0]rxctrl2_out;
@@ -128,10 +140,16 @@ module FELIX_GTH_v1f
   wire [0:0]qpll1outclk_out;
   wire [0:0]qpll1outrefclk_out;
   wire [1:0]rx8b10ben_in;
+  wire [1:0]rxbyteisaligned_out;
+  wire [1:0]rxbyterealign_out;
+  wire [1:0]rxcommadet_out;
+  wire [1:0]rxcommadeten_in;
   wire [31:0]rxctrl0_out;
   wire [31:0]rxctrl1_out;
   wire [15:0]rxctrl2_out;
   wire [15:0]rxctrl3_out;
+  wire [1:0]rxmcommaalignen_in;
+  wire [1:0]rxpcommaalignen_in;
   wire [1:0]rxpmaresetdone_out;
   wire [1:0]tx8b10ben_in;
   wire [31:0]txctrl0_in;
@@ -191,8 +209,6 @@ module FELIX_GTH_v1f
   wire [0:0]NLW_inst_refclkoutmonitor1_out_UNCONNECTED;
   wire [1:0]NLW_inst_resetexception_out_UNCONNECTED;
   wire [5:0]NLW_inst_rxbufstatus_out_UNCONNECTED;
-  wire [1:0]NLW_inst_rxbyteisaligned_out_UNCONNECTED;
-  wire [1:0]NLW_inst_rxbyterealign_out_UNCONNECTED;
   wire [1:0]NLW_inst_rxcdrlock_out_UNCONNECTED;
   wire [1:0]NLW_inst_rxcdrphdone_out_UNCONNECTED;
   wire [1:0]NLW_inst_rxchanbondseq_out_UNCONNECTED;
@@ -202,7 +218,6 @@ module FELIX_GTH_v1f
   wire [1:0]NLW_inst_rxckcaldone_out_UNCONNECTED;
   wire [3:0]NLW_inst_rxclkcorcnt_out_UNCONNECTED;
   wire [1:0]NLW_inst_rxcominitdet_out_UNCONNECTED;
-  wire [1:0]NLW_inst_rxcommadet_out_UNCONNECTED;
   wire [1:0]NLW_inst_rxcomsasdet_out_UNCONNECTED;
   wire [1:0]NLW_inst_rxcomwakedet_out_UNCONNECTED;
   wire [255:0]NLW_inst_rxdata_out_UNCONNECTED;
@@ -281,7 +296,7 @@ module FELIX_GTH_v1f
   (* C_CPLL_VCO_FREQUENCY = "2578.125000" *) 
   (* C_ENABLE_COMMON_USRCLK = "0" *) 
   (* C_FORCE_COMMONS = "0" *) 
-  (* C_FREERUN_FREQUENCY = "100.000000" *) 
+  (* C_FREERUN_FREQUENCY = "240.474000" *) 
   (* C_GT_REV = "57" *) 
   (* C_GT_TYPE = "2" *) 
   (* C_INCLUDE_CPLL_CAL = "2" *) 
@@ -315,7 +330,7 @@ module FELIX_GTH_v1f
   (* C_RX_CC_VAL = "80'b00000000000000000000000000000000000000000000000000000000000000000000000000000000" *) 
   (* C_RX_COMMA_M_ENABLE = "0" *) 
   (* C_RX_COMMA_M_VAL = "10'b1010000011" *) 
-  (* C_RX_COMMA_P_ENABLE = "0" *) 
+  (* C_RX_COMMA_P_ENABLE = "1" *) 
   (* C_RX_COMMA_P_VAL = "10'b0101111100" *) 
   (* C_RX_DATA_DECODING = "1" *) 
   (* C_RX_ENABLE = "1" *) 
@@ -587,8 +602,8 @@ module FELIX_GTH_v1f
         .rxafecfoken_in({1'b1,1'b1}),
         .rxbufreset_in({1'b0,1'b0}),
         .rxbufstatus_out(NLW_inst_rxbufstatus_out_UNCONNECTED[5:0]),
-        .rxbyteisaligned_out(NLW_inst_rxbyteisaligned_out_UNCONNECTED[1:0]),
-        .rxbyterealign_out(NLW_inst_rxbyterealign_out_UNCONNECTED[1:0]),
+        .rxbyteisaligned_out(rxbyteisaligned_out),
+        .rxbyterealign_out(rxbyterealign_out),
         .rxcdrfreqreset_in({1'b0,1'b0}),
         .rxcdrhold_in({1'b0,1'b0}),
         .rxcdrlock_out(NLW_inst_rxcdrlock_out_UNCONNECTED[1:0]),
@@ -610,8 +625,8 @@ module FELIX_GTH_v1f
         .rxckcalstart_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .rxclkcorcnt_out(NLW_inst_rxclkcorcnt_out_UNCONNECTED[3:0]),
         .rxcominitdet_out(NLW_inst_rxcominitdet_out_UNCONNECTED[1:0]),
-        .rxcommadet_out(NLW_inst_rxcommadet_out_UNCONNECTED[1:0]),
-        .rxcommadeten_in({1'b0,1'b0}),
+        .rxcommadet_out(rxcommadet_out),
+        .rxcommadeten_in(rxcommadeten_in),
         .rxcomsasdet_out(NLW_inst_rxcomsasdet_out_UNCONNECTED[1:0]),
         .rxcomwakedet_out(NLW_inst_rxcomwakedet_out_UNCONNECTED[1:0]),
         .rxctrl0_out(rxctrl0_out),
@@ -693,7 +708,7 @@ module FELIX_GTH_v1f
         .rxlpmlfklovrden_in({1'b0,1'b0}),
         .rxlpmoshold_in({1'b0,1'b0}),
         .rxlpmosovrden_in({1'b0,1'b0}),
-        .rxmcommaalignen_in({1'b0,1'b0}),
+        .rxmcommaalignen_in(rxmcommaalignen_in),
         .rxmonitorout_out(NLW_inst_rxmonitorout_out_UNCONNECTED[15:0]),
         .rxmonitorsel_in({1'b0,1'b0,1'b0,1'b0}),
         .rxoobreset_in({1'b0,1'b0}),
@@ -714,7 +729,7 @@ module FELIX_GTH_v1f
         .rxoutclkfabric_out(NLW_inst_rxoutclkfabric_out_UNCONNECTED[1:0]),
         .rxoutclkpcs_out(NLW_inst_rxoutclkpcs_out_UNCONNECTED[1:0]),
         .rxoutclksel_in({1'b0,1'b1,1'b0,1'b0,1'b1,1'b0}),
-        .rxpcommaalignen_in({1'b0,1'b0}),
+        .rxpcommaalignen_in(rxpcommaalignen_in),
         .rxpcsreset_in({1'b0,1'b0}),
         .rxpd_in({1'b0,1'b0,1'b0,1'b0}),
         .rxphalign_in({1'b0,1'b0}),
@@ -772,7 +787,7 @@ module FELIX_GTH_v1f
         .sdm0testdata_out(NLW_inst_sdm0testdata_out_UNCONNECTED[14:0]),
         .sdm0toggle_in(1'b0),
         .sdm0width_in({1'b0,1'b0}),
-        .sdm1data_in({1'b0,1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1}),
+        .sdm1data_in({1'b0,1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b0}),
         .sdm1finalout_out(NLW_inst_sdm1finalout_out_UNCONNECTED[3:0]),
         .sdm1reset_in(1'b0),
         .sdm1testdata_out(NLW_inst_sdm1testdata_out_UNCONNECTED[14:0]),
@@ -2675,7 +2690,8 @@ endmodule
 
 (* ORIG_REF_NAME = "FELIX_GTH_v1f_gtwizard_gthe4" *) 
 module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
-   (gtpowergood_out,
+   (gtwiz_reset_rx_cdr_stable_out,
+    gtpowergood_out,
     gtwiz_userclk_tx_usrclk2_out,
     txoutclk_out,
     gtwiz_userclk_tx_active_out,
@@ -2811,7 +2827,6 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
     rxmonitorout_out,
     bufgtdiv_out,
     gtwiz_reset_tx_done_out,
-    gtwiz_reset_rx_cdr_stable_out,
     gtwiz_reset_rx_done_out,
     rxrate_in,
     rxpd_in,
@@ -3104,6 +3119,7 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
     gtwiz_reset_rx_datapath_in,
     gtwiz_reset_rx_pll_and_datapath_in,
     rxpmareset_in);
+  output [0:0]gtwiz_reset_rx_cdr_stable_out;
   output [1:0]gtpowergood_out;
   output [0:0]gtwiz_userclk_tx_usrclk2_out;
   output [1:0]txoutclk_out;
@@ -3240,7 +3256,6 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
   output [15:0]rxmonitorout_out;
   output [17:0]bufgtdiv_out;
   output [0:0]gtwiz_reset_tx_done_out;
-  output [0:0]gtwiz_reset_rx_cdr_stable_out;
   output [0:0]gtwiz_reset_rx_done_out;
   input [5:0]rxrate_in;
   input [3:0]rxpd_in;
@@ -3594,8 +3609,6 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
   wire \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_4 ;
   wire \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_5 ;
   wire \gen_gtwizard_gthe4.gen_pwrgood_delay_inst[1].delay_powergood_inst_n_6 ;
-  wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst_n_1 ;
-  wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst_n_1 ;
   wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtpowergood_int ;
   wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gttxreset_int ;
   wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_rxcdrlock_int ;
@@ -4465,22 +4478,18 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .gtwiz_reset_rx_done_int_reg(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
-        .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst_n_1 ),
         .rxresetdone_out(rxresetdone_out[0]));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst 
        (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst_n_1 ),
-        .sm_reset_tx_timer_clr_i_2(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
         .txresetdone_out(txresetdone_out[0]));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_2 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_rxresetdone_inst 
-       (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
+       (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
+        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .rxresetdone_out(rxresetdone_out[1]));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_3 \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[1].bit_synchronizer_txresetdone_inst 
-       (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .i_in_out_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
+       (.\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
+        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .txresetdone_out(txresetdone_out[1]));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_inst 
        (.GTHE4_CHANNEL_GTPOWERGOOD(\gen_gtwizard_gthe4.gtpowergood_int ),
@@ -4498,11 +4507,9 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
         .gtwiz_reset_qpll1reset_out(gtwiz_reset_qpll1reset_out),
         .gtwiz_reset_rx_cdr_stable_out(gtwiz_reset_rx_cdr_stable_out),
         .gtwiz_reset_rx_datapath_in(gtwiz_reset_rx_datapath_in),
-        .gtwiz_reset_rx_done_int_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_rxresetdone_inst_n_1 ),
         .gtwiz_reset_rx_done_out(gtwiz_reset_rx_done_out),
         .gtwiz_reset_rx_pll_and_datapath_in(gtwiz_reset_rx_pll_and_datapath_in),
         .gtwiz_reset_tx_datapath_in(gtwiz_reset_tx_datapath_in),
-        .gtwiz_reset_tx_done_int_reg_0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gen_ch_xrd[0].bit_synchronizer_txresetdone_inst_n_1 ),
         .gtwiz_reset_tx_done_out(gtwiz_reset_tx_done_out),
         .gtwiz_reset_tx_pll_and_datapath_in(gtwiz_reset_tx_pll_and_datapath_in),
         .gtwiz_userclk_rx_active_out(gtwiz_userclk_rx_active_out),
@@ -4532,7 +4539,7 @@ module FELIX_GTH_v1f_FELIX_GTH_v1f_gtwizard_gthe4
 endmodule
 
 (* C_CHANNEL_ENABLE = "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000110000" *) (* C_COMMON_SCALING_FACTOR = "1" *) (* C_CPLL_VCO_FREQUENCY = "2578.125000" *) 
-(* C_ENABLE_COMMON_USRCLK = "0" *) (* C_FORCE_COMMONS = "0" *) (* C_FREERUN_FREQUENCY = "100.000000" *) 
+(* C_ENABLE_COMMON_USRCLK = "0" *) (* C_FORCE_COMMONS = "0" *) (* C_FREERUN_FREQUENCY = "240.474000" *) 
 (* C_GT_REV = "57" *) (* C_GT_TYPE = "2" *) (* C_INCLUDE_CPLL_CAL = "2" *) 
 (* C_LOCATE_COMMON = "0" *) (* C_LOCATE_IN_SYSTEM_IBERT_CORE = "2" *) (* C_LOCATE_RESET_CONTROLLER = "0" *) 
 (* C_LOCATE_RX_BUFFER_BYPASS_CONTROLLER = "0" *) (* C_LOCATE_RX_USER_CLOCKING = "0" *) (* C_LOCATE_TX_BUFFER_BYPASS_CONTROLLER = "0" *) 
@@ -4544,7 +4551,7 @@ endmodule
 (* C_RX_CC_DISP = "8'b00000000" *) (* C_RX_CC_ENABLE = "0" *) (* C_RX_CC_K = "8'b00000000" *) 
 (* C_RX_CC_LEN_SEQ = "1" *) (* C_RX_CC_NUM_SEQ = "0" *) (* C_RX_CC_PERIODICITY = "5000" *) 
 (* C_RX_CC_VAL = "80'b00000000000000000000000000000000000000000000000000000000000000000000000000000000" *) (* C_RX_COMMA_M_ENABLE = "0" *) (* C_RX_COMMA_M_VAL = "10'b1010000011" *) 
-(* C_RX_COMMA_P_ENABLE = "0" *) (* C_RX_COMMA_P_VAL = "10'b0101111100" *) (* C_RX_DATA_DECODING = "1" *) 
+(* C_RX_COMMA_P_ENABLE = "1" *) (* C_RX_COMMA_P_VAL = "10'b0101111100" *) (* C_RX_DATA_DECODING = "1" *) 
 (* C_RX_ENABLE = "1" *) (* C_RX_INT_DATA_WIDTH = "40" *) (* C_RX_LINE_RATE = "9.618960" *) 
 (* C_RX_MASTER_CHANNEL_IDX = "4" *) (* C_RX_OUTCLK_BUFG_GT_DIV = "1" *) (* C_RX_OUTCLK_FREQUENCY = "240.474000" *) 
 (* C_RX_OUTCLK_SOURCE = "1" *) (* C_RX_PLL_TYPE = "1" *) (* C_RX_RECCLK_OUTPUT = "192'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" *) 
@@ -6522,32 +6529,20 @@ endmodule
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
-    i_in_out_reg_0,
     rxresetdone_out,
-    gtwiz_reset_clk_freerun_in,
-    gtwiz_reset_rx_done_int_reg);
+    gtwiz_reset_clk_freerun_in);
   output [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ;
-  output i_in_out_reg_0;
   input [0:0]rxresetdone_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input [0:0]gtwiz_reset_rx_done_int_reg;
 
   wire [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ;
   wire [0:0]gtwiz_reset_clk_freerun_in;
-  wire [0:0]gtwiz_reset_rx_done_int_reg;
   (* async_reg = "true" *) wire i_in_meta;
-  wire i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
   wire [0:0]rxresetdone_out;
 
-  LUT2 #(
-    .INIT(4'h8)) 
-    gtwiz_reset_rx_done_int_i_2
-       (.I0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ),
-        .I1(gtwiz_reset_rx_done_int_reg),
-        .O(i_in_out_reg_0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -6601,32 +6596,20 @@ endmodule
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_1
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
-    i_in_out_reg_0,
     txresetdone_out,
-    gtwiz_reset_clk_freerun_in,
-    sm_reset_tx_timer_clr_i_2);
+    gtwiz_reset_clk_freerun_in);
   output [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
-  output i_in_out_reg_0;
   input [0:0]txresetdone_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input [0:0]sm_reset_tx_timer_clr_i_2;
 
   wire [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   (* async_reg = "true" *) wire i_in_meta;
-  wire i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
-  wire [0:0]sm_reset_tx_timer_clr_i_2;
   wire [0:0]txresetdone_out;
 
-  LUT2 #(
-    .INIT(4'h8)) 
-    \FSM_sequential_sm_reset_tx[2]_i_7 
-       (.I0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ),
-        .I1(sm_reset_tx_timer_clr_i_2),
-        .O(i_in_out_reg_0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -6679,96 +6662,33 @@ endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10
-   (E,
-    \FSM_sequential_sm_reset_tx_reg[2] ,
-    \FSM_sequential_sm_reset_tx_reg[1] ,
+   (gtwiz_reset_userclk_tx_active_sync,
+    i_in_out_reg_0,
     gtwiz_userclk_tx_active_out,
     gtwiz_reset_clk_freerun_in,
-    \FSM_sequential_sm_reset_tx_reg[0] ,
-    gtwiz_reset_tx_pll_and_datapath_dly,
-    gtwiz_reset_tx_datapath_dly,
-    sm_reset_tx_pll_timer_clr,
     Q,
-    sm_reset_tx_timer_clr_reg,
-    sm_reset_tx_timer_clr_reg_0,
-    plllock_tx_sync,
-    \FSM_sequential_sm_reset_tx_reg[0]_0 ,
-    \FSM_sequential_sm_reset_tx_reg[0]_1 ,
-    sm_reset_tx_pll_timer_sat,
     sm_reset_tx_timer_sat,
-    sm_reset_tx_timer_clr_reg_1,
-    gtwiz_reset_tx_any_sync,
-    GTHE4_CHANNEL_TXUSERRDY);
-  output [0:0]E;
-  output \FSM_sequential_sm_reset_tx_reg[2] ;
-  output \FSM_sequential_sm_reset_tx_reg[1] ;
+    txuserrdy_out_reg);
+  output gtwiz_reset_userclk_tx_active_sync;
+  output i_in_out_reg_0;
   input [0:0]gtwiz_userclk_tx_active_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input \FSM_sequential_sm_reset_tx_reg[0] ;
-  input gtwiz_reset_tx_pll_and_datapath_dly;
-  input gtwiz_reset_tx_datapath_dly;
-  input sm_reset_tx_pll_timer_clr;
-  input [2:0]Q;
-  input sm_reset_tx_timer_clr_reg;
-  input sm_reset_tx_timer_clr_reg_0;
-  input plllock_tx_sync;
-  input \FSM_sequential_sm_reset_tx_reg[0]_0 ;
-  input \FSM_sequential_sm_reset_tx_reg[0]_1 ;
-  input sm_reset_tx_pll_timer_sat;
+  input [1:0]Q;
   input sm_reset_tx_timer_sat;
-  input sm_reset_tx_timer_clr_reg_1;
-  input gtwiz_reset_tx_any_sync;
-  input [0:0]GTHE4_CHANNEL_TXUSERRDY;
+  input txuserrdy_out_reg;
 
-  wire [0:0]E;
-  wire \FSM_sequential_sm_reset_tx[2]_i_3_n_0 ;
-  wire \FSM_sequential_sm_reset_tx_reg[0] ;
-  wire \FSM_sequential_sm_reset_tx_reg[0]_0 ;
-  wire \FSM_sequential_sm_reset_tx_reg[0]_1 ;
-  wire \FSM_sequential_sm_reset_tx_reg[1] ;
-  wire \FSM_sequential_sm_reset_tx_reg[2] ;
-  wire [0:0]GTHE4_CHANNEL_TXUSERRDY;
-  wire [2:0]Q;
+  wire [1:0]Q;
   wire [0:0]gtwiz_reset_clk_freerun_in;
-  wire gtwiz_reset_tx_any_sync;
-  wire gtwiz_reset_tx_datapath_dly;
-  wire gtwiz_reset_tx_pll_and_datapath_dly;
   wire gtwiz_reset_userclk_tx_active_sync;
   wire [0:0]gtwiz_userclk_tx_active_out;
   (* async_reg = "true" *) wire i_in_meta;
+  wire i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
-  wire plllock_tx_sync;
-  wire sm_reset_tx_pll_timer_clr;
-  wire sm_reset_tx_pll_timer_sat;
-  wire sm_reset_tx_timer_clr_i_2_n_0;
-  wire sm_reset_tx_timer_clr_reg;
-  wire sm_reset_tx_timer_clr_reg_0;
-  wire sm_reset_tx_timer_clr_reg_1;
   wire sm_reset_tx_timer_sat;
-  wire txuserrdy_out_i_2_n_0;
+  wire txuserrdy_out_reg;
 
-  LUT6 #(
-    .INIT(64'hEEEEEEEEFFFEEEEE)) 
-    \FSM_sequential_sm_reset_tx[2]_i_1 
-       (.I0(\FSM_sequential_sm_reset_tx[2]_i_3_n_0 ),
-        .I1(\FSM_sequential_sm_reset_tx_reg[0] ),
-        .I2(gtwiz_reset_tx_pll_and_datapath_dly),
-        .I3(gtwiz_reset_tx_datapath_dly),
-        .I4(sm_reset_tx_pll_timer_clr),
-        .I5(Q[0]),
-        .O(E));
-  LUT6 #(
-    .INIT(64'h00F0000088888888)) 
-    \FSM_sequential_sm_reset_tx[2]_i_3 
-       (.I0(\FSM_sequential_sm_reset_tx_reg[0]_0 ),
-        .I1(gtwiz_reset_userclk_tx_active_sync),
-        .I2(sm_reset_tx_pll_timer_clr),
-        .I3(\FSM_sequential_sm_reset_tx_reg[0]_1 ),
-        .I4(sm_reset_tx_pll_timer_sat),
-        .I5(Q[0]),
-        .O(\FSM_sequential_sm_reset_tx[2]_i_3_n_0 ));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -6818,118 +6738,91 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10
         .Q(i_in_sync3),
         .R(1'b0));
   LUT5 #(
-    .INIT(32'hEBEB282B)) 
-    sm_reset_tx_timer_clr_i_1
-       (.I0(sm_reset_tx_timer_clr_i_2_n_0),
-        .I1(Q[2]),
-        .I2(Q[1]),
-        .I3(Q[0]),
-        .I4(sm_reset_tx_timer_clr_reg_1),
-        .O(\FSM_sequential_sm_reset_tx_reg[2] ));
-  LUT6 #(
-    .INIT(64'hA0C0A0C0F0F000F0)) 
-    sm_reset_tx_timer_clr_i_2
-       (.I0(sm_reset_tx_timer_clr_reg),
-        .I1(gtwiz_reset_userclk_tx_active_sync),
-        .I2(sm_reset_tx_timer_clr_reg_0),
-        .I3(Q[0]),
-        .I4(plllock_tx_sync),
-        .I5(Q[2]),
-        .O(sm_reset_tx_timer_clr_i_2_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFEFB000002AA)) 
-    txuserrdy_out_i_1
-       (.I0(txuserrdy_out_i_2_n_0),
-        .I1(Q[1]),
-        .I2(Q[2]),
-        .I3(Q[0]),
-        .I4(gtwiz_reset_tx_any_sync),
-        .I5(GTHE4_CHANNEL_TXUSERRDY),
-        .O(\FSM_sequential_sm_reset_tx_reg[1] ));
-  LUT5 #(
-    .INIT(32'h00200000)) 
+    .INIT(32'h00000800)) 
     txuserrdy_out_i_2
-       (.I0(sm_reset_tx_timer_sat),
-        .I1(sm_reset_tx_timer_clr_reg_1),
-        .I2(Q[2]),
-        .I3(Q[1]),
-        .I4(gtwiz_reset_userclk_tx_active_sync),
-        .O(txuserrdy_out_i_2_n_0));
+       (.I0(gtwiz_reset_userclk_tx_active_sync),
+        .I1(Q[1]),
+        .I2(Q[0]),
+        .I3(sm_reset_tx_timer_sat),
+        .I4(txuserrdy_out_reg),
+        .O(i_in_out_reg_0));
 endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11
    (plllock_rx_sync,
-    i_in_out_reg_0,
-    i_in_out_reg_1,
+    \FSM_sequential_sm_reset_rx_reg[2] ,
+    E,
     qpll1lock_out,
     gtwiz_reset_clk_freerun_in,
-    Q,
     gtwiz_reset_rx_done_int_reg,
-    gtrxreset_out_reg,
-    sm_reset_rx_timer_sat,
+    Q,
     gtwiz_reset_rx_done_int_reg_0,
-    gtwiz_reset_rx_done_int_reg_1,
-    gtwiz_reset_rx_done_int_reg_2);
+    \FSM_sequential_sm_reset_rx_reg[0] ,
+    \FSM_sequential_sm_reset_rx_reg[0]_0 ,
+    \FSM_sequential_sm_reset_rx_reg[0]_1 ,
+    \FSM_sequential_sm_reset_rx_reg[0]_2 );
   output plllock_rx_sync;
-  output i_in_out_reg_0;
-  output i_in_out_reg_1;
+  output \FSM_sequential_sm_reset_rx_reg[2] ;
+  output [0:0]E;
   input [0:0]qpll1lock_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input [2:0]Q;
   input gtwiz_reset_rx_done_int_reg;
-  input gtrxreset_out_reg;
-  input sm_reset_rx_timer_sat;
+  input [2:0]Q;
   input gtwiz_reset_rx_done_int_reg_0;
-  input gtwiz_reset_rx_done_int_reg_1;
-  input gtwiz_reset_rx_done_int_reg_2;
+  input \FSM_sequential_sm_reset_rx_reg[0] ;
+  input \FSM_sequential_sm_reset_rx_reg[0]_0 ;
+  input \FSM_sequential_sm_reset_rx_reg[0]_1 ;
+  input \FSM_sequential_sm_reset_rx_reg[0]_2 ;
 
+  wire [0:0]E;
+  wire \FSM_sequential_sm_reset_rx[2]_i_3_n_0 ;
+  wire \FSM_sequential_sm_reset_rx_reg[0] ;
+  wire \FSM_sequential_sm_reset_rx_reg[0]_0 ;
+  wire \FSM_sequential_sm_reset_rx_reg[0]_1 ;
+  wire \FSM_sequential_sm_reset_rx_reg[0]_2 ;
+  wire \FSM_sequential_sm_reset_rx_reg[2] ;
   wire [2:0]Q;
-  wire gtrxreset_out_reg;
   wire [0:0]gtwiz_reset_clk_freerun_in;
-  wire gtwiz_reset_rx_done_int;
   wire gtwiz_reset_rx_done_int_reg;
   wire gtwiz_reset_rx_done_int_reg_0;
-  wire gtwiz_reset_rx_done_int_reg_1;
-  wire gtwiz_reset_rx_done_int_reg_2;
   (* async_reg = "true" *) wire i_in_meta;
-  wire i_in_out_reg_0;
-  wire i_in_out_reg_1;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
   wire plllock_rx_sync;
   wire [0:0]qpll1lock_out;
-  wire sm_reset_rx_timer_sat;
 
-  LUT5 #(
-    .INIT(32'h20FFFF00)) 
-    gtrxreset_out_i_2
-       (.I0(plllock_rx_sync),
-        .I1(gtrxreset_out_reg),
-        .I2(sm_reset_rx_timer_sat),
-        .I3(Q[1]),
-        .I4(Q[0]),
-        .O(i_in_out_reg_0));
   LUT6 #(
-    .INIT(64'hAAC0FFFFAAC00000)) 
-    gtwiz_reset_rx_done_int_i_1
-       (.I0(plllock_rx_sync),
-        .I1(gtwiz_reset_rx_done_int_reg_0),
-        .I2(gtwiz_reset_rx_done_int_reg_1),
-        .I3(Q[0]),
-        .I4(gtwiz_reset_rx_done_int),
-        .I5(gtwiz_reset_rx_done_int_reg_2),
-        .O(i_in_out_reg_1));
-  LUT5 #(
-    .INIT(32'h4400F000)) 
-    gtwiz_reset_rx_done_int_i_3
-       (.I0(plllock_rx_sync),
-        .I1(Q[1]),
-        .I2(gtwiz_reset_rx_done_int_reg),
-        .I3(Q[2]),
+    .INIT(64'hFEFEFEFEFFFEFEFE)) 
+    \FSM_sequential_sm_reset_rx[2]_i_1 
+       (.I0(\FSM_sequential_sm_reset_rx[2]_i_3_n_0 ),
+        .I1(\FSM_sequential_sm_reset_rx_reg[0] ),
+        .I2(\FSM_sequential_sm_reset_rx_reg[0]_0 ),
+        .I3(\FSM_sequential_sm_reset_rx_reg[0]_1 ),
         .I4(Q[0]),
-        .O(gtwiz_reset_rx_done_int));
+        .I5(Q[1]),
+        .O(E));
+  LUT6 #(
+    .INIT(64'h080800000CFF0000)) 
+    \FSM_sequential_sm_reset_rx[2]_i_3 
+       (.I0(plllock_rx_sync),
+        .I1(\FSM_sequential_sm_reset_rx_reg[0]_2 ),
+        .I2(Q[2]),
+        .I3(gtwiz_reset_rx_done_int_reg),
+        .I4(Q[1]),
+        .I5(Q[0]),
+        .O(\FSM_sequential_sm_reset_rx[2]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFF3FFF00400040)) 
+    gtwiz_reset_rx_done_int_i_1
+       (.I0(gtwiz_reset_rx_done_int_reg),
+        .I1(Q[2]),
+        .I2(Q[1]),
+        .I3(Q[0]),
+        .I4(plllock_rx_sync),
+        .I5(gtwiz_reset_rx_done_int_reg_0),
+        .O(\FSM_sequential_sm_reset_rx_reg[2] ));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -6982,94 +6875,137 @@ endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12
-   (plllock_tx_sync,
-    i_in_out_reg_0,
+   (\FSM_sequential_sm_reset_tx_reg[0] ,
     sm_reset_tx_timer_sat_reg,
-    \FSM_sequential_sm_reset_tx_reg[0] ,
+    \FSM_sequential_sm_reset_tx_reg[0]_0 ,
+    E,
     qpll1lock_out,
     gtwiz_reset_clk_freerun_in,
-    gtwiz_reset_tx_done_int_reg,
     Q,
-    \FSM_sequential_sm_reset_tx_reg[0]_0 ,
-    sm_reset_tx_timer_sat,
-    gttxreset_out_reg,
-    gtwiz_reset_tx_any_sync,
+    gtwiz_reset_tx_done_int_reg,
     gtwiz_reset_tx_done_int_reg_0,
-    gtwiz_reset_tx_done_int_reg_1);
-  output plllock_tx_sync;
-  output i_in_out_reg_0;
-  output sm_reset_tx_timer_sat_reg;
+    gtwiz_reset_tx_done_int_reg_1,
+    sm_reset_tx_timer_sat,
+    sm_reset_tx_timer_clr_reg,
+    gtwiz_reset_tx_any_sync,
+    GTHE4_CHANNEL_GTTXRESET,
+    \FSM_sequential_sm_reset_tx_reg[0]_1 ,
+    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
+    gtwiz_reset_userclk_tx_active_sync,
+    \FSM_sequential_sm_reset_tx_reg[0]_2 ,
+    \FSM_sequential_sm_reset_tx_reg[0]_3 ,
+    \FSM_sequential_sm_reset_tx_reg[0]_4 ,
+    sm_reset_tx_pll_timer_sat);
   output \FSM_sequential_sm_reset_tx_reg[0] ;
+  output sm_reset_tx_timer_sat_reg;
+  output \FSM_sequential_sm_reset_tx_reg[0]_0 ;
+  output [0:0]E;
   input [0:0]qpll1lock_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input gtwiz_reset_tx_done_int_reg;
   input [2:0]Q;
-  input \FSM_sequential_sm_reset_tx_reg[0]_0 ;
-  input sm_reset_tx_timer_sat;
-  input gttxreset_out_reg;
-  input gtwiz_reset_tx_any_sync;
+  input gtwiz_reset_tx_done_int_reg;
   input gtwiz_reset_tx_done_int_reg_0;
   input gtwiz_reset_tx_done_int_reg_1;
+  input sm_reset_tx_timer_sat;
+  input sm_reset_tx_timer_clr_reg;
+  input gtwiz_reset_tx_any_sync;
+  input [0:0]GTHE4_CHANNEL_GTTXRESET;
+  input \FSM_sequential_sm_reset_tx_reg[0]_1 ;
+  input [1:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
+  input gtwiz_reset_userclk_tx_active_sync;
+  input \FSM_sequential_sm_reset_tx_reg[0]_2 ;
+  input \FSM_sequential_sm_reset_tx_reg[0]_3 ;
+  input \FSM_sequential_sm_reset_tx_reg[0]_4 ;
+  input sm_reset_tx_pll_timer_sat;
 
+  wire [0:0]E;
+  wire \FSM_sequential_sm_reset_tx[2]_i_3_n_0 ;
   wire \FSM_sequential_sm_reset_tx_reg[0] ;
   wire \FSM_sequential_sm_reset_tx_reg[0]_0 ;
+  wire \FSM_sequential_sm_reset_tx_reg[0]_1 ;
+  wire \FSM_sequential_sm_reset_tx_reg[0]_2 ;
+  wire \FSM_sequential_sm_reset_tx_reg[0]_3 ;
+  wire \FSM_sequential_sm_reset_tx_reg[0]_4 ;
+  wire [0:0]GTHE4_CHANNEL_GTTXRESET;
   wire [2:0]Q;
-  wire gttxreset_out_reg;
+  wire [1:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
+  wire gttxreset_out_i_2_n_0;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   wire gtwiz_reset_tx_any_sync;
-  wire gtwiz_reset_tx_done_int;
+  wire gtwiz_reset_tx_done_int_i_4_n_0;
   wire gtwiz_reset_tx_done_int_reg;
   wire gtwiz_reset_tx_done_int_reg_0;
   wire gtwiz_reset_tx_done_int_reg_1;
+  wire gtwiz_reset_userclk_tx_active_sync;
   (* async_reg = "true" *) wire i_in_meta;
-  wire i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
   wire plllock_tx_sync;
   wire [0:0]qpll1lock_out;
+  wire sm_reset_tx_pll_timer_sat;
+  wire sm_reset_tx_timer_clr_i_2_n_0;
+  wire sm_reset_tx_timer_clr_reg;
   wire sm_reset_tx_timer_sat;
   wire sm_reset_tx_timer_sat_reg;
 
   LUT6 #(
-    .INIT(64'h00CFA00000000000)) 
-    \FSM_sequential_sm_reset_tx[2]_i_4 
-       (.I0(gtwiz_reset_tx_done_int_reg),
-        .I1(plllock_tx_sync),
+    .INIT(64'hEEAEAEAEEAAAAAAA)) 
+    \FSM_sequential_sm_reset_tx[2]_i_1 
+       (.I0(\FSM_sequential_sm_reset_tx[2]_i_3_n_0 ),
+        .I1(\FSM_sequential_sm_reset_tx_reg[0]_1 ),
         .I2(Q[0]),
-        .I3(Q[2]),
-        .I4(Q[1]),
-        .I5(\FSM_sequential_sm_reset_tx_reg[0]_0 ),
-        .O(i_in_out_reg_0));
+        .I3(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
+        .I4(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
+        .I5(gtwiz_reset_userclk_tx_active_sync),
+        .O(E));
   LUT6 #(
-    .INIT(64'h0000002000000000)) 
-    gttxreset_out_i_2
-       (.I0(sm_reset_tx_timer_sat),
-        .I1(gttxreset_out_reg),
-        .I2(plllock_tx_sync),
-        .I3(gtwiz_reset_tx_any_sync),
-        .I4(Q[2]),
-        .I5(Q[1]),
-        .O(sm_reset_tx_timer_sat_reg));
+    .INIT(64'h888F8888CFCFCFCF)) 
+    \FSM_sequential_sm_reset_tx[2]_i_3 
+       (.I0(plllock_tx_sync),
+        .I1(\FSM_sequential_sm_reset_tx_reg[0]_2 ),
+        .I2(\FSM_sequential_sm_reset_tx_reg[0]_3 ),
+        .I3(\FSM_sequential_sm_reset_tx_reg[0]_4 ),
+        .I4(sm_reset_tx_pll_timer_sat),
+        .I5(Q[0]),
+        .O(\FSM_sequential_sm_reset_tx[2]_i_3_n_0 ));
   LUT5 #(
-    .INIT(32'hF4FFF400)) 
+    .INIT(32'hFF7F0070)) 
+    gttxreset_out_i_1
+       (.I0(Q[0]),
+        .I1(Q[1]),
+        .I2(gttxreset_out_i_2_n_0),
+        .I3(gtwiz_reset_tx_any_sync),
+        .I4(GTHE4_CHANNEL_GTTXRESET),
+        .O(\FSM_sequential_sm_reset_tx_reg[0]_0 ));
+  LUT6 #(
+    .INIT(64'h1212321212121212)) 
+    gttxreset_out_i_2
+       (.I0(Q[0]),
+        .I1(Q[2]),
+        .I2(Q[1]),
+        .I3(sm_reset_tx_timer_sat),
+        .I4(sm_reset_tx_timer_clr_reg),
+        .I5(plllock_tx_sync),
+        .O(gttxreset_out_i_2_n_0));
+  LUT6 #(
+    .INIT(64'hF4F4F4FFF4F4F400)) 
     gtwiz_reset_tx_done_int_i_1
        (.I0(Q[0]),
         .I1(plllock_tx_sync),
-        .I2(gtwiz_reset_tx_done_int_reg_0),
-        .I3(gtwiz_reset_tx_done_int),
-        .I4(gtwiz_reset_tx_done_int_reg_1),
+        .I2(gtwiz_reset_tx_done_int_reg),
+        .I3(gtwiz_reset_tx_done_int_reg_0),
+        .I4(gtwiz_reset_tx_done_int_i_4_n_0),
+        .I5(gtwiz_reset_tx_done_int_reg_1),
         .O(\FSM_sequential_sm_reset_tx_reg[0] ));
-  LUT6 #(
-    .INIT(64'h3000000040404040)) 
-    gtwiz_reset_tx_done_int_i_3
-       (.I0(plllock_tx_sync),
+  LUT4 #(
+    .INIT(16'h0040)) 
+    gtwiz_reset_tx_done_int_i_4
+       (.I0(Q[0]),
         .I1(Q[1]),
         .I2(Q[2]),
-        .I3(\FSM_sequential_sm_reset_tx_reg[0]_0 ),
-        .I4(gtwiz_reset_tx_done_int_reg),
-        .I5(Q[0]),
-        .O(gtwiz_reset_tx_done_int));
+        .I3(plllock_tx_sync),
+        .O(gtwiz_reset_tx_done_int_i_4_n_0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -7118,43 +7054,68 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12
         .D(i_in_sync2),
         .Q(i_in_sync3),
         .R(1'b0));
+  LUT6 #(
+    .INIT(64'hFF0000FF0044440F)) 
+    sm_reset_tx_timer_clr_i_1
+       (.I0(sm_reset_tx_timer_clr_i_2_n_0),
+        .I1(sm_reset_tx_timer_sat),
+        .I2(Q[0]),
+        .I3(Q[2]),
+        .I4(Q[1]),
+        .I5(sm_reset_tx_timer_clr_reg),
+        .O(sm_reset_tx_timer_sat_reg));
+  LUT6 #(
+    .INIT(64'h707F0000707FF0F0)) 
+    sm_reset_tx_timer_clr_i_2
+       (.I0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
+        .I1(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
+        .I2(Q[2]),
+        .I3(plllock_tx_sync),
+        .I4(Q[0]),
+        .I5(gtwiz_reset_userclk_tx_active_sync),
+        .O(sm_reset_tx_timer_clr_i_2_n_0));
 endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13
    (gtwiz_reset_rx_cdr_stable_out,
+    i_in_out_reg_0,
     \FSM_sequential_sm_reset_rx_reg[1] ,
     sm_reset_rx_cdr_to_sat_reg,
-    \FSM_sequential_sm_reset_rx_reg[2] ,
     i_in_meta_reg_0,
     gtwiz_reset_clk_freerun_in,
-    \FSM_sequential_sm_reset_rx_reg[0] ,
     Q,
-    plllock_rx_sync,
     sm_reset_rx_cdr_to_sat,
     sm_reset_rx_cdr_to_clr_reg,
-    sm_reset_rx_cdr_to_clr);
+    plllock_rx_sync,
+    sm_reset_rx_cdr_to_clr_reg_0,
+    sm_reset_rx_cdr_to_clr,
+    gtwiz_reset_rx_any_sync,
+    GTHE4_CHANNEL_RXPROGDIVRESET);
   output [0:0]gtwiz_reset_rx_cdr_stable_out;
+  output i_in_out_reg_0;
   output \FSM_sequential_sm_reset_rx_reg[1] ;
   output sm_reset_rx_cdr_to_sat_reg;
-  output \FSM_sequential_sm_reset_rx_reg[2] ;
   input i_in_meta_reg_0;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input \FSM_sequential_sm_reset_rx_reg[0] ;
   input [2:0]Q;
-  input plllock_rx_sync;
   input sm_reset_rx_cdr_to_sat;
   input sm_reset_rx_cdr_to_clr_reg;
+  input plllock_rx_sync;
+  input sm_reset_rx_cdr_to_clr_reg_0;
   input sm_reset_rx_cdr_to_clr;
+  input gtwiz_reset_rx_any_sync;
+  input [0:0]GTHE4_CHANNEL_RXPROGDIVRESET;
 
-  wire \FSM_sequential_sm_reset_rx_reg[0] ;
   wire \FSM_sequential_sm_reset_rx_reg[1] ;
-  wire \FSM_sequential_sm_reset_rx_reg[2] ;
+  wire [0:0]GTHE4_CHANNEL_RXPROGDIVRESET;
   wire [2:0]Q;
   wire [0:0]gtwiz_reset_clk_freerun_in;
+  wire gtwiz_reset_rx_any_sync;
   wire [0:0]gtwiz_reset_rx_cdr_stable_out;
   (* async_reg = "true" *) wire i_in_meta;
   wire i_in_meta_reg_0;
+  wire i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
@@ -7162,19 +7123,20 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13
   wire sm_reset_rx_cdr_to_clr;
   wire sm_reset_rx_cdr_to_clr_i_2_n_0;
   wire sm_reset_rx_cdr_to_clr_reg;
+  wire sm_reset_rx_cdr_to_clr_reg_0;
   wire sm_reset_rx_cdr_to_sat;
   wire sm_reset_rx_cdr_to_sat_reg;
 
-  LUT6 #(
-    .INIT(64'h000A000AC0C000C0)) 
-    \FSM_sequential_sm_reset_rx[2]_i_5 
-       (.I0(sm_reset_rx_cdr_to_sat_reg),
-        .I1(\FSM_sequential_sm_reset_rx_reg[0] ),
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT5 #(
+    .INIT(32'h00000E00)) 
+    \FSM_sequential_sm_reset_rx[2]_i_4 
+       (.I0(sm_reset_rx_cdr_to_sat),
+        .I1(gtwiz_reset_rx_cdr_stable_out),
         .I2(Q[1]),
-        .I3(Q[0]),
-        .I4(plllock_rx_sync),
-        .I5(Q[2]),
-        .O(\FSM_sequential_sm_reset_rx_reg[1] ));
+        .I3(Q[2]),
+        .I4(Q[0]),
+        .O(sm_reset_rx_cdr_to_sat_reg));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -7223,46 +7185,49 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13
         .D(i_in_sync2),
         .Q(i_in_sync3),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    rxprogdivreset_out_i_2
-       (.I0(sm_reset_rx_cdr_to_sat),
-        .I1(gtwiz_reset_rx_cdr_stable_out),
-        .O(sm_reset_rx_cdr_to_sat_reg));
   LUT6 #(
-    .INIT(64'hFBFFFFFF0800AAAA)) 
+    .INIT(64'hFFFF55FF000000BE)) 
+    rxprogdivreset_out_i_1
+       (.I0(sm_reset_rx_cdr_to_sat_reg),
+        .I1(Q[1]),
+        .I2(Q[0]),
+        .I3(Q[2]),
+        .I4(gtwiz_reset_rx_any_sync),
+        .I5(GTHE4_CHANNEL_RXPROGDIVRESET),
+        .O(\FSM_sequential_sm_reset_rx_reg[1] ));
+  LUT6 #(
+    .INIT(64'hEFFFFFFF20AA00AA)) 
     sm_reset_rx_cdr_to_clr_i_1
        (.I0(sm_reset_rx_cdr_to_clr_i_2_n_0),
         .I1(sm_reset_rx_cdr_to_clr_reg),
-        .I2(Q[2]),
-        .I3(plllock_rx_sync),
-        .I4(Q[0]),
+        .I2(plllock_rx_sync),
+        .I3(Q[0]),
+        .I4(sm_reset_rx_cdr_to_clr_reg_0),
         .I5(sm_reset_rx_cdr_to_clr),
-        .O(\FSM_sequential_sm_reset_rx_reg[2] ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+        .O(i_in_out_reg_0));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
-    .INIT(16'h00EF)) 
+    .INIT(16'h5455)) 
     sm_reset_rx_cdr_to_clr_i_2
-       (.I0(sm_reset_rx_cdr_to_sat),
+       (.I0(Q[1]),
         .I1(gtwiz_reset_rx_cdr_stable_out),
-        .I2(Q[2]),
-        .I3(Q[1]),
+        .I2(sm_reset_rx_cdr_to_sat),
+        .I3(Q[2]),
         .O(sm_reset_rx_cdr_to_clr_i_2_n_0));
 endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_2
-   (i_in_out_reg_0,
+   (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
     gtwiz_reset_clk_freerun_in);
-  output [0:0]i_in_out_reg_0;
+  output [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ;
   input [0:0]rxresetdone_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
 
+  wire [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   (* async_reg = "true" *) wire i_in_meta;
-  wire [0:0]i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
@@ -7284,7 +7249,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_2
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
         .D(i_in_sync3),
-        .Q(i_in_out_reg_0),
+        .Q(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ),
         .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -7320,16 +7285,16 @@ endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_3
-   (i_in_out_reg_0,
+   (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     txresetdone_out,
     gtwiz_reset_clk_freerun_in);
-  output [0:0]i_in_out_reg_0;
+  output [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
   input [0:0]txresetdone_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
 
+  wire [0:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   (* async_reg = "true" *) wire i_in_meta;
-  wire [0:0]i_in_out_reg_0;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
@@ -7351,7 +7316,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_3
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
         .D(i_in_sync3),
-        .Q(i_in_out_reg_0),
+        .Q(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ),
         .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -7542,30 +7507,29 @@ endmodule
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6
    (D,
-    E,
+    sm_reset_rx_pll_timer_sat_reg,
     in0,
     gtwiz_reset_clk_freerun_in,
+    \FSM_sequential_sm_reset_rx_reg[1] ,
     Q,
+    sm_reset_rx_pll_timer_sat,
     \FSM_sequential_sm_reset_rx_reg[0] ,
-    \FSM_sequential_sm_reset_rx_reg[0]_0 ,
-    \FSM_sequential_sm_reset_rx_reg[0]_1 ,
-    gtwiz_reset_rx_datapath_dly);
+    gtwiz_reset_rx_datapath_dly,
+    sm_reset_rx_pll_timer_clr);
   output [1:0]D;
-  output [0:0]E;
+  output sm_reset_rx_pll_timer_sat_reg;
   input in0;
   input [0:0]gtwiz_reset_clk_freerun_in;
+  input \FSM_sequential_sm_reset_rx_reg[1] ;
   input [2:0]Q;
+  input sm_reset_rx_pll_timer_sat;
   input \FSM_sequential_sm_reset_rx_reg[0] ;
-  input \FSM_sequential_sm_reset_rx_reg[0]_0 ;
-  input \FSM_sequential_sm_reset_rx_reg[0]_1 ;
   input gtwiz_reset_rx_datapath_dly;
+  input sm_reset_rx_pll_timer_clr;
 
   wire [1:0]D;
-  wire [0:0]E;
-  wire \FSM_sequential_sm_reset_rx[2]_i_3_n_0 ;
   wire \FSM_sequential_sm_reset_rx_reg[0] ;
-  wire \FSM_sequential_sm_reset_rx_reg[0]_0 ;
-  wire \FSM_sequential_sm_reset_rx_reg[0]_1 ;
+  wire \FSM_sequential_sm_reset_rx_reg[1] ;
   wire [2:0]Q;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   wire gtwiz_reset_rx_datapath_dly;
@@ -7575,44 +7539,40 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
   wire in0;
+  wire sm_reset_rx_pll_timer_clr;
+  wire sm_reset_rx_pll_timer_sat;
+  wire sm_reset_rx_pll_timer_sat_reg;
 
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'hFF769976)) 
+    .INIT(32'hF00F5FFC)) 
     \FSM_sequential_sm_reset_rx[0]_i_1 
-       (.I0(Q[0]),
-        .I1(Q[1]),
-        .I2(gtwiz_reset_rx_pll_and_datapath_dly),
+       (.I0(\FSM_sequential_sm_reset_rx_reg[1] ),
+        .I1(gtwiz_reset_rx_pll_and_datapath_dly),
+        .I2(Q[1]),
         .I3(Q[2]),
-        .I4(\FSM_sequential_sm_reset_rx_reg[0] ),
+        .I4(Q[0]),
         .O(D[0]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'h23EE23EF)) 
+    .INIT(32'h0F0F50F3)) 
     \FSM_sequential_sm_reset_rx[1]_i_1 
-       (.I0(\FSM_sequential_sm_reset_rx_reg[0] ),
-        .I1(Q[0]),
-        .I2(Q[2]),
-        .I3(Q[1]),
-        .I4(gtwiz_reset_rx_pll_and_datapath_dly),
-        .O(D[1]));
-  LUT3 #(
-    .INIT(8'hFE)) 
-    \FSM_sequential_sm_reset_rx[2]_i_1 
-       (.I0(\FSM_sequential_sm_reset_rx[2]_i_3_n_0 ),
-        .I1(\FSM_sequential_sm_reset_rx_reg[0]_0 ),
-        .I2(\FSM_sequential_sm_reset_rx_reg[0]_1 ),
-        .O(E));
-  LUT6 #(
-    .INIT(64'h00000000AAAAAAFE)) 
-    \FSM_sequential_sm_reset_rx[2]_i_3 
-       (.I0(\FSM_sequential_sm_reset_rx_reg[0] ),
+       (.I0(\FSM_sequential_sm_reset_rx_reg[1] ),
         .I1(gtwiz_reset_rx_pll_and_datapath_dly),
-        .I2(gtwiz_reset_rx_datapath_dly),
+        .I2(Q[1]),
         .I3(Q[2]),
-        .I4(Q[1]),
-        .I5(Q[0]),
-        .O(\FSM_sequential_sm_reset_rx[2]_i_3_n_0 ));
+        .I4(Q[0]),
+        .O(D[1]));
+  LUT6 #(
+    .INIT(64'h2F2F2F2000000000)) 
+    \FSM_sequential_sm_reset_rx[2]_i_5 
+       (.I0(sm_reset_rx_pll_timer_sat),
+        .I1(\FSM_sequential_sm_reset_rx_reg[0] ),
+        .I2(Q[0]),
+        .I3(gtwiz_reset_rx_pll_and_datapath_dly),
+        .I4(gtwiz_reset_rx_datapath_dly),
+        .I5(sm_reset_rx_pll_timer_clr),
+        .O(sm_reset_rx_pll_timer_sat_reg));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -7665,21 +7625,37 @@ endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7
-   (gtwiz_reset_tx_datapath_dly,
+   (\FSM_sequential_sm_reset_tx_reg[2] ,
     in0,
-    gtwiz_reset_clk_freerun_in);
-  output gtwiz_reset_tx_datapath_dly;
+    gtwiz_reset_clk_freerun_in,
+    Q,
+    gtwiz_reset_tx_pll_and_datapath_dly);
+  output \FSM_sequential_sm_reset_tx_reg[2] ;
   input in0;
   input [0:0]gtwiz_reset_clk_freerun_in;
+  input [2:0]Q;
+  input gtwiz_reset_tx_pll_and_datapath_dly;
 
+  wire \FSM_sequential_sm_reset_tx_reg[2] ;
+  wire [2:0]Q;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   wire gtwiz_reset_tx_datapath_dly;
+  wire gtwiz_reset_tx_pll_and_datapath_dly;
   (* async_reg = "true" *) wire i_in_meta;
   (* async_reg = "true" *) wire i_in_sync1;
   (* async_reg = "true" *) wire i_in_sync2;
   (* async_reg = "true" *) wire i_in_sync3;
   wire in0;
 
+  LUT5 #(
+    .INIT(32'hEEEEEEEF)) 
+    \FSM_sequential_sm_reset_tx[2]_i_6 
+       (.I0(Q[2]),
+        .I1(Q[1]),
+        .I2(gtwiz_reset_tx_datapath_dly),
+        .I3(gtwiz_reset_tx_pll_and_datapath_dly),
+        .I4(Q[0]),
+        .O(\FSM_sequential_sm_reset_tx_reg[2] ));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -7755,21 +7731,21 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_8
 
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h0F3E)) 
+    .INIT(16'h11FE)) 
     \FSM_sequential_sm_reset_tx[0]_i_1 
-       (.I0(gtwiz_reset_tx_pll_and_datapath_dly),
-        .I1(Q[1]),
-        .I2(Q[0]),
-        .I3(Q[2]),
+       (.I0(Q[1]),
+        .I1(Q[2]),
+        .I2(gtwiz_reset_tx_pll_and_datapath_dly),
+        .I3(Q[0]),
         .O(D[0]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h0FF1)) 
+    .INIT(16'h6667)) 
     \FSM_sequential_sm_reset_tx[1]_i_1 
-       (.I0(gtwiz_reset_tx_pll_and_datapath_dly),
-        .I1(Q[2]),
-        .I2(Q[1]),
-        .I3(Q[0]),
+       (.I0(Q[0]),
+        .I1(Q[1]),
+        .I2(Q[2]),
+        .I3(gtwiz_reset_tx_pll_and_datapath_dly),
         .O(D[1]));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -7823,41 +7799,36 @@ endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9
-   (\FSM_sequential_sm_reset_rx_reg[1] ,
-    \FSM_sequential_sm_reset_rx_reg[0] ,
+   (\FSM_sequential_sm_reset_rx_reg[0] ,
     \FSM_sequential_sm_reset_rx_reg[2] ,
+    \FSM_sequential_sm_reset_rx_reg[2]_0 ,
     gtwiz_userclk_rx_active_out,
     gtwiz_reset_clk_freerun_in,
-    Q,
-    plllock_rx_sync,
     sm_reset_rx_timer_clr_reg,
-    \FSM_sequential_sm_reset_rx_reg[0]_0 ,
-    sm_reset_rx_pll_timer_sat,
+    Q,
     sm_reset_rx_timer_clr_reg_0,
-    sm_reset_rx_timer_sat,
-    sm_reset_rx_timer_clr_reg_1,
     gtwiz_reset_rx_any_sync,
-    GTHE4_CHANNEL_RXUSERRDY);
-  output \FSM_sequential_sm_reset_rx_reg[1] ;
+    GTHE4_CHANNEL_RXUSERRDY,
+    sm_reset_rx_timer_clr_reg_1,
+    plllock_rx_sync,
+    sm_reset_rx_timer_sat);
   output \FSM_sequential_sm_reset_rx_reg[0] ;
   output \FSM_sequential_sm_reset_rx_reg[2] ;
+  output \FSM_sequential_sm_reset_rx_reg[2]_0 ;
   input [0:0]gtwiz_userclk_rx_active_out;
   input [0:0]gtwiz_reset_clk_freerun_in;
-  input [2:0]Q;
-  input plllock_rx_sync;
   input sm_reset_rx_timer_clr_reg;
-  input \FSM_sequential_sm_reset_rx_reg[0]_0 ;
-  input sm_reset_rx_pll_timer_sat;
+  input [2:0]Q;
   input sm_reset_rx_timer_clr_reg_0;
-  input sm_reset_rx_timer_sat;
-  input sm_reset_rx_timer_clr_reg_1;
   input gtwiz_reset_rx_any_sync;
   input [0:0]GTHE4_CHANNEL_RXUSERRDY;
+  input sm_reset_rx_timer_clr_reg_1;
+  input plllock_rx_sync;
+  input sm_reset_rx_timer_sat;
 
   wire \FSM_sequential_sm_reset_rx_reg[0] ;
-  wire \FSM_sequential_sm_reset_rx_reg[0]_0 ;
-  wire \FSM_sequential_sm_reset_rx_reg[1] ;
   wire \FSM_sequential_sm_reset_rx_reg[2] ;
+  wire \FSM_sequential_sm_reset_rx_reg[2]_0 ;
   wire [0:0]GTHE4_CHANNEL_RXUSERRDY;
   wire [2:0]Q;
   wire [0:0]gtwiz_reset_clk_freerun_in;
@@ -7870,23 +7841,21 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9
   (* async_reg = "true" *) wire i_in_sync3;
   wire plllock_rx_sync;
   wire rxuserrdy_out_i_2_n_0;
-  wire sm_reset_rx_pll_timer_sat;
   wire sm_reset_rx_timer_clr_i_2_n_0;
   wire sm_reset_rx_timer_clr_reg;
   wire sm_reset_rx_timer_clr_reg_0;
   wire sm_reset_rx_timer_clr_reg_1;
   wire sm_reset_rx_timer_sat;
 
-  LUT6 #(
-    .INIT(64'h2023202000000000)) 
-    \FSM_sequential_sm_reset_rx[2]_i_4 
-       (.I0(rxuserrdy_out_i_2_n_0),
-        .I1(Q[1]),
-        .I2(Q[2]),
-        .I3(\FSM_sequential_sm_reset_rx_reg[0]_0 ),
-        .I4(sm_reset_rx_pll_timer_sat),
-        .I5(Q[0]),
-        .O(\FSM_sequential_sm_reset_rx_reg[1] ));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT4 #(
+    .INIT(16'h0800)) 
+    \FSM_sequential_sm_reset_rx[2]_i_6 
+       (.I0(Q[2]),
+        .I1(sm_reset_rx_timer_sat),
+        .I2(sm_reset_rx_timer_clr_reg_0),
+        .I3(gtwiz_reset_userclk_rx_active_sync),
+        .O(\FSM_sequential_sm_reset_rx_reg[2]_0 ));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDRE #(
@@ -7936,26 +7905,27 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9
         .Q(i_in_sync3),
         .R(1'b0));
   LUT6 #(
-    .INIT(64'hFFFFFAAF00000800)) 
+    .INIT(64'hFFFAFAFF00000200)) 
     rxuserrdy_out_i_1
        (.I0(Q[2]),
         .I1(rxuserrdy_out_i_2_n_0),
-        .I2(Q[1]),
+        .I2(gtwiz_reset_rx_any_sync),
         .I3(Q[0]),
-        .I4(gtwiz_reset_rx_any_sync),
+        .I4(Q[1]),
         .I5(GTHE4_CHANNEL_RXUSERRDY),
         .O(\FSM_sequential_sm_reset_rx_reg[2] ));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
-    .INIT(8'h40)) 
+    .INIT(8'hDF)) 
     rxuserrdy_out_i_2
-       (.I0(sm_reset_rx_timer_clr_reg_0),
-        .I1(sm_reset_rx_timer_sat),
-        .I2(gtwiz_reset_userclk_rx_active_sync),
+       (.I0(gtwiz_reset_userclk_rx_active_sync),
+        .I1(sm_reset_rx_timer_clr_reg_0),
+        .I2(sm_reset_rx_timer_sat),
         .O(rxuserrdy_out_i_2_n_0));
   LUT6 #(
-    .INIT(64'hFEEFCCFF0EE0CC0F)) 
+    .INIT(64'hFDCFCCFC0DC0CC0C)) 
     sm_reset_rx_timer_clr_i_1
-       (.I0(sm_reset_rx_timer_clr_reg_1),
+       (.I0(sm_reset_rx_timer_clr_reg),
         .I1(sm_reset_rx_timer_clr_i_2_n_0),
         .I2(Q[0]),
         .I3(Q[1]),
@@ -7963,14 +7933,14 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9
         .I5(sm_reset_rx_timer_clr_reg_0),
         .O(\FSM_sequential_sm_reset_rx_reg[0] ));
   LUT6 #(
-    .INIT(64'h44440000F4FF0000)) 
+    .INIT(64'h30300030B3B3B3B3)) 
     sm_reset_rx_timer_clr_i_2
-       (.I0(Q[1]),
-        .I1(gtwiz_reset_userclk_rx_active_sync),
-        .I2(plllock_rx_sync),
+       (.I0(gtwiz_reset_userclk_rx_active_sync),
+        .I1(Q[2]),
+        .I2(sm_reset_rx_timer_clr_reg_1),
         .I3(Q[0]),
-        .I4(sm_reset_rx_timer_clr_reg),
-        .I5(Q[2]),
+        .I4(plllock_rx_sync),
+        .I5(Q[1]),
         .O(sm_reset_rx_timer_clr_i_2_n_0));
 endmodule
 
@@ -9069,11 +9039,11 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .ADAPT_CFG1(16'hC800),
     .ADAPT_CFG2(16'h0000),
     .ALIGN_COMMA_DOUBLE("FALSE"),
-    .ALIGN_COMMA_ENABLE(10'b0000000000),
-    .ALIGN_COMMA_WORD(1),
+    .ALIGN_COMMA_ENABLE(10'b1111111111),
+    .ALIGN_COMMA_WORD(4),
     .ALIGN_MCOMMA_DET("FALSE"),
     .ALIGN_MCOMMA_VALUE(10'b1010000011),
-    .ALIGN_PCOMMA_DET("FALSE"),
+    .ALIGN_PCOMMA_DET("TRUE"),
     .ALIGN_PCOMMA_VALUE(10'b0101111100),
     .A_RXOSCALRESET(1'b0),
     .A_RXPROGDIVRESET(1'b0),
@@ -9142,7 +9112,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .DDI_CTRL(2'b00),
     .DDI_REALIGN_WAIT(15),
     .DEC_MCOMMA_DETECT("FALSE"),
-    .DEC_PCOMMA_DETECT("FALSE"),
+    .DEC_PCOMMA_DETECT("TRUE"),
     .DEC_VALID_COMMA_ONLY("FALSE"),
     .DELAY_ELEC(1'b0),
     .DMONITOR_CFG0(10'h000),
@@ -9374,7 +9344,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -9485,7 +9455,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(40),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -9917,11 +9887,11 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .ADAPT_CFG1(16'hC800),
     .ADAPT_CFG2(16'h0000),
     .ALIGN_COMMA_DOUBLE("FALSE"),
-    .ALIGN_COMMA_ENABLE(10'b0000000000),
-    .ALIGN_COMMA_WORD(1),
+    .ALIGN_COMMA_ENABLE(10'b1111111111),
+    .ALIGN_COMMA_WORD(4),
     .ALIGN_MCOMMA_DET("FALSE"),
     .ALIGN_MCOMMA_VALUE(10'b1010000011),
-    .ALIGN_PCOMMA_DET("FALSE"),
+    .ALIGN_PCOMMA_DET("TRUE"),
     .ALIGN_PCOMMA_VALUE(10'b0101111100),
     .A_RXOSCALRESET(1'b0),
     .A_RXPROGDIVRESET(1'b0),
@@ -9990,7 +9960,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .DDI_CTRL(2'b00),
     .DDI_REALIGN_WAIT(15),
     .DEC_MCOMMA_DETECT("FALSE"),
-    .DEC_PCOMMA_DETECT("FALSE"),
+    .DEC_PCOMMA_DETECT("TRUE"),
     .DEC_VALID_COMMA_ONLY("FALSE"),
     .DELAY_ELEC(1'b0),
     .DMONITOR_CFG0(10'h000),
@@ -10222,7 +10192,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .RX_BIAS_CFG0(16'h1554),
     .RX_BUFFER_CFG(6'b000000),
     .RX_CAPFF_SARC_ENB(1'b0),
-    .RX_CLK25_DIV(5),
+    .RX_CLK25_DIV(6),
     .RX_CLKMUX_EN(1'b1),
     .RX_CLK_SLIP_OVRD(5'b00000),
     .RX_CM_BUF_CFG(4'b1010),
@@ -10333,7 +10303,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_channel
     .TXSYNC_MULTILANE(1'b1),
     .TXSYNC_OVRD(1'b0),
     .TXSYNC_SKIP_DA(1'b0),
-    .TX_CLK25_DIV(5),
+    .TX_CLK25_DIV(6),
     .TX_CLKMUX_EN(1'b1),
     .TX_DATA_WIDTH(40),
     .TX_DCC_LOOP_RST_CFG(16'h0004),
@@ -11088,7 +11058,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gthe4_common
     .QPLL1_CP(10'b0011111111),
     .QPLL1_CP_G3(10'b0001111111),
     .QPLL1_FBDIV(76),
-    .QPLL1_FBDIV_G3(64),
+    .QPLL1_FBDIV_G3(80),
     .QPLL1_INIT_CFG0(16'h02B2),
     .QPLL1_INIT_CFG1(8'h00),
     .QPLL1_LOCK_CFG(16'h25E8),
@@ -11784,15 +11754,13 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     rst_in0,
     gtwiz_userclk_tx_usrclk2_out,
     gtwiz_userclk_rx_usrclk2_out,
-    gtwiz_reset_tx_done_int_reg_0,
-    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ,
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     gtpowergood_out,
     GTHE4_CHANNEL_GTPOWERGOOD,
-    gtwiz_reset_rx_done_int_reg_0,
     gtwiz_reset_tx_pll_and_datapath_in,
     gtwiz_reset_rx_datapath_in,
-    gtwiz_reset_rx_pll_and_datapath_in);
+    gtwiz_reset_rx_pll_and_datapath_in,
+    \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync );
   output [0:0]GTHE4_CHANNEL_TXPROGDIVRESET;
   output [0:0]gtwiz_reset_tx_done_out;
   output [0:0]gtwiz_reset_rx_cdr_stable_out;
@@ -11814,22 +11782,20 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   input rst_in0;
   input [0:0]gtwiz_userclk_tx_usrclk2_out;
   input [0:0]gtwiz_userclk_rx_usrclk2_out;
-  input gtwiz_reset_tx_done_int_reg_0;
-  input [1:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
   input [1:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ;
   input [1:0]gtpowergood_out;
   input [1:0]GTHE4_CHANNEL_GTPOWERGOOD;
-  input gtwiz_reset_rx_done_int_reg_0;
   input [0:0]gtwiz_reset_tx_pll_and_datapath_in;
   input [0:0]gtwiz_reset_rx_datapath_in;
   input [0:0]gtwiz_reset_rx_pll_and_datapath_in;
+  input [1:0]\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ;
 
   wire \FSM_sequential_sm_reset_all[2]_i_3_n_0 ;
   wire \FSM_sequential_sm_reset_all[2]_i_4_n_0 ;
   wire \FSM_sequential_sm_reset_rx[1]_i_2_n_0 ;
-  wire \FSM_sequential_sm_reset_rx[2]_i_6_n_0 ;
-  wire \FSM_sequential_sm_reset_tx[2]_i_6_n_0 ;
-  wire \FSM_sequential_sm_reset_tx[2]_i_8_n_0 ;
+  wire \FSM_sequential_sm_reset_rx[2]_i_7_n_0 ;
+  wire \FSM_sequential_sm_reset_tx[2]_i_4_n_0 ;
+  wire \FSM_sequential_sm_reset_tx[2]_i_5_n_0 ;
   wire [1:0]GTHE4_CHANNEL_GTPOWERGOOD;
   wire [1:0]GTHE4_CHANNEL_GTRXRESET;
   wire [0:0]GTHE4_CHANNEL_GTTXRESET;
@@ -11839,14 +11805,14 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire [0:0]GTHE4_CHANNEL_TXUSERRDY;
   wire bit_synchronizer_gtpowergood_inst_n_0;
   wire bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2;
+  wire bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst_n_0;
   wire bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0;
   wire bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1;
   wire bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2;
-  wire bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0;
   wire bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1;
-  wire bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2;
   wire bit_synchronizer_plllock_rx_inst_n_1;
   wire bit_synchronizer_plllock_rx_inst_n_2;
+  wire bit_synchronizer_plllock_tx_inst_n_0;
   wire bit_synchronizer_plllock_tx_inst_n_1;
   wire bit_synchronizer_plllock_tx_inst_n_2;
   wire bit_synchronizer_plllock_tx_inst_n_3;
@@ -11870,7 +11836,6 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire gtwiz_reset_rx_datapath_int_i_1_n_0;
   wire gtwiz_reset_rx_datapath_int_reg_n_0;
   wire gtwiz_reset_rx_datapath_sync;
-  wire gtwiz_reset_rx_done_int_reg_0;
   wire gtwiz_reset_rx_done_int_reg_n_0;
   wire [0:0]gtwiz_reset_rx_done_out;
   wire [0:0]gtwiz_reset_rx_pll_and_datapath_in;
@@ -11878,11 +11843,10 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire gtwiz_reset_rx_pll_and_datapath_int_reg_n_0;
   wire gtwiz_reset_rx_pll_and_datapath_sync;
   wire gtwiz_reset_tx_any_sync;
-  wire gtwiz_reset_tx_datapath_dly;
   wire [0:0]gtwiz_reset_tx_datapath_in;
   wire gtwiz_reset_tx_datapath_sync;
   wire gtwiz_reset_tx_done_int_i_2_n_0;
-  wire gtwiz_reset_tx_done_int_reg_0;
+  wire gtwiz_reset_tx_done_int_i_3_n_0;
   wire gtwiz_reset_tx_done_int_reg_n_0;
   wire [0:0]gtwiz_reset_tx_done_out;
   wire gtwiz_reset_tx_pll_and_datapath_dly;
@@ -11890,6 +11854,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire gtwiz_reset_tx_pll_and_datapath_int_i_1_n_0;
   wire gtwiz_reset_tx_pll_and_datapath_int_reg_n_0;
   wire gtwiz_reset_tx_pll_and_datapath_sync;
+  wire gtwiz_reset_userclk_tx_active_sync;
   wire [0:0]gtwiz_userclk_rx_active_out;
   wire [0:0]gtwiz_userclk_rx_usrclk2_out;
   wire [0:0]gtwiz_userclk_tx_active_out;
@@ -11901,14 +11866,13 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire [9:0]p_0_in__1;
   wire [2:0]p_1_in;
   wire plllock_rx_sync;
-  wire plllock_tx_sync;
   wire [0:0]qpll1lock_out;
   wire reset_synchronizer_gtwiz_reset_rx_any_inst_n_1;
   wire reset_synchronizer_gtwiz_reset_rx_any_inst_n_2;
-  wire reset_synchronizer_gtwiz_reset_rx_any_inst_n_3;
   wire reset_synchronizer_gtwiz_reset_tx_any_inst_n_1;
   wire reset_synchronizer_gtwiz_reset_tx_any_inst_n_2;
   wire rst_in0;
+  wire sel;
   wire [2:0]sm_reset_all;
   wire [2:0]sm_reset_all__0;
   wire sm_reset_all_timer_clr_i_1_n_0;
@@ -11925,12 +11889,15 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire [2:0]sm_reset_rx__0;
   wire sm_reset_rx_cdr_to_clr;
   wire sm_reset_rx_cdr_to_clr_i_3_n_0;
+  wire \sm_reset_rx_cdr_to_ctr[0]_i_10_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr[0]_i_1_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr[0]_i_6_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr[0]_i_7_n_0 ;
+  wire \sm_reset_rx_cdr_to_ctr[0]_i_8_n_0 ;
+  wire \sm_reset_rx_cdr_to_ctr[0]_i_9_n_0 ;
   wire [25:0]sm_reset_rx_cdr_to_ctr_reg;
   wire \sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_0 ;
   wire \sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_1 ;
@@ -11985,23 +11952,17 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire \sm_reset_rx_cdr_to_ctr_reg[8]_i_1_n_9 ;
   wire sm_reset_rx_cdr_to_sat;
   wire sm_reset_rx_cdr_to_sat_i_1_n_0;
-  wire sm_reset_rx_cdr_to_sat_i_2_n_0;
-  wire sm_reset_rx_cdr_to_sat_i_3_n_0;
-  wire sm_reset_rx_cdr_to_sat_i_4_n_0;
-  wire sm_reset_rx_cdr_to_sat_i_5_n_0;
-  wire sm_reset_rx_cdr_to_sat_i_6_n_0;
+  wire sm_reset_rx_pll_timer_clr;
   wire sm_reset_rx_pll_timer_clr_i_1_n_0;
   wire sm_reset_rx_pll_timer_clr_reg_n_0;
-  wire \sm_reset_rx_pll_timer_ctr[2]_i_1_n_0 ;
-  wire \sm_reset_rx_pll_timer_ctr[3]_i_1_n_0 ;
   wire \sm_reset_rx_pll_timer_ctr[9]_i_1_n_0 ;
   wire \sm_reset_rx_pll_timer_ctr[9]_i_3_n_0 ;
   wire \sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ;
+  wire \sm_reset_rx_pll_timer_ctr[9]_i_5_n_0 ;
+  wire \sm_reset_rx_pll_timer_ctr[9]_i_6_n_0 ;
   wire [9:0]sm_reset_rx_pll_timer_ctr_reg;
   wire sm_reset_rx_pll_timer_sat;
   wire sm_reset_rx_pll_timer_sat_i_1_n_0;
-  wire sm_reset_rx_pll_timer_sat_i_2_n_0;
-  wire sm_reset_rx_pll_timer_sat_i_3_n_0;
   wire sm_reset_rx_timer_clr_reg_n_0;
   wire [2:0]sm_reset_rx_timer_ctr;
   wire \sm_reset_rx_timer_ctr0_inferred__0/i__n_0 ;
@@ -12012,19 +11973,15 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   wire sm_reset_rx_timer_sat_i_1_n_0;
   wire [2:0]sm_reset_tx;
   wire [2:0]sm_reset_tx__0;
-  wire sm_reset_tx_pll_timer_clr;
   wire sm_reset_tx_pll_timer_clr_i_1_n_0;
   wire sm_reset_tx_pll_timer_clr_reg_n_0;
-  wire \sm_reset_tx_pll_timer_ctr[2]_i_1_n_0 ;
-  wire \sm_reset_tx_pll_timer_ctr[3]_i_1_n_0 ;
-  wire \sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ;
   wire \sm_reset_tx_pll_timer_ctr[9]_i_3_n_0 ;
   wire \sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ;
+  wire \sm_reset_tx_pll_timer_ctr[9]_i_5_n_0 ;
+  wire \sm_reset_tx_pll_timer_ctr[9]_i_6_n_0 ;
   wire [9:0]sm_reset_tx_pll_timer_ctr_reg;
   wire sm_reset_tx_pll_timer_sat;
   wire sm_reset_tx_pll_timer_sat_i_1_n_0;
-  wire sm_reset_tx_pll_timer_sat_i_2_n_0;
-  wire sm_reset_tx_pll_timer_sat_i_3_n_0;
   wire sm_reset_tx_timer_clr_reg_n_0;
   wire [2:0]sm_reset_tx_timer_ctr;
   wire sm_reset_tx_timer_sat;
@@ -12058,7 +12015,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .I1(sm_reset_all[0]),
         .I2(sm_reset_all[1]),
         .O(sm_reset_all__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \FSM_sequential_sm_reset_all[2]_i_3 
@@ -12066,7 +12023,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .I1(gtwiz_reset_rx_done_int_reg_n_0),
         .I2(sm_reset_all_timer_clr_reg_n_0),
         .O(\FSM_sequential_sm_reset_all[2]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h40)) 
     \FSM_sequential_sm_reset_all[2]_i_4 
@@ -12101,39 +12058,44 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .D(sm_reset_all__0[2]),
         .Q(sm_reset_all[2]),
         .R(gtwiz_reset_all_sync));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'h00008000)) 
+  LUT4 #(
+    .INIT(16'hF7FF)) 
     \FSM_sequential_sm_reset_rx[1]_i_2 
-       (.I0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
-        .I1(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]),
-        .I2(sm_reset_rx[1]),
+       (.I0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]),
+        .I1(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
+        .I2(sm_reset_rx_timer_clr_reg_n_0),
         .I3(sm_reset_rx_timer_sat),
-        .I4(sm_reset_rx_timer_clr_reg_n_0),
         .O(\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFDDDDDDD88888888)) 
+    .INIT(64'hFFFFFF008000FF00)) 
     \FSM_sequential_sm_reset_rx[2]_i_2 
-       (.I0(sm_reset_rx[1]),
-        .I1(sm_reset_rx[0]),
-        .I2(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]),
-        .I3(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
-        .I4(\FSM_sequential_sm_reset_rx[2]_i_6_n_0 ),
-        .I5(sm_reset_rx[2]),
+       (.I0(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [0]),
+        .I1(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync [1]),
+        .I2(\FSM_sequential_sm_reset_rx[2]_i_7_n_0 ),
+        .I3(sm_reset_rx[2]),
+        .I4(sm_reset_rx[1]),
+        .I5(sm_reset_rx[0]),
         .O(sm_reset_rx__0[2]));
   (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT2 #(
     .INIT(4'h2)) 
-    \FSM_sequential_sm_reset_rx[2]_i_6 
+    \FSM_sequential_sm_reset_rx[2]_i_7 
        (.I0(sm_reset_rx_timer_sat),
         .I1(sm_reset_rx_timer_clr_reg_n_0),
-        .O(\FSM_sequential_sm_reset_rx[2]_i_6_n_0 ));
+        .O(\FSM_sequential_sm_reset_rx[2]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT2 #(
+    .INIT(4'h1)) 
+    \FSM_sequential_sm_reset_rx[2]_i_8 
+       (.I0(sm_reset_rx[2]),
+        .I1(sm_reset_rx[1]),
+        .O(sm_reset_rx_pll_timer_clr));
   (* FSM_ENCODED_STATES = "ST_RESET_RX_WAIT_LOCK:011,ST_RESET_RX_WAIT_CDR:100,ST_RESET_RX_WAIT_USERRDY:101,ST_RESET_RX_WAIT_RESETDONE:110,ST_RESET_RX_DATAPATH:010,ST_RESET_RX_PLL:001,ST_RESET_RX_BRANCH:000,ST_RESET_RX_IDLE:111" *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_sequential_sm_reset_rx_reg[0] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2),
+        .CE(bit_synchronizer_plllock_rx_inst_n_2),
         .D(sm_reset_rx__0[0]),
         .Q(sm_reset_rx[0]),
         .R(gtwiz_reset_rx_any_sync));
@@ -12142,7 +12104,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \FSM_sequential_sm_reset_rx_reg[1] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2),
+        .CE(bit_synchronizer_plllock_rx_inst_n_2),
         .D(sm_reset_rx__0[1]),
         .Q(sm_reset_rx[1]),
         .R(gtwiz_reset_rx_any_sync));
@@ -12151,11 +12113,10 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \FSM_sequential_sm_reset_rx_reg[2] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2),
+        .CE(bit_synchronizer_plllock_rx_inst_n_2),
         .D(sm_reset_rx__0[2]),
         .Q(sm_reset_rx[2]),
         .R(gtwiz_reset_rx_any_sync));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'h38)) 
     \FSM_sequential_sm_reset_tx[2]_i_2 
@@ -12163,35 +12124,30 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .I1(sm_reset_tx[1]),
         .I2(sm_reset_tx[2]),
         .O(sm_reset_tx__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT2 #(
-    .INIT(4'h1)) 
-    \FSM_sequential_sm_reset_tx[2]_i_5 
-       (.I0(sm_reset_tx[1]),
-        .I1(sm_reset_tx[2]),
-        .O(sm_reset_tx_pll_timer_clr));
   (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'h0400)) 
-    \FSM_sequential_sm_reset_tx[2]_i_6 
-       (.I0(sm_reset_tx[1]),
-        .I1(sm_reset_tx[2]),
-        .I2(sm_reset_tx_timer_clr_reg_n_0),
-        .I3(sm_reset_tx_timer_sat),
-        .O(\FSM_sequential_sm_reset_tx[2]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT2 #(
-    .INIT(4'h2)) 
-    \FSM_sequential_sm_reset_tx[2]_i_8 
-       (.I0(sm_reset_tx_timer_sat),
-        .I1(sm_reset_tx_timer_clr_reg_n_0),
-        .O(\FSM_sequential_sm_reset_tx[2]_i_8_n_0 ));
+    \FSM_sequential_sm_reset_tx[2]_i_4 
+       (.I0(sm_reset_tx_timer_clr_reg_n_0),
+        .I1(sm_reset_tx_timer_sat),
+        .I2(sm_reset_tx[1]),
+        .I3(sm_reset_tx[2]),
+        .O(\FSM_sequential_sm_reset_tx[2]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT4 #(
+    .INIT(16'h0040)) 
+    \FSM_sequential_sm_reset_tx[2]_i_5 
+       (.I0(sm_reset_tx[2]),
+        .I1(sm_reset_tx[1]),
+        .I2(sm_reset_tx_timer_sat),
+        .I3(sm_reset_tx_timer_clr_reg_n_0),
+        .O(\FSM_sequential_sm_reset_tx[2]_i_5_n_0 ));
   (* FSM_ENCODED_STATES = "ST_RESET_TX_BRANCH:000,ST_RESET_TX_WAIT_LOCK:011,ST_RESET_TX_WAIT_USERRDY:100,ST_RESET_TX_WAIT_RESETDONE:101,ST_RESET_TX_IDLE:110,ST_RESET_TX_DATAPATH:010,ST_RESET_TX_PLL:001" *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_sequential_sm_reset_tx_reg[0] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0),
+        .CE(bit_synchronizer_plllock_tx_inst_n_3),
         .D(sm_reset_tx__0[0]),
         .Q(sm_reset_tx[0]),
         .R(gtwiz_reset_tx_any_sync));
@@ -12200,7 +12156,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \FSM_sequential_sm_reset_tx_reg[1] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0),
+        .CE(bit_synchronizer_plllock_tx_inst_n_3),
         .D(sm_reset_tx__0[1]),
         .Q(sm_reset_tx[1]),
         .R(gtwiz_reset_tx_any_sync));
@@ -12209,7 +12165,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \FSM_sequential_sm_reset_tx_reg[2] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0),
+        .CE(bit_synchronizer_plllock_tx_inst_n_3),
         .D(sm_reset_tx__0[2]),
         .Q(sm_reset_tx[2]),
         .R(gtwiz_reset_tx_any_sync));
@@ -12226,17 +12182,20 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .in0(gtwiz_reset_rx_datapath_sync));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_6 bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst
        (.D(sm_reset_rx__0[1:0]),
-        .E(bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2),
-        .\FSM_sequential_sm_reset_rx_reg[0] (\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ),
-        .\FSM_sequential_sm_reset_rx_reg[0]_0 (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0),
-        .\FSM_sequential_sm_reset_rx_reg[0]_1 (bit_synchronizer_rxcdrlock_inst_n_1),
+        .\FSM_sequential_sm_reset_rx_reg[0] (sm_reset_rx_pll_timer_clr_reg_n_0),
+        .\FSM_sequential_sm_reset_rx_reg[1] (\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ),
         .Q(sm_reset_rx),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_datapath_dly(gtwiz_reset_rx_datapath_dly),
-        .in0(gtwiz_reset_rx_pll_and_datapath_sync));
+        .in0(gtwiz_reset_rx_pll_and_datapath_sync),
+        .sm_reset_rx_pll_timer_clr(sm_reset_rx_pll_timer_clr),
+        .sm_reset_rx_pll_timer_sat(sm_reset_rx_pll_timer_sat),
+        .sm_reset_rx_pll_timer_sat_reg(bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_7 bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst
-       (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .gtwiz_reset_tx_datapath_dly(gtwiz_reset_tx_datapath_dly),
+       (.\FSM_sequential_sm_reset_tx_reg[2] (bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst_n_0),
+        .Q(sm_reset_tx),
+        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
+        .gtwiz_reset_tx_pll_and_datapath_dly(gtwiz_reset_tx_pll_and_datapath_dly),
         .in0(gtwiz_reset_tx_datapath_sync));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_8 bit_synchronizer_gtwiz_reset_tx_pll_and_datapath_dly_inst
        (.D(sm_reset_tx__0[1:0]),
@@ -12245,83 +12204,77 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .gtwiz_reset_tx_pll_and_datapath_dly(gtwiz_reset_tx_pll_and_datapath_dly),
         .in0(gtwiz_reset_tx_pll_and_datapath_sync));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_9 bit_synchronizer_gtwiz_reset_userclk_rx_active_inst
-       (.\FSM_sequential_sm_reset_rx_reg[0] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1),
-        .\FSM_sequential_sm_reset_rx_reg[0]_0 (sm_reset_rx_pll_timer_clr_reg_n_0),
-        .\FSM_sequential_sm_reset_rx_reg[1] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0),
-        .\FSM_sequential_sm_reset_rx_reg[2] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2),
+       (.\FSM_sequential_sm_reset_rx_reg[0] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0),
+        .\FSM_sequential_sm_reset_rx_reg[2] (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1),
+        .\FSM_sequential_sm_reset_rx_reg[2]_0 (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2),
         .GTHE4_CHANNEL_RXUSERRDY(GTHE4_CHANNEL_RXUSERRDY),
         .Q(sm_reset_rx),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_any_sync(gtwiz_reset_rx_any_sync),
         .gtwiz_userclk_rx_active_out(gtwiz_userclk_rx_active_out),
         .plllock_rx_sync(plllock_rx_sync),
-        .sm_reset_rx_pll_timer_sat(sm_reset_rx_pll_timer_sat),
-        .sm_reset_rx_timer_clr_reg(\FSM_sequential_sm_reset_rx[2]_i_6_n_0 ),
+        .sm_reset_rx_timer_clr_reg(\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ),
         .sm_reset_rx_timer_clr_reg_0(sm_reset_rx_timer_clr_reg_n_0),
-        .sm_reset_rx_timer_clr_reg_1(\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ),
+        .sm_reset_rx_timer_clr_reg_1(\FSM_sequential_sm_reset_rx[2]_i_7_n_0 ),
         .sm_reset_rx_timer_sat(sm_reset_rx_timer_sat));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_10 bit_synchronizer_gtwiz_reset_userclk_tx_active_inst
-       (.E(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_0),
-        .\FSM_sequential_sm_reset_tx_reg[0] (bit_synchronizer_plllock_tx_inst_n_1),
-        .\FSM_sequential_sm_reset_tx_reg[0]_0 (\FSM_sequential_sm_reset_tx[2]_i_6_n_0 ),
-        .\FSM_sequential_sm_reset_tx_reg[0]_1 (sm_reset_tx_pll_timer_clr_reg_n_0),
-        .\FSM_sequential_sm_reset_tx_reg[1] (bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2),
-        .\FSM_sequential_sm_reset_tx_reg[2] (bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1),
-        .GTHE4_CHANNEL_TXUSERRDY(GTHE4_CHANNEL_TXUSERRDY),
-        .Q(sm_reset_tx),
+       (.Q(sm_reset_tx[2:1]),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .gtwiz_reset_tx_any_sync(gtwiz_reset_tx_any_sync),
-        .gtwiz_reset_tx_datapath_dly(gtwiz_reset_tx_datapath_dly),
-        .gtwiz_reset_tx_pll_and_datapath_dly(gtwiz_reset_tx_pll_and_datapath_dly),
+        .gtwiz_reset_userclk_tx_active_sync(gtwiz_reset_userclk_tx_active_sync),
         .gtwiz_userclk_tx_active_out(gtwiz_userclk_tx_active_out),
-        .plllock_tx_sync(plllock_tx_sync),
-        .sm_reset_tx_pll_timer_clr(sm_reset_tx_pll_timer_clr),
-        .sm_reset_tx_pll_timer_sat(sm_reset_tx_pll_timer_sat),
-        .sm_reset_tx_timer_clr_reg(gtwiz_reset_tx_done_int_reg_0),
-        .sm_reset_tx_timer_clr_reg_0(\FSM_sequential_sm_reset_tx[2]_i_8_n_0 ),
-        .sm_reset_tx_timer_clr_reg_1(sm_reset_tx_timer_clr_reg_n_0),
-        .sm_reset_tx_timer_sat(sm_reset_tx_timer_sat));
-  FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11 bit_synchronizer_plllock_rx_inst
-       (.Q(sm_reset_rx),
-        .gtrxreset_out_reg(sm_reset_rx_timer_clr_reg_n_0),
-        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .gtwiz_reset_rx_done_int_reg(\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ),
-        .gtwiz_reset_rx_done_int_reg_0(gtwiz_reset_rx_done_int_reg_0),
-        .gtwiz_reset_rx_done_int_reg_1(\FSM_sequential_sm_reset_rx[2]_i_6_n_0 ),
-        .gtwiz_reset_rx_done_int_reg_2(gtwiz_reset_rx_done_int_reg_n_0),
-        .i_in_out_reg_0(bit_synchronizer_plllock_rx_inst_n_1),
-        .i_in_out_reg_1(bit_synchronizer_plllock_rx_inst_n_2),
-        .plllock_rx_sync(plllock_rx_sync),
-        .qpll1lock_out(qpll1lock_out),
-        .sm_reset_rx_timer_sat(sm_reset_rx_timer_sat));
-  FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12 bit_synchronizer_plllock_tx_inst
-       (.\FSM_sequential_sm_reset_tx_reg[0] (bit_synchronizer_plllock_tx_inst_n_3),
-        .\FSM_sequential_sm_reset_tx_reg[0]_0 (\FSM_sequential_sm_reset_tx[2]_i_8_n_0 ),
-        .Q(sm_reset_tx),
-        .gttxreset_out_reg(sm_reset_tx_timer_clr_reg_n_0),
-        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
-        .gtwiz_reset_tx_any_sync(gtwiz_reset_tx_any_sync),
-        .gtwiz_reset_tx_done_int_reg(gtwiz_reset_tx_done_int_reg_0),
-        .gtwiz_reset_tx_done_int_reg_0(gtwiz_reset_tx_done_int_i_2_n_0),
-        .gtwiz_reset_tx_done_int_reg_1(gtwiz_reset_tx_done_int_reg_n_0),
-        .i_in_out_reg_0(bit_synchronizer_plllock_tx_inst_n_1),
-        .plllock_tx_sync(plllock_tx_sync),
-        .qpll1lock_out(qpll1lock_out),
+        .i_in_out_reg_0(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1),
         .sm_reset_tx_timer_sat(sm_reset_tx_timer_sat),
-        .sm_reset_tx_timer_sat_reg(bit_synchronizer_plllock_tx_inst_n_2));
-  FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13 bit_synchronizer_rxcdrlock_inst
-       (.\FSM_sequential_sm_reset_rx_reg[0] (\FSM_sequential_sm_reset_rx[2]_i_6_n_0 ),
-        .\FSM_sequential_sm_reset_rx_reg[1] (bit_synchronizer_rxcdrlock_inst_n_1),
-        .\FSM_sequential_sm_reset_rx_reg[2] (bit_synchronizer_rxcdrlock_inst_n_3),
+        .txuserrdy_out_reg(sm_reset_tx_timer_clr_reg_n_0));
+  FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_11 bit_synchronizer_plllock_rx_inst
+       (.E(bit_synchronizer_plllock_rx_inst_n_2),
+        .\FSM_sequential_sm_reset_rx_reg[0] (bit_synchronizer_rxcdrlock_inst_n_3),
+        .\FSM_sequential_sm_reset_rx_reg[0]_0 (bit_synchronizer_gtwiz_reset_rx_pll_and_datapath_dly_inst_n_2),
+        .\FSM_sequential_sm_reset_rx_reg[0]_1 (bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2),
+        .\FSM_sequential_sm_reset_rx_reg[0]_2 (\FSM_sequential_sm_reset_rx[2]_i_7_n_0 ),
+        .\FSM_sequential_sm_reset_rx_reg[2] (bit_synchronizer_plllock_rx_inst_n_1),
         .Q(sm_reset_rx),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
+        .gtwiz_reset_rx_done_int_reg(\FSM_sequential_sm_reset_rx[1]_i_2_n_0 ),
+        .gtwiz_reset_rx_done_int_reg_0(gtwiz_reset_rx_done_int_reg_n_0),
+        .plllock_rx_sync(plllock_rx_sync),
+        .qpll1lock_out(qpll1lock_out));
+  FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_12 bit_synchronizer_plllock_tx_inst
+       (.E(bit_synchronizer_plllock_tx_inst_n_3),
+        .\FSM_sequential_sm_reset_tx_reg[0] (bit_synchronizer_plllock_tx_inst_n_0),
+        .\FSM_sequential_sm_reset_tx_reg[0]_0 (bit_synchronizer_plllock_tx_inst_n_2),
+        .\FSM_sequential_sm_reset_tx_reg[0]_1 (\FSM_sequential_sm_reset_tx[2]_i_4_n_0 ),
+        .\FSM_sequential_sm_reset_tx_reg[0]_2 (\FSM_sequential_sm_reset_tx[2]_i_5_n_0 ),
+        .\FSM_sequential_sm_reset_tx_reg[0]_3 (bit_synchronizer_gtwiz_reset_tx_datapath_dly_inst_n_0),
+        .\FSM_sequential_sm_reset_tx_reg[0]_4 (sm_reset_tx_pll_timer_clr_reg_n_0),
+        .GTHE4_CHANNEL_GTTXRESET(GTHE4_CHANNEL_GTTXRESET),
+        .Q(sm_reset_tx),
+        .\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync ),
+        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
+        .gtwiz_reset_tx_any_sync(gtwiz_reset_tx_any_sync),
+        .gtwiz_reset_tx_done_int_reg(gtwiz_reset_tx_done_int_i_2_n_0),
+        .gtwiz_reset_tx_done_int_reg_0(gtwiz_reset_tx_done_int_i_3_n_0),
+        .gtwiz_reset_tx_done_int_reg_1(gtwiz_reset_tx_done_int_reg_n_0),
+        .gtwiz_reset_userclk_tx_active_sync(gtwiz_reset_userclk_tx_active_sync),
+        .qpll1lock_out(qpll1lock_out),
+        .sm_reset_tx_pll_timer_sat(sm_reset_tx_pll_timer_sat),
+        .sm_reset_tx_timer_clr_reg(sm_reset_tx_timer_clr_reg_n_0),
+        .sm_reset_tx_timer_sat(sm_reset_tx_timer_sat),
+        .sm_reset_tx_timer_sat_reg(bit_synchronizer_plllock_tx_inst_n_1));
+  FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_bit_synchronizer_13 bit_synchronizer_rxcdrlock_inst
+       (.\FSM_sequential_sm_reset_rx_reg[1] (bit_synchronizer_rxcdrlock_inst_n_2),
+        .GTHE4_CHANNEL_RXPROGDIVRESET(GTHE4_CHANNEL_RXPROGDIVRESET),
+        .Q(sm_reset_rx),
+        .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
+        .gtwiz_reset_rx_any_sync(gtwiz_reset_rx_any_sync),
         .gtwiz_reset_rx_cdr_stable_out(gtwiz_reset_rx_cdr_stable_out),
         .i_in_meta_reg_0(i_in_meta_reg),
+        .i_in_out_reg_0(bit_synchronizer_rxcdrlock_inst_n_1),
         .plllock_rx_sync(plllock_rx_sync),
         .sm_reset_rx_cdr_to_clr(sm_reset_rx_cdr_to_clr),
         .sm_reset_rx_cdr_to_clr_reg(sm_reset_rx_cdr_to_clr_i_3_n_0),
+        .sm_reset_rx_cdr_to_clr_reg_0(\FSM_sequential_sm_reset_rx[2]_i_7_n_0 ),
         .sm_reset_rx_cdr_to_sat(sm_reset_rx_cdr_to_sat),
-        .sm_reset_rx_cdr_to_sat_reg(bit_synchronizer_rxcdrlock_inst_n_2));
+        .sm_reset_rx_cdr_to_sat_reg(bit_synchronizer_rxcdrlock_inst_n_3));
   (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h8B)) 
@@ -12343,7 +12296,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     gtrxreset_out_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(reset_synchronizer_gtwiz_reset_rx_any_inst_n_3),
+        .D(reset_synchronizer_gtwiz_reset_rx_any_inst_n_2),
         .Q(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int ),
         .R(1'b0));
   FDRE #(
@@ -12351,7 +12304,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     gttxreset_out_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(reset_synchronizer_gtwiz_reset_tx_any_inst_n_2),
+        .D(bit_synchronizer_plllock_tx_inst_n_2),
         .Q(GTHE4_CHANNEL_GTTXRESET),
         .R(1'b0));
   LUT2 #(
@@ -12382,7 +12335,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     gtwiz_reset_rx_done_int_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_plllock_rx_inst_n_2),
+        .D(bit_synchronizer_plllock_rx_inst_n_1),
         .Q(gtwiz_reset_rx_done_int_reg_n_0),
         .R(gtwiz_reset_rx_any_sync));
   LUT4 #(
@@ -12401,22 +12354,29 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .D(gtwiz_reset_rx_pll_and_datapath_int_i_1_n_0),
         .Q(gtwiz_reset_rx_pll_and_datapath_int_reg_n_0),
         .R(gtwiz_reset_all_sync));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h04000000)) 
     gtwiz_reset_tx_done_int_i_2
-       (.I0(sm_reset_tx[1]),
+       (.I0(sm_reset_tx_timer_clr_reg_n_0),
         .I1(sm_reset_tx_timer_sat),
-        .I2(sm_reset_tx_timer_clr_reg_n_0),
-        .I3(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
-        .I4(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
+        .I2(sm_reset_tx[1]),
+        .I3(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
+        .I4(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
         .O(gtwiz_reset_tx_done_int_i_2_n_0));
+  LUT4 #(
+    .INIT(16'h8000)) 
+    gtwiz_reset_tx_done_int_i_3
+       (.I0(\FSM_sequential_sm_reset_tx[2]_i_4_n_0 ),
+        .I1(sm_reset_tx[0]),
+        .I2(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [1]),
+        .I3(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.txresetdone_sync [0]),
+        .O(gtwiz_reset_tx_done_int_i_3_n_0));
   FDRE #(
     .INIT(1'b0)) 
     gtwiz_reset_tx_done_int_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_plllock_tx_inst_n_3),
+        .D(bit_synchronizer_plllock_tx_inst_n_0),
         .Q(gtwiz_reset_tx_done_int_reg_n_0),
         .R(gtwiz_reset_tx_any_sync));
   (* SOFT_HLUTNM = "soft_lutpair12" *) 
@@ -12458,20 +12418,18 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14 reset_synchronizer_gtwiz_reset_rx_any_inst
        (.\FSM_sequential_sm_reset_rx_reg[1] (reset_synchronizer_gtwiz_reset_rx_any_inst_n_1),
-        .\FSM_sequential_sm_reset_rx_reg[1]_0 (reset_synchronizer_gtwiz_reset_rx_any_inst_n_2),
-        .\FSM_sequential_sm_reset_rx_reg[1]_1 (reset_synchronizer_gtwiz_reset_rx_any_inst_n_3),
-        .GTHE4_CHANNEL_RXPROGDIVRESET(GTHE4_CHANNEL_RXPROGDIVRESET),
         .Q(sm_reset_rx),
         .\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int ),
         .\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int ),
-        .gtrxreset_out_reg(bit_synchronizer_plllock_rx_inst_n_1),
+        .gtrxreset_out_reg(\FSM_sequential_sm_reset_rx[2]_i_7_n_0 ),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_any_sync(gtwiz_reset_rx_any_sync),
         .gtwiz_reset_rx_datapath_in(gtwiz_reset_rx_datapath_in),
         .gtwiz_reset_rx_pll_and_datapath_in(gtwiz_reset_rx_pll_and_datapath_in),
+        .i_in_out_reg(reset_synchronizer_gtwiz_reset_rx_any_inst_n_2),
+        .plllock_rx_sync(plllock_rx_sync),
         .rst_in_out_reg_0(gtwiz_reset_rx_datapath_int_reg_n_0),
-        .rst_in_out_reg_1(gtwiz_reset_rx_pll_and_datapath_int_reg_n_0),
-        .rxprogdivreset_out_reg(bit_synchronizer_rxcdrlock_inst_n_2));
+        .rst_in_out_reg_1(gtwiz_reset_rx_pll_and_datapath_int_reg_n_0));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_15 reset_synchronizer_gtwiz_reset_rx_datapath_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_rx_datapath_in(gtwiz_reset_rx_datapath_in),
@@ -12483,17 +12441,17 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .in0(gtwiz_reset_rx_pll_and_datapath_sync),
         .rst_in_out_reg_0(gtwiz_reset_rx_pll_and_datapath_int_reg_n_0));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17 reset_synchronizer_gtwiz_reset_tx_any_inst
-       (.\FSM_sequential_sm_reset_tx_reg[1] (reset_synchronizer_gtwiz_reset_tx_any_inst_n_1),
-        .GTHE4_CHANNEL_GTTXRESET(GTHE4_CHANNEL_GTTXRESET),
+       (.\FSM_sequential_sm_reset_tx_reg[0] (reset_synchronizer_gtwiz_reset_tx_any_inst_n_2),
+        .\FSM_sequential_sm_reset_tx_reg[1] (reset_synchronizer_gtwiz_reset_tx_any_inst_n_1),
+        .GTHE4_CHANNEL_TXUSERRDY(GTHE4_CHANNEL_TXUSERRDY),
         .Q(sm_reset_tx),
         .\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int ),
-        .gttxreset_out_reg(bit_synchronizer_plllock_tx_inst_n_2),
         .gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_tx_any_sync(gtwiz_reset_tx_any_sync),
         .gtwiz_reset_tx_datapath_in(gtwiz_reset_tx_datapath_in),
         .gtwiz_reset_tx_pll_and_datapath_in(gtwiz_reset_tx_pll_and_datapath_in),
-        .rst_in_out_reg_0(reset_synchronizer_gtwiz_reset_tx_any_inst_n_2),
-        .rst_in_out_reg_1(gtwiz_reset_tx_pll_and_datapath_int_reg_n_0));
+        .rst_in_out_reg_0(gtwiz_reset_tx_pll_and_datapath_int_reg_n_0),
+        .txuserrdy_out_reg(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1));
   FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_18 reset_synchronizer_gtwiz_reset_tx_datapath_inst
        (.gtwiz_reset_clk_freerun_in(gtwiz_reset_clk_freerun_in),
         .gtwiz_reset_tx_datapath_in(gtwiz_reset_tx_datapath_in),
@@ -12520,7 +12478,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     rxprogdivreset_out_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(reset_synchronizer_gtwiz_reset_rx_any_inst_n_2),
+        .D(bit_synchronizer_rxcdrlock_inst_n_2),
         .Q(GTHE4_CHANNEL_RXPROGDIVRESET),
         .R(1'b0));
   FDRE #(
@@ -12528,7 +12486,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     rxuserrdy_out_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_2),
+        .D(bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1),
         .Q(GTHE4_CHANNEL_RXUSERRDY),
         .R(1'b0));
   LUT5 #(
@@ -12626,77 +12584,90 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .D(sm_reset_all_timer_sat_i_1_n_0),
         .Q(sm_reset_all_timer_sat),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
+  LUT2 #(
+    .INIT(4'hB)) 
     sm_reset_rx_cdr_to_clr_i_3
-       (.I0(sm_reset_rx_timer_clr_reg_n_0),
-        .I1(sm_reset_rx_timer_sat),
-        .I2(sm_reset_rx[1]),
+       (.I0(sm_reset_rx[2]),
+        .I1(sm_reset_rx[1]),
         .O(sm_reset_rx_cdr_to_clr_i_3_n_0));
   FDSE #(
     .INIT(1'b1)) 
     sm_reset_rx_cdr_to_clr_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_rxcdrlock_inst_n_3),
+        .D(bit_synchronizer_rxcdrlock_inst_n_1),
         .Q(sm_reset_rx_cdr_to_clr),
         .S(gtwiz_reset_rx_any_sync));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFD)) 
-    \sm_reset_rx_cdr_to_ctr[0]_i_1 
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[0]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[1]),
-        .I2(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ),
-        .I3(\sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 ),
-        .I4(\sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ),
-        .I5(\sm_reset_rx_cdr_to_ctr[0]_i_6_n_0 ),
-        .O(\sm_reset_rx_cdr_to_ctr[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFDFFFFFFFFFFFFF)) 
-    \sm_reset_rx_cdr_to_ctr[0]_i_3 
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[18]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[19]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[16]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[17]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[15]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[14]),
-        .O(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \sm_reset_rx_cdr_to_ctr[0]_i_4 
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[24]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[25]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[22]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[23]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[21]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[20]),
-        .O(\sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFDFFFFFFFFFFF)) 
-    \sm_reset_rx_cdr_to_ctr[0]_i_5 
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[12]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[13]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[10]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[11]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[8]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[9]),
-        .O(\sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFDF)) 
-    \sm_reset_rx_cdr_to_ctr[0]_i_6 
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[7]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[6]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[4]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[5]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[3]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[2]),
-        .O(\sm_reset_rx_cdr_to_ctr[0]_i_6_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
-    \sm_reset_rx_cdr_to_ctr[0]_i_7 
+    \sm_reset_rx_cdr_to_ctr[0]_i_1 
+       (.I0(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_10 
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[21]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[5]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[7]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[2]),
+        .I4(sm_reset_rx_cdr_to_ctr_reg[15]),
+        .I5(sm_reset_rx_cdr_to_ctr_reg[24]),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000000010)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_3 
+       (.I0(\sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ),
+        .I1(\sm_reset_rx_cdr_to_ctr[0]_i_6_n_0 ),
+        .I2(\sm_reset_rx_cdr_to_ctr[0]_i_7_n_0 ),
+        .I3(\sm_reset_rx_cdr_to_ctr[0]_i_8_n_0 ),
+        .I4(\sm_reset_rx_cdr_to_ctr[0]_i_9_n_0 ),
+        .I5(\sm_reset_rx_cdr_to_ctr[0]_i_10_n_0 ),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_4 
        (.I0(sm_reset_rx_cdr_to_ctr_reg[0]),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 ));
+  LUT4 #(
+    .INIT(16'hEFFF)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_5 
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[4]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[1]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[3]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[8]),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFEF)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_6 
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[20]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[16]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[19]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[25]),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_6_n_0 ));
+  LUT4 #(
+    .INIT(16'h1000)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_7 
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[9]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[13]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[17]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[12]),
         .O(\sm_reset_rx_cdr_to_ctr[0]_i_7_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFDF)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_8 
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[11]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[14]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[18]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[22]),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFDF)) 
+    \sm_reset_rx_cdr_to_ctr[0]_i_9 
+       (.I0(sm_reset_rx_cdr_to_ctr_reg[6]),
+        .I1(sm_reset_rx_cdr_to_ctr_reg[0]),
+        .I2(sm_reset_rx_cdr_to_ctr_reg[10]),
+        .I3(sm_reset_rx_cdr_to_ctr_reg[23]),
+        .O(\sm_reset_rx_cdr_to_ctr[0]_i_9_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \sm_reset_rx_cdr_to_ctr_reg[0] 
@@ -12712,7 +12683,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .CO({\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_0 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_1 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_2 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_3 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_4 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_5 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_6 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_7 }),
         .DI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1}),
         .O({\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_8 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_9 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_10 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_11 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_12 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_13 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_14 ,\sm_reset_rx_cdr_to_ctr_reg[0]_i_2_n_15 }),
-        .S({sm_reset_rx_cdr_to_ctr_reg[7:1],\sm_reset_rx_cdr_to_ctr[0]_i_7_n_0 }));
+        .S({sm_reset_rx_cdr_to_ctr_reg[7:1],\sm_reset_rx_cdr_to_ctr[0]_i_4_n_0 }));
   FDRE #(
     .INIT(1'b0)) 
     \sm_reset_rx_cdr_to_ctr_reg[10] 
@@ -12941,59 +12912,9 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(8'h0E)) 
     sm_reset_rx_cdr_to_sat_i_1
        (.I0(sm_reset_rx_cdr_to_sat),
-        .I1(sm_reset_rx_cdr_to_sat_i_2_n_0),
+        .I1(\sm_reset_rx_cdr_to_ctr[0]_i_3_n_0 ),
         .I2(sm_reset_rx_cdr_to_clr),
         .O(sm_reset_rx_cdr_to_sat_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h0000000080000000)) 
-    sm_reset_rx_cdr_to_sat_i_2
-       (.I0(sm_reset_rx_cdr_to_sat_i_3_n_0),
-        .I1(sm_reset_rx_cdr_to_sat_i_4_n_0),
-        .I2(sm_reset_rx_cdr_to_sat_i_5_n_0),
-        .I3(sm_reset_rx_cdr_to_sat_i_6_n_0),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[0]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[1]),
-        .O(sm_reset_rx_cdr_to_sat_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h0000000200000000)) 
-    sm_reset_rx_cdr_to_sat_i_3
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[4]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[5]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[2]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[3]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[6]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[7]),
-        .O(sm_reset_rx_cdr_to_sat_i_3_n_0));
-  LUT6 #(
-    .INIT(64'h0000000000000001)) 
-    sm_reset_rx_cdr_to_sat_i_4
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[22]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[23]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[20]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[21]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[25]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[24]),
-        .O(sm_reset_rx_cdr_to_sat_i_4_n_0));
-  LUT6 #(
-    .INIT(64'h0000200000000000)) 
-    sm_reset_rx_cdr_to_sat_i_5
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[16]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[17]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[14]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[15]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[19]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[18]),
-        .O(sm_reset_rx_cdr_to_sat_i_5_n_0));
-  LUT6 #(
-    .INIT(64'h0000008000000000)) 
-    sm_reset_rx_cdr_to_sat_i_6
-       (.I0(sm_reset_rx_cdr_to_ctr_reg[10]),
-        .I1(sm_reset_rx_cdr_to_ctr_reg[11]),
-        .I2(sm_reset_rx_cdr_to_ctr_reg[9]),
-        .I3(sm_reset_rx_cdr_to_ctr_reg[8]),
-        .I4(sm_reset_rx_cdr_to_ctr_reg[13]),
-        .I5(sm_reset_rx_cdr_to_ctr_reg[12]),
-        .O(sm_reset_rx_cdr_to_sat_i_6_n_0));
   FDRE #(
     .INIT(1'b0)) 
     sm_reset_rx_cdr_to_sat_reg
@@ -13002,13 +12923,14 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .D(sm_reset_rx_cdr_to_sat_i_1_n_0),
         .Q(sm_reset_rx_cdr_to_sat),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'hFFF3000B)) 
     sm_reset_rx_pll_timer_clr_i_1
        (.I0(sm_reset_rx_pll_timer_sat),
         .I1(sm_reset_rx[0]),
-        .I2(sm_reset_rx[1]),
-        .I3(sm_reset_rx[2]),
+        .I2(sm_reset_rx[2]),
+        .I3(sm_reset_rx[1]),
         .I4(sm_reset_rx_pll_timer_clr_reg_n_0),
         .O(sm_reset_rx_pll_timer_clr_i_1_n_0));
   FDSE #(
@@ -13029,109 +12951,120 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_rx_pll_timer_ctr[1]_i_1 
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[1]),
-        .O(p_0_in__1[1]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \sm_reset_rx_pll_timer_ctr[2]_i_1 
        (.I0(sm_reset_rx_pll_timer_ctr_reg[1]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
-        .O(\sm_reset_rx_pll_timer_ctr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \sm_reset_rx_pll_timer_ctr[3]_i_1 
+        .O(p_0_in__1[1]));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT3 #(
+    .INIT(8'h6A)) 
+    \sm_reset_rx_pll_timer_ctr[2]_i_1 
        (.I0(sm_reset_rx_pll_timer_ctr_reg[2]),
+        .I1(sm_reset_rx_pll_timer_ctr_reg[1]),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[0]),
+        .O(p_0_in__1[2]));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT4 #(
+    .INIT(16'h6AAA)) 
+    \sm_reset_rx_pll_timer_ctr[3]_i_1 
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[3]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[0]),
         .I2(sm_reset_rx_pll_timer_ctr_reg[1]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[3]),
-        .O(\sm_reset_rx_pll_timer_ctr[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+        .I3(sm_reset_rx_pll_timer_ctr_reg[2]),
+        .O(p_0_in__1[3]));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
-    .INIT(32'h7FFF8000)) 
+    .INIT(32'h6AAAAAAA)) 
     \sm_reset_rx_pll_timer_ctr[4]_i_1 
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[1]),
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[4]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[3]),
-        .I4(sm_reset_rx_pll_timer_ctr_reg[4]),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[1]),
+        .I3(sm_reset_rx_pll_timer_ctr_reg[2]),
+        .I4(sm_reset_rx_pll_timer_ctr_reg[3]),
         .O(p_0_in__1[4]));
   LUT6 #(
-    .INIT(64'h7FFFFFFF80000000)) 
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \sm_reset_rx_pll_timer_ctr[5]_i_1 
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[4]),
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[5]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[3]),
         .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I4(sm_reset_rx_pll_timer_ctr_reg[1]),
-        .I5(sm_reset_rx_pll_timer_ctr_reg[5]),
+        .I3(sm_reset_rx_pll_timer_ctr_reg[1]),
+        .I4(sm_reset_rx_pll_timer_ctr_reg[0]),
+        .I5(sm_reset_rx_pll_timer_ctr_reg[4]),
         .O(p_0_in__1[5]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_rx_pll_timer_ctr[6]_i_1 
-       (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[6]),
-        .O(p_0_in__1[6]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \sm_reset_rx_pll_timer_ctr[7]_i_1 
        (.I0(sm_reset_rx_pll_timer_ctr_reg[6]),
         .I1(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[7]),
+        .O(p_0_in__1[6]));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT3 #(
+    .INIT(8'h6A)) 
+    \sm_reset_rx_pll_timer_ctr[7]_i_1 
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[7]),
+        .I1(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[6]),
         .O(p_0_in__1[7]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
-    .INIT(16'h7F80)) 
+    .INIT(16'h6AAA)) 
     \sm_reset_rx_pll_timer_ctr[8]_i_1 
-       (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[8]),
+        .I1(sm_reset_rx_pll_timer_ctr_reg[7]),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[6]),
+        .I3(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
+        .O(p_0_in__1[8]));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \sm_reset_rx_pll_timer_ctr[9]_i_1 
+       (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_3_n_0 ),
+        .O(\sm_reset_rx_pll_timer_ctr[9]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT5 #(
+    .INIT(32'h6AAAAAAA)) 
+    \sm_reset_rx_pll_timer_ctr[9]_i_2 
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[9]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[6]),
         .I2(sm_reset_rx_pll_timer_ctr_reg[7]),
         .I3(sm_reset_rx_pll_timer_ctr_reg[8]),
-        .O(p_0_in__1[8]));
-  LUT5 #(
-    .INIT(32'hEFFFFFFF)) 
-    \sm_reset_rx_pll_timer_ctr[9]_i_1 
-       (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_3_n_0 ),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[3]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[1]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I4(sm_reset_rx_pll_timer_ctr_reg[2]),
-        .O(\sm_reset_rx_pll_timer_ctr[9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT5 #(
-    .INIT(32'h7FFF8000)) 
-    \sm_reset_rx_pll_timer_ctr[9]_i_2 
-       (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[8]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[7]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[6]),
-        .I4(sm_reset_rx_pll_timer_ctr_reg[9]),
+        .I4(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ),
         .O(p_0_in__1[9]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+  LUT5 #(
+    .INIT(32'h00000001)) 
     \sm_reset_rx_pll_timer_ctr[9]_i_3 
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[8]),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[9]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[6]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[7]),
+       (.I0(\sm_reset_rx_pll_timer_ctr[9]_i_5_n_0 ),
+        .I1(\sm_reset_rx_pll_timer_ctr[9]_i_6_n_0 ),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[4]),
+        .I3(sm_reset_rx_pll_timer_ctr_reg[6]),
         .I4(sm_reset_rx_pll_timer_ctr_reg[5]),
-        .I5(sm_reset_rx_pll_timer_ctr_reg[4]),
         .O(\sm_reset_rx_pll_timer_ctr[9]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h8000000000000000)) 
     \sm_reset_rx_pll_timer_ctr[9]_i_4 
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[4]),
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[5]),
         .I1(sm_reset_rx_pll_timer_ctr_reg[3]),
         .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I4(sm_reset_rx_pll_timer_ctr_reg[1]),
-        .I5(sm_reset_rx_pll_timer_ctr_reg[5]),
+        .I3(sm_reset_rx_pll_timer_ctr_reg[1]),
+        .I4(sm_reset_rx_pll_timer_ctr_reg[0]),
+        .I5(sm_reset_rx_pll_timer_ctr_reg[4]),
         .O(\sm_reset_rx_pll_timer_ctr[9]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT3 #(
+    .INIT(8'h7F)) 
+    \sm_reset_rx_pll_timer_ctr[9]_i_5 
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[0]),
+        .I1(sm_reset_rx_pll_timer_ctr_reg[1]),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
+        .O(\sm_reset_rx_pll_timer_ctr[9]_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \sm_reset_rx_pll_timer_ctr[9]_i_6 
+       (.I0(sm_reset_rx_pll_timer_ctr_reg[8]),
+        .I1(sm_reset_rx_pll_timer_ctr_reg[3]),
+        .I2(sm_reset_rx_pll_timer_ctr_reg[9]),
+        .I3(sm_reset_rx_pll_timer_ctr_reg[7]),
+        .O(\sm_reset_rx_pll_timer_ctr[9]_i_6_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \sm_reset_rx_pll_timer_ctr_reg[0] 
@@ -13153,7 +13086,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     \sm_reset_rx_pll_timer_ctr_reg[2] 
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(\sm_reset_rx_pll_timer_ctr[9]_i_1_n_0 ),
-        .D(\sm_reset_rx_pll_timer_ctr[2]_i_1_n_0 ),
+        .D(p_0_in__1[2]),
         .Q(sm_reset_rx_pll_timer_ctr_reg[2]),
         .R(sm_reset_rx_pll_timer_clr_reg_n_0));
   FDRE #(
@@ -13161,7 +13094,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     \sm_reset_rx_pll_timer_ctr_reg[3] 
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(\sm_reset_rx_pll_timer_ctr[9]_i_1_n_0 ),
-        .D(\sm_reset_rx_pll_timer_ctr[3]_i_1_n_0 ),
+        .D(p_0_in__1[3]),
         .Q(sm_reset_rx_pll_timer_ctr_reg[3]),
         .R(sm_reset_rx_pll_timer_clr_reg_n_0));
   FDRE #(
@@ -13212,33 +13145,13 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .D(p_0_in__1[9]),
         .Q(sm_reset_rx_pll_timer_ctr_reg[9]),
         .R(sm_reset_rx_pll_timer_clr_reg_n_0));
-  LUT5 #(
-    .INIT(32'h0000ABAA)) 
+  LUT3 #(
+    .INIT(8'h0E)) 
     sm_reset_rx_pll_timer_sat_i_1
        (.I0(sm_reset_rx_pll_timer_sat),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[3]),
-        .I2(sm_reset_rx_pll_timer_sat_i_2_n_0),
-        .I3(sm_reset_rx_pll_timer_sat_i_3_n_0),
-        .I4(sm_reset_rx_pll_timer_clr_reg_n_0),
+        .I1(\sm_reset_rx_pll_timer_ctr[9]_i_3_n_0 ),
+        .I2(sm_reset_rx_pll_timer_clr_reg_n_0),
         .O(sm_reset_rx_pll_timer_sat_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT3 #(
-    .INIT(8'h7F)) 
-    sm_reset_rx_pll_timer_sat_i_2
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[1]),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[0]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[2]),
-        .O(sm_reset_rx_pll_timer_sat_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h0000000000000001)) 
-    sm_reset_rx_pll_timer_sat_i_3
-       (.I0(sm_reset_rx_pll_timer_ctr_reg[6]),
-        .I1(sm_reset_rx_pll_timer_ctr_reg[7]),
-        .I2(sm_reset_rx_pll_timer_ctr_reg[4]),
-        .I3(sm_reset_rx_pll_timer_ctr_reg[5]),
-        .I4(sm_reset_rx_pll_timer_ctr_reg[9]),
-        .I5(sm_reset_rx_pll_timer_ctr_reg[8]),
-        .O(sm_reset_rx_pll_timer_sat_i_3_n_0));
   FDRE #(
     .INIT(1'b0)) 
     sm_reset_rx_pll_timer_sat_reg
@@ -13252,7 +13165,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     sm_reset_rx_timer_clr_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_1),
+        .D(bit_synchronizer_gtwiz_reset_userclk_rx_active_inst_n_0),
         .Q(sm_reset_rx_timer_clr_reg_n_0),
         .S(gtwiz_reset_rx_any_sync));
   LUT3 #(
@@ -13324,14 +13237,13 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .D(sm_reset_rx_timer_sat_i_1_n_0),
         .Q(sm_reset_rx_timer_sat),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
-    .INIT(32'hFFF5000D)) 
+    .INIT(32'hEFEF1101)) 
     sm_reset_tx_pll_timer_clr_i_1
-       (.I0(sm_reset_tx[0]),
-        .I1(sm_reset_tx_pll_timer_sat),
-        .I2(sm_reset_tx[1]),
-        .I3(sm_reset_tx[2]),
+       (.I0(sm_reset_tx[1]),
+        .I1(sm_reset_tx[2]),
+        .I2(sm_reset_tx[0]),
+        .I3(sm_reset_tx_pll_timer_sat),
         .I4(sm_reset_tx_pll_timer_clr_reg_n_0),
         .O(sm_reset_tx_pll_timer_clr_i_1_n_0));
   FDSE #(
@@ -13352,114 +13264,125 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_tx_pll_timer_ctr[1]_i_1 
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[1]),
-        .O(p_0_in__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \sm_reset_tx_pll_timer_ctr[2]_i_1 
        (.I0(sm_reset_tx_pll_timer_ctr_reg[1]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
-        .O(\sm_reset_tx_pll_timer_ctr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \sm_reset_tx_pll_timer_ctr[3]_i_1 
+        .O(p_0_in__0[1]));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT3 #(
+    .INIT(8'h6A)) 
+    \sm_reset_tx_pll_timer_ctr[2]_i_1 
        (.I0(sm_reset_tx_pll_timer_ctr_reg[2]),
+        .I1(sm_reset_tx_pll_timer_ctr_reg[1]),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[0]),
+        .O(p_0_in__0[2]));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT4 #(
+    .INIT(16'h6AAA)) 
+    \sm_reset_tx_pll_timer_ctr[3]_i_1 
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[3]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[0]),
         .I2(sm_reset_tx_pll_timer_ctr_reg[1]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[3]),
-        .O(\sm_reset_tx_pll_timer_ctr[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+        .I3(sm_reset_tx_pll_timer_ctr_reg[2]),
+        .O(p_0_in__0[3]));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
-    .INIT(32'h7FFF8000)) 
+    .INIT(32'h6AAAAAAA)) 
     \sm_reset_tx_pll_timer_ctr[4]_i_1 
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[1]),
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[4]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[3]),
-        .I4(sm_reset_tx_pll_timer_ctr_reg[4]),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[1]),
+        .I3(sm_reset_tx_pll_timer_ctr_reg[2]),
+        .I4(sm_reset_tx_pll_timer_ctr_reg[3]),
         .O(p_0_in__0[4]));
   LUT6 #(
-    .INIT(64'h7FFFFFFF80000000)) 
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \sm_reset_tx_pll_timer_ctr[5]_i_1 
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[4]),
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[5]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[3]),
         .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I4(sm_reset_tx_pll_timer_ctr_reg[1]),
-        .I5(sm_reset_tx_pll_timer_ctr_reg[5]),
+        .I3(sm_reset_tx_pll_timer_ctr_reg[1]),
+        .I4(sm_reset_tx_pll_timer_ctr_reg[0]),
+        .I5(sm_reset_tx_pll_timer_ctr_reg[4]),
         .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \sm_reset_tx_pll_timer_ctr[6]_i_1 
-       (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[6]),
-        .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \sm_reset_tx_pll_timer_ctr[7]_i_1 
        (.I0(sm_reset_tx_pll_timer_ctr_reg[6]),
         .I1(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[7]),
+        .O(p_0_in__0[6]));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT3 #(
+    .INIT(8'h6A)) 
+    \sm_reset_tx_pll_timer_ctr[7]_i_1 
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[7]),
+        .I1(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[6]),
         .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
-    .INIT(16'h7F80)) 
+    .INIT(16'h6AAA)) 
     \sm_reset_tx_pll_timer_ctr[8]_i_1 
-       (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[8]),
+        .I1(sm_reset_tx_pll_timer_ctr_reg[7]),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[6]),
+        .I3(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
+        .O(p_0_in__0[8]));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \sm_reset_tx_pll_timer_ctr[9]_i_1 
+       (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_3_n_0 ),
+        .O(sel));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'h6AAAAAAA)) 
+    \sm_reset_tx_pll_timer_ctr[9]_i_2 
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[9]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[6]),
         .I2(sm_reset_tx_pll_timer_ctr_reg[7]),
         .I3(sm_reset_tx_pll_timer_ctr_reg[8]),
-        .O(p_0_in__0[8]));
-  LUT5 #(
-    .INIT(32'hEFFFFFFF)) 
-    \sm_reset_tx_pll_timer_ctr[9]_i_1 
-       (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_3_n_0 ),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[3]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[1]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I4(sm_reset_tx_pll_timer_ctr_reg[2]),
-        .O(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'h7FFF8000)) 
-    \sm_reset_tx_pll_timer_ctr[9]_i_2 
-       (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[8]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[7]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[6]),
-        .I4(sm_reset_tx_pll_timer_ctr_reg[9]),
+        .I4(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ),
         .O(p_0_in__0[9]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+  LUT5 #(
+    .INIT(32'h00000001)) 
     \sm_reset_tx_pll_timer_ctr[9]_i_3 
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[8]),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[9]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[6]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[7]),
+       (.I0(\sm_reset_tx_pll_timer_ctr[9]_i_5_n_0 ),
+        .I1(\sm_reset_tx_pll_timer_ctr[9]_i_6_n_0 ),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[4]),
+        .I3(sm_reset_tx_pll_timer_ctr_reg[6]),
         .I4(sm_reset_tx_pll_timer_ctr_reg[5]),
-        .I5(sm_reset_tx_pll_timer_ctr_reg[4]),
         .O(\sm_reset_tx_pll_timer_ctr[9]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h8000000000000000)) 
     \sm_reset_tx_pll_timer_ctr[9]_i_4 
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[4]),
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[5]),
         .I1(sm_reset_tx_pll_timer_ctr_reg[3]),
         .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I4(sm_reset_tx_pll_timer_ctr_reg[1]),
-        .I5(sm_reset_tx_pll_timer_ctr_reg[5]),
+        .I3(sm_reset_tx_pll_timer_ctr_reg[1]),
+        .I4(sm_reset_tx_pll_timer_ctr_reg[0]),
+        .I5(sm_reset_tx_pll_timer_ctr_reg[4]),
         .O(\sm_reset_tx_pll_timer_ctr[9]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT3 #(
+    .INIT(8'h7F)) 
+    \sm_reset_tx_pll_timer_ctr[9]_i_5 
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[0]),
+        .I1(sm_reset_tx_pll_timer_ctr_reg[1]),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
+        .O(\sm_reset_tx_pll_timer_ctr[9]_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \sm_reset_tx_pll_timer_ctr[9]_i_6 
+       (.I0(sm_reset_tx_pll_timer_ctr_reg[8]),
+        .I1(sm_reset_tx_pll_timer_ctr_reg[3]),
+        .I2(sm_reset_tx_pll_timer_ctr_reg[9]),
+        .I3(sm_reset_tx_pll_timer_ctr_reg[7]),
+        .O(\sm_reset_tx_pll_timer_ctr[9]_i_6_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[0] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[0]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[0]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13467,7 +13390,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[1] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[1]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[1]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13475,23 +13398,23 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[2] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
-        .D(\sm_reset_tx_pll_timer_ctr[2]_i_1_n_0 ),
+        .CE(sel),
+        .D(p_0_in__0[2]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[2]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
   FDRE #(
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[3] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
-        .D(\sm_reset_tx_pll_timer_ctr[3]_i_1_n_0 ),
+        .CE(sel),
+        .D(p_0_in__0[3]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[3]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
   FDRE #(
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[4] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[4]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[4]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13499,7 +13422,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[5] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[5]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[5]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13507,7 +13430,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[6] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[6]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[6]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13515,7 +13438,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[7] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[7]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[7]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13523,7 +13446,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[8] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[8]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[8]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
@@ -13531,37 +13454,17 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     .INIT(1'b0)) 
     \sm_reset_tx_pll_timer_ctr_reg[9] 
        (.C(gtwiz_reset_clk_freerun_in),
-        .CE(\sm_reset_tx_pll_timer_ctr[9]_i_1_n_0 ),
+        .CE(sel),
         .D(p_0_in__0[9]),
         .Q(sm_reset_tx_pll_timer_ctr_reg[9]),
         .R(sm_reset_tx_pll_timer_clr_reg_n_0));
-  LUT5 #(
-    .INIT(32'h0000ABAA)) 
+  LUT3 #(
+    .INIT(8'h0E)) 
     sm_reset_tx_pll_timer_sat_i_1
        (.I0(sm_reset_tx_pll_timer_sat),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[3]),
-        .I2(sm_reset_tx_pll_timer_sat_i_2_n_0),
-        .I3(sm_reset_tx_pll_timer_sat_i_3_n_0),
-        .I4(sm_reset_tx_pll_timer_clr_reg_n_0),
+        .I1(\sm_reset_tx_pll_timer_ctr[9]_i_3_n_0 ),
+        .I2(sm_reset_tx_pll_timer_clr_reg_n_0),
         .O(sm_reset_tx_pll_timer_sat_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT3 #(
-    .INIT(8'h7F)) 
-    sm_reset_tx_pll_timer_sat_i_2
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[1]),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[0]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[2]),
-        .O(sm_reset_tx_pll_timer_sat_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h0000000000000001)) 
-    sm_reset_tx_pll_timer_sat_i_3
-       (.I0(sm_reset_tx_pll_timer_ctr_reg[6]),
-        .I1(sm_reset_tx_pll_timer_ctr_reg[7]),
-        .I2(sm_reset_tx_pll_timer_ctr_reg[4]),
-        .I3(sm_reset_tx_pll_timer_ctr_reg[5]),
-        .I4(sm_reset_tx_pll_timer_ctr_reg[9]),
-        .I5(sm_reset_tx_pll_timer_ctr_reg[8]),
-        .O(sm_reset_tx_pll_timer_sat_i_3_n_0));
   FDRE #(
     .INIT(1'b0)) 
     sm_reset_tx_pll_timer_sat_reg
@@ -13575,7 +13478,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     sm_reset_tx_timer_clr_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_1),
+        .D(bit_synchronizer_plllock_tx_inst_n_1),
         .Q(sm_reset_tx_timer_clr_reg_n_0),
         .S(gtwiz_reset_tx_any_sync));
   LUT3 #(
@@ -13651,7 +13554,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_gtwiz_reset
     txuserrdy_out_reg
        (.C(gtwiz_reset_clk_freerun_in),
         .CE(1'b1),
-        .D(bit_synchronizer_gtwiz_reset_userclk_tx_active_inst_n_2),
+        .D(reset_synchronizer_gtwiz_reset_tx_any_inst_n_2),
         .Q(GTHE4_CHANNEL_TXUSERRDY),
         .R(1'b0));
 endmodule
@@ -14007,14 +13910,12 @@ endmodule
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14
    (gtwiz_reset_rx_any_sync,
     \FSM_sequential_sm_reset_rx_reg[1] ,
-    \FSM_sequential_sm_reset_rx_reg[1]_0 ,
-    \FSM_sequential_sm_reset_rx_reg[1]_1 ,
+    i_in_out_reg,
     gtwiz_reset_clk_freerun_in,
     Q,
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int ,
-    rxprogdivreset_out_reg,
-    GTHE4_CHANNEL_RXPROGDIVRESET,
     gtrxreset_out_reg,
+    plllock_rx_sync,
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int ,
     rst_in_out_reg_0,
     gtwiz_reset_rx_datapath_in,
@@ -14022,14 +13923,12 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14
     rst_in_out_reg_1);
   output gtwiz_reset_rx_any_sync;
   output \FSM_sequential_sm_reset_rx_reg[1] ;
-  output \FSM_sequential_sm_reset_rx_reg[1]_0 ;
-  output \FSM_sequential_sm_reset_rx_reg[1]_1 ;
+  output i_in_out_reg;
   input [0:0]gtwiz_reset_clk_freerun_in;
   input [2:0]Q;
   input \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int ;
-  input rxprogdivreset_out_reg;
-  input [0:0]GTHE4_CHANNEL_RXPROGDIVRESET;
   input gtrxreset_out_reg;
+  input plllock_rx_sync;
   input \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int ;
   input rst_in_out_reg_0;
   input [0:0]gtwiz_reset_rx_datapath_in;
@@ -14037,43 +13936,50 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14
   input rst_in_out_reg_1;
 
   wire \FSM_sequential_sm_reset_rx_reg[1] ;
-  wire \FSM_sequential_sm_reset_rx_reg[1]_0 ;
-  wire \FSM_sequential_sm_reset_rx_reg[1]_1 ;
-  wire [0:0]GTHE4_CHANNEL_RXPROGDIVRESET;
   wire [2:0]Q;
   wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int ;
   wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int ;
+  wire gtrxreset_out_i_2_n_0;
   wire gtrxreset_out_reg;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   wire gtwiz_reset_rx_any;
   wire gtwiz_reset_rx_any_sync;
   wire [0:0]gtwiz_reset_rx_datapath_in;
   wire [0:0]gtwiz_reset_rx_pll_and_datapath_in;
+  wire i_in_out_reg;
+  wire plllock_rx_sync;
   (* async_reg = "true" *) wire rst_in_meta;
   wire rst_in_out_reg_0;
   wire rst_in_out_reg_1;
   (* async_reg = "true" *) wire rst_in_sync1;
   (* async_reg = "true" *) wire rst_in_sync2;
   (* async_reg = "true" *) wire rst_in_sync3;
-  wire rxprogdivreset_out_reg;
 
   LUT6 #(
-    .INIT(64'hFFF7FFFF00070000)) 
+    .INIT(64'hBFFFFFFF00555500)) 
     gtrxreset_out_i_1
-       (.I0(Q[1]),
-        .I1(Q[0]),
-        .I2(Q[2]),
-        .I3(gtwiz_reset_rx_any_sync),
-        .I4(gtrxreset_out_reg),
+       (.I0(gtrxreset_out_i_2_n_0),
+        .I1(gtrxreset_out_reg),
+        .I2(plllock_rx_sync),
+        .I3(Q[1]),
+        .I4(Q[0]),
         .I5(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_gtrxreset_int ),
-        .O(\FSM_sequential_sm_reset_rx_reg[1]_1 ));
+        .O(i_in_out_reg));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    gtrxreset_out_i_2
+       (.I0(Q[2]),
+        .I1(gtwiz_reset_rx_any_sync),
+        .O(gtrxreset_out_i_2_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
-    .INIT(32'hFFDF0010)) 
+    .INIT(32'hFFF70004)) 
     pllreset_rx_out_i_1
        (.I0(Q[1]),
-        .I1(Q[2]),
-        .I2(Q[0]),
-        .I3(gtwiz_reset_rx_any_sync),
+        .I1(Q[0]),
+        .I2(gtwiz_reset_rx_any_sync),
+        .I3(Q[2]),
         .I4(\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_rx_int ),
         .O(\FSM_sequential_sm_reset_rx_reg[1] ));
   LUT4 #(
@@ -14132,16 +14038,6 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_14
         .D(rst_in_sync2),
         .PRE(gtwiz_reset_rx_any),
         .Q(rst_in_sync3));
-  LUT6 #(
-    .INIT(64'hFFFBFFFF00120012)) 
-    rxprogdivreset_out_i_1
-       (.I0(Q[1]),
-        .I1(Q[2]),
-        .I2(Q[0]),
-        .I3(gtwiz_reset_rx_any_sync),
-        .I4(rxprogdivreset_out_reg),
-        .I5(GTHE4_CHANNEL_RXPROGDIVRESET),
-        .O(\FSM_sequential_sm_reset_rx_reg[1]_0 ));
 endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
@@ -14302,32 +14198,32 @@ endmodule
 module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17
    (gtwiz_reset_tx_any_sync,
     \FSM_sequential_sm_reset_tx_reg[1] ,
-    rst_in_out_reg_0,
+    \FSM_sequential_sm_reset_tx_reg[0] ,
     gtwiz_reset_clk_freerun_in,
     Q,
     \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int ,
-    gttxreset_out_reg,
-    GTHE4_CHANNEL_GTTXRESET,
+    txuserrdy_out_reg,
+    GTHE4_CHANNEL_TXUSERRDY,
     gtwiz_reset_tx_datapath_in,
     gtwiz_reset_tx_pll_and_datapath_in,
-    rst_in_out_reg_1);
+    rst_in_out_reg_0);
   output gtwiz_reset_tx_any_sync;
   output \FSM_sequential_sm_reset_tx_reg[1] ;
-  output rst_in_out_reg_0;
+  output \FSM_sequential_sm_reset_tx_reg[0] ;
   input [0:0]gtwiz_reset_clk_freerun_in;
   input [2:0]Q;
   input \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int ;
-  input gttxreset_out_reg;
-  input [0:0]GTHE4_CHANNEL_GTTXRESET;
+  input txuserrdy_out_reg;
+  input [0:0]GTHE4_CHANNEL_TXUSERRDY;
   input [0:0]gtwiz_reset_tx_datapath_in;
   input [0:0]gtwiz_reset_tx_pll_and_datapath_in;
-  input rst_in_out_reg_1;
+  input rst_in_out_reg_0;
 
+  wire \FSM_sequential_sm_reset_tx_reg[0] ;
   wire \FSM_sequential_sm_reset_tx_reg[1] ;
-  wire [0:0]GTHE4_CHANNEL_GTTXRESET;
+  wire [0:0]GTHE4_CHANNEL_TXUSERRDY;
   wire [2:0]Q;
   wire \gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.gtwiz_reset_pllreset_tx_int ;
-  wire gttxreset_out_reg;
   wire [0:0]gtwiz_reset_clk_freerun_in;
   wire gtwiz_reset_tx_any;
   wire gtwiz_reset_tx_any_sync;
@@ -14335,21 +14231,11 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17
   wire [0:0]gtwiz_reset_tx_pll_and_datapath_in;
   (* async_reg = "true" *) wire rst_in_meta;
   wire rst_in_out_reg_0;
-  wire rst_in_out_reg_1;
   (* async_reg = "true" *) wire rst_in_sync1;
   (* async_reg = "true" *) wire rst_in_sync2;
   (* async_reg = "true" *) wire rst_in_sync3;
+  wire txuserrdy_out_reg;
 
-  LUT6 #(
-    .INIT(64'h3F3FFFFF3F3F0014)) 
-    gttxreset_out_i_1
-       (.I0(gtwiz_reset_tx_any_sync),
-        .I1(Q[1]),
-        .I2(Q[0]),
-        .I3(Q[2]),
-        .I4(gttxreset_out_reg),
-        .I5(GTHE4_CHANNEL_GTTXRESET),
-        .O(rst_in_out_reg_0));
   LUT5 #(
     .INIT(32'hFFDF0010)) 
     pllreset_tx_out_i_1
@@ -14364,7 +14250,7 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17
     rst_in_meta_i_1
        (.I0(gtwiz_reset_tx_datapath_in),
         .I1(gtwiz_reset_tx_pll_and_datapath_in),
-        .I2(rst_in_out_reg_1),
+        .I2(rst_in_out_reg_0),
         .O(gtwiz_reset_tx_any));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -14414,6 +14300,16 @@ module FELIX_GTH_v1f_gtwizard_ultrascale_v1_7_8_reset_synchronizer_17
         .D(rst_in_sync2),
         .PRE(gtwiz_reset_tx_any),
         .Q(rst_in_sync3));
+  LUT6 #(
+    .INIT(64'hFFFFFEFD11130000)) 
+    txuserrdy_out_i_1
+       (.I0(Q[0]),
+        .I1(gtwiz_reset_tx_any_sync),
+        .I2(Q[2]),
+        .I3(Q[1]),
+        .I4(txuserrdy_out_reg),
+        .I5(GTHE4_CHANNEL_TXUSERRDY),
+        .O(\FSM_sequential_sm_reset_tx_reg[0] ));
 endmodule
 
 (* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
