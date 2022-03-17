@@ -12,10 +12,6 @@ addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C
 bnum+=(0			8			28			0			4			5				6				7				8				12			13					0			0			1					0				8				16				24				0				8					16					0						0						0				0)
 mask+=(0xff			3			1			0xf			1			1				1				1				0xf				1			1					0xffff		1			1					0xff			0xff			0xff			0xff			0xff			0xff				0xff				0xffffffff				0xffffffff				1				0x3ffff)
 
-name+=(felix_tx_rst_done felix_tx_active felix_pwr_good felix_rst_tx_pll felix_rst_rx_pll felix_rst_tx_datapath felix_rst_rx_datapath felix_rx_reset felix_tx8b10b_en)
-addr+=(0xA00C00C0        0xA00C00C0      0xA00C00C0     0xA00C0038       0xA00C0038       0xA00C0038            0xA00C0038            0xA00C0038     0xA00C0038 )
-bnum+=(0                 4               8              0                1                4                     5                     5              8)
-mask+=(1                 1               1              1                1                1                     1                     1              3)
 
 #syntax: devreg reg_name [wr_value]
 
