@@ -22,44 +22,44 @@ int main (int argc, char * argv[])
 		exit (4);
 	}
 
-	FEMB* femb = new FEMB(0);
+	printf ("Configuring FEMB %d\n", femb_ind);
 
-	
+	FEMB* femb = new FEMB(femb_ind);
 
 	int reg3;
 
 	// chip_num_on_FEMB=(0|1), chip_addr=2, reg_page, reg_addr
 
 	int i;
-	if (argc == 1)
+	if (argc == 2)
 	{
-		printf ("writing\n");
 		//for (i = 0; i < 2; i++)
 		for (i = 1; i >= 0; i--)
 		{
-			femb->i2c_write (i, 2, 5, 0x40, 0x3);	
+			printf ("writing %d\n", i);
+			femb->i2c_write (i, 2, 5, 0x40, 0x3 );	
 			femb->i2c_write (i, 2, 5, 0x41, 0x10);	
-			femb->i2c_write (i, 2, 5, 0x42, 0x2);	
-			femb->i2c_write (i, 2, 5, 0x43, 0x2);	
-			femb->i2c_write (i, 2, 5, 0x44, 0x0);	
-			femb->i2c_write (i, 2, 5, 0x45, 0x0);	
+			femb->i2c_write (i, 2, 5, 0x42, 0x2 );	
+			femb->i2c_write (i, 2, 5, 0x43, 0x2 );	
+			femb->i2c_write (i, 2, 5, 0x44, 0x0 );	
+			femb->i2c_write (i, 2, 5, 0x45, 0x0 );	
 
-			femb->i2c_write (i, 2, 5, 0x46, 0x1);	
-			femb->i2c_write (i, 2, 5, 0x47, 0x0);	
+			femb->i2c_write (i, 2, 5, 0x46, 0x1 );	
+			femb->i2c_write (i, 2, 5, 0x47, 0x0 );	
 
-			femb->i2c_write (i, 2, 5, 0x48, 0x0);	
-			femb->i2c_write (i, 2, 5, 0x49, 0x0);	
-			femb->i2c_write (i, 2, 5, 0x4a, 0x0);	
-			femb->i2c_write (i, 2, 5, 0x4b, 0x0);	
-			femb->i2c_write (i, 2, 5, 0x4c, 0x0);	
+			femb->i2c_write (i, 2, 5, 0x48, 0x0 );	
+			femb->i2c_write (i, 2, 5, 0x49, 0x0 );	
+			femb->i2c_write (i, 2, 5, 0x4a, 0x0 );	
+			femb->i2c_write (i, 2, 5, 0x4b, 0x0 );	
+			femb->i2c_write (i, 2, 5, 0x4c, 0x0 );	
 			femb->i2c_write (i, 2, 5, 0x4d, 0x0F);	
-			femb->i2c_write (i, 2, 5, 0x4e, 0x1);	
-			femb->i2c_write (i, 2, 5, 0x4f, 0x0);	
-			femb->i2c_write (i, 2, 5, 0x50, 0x0);	
+			femb->i2c_write (i, 2, 5, 0x4e, 0x1 );	
+			femb->i2c_write (i, 2, 5, 0x4f, 0x0 );	
+			femb->i2c_write (i, 2, 5, 0x50, 0x0 );	
 			femb->i2c_write (i, 2, 5, 0x51, 0x0F);	
-			femb->i2c_write (i, 2, 5, 0x52, 0x1);	
-			femb->i2c_write (i, 2, 5, 0x53, 0x1);	
-			femb->i2c_write (i, 2, 5, 0x54, 0x1);	
+			femb->i2c_write (i, 2, 5, 0x52, 0x1 );	
+			femb->i2c_write (i, 2, 5, 0x53, 0x1 );	
+			femb->i2c_write (i, 2, 5, 0x54, 0x1 );	
 
 			femb->i2c_write (i, 2, 0, 1, 0);  // frame-12
 			//femb->i2c_write (i, 2, 0, 1, 1);  // frame-14
@@ -74,34 +74,35 @@ int main (int argc, char * argv[])
 	for (i = 0; i < 2; i++)
 	//for (i = 1; i >= 0; i--)
 	{
-		reg3 = femb->i2c_read  (i, 2, 5, 0x40);	printf("CONFIG_PLL_ICP = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x41);	printf("CONFIG_PLL_BAND = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x42);	printf("CONFIG_PLL_LPFR = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x43);	printf("CONFIG_PLL_ATO = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x44);	printf("CONFIG_PLL_PDCP = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x45);	printf("CONFIG_PLL_OPEN = %x\n",reg3);
+		bool err = false;
+		reg3 = femb->i2c_read  (i, 2, 5, 0x40);	if (reg3 != 0x3 ) err = true; // printf("CONFIG_PLL_ICP = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x41);	if (reg3 != 0x10) err = true; // printf("CONFIG_PLL_BAND = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x42);	if (reg3 != 0x2 ) err = true; // printf("CONFIG_PLL_LPFR = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x43);	if (reg3 != 0x2 ) err = true; // printf("CONFIG_PLL_ATO = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x44);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_PLL_PDCP = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x45);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_PLL_OPEN = %x\n",reg3);
+                                                                        
+		reg3 = femb->i2c_read  (i, 2, 5, 0x46);	if (reg3 != 0x1 ) err = true; // printf("CONFIG_SER_MODE = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x47);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_SER_INV_SER_CLK = %x\n",reg3);
+                                                                        
+		reg3 = femb->i2c_read  (i, 2, 5, 0x48);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_VMBOOST = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x49);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_VMDRIVER = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x4a);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_SELPRE = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x4b);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_SELPST1 = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x4c);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_SELPST2 = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x4d);	if (reg3 != 0x0F) err = true; // printf("CONFIG_DRV_SELCM_MAIN = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x4e);	if (reg3 != 0x1 ) err = true; // printf("CONFIG_DRV_ENABLE_CM = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x4f);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_INVERSE_CLK = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x50);	if (reg3 != 0x0 ) err = true; // printf("CONFIG_DRV_DELAYSEL = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x51);	if (reg3 != 0x0F) err = true; // printf("CONFIG_DRV_DELAY_CS = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x52);	if (reg3 != 0x1 ) err = true; // printf("CONFIG_DRV_CML = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x53);	if (reg3 != 0x1 ) err = true; // printf("CONGIF_DRV_BIAS_CML_INTERNAL = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 5, 0x54);	if (reg3 != 0x1 ) err = true; // printf("CONGIF_DRV_BIAS_CS_INTERNAL = %x\n",reg3);
 
-		reg3 = femb->i2c_read  (i, 2, 5, 0x46);	printf("CONFIG_SER_MODE = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x47);	printf("CONFIG_SER_INV_SER_CLK = %x\n",reg3);
-
-		reg3 = femb->i2c_read  (i, 2, 5, 0x48);	printf("CONFIG_DRV_VMBOOST = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x49);	printf("CONFIG_DRV_VMDRIVER = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x4a);	printf("CONFIG_DRV_SELPRE = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x4b);	printf("CONFIG_DRV_SELPST1 = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x4c);	printf("CONFIG_DRV_SELPST2 = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x4d);	printf("CONFIG_DRV_SELCM_MAIN = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x4e);	printf("CONFIG_DRV_ENABLE_CM = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x4f);	printf("CONFIG_DRV_INVERSE_CLK = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x50);	printf("CONFIG_DRV_DELAYSEL = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x51);	printf("CONFIG_DRV_DELAY_CS = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x52);	printf("CONFIG_DRV_CML = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x53);	printf("CONGIF_DRV_BIAS_CML_INTERNAL = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 5, 0x54);	printf("CONGIF_DRV_BIAS_CS_INTERNAL = %x\n",reg3);
-
-		reg3 = femb->i2c_read  (i, 2, 0, 1);	printf("FRAME = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 0, 3);	printf("PRBS = %x\n",reg3);
-		reg3 = femb->i2c_read  (i, 2, 0, 0x20);	printf("ACT = %x\n",reg3);
-		printf ("\n");
+		reg3 = femb->i2c_read  (i, 2, 0, 1);	if (reg3 != 0) err = true; // printf("FRAME = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 0, 3);	if (reg3 != 0x3c) err = true; // printf("PRBS = %x\n",reg3);
+		reg3 = femb->i2c_read  (i, 2, 0, 0x20);	if (reg3 != 5) err = true; // printf("ACT = %x\n",reg3);
+		if (err) printf ("FEMB: %d COLDATA: %d register mismatch\n", femb_ind, i);
 	}
 
 

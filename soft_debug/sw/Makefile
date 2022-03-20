@@ -4,7 +4,7 @@ LFLAGS = -lprotobuf -lzmq -lreadline
 
 # output binary for each of these (no headers)
 #BSRC = src/wib_client.cxx src/wib_server.cxx
-BSRC = src/femb_test.cxx src/adc_test.cxx
+BSRC = src/femb_test.cxx src/adc_test.cxx src/femb_single_reg.cxx
 BOBJ = $(addprefix build/,$(notdir $(BSRC:.cxx=.o)))
 BDEP = $(BOBJ:.o=.d)
 

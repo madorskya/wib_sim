@@ -75,7 +75,7 @@ uint8_t FEMB::i2c_read(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uin
     ctrl = io_reg_read(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_CTRL);
 
 	// fix for C2W signal inversion in COLDATA chip #0 (???)
-	printf ("*%d* ", coldata_idx);
+//	printf ("*%d* ", coldata_idx);
 	if (coldata_idx == 0) ctrl = ~ctrl;
 
     return (ctrl >> COLD_I2C_DATA) & 0xFF;
