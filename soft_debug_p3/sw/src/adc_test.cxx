@@ -1,0 +1,59 @@
+#include <cstdio>
+#include <cstdlib>
+#include <unistd.h>
+#include <fstream>
+#include <sys/mman.h>
+#include <fcntl.h>
+#include <stdio.h>
+
+#include "femb.h"
+
+using namespace std;
+
+int main (int argc, char * argv[])
+{
+    int femb_ind = -1;
+    sscanf (argv[1], "%d", &femb_ind);
+    if (femb_ind < 0 || femb_ind > 3)
+    {   
+        printf ("invalid FEMB index. Usage: femb_test index(0..3)");
+        exit (4);
+    }
+
+    printf ("Checking ADC I2C registers on FEMB %d\n", femb_ind);
+
+    FEMB* femb = new FEMB(femb_ind);
+
+
+	int reg3;
+
+	// chip_num_on_FEMB=(0|1), chip_addr, reg_page, reg_addr, [value]
+	// chip addresses: 
+	// COLDATA = 2 (always)
+	// ADC:  4, 5, 6, 7
+
+	int i, j;
+	if (argc == 2)
+	{
+		for (i = 1; i >= 0; i--)
+		{
+			for (j = 4; j <= 7; j++ )
+			{
+				femb->i2c_write (i, j, 1, 0x80, i*16+j);	
+			}
+		}
+	}
+	for (i = 0; i < 2; i++)
+	//for (i = 1; i >= 0; i--)
+	{
+		for (j = 4; j <= 7; j++ )
+		{
+			reg3 = femb->i2c_read  (i, j, 1, 0x80);
+			if (reg3 != (i*16+j))	
+				printf("COLDADC mismatch: FEMB: %d chip: %d vrefp_ctrl = %x\n",femb_ind, j,reg3);
+		}
+	}
+
+
+}
+

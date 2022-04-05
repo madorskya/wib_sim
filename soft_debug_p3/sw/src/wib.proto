@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package wib;
+
+import "google/protobuf/any.proto";
+
+message Command {
+    google.protobuf.Any cmd = 1;
+}
+
+
+/* Initialization Commands */
+
+message Initialize {
+}
+
+
+message Update {
+    bytes root_archive = 1;
+    bytes boot_archive = 2;
+}
+
+message Reboot {
+}
+
+/* Low level debug commands */
+
+message Peek {
+    uint64 addr = 1;
+}
+
+message Poke {
+    uint64 addr = 1;
+    uint32 value = 2;
+}
+
+/* CCM/SC/Monitoring commands */
+
+message GetSensors {
+}
+
+/* Command Replies */
+
+message Empty {
+}
+
+message RegValue {
+    uint64 addr = 1;
+    uint32 value = 2;
+}
+
+message Sensors {
+    repeated double ltc2990_4E_voltages = 1;
+    repeated double ltc2990_4C_voltages = 2;
+    repeated double ltc2991_48_voltages = 3;
+    repeated double ad7414_49_temps = 4;
+    repeated double ad7414_4D_temps = 5;
+    repeated double ad7414_4A_temps = 6;
+    repeated double ltc2499_15_temps = 7;
+}

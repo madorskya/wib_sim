@@ -1,0 +1,4 @@
+devmem 0xa0020004 32 0
+devmem 0xa0020000 32 1
+devmem 0xa0020000 32 0
+
