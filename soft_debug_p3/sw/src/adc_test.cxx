@@ -27,30 +27,30 @@ int main (int argc, char * argv[])
 
 	int reg3;
 
-	// chip_num_on_FEMB=(0|1), chip_addr, reg_page, reg_addr, [value]
+	// chip_num_on_FEMB=0, chip_addr, reg_page, reg_addr, [value]
 	// chip addresses: 
-	// COLDATA = 2 (always)
-	// ADC:  4, 5, 6, 7
+	// COLDATA = TOP=3, BOT=2 
+	// ADC TOP:  8, 9,10,11
+	// ADC BOT:  4, 5, 6, 7
 
 	int i, j;
 	if (argc == 2)
 	{
-		for (i = 1; i >= 0; i--)
+		for (i = 1; i >= 0; i--) // COLDATA loop
 		{
-			for (j = 4; j <= 7; j++ )
+			for (j = 0; j <= 3; j++ ) // ADC loop
 			{
-				femb->i2c_write (i, j, 1, 0x80, i*16+j);	
+				femb->i2c_write (0, 4+i*4+j, 1, 0x80, i*16+j);	
 			}
 		}
 	}
-	for (i = 0; i < 2; i++)
-	//for (i = 1; i >= 0; i--)
+	for (i = 0; i < 2; i++) // COLDATA loop
 	{
-		for (j = 4; j <= 7; j++ )
+		for (j = 0; j <= 3; j++ ) // ADC loop
 		{
-			reg3 = femb->i2c_read  (i, j, 1, 0x80);
+			reg3 = femb->i2c_read  (0, 4+i*4+j, 1, 0x80);
 			if (reg3 != (i*16+j))	
-				printf("COLDADC mismatch: FEMB: %d chip: %d vrefp_ctrl = %x\n",femb_ind, j,reg3);
+				printf("COLDADC mismatch: FEMB: %d COLDATA: %d ADC: %d vrefp_ctrl = %x\n",femb_ind, i, j, reg3);
 		}
 	}
 
