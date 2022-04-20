@@ -2,6 +2,7 @@ module frame_builder
 (
     input [13:0] deframed [15:0][31:0], // [link][sample]
     input [ 7:0] time8 [15:0], //[link]
+    input [15:0] time16 [15:0], //[link]
     input [15:0] valid14,
     input [15:0] valid12,
     input [1:0]  crc_err [15:0],
@@ -66,6 +67,7 @@ module frame_builder
     (
         .deframed     (deframed0),
         .time8        (time8    [7:0]),
+        .time16       (time16   [7:0]),
         .valid14      (valid14  [7:0]),
         .valid12      (valid12  [7:0]),
         .crc_err      (crc_err  [7:0]),
@@ -97,6 +99,7 @@ module frame_builder
     (
         .deframed     (deframed1),
         .time8        (time8    [15:8]),
+        .time16       (time16   [15:8]),
         .valid14      (valid14  [15:8]),
         .valid12      (valid12  [15:8]),
         .crc_err      (crc_err  [15:8]),

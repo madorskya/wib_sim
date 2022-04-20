@@ -7,6 +7,7 @@ module coldata_deframer_single #(parameter NUM = 0)
 
     output [13:0] deframed [31:0],
     output reg [7:0] time8,
+    output reg [15:0] time16,
     output reg valid14,
     output reg valid12,
     
@@ -24,7 +25,9 @@ module coldata_deframer_single #(parameter NUM = 0)
         CRC0_14 = 4'h6,
         CRC1_14 = 4'h7,
         CRC0_12 = 4'h8,
-        CRC1_12 = 4'h9
+        CRC1_12 = 4'h9,
+        TI14_2 = 4'ha,
+        TI12_2 = 4'hb
     } df_state_t;
     
     df_state_t df_state = IDLE;
@@ -39,7 +42,11 @@ module coldata_deframer_single #(parameter NUM = 0)
     localparam FR12_BITS = 32*12; // max number of bits in one entire frame
     
     // various K symbols used in format
+`ifdef COLDATA_P3    
+    localparam SYM_IDLE = 8'h3c; // leader byte for P3 format
+`else
     localparam SYM_IDLE = 8'hbc;
+`endif
     localparam SYM_FR12 = 8'h5c;
     localparam SYM_FR14 = 8'h7c;
     localparam SYM_FRDD = 8'h1c;
@@ -98,7 +105,11 @@ module coldata_deframer_single #(parameter NUM = 0)
             TI14:
             begin
                 time8 = rx_byte0; // store time marker
+`ifdef COLDATA_P3
+                df_state = TI14_2; // need to collect low timestamp bits in P3 format
+`else    
                 df_state = FR14;
+`endif                
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
             end
@@ -106,6 +117,26 @@ module coldata_deframer_single #(parameter NUM = 0)
             TI12: 
             begin
                 time8 = rx_byte0; // store time marker
+`ifdef COLDATA_P3
+                df_state = TI12_2; // need to collect low timestamp bits in P3 format
+`else    
+                df_state = FR12;
+`endif                
+                byte_cnt = 8'h0;
+                crc = '{8'h0, 8'h0};
+            end
+            
+            TI14_2:
+            begin
+                time16 = {time8, rx_byte0}; // high byte from P3 timestamp is collected in time8
+                df_state = FR14;
+                byte_cnt = 8'h0;
+                crc = '{8'h0, 8'h0};
+            end
+            
+            TI12_2: 
+            begin
+                time16 = {time8, rx_byte0}; // high byte from P3 timestamp is collected in time8
                 df_state = FR12;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};

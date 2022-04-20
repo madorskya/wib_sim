@@ -245,7 +245,7 @@ module wib_top
     //wire [64:0] gtwiz_userdata_tx_in;
     
     wire gtwiz_userclk_tx_active_out;
-    wire felix_powergood_out;
+    wire [1:0] felix_powergood_out;
     (* mark_debug *) wire [15:0] rxprbserr_out;
     wire [31:0] fw_date;
 
@@ -353,7 +353,7 @@ module wib_top
 
     assign `STATUS_BITS(16, 0, 1)      = gtwiz_reset_tx_done_out; // 0xA00C00C0
     assign `STATUS_BITS(16, 4, 1)      = gtwiz_userclk_tx_active_out;
-    assign `STATUS_BITS(16, 8, 1)      = felix_powergood_out;
+    assign `STATUS_BITS(16, 8, 2)      = felix_powergood_out;
 
     wire sfp_dis;
     
@@ -367,6 +367,8 @@ module wib_top
     wire [63 : 0] felix_gtwiz_userdata_rx_out;
     wire felix_rx_clk;
     wire felix_gtwiz_reset_rx_done_out;
+    wire [1:0] txpmaresetdone_out;
+    wire [1:0] rxpmaresetdone_out;
     
     bd_tux wrp
     (
@@ -448,6 +450,7 @@ module wib_top
 
     wire [13:0] deframed [15:0][31:0]; // [link][sample]
     wire [ 7:0] time8 [15:0]; // [link] time stamps from each link
+    wire [15:0] time16 [15:0]; // [link] time stamps from each link, P3 format
     wire [15:0] valid14;
     wire [15:0] valid12;
     reg [15:0] valid14_r [1:0];
@@ -497,6 +500,7 @@ module wib_top
         .mmcm_reset (!reset_rx_done_out),
         .deframed   (deframed),
         .time8      (time8),
+        .time16     (time16),
         .valid14    (valid14 ),
         .valid12    (valid12 ),
         .crc_err    (crc_err ),
@@ -508,6 +512,7 @@ module wib_top
     (
         .deframed     (deframed),
         .time8        (time8),
+        .time16       (time16),
         .valid14      (valid14 ),
         .valid12      (valid12 ),
         .rxclk2x      (rxclk2x),
@@ -670,8 +675,6 @@ module wib_top
         .probe5 (daq_data_type[1]) // input wire [1:0]  probe5
     );
 
-    wire [1:0] txpmaresetdone_out;
-    wire [1:0] rxpmaresetdone_out;
 
    ila_14probe ila_felix
    (
