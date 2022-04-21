@@ -35,6 +35,7 @@ module coldata_deframer_single #(parameter NUM = 0)
     reg rx_k0;
     reg [7:0] byte_cnt;
     wire dfifo_valid;
+    reg [15:0] time16_prelim;
 
     localparam FR14_BYTE_COUNT = 8'd56; // 32 samples x 14 bits
     localparam FR12_BYTE_COUNT = 8'd48; // 32 samples x 12 bits
@@ -128,7 +129,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             
             TI14_2:
             begin
-                time16 = {time8, rx_byte0}; // high byte from P3 timestamp is collected in time8
+                time16_prelim = {time8, rx_byte0}; // high byte from P3 timestamp is collected in time8
                 df_state = FR14;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
@@ -136,7 +137,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             
             TI12_2: 
             begin
-                time16 = {time8, rx_byte0}; // high byte from P3 timestamp is collected in time8
+                time16_prelim = {time8, rx_byte0}; // high byte from P3 timestamp is collected in time8
                 df_state = FR12;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
@@ -177,6 +178,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             CRC1_14:
             begin
                 crc_err[1] = crc[1] != rx_byte0;
+                time16 = time16_prelim; // output time stamp synchronously with valid flag
                 valid14 = 1'b1; // frame 14 data is ready for pick up
                 df_state = IDLE;
             end
@@ -190,6 +192,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             CRC1_12:
             begin
                 crc_err[1] = crc[1] != rx_byte0;
+                time16 = time16_prelim; // output time stamp synchronously with valid flag
                 valid12 = 1'b1; // frame 12 data is ready for pick up
                 df_state = IDLE;
             end
