@@ -12,6 +12,10 @@ addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C
 bnum+=(0			8			28			0			4			5				6				7				8				12			13					0			0			1					0				8				16				24				0				8					16					0						0						0				0)
 mask+=(0xff			3			1			0xf			1			1				1				1				0xf				1			1					0xffff		1			1					0xff			0xff			0xff			0xff			0xff			0xff				0xff				0xffffffff				0xffffffff				1				0x3ffff)
 
+name+=(felix_rx_reset fast_cmd_code edge_to_act_delay)
+addr+=(0xA00C0038     0xA0030000    0xA0030004)
+bnum+=(6              0             0)
+mask+=(1              0x3f          0xffffffff)
 
 #syntax: devreg reg_name [wr_value]
 

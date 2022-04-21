@@ -15,6 +15,8 @@ int run_command(char* cline, char* output)
 
 	output[0] = 0; // clear output string
 
+	strcat (cline, " 2>&1"); // to include error stream
+
 	fp = popen(cline, "r");
 	if (fp == NULL)
 	{
@@ -52,7 +54,8 @@ void REG_WR (unsigned addr, unsigned value)
 	unsigned int reg_data = 0x20 + value;
 	sprintf (cline, "devmem 0x%x 32 0x%x", reg_addr, reg_data);
 	run_command (cline, output);
-	if (strlen(output) > 0) printf (output);
+	if (strlen(output) > 0) 
+		printf ("%s %s", cline, output);
 }
 
 int I2C_open (int lane)
@@ -71,7 +74,8 @@ int I2C_write_buf (unsigned I2C_addr, unsigned lng, unsigned char *buffer )
 	char cline[100], output[100];
 	sprintf (cline, "i2cset -y 0 0x%x 0x%x 0x%x 0x%x i", I2C_addr, buffer[0], buffer[1], buffer[2]);
 	run_command (cline, output);
-	if (strlen(output) > 0) printf (output);
+	if (strlen(output) > 0) 
+		printf ("%s %s", cline, output);
 	return 0;
 }
 
@@ -155,6 +159,7 @@ int main (int argc, char* argv [])
 		PWR_FEMB_Voltage_CNTL(i, 1, 4.0);
 		PWR_FEMB_Voltage_CNTL(i, 2, 4.0);
 		PWR_FEMB_Voltage_CNTL(i, 3, 4.0);
+		// for WIB3 only: linear regulators are missing, the lines below will fail
 		PWR_FEMB_Voltage_CNTL(i, 4, 2.5);
 		PWR_FEMB_Voltage_CNTL(i, 5, 2.5);
 	}
