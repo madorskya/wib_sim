@@ -30,7 +30,7 @@ int main (int argc, char * argv[])
 
 	// chip_num_on_FEMB=(0|1), chip_addr=2, reg_page, reg_addr
 
-	uint8_t global_reg_1 = 0xaa, global_reg_2 = 0xaa, channel_reg; 
+	uint8_t global_reg_1 = 0, global_reg_2 = 0, channel_reg = 0x38; 
 
 	int i;
 	if (argc == 2)
@@ -47,7 +47,7 @@ int main (int argc, char * argv[])
 
 				for (uint8_t addr = 0x80; addr < 0x90; addr++) // channel loop
 				{ 
-					channel_reg = addr - 0x80;
+//					channel_reg = addr - 0x80;
 					femb->i2c_write(0, i, page, addr, channel_reg);
 				}
 

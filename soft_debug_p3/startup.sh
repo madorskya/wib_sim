@@ -6,8 +6,8 @@ clock/si5345_config
 voltages/wib_voltages
 ./coldata_power_on.sh
 sleep 1
-sw/femb_test 1
-./devreg.sh link_mask 0xff0f
+sw/femb_test 3
+./devreg.sh link_mask 0x0fff
 #./coldata_rx_reset.sh
 sleep 1
 ./coldadc_power_on.sh
