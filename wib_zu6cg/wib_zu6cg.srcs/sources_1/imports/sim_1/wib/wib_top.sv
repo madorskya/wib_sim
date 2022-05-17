@@ -30,6 +30,10 @@ module wib_top
     // timing pt signals
     input adn2814_data_p, 
     input adn2814_data_n,
+
+    // timing pt clock, available only on WIB rev 3
+    input adn2814_fpga_clk_p, 
+    input adn2814_fpga_clk_n,
      
     input si5344_out1_p, // clock from tp
     input si5344_out1_n,
@@ -151,13 +155,22 @@ module wib_top
     wire iic_rtl_0_sda_o;
     wire iic_rtl_0_sda_t;
     wire ts_edge_sel;
+    wire ts_fpga_clk_pad;
     
     // this input is unused, see Jack's message 2020-08-23
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
     
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
+    
+`ifndef COLDATA_P3
+    // clock from PLL used for timing endpoint, since direct recovered clock is not available on WIB r 2    
     IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk_pad));
     BUFG ts_rec_bufg (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk));
+`else
+    // clock from CDR, only available on WIB rev 3
+    IBUFDS tp_fpga_clk_buf_in (.I(adn2814_fpga_clk_p), .IB(adn2814_fpga_clk_n), .O(ts_fpga_clk_pad));
+    BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
+`endif
     
     // have to add an input FF for timing data, it's missing in the timing endpoint
     always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
@@ -171,6 +184,8 @@ module wib_top
         .D  (ts_rec_d_pad),
         .R  (1'b0)
     );    
+
+
     
     // system 62.5M clock to FEMBs, from timing pt.
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
