@@ -63,8 +63,8 @@ int main (int argc, char * argv[])
 			femb->i2c_write (0, 3-i, 5, 0x53, 0x1 );	
 			femb->i2c_write (0, 3-i, 5, 0x54, 0x1 );	
 */
-			//femb->i2c_write (0, 3-i, 0, 1, 0);  // frame-12
-			femb->i2c_write (0, 3-i, 0, 1, 1);  // frame-14
+			femb->i2c_write (0, 3-i, 0, 1, 0);  // frame-12
+			//femb->i2c_write (0, 3-i, 0, 1, 1);  // frame-14
 			//femb->i2c_write (0, 3-i, 0, 1, 3);  // frame-DD
 			//femb->i2c_write (0, 3-i, 0, 3, 0xc3);  // PRBS7, no 8b10b
 			femb->i2c_write (0, 3-i, 0, 3, 0x3c);  // normal operation

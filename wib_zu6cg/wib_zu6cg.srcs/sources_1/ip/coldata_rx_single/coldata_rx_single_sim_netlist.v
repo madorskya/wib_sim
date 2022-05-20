@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Dec  6 10:40:33 2021
+// Date        : Thu May 19 17:07:37 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/coldata_rx_single/coldata_rx_single_sim_netlist.v
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "coldata_rx_single,coldata_rx_single_gtwizard_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_rx_single_gtwizard_top,Vivado 2020.1.1_AR73018" *) 
+(* CHECK_LICENSE_TYPE = "coldata_rx_single,coldata_rx_single_gtwizard_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "coldata_rx_single_gtwizard_top,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module coldata_rx_single
    (gtwiz_userclk_tx_reset_in,
@@ -38,6 +38,7 @@ module coldata_rx_single
     gthrxn_in,
     gthrxp_in,
     rx8b10ben_in,
+    rxbufreset_in,
     rxcommadeten_in,
     rxmcommaalignen_in,
     rxpcommaalignen_in,
@@ -87,6 +88,7 @@ module coldata_rx_single
   input [15:0]gthrxn_in;
   input [15:0]gthrxp_in;
   input [15:0]rx8b10ben_in;
+  input [15:0]rxbufreset_in;
   input [15:0]rxcommadeten_in;
   input [15:0]rxmcommaalignen_in;
   input [15:0]rxpcommaalignen_in;
@@ -140,6 +142,7 @@ module coldata_rx_single
   wire [3:0]qpll0outclk_out;
   wire [3:0]qpll0outrefclk_out;
   wire [15:0]rx8b10ben_in;
+  wire [15:0]rxbufreset_in;
   wire [15:0]rxbyteisaligned_out;
   wire [15:0]rxbyterealign_out;
   wire [15:0]rxcommadet_out;
@@ -608,7 +611,7 @@ module coldata_rx_single
         .rstclkentx_in(1'b0),
         .rx8b10ben_in(rx8b10ben_in),
         .rxafecfoken_in({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
-        .rxbufreset_in({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .rxbufreset_in(rxbufreset_in),
         .rxbufstatus_out(NLW_inst_rxbufstatus_out_UNCONNECTED[47:0]),
         .rxbyteisaligned_out(rxbyteisaligned_out),
         .rxbyterealign_out(rxbyterealign_out),

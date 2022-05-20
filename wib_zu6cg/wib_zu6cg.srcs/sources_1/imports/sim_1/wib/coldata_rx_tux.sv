@@ -9,6 +9,7 @@ module coldata_rx_tux
 
     input  [0 : 0] reset_clk_64M_in    , // 64 M clock for reset circuits
     input  [0 : 0] reset_all_in        , // common reset for all circiuts
+    input  [0 : 0] rxbufreset, // RX buffer reset in MGTs to remove random latency
     output [0 : 0] reset_rx_done_out   , 
 
     output [7 : 0] rx_usrclk2_out      , // rx data clocks, one per COLDATA chip
@@ -44,6 +45,7 @@ module coldata_rx_tux
 
     wire [15:0] rxpolarity_in = 16'hffff; // all coldata serial inputs are inverted
     wire [63:0] rxprbssel_in = {16{rx_prbs_sel}};
+    wire [15:0] rxbufreset_in = {16{rxbufreset}};
 
     wire [255:0] data_rx_out; // RX data combined into one word
     wire  [3 : 0] gtrefclk00_in;
@@ -174,6 +176,7 @@ module coldata_rx_tux
       .gthrxn_in                          (gthrxn_in), // input wire [15 : 0] gthrxn_in
       .gthrxp_in                          (gthrxp_in), // input wire [15 : 0] gthrxp_in
       .rx8b10ben_in                       (16'hffff), // input wire [15 : 0] rx8b10ben_in
+      .rxbufreset_in                      (rxbufreset_in), // input wire [15 : 0] rxbufreset_in
       .rxcommadeten_in                    (16'hffff), // input wire [15 : 0] rxcommadeten_in
       .rxmcommaalignen_in                 (16'hffff), // input wire [15 : 0] rxmcommaalignen_in
       .rxpcommaalignen_in                 (16'hffff), // input wire [15 : 0] rxpcommaalignen_in

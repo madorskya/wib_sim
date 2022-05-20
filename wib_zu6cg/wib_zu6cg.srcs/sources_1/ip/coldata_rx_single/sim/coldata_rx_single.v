@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -77,6 +77,7 @@ module coldata_rx_single (
   gthrxn_in,
   gthrxp_in,
   rx8b10ben_in,
+  rxbufreset_in,
   rxcommadeten_in,
   rxmcommaalignen_in,
   rxpcommaalignen_in,
@@ -128,6 +129,7 @@ output wire [3 : 0] qpll0outrefclk_out;
 input wire [15 : 0] gthrxn_in;
 input wire [15 : 0] gthrxp_in;
 input wire [15 : 0] rx8b10ben_in;
+input wire [15 : 0] rxbufreset_in;
 input wire [15 : 0] rxcommadeten_in;
 input wire [15 : 0] rxmcommaalignen_in;
 input wire [15 : 0] rxpcommaalignen_in;
@@ -478,7 +480,7 @@ output wire [15 : 0] txpmaresetdone_out;
     .rstclkentx_in(1'B0),
     .rx8b10ben_in(rx8b10ben_in),
     .rxafecfoken_in(16'HFFFF),
-    .rxbufreset_in(16'H0000),
+    .rxbufreset_in(rxbufreset_in),
     .rxcdrfreqreset_in(16'H0000),
     .rxcdrhold_in(16'H0000),
     .rxcdrovrden_in(16'H0000),

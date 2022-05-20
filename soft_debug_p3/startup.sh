@@ -6,20 +6,27 @@ clock/si5345_config
 voltages/wib_voltages
 ./coldata_power_on.sh
 sleep 1
-sw/femb_test 3
-./devreg.sh link_mask 0x0fff
+# reset COLDATA chips
+./devreg.sh fast_cmd_code 1
+sleep 0.1
+
+sw/femb_test 0
+./devreg.sh link_mask 0xfff0
 #./coldata_rx_reset.sh
 sleep 1
 ./coldadc_power_on.sh
 sleep 1
 # set EDGE to ACT delay
 ./devreg.sh edge_to_act_delay 19
-# reset COLDATA chips
-#./devreg.sh fast_cmd_code 1
+
 # align 2 MHz clock edges
 ./devreg.sh fast_cmd_code 8
 # reset COLDATA time stamps, FAST command = SYNC
 ./devreg.sh fast_cmd_code 4
+
+# reset ADC chips, by issuing ACT FAST command. ACT register is programmed with ADC reset code by femb_test.cxx
+./devreg.sh fast_cmd_code 2
+sleep 0.1
 
 # reset COLDATA RX to clear buffers
 ./devreg.sh coldata_rx_reset 1

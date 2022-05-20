@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:40:33 2021
+-- Date        : Thu May 19 17:07:37 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/coldata_rx_single/coldata_rx_single_sim_netlist.vhdl
@@ -37679,6 +37679,7 @@ entity coldata_rx_single is
     gthrxn_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     gthrxp_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     rx8b10ben_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    rxbufreset_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     rxcommadeten_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     rxmcommaalignen_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     rxpcommaalignen_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -37713,7 +37714,7 @@ entity coldata_rx_single is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of coldata_rx_single : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of coldata_rx_single : entity is "coldata_rx_single_gtwizard_top,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of coldata_rx_single : entity is "coldata_rx_single_gtwizard_top,Vivado 2020.1";
 end coldata_rx_single;
 
 architecture STRUCTURE of coldata_rx_single is
@@ -38255,7 +38256,7 @@ inst: entity work.coldata_rx_single_coldata_rx_single_gtwizard_top
       rstclkentx_in(0) => '0',
       rx8b10ben_in(15 downto 0) => rx8b10ben_in(15 downto 0),
       rxafecfoken_in(15 downto 0) => B"1111111111111111",
-      rxbufreset_in(15 downto 0) => B"0000000000000000",
+      rxbufreset_in(15 downto 0) => rxbufreset_in(15 downto 0),
       rxbufstatus_out(47 downto 0) => NLW_inst_rxbufstatus_out_UNCONNECTED(47 downto 0),
       rxbyteisaligned_out(15 downto 0) => rxbyteisaligned_out(15 downto 0),
       rxbyterealign_out(15 downto 0) => rxbyterealign_out(15 downto 0),

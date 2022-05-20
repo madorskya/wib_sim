@@ -290,6 +290,7 @@ module wib_top
     wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4); // 0xA00C0004
     wire fb_reset           = `CONFIG_BITS(1,12, 1); // 0xA00C0004 frame builder reset
     assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
+    wire coldata_rxbufreset = `CONFIG_BITS(1,14, 1); // 0xA00C0004
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
@@ -488,6 +489,7 @@ module wib_top
         .gthrxp_in           (gthrxp_in          ),    
         .reset_clk_64M_in    (clk62p5            ), // clock for reset circuits
         .reset_all_in        (coldata_rx_reset   ), // common reset for all circiuts
+        .rxbufreset          (coldata_rxbufreset ),
         .reset_rx_done_out   (reset_rx_done_out  ), 
     
         .rx_usrclk2_out      (rx_usrclk2_out     ), // rx data clock

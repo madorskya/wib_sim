@@ -399,6 +399,7 @@ set_property DIFF_TERM_ADV TERM_100 [get_ports si5344_out1_p]
 #set_property IOB TRUE [get_ports adn2814_data_p]
 
 set_property PACKAGE_PIN P11 [get_ports adn2814_fpga_clk_p]
+set_property IOSTANDARD LVDS [get_ports adn2814_fpga_clk_p]
 set_property DIFF_TERM_ADV TERM_100 [get_ports adn2814_fpga_clk_p]
 
 

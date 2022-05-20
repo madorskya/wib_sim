@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -77,6 +77,7 @@ COMPONENT coldata_rx_single
     gthrxn_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     gthrxp_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     rx8b10ben_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    rxbufreset_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     rxcommadeten_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     rxmcommaalignen_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     rxpcommaalignen_in : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -136,6 +137,7 @@ your_instance_name : coldata_rx_single
     gthrxn_in => gthrxn_in,
     gthrxp_in => gthrxp_in,
     rx8b10ben_in => rx8b10ben_in,
+    rxbufreset_in => rxbufreset_in,
     rxcommadeten_in => rxcommadeten_in,
     rxmcommaalignen_in => rxmcommaalignen_in,
     rxpcommaalignen_in => rxpcommaalignen_in,

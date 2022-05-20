@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -78,6 +78,7 @@ coldata_rx_single your_instance_name (
   .gthrxn_in(gthrxn_in),                                                    // input wire [15 : 0] gthrxn_in
   .gthrxp_in(gthrxp_in),                                                    // input wire [15 : 0] gthrxp_in
   .rx8b10ben_in(rx8b10ben_in),                                              // input wire [15 : 0] rx8b10ben_in
+  .rxbufreset_in(rxbufreset_in),                                            // input wire [15 : 0] rxbufreset_in
   .rxcommadeten_in(rxcommadeten_in),                                        // input wire [15 : 0] rxcommadeten_in
   .rxmcommaalignen_in(rxmcommaalignen_in),                                  // input wire [15 : 0] rxmcommaalignen_in
   .rxpcommaalignen_in(rxpcommaalignen_in),                                  // input wire [15 : 0] rxpcommaalignen_in
