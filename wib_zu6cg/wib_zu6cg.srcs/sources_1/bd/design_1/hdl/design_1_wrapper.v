@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Feb 28 17:35:58 2022
+//Date        : Mon May 30 16:57:52 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -22,6 +22,8 @@ module design_1_wrapper
     cmd_code_reset,
     cmd_code_sync,
     cmd_code_trigger,
+    cmd_stamp_sync,
+    cmd_stamp_sync_en,
     daq_clk,
     daq_data_type0,
     daq_data_type1,
@@ -113,6 +115,8 @@ module design_1_wrapper
   input [7:0]cmd_code_reset;
   input [7:0]cmd_code_sync;
   input [7:0]cmd_code_trigger;
+  input [14:0]cmd_stamp_sync;
+  input cmd_stamp_sync_en;
   input daq_clk;
   input [1:0]daq_data_type0;
   input [1:0]daq_data_type1;
@@ -205,6 +209,8 @@ module design_1_wrapper
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
   wire [7:0]cmd_code_trigger;
+  wire [14:0]cmd_stamp_sync;
+  wire cmd_stamp_sync_en;
   wire daq_clk;
   wire [1:0]daq_data_type0;
   wire [1:0]daq_data_type1;
@@ -304,6 +310,8 @@ module design_1_wrapper
         .cmd_code_reset(cmd_code_reset),
         .cmd_code_sync(cmd_code_sync),
         .cmd_code_trigger(cmd_code_trigger),
+        .cmd_stamp_sync(cmd_stamp_sync),
+        .cmd_stamp_sync_en(cmd_stamp_sync_en),
         .daq_clk(daq_clk),
         .daq_data_type0(daq_data_type0),
         .daq_data_type1(daq_data_type1),

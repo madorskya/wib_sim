@@ -12,7 +12,7 @@ constexpr size_t CD_FASTCMD_ADDR[] = { 0xA0030000, 0xA0030000, 0xA0030000, 0xA00
 
 FEMB::FEMB(int index) {
     for (int i = 0; i < 2; i++) {
-        io_reg_init(&this->coldata_i2c[i],CD_I2C_ADDR[i+index*2],2);
+        io_reg_init(&this->coldata_i2c[i],CD_I2C_ADDR[i+index*2],8);
         io_reg_init(&this->coldata_fast_cmd[i],CD_FASTCMD_ADDR[i+2*index],2);
         io_reg_write(&this->coldata_fast_cmd[i],REG_FAST_CMD_ACT_DELAY,19);
         last_coldata_i2c_chip[i] = -1;

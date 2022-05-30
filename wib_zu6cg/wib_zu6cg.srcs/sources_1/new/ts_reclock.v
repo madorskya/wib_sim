@@ -41,7 +41,10 @@ module ts_reclock
     output reg cmd_bit_trigger  ,
     
     input fake_time_stamp_en, // enable fake time stamp
-    input [63:0] fake_time_stamp_init // initial value for fake time stamp
+    input [63:0] fake_time_stamp_init, // initial value for fake time stamp
+    
+    input [14:0] cmd_stamp_sync, // lower TLU bits to match in order to issue sync command
+    input cmd_stamp_sync_en // enable issuing SYNC command on matching lower TLU stamp bits
 );
 
     wire [75:0] din = 
@@ -123,6 +126,10 @@ module ts_reclock
         ts_valid = ts_valid_int && sync_stb_out && sync_first_out && (sync_out == 4'b0);
         tstamp_out = (fts_en[2] == 1'b1) ? tstamp_fake : tstamp_int; // to match valid signal latency
         tstamp_fake = tstamp_fake + 64'h1;
+        
+        // SYNC command logic
+        if (tstamp_out[14:0] == cmd_stamp_sync && cmd_stamp_sync_en && !cmd_bit_edge) // EDGE command has priority
+            cmd_bit_sync = 1'b1;
         
         if (fts_en[2:1] == 2'b01) // enable just went up
             tstamp_fake = fake_time_stamp_init; // update time stamp from init register

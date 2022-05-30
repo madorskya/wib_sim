@@ -69,7 +69,9 @@ module bd_tux
     input [7:0] cmd_code_trigger,
     
     input fake_time_stamp_en, // enable fake time stamp
-    input [63:0] fake_time_stamp_init
+    input [63:0] fake_time_stamp_init,
+    input [14:0] cmd_stamp_sync,
+    input        cmd_stamp_sync_en
 );
     
     design_1 design_1_i
@@ -175,7 +177,9 @@ module bd_tux
         .cmd_code_trigger   (cmd_code_trigger  ),
         
         .fake_time_stamp_en (fake_time_stamp_en),
-        .fake_time_stamp_init (fake_time_stamp_init)
+        .fake_time_stamp_init (fake_time_stamp_init),
+        .cmd_stamp_sync    (cmd_stamp_sync),
+        .cmd_stamp_sync_en (cmd_stamp_sync_en)
     );
 
 endmodule

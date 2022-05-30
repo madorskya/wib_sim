@@ -294,8 +294,11 @@ module wib_top
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
-    assign ts_edge_sel        = `CONFIG_BITS(3, 0,  1); // 0xA00C000c timing data clock edge selection
-    wire   fake_time_stamp_en = `CONFIG_BITS(3,  1, 1); // 0xA00C000C
+    assign ts_edge_sel         = `CONFIG_BITS(3,  0,  1); // 0xA00C000c timing data clock edge selection
+    wire   fake_time_stamp_en  = `CONFIG_BITS(3,  1,  1); // 0xA00C000C
+    wire cmd_stamp_sync_en     = `CONFIG_BITS(3,  2,  1); // 0xA00C000C enable sending sync command when 14 lower TLU stamp bits match cmd_stamp_sync
+    wire [14:0] cmd_stamp_sync = `CONFIG_BITS(3, 16, 14); // 0xA00C000C lower 14 bits of TLU time stamp that trigger sync command
+    
     // command codes from timing system
     wire [7:0] cmd_code_idle      = `CONFIG_BITS(4,  0, 8); // 0xA00C0010
     wire [7:0] cmd_code_edge      = `CONFIG_BITS(4,  8, 8); // 0xA00C0010
@@ -456,7 +459,9 @@ module wib_top
         .cmd_code_trigger   (cmd_code_trigger  ),
 
         .fake_time_stamp_en (fake_time_stamp_en),
-        .fake_time_stamp_init (fake_time_stamp_init)
+        .fake_time_stamp_init (fake_time_stamp_init),
+        .cmd_stamp_sync    (cmd_stamp_sync),
+        .cmd_stamp_sync_en (cmd_stamp_sync_en)
     );
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];

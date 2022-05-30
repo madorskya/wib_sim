@@ -182,9 +182,13 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -from 7 -to 0 -type rst cmd_code_reset_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_sync_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_trigger_0
+  create_bd_pin -dir I -from 14 -to 0 cmd_stamp_sync_0
+  create_bd_pin -dir I cmd_stamp_sync_en_0
   create_bd_pin -dir I fake_time_stamp_en_0
   create_bd_pin -dir I -from 63 -to 0 fake_time_stamp_init_0
   create_bd_pin -dir I -from 0 -to 0 probe15
+  create_bd_pin -dir I probe20
+  create_bd_pin -dir I probe21
   create_bd_pin -dir I sclk
   create_bd_pin -dir O -from 3 -to 0 stat_0
   create_bd_pin -dir I ts_cdr_lol
@@ -210,7 +214,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_INPUT_PIPE_STAGES {6} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {20} \
+   CONFIG.C_NUM_OF_PROBES {22} \
    CONFIG.C_PROBE0_WIDTH {4} \
    CONFIG.C_PROBE16_WIDTH {1} \
    CONFIG.C_PROBE18_WIDTH {8} \
@@ -292,6 +296,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_pins cmd_code_reset_0] [get_bd_pins ts_reclock_0/cmd_code_reset]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_pins cmd_code_sync_0] [get_bd_pins ts_reclock_0/cmd_code_sync]
   connect_bd_net -net cmd_code_trigger [get_bd_pins cmd_code_trigger_0] [get_bd_pins ts_reclock_0/cmd_code_trigger]
+  connect_bd_net -net cmd_stamp_sync_0_1 [get_bd_pins cmd_stamp_sync_0] [get_bd_pins ts_reclock_0/cmd_stamp_sync]
+  connect_bd_net -net cmd_stamp_sync_en_0_1 [get_bd_pins cmd_stamp_sync_en_0] [get_bd_pins ts_reclock_0/cmd_stamp_sync_en]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_pins fake_time_stamp_en_0] [get_bd_pins ts_reclock_0/fake_time_stamp_en]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_pins fake_time_stamp_init_0] [get_bd_pins ts_reclock_0/fake_time_stamp_init]
   connect_bd_net -net fast_command_out [get_bd_pins probe15] [get_bd_pins ila_0/probe15]
@@ -304,6 +310,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net pdts_endpoint_stdlog_0_tstamp [get_bd_pins pdts_endpoint_stdlog_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins ila_0/probe17] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
   connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins ila_0/probe16] [get_bd_pins pdts_endpoint_stdlog_0/txd]
+  connect_bd_net -net probe20_1 [get_bd_pins probe20] [get_bd_pins ila_0/probe20]
+  connect_bd_net -net probe21_1 [get_bd_pins probe21] [get_bd_pins ila_0/probe21]
   connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
   connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_stdlog_0/cdr_lol]
   connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins pdts_endpoint_stdlog_0/cdr_los]
@@ -670,6 +678,7 @@ proc create_hier_cell_coldata_i2c_dual3 { parentCell nameHier } {
 
 
   # Create pins
+  create_bd_pin -dir I clk62p5
   create_bd_pin -dir I -type clk s00_axi_aclk
   create_bd_pin -dir I -type rst s00_axi_aresetn
   create_bd_pin -dir O -from 0 -to 0 -type clk scl_n_0
@@ -716,6 +725,7 @@ proc create_hier_cell_coldata_i2c_dual3 { parentCell nameHier } {
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins S00_AXI] [get_bd_intf_pins coldata_i2c_0/S00_AXI]
 
   # Create port connections
+  connect_bd_net -net clk62p5_1 [get_bd_pins clk62p5] [get_bd_pins coldata_i2c_0/clk62p5] [get_bd_pins coldata_i2c_1/clk62p5]
   connect_bd_net -net coldata_i2c_0_scl [get_bd_pins coldata_i2c_0/scl] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_pins sda_out_n_0] [get_bd_pins coldata_i2c_0/sda_out_n]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_pins sda_out_p_0] [get_bd_pins coldata_i2c_0/sda_out_p]
@@ -777,6 +787,7 @@ proc create_hier_cell_coldata_i2c_dual2 { parentCell nameHier } {
 
 
   # Create pins
+  create_bd_pin -dir I clk62p5
   create_bd_pin -dir I -type clk s00_axi_aclk
   create_bd_pin -dir I -type rst s00_axi_aresetn
   create_bd_pin -dir O -from 0 -to 0 -type clk scl_n_0
@@ -823,6 +834,7 @@ proc create_hier_cell_coldata_i2c_dual2 { parentCell nameHier } {
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins S00_AXI] [get_bd_intf_pins coldata_i2c_0/S00_AXI]
 
   # Create port connections
+  connect_bd_net -net clk62p5_1 [get_bd_pins clk62p5] [get_bd_pins coldata_i2c_0/clk62p5] [get_bd_pins coldata_i2c_1/clk62p5]
   connect_bd_net -net coldata_i2c_0_scl [get_bd_pins coldata_i2c_0/scl] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_pins sda_out_n_0] [get_bd_pins coldata_i2c_0/sda_out_n]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_pins sda_out_p_0] [get_bd_pins coldata_i2c_0/sda_out_p]
@@ -884,6 +896,7 @@ proc create_hier_cell_coldata_i2c_dual1 { parentCell nameHier } {
 
 
   # Create pins
+  create_bd_pin -dir I clk62p5
   create_bd_pin -dir I -type clk s00_axi_aclk
   create_bd_pin -dir I -type rst s00_axi_aresetn
   create_bd_pin -dir O -from 0 -to 0 -type clk scl_n_0
@@ -930,6 +943,7 @@ proc create_hier_cell_coldata_i2c_dual1 { parentCell nameHier } {
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins S00_AXI] [get_bd_intf_pins coldata_i2c_0/S00_AXI]
 
   # Create port connections
+  connect_bd_net -net clk62p5_1 [get_bd_pins clk62p5] [get_bd_pins coldata_i2c_0/clk62p5] [get_bd_pins coldata_i2c_1/clk62p5]
   connect_bd_net -net coldata_i2c_0_scl [get_bd_pins coldata_i2c_0/scl] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_pins sda_out_n_0] [get_bd_pins coldata_i2c_0/sda_out_n]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_pins sda_out_p_0] [get_bd_pins coldata_i2c_0/sda_out_p]
@@ -991,16 +1005,19 @@ proc create_hier_cell_coldata_i2c_dual0 { parentCell nameHier } {
 
 
   # Create pins
+  create_bd_pin -dir I clk62p5
   create_bd_pin -dir I -type clk s00_axi_aclk
   create_bd_pin -dir I -type rst s00_axi_aresetn
   create_bd_pin -dir O -from 0 -to 0 -type clk scl_n_0
   create_bd_pin -dir O -from 0 -to 0 -type clk scl_p_0
   create_bd_pin -dir I sda_in_n_0
   create_bd_pin -dir I sda_in_n_1
+  create_bd_pin -dir O sda_in_out
   create_bd_pin -dir I sda_in_p_0
   create_bd_pin -dir I sda_in_p_1
   create_bd_pin -dir O sda_out_n_0
   create_bd_pin -dir O sda_out_n_1
+  create_bd_pin -dir O sda_out_out
   create_bd_pin -dir O sda_out_p_0
   create_bd_pin -dir O sda_out_p_1
 
@@ -1037,8 +1054,11 @@ proc create_hier_cell_coldata_i2c_dual0 { parentCell nameHier } {
   connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins S00_AXI] [get_bd_intf_pins coldata_i2c_0/S00_AXI]
 
   # Create port connections
+  connect_bd_net -net clk62p5_1 [get_bd_pins clk62p5] [get_bd_pins coldata_i2c_0/clk62p5] [get_bd_pins coldata_i2c_1/clk62p5]
   connect_bd_net -net coldata_i2c_0_scl [get_bd_pins coldata_i2c_0/scl] [get_bd_pins util_vector_logic_0/Op1]
+  connect_bd_net -net coldata_i2c_0_sda_in_out [get_bd_pins sda_in_out] [get_bd_pins coldata_i2c_0/sda_in_out]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_pins sda_out_n_0] [get_bd_pins coldata_i2c_0/sda_out_n]
+  connect_bd_net -net coldata_i2c_0_sda_out_out [get_bd_pins sda_out_out] [get_bd_pins coldata_i2c_0/sda_out_out]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_pins sda_out_p_0] [get_bd_pins coldata_i2c_0/sda_out_p]
   connect_bd_net -net coldata_i2c_1_scl [get_bd_pins coldata_i2c_1/scl] [get_bd_pins util_vector_logic_0/Op2]
   connect_bd_net -net coldata_i2c_1_sda_out_n [get_bd_pins sda_out_n_1] [get_bd_pins coldata_i2c_1/sda_out_n]
@@ -1108,6 +1128,8 @@ proc create_root_design { parentCell } {
   set cmd_code_reset [ create_bd_port -dir I -from 7 -to 0 -type rst cmd_code_reset ]
   set cmd_code_sync [ create_bd_port -dir I -from 7 -to 0 cmd_code_sync ]
   set cmd_code_trigger [ create_bd_port -dir I -from 7 -to 0 cmd_code_trigger ]
+  set cmd_stamp_sync [ create_bd_port -dir I -from 14 -to 0 cmd_stamp_sync ]
+  set cmd_stamp_sync_en [ create_bd_port -dir I cmd_stamp_sync_en ]
   set daq_clk [ create_bd_port -dir I -type clk daq_clk ]
   set_property -dict [ list \
    CONFIG.ASSOCIATED_RESET {daq_spy_reset_0:daq_spy_reset_1} \
@@ -2820,6 +2842,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_ports cmd_code_reset] [get_bd_pins timing_module/cmd_code_reset_0]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_ports cmd_code_sync] [get_bd_pins timing_module/cmd_code_sync_0]
   connect_bd_net -net cmd_code_trigger_0_1 [get_bd_ports cmd_code_trigger] [get_bd_pins timing_module/cmd_code_trigger_0]
+  connect_bd_net -net cmd_stamp_sync_0_1 [get_bd_ports cmd_stamp_sync] [get_bd_pins timing_module/cmd_stamp_sync_0]
+  connect_bd_net -net cmd_stamp_sync_en_0_1 [get_bd_ports cmd_stamp_sync_en] [get_bd_pins timing_module/cmd_stamp_sync_en_0]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out [get_bd_pins coldata_fast_cmd_0/fastcommand_out] [get_bd_pins timing_module/probe15]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_n [get_bd_ports fastcommand_out_n_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_n]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out_p [get_bd_ports fastcommand_out_p_0] [get_bd_pins coldata_fast_cmd_0/fastcommand_out_p]
@@ -2827,6 +2851,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net coldata_i2c_0_scl_p [get_bd_ports scl_p_0] [get_bd_pins coldata_i2c_dual0/scl_p_0]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_ports sda_out_n_0] [get_bd_pins coldata_i2c_dual0/sda_out_n_0]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_ports sda_out_p_0] [get_bd_pins coldata_i2c_dual0/sda_out_p_0]
+  connect_bd_net -net coldata_i2c_dual0_sda_in_out [get_bd_pins coldata_i2c_dual0/sda_in_out] [get_bd_pins timing_module/probe20]
+  connect_bd_net -net coldata_i2c_dual0_sda_out_out [get_bd_pins coldata_i2c_dual0/sda_out_out] [get_bd_pins timing_module/probe21]
   connect_bd_net -net coldata_i2c_dual1_scl_n_0 [get_bd_ports scl_n_1] [get_bd_pins coldata_i2c_dual1/scl_n_0]
   connect_bd_net -net coldata_i2c_dual1_scl_p_0 [get_bd_ports scl_p_1] [get_bd_pins coldata_i2c_dual1/scl_p_0]
   connect_bd_net -net coldata_i2c_dual1_sda_out_n_0 [get_bd_ports sda_out_n_2] [get_bd_pins coldata_i2c_dual1/sda_out_n_0]
@@ -2861,7 +2887,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net daq_stream_k1_0_1 [get_bd_ports daq_stream_k1] [get_bd_pins daq_spy_1/daq_stream_k0]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_ports fake_time_stamp_en] [get_bd_pins timing_module/fake_time_stamp_en_0]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_ports fake_time_stamp_init] [get_bd_pins timing_module/fake_time_stamp_init_0]
-  connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins timing_module/ts_clk]
+  connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins coldata_i2c_dual0/clk62p5] [get_bd_pins coldata_i2c_dual1/clk62p5] [get_bd_pins coldata_i2c_dual2/clk62p5] [get_bd_pins coldata_i2c_dual3/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins timing_module/ts_clk]
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_ports ts_evtctr] [get_bd_pins timing_module/ts_evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_ports ts_rdy] [get_bd_pins timing_module/ts_rdy]
   connect_bd_net -net pdts_endpoint_0_rst [get_bd_ports ts_rst] [get_bd_pins timing_module/ts_rst]

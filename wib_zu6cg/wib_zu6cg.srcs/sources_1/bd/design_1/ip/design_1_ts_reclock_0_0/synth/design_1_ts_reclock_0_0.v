@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -89,7 +89,9 @@ module design_1_ts_reclock_0_0 (
   cmd_bit_adc_reset,
   cmd_bit_trigger,
   fake_time_stamp_en,
-  fake_time_stamp_init
+  fake_time_stamp_init,
+  cmd_stamp_sync,
+  cmd_stamp_sync_en
 );
 
 input wire [3 : 0] stat_in;
@@ -136,6 +138,8 @@ output wire cmd_bit_adc_reset;
 output wire cmd_bit_trigger;
 input wire fake_time_stamp_en;
 input wire [63 : 0] fake_time_stamp_init;
+input wire [14 : 0] cmd_stamp_sync;
+input wire cmd_stamp_sync_en;
 
   ts_reclock inst (
     .stat_in(stat_in),
@@ -171,6 +175,8 @@ input wire [63 : 0] fake_time_stamp_init;
     .cmd_bit_adc_reset(cmd_bit_adc_reset),
     .cmd_bit_trigger(cmd_bit_trigger),
     .fake_time_stamp_en(fake_time_stamp_en),
-    .fake_time_stamp_init(fake_time_stamp_init)
+    .fake_time_stamp_init(fake_time_stamp_init),
+    .cmd_stamp_sync(cmd_stamp_sync),
+    .cmd_stamp_sync_en(cmd_stamp_sync_en)
   );
 endmodule

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Feb 28 17:35:57 2022
+//Date        : Mon May 30 16:57:51 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -48,16 +48,19 @@ module coldata_i2c_dual0_imp_LTEQQX
     S00_AXI_wready,
     S00_AXI_wstrb,
     S00_AXI_wvalid,
+    clk62p5,
     s00_axi_aclk,
     s00_axi_aresetn,
     scl_n_0,
     scl_p_0,
     sda_in_n_0,
     sda_in_n_1,
+    sda_in_out,
     sda_in_p_0,
     sda_in_p_1,
     sda_out_n_0,
     sda_out_n_1,
+    sda_out_out,
     sda_out_p_0,
     sda_out_p_1);
   input [39:0]S00_AXI1_araddr;
@@ -98,16 +101,19 @@ module coldata_i2c_dual0_imp_LTEQQX
   output S00_AXI_wready;
   input [3:0]S00_AXI_wstrb;
   input S00_AXI_wvalid;
+  input clk62p5;
   input s00_axi_aclk;
   input s00_axi_aresetn;
   output [0:0]scl_n_0;
   output [0:0]scl_p_0;
   input sda_in_n_0;
   input sda_in_n_1;
+  output sda_in_out;
   input sda_in_p_0;
   input sda_in_p_1;
   output sda_out_n_0;
   output sda_out_n_1;
+  output sda_out_out;
   output sda_out_p_0;
   output sda_out_p_1;
 
@@ -130,8 +136,11 @@ module coldata_i2c_dual0_imp_LTEQQX
   wire Conn1_WREADY;
   wire [3:0]Conn1_WSTRB;
   wire Conn1_WVALID;
+  wire clk62p5_1;
   wire coldata_i2c_0_scl;
+  wire coldata_i2c_0_sda_in_out;
   wire coldata_i2c_0_sda_out_n;
+  wire coldata_i2c_0_sda_out_out;
   wire coldata_i2c_0_sda_out_p;
   wire coldata_i2c_1_scl;
   wire coldata_i2c_1_sda_out_n;
@@ -192,6 +201,7 @@ module coldata_i2c_dual0_imp_LTEQQX
   assign S00_AXI_rresp[1:0] = ps8_0_axi_periph_M01_AXI_RRESP;
   assign S00_AXI_rvalid = ps8_0_axi_periph_M01_AXI_RVALID;
   assign S00_AXI_wready = ps8_0_axi_periph_M01_AXI_WREADY;
+  assign clk62p5_1 = clk62p5;
   assign ps8_0_axi_periph_M01_AXI_ARADDR = S00_AXI_araddr[39:0];
   assign ps8_0_axi_periph_M01_AXI_ARPROT = S00_AXI_arprot[2:0];
   assign ps8_0_axi_periph_M01_AXI_ARVALID = S00_AXI_arvalid;
@@ -208,15 +218,18 @@ module coldata_i2c_dual0_imp_LTEQQX
   assign scl_p_0[0] = util_ds_buf_0_OBUF_DS_P;
   assign sda_in_n_0_1 = sda_in_n_0;
   assign sda_in_n_1_1 = sda_in_n_1;
+  assign sda_in_out = coldata_i2c_0_sda_in_out;
   assign sda_in_p_0_1 = sda_in_p_0;
   assign sda_in_p_1_1 = sda_in_p_1;
   assign sda_out_n_0 = coldata_i2c_0_sda_out_n;
   assign sda_out_n_1 = coldata_i2c_1_sda_out_n;
+  assign sda_out_out = coldata_i2c_0_sda_out_out;
   assign sda_out_p_0 = coldata_i2c_0_sda_out_p;
   assign sda_out_p_1 = coldata_i2c_1_sda_out_p;
   assign zynq_ultra_ps_e_0_pl_clk0 = s00_axi_aclk;
   design_1_coldata_i2c_0_0 coldata_i2c_0
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(ps8_0_axi_periph_M01_AXI_ARADDR[4:0]),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .s00_axi_arprot(ps8_0_axi_periph_M01_AXI_ARPROT),
@@ -239,11 +252,14 @@ module coldata_i2c_dual0_imp_LTEQQX
         .s00_axi_wvalid(ps8_0_axi_periph_M01_AXI_WVALID),
         .scl(coldata_i2c_0_scl),
         .sda_in_n(sda_in_n_0_1),
+        .sda_in_out(coldata_i2c_0_sda_in_out),
         .sda_in_p(sda_in_p_0_1),
         .sda_out_n(coldata_i2c_0_sda_out_n),
+        .sda_out_out(coldata_i2c_0_sda_out_out),
         .sda_out_p(coldata_i2c_0_sda_out_p));
   design_1_coldata_i2c_0_1 coldata_i2c_1
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(Conn1_ARADDR[4:0]),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .s00_axi_arprot(Conn1_ARPROT),
@@ -318,6 +334,7 @@ module coldata_i2c_dual1_imp_OXIENE
     S00_AXI_wready,
     S00_AXI_wstrb,
     S00_AXI_wvalid,
+    clk62p5,
     s00_axi_aclk,
     s00_axi_aresetn,
     scl_n_0,
@@ -368,6 +385,7 @@ module coldata_i2c_dual1_imp_OXIENE
   output S00_AXI_wready;
   input [3:0]S00_AXI_wstrb;
   input S00_AXI_wvalid;
+  input clk62p5;
   input s00_axi_aclk;
   input s00_axi_aresetn;
   output [0:0]scl_n_0;
@@ -400,6 +418,7 @@ module coldata_i2c_dual1_imp_OXIENE
   wire Conn1_WREADY;
   wire [3:0]Conn1_WSTRB;
   wire Conn1_WVALID;
+  wire clk62p5_1;
   wire coldata_i2c_0_scl;
   wire coldata_i2c_0_sda_out_n;
   wire coldata_i2c_0_sda_out_p;
@@ -462,6 +481,7 @@ module coldata_i2c_dual1_imp_OXIENE
   assign S00_AXI_rresp[1:0] = ps8_0_axi_periph_M01_AXI_RRESP;
   assign S00_AXI_rvalid = ps8_0_axi_periph_M01_AXI_RVALID;
   assign S00_AXI_wready = ps8_0_axi_periph_M01_AXI_WREADY;
+  assign clk62p5_1 = clk62p5;
   assign ps8_0_axi_periph_M01_AXI_ARADDR = S00_AXI_araddr[39:0];
   assign ps8_0_axi_periph_M01_AXI_ARPROT = S00_AXI_arprot[2:0];
   assign ps8_0_axi_periph_M01_AXI_ARVALID = S00_AXI_arvalid;
@@ -486,7 +506,8 @@ module coldata_i2c_dual1_imp_OXIENE
   assign sda_out_p_1 = coldata_i2c_1_sda_out_p;
   assign zynq_ultra_ps_e_0_pl_clk0 = s00_axi_aclk;
   design_1_coldata_i2c_0_2 coldata_i2c_0
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(ps8_0_axi_periph_M01_AXI_ARADDR[4:0]),
         .s00_axi_aresetn(s00_axi_aresetn_1),
         .s00_axi_arprot(ps8_0_axi_periph_M01_AXI_ARPROT),
@@ -513,7 +534,8 @@ module coldata_i2c_dual1_imp_OXIENE
         .sda_out_n(coldata_i2c_0_sda_out_n),
         .sda_out_p(coldata_i2c_0_sda_out_p));
   design_1_coldata_i2c_1_0 coldata_i2c_1
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(Conn1_ARADDR[4:0]),
         .s00_axi_aresetn(s00_axi_aresetn_1),
         .s00_axi_arprot(Conn1_ARPROT),
@@ -588,6 +610,7 @@ module coldata_i2c_dual2_imp_QQB9M7
     S00_AXI_wready,
     S00_AXI_wstrb,
     S00_AXI_wvalid,
+    clk62p5,
     s00_axi_aclk,
     s00_axi_aresetn,
     scl_n_0,
@@ -638,6 +661,7 @@ module coldata_i2c_dual2_imp_QQB9M7
   output S00_AXI_wready;
   input [3:0]S00_AXI_wstrb;
   input S00_AXI_wvalid;
+  input clk62p5;
   input s00_axi_aclk;
   input s00_axi_aresetn;
   output [0:0]scl_n_0;
@@ -670,6 +694,7 @@ module coldata_i2c_dual2_imp_QQB9M7
   wire Conn1_WREADY;
   wire [3:0]Conn1_WSTRB;
   wire Conn1_WVALID;
+  wire clk62p5_1;
   wire coldata_i2c_0_scl;
   wire coldata_i2c_0_sda_out_n;
   wire coldata_i2c_0_sda_out_p;
@@ -732,6 +757,7 @@ module coldata_i2c_dual2_imp_QQB9M7
   assign S00_AXI_rresp[1:0] = ps8_0_axi_periph_M01_AXI_RRESP;
   assign S00_AXI_rvalid = ps8_0_axi_periph_M01_AXI_RVALID;
   assign S00_AXI_wready = ps8_0_axi_periph_M01_AXI_WREADY;
+  assign clk62p5_1 = clk62p5;
   assign ps8_0_axi_periph_M01_AXI_ARADDR = S00_AXI_araddr[39:0];
   assign ps8_0_axi_periph_M01_AXI_ARPROT = S00_AXI_arprot[2:0];
   assign ps8_0_axi_periph_M01_AXI_ARVALID = S00_AXI_arvalid;
@@ -756,7 +782,8 @@ module coldata_i2c_dual2_imp_QQB9M7
   assign sda_out_p_1 = coldata_i2c_1_sda_out_p;
   assign zynq_ultra_ps_e_0_pl_clk0 = s00_axi_aclk;
   design_1_coldata_i2c_0_3 coldata_i2c_0
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(ps8_0_axi_periph_M01_AXI_ARADDR[4:0]),
         .s00_axi_aresetn(s00_axi_aresetn_1),
         .s00_axi_arprot(ps8_0_axi_periph_M01_AXI_ARPROT),
@@ -783,7 +810,8 @@ module coldata_i2c_dual2_imp_QQB9M7
         .sda_out_n(coldata_i2c_0_sda_out_n),
         .sda_out_p(coldata_i2c_0_sda_out_p));
   design_1_coldata_i2c_1_1 coldata_i2c_1
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(Conn1_ARADDR[4:0]),
         .s00_axi_aresetn(s00_axi_aresetn_1),
         .s00_axi_arprot(Conn1_ARPROT),
@@ -858,6 +886,7 @@ module coldata_i2c_dual3_imp_X2DLBG
     S00_AXI_wready,
     S00_AXI_wstrb,
     S00_AXI_wvalid,
+    clk62p5,
     s00_axi_aclk,
     s00_axi_aresetn,
     scl_n_0,
@@ -908,6 +937,7 @@ module coldata_i2c_dual3_imp_X2DLBG
   output S00_AXI_wready;
   input [3:0]S00_AXI_wstrb;
   input S00_AXI_wvalid;
+  input clk62p5;
   input s00_axi_aclk;
   input s00_axi_aresetn;
   output [0:0]scl_n_0;
@@ -940,6 +970,7 @@ module coldata_i2c_dual3_imp_X2DLBG
   wire Conn1_WREADY;
   wire [3:0]Conn1_WSTRB;
   wire Conn1_WVALID;
+  wire clk62p5_1;
   wire coldata_i2c_0_scl;
   wire coldata_i2c_0_sda_out_n;
   wire coldata_i2c_0_sda_out_p;
@@ -1002,6 +1033,7 @@ module coldata_i2c_dual3_imp_X2DLBG
   assign S00_AXI_rresp[1:0] = ps8_0_axi_periph_M01_AXI_RRESP;
   assign S00_AXI_rvalid = ps8_0_axi_periph_M01_AXI_RVALID;
   assign S00_AXI_wready = ps8_0_axi_periph_M01_AXI_WREADY;
+  assign clk62p5_1 = clk62p5;
   assign ps8_0_axi_periph_M01_AXI_ARADDR = S00_AXI_araddr[39:0];
   assign ps8_0_axi_periph_M01_AXI_ARPROT = S00_AXI_arprot[2:0];
   assign ps8_0_axi_periph_M01_AXI_ARVALID = S00_AXI_arvalid;
@@ -1026,7 +1058,8 @@ module coldata_i2c_dual3_imp_X2DLBG
   assign sda_out_p_1 = coldata_i2c_1_sda_out_p;
   assign zynq_ultra_ps_e_0_pl_clk0 = s00_axi_aclk;
   design_1_coldata_i2c_0_4 coldata_i2c_0
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(ps8_0_axi_periph_M01_AXI_ARADDR[4:0]),
         .s00_axi_aresetn(s00_axi_aresetn_1),
         .s00_axi_arprot(ps8_0_axi_periph_M01_AXI_ARPROT),
@@ -1053,7 +1086,8 @@ module coldata_i2c_dual3_imp_X2DLBG
         .sda_out_n(coldata_i2c_0_sda_out_n),
         .sda_out_p(coldata_i2c_0_sda_out_p));
   design_1_coldata_i2c_1_2 coldata_i2c_1
-       (.s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
+       (.clk62p5(clk62p5_1),
+        .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_araddr(Conn1_ARADDR[4:0]),
         .s00_axi_aresetn(s00_axi_aresetn_1),
         .s00_axi_arprot(Conn1_ARPROT),
@@ -1795,6 +1829,8 @@ module design_1
     cmd_code_reset,
     cmd_code_sync,
     cmd_code_trigger,
+    cmd_stamp_sync,
+    cmd_stamp_sync_en,
     daq_clk,
     daq_data_type0,
     daq_data_type1,
@@ -1890,6 +1926,8 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_reset;
   input [7:0]cmd_code_sync;
   input [7:0]cmd_code_trigger;
+  input [14:0]cmd_stamp_sync;
+  input cmd_stamp_sync_en;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DAQ_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DAQ_CLK, ASSOCIATED_RESET daq_spy_reset_0:daq_spy_reset_1, CLK_DOMAIN design_1_daq_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input daq_clk;
   input [1:0]daq_data_type0;
   input [1:0]daq_data_type1;
@@ -2107,6 +2145,8 @@ module design_1
   wire [7:0]cmd_code_reset_0_1;
   wire [7:0]cmd_code_sync_0_1;
   wire [7:0]cmd_code_trigger_0_1;
+  wire [14:0]cmd_stamp_sync_0_1;
+  wire cmd_stamp_sync_en_0_1;
   wire coldata_fast_cmd_0_fastcommand_out;
   wire coldata_fast_cmd_0_fastcommand_out_n;
   wire coldata_fast_cmd_0_fastcommand_out_p;
@@ -2114,6 +2154,8 @@ module design_1
   wire [0:0]coldata_i2c_0_scl_p;
   wire coldata_i2c_0_sda_out_n;
   wire coldata_i2c_0_sda_out_p;
+  wire coldata_i2c_dual0_sda_in_out;
+  wire coldata_i2c_dual0_sda_out_out;
   wire [0:0]coldata_i2c_dual1_scl_n_0;
   wire [0:0]coldata_i2c_dual1_scl_p_0;
   wire coldata_i2c_dual1_sda_out_n_0;
@@ -2439,6 +2481,8 @@ module design_1
   assign cmd_code_reset_0_1 = cmd_code_reset[7:0];
   assign cmd_code_sync_0_1 = cmd_code_sync[7:0];
   assign cmd_code_trigger_0_1 = cmd_code_trigger[7:0];
+  assign cmd_stamp_sync_0_1 = cmd_stamp_sync[14:0];
+  assign cmd_stamp_sync_en_0_1 = cmd_stamp_sync_en;
   assign daq_clk_0_1 = daq_clk;
   assign daq_data_type_0_1 = daq_data_type1[1:0];
   assign daq_data_type_1_1 = daq_data_type0[1:0];
@@ -2636,16 +2680,19 @@ module design_1
         .S00_AXI_wready(ps8_0_axi_periph_M01_AXI_WREADY),
         .S00_AXI_wstrb(ps8_0_axi_periph_M01_AXI_WSTRB),
         .S00_AXI_wvalid(ps8_0_axi_periph_M01_AXI_WVALID),
+        .clk62p5(pdts_endpoint_0_clk),
         .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .scl_n_0(coldata_i2c_0_scl_n),
         .scl_p_0(coldata_i2c_0_scl_p),
         .sda_in_n_0(sda_in_n_0_1),
         .sda_in_n_1(sda_in_n_1_1),
+        .sda_in_out(coldata_i2c_dual0_sda_in_out),
         .sda_in_p_0(sda_in_p_0_1),
         .sda_in_p_1(sda_in_p_1_1),
         .sda_out_n_0(coldata_i2c_0_sda_out_n),
         .sda_out_n_1(coldata_i2c_dual_sda_out_n_1),
+        .sda_out_out(coldata_i2c_dual0_sda_out_out),
         .sda_out_p_0(coldata_i2c_0_sda_out_p),
         .sda_out_p_1(coldata_i2c_dual_sda_out_p_1));
   coldata_i2c_dual1_imp_OXIENE coldata_i2c_dual1
@@ -2687,6 +2734,7 @@ module design_1
         .S00_AXI_wready(S00_AXI_1_WREADY),
         .S00_AXI_wstrb(S00_AXI_1_WSTRB),
         .S00_AXI_wvalid(S00_AXI_1_WVALID),
+        .clk62p5(pdts_endpoint_0_clk),
         .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .scl_n_0(coldata_i2c_dual1_scl_n_0),
@@ -2738,6 +2786,7 @@ module design_1
         .S00_AXI_wready(S00_AXI_2_WREADY),
         .S00_AXI_wstrb(S00_AXI_2_WSTRB),
         .S00_AXI_wvalid(S00_AXI_2_WVALID),
+        .clk62p5(pdts_endpoint_0_clk),
         .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .scl_n_0(coldata_i2c_dual2_scl_n_0),
@@ -2789,6 +2838,7 @@ module design_1
         .S00_AXI_wready(S00_AXI_3_WREADY),
         .S00_AXI_wstrb(S00_AXI_3_WSTRB),
         .S00_AXI_wvalid(S00_AXI_3_WVALID),
+        .clk62p5(pdts_endpoint_0_clk),
         .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .scl_n_0(coldata_i2c_dual3_scl_n_0),
@@ -3355,9 +3405,13 @@ module design_1
         .cmd_code_reset_0(cmd_code_reset_0_1),
         .cmd_code_sync_0(cmd_code_sync_0_1),
         .cmd_code_trigger_0(cmd_code_trigger_0_1),
+        .cmd_stamp_sync_0(cmd_stamp_sync_0_1),
+        .cmd_stamp_sync_en_0(cmd_stamp_sync_en_0_1),
         .fake_time_stamp_en_0(fake_time_stamp_en_0_1),
         .fake_time_stamp_init_0(fake_time_stamp_init_0_1),
         .probe15(coldata_fast_cmd_0_fastcommand_out),
+        .probe20(coldata_i2c_dual0_sda_in_out),
+        .probe21(coldata_i2c_dual0_sda_out_out),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .stat_0(timing_module_stat_0),
         .ts_cdr_lol(cdr_lol_0_1),
@@ -13754,9 +13808,13 @@ module timing_module_imp_2RES6C
     cmd_code_reset_0,
     cmd_code_sync_0,
     cmd_code_trigger_0,
+    cmd_stamp_sync_0,
+    cmd_stamp_sync_en_0,
     fake_time_stamp_en_0,
     fake_time_stamp_init_0,
     probe15,
+    probe20,
+    probe21,
     sclk,
     stat_0,
     ts_cdr_lol,
@@ -13792,9 +13850,13 @@ module timing_module_imp_2RES6C
   input [7:0]cmd_code_reset_0;
   input [7:0]cmd_code_sync_0;
   input [7:0]cmd_code_trigger_0;
+  input [14:0]cmd_stamp_sync_0;
+  input cmd_stamp_sync_en_0;
   input fake_time_stamp_en_0;
   input [63:0]fake_time_stamp_init_0;
   input [0:0]probe15;
+  input probe20;
+  input probe21;
   input sclk;
   output [3:0]stat_0;
   input ts_cdr_lol;
@@ -13825,6 +13887,8 @@ module timing_module_imp_2RES6C
   wire [7:0]cmd_code_reset_0_1;
   wire [7:0]cmd_code_sync_0_1;
   wire [7:0]cmd_code_trigger;
+  wire [14:0]cmd_stamp_sync_0_1;
+  wire cmd_stamp_sync_en_0_1;
   wire fake_time_stamp_en_0_1;
   wire [63:0]fake_time_stamp_init_0_1;
   wire [0:0]fast_command_out;
@@ -13837,6 +13901,8 @@ module timing_module_imp_2RES6C
   wire [63:0]pdts_endpoint_stdlog_0_tstamp;
   wire pdts_endpoint_stdlog_0_tx_dis;
   wire pdts_endpoint_stdlog_0_txd;
+  wire probe20_1;
+  wire probe21_1;
   wire sclk_1;
   wire ts_cdr_lol_1;
   wire ts_cdr_los_1;
@@ -13883,9 +13949,13 @@ module timing_module_imp_2RES6C
   assign cmd_code_reset_0_1 = cmd_code_reset_0[7:0];
   assign cmd_code_sync_0_1 = cmd_code_sync_0[7:0];
   assign cmd_code_trigger = cmd_code_trigger_0[7:0];
+  assign cmd_stamp_sync_0_1 = cmd_stamp_sync_0[14:0];
+  assign cmd_stamp_sync_en_0_1 = cmd_stamp_sync_en_0;
   assign fake_time_stamp_en_0_1 = fake_time_stamp_en_0;
   assign fake_time_stamp_init_0_1 = fake_time_stamp_init_0[63:0];
   assign fast_command_out = probe15[0];
+  assign probe20_1 = probe20;
+  assign probe21_1 = probe21;
   assign sclk_1 = sclk;
   assign stat_0[3:0] = ts_reclock_0_stat_out;
   assign ts_cdr_lol_1 = ts_cdr_lol;
@@ -13919,6 +13989,8 @@ module timing_module_imp_2RES6C
         .probe18(bp_io_t_1),
         .probe19(bp_io_o_1),
         .probe2(ts_reclock_0_rdy_out),
+        .probe20(probe20_1),
+        .probe21(probe21_1),
         .probe3(ts_reclock_0_sync_out),
         .probe4(ts_reclock_0_sync_stb_out),
         .probe5(ts_reclock_0_sync_first_out),
@@ -13963,6 +14035,8 @@ module timing_module_imp_2RES6C
         .cmd_code_reset(cmd_code_reset_0_1),
         .cmd_code_sync(cmd_code_sync_0_1),
         .cmd_code_trigger(cmd_code_trigger),
+        .cmd_stamp_sync(cmd_stamp_sync_0_1),
+        .cmd_stamp_sync_en(cmd_stamp_sync_en_0_1),
         .fake_time_stamp_en(fake_time_stamp_en_0_1),
         .fake_time_stamp_init(fake_time_stamp_init_0_1),
         .fifo_rst(xlslice_2_Dout),

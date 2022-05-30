@@ -11,6 +11,8 @@ constexpr uint32_t REG_FAST_CMD_ACT_DELAY   = 4/4;
 //COLDATA I2C AXI registers
 constexpr uint32_t REG_COLD_I2C_START        = 0/4;
 constexpr uint32_t REG_COLD_I2C_CTRL         = 4/4;
+constexpr uint32_t REG_COLD_I2C_STIM         = 2; // stimulus register, bit 0
+constexpr uint32_t REG_COLD_I2C_LATN         = 2; // latency, bits [7:0]
 
 //Fast Command bits
 constexpr uint8_t FAST_CMD_RESET = 1;
@@ -41,7 +43,7 @@ public:
     void i2c_write(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uint8_t reg_addr, uint8_t data);
     uint8_t i2c_read(int coldata_idx, uint8_t chip_addr, uint8_t reg_page,  uint8_t reg_addr);
 
-protected:
+//protected:
     int last_coldata_i2c_chip[2];
     io_reg_t coldata_i2c[2];
     io_reg_t coldata_fast_cmd[2];

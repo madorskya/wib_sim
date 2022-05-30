@@ -6,7 +6,7 @@ clock/si5345_config
 voltages/wib_voltages
 ./coldata_power_on.sh
 sleep 1
-# reset COLDATA chips
+# reset COLDATA chips - this leads to data missing for some reason
 ./devreg.sh fast_cmd_code 1
 sleep 0.1
 

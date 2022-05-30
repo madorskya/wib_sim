@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 14
+// IP Revision: 16
 
 `timescale 1ns/1ps
 
@@ -59,6 +59,9 @@ module design_1_coldata_i2c_0_2 (
   sda_out_n,
   sda_in_p,
   sda_in_n,
+  sda_in_out,
+  sda_out_out,
+  clk62p5,
   s00_axi_aclk,
   s00_axi_aresetn,
   s00_axi_awaddr,
@@ -87,6 +90,9 @@ output wire sda_out_p;
 output wire sda_out_n;
 input wire sda_in_p;
 input wire sda_in_n;
+output wire sda_in_out;
+output wire sda_out_out;
+input wire clk62p5;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *)
 input wire s00_axi_aclk;
@@ -147,6 +153,9 @@ input wire s00_axi_rready;
     .sda_out_n(sda_out_n),
     .sda_in_p(sda_in_p),
     .sda_in_n(sda_in_n),
+    .sda_in_out(sda_in_out),
+    .sda_out_out(sda_out_out),
+    .clk62p5(clk62p5),
     .s00_axi_aclk(s00_axi_aclk),
     .s00_axi_aresetn(s00_axi_aresetn),
     .s00_axi_awaddr(s00_axi_awaddr),

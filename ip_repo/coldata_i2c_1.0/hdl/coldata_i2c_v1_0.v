@@ -22,6 +22,8 @@
 		output reg scl,
 		output sda_out_p, sda_out_n,
 		input sda_in_p, sda_in_n,
+		output sda_in_out, sda_out_out,
+		input clk62p5,
 
 		// User ports ends
 		// Do not modify the ports beyond this line
@@ -99,9 +101,13 @@
 	// Add user logic here
     reg sda_out; 
     wire sda_in;
+    wire lb_stim_sda_out;
 
-    OBUFDS obuf_sda (.I(sda_out), .O(sda_out_p), .OB(sda_out_n));
+    // SDA output is controlled by I2C or by loopback logic
+    OBUFDS obuf_sda (.I(sda_out_out), .O(sda_out_p), .OB(sda_out_n));
     IBUFDS ibuf_sda (.I(sda_in_p), .IB(sda_in_n), .O(sda_in));
+    assign sda_in_out = sda_in;
+    assign sda_out_out = sda_out & lb_stim_sda_out;
 
     wire tx_start = wr_reg[0][0];
     reg tx_start_r = 0;
@@ -230,6 +236,37 @@
         end
     end
 
+    reg [7:0] lat_cnt = 0;
+    reg [4:0] lb_stim; // loopback stimulus 
+    reg [3:0] lb_resp; // loopback response
+    assign lb_stim_sda_out = lb_stim[4];
+    
+    // latency measurement logic
+    always @(posedge clk62p5)
+    begin
+    
+        if (lb_stim[4:3] == 2'b10) // stimulus just fell
+        begin
+            lat_cnt = -4'h4; // reset latency counter
+        end
+        else
+        begin
+            lat_cnt = lat_cnt + 8'h1;
+        end
+        
+        if (lb_resp[3:2] == 2'b10) // response just fell
+        begin
+            rd_reg[2] = lat_cnt; // lock latency result
+        end
+        
+            
+        // loopback stimulus comes from wr_reg [1] bit 0
+        lb_stim = {lb_stim[3:0], ~wr_reg[2][0]};
+        
+        lb_resp = {lb_resp[2:0], sda_in};
+    end
+
+
 	// User logic ends
 
-	endmodule
+endmodule

@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:08:55 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Date        : Mon May 30 16:52:48 2022
+-- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_coldata_i2c_0_1 -prefix
---               design_1_coldata_i2c_0_1_ design_1_coldata_i2c_1_0_stub.vhdl
--- Design      : design_1_coldata_i2c_1_0
+--               design_1_coldata_i2c_0_1_ design_1_coldata_i2c_0_0_stub.vhdl
+-- Design      : design_1_coldata_i2c_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
@@ -19,6 +19,9 @@ entity design_1_coldata_i2c_0_1 is
     sda_out_n : out STD_LOGIC;
     sda_in_p : in STD_LOGIC;
     sda_in_n : in STD_LOGIC;
+    sda_in_out : out STD_LOGIC;
+    sda_out_out : out STD_LOGIC;
+    clk62p5 : in STD_LOGIC;
     s00_axi_aclk : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC;
     s00_axi_awaddr : in STD_LOGIC_VECTOR ( 4 downto 0 );
@@ -48,8 +51,8 @@ architecture stub of design_1_coldata_i2c_0_1 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "scl,sda_out_p,sda_out_n,sda_in_p,sda_in_n,s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready";
+attribute black_box_pad_pin of stub : architecture is "scl,sda_out_p,sda_out_n,sda_in_p,sda_in_n,sda_in_out,sda_out_out,clk62p5,s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "coldata_i2c_v1_0,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "coldata_i2c_v1_0,Vivado 2020.1";
 begin
 end;
