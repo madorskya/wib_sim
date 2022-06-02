@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon May 30 16:57:52 2022
+//Date        : Wed Jun  1 11:28:16 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1815,13 +1815,14 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=94,numReposBlks=68,numNonXlnxBlks=10,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=95,numReposBlks=69,numNonXlnxBlks=10,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
     bp_io_o,
     bp_io_t,
+    clk_125,
     cmd_code_act,
     cmd_code_adc_reset,
     cmd_code_edge,
@@ -1919,6 +1920,7 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 WIB_LED TRI_O" *) output [31:0]WIB_LED_tri_o;
   input [7:0]bp_io_o;
   input [7:0]bp_io_t;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_125 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_125, CLK_DOMAIN /timing_module/clk_wiz_0_clk_out1, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output clk_125;
   input [7:0]cmd_code_act;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_ADC_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_ADC_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_adc_reset;
   input [7:0]cmd_code_edge;
@@ -2414,6 +2416,7 @@ module design_1
   wire sda_in_p_1_1_1;
   wire sda_in_p_1_2_1;
   wire sfp_los_0_1;
+  wire timing_module_clk_out1_0;
   wire timing_module_cmd_bit_act;
   wire timing_module_cmd_bit_adc_reset;
   wire timing_module_cmd_bit_edge;
@@ -2474,6 +2477,7 @@ module design_1
   assign axi_iic_0_IIC_SDA_I = iic_rtl_0_sda_i;
   assign cdr_lol_0_1 = ts_cdr_lol;
   assign cdr_los_0_1 = ts_cdr_los;
+  assign clk_125 = timing_module_clk_out1_0;
   assign cmd_code_act_0_1 = cmd_code_act[7:0];
   assign cmd_code_adc_reset_0_1 = cmd_code_adc_reset[7:0];
   assign cmd_code_edge_0_1 = cmd_code_edge[7:0];
@@ -3391,6 +3395,7 @@ module design_1
        (.Din(reg_bank_64_0_reg_rw),
         .bp_io_o(bp_io_o),
         .bp_io_t(bp_io_t),
+        .clk_out1_0(timing_module_clk_out1_0),
         .cmd_bit_act(timing_module_cmd_bit_act),
         .cmd_bit_adc_reset(timing_module_cmd_bit_adc_reset),
         .cmd_bit_edge(timing_module_cmd_bit_edge),
@@ -13794,6 +13799,7 @@ module timing_module_imp_2RES6C
    (Din,
     bp_io_o,
     bp_io_t,
+    clk_out1_0,
     cmd_bit_act,
     cmd_bit_adc_reset,
     cmd_bit_edge,
@@ -13836,6 +13842,7 @@ module timing_module_imp_2RES6C
   input [1023:0]Din;
   input [7:0]bp_io_o;
   input [7:0]bp_io_t;
+  output clk_out1_0;
   output cmd_bit_act;
   output cmd_bit_adc_reset;
   output cmd_bit_edge;
@@ -13880,6 +13887,7 @@ module timing_module_imp_2RES6C
   wire [7:0]bp_io_o_1;
   wire [7:0]bp_io_t_1;
   wire clk_wiz_0_clk_out1;
+  wire clk_wiz_0_clk_out2;
   wire [7:0]cmd_code_act_0_1;
   wire [7:0]cmd_code_adc_reset_0_1;
   wire [7:0]cmd_code_edge_0_1;
@@ -13935,6 +13943,7 @@ module timing_module_imp_2RES6C
   assign axi_gpio_1_gpio_io_o = Din[1023:0];
   assign bp_io_o_1 = bp_io_o[7:0];
   assign bp_io_t_1 = bp_io_t[7:0];
+  assign clk_out1_0 = clk_wiz_0_clk_out2;
   assign cmd_bit_act = ts_reclock_0_cmd_bit_act;
   assign cmd_bit_adc_reset = ts_reclock_0_cmd_bit_adc_reset;
   assign cmd_bit_edge = ts_reclock_0_cmd_bit_edge;
@@ -13974,6 +13983,10 @@ module timing_module_imp_2RES6C
   assign ts_valid_0 = ts_reclock_0_ts_valid;
   assign tx_dis_0[0] = pdts_endpoint_stdlog_0_tx_dis;
   assign txd_0 = pdts_endpoint_stdlog_0_txd;
+  design_1_clk_wiz_0_0 clk_wiz_0
+       (.clk_in1(clk_wiz_0_clk_out1),
+        .clk_out1(clk_wiz_0_clk_out2),
+        .reset(pdts_endpoint_stdlog_0_rst));
   design_1_ila_0_1 ila_0
        (.clk(clk_wiz_0_clk_out1),
         .probe0(ts_reclock_0_stat_out),

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon May 30 16:57:52 2022
+//Date        : Wed Jun  1 11:28:16 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -15,6 +15,7 @@ module design_1_wrapper
     WIB_LED_tri_o,
     bp_io_o,
     bp_io_t,
+    clk_125,
     cmd_code_act,
     cmd_code_adc_reset,
     cmd_code_edge,
@@ -108,6 +109,7 @@ module design_1_wrapper
   output [31:0]WIB_LED_tri_o;
   input [7:0]bp_io_o;
   input [7:0]bp_io_t;
+  output clk_125;
   input [7:0]cmd_code_act;
   input [7:0]cmd_code_adc_reset;
   input [7:0]cmd_code_edge;
@@ -202,6 +204,7 @@ module design_1_wrapper
   wire [31:0]WIB_LED_tri_o;
   wire [7:0]bp_io_o;
   wire [7:0]bp_io_t;
+  wire clk_125;
   wire [7:0]cmd_code_act;
   wire [7:0]cmd_code_adc_reset;
   wire [7:0]cmd_code_edge;
@@ -303,6 +306,7 @@ module design_1_wrapper
         .WIB_LED_tri_o(WIB_LED_tri_o),
         .bp_io_o(bp_io_o),
         .bp_io_t(bp_io_t),
+        .clk_125(clk_125),
         .cmd_code_act(cmd_code_act),
         .cmd_code_adc_reset(cmd_code_adc_reset),
         .cmd_code_edge(cmd_code_edge),

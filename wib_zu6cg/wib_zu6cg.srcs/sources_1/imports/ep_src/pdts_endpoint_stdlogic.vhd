@@ -27,7 +27,7 @@ entity pdts_endpoint_stdlogic is
         pll_locked: in std_logic;
 --		io_rdy: in std_logic; -- Sampled in sclk domaain
 		clk: out std_logic; -- 50MHz clock output
-		rst: out std_logic; -- 50MHz domain reset
+        rst: out std_logic; -- 50MHz domain reset
 		rdy: out std_logic; -- Timestamp valid flag
 		sync: out std_logic_vector(3 downto 0); -- Sync command output (clk domain)
 		sync_stb: out std_logic; -- Sync command strobe (clk domain)
@@ -44,6 +44,14 @@ architecture rtl of pdts_endpoint_stdlogic is
 
     attribute X_INTERFACE_PARAMETER: string;
     attribute X_INTERFACE_PARAMETER of clk: signal is "FREQ_HZ 62500000";
+
+    -- Madorsky: adding RST polarity to make the schematics happy
+    -- Declare the attributes in the architecture section
+    ATTRIBUTE X_INTERFACE_INFO : STRING;
+    ATTRIBUTE X_INTERFACE_INFO of rst: SIGNAL is "xilinx.com:signal:reset:1.0 rst RST";
+    -- Supported parameter: POLARITY {ACTIVE_LOW, ACTIVE_HIGH}
+    -- Normally active low is assumed.  Use this parameter to force the level
+    ATTRIBUTE X_INTERFACE_PARAMETER of rst: SIGNAL is "POLARITY ACTIVE_HIGH";		
     
     signal io_rdy: std_logic;
     

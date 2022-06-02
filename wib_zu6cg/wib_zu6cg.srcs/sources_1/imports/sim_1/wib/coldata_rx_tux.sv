@@ -7,12 +7,11 @@ module coldata_rx_tux
     input [15 : 0] gthrxn_in           , // RX diff lines
     input [15 : 0] gthrxp_in           ,
 
-    input  [0 : 0] reset_clk_64M_in    , // 64 M clock for reset circuits
+    input  [0 : 0] clk62p5             , // system clock
     input  [0 : 0] reset_all_in        , // common reset for all circiuts
     input  [0 : 0] rxbufreset, // RX buffer reset in MGTs to remove random latency
     output [0 : 0] reset_rx_done_out   , 
 
-    output [7 : 0] rx_usrclk2_out      , // rx data clocks, one per COLDATA chip
     output [15 :0] rx_data [15:0]      ,
     output [15 :0] rxbyteisaligned_out ,
     output [15 :0] rxbyterealign_out   ,
@@ -26,8 +25,7 @@ module coldata_rx_tux
     output [0 : 0] rx_cdr_stable_out   , 
     output [15 :0] gtpowergood_out,     
     input  [3:0]   rx_prbs_sel,
-    output [15:0]  rxprbserr_out,
-    output         clk_40 
+    output [15:0]  rxprbserr_out
 
 );
 
@@ -52,13 +50,10 @@ module coldata_rx_tux
     wire [15:0] rxoutclk_out; // recovered clocks
     wire [15:0] rxoutclk_mapped; // recovered clocks mapped to proper channels
     wire [7:0] rxclk; // buffered recovered clocks
-    wire [3:0] refclk_odiv2;
-    wire refclk_odiv2_b;
     wire [15:0]  rxclk_unroll;
     
     // mapping of the rx channels to FEMB channels
     integer rx_map[0:15] = '{4,5,6,7,8,9,10,11,12,13,14,15,0,1,2,3};
-    integer clk_map[0:7] = '{2,  3,  4,   5,    6,    7,   0,  1};
     
     genvar gi;
     generate
@@ -70,11 +65,6 @@ module coldata_rx_tux
             assign rx_disp     [gi] = rxctrl1_out[rx_map[gi]*16 +: 2];
             assign rx_comma    [gi] = rxctrl2_out[rx_map[gi]*8 +: 2];
             assign rx_notvalid [gi] = rxctrl3_out[rx_map[gi]*8 +: 2];
-        end
-        // mapping clocks same way as data
-        for (gi = 0; gi < 8; gi++)
-        begin
-            assign rx_usrclk2_out[gi] = rxclk [clk_map[gi]];
         end
         
         // refclk buffers
@@ -92,64 +82,14 @@ module coldata_rx_tux
                 .IB    (gtrefclk00n_in [gi]),
                 .CEB   (1'b0),
                 .O     (gtrefclk00_in [gi]),
-                .ODIV2 (refclk_odiv2  [gi])
+                .ODIV2 ()
             );
         end            
             
     endgenerate
 
-    BUFG_GT bufg_gt_refclk_odiv2
-    (
-        .CE      (1'b1),
-        .CEMASK  (1'b0),
-        .CLR     (1'b0),
-        .CLRMASK (1'b0),
-        .DIV     (3'b0),
-        .I       (refclk_odiv2  [0]),
-        .O       (refclk_odiv2_b)
-    );
-    // reference clock for COLDATA chips, generated from serial links reference clock
-    mmcm_40m mmcm_40m_i
-    (
-        .clk_out1 (clk_40),
-        .reset    (1'b0),
-        .locked   (),
-        .clk_in1  (refclk_odiv2_b)
-    );
-    
-
-    
-    // take recovered clock from each COLDATA chip separately, 
-    // since each COLDATA runs on its own oscillator
-    generate
-        for (gi = 0; gi < 8; gi++) // COLDATA loop
-        begin: bufg_gt_loop
-          BUFG_GT bufg_gt_coldata 
-          (
-            .CE      (1'b1),
-            .CEMASK  (1'b0),
-            .CLR     (1'b0),
-            .CLRMASK (1'b0),
-            .DIV     (3'b0),
-            .I       (rxoutclk_out[gi*2]),
-            .O       (rxclk[gi])
-          );
-            
-        end
-    endgenerate 
-    
-    // use one common RX clock for each COLDATA chip
-    assign rxclk_unroll = 
-    {
-        {2{rxclk[7]}},
-        {2{rxclk[6]}},
-        {2{rxclk[5]}},
-        {2{rxclk[4]}},
-        {2{rxclk[3]}},
-        {2{rxclk[2]}},
-        {2{rxclk[1]}},
-        {2{rxclk[0]}}
-    };
+    // use one common RX clock for all COLDATA chips
+    assign rxclk_unroll = {16{clk62p5}};
     
     coldata_rx_single crxs
     (
@@ -159,7 +99,7 @@ module coldata_rx_tux
       .gtwiz_userclk_tx_usrclk2_out       (), // output wire [0 : 0] gtwiz_userclk_tx_usrclk2_out
       .gtwiz_userclk_tx_active_out        (), // output wire [0 : 0] gtwiz_userclk_tx_active_out
       .gtwiz_userclk_rx_active_in         (!reset_all_in), // input wire [0 : 0] gtwiz_userclk_rx_active_in
-      .gtwiz_reset_clk_freerun_in         (reset_clk_64M_in), // input wire [0 : 0] gtwiz_reset_clk_freerun_in
+      .gtwiz_reset_clk_freerun_in         (clk62p5), // input wire [0 : 0] gtwiz_reset_clk_freerun_in
       .gtwiz_reset_all_in                 (reset_all_in), // input wire [0 : 0] gtwiz_reset_all_in
       .gtwiz_reset_tx_pll_and_datapath_in (1'b0), // input wire [0 : 0] gtwiz_reset_tx_pll_and_datapath_in
       .gtwiz_reset_tx_datapath_in         (1'b0), // input wire [0 : 0] gtwiz_reset_tx_datapath_in

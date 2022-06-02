@@ -450,7 +450,8 @@ module frame_builder_single #(parameter NUM = 0)
                 .probe11 (time16_reclocked[5]),
                 .probe12 (time16_reclocked[6]),
                 .probe13 (time16_reclocked[7]),
-                .probe14 (min_mismatch)
+                .probe14 (min_mismatch),
+                .probe15 (timestamp_reclocked)
             );
             
             ila_4 ila_daq_fsm 

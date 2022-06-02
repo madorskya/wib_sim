@@ -23,6 +23,7 @@ module bd_tux
     input  ts_cdr_lol,
     input  ts_cdr_los,
     output ts_clk,
+    output clk_125,
     output [31:0]ts_evtctr,
     output ts_rdy,
     input  ts_rec_clk_locked,
@@ -125,6 +126,7 @@ module bd_tux
         .ts_cdr_lol   (ts_cdr_lol),
         .ts_cdr_los   (ts_cdr_los),
         .ts_clk       (ts_clk), // this is 62.5 M clock from timing point
+        .clk_125      (clk_125),
         .ts_evtctr    (ts_evtctr),
         .ts_rdy       (ts_rdy),
         .ts_rec_clk_locked (ts_rec_clk_locked),

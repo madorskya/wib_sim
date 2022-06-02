@@ -1,16 +1,19 @@
 module coldata_deframer_single #(parameter NUM = 0)
 (
     input rxclk2x,
-    input rx_usrclk2, // rx data clock
+    input clk62p5, // system clock = rx data clock
     input [15 :0] rx_data,
     input [1:0]   rx_k,
-
-    output [13:0] deframed [31:0],
-    output reg [7:0] time8,
-    output reg [15:0] time16,
-    output reg valid14,
-    output reg valid12,
     
+    output [13:0] deframed [31:0], // aligned deframed data
+    output reg [7:0] time8,
+    output [15:0] time16_a, // aligned time stamp
+    output valid14_a, // aligned valid flags
+    output valid12_a,
+
+    input [14:0] dts_time_delayed, // delayed DTS time stamp for alignment, in 125M clock domain
+    output reg [7:0] align8, // automatic calculated alignment delay
+
     output reg [1:0] crc_err
 );
 
@@ -34,8 +37,8 @@ module coldata_deframer_single #(parameter NUM = 0)
     reg [7:0] rx_byte0;
     reg rx_k0;
     reg [7:0] byte_cnt;
-    wire dfifo_valid;
-    reg [15:0] time16_prelim;
+    wire dfifo_valid = 1;
+    reg [15:0] time16_prelim, time16;
 
     localparam FR14_BYTE_COUNT = 8'd56; // 32 samples x 14 bits
     localparam FR12_BYTE_COUNT = 8'd48; // 32 samples x 12 bits
@@ -56,23 +59,27 @@ module coldata_deframer_single #(parameter NUM = 0)
     localparam ADC_BYTES_12 = 8'd24;
     localparam ADC_BYTES_14 = 8'd28;
 
-    reg [FR14_BITS-1:0] parallel_frame; // storage for the complete data from one entire frame
+    reg  [FR14_BITS-1:0] parallel_frame; // storage for the complete data from one entire frame
+    wire [FR14_BITS-1:0] parallel_frame_a; // aligned parallel frame
     reg [7:0] crc [1:0];
     
     wire [13:0] deframed14 [31:0];
     wire [13:0] deframed12 [31:0];
+    
+    reg valid14;
+    reg valid12;
     
     genvar gi;
     // deframe from parallel storage
     generate
         for (gi = 0; gi < 32; gi++)
         begin
-            assign deframed14 [31-gi] =  parallel_frame [gi*14 +: 14]; 
-            assign deframed12 [31-gi] = {parallel_frame [gi*12 +: 12], 2'b0}; // pad 12-bit data with zeros
+            assign deframed14 [31-gi] =  parallel_frame_a [gi*14 +: 14]; 
+            assign deframed12 [31-gi] = {parallel_frame_a [gi*12 +: 12], 2'b0}; // pad 12-bit data with zeros
         end
     endgenerate
     // common output bus carrying deframed data
-    assign deframed = (valid12) ? deframed12 : deframed14;
+    assign deframed = (valid12_a) ? deframed12 : deframed14;
 
     always @(posedge rxclk2x)
     begin
@@ -201,28 +208,72 @@ module coldata_deframer_single #(parameter NUM = 0)
       end
     end
     
-    wire dfifo_empty;
+    wire dfifo_empty = 0;
 
-    deframer_fifo dfifo 
-    (
-        .rst    (1'b0),                  // input wire rst
-        .wr_clk (rx_usrclk2),            // input wire wr_clk
-        .rd_clk (rxclk2x),            // input wire rd_clk
-        .din    ({rx_k[0], rx_data[7:0], rx_k[1], rx_data[15:8]}),                  // input wire [17 : 0] din
-        .wr_en  (1'b1),    // write everything
-        .rd_en  (1'b1),    //(!dfifo_empty),  // read whenever there's data
-        .dout   ({rx_k0, rx_byte0}),                // output wire [8 : 0] dout
-        .full   (),                // output wire full
-        .empty  (dfifo_empty),              // output wire empty
-        .valid  (dfifo_valid),              // output wire valid
-        .wr_rst_busy (),  // output wire wr_rst_busy
-        .rd_rst_busy ()  // output wire rd_rst_busy
-    );
+//    deframer_fifo dfifo 
+//    (
+//        .rst    (1'b0),                  // input wire rst
+//        .wr_clk (clk62p5),            // input wire wr_clk
+//        .rd_clk (rxclk2x),            // input wire rd_clk
+//        .din    ({rx_k[0], rx_data[7:0], rx_k[1], rx_data[15:8]}),                  // input wire [17 : 0] din
+//        .wr_en  (1'b1),    // write everything
+//        .rd_en  (1'b1),    //(!dfifo_empty),  // read whenever there's data
+//        .dout   ({rx_k0, rx_byte0}),                // output wire [8 : 0] dout
+//        .full   (),                // output wire full
+//        .empty  (dfifo_empty),              // output wire empty
+//        .valid  (dfifo_valid),              // output wire valid
+//        .wr_rst_busy (),  // output wire wr_rst_busy
+//        .rd_rst_busy ()  // output wire rd_rst_busy
+//    );
     
+    reg [17:0] rsh;
+    reg clk62p5_ff;
+    reg [3:0] clk62p5_r;
+    always @(posedge clk62p5) clk62p5_ff = ~clk62p5_ff; 
+    
+    always @(posedge rxclk2x)
+    begin
+        if (clk62p5_r[3] != clk62p5_r[2]) // slow clock front
+            rsh = {rx_k[1], rx_data[15:8], rx_k[0], rx_data[7:0]}; // load 16-bit data
+        else
+            rsh[8:0] = rsh[17:9]; // shift out
+            
+        clk62p5_r = {clk62p5_r[2:0], clk62p5_ff};
+    end
+
+    assign {rx_k0, rx_byte0} = rsh[8:0];
+
+
+    wire time16_valid = valid14 | valid12;
+    reg [14:0] align_calc; 
+
+    // alignment logic
+    always @(posedge rxclk2x)
+    begin
+    
+        if (time16_valid) // frame has just been decoded
+        begin
+            // delayed dts stamp is assumed to be trailing relative to data frame
+            align_calc = time16[14:0] - dts_time_delayed - 15'b1; // -1 to compensate for dyn_shift min delay =1
+            align8 = align_calc[7:0];
+        end
+    end
+
+    // alignment shifter
+    // entire parallel frame + valid flags + time stamp
+    // not very efficient in terms of resources, but we're OK so far
+    dyn_shift #(.SELWIDTH(8), .BW (FR14_BITS+2+16)) ds  
+    (
+        .CLK (rxclk2x), 
+        .CE  ('b1), 
+        .SEL (align8), // value of 0 gives delay of 1
+        .SI  ({time16,   valid14,   valid12,   parallel_frame  }), 
+        .DO  ({time16_a, valid14_a, valid12_a, parallel_frame_a})
+    );
 
             ila_0 ila_rx 
             (
-                .clk     (rx_usrclk2), // input wire clk
+                .clk     (clk62p5), // input wire clk
                 .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
                 .probe1  (rx_k)
             ); 

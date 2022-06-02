@@ -118,7 +118,6 @@ module wib_top
     wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
     
-    wire [7 : 0] rx_usrclk2_out      ; // rx data clock
     wire [15 :0] rx_data [15:0]      ;
     (* mark_debug *) wire [15 :0] rx_data_swizzled [15:0]      ;
     wire [15 :0] rxbyteisaligned_out ;
@@ -193,9 +192,6 @@ module wib_top
     wire tx_timing;
     OBUFDS tx_tim_buf_out (.I(tx_timing), .O(tx_timing_p), .OB(tx_timing_n));
     
-    wire clk50;
-    BUFG clk50_bufg (.I(clk_in_50mhz), .O(clk50));
-
     // FELIX GTH buffering
     wire mgtrefclk0_x0y1_int;
     IBUFDS_GTE4 #(
@@ -275,6 +271,7 @@ module wib_top
     wire [3:0]  psr_cal; //
     wire        ws; //
     wire [15:0] flex; // 
+    wire [7:0]  align8 [15:0]; // automatic alignment delays
     
     // config and status registers mapping
     
@@ -297,7 +294,8 @@ module wib_top
     assign ts_edge_sel         = `CONFIG_BITS(3,  0,  1); // 0xA00C000c timing data clock edge selection
     wire   fake_time_stamp_en  = `CONFIG_BITS(3,  1,  1); // 0xA00C000C
     wire cmd_stamp_sync_en     = `CONFIG_BITS(3,  2,  1); // 0xA00C000C enable sending sync command when 14 lower TLU stamp bits match cmd_stamp_sync
-    wire [14:0] cmd_stamp_sync = `CONFIG_BITS(3, 16, 14); // 0xA00C000C lower 14 bits of TLU time stamp that trigger sync command
+    wire [7:0]  dts_time_delay = `CONFIG_BITS(3,  8,  8); // 0xA00C000C DTS time stamp delay for alignment
+    wire [14:0] cmd_stamp_sync = `CONFIG_BITS(3, 16, 15); // 0xA00C000C lower 14 bits of TLU time stamp that trigger sync command
     
     // command codes from timing system
     wire [7:0] cmd_code_idle      = `CONFIG_BITS(4,  0, 8); // 0xA00C0010
@@ -364,10 +362,13 @@ module wib_top
     assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
 
     assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];  // 0xA00C00A0
+    assign `STATUS_BITS( 9, 0, 32) = ts_tstamp[63:32]; // 0xA00C00A4
     
-    // according to Adrian's Slack message from 2020-10-15
-    assign `STATUS_BITS(12, 0, 32) = ts_tstamp[63:32]; // 0xA00C00B0
-
+    assign `STATUS_BITS(10, 0, 32) = {align8[ 3], align8[ 2], align8[ 1], align8[ 0]}; // 0xA00C00A8
+    assign `STATUS_BITS(11, 0, 32) = {align8[ 7], align8[ 6], align8[ 5], align8[ 4]}; // 0xA00C00AC
+    assign `STATUS_BITS(12, 0, 32) = {align8[11], align8[10], align8[ 9], align8[ 8]}; // 0xA00C00B0
+    assign `STATUS_BITS(13, 0, 32) = {align8[15], align8[14], align8[13], align8[12]}; // 0xA00C00B4
+    
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
 
     assign `STATUS_BITS(16, 0, 1)      = gtwiz_reset_tx_done_out; // 0xA00C00C0
@@ -388,6 +389,7 @@ module wib_top
     wire felix_gtwiz_reset_rx_done_out;
     wire [1:0] txpmaresetdone_out;
     wire [1:0] rxpmaresetdone_out;
+    wire clk125;
     
     bd_tux wrp
     (
@@ -411,6 +413,7 @@ module wib_top
         .ts_cdr_lol        (adn2814_lol      ),
         .ts_cdr_los        (adn2814_los      ),
         .ts_clk            (clk62p5          ), // this is 62.5 M clock for WIB logic
+        .clk_125           (clk125           ), // doubled system clock
         .ts_evtctr         (ts_evtctr        ),
         .ts_rdy            (ts_rdy           ),
         .ts_rec_clk_locked (si5344_lol       ), // si5344_lol is inverted already
@@ -477,14 +480,9 @@ module wib_top
     reg [15:0] valid14_r [1:0];
     reg [15:0] valid12_r [1:0];
     wire [1:0]  crc_err [15:0];
-    wire rxclk2x;
+    wire [63:0] dts_time_delayed; // delayed DTS stamp matching data
 
-
-
-
-    
-    wire clk_40;
-    assign coldata_clk40 = {8{clk_40}};
+    assign coldata_clk40 = 8'h0; // COLDATA P3 don't need this clock anymore
 
     coldata_rx_tux coldata_rx
     (
@@ -492,12 +490,11 @@ module wib_top
         .gtrefclk00n_in      (gtrefclk00n_in     ), // reference clocks(), 128M
         .gthrxn_in           (gthrxn_in          ), // RX diff lines
         .gthrxp_in           (gthrxp_in          ),    
-        .reset_clk_64M_in    (clk62p5            ), // clock for reset circuits
+        .clk62p5             (clk62p5            ), // system clock
         .reset_all_in        (coldata_rx_reset   ), // common reset for all circiuts
         .rxbufreset          (coldata_rxbufreset ),
         .reset_rx_done_out   (reset_rx_done_out  ), 
     
-        .rx_usrclk2_out      (rx_usrclk2_out     ), // rx data clock
         .rx_data             (rx_data            ),
         .rxbyteisaligned_out (rxbyteisaligned_out),
         .rxbyterealign_out   (rxbyterealign_out  ),
@@ -510,13 +507,12 @@ module wib_top
         .rx_cdr_stable_out   (rx_cdr_stable_out  ), 
         .gtpowergood_out     (gtpowergood_out    ),
         .rx_prbs_sel         (rx_prbs_sel),
-        .rxprbserr_out       (rxprbserr_out),
-        .clk_40              (clk_40)
+        .rxprbserr_out       (rxprbserr_out)
     );
     
     coldata_deframer coldata_df
     (
-        .rx_usrclk2 (rx_usrclk2_out    ), // rx data clock
+        .clk62p5    (clk62p5           ), // system clock
         .rx_data    (rx_data           ),
         .rx_k       (rx_k              ),
         .mmcm_reset (!reset_rx_done_out),
@@ -526,7 +522,11 @@ module wib_top
         .valid14    (valid14 ),
         .valid12    (valid12 ),
         .crc_err    (crc_err ),
-        .rxclk2x    (rxclk2x)
+        .align8     (align8  ),
+        .dts_time   (ts_tstamp), // original DTS stamp, in 62.5M domain
+        .dts_time_delayed (dts_time_delayed), // delayed DTS stamp matching data
+        .dts_time_delay   (dts_time_delay), // DTS stamp delay, must me longer than max cable delay
+        .rxclk2x    (clk125)
     );
     
     
@@ -537,13 +537,13 @@ module wib_top
         .time16       (time16),
         .valid14      (valid14 ),
         .valid12      (valid12 ),
-        .rxclk2x      (rxclk2x),
+        .rxclk2x      (clk125),
         .link_mask    (link_mask   ), // this input allows to disable some links in case they are broken
         .daq_stream   (daq_stream  ), // data to felix
         .daq_stream_k (daq_stream_k), // K symbol flags to felix
         .daq_data_type(daq_data_type), // data type flags for felix
         .daq_clk      (clk240_from_felix_gth), // replaced according to Adrian's FELIX branch
-        .ts_tstamp    (ts_tstamp),
+        .ts_tstamp    (dts_time_delayed), // delayed time stamp matching data
         .ts_clk       (clk62p5  ), // this is 62.5 M clock coming with time stamp
         .reset        (fb_reset),
         .fake_daq_stream (fake_daq_stream),
@@ -662,20 +662,10 @@ module wib_top
         .ADN2814_SDA (adn2814_sda) 
     );
 
-    // fake timing master, for tests
-    timing_master_fake tmf
-    (
-        .clk50     (clk50),
-        .tx_timing (), // 125M clock = 50M*2.5, simulating timing master working at 50M
-        
-        .clk_240 (), // temporary replacement for real DAQ clock that should be coming from FELIX links
-        .clk_130 (rxclk2x) // clock for deframer and frame builder, slightly faster than 64M*2 coming from COLDATA links
-    );
-
     // logic for valid12 and 14 bit extention, so we can watch them using rx clock
     reg [15:0] valid12_ila;
     reg [15:0] valid14_ila;
-    always @(posedge rxclk2x)
+    always @(posedge clk125)
     begin
         valid12_ila = valid12_r[1] | valid12_r[0];
         valid14_ila = valid14_r[1] | valid14_r[0];
@@ -747,6 +737,8 @@ module wib_top
    );
 
 
+    // misc_io[ 7:0] = connector P2 pins 15,13,11,9,7,5,3,1
+    // misc_io[15:8] = connector P1 pins 15,13,11,9,7,5,3,1
     // test points
     assign misc_io[1:0]  = rx_k[0];
     assign misc_io[3:2]  = rx_k[1];
