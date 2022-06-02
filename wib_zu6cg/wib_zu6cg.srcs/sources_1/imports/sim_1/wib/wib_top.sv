@@ -294,6 +294,7 @@ module wib_top
     assign ts_edge_sel         = `CONFIG_BITS(3,  0,  1); // 0xA00C000c timing data clock edge selection
     wire   fake_time_stamp_en  = `CONFIG_BITS(3,  1,  1); // 0xA00C000C
     wire cmd_stamp_sync_en     = `CONFIG_BITS(3,  2,  1); // 0xA00C000C enable sending sync command when 14 lower TLU stamp bits match cmd_stamp_sync
+    wire align_en              = `CONFIG_BITS(3,  3,  1); // 0xA00C000C enable COLDATA data alignment
     wire [7:0]  dts_time_delay = `CONFIG_BITS(3,  8,  8); // 0xA00C000C DTS time stamp delay for alignment
     wire [14:0] cmd_stamp_sync = `CONFIG_BITS(3, 16, 15); // 0xA00C000C lower 14 bits of TLU time stamp that trigger sync command
     
@@ -523,6 +524,7 @@ module wib_top
         .valid12    (valid12 ),
         .crc_err    (crc_err ),
         .align8     (align8  ),
+        .align_en   (align_en),
         .dts_time   (ts_tstamp), // original DTS stamp, in 62.5M domain
         .dts_time_delayed (dts_time_delayed), // delayed DTS stamp matching data
         .dts_time_delay   (dts_time_delay), // DTS stamp delay, must me longer than max cable delay

@@ -12,7 +12,9 @@ module coldata_deframer_single #(parameter NUM = 0)
     output valid12_a,
 
     input [14:0] dts_time_delayed, // delayed DTS time stamp for alignment, in 125M clock domain
+    input ts_valid_del, // time stamp valid
     output reg [7:0] align8, // automatic calculated alignment delay
+    input align_en, // enable alignment
 
     output reg [1:0] crc_err
 );
@@ -250,23 +252,27 @@ module coldata_deframer_single #(parameter NUM = 0)
     // alignment logic
     always @(posedge rxclk2x)
     begin
-    
-        if (time16_valid) // frame has just been decoded
+        if (align_en)
         begin
-            // delayed dts stamp is assumed to be trailing relative to data frame
-            align_calc = time16[14:0] - dts_time_delayed - 15'b1; // -1 to compensate for dyn_shift min delay =1
-            align8 = align_calc[7:0];
+            if (time16_valid) // frame has just been decoded
+            begin
+                // delayed dts stamp is assumed to be trailing relative to data frame
+                align_calc = time16[14:0] - dts_time_delayed - 15'h1;
+                align8 = align_calc[7:0]; // don't divide by 2 b/c time stamp changes every 2 clocks
+            end
         end
+        else
+            align8 = 8'h0;
     end
 
     // alignment shifter
     // entire parallel frame + valid flags + time stamp
     // not very efficient in terms of resources, but we're OK so far
-    dyn_shift #(.SELWIDTH(8), .BW (FR14_BITS+2+16)) ds  
+    dyn_shift #(.SELWIDTH(6), .BW (FR14_BITS+2+16)) ds  
     (
         .CLK (rxclk2x), 
         .CE  ('b1), 
-        .SEL (align8), // value of 0 gives delay of 1
+        .SEL ({align8[4:0], 1'b1}), // value of 0 gives delay of 1
         .SI  ({time16,   valid14,   valid12,   parallel_frame  }), 
         .DO  ({time16_a, valid14_a, valid12_a, parallel_frame_a})
     );
@@ -278,18 +284,18 @@ module coldata_deframer_single #(parameter NUM = 0)
                 .probe1  (rx_k)
             ); 
             
-            ila_2 ila_deframer 
-            (
-                .clk    (rxclk2x), // input wire clk
-                .probe0 (rx_byte0), // input wire [7:0]  probe0
-                .probe1 (rx_k0), // input wire [0:0]  probe2
-                .probe2 (df_state), // input wire [3:0]  probe4
-                .probe3 (byte_cnt), // input wire [7:0]  probe5
-                .probe4 (valid12),
-                .probe5 (valid14),
-                .probe6 (dfifo_empty),
-                .probe7 (dfifo_valid)
-            );
+//            ila_2 ila_deframer 
+//            (
+//                .clk    (rxclk2x), // input wire clk
+//                .probe0 (rx_byte0), // input wire [7:0]  probe0
+//                .probe1 (rx_k0), // input wire [0:0]  probe2
+//                .probe2 (df_state), // input wire [3:0]  probe4
+//                .probe3 (byte_cnt), // input wire [7:0]  probe5
+//                .probe4 (valid12),
+//                .probe5 (valid14),
+//                .probe6 (dfifo_empty),
+//                .probe7 (dfifo_valid)
+//            );
 
 endmodule
 

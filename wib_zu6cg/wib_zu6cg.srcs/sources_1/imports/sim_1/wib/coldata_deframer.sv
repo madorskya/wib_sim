@@ -12,6 +12,7 @@ module coldata_deframer
     output [15:0] valid12,
     output [1:0]  crc_err [15:0],
     output [7:0]  align8 [15:0],
+    input align_en,
     
     input  [63:0] dts_time, // original DTS stamp, in 62.5M domain
     output [63:0] dts_time_delayed, // delayed DTS stamp matching data
@@ -20,7 +21,7 @@ module coldata_deframer
     input         rxclk2x // doubled system clock for deframed data
 );
 
-
+    wire ts_valid_del;
     genvar gi;
     generate
         for (gi = 0; gi < 16; gi++)
@@ -38,7 +39,9 @@ module coldata_deframer
                 .valid12_a    (valid12  [gi]),
                 
                 .dts_time_delayed (dts_time_delayed[14:0]),
+                .ts_valid_del     (ts_valid_del),
                 .align8           (align8 [gi]     ),
+                .align_en         (align_en),
                 
                 .crc_err    (crc_err  [gi])
             );
@@ -46,16 +49,45 @@ module coldata_deframer
         end
     endgenerate
     
+    reg tsb0;
+    always @(posedge rxclk2x) tsb0 = dts_time[0];
+    
+    wire ts_valid = (tsb0 != dts_time[0]);
+    
     // DTS time stamp delay shifter
-    dyn_shift #(.SELWIDTH(8), .BW (64)) ds  
+    dyn_shift #(.SELWIDTH(9), .BW (65)) ds  
     (
         .CLK (rxclk2x), 
         .CE  ('b1), 
-        .SEL (dts_time_delay), // value of 0 gives delay of 1
-        .SI  (dts_time), 
-        .DO  (dts_time_delayed)
+        .SEL ({dts_time_delay, 1'b1}), // value of 0 gives delay of 1. Delay is doubled because stamp changes every two clocks
+        .SI  ({ts_valid    , dts_time}), 
+        .DO  ({ts_valid_del, dts_time_delayed})
     );
     
+    ila_deframer ila_df 
+    (
+        .clk     (rxclk2x), // input wire clk
+        .probe0  (time16 [0 ]), // input wire [14:0]  probe0  
+        .probe1  (time16 [1 ]), // input wire [14:0]  probe1 
+        .probe2  (time16 [2 ]), // input wire [14:0]  probe2 
+        .probe3  (time16 [3 ]), // input wire [14:0]  probe3 
+        .probe4  (time16 [4 ]), // input wire [14:0]  probe4 
+        .probe5  (time16 [5 ]), // input wire [14:0]  probe5 
+        .probe6  (time16 [6 ]), // input wire [14:0]  probe6 
+        .probe7  (time16 [7 ]), // input wire [14:0]  probe7 
+        .probe8  (time16 [8 ]), // input wire [14:0]  probe8 
+        .probe9  (time16 [9 ]), // input wire [14:0]  probe9 
+        .probe10 (time16 [10]), // input wire [14:0]  probe10 
+        .probe11 (time16 [11]), // input wire [14:0]  probe11 
+        .probe12 (time16 [12]), // input wire [14:0]  probe12 
+        .probe13 (time16 [13]), // input wire [14:0]  probe13 
+        .probe14 (time16 [14]), // input wire [14:0]  probe14 
+        .probe15 (time16 [15]), // input wire [14:0]  probe15 
+        .probe16 (valid12), // input wire [15:0]  probe16 
+        .probe17 (valid14), // input wire [15:0]  probe17 
+        .probe18 (dts_time), // input wire [63:0]  probe18 
+        .probe19 (dts_time_delayed) // input wire [63:0]  probe19
+    );
     
 endmodule
 
