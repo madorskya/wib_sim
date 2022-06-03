@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Wed Jun  1 11:28:15 2022
+//Date        : Fri Jun  3 17:28:12 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -10,7 +10,8 @@
 `timescale 1 ps / 1 ps
 
 module coldata_i2c_dual0_imp_LTEQQX
-   (S00_AXI1_araddr,
+   (Res,
+    S00_AXI1_araddr,
     S00_AXI1_arprot,
     S00_AXI1_arready,
     S00_AXI1_arvalid,
@@ -63,6 +64,7 @@ module coldata_i2c_dual0_imp_LTEQQX
     sda_out_out,
     sda_out_p_0,
     sda_out_p_1);
+  output [0:0]Res;
   input [39:0]S00_AXI1_araddr;
   input [2:0]S00_AXI1_arprot;
   output S00_AXI1_arready;
@@ -185,6 +187,7 @@ module coldata_i2c_dual0_imp_LTEQQX
   assign Conn1_WDATA = S00_AXI1_wdata[31:0];
   assign Conn1_WSTRB = S00_AXI1_wstrb[3:0];
   assign Conn1_WVALID = S00_AXI1_wvalid;
+  assign Res[0] = util_vector_logic_0_Res;
   assign S00_AXI1_arready = Conn1_ARREADY;
   assign S00_AXI1_awready = Conn1_AWREADY;
   assign S00_AXI1_bresp[1:0] = Conn1_BRESP;
@@ -2156,6 +2159,7 @@ module design_1
   wire [0:0]coldata_i2c_0_scl_p;
   wire coldata_i2c_0_sda_out_n;
   wire coldata_i2c_0_sda_out_p;
+  wire [0:0]coldata_i2c_dual0_Res;
   wire coldata_i2c_dual0_sda_in_out;
   wire coldata_i2c_dual0_sda_out_out;
   wire [0:0]coldata_i2c_dual1_scl_n_0;
@@ -2646,7 +2650,8 @@ module design_1
         .s00_axi_wstrb(ps8_0_axi_periph_M03_AXI_WSTRB),
         .s00_axi_wvalid(ps8_0_axi_periph_M03_AXI_WVALID));
   coldata_i2c_dual0_imp_LTEQQX coldata_i2c_dual0
-       (.S00_AXI1_araddr(ps8_0_axi_periph_M04_AXI_ARADDR),
+       (.Res(coldata_i2c_dual0_Res),
+        .S00_AXI1_araddr(ps8_0_axi_periph_M04_AXI_ARADDR),
         .S00_AXI1_arprot(ps8_0_axi_periph_M04_AXI_ARPROT),
         .S00_AXI1_arready(ps8_0_axi_periph_M04_AXI_ARREADY),
         .S00_AXI1_arvalid(ps8_0_axi_periph_M04_AXI_ARVALID),
@@ -3417,6 +3422,7 @@ module design_1
         .probe15(coldata_fast_cmd_0_fastcommand_out),
         .probe20(coldata_i2c_dual0_sda_in_out),
         .probe21(coldata_i2c_dual0_sda_out_out),
+        .probe22(coldata_i2c_dual0_Res),
         .sclk(zynq_ultra_ps_e_0_pl_clk0),
         .stat_0(timing_module_stat_0),
         .ts_cdr_lol(cdr_lol_0_1),
@@ -13821,6 +13827,7 @@ module timing_module_imp_2RES6C
     probe15,
     probe20,
     probe21,
+    probe22,
     sclk,
     stat_0,
     ts_cdr_lol,
@@ -13864,6 +13871,7 @@ module timing_module_imp_2RES6C
   input [0:0]probe15;
   input probe20;
   input probe21;
+  input [0:0]probe22;
   input sclk;
   output [3:0]stat_0;
   input ts_cdr_lol;
@@ -13909,9 +13917,10 @@ module timing_module_imp_2RES6C
   wire [63:0]pdts_endpoint_stdlog_0_tstamp;
   wire pdts_endpoint_stdlog_0_tx_dis;
   wire pdts_endpoint_stdlog_0_txd;
-  wire probe20_1;
-  wire probe21_1;
+  wire [0:0]scl;
   wire sclk_1;
+  wire sda_in;
+  wire sda_out;
   wire ts_cdr_lol_1;
   wire ts_cdr_los_1;
   wire ts_rec_clk_locked_1;
@@ -13963,9 +13972,10 @@ module timing_module_imp_2RES6C
   assign fake_time_stamp_en_0_1 = fake_time_stamp_en_0;
   assign fake_time_stamp_init_0_1 = fake_time_stamp_init_0[63:0];
   assign fast_command_out = probe15[0];
-  assign probe20_1 = probe20;
-  assign probe21_1 = probe21;
+  assign scl = probe22[0];
   assign sclk_1 = sclk;
+  assign sda_in = probe20;
+  assign sda_out = probe21;
   assign stat_0[3:0] = ts_reclock_0_stat_out;
   assign ts_cdr_lol_1 = ts_cdr_lol;
   assign ts_cdr_los_1 = ts_cdr_los;
@@ -14002,8 +14012,9 @@ module timing_module_imp_2RES6C
         .probe18(bp_io_t_1),
         .probe19(bp_io_o_1),
         .probe2(ts_reclock_0_rdy_out),
-        .probe20(probe20_1),
-        .probe21(probe21_1),
+        .probe20(sda_in),
+        .probe21(sda_out),
+        .probe22(scl),
         .probe3(ts_reclock_0_sync_out),
         .probe4(ts_reclock_0_sync_stb_out),
         .probe5(ts_reclock_0_sync_first_out),

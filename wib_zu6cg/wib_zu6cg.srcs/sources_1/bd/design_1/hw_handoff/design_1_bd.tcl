@@ -190,6 +190,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -from 0 -to 0 probe15
   create_bd_pin -dir I probe20
   create_bd_pin -dir I probe21
+  create_bd_pin -dir I -from 0 -to 0 probe22
   create_bd_pin -dir I sclk
   create_bd_pin -dir O -from 3 -to 0 stat_0
   create_bd_pin -dir I ts_cdr_lol
@@ -234,10 +235,11 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   # Create instance: ila_0, and set properties
   set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
   set_property -dict [ list \
+   CONFIG.C_DATA_DEPTH {4096} \
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_INPUT_PIPE_STAGES {6} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {22} \
+   CONFIG.C_NUM_OF_PROBES {23} \
    CONFIG.C_PROBE0_WIDTH {4} \
    CONFIG.C_PROBE16_WIDTH {1} \
    CONFIG.C_PROBE18_WIDTH {8} \
@@ -334,9 +336,10 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net pdts_endpoint_stdlog_0_tstamp [get_bd_pins pdts_endpoint_stdlog_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
   connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins ila_0/probe17] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
   connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins ila_0/probe16] [get_bd_pins pdts_endpoint_stdlog_0/txd]
-  connect_bd_net -net probe20_1 [get_bd_pins probe20] [get_bd_pins ila_0/probe20]
-  connect_bd_net -net probe21_1 [get_bd_pins probe21] [get_bd_pins ila_0/probe21]
+  connect_bd_net -net scl [get_bd_pins probe22] [get_bd_pins ila_0/probe22]
   connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
+  connect_bd_net -net sda_in [get_bd_pins probe20] [get_bd_pins ila_0/probe20]
+  connect_bd_net -net sda_out [get_bd_pins probe21] [get_bd_pins ila_0/probe21]
   connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_stdlog_0/cdr_lol]
   connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins pdts_endpoint_stdlog_0/cdr_los]
   connect_bd_net -net ts_rec_clk_locked_1 [get_bd_pins ts_rec_clk_locked] [get_bd_pins pdts_endpoint_stdlog_0/pll_locked]
@@ -719,17 +722,17 @@ proc create_hier_cell_coldata_i2c_dual3 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -828,17 +831,17 @@ proc create_hier_cell_coldata_i2c_dual2 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -937,17 +940,17 @@ proc create_hier_cell_coldata_i2c_dual1 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -1029,6 +1032,7 @@ proc create_hier_cell_coldata_i2c_dual0 { parentCell nameHier } {
 
 
   # Create pins
+  create_bd_pin -dir O -from 0 -to 0 Res
   create_bd_pin -dir I clk62p5
   create_bd_pin -dir I -type clk s00_axi_aclk
   create_bd_pin -dir I -type rst s00_axi_aresetn
@@ -1048,17 +1052,17 @@ proc create_hier_cell_coldata_i2c_dual0 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {180} \
-   CONFIG.scl_down {130} \
-   CONFIG.scl_up {40} \
+   CONFIG.bit_duration {90} \
+   CONFIG.scl_down {65} \
+   CONFIG.scl_up {20} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -1094,7 +1098,7 @@ proc create_hier_cell_coldata_i2c_dual0 { parentCell nameHier } {
   connect_bd_net -net sda_in_p_1_1 [get_bd_pins sda_in_p_1] [get_bd_pins coldata_i2c_1/sda_in_p]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_N [get_bd_pins scl_n_0] [get_bd_pins util_ds_buf_0/OBUF_DS_N]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_P [get_bd_pins scl_p_0] [get_bd_pins util_ds_buf_0/OBUF_DS_P]
-  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins util_ds_buf_0/OBUF_IN] [get_bd_pins util_vector_logic_0/Res]
+  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins Res] [get_bd_pins util_ds_buf_0/OBUF_IN] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins s00_axi_aclk] [get_bd_pins coldata_i2c_0/s00_axi_aclk] [get_bd_pins coldata_i2c_1/s00_axi_aclk]
 
   # Restore current instance
@@ -2876,6 +2880,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net coldata_i2c_0_scl_p [get_bd_ports scl_p_0] [get_bd_pins coldata_i2c_dual0/scl_p_0]
   connect_bd_net -net coldata_i2c_0_sda_out_n [get_bd_ports sda_out_n_0] [get_bd_pins coldata_i2c_dual0/sda_out_n_0]
   connect_bd_net -net coldata_i2c_0_sda_out_p [get_bd_ports sda_out_p_0] [get_bd_pins coldata_i2c_dual0/sda_out_p_0]
+  connect_bd_net -net coldata_i2c_dual0_Res [get_bd_pins coldata_i2c_dual0/Res] [get_bd_pins timing_module/probe22]
   connect_bd_net -net coldata_i2c_dual0_sda_in_out [get_bd_pins coldata_i2c_dual0/sda_in_out] [get_bd_pins timing_module/probe20]
   connect_bd_net -net coldata_i2c_dual0_sda_out_out [get_bd_pins coldata_i2c_dual0/sda_out_out] [get_bd_pins timing_module/probe21]
   connect_bd_net -net coldata_i2c_dual1_scl_n_0 [get_bd_ports scl_n_1] [get_bd_pins coldata_i2c_dual1/scl_n_0]

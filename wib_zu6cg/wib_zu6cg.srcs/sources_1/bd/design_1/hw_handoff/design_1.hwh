@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun  1 11:28:19 2022" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun  3 17:28:16 2022" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -2070,7 +2070,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual0/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual0_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual0/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual0_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -2078,10 +2078,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0010000"/>
@@ -2293,7 +2293,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual0/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual0_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual0/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual0_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -2301,10 +2301,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_0_1"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0040000"/>
@@ -2565,12 +2565,13 @@
         <PORT DIR="O" LEFT="0" NAME="Res" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_util_vector_logic_0_Res">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_dual0_util_ds_buf_0" PORT="OBUF_IN"/>
+            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe22"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual1/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual1_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual1/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual1_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -2578,10 +2579,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_0_2"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0050000"/>
@@ -2785,7 +2786,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual1/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual1_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual1/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual1_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -2793,10 +2794,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_1_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0060000"/>
@@ -3062,7 +3063,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual2/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual2_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual2/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual2_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -3070,10 +3071,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_0_3"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0070000"/>
@@ -3277,7 +3278,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual2/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual2_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual2/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual2_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -3285,10 +3286,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_1_1"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0080000"/>
@@ -3554,7 +3555,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual3/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual3_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual3/coldata_i2c_0" HWVERSION="1.0" INSTANCE="coldata_i2c_dual3_coldata_i2c_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -3562,10 +3563,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_0_4"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA0090000"/>
@@ -3769,7 +3770,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="16" FULLNAME="/coldata_i2c_dual3/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual3_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
+    <MODULE COREREVISION="18" FULLNAME="/coldata_i2c_dual3/coldata_i2c_1" HWVERSION="1.0" INSTANCE="coldata_i2c_dual3_coldata_i2c_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="coldata_i2c" VLNV="user.org:user:coldata_i2c:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -3777,10 +3778,10 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="bit_duration" VALUE="180"/>
+        <PARAMETER NAME="bit_duration" VALUE="90"/>
         <PARAMETER NAME="ack_timeout" VALUE="500"/>
-        <PARAMETER NAME="scl_up" VALUE="40"/>
-        <PARAMETER NAME="scl_down" VALUE="130"/>
+        <PARAMETER NAME="scl_up" VALUE="20"/>
+        <PARAMETER NAME="scl_down" VALUE="65"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_coldata_i2c_1_2"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0xA00A0000"/>
@@ -13303,8 +13304,8 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="22"/>
-        <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="23"/>
+        <PARAMETER NAME="C_DATA_DEPTH" VALUE="4096"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="1"/>
         <PARAMETER NAME="C_BUILD_REVISION" VALUE="0"/>
@@ -16536,6 +16537,11 @@
         <PORT DIR="I" LEFT="0" NAME="probe21" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_sda_out_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="sda_out_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe22" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_util_vector_logic_0_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_util_vector_logic_0" PORT="Res"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

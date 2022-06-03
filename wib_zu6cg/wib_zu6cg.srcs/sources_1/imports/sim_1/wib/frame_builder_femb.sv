@@ -17,9 +17,10 @@ module frame_builder_femb
     endgenerate
 
     // map below generated in Excel file
-    // /home/madorsky/documents/projects/dune/WIB-DAQ Format_July23_2019-3.xlsx
+    // F:\madorsky\github\zynq\wib_sim\doc\chamber_channel_map.xlsx
     // source table for wire mapping taken from page 9 of this document:
-    // /home/madorsky/documents/projects/dune/pdsp-tpc-numbers-3.pdf
+    // on physicsd2102b computer:
+    // F:/cygwin/home/madorsky/documents/projects/dune/doc/coldadc/pdsp-tpc-numbers-3.pdf
     // had to split parallel_daq in two parts because of max length limitation of 1024 bits in one variable
     
 assign parallel_daq_0 [0 +: 14] = deframed_mapped [0][1][4];	// U0

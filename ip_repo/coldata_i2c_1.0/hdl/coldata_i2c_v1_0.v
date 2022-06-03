@@ -115,16 +115,17 @@
     reg [4:0] bit_count = 0; // bit number counter
 
     // FSM state definitions
-    localparam ST_IDLE = 2'h0;
-    localparam ST_STRT = 2'h1;
-    localparam ST_TX   = 2'h2;
-    localparam ST_ACK  = 2'h3;
+    localparam ST_IDLE = 3'h0;
+    localparam ST_STRT = 3'h1;
+    localparam ST_TX   = 3'h2;
+    localparam ST_ACK  = 3'h3;
+    localparam ST_STOP = 3'h4;
     
     localparam integer start_duration = bit_duration * 1.5;
     localparam integer past_first_bit = bit_duration * 1.1;
     localparam integer ack_duration   = bit_duration * 2;
     
-    reg [1:0] state = ST_IDLE; // FSM state
+    reg [2:0] state = ST_IDLE; // FSM state
     reg [26:0] sda_out_sh, sda_in_sh; // shift regs
 
     always @(posedge s00_axi_aclk)
@@ -178,7 +179,7 @@
                         if (bit_count == 5'd8 || bit_count == 5'd17 || bit_count == 5'd26)
                             state = ST_ACK; // go wait for ACK bit at the end of each byte
                         bit_count = bit_count + 1;
-                        bit_phase = 5'b0;
+                        bit_phase = 9'b0;
                     end
                     
                     if (bit_phase == scl_up  ) scl = 1'b1;
@@ -204,10 +205,11 @@
                         begin 
                             if (bit_count >= 5'd26)
                             begin
-                                rd_reg[1] = {5'b0, sda_in_sh}; // store rd data in register 
-                                state = ST_IDLE; // last byte
+                                rd_reg[1] = {5'b0, sda_in_sh}; // store rd data in register
+                                bit_phase = 9'b0; 
+                                state = ST_STOP; // last byte
                             end
-                            else state = ST_TX; // not the last bype, back to TX
+                            else state = ST_TX; // not the last byte, back to TX
                         end
                     end
 
@@ -228,6 +230,18 @@
                         rd_reg[0][0] = 1'b1; // timeout error flag 
                     end
                 
+                end
+                
+                ST_STOP:
+                begin
+                    // just keep fixed outputs for ack duration
+                    scl = 1'b1;
+                    sda_out = 1'b0;
+                    if (bit_phase >= ack_duration)
+                    begin
+                        state = ST_IDLE;
+                    end                    
+                    bit_phase = bit_phase + 1;
                 end
                 
             endcase

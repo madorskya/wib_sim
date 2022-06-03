@@ -590,11 +590,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon May 30 20:51:41 UTC 2022</spirit:value>
+            <spirit:value>Fri Jun 03 21:28:13 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:443c628f</spirit:value>
+            <spirit:value>9:b49a8d6a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -605,7 +605,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:443c628f</spirit:value>
+            <spirit:value>9:b49a8d6a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -621,11 +621,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon May 30 20:51:41 UTC 2022</spirit:value>
+            <spirit:value>Fri Jun 03 21:28:13 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:443c628f</spirit:value>
+            <spirit:value>9:b49a8d6a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -641,11 +641,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon May 30 20:51:41 UTC 2022</spirit:value>
+            <spirit:value>Fri Jun 03 21:28:13 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b4f18531</spirit:value>
+            <spirit:value>9:8bff8fe0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -661,11 +661,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon May 30 20:51:41 UTC 2022</spirit:value>
+            <spirit:value>Fri Jun 03 21:28:13 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:b4f18531</spirit:value>
+            <spirit:value>9:8bff8fe0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -679,11 +679,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon May 30 20:53:01 UTC 2022</spirit:value>
+            <spirit:value>Fri Jun 03 21:29:40 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:443c628f</spirit:value>
+            <spirit:value>9:b49a8d6a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1119,7 +1119,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>bit_duration</spirit:name>
         <spirit:displayName>Bit Duration</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.bit_duration">180</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.bit_duration">90</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>ack_timeout</spirit:name>
@@ -1129,12 +1129,12 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>scl_up</spirit:name>
         <spirit:displayName>Scl Up</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.scl_up">40</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.scl_up">20</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>scl_down</spirit:name>
         <spirit:displayName>Scl Down</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.scl_down">130</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.scl_down">65</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -1158,12 +1158,12 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/6788/hdl/coldata_i2c_v1_0_S00_AXI.v</spirit:name>
+        <spirit:name>../../ipshared/1140/hdl/coldata_i2c_v1_0_S00_AXI.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6788/hdl/coldata_i2c_v1_0.v</spirit:name>
+        <spirit:name>../../ipshared/1140/hdl/coldata_i2c_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
@@ -1179,12 +1179,12 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/6788/hdl/coldata_i2c_v1_0_S00_AXI.v</spirit:name>
+        <spirit:name>../../ipshared/1140/hdl/coldata_i2c_v1_0_S00_AXI.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/6788/hdl/coldata_i2c_v1_0.v</spirit:name>
+        <spirit:name>../../ipshared/1140/hdl/coldata_i2c_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>work</spirit:logicalName>
       </spirit:file>
@@ -1293,7 +1293,7 @@
     <spirit:parameter>
       <spirit:name>bit_duration</spirit:name>
       <spirit:displayName>Bit duration, in AXI clocks</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.bit_duration" spirit:bitStringLength="9">180</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.bit_duration" spirit:bitStringLength="9">90</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>ack_timeout</spirit:name>
@@ -1303,18 +1303,18 @@
     <spirit:parameter>
       <spirit:name>scl_up</spirit:name>
       <spirit:displayName>SCL rise phase, in AXI clocks</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.scl_up" spirit:bitStringLength="9">40</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.scl_up" spirit:bitStringLength="9">20</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>scl_down</spirit:name>
       <spirit:displayName>SCL fall phase, in AXI clocks</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.scl_down" spirit:bitStringLength="9">130</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.scl_down" spirit:bitStringLength="9">65</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>coldata_i2c_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>16</xilinx:coreRevision>
+      <xilinx:coreRevision>18</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@72acaf3b_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_i2c_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@95f086d_ARCHIVE_LOCATION">/home/madorsky/cernbox/projects/vivado/dune_wib/ip_repo/coldata_i2c_1.0</xilinx:tag>
@@ -1549,6 +1549,28 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@47a4db98_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6f683aa_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2af2c7e2_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ec230ce_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13acd30d_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67b187ac_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e26721c_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e824d1e_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31f621e3_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d4f08ec_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8a5f329_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7dc7b474_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1105145_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c2d0d62_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6dfd8c48_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@140e574d_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e78152_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75d7d709_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4182e840_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7525b32a_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@72972c29_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9636d05_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79ba13c4_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@eaaeaf6_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ee6f0a0_ARCHIVE_LOCATION">/home/madorsky/github/wib_sim/ip_repo/coldata_i2c_1.0</xilinx:tag>
       </xilinx:tags>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.S00_AXI.ADDR_WIDTH" xilinx:valueSource="auto" xilinx:valuePermission="bd"/>
@@ -1599,7 +1621,7 @@
       <xilinx:xilinxVersion>2020.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="206b0a70"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="52e65b27"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="44b3c746"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="b984b83d"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="7a2e423b"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="d921516a"/>
