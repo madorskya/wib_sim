@@ -110,7 +110,7 @@
     assign sda_out_out = sda_out & lb_stim_sda_out;
 
     wire tx_start = wr_reg[0][0];
-    reg tx_start_r = 0;
+    reg [3:0] tx_start_r = 0;
     reg [8:0] bit_phase = 0; // bit phase time counter
     reg [4:0] bit_count = 0; // bit number counter
 
@@ -128,13 +128,13 @@
     reg [2:0] state = ST_IDLE; // FSM state
     reg [26:0] sda_out_sh, sda_in_sh; // shift regs
 
-    always @(posedge s00_axi_aclk)
+    always @(posedge clk62p5)
     begin
         if (s00_axi_aresetn == 1'b0)
         begin
             scl = 1'b1;
             sda_out = 1'b1;
-            tx_start_r = 1'b0;
+            tx_start_r = 4'b0;
             state = ST_IDLE;
         end
         else
@@ -143,7 +143,7 @@
             case (state)
                 ST_IDLE:
                 begin
-                    if (!tx_start_r && tx_start) // command to start just came
+                    if (tx_start_r[3:2] == 2'b01) // command to start just came
                     begin
                         state = ST_STRT;
                         bit_phase = 9'd0;    
@@ -246,7 +246,7 @@
                 
             endcase
             
-            tx_start_r = tx_start;
+            tx_start_r = {tx_start_r[2:0], tx_start};
         end
     end
 

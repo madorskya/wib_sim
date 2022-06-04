@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 18
+// IP Revision: 19
 
 `timescale 1ns/1ps
 
@@ -143,10 +143,10 @@ input wire s00_axi_rready;
   coldata_i2c_v1_0 #(
     .C_S00_AXI_DATA_WIDTH(32),  // Width of S_AXI data bus
     .C_S00_AXI_ADDR_WIDTH(5),  // Width of S_AXI address bus
-    .bit_duration(90),
+    .bit_duration(50),
     .ack_timeout(500),
-    .scl_up(20),
-    .scl_down(65)
+    .scl_up(11),
+    .scl_down(36)
   ) inst (
     .scl(scl),
     .sda_out_p(sda_out_p),

@@ -722,17 +722,17 @@ proc create_hier_cell_coldata_i2c_dual3 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -831,17 +831,17 @@ proc create_hier_cell_coldata_i2c_dual2 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -940,17 +940,17 @@ proc create_hier_cell_coldata_i2c_dual1 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
@@ -1052,17 +1052,17 @@ proc create_hier_cell_coldata_i2c_dual0 { parentCell nameHier } {
   # Create instance: coldata_i2c_0, and set properties
   set coldata_i2c_0 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_0 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_0
 
   # Create instance: coldata_i2c_1, and set properties
   set coldata_i2c_1 [ create_bd_cell -type ip -vlnv user.org:user:coldata_i2c:1.0 coldata_i2c_1 ]
   set_property -dict [ list \
-   CONFIG.bit_duration {90} \
-   CONFIG.scl_down {65} \
-   CONFIG.scl_up {20} \
+   CONFIG.bit_duration {50} \
+   CONFIG.scl_down {36} \
+   CONFIG.scl_up {11} \
  ] $coldata_i2c_1
 
   # Create instance: util_ds_buf_0, and set properties
