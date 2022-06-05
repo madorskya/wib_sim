@@ -160,10 +160,8 @@ module frame_builder_single #(parameter NUM = 0)
     reg [2:0] cdts_id; // shows which time stamp to report, is cycling through all values
     (* async_reg *) reg [3:0] data_ready;
     (* async_reg *) reg [3:0] rq_served;
-    reg [7:0] time8_mismatch [7:0];
-    reg [7:0] time16_mismatch [7:0];
-    reg [7:0] min_mismatch;
-    
+    reg [7:0] time8_mismatch;
+    reg [7:0] time16_mismatch;
 
     wire [14:0] coldata_time_stamp =     
 `ifdef COLDATA_P3
@@ -188,7 +186,7 @@ module frame_builder_single #(parameter NUM = 0)
     assign header  [4] = {5'h0, si5344_lol, link_mask, femb_val, cdts_id, 13'h0};
     assign header_k[4] = 4'b0000;
 
-    assign header  [5] = {1'b0, coldata_time_stamp, min_mismatch, femb_pulser_in_frame};
+    assign header  [5] = {1'b0, coldata_time_stamp, time16_mismatch, femb_pulser_in_frame};
     assign header_k[5] = 4'b0000;
 
     
@@ -223,26 +221,13 @@ module frame_builder_single #(parameter NUM = 0)
                     data_ready[0] = 1'b1; // set the request bit
                     timestamp_reclocked = ts_tstamp; // store time stamp so it can be used in FELIX domain
 
-                    // time stamp sync error logic, super-primitive at this time
-                    // compare each time stamp with all others, count mismatches for each time stamp
-                    // synthesizer should optimize away duplicated comparators
-                    min_mismatch = 8'hff;
+                    // time stamp sync error logic
+                    // compare each time stamp with system stamp
                     for (i = 0; i < 8; i++)
                     begin
-                        for (j = 0; j < 8; j++)
-                        begin
-                            time8_mismatch[i][j]  = (time8_reclocked [i] == time8_reclocked [j]) ? 1'b0 : 1'b1;
-                            time16_mismatch[i][j] = (time16_reclocked[i] == time16_reclocked[j]) ? 1'b0 : 1'b1;
-                        end
-                        time8_mismatch[i][i] = 1'h1; // this is to prevent zeroing out min_mismatch since [i]==[i] always
-                        time16_mismatch[i][i] = 1'h1; // this is to prevent zeroing out min_mismatch since [i]==[i] always
-`ifdef COLDATA_P3
-                        min_mismatch &= time16_mismatch[i]; // this is minimum mismatch word for any of the time stamps
-`else                        
-                        min_mismatch &= time8_mismatch[i]; // this is minimum mismatch word for any of the time stamps
-`endif                        
+                        time16_mismatch[i] = (time16_reclocked[i][14:0] == timestamp_reclocked [14:0]) ? 1'b0 : 1'b1;
                     end
-                    min_mismatch |= link_mask; // masked links always mismatch
+                    time16_mismatch |= link_mask; // masked links always mismatch
                 end
                 
                 // update aligned valid flags    
@@ -450,7 +435,7 @@ module frame_builder_single #(parameter NUM = 0)
                 .probe11 (time16_reclocked[5]),
                 .probe12 (time16_reclocked[6]),
                 .probe13 (time16_reclocked[7]),
-                .probe14 (min_mismatch),
+                .probe14 (time16_mismatch),
                 .probe15 (timestamp_reclocked)
             );
             

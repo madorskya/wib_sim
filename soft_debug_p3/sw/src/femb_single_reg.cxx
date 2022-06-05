@@ -31,20 +31,20 @@ int main (int argc, char * argv[])
 	// chip_num_on_FEMB=(0|1), chip_addr=2, reg_page, reg_addr
 
 	int i;
-	if (argc == 1)
+//	if (argc == 1)
 	{
 		printf ("writing\n");
 		for (i = 0; i >= 0; i--)
 		{
-			femb->i2c_write (i, 2, 5, 0x40, 0x3);	
+			femb->i2c_write (i, 3, 5, 0x40, 0x3);	
 			printf ("\n");
 		}
 	}
 	for (i = 0; i < 2; i++)
 	//for (i = 0; i >= 0; i--)
 	{
-		reg3 = femb->i2c_read  (i, 2, 5, 0x40);	printf("CONFIG_PLL_ICP = %x\n",reg3);
-		printf ("\n");
+//		reg3 = femb->i2c_read  (i, 2, 5, 0x40);	printf("CONFIG_PLL_ICP = %x\n",reg3);
+//		printf ("\n");
 	}
 
 

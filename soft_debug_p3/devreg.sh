@@ -12,10 +12,15 @@ addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C
 bnum+=(0			8			28			0			4			5				6				7				8				12			13					0			0			1					0				8				16				24				0				8					16					0						0						0				0)
 mask+=(0xff			3			1			0xf			1			1				1				1				0xf				1			1					0xffff		1			1					0xff			0xff			0xff			0xff			0xff			0xff				0xff				0xffffffff				0xffffffff				1				0x3ffff)
 
-name+=(felix_rx_reset fast_cmd_code edge_to_act_delay coldata_rxbufreset)
-addr+=(0xA00C0038     0xA0030000    0xA0030004        0xA00C0004)
-bnum+=(6              0             0                 14)
-mask+=(1              0x3f          0xffffffff        1)
+name+=(felix_rx_reset fast_cmd_code edge_to_act_delay coldata_rxbufreset cmd_stamp_sync_en cmd_stamp_sync dts_time_delay align_en)
+addr+=(0xA00C0038     0xA0030000    0xA0030004        0xA00C0004         0xA00C000C        0xA00C000C     0xA00C000C     0xA00C000C)
+bnum+=(6              0             0                 14                 2                 16             8              3)
+mask+=(1              0x3f          0xffffffff        1                  1                 0x7fff         0xff           1)
+
+name+=(align0     align1     align2     align3    ) 
+addr+=(0xA00C00A8 0xA00C00AC 0xA00C00B0 0xA00C00B4)
+bnum+=(0          0          0          0         )
+mask+=(0xffffffff 0xffffffff 0xffffffff 0xffffffff)
 
 #syntax: devreg reg_name [wr_value]
 

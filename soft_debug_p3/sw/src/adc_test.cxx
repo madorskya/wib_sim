@@ -20,7 +20,7 @@ int main (int argc, char * argv[])
         exit (4);
     }
 
-    printf ("Checking ADC I2C registers on FEMB %d\n", femb_ind);
+//    printf ("Checking ADC I2C registers on FEMB %d\n", femb_ind);
 
     FEMB* femb = new FEMB(femb_ind);
 
@@ -34,26 +34,41 @@ int main (int argc, char * argv[])
 	// ADC BOT:  4, 5, 6, 7
 
 	int i, j;
-	if (argc == 2)
+	uint8_t val = 1;
+	int err_cnt = 0;
+	for (int t = 0; t < 1000000; t++)
 	{
-		for (i = 1; i >= 0; i--) // COLDATA loop
+//		val <<= 1;
+//		if (val == 0) val = 1;
+		val++;		
+		//		for (i = 1; i >= 0; i--) // COLDATA loop
+		i = 0;
 		{
-			for (j = 0; j <= 3; j++ ) // ADC loop
+			j = 3;
+			//			for (j = 0; j <= 3; j++ ) // ADC loop
 			{
-				femb->i2c_write (0, 4+i*4+j, 1, 0x80, i*16+j);	
+				femb->i2c_write (0, 4+i*4+j, 1, 0x80+24, val); //i*16+j);
+//				femb->i2c_write (0, 3, 0, 3, val); // COLDATA PRBS register
 			}
 		}
-	}
-	for (i = 0; i < 2; i++) // COLDATA loop
-	{
-		for (j = 0; j <= 3; j++ ) // ADC loop
+		i = 0;
+		//	for (i = 0; i < 2; i++) // COLDATA loop
 		{
-			reg3 = femb->i2c_read  (0, 4+i*4+j, 1, 0x80);
-			if (reg3 != (i*16+j))	
-				printf("COLDADC mismatch: FEMB: %d COLDATA: %d ADC: %d vrefp_ctrl = %x\n",femb_ind, i, j, reg3);
+			j = 3;
+			//		for (j = 0; j <= 3; j++ ) // ADC loop
+			{
+				reg3 = femb->i2c_read  (0, 4+i*4+j, 1, 0x80+24);
+//				reg3 = femb->i2c_read  (0, 3, 0, 3); // COLDATA PRBS register
+				if (reg3 != val) //(i*16+j))	
+				{
+					printf("COLDADC mismatch: FEMB: %d COLDATA: %d ADC: %d vrefp_ctrl = %x exp: %x err: %x\n",femb_ind, i, j, reg3, val, reg3^val);
+					err_cnt++;
+				}
+			}
 		}
+//		usleep (100000);
 	}
 
-
+	printf ("error count: %d\n", err_cnt);
 }
 
