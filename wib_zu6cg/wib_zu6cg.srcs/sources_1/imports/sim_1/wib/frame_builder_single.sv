@@ -22,7 +22,6 @@ module frame_builder_single #(parameter NUM = 0)
     input [5:0]  link,
     input [9:0]  crate_id,
     input [5:0]  det_id,
-    input [5:0]  version,
     input [7:0]  femb_pulser_in_frame,
     input [7:0]  context_fld, 
     input        ready, 
@@ -162,6 +161,13 @@ module frame_builder_single #(parameter NUM = 0)
     (* async_reg *) reg [3:0] rq_served;
     reg [7:0] time8_mismatch;
     reg [7:0] time16_mismatch;
+    wire [5:0] version; 
+
+`ifdef COLDATA_P3
+    assign version = 6'h4; // DAQ readout version with mapping for mono FEMB
+`else
+    assign version = 6'h0; // older modular FEMB
+`endif
 
     wire [14:0] coldata_time_stamp =     
 `ifdef COLDATA_P3

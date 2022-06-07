@@ -264,7 +264,6 @@ module wib_top
     wire [5:0]  link [1:0]; //
     wire [9:0]  crate_id; // 
     wire [5:0]  det_id; //
-    wire [5:0]  version; //
     wire [7:0]  femb_pulser_in_frame; //
     wire [7:0]  context_fld; 
     wire        ready; // 
@@ -319,7 +318,6 @@ module wib_top
     wire [17:0] spy_rec_time     = `CONFIG_BITS(9,  0, 18); // 0xA00C0024;
 
     assign flex                 = `CONFIG_BITS(10,  0, 16); // 0xA00C0028
-    assign version              = `CONFIG_BITS(10,  16, 6); // 0xA00C0028
     assign femb_pulser_in_frame = `CONFIG_BITS(10,  22, 8); // 0xA00C0028
     assign ready                = `CONFIG_BITS(10,  30, 1); // 0xA00C0028
     assign ws                   = `CONFIG_BITS(10,  31, 1); // 0xA00C0028
@@ -555,7 +553,6 @@ module wib_top
         .link          (link    ),
         .crate_id      (crate_id),
         .det_id        (det_id  ),
-        .version       (version ),
         .femb_pulser_in_frame (femb_pulser_in_frame),
         .context_fld   (context_fld), 
         .ready         (ready      ), 
