@@ -7,14 +7,16 @@
 #include <linux/limits.h>
 
 
-int run_command(char* cline, char* output)
+int run_command(char* iline, char* output)
 {
 	FILE *fp;
 	int status;
 	char path[PATH_MAX];
+	char cline[100];
 
 	output[0] = 0; // clear output string
 
+	strcpy (cline, iline);
 	strcat (cline, " 2>&1"); // to include error stream
 
 	fp = popen(cline, "r");
@@ -46,7 +48,7 @@ int run_command(char* cline, char* output)
 	return status;
 }
 
-
+/*
 void REG_WR (unsigned addr, unsigned value)
 {
 	char cline[100], output[100];
@@ -57,7 +59,7 @@ void REG_WR (unsigned addr, unsigned value)
 	if (strlen(output) > 0) 
 		printf ("%s %s", cline, output);
 }
-
+*/
 int I2C_open (int lane)
 {
 	// nothing to do here
@@ -91,11 +93,13 @@ int PWR_FEMB_Voltage_CNTL(unsigned int FEMB, unsigned int regulator_id,double vo
 	unsigned char DATA = 0x00;
 	unsigned char buffer[10];
 	unsigned int DAC_value = 0;
+	char output[100];
 
 	if(regulator_id <= 3)
 	{
 
-		REG_WR(0x01,0x06);   // SET I2C mux to 0x06 for FEMB DC2DC DAC access
+//		REG_WR(0x01,0x06);   // SET I2C mux to 0x06 for FEMB DC2DC DAC access
+		run_command ("./devreg.sh i2c_select 6", output);		
 		DAC_value   = (unsigned int)  ((voltage * -482.47267) + 2407.15);
 		buffer[0]             = (unsigned char) (0x10 | ((regulator_id & 0x0f) << 1));
 		buffer[1]             = (unsigned char) (DAC_value >> 4) & 0xff;
@@ -116,7 +120,8 @@ int PWR_FEMB_Voltage_CNTL(unsigned int FEMB, unsigned int regulator_id,double vo
 	else if(regulator_id == 4)
 	{
 
-		REG_WR(0x01,0x08);   // SET I2C mux to 0x08 for FEMB LDO DAC access
+//		REG_WR(0x01,0x08);   // SET I2C mux to 0x08 for FEMB LDO DAC access
+		run_command ("./devreg.sh i2c_select 8", output);		
 		I2C_addr = 0x4C;
 		buffer[0]      = (0x10 | ((FEMB & 0x0f) << 1));
 		DAC_value   = (unsigned int)  ((voltage * -819.9871877) + 2705.465);
@@ -126,7 +131,8 @@ int PWR_FEMB_Voltage_CNTL(unsigned int FEMB, unsigned int regulator_id,double vo
 	else if(regulator_id == 5)
 	{
 
-		REG_WR(0x01,0x08);   // SET I2C mux to 0x08 for FEMB LDO DAC access
+//		REG_WR(0x01,0x08);   // SET I2C mux to 0x08 for FEMB LDO DAC access
+		run_command ("./devreg.sh i2c_select 8", output);		
 		I2C_addr = 0x4D;
 		buffer[0]             = (0x10 | ((FEMB & 0x0f) << 1));
 		DAC_value   = (unsigned int)  ((voltage * -819.9871877) + 2705.465);
@@ -144,7 +150,8 @@ int PWR_FEMB_Voltage_CNTL(unsigned int FEMB, unsigned int regulator_id,double vo
 
 	I2C_close(status);
 
-	REG_WR(0x01,0x08);
+//	REG_WR(0x01,0x08);
+	run_command ("./devreg.sh i2c_select 8", output);		
 
 	return(0);
 }

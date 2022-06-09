@@ -1,6 +1,6 @@
 ./coldata_power_off.sh
-#./eth0_start.sh
-#./rx_timing_sel_sfp_si5344.sh
+# timing from backplane
+./devreg.sh rx_timing_sel 0
 ./devreg.sh i2c_select 0
 clock/si5345_config
 voltages/wib_voltages
@@ -11,7 +11,10 @@ sleep 1
 sleep 0.1
 
 sw/femb_test 0
-./devreg.sh link_mask 0xfff0
+sw/femb_test 1
+sw/femb_test 2
+sw/femb_test 3
+./devreg.sh link_mask 0x0000
 #./coldata_rx_reset.sh
 sleep 1
 ./coldadc_power_on.sh

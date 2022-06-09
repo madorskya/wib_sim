@@ -22,6 +22,8 @@ module coldata_deframer
 );
 
     wire ts_valid_del;
+    wire [7:0] rx_byte0 [15:0];
+    wire [15:0] rx_k0; 
     genvar gi;
     generate
         for (gi = 0; gi < 16; gi++)
@@ -32,6 +34,8 @@ module coldata_deframer
                 .clk62p5    (clk62p5      ),
                 .rx_data    (rx_data  [gi]),
                 .rx_k       (rx_k     [gi]),
+                .rx_byte0   (rx_byte0 [gi]),
+                .rx_k0      (rx_k0    [gi]),
                 .deframed   (deframed [gi]),
                 .time8      (time8    [gi]),
                 .time16_a     (time16   [gi]),
@@ -86,7 +90,40 @@ module coldata_deframer
         .probe16 (valid12), // input wire [15:0]  probe16 
         .probe17 (valid14), // input wire [15:0]  probe17 
         .probe18 (dts_time), // input wire [63:0]  probe18 
-        .probe19 (dts_time_delayed) // input wire [63:0]  probe19
+        .probe19 (dts_time_delayed), // input wire [63:0]  probe19
+        .probe20 (rx_byte0 [0]),
+        .probe21 (rx_byte0 [1]),
+        .probe22 (rx_byte0 [2]),
+        .probe23 (rx_byte0 [3]),
+        .probe24 (rx_byte0 [4]),
+        .probe25 (rx_byte0 [5]),
+        .probe26 (rx_byte0 [6]),
+        .probe27 (rx_byte0 [7]),
+        .probe28 (rx_byte0 [8]),
+        .probe29 (rx_byte0 [9]),
+        .probe30 (rx_byte0 [10]),
+        .probe31 (rx_byte0 [11]),
+        .probe32 (rx_byte0 [12]),
+        .probe33 (rx_byte0 [13]),
+        .probe34 (rx_byte0 [14]),
+        .probe35 (rx_byte0 [15]),
+        .probe36 (rx_k0),
+        .probe37 ({rx_k [0 ], rx_data [0 ]}),
+        .probe38 ({rx_k [1 ], rx_data [1 ]}),
+        .probe39 ({rx_k [2 ], rx_data [2 ]}),
+        .probe40 ({rx_k [3 ], rx_data [3 ]}),
+        .probe41 ({rx_k [4 ], rx_data [4 ]}),
+        .probe42 ({rx_k [5 ], rx_data [5 ]}),
+        .probe43 ({rx_k [6 ], rx_data [6 ]}),
+        .probe44 ({rx_k [7 ], rx_data [7 ]}),
+        .probe45 ({rx_k [8 ], rx_data [8 ]}),
+        .probe46 ({rx_k [9 ], rx_data [9 ]}),
+        .probe47 ({rx_k [10], rx_data [10]}),
+        .probe48 ({rx_k [11], rx_data [11]}),
+        .probe49 ({rx_k [12], rx_data [12]}),
+        .probe50 ({rx_k [13], rx_data [13]}),
+        .probe51 ({rx_k [14], rx_data [14]}),
+        .probe52 ({rx_k [15], rx_data [15]})
     );
     
 endmodule

@@ -4,6 +4,9 @@ module coldata_deframer_single #(parameter NUM = 0)
     input clk62p5, // system clock = rx data clock
     input [15 :0] rx_data,
     input [1:0]   rx_k,
+
+    output reg [7:0] rx_byte0,
+    output reg rx_k0,
     
     output [13:0] deframed [31:0], // aligned deframed data
     output reg [7:0] time8,
@@ -36,8 +39,6 @@ module coldata_deframer_single #(parameter NUM = 0)
     } df_state_t;
     
     df_state_t df_state = IDLE;
-    reg [7:0] rx_byte0;
-    reg rx_k0;
     reg [7:0] byte_cnt;
     wire dfifo_valid = 1;
     reg [15:0] time16_prelim, time16;
@@ -277,12 +278,12 @@ module coldata_deframer_single #(parameter NUM = 0)
         .DO  ({time16_a, valid14_a, valid12_a, parallel_frame_a})
     );
 
-            ila_0 ila_rx 
-            (
-                .clk     (clk62p5), // input wire clk
-                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
-                .probe1  (rx_k)
-            ); 
+//            ila_0 ila_rx 
+//            (
+//                .clk     (clk62p5), // input wire clk
+//                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
+//                .probe1  (rx_k)
+//            ); 
             
 //            ila_2 ila_deframer 
 //            (

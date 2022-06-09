@@ -135,6 +135,7 @@ module wib_top
     reg  ts_rec_d;
     wire ts_rec_d_clk; // 312.5 M or 250M
     wire ts_rec_d_clk_pad;
+    wire ts_rec_d_clk_pll;
     wire ts_rst;
     wire [3:0] ts_sync;
     wire ts_sync_v;
@@ -161,15 +162,26 @@ module wib_top
     
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
     
-`ifndef COLDATA_P3
     // clock from PLL used for timing endpoint, since direct recovered clock is not available on WIB r 2    
     IBUFDS tp_clk_buf_in  (.I(si5344_out1_p),   .IB(si5344_out1_n), .O(ts_rec_d_clk_pad));
-    BUFG ts_rec_bufg (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk));
-`else
+    BUFG ts_rec_bufg (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk_pll));
+
     // clock from CDR, only available on WIB rev 3
     IBUFDS tp_fpga_clk_buf_in (.I(adn2814_fpga_clk_p), .IB(adn2814_fpga_clk_n), .O(ts_fpga_clk_pad));
     BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
-`endif
+    
+    wire csd_reset;
+    wire [15:0] csd_diff;
+    
+    // clock phase drift detector
+    // takes clocks from CDR and from PLL, runs counters on them
+    // diff output shows difference, should not drift normally
+    clk_sync_detect csd
+    (
+        .reset (csd_reset),
+        .c     ({ts_rec_d_clk_pll, ts_rec_d_clk}),
+        .diff  (csd_diff)
+    );    
     
     // have to add an input FF for timing data, it's missing in the timing endpoint
     always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
@@ -287,6 +299,7 @@ module wib_top
     wire fb_reset           = `CONFIG_BITS(1,12, 1); // 0xA00C0004 frame builder reset
     assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
     wire coldata_rxbufreset = `CONFIG_BITS(1,14, 1); // 0xA00C0004
+    assign csd_reset        = `CONFIG_BITS(1,15, 1); // 0xA00C0004
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
@@ -359,6 +372,9 @@ module wib_top
     assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0094
     
     assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
+
+    assign `STATUS_BITS( 7, 0, 16) = csd_diff; // 0xA00C009c
+
 
     assign `STATUS_BITS( 8, 0, 32) = ts_tstamp[31:0];  // 0xA00C00A0
     assign `STATUS_BITS( 9, 0, 32) = ts_tstamp[63:32]; // 0xA00C00A4
