@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Jun  1 11:29:38 2022
+// Date        : Mon Jun 13 17:43:18 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_pdts_endpoint_stdlog_0_0/design_1_pdts_endpoint_stdlog_0_0_sim_netlist.v
@@ -28,6 +28,7 @@ module design_1_pdts_endpoint_stdlog_0_0
     cdr_lol,
     pll_locked,
     clk,
+    clkx2,
     rst,
     rdy,
     sync,
@@ -42,13 +43,14 @@ module design_1_pdts_endpoint_stdlog_0_0
   input [7:0]addr;
   input [1:0]tgrp;
   output [3:0]stat;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 rec_clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 250000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *) input rec_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 rec_clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *) input rec_clk;
   input rec_d;
   input sfp_los;
   input cdr_los;
   input cdr_lol;
   input pll_locked;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_pdts_endpoint_stdlog_0_0_clk, INSERT_VIP 0" *) output clk;
+  output clkx2;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *) output rst;
   output rdy;
   output [3:0]sync;
@@ -64,6 +66,7 @@ module design_1_pdts_endpoint_stdlog_0_0
   wire cdr_lol;
   wire cdr_los;
   wire clk;
+  wire clkx2;
   wire [31:1]\^debug ;
   wire pll_locked;
   wire rdy;
@@ -109,6 +112,7 @@ module design_1_pdts_endpoint_stdlog_0_0
         .cdr_lol(cdr_lol),
         .cdr_los(cdr_los),
         .clk(clk),
+        .clkx2(clkx2),
         .debug({\^debug [31:16],\^debug [7:4],\^debug [2:1]}),
         .pll_locked(pll_locked),
         .q(sync),
@@ -10230,6 +10234,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint
     Q,
     stat,
     tstamp,
+    clkx2,
     sync_stb,
     sync_first,
     tx_dis,
@@ -10251,6 +10256,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint
   output [0:0]Q;
   output [3:0]stat;
   output [63:0]tstamp;
+  output clkx2;
   output sync_stb;
   output sync_first;
   output tx_dis;
@@ -10295,6 +10301,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint
   wire cdr_lol;
   wire cdr_los;
   wire clk;
+  wire clkx2;
   wire [7:4]d;
   wire [21:0]debug;
   wire [3:0]fdel;
@@ -10374,6 +10381,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint
         .tx_en(tx_en));
   design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm clkgen
        (.clk(clk),
+        .clkx2(clkx2),
         .phase_locked(phase_locked),
         .phase_rst(phase_rst),
         .rec_clk(rec_clk));
@@ -10516,6 +10524,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint_stdlogic
     Q,
     stat,
     tstamp,
+    clkx2,
     sync_stb,
     sync_first,
     tx_dis,
@@ -10537,6 +10546,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint_stdlogic
   output [0:0]Q;
   output [3:0]stat;
   output [63:0]tstamp;
+  output clkx2;
   output sync_stb;
   output sync_first;
   output tx_dis;
@@ -10557,6 +10567,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint_stdlogic
   wire cdr_lol;
   wire cdr_los;
   wire clk;
+  wire clkx2;
   wire [21:0]debug;
   wire pll_locked;
   wire [3:0]q;
@@ -10581,6 +10592,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint_stdlogic
         .cdr_lol(cdr_lol),
         .cdr_los(cdr_los),
         .clk(clk),
+        .clkx2(clkx2),
         .debug(debug),
         .pll_locked(pll_locked),
         .rec_clk(rec_clk),
@@ -12639,10 +12651,12 @@ endmodule
 module design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
    (phase_locked,
     clk,
+    clkx2,
     rec_clk,
     phase_rst);
   output phase_locked;
   output clk;
+  output clkx2;
   input rec_clk;
   input phase_rst;
 
@@ -12651,6 +12665,8 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
   wire clkfbin;
   wire clkfbout;
   wire clki;
+  wire clkix2;
+  wire clkx2;
   wire phase_locked;
   wire phase_rst;
   wire rec_clk;
@@ -12661,7 +12677,6 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
   wire NLW_mmcm_CLKINSTOPPED_UNCONNECTED;
   wire NLW_mmcm_CLKOUT0B_UNCONNECTED;
   wire NLW_mmcm_CLKOUT1B_UNCONNECTED;
-  wire NLW_mmcm_CLKOUT2_UNCONNECTED;
   wire NLW_mmcm_CLKOUT2B_UNCONNECTED;
   wire NLW_mmcm_CLKOUT3_UNCONNECTED;
   wire NLW_mmcm_CLKOUT3B_UNCONNECTED;
@@ -12699,6 +12714,15 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
        (.CE(1'b1),
         .I(clkfbout),
         .O(clkfbin));
+  (* XILINX_LEGACY_PRIM = "BUFG" *) 
+  (* box_type = "PRIMITIVE" *) 
+  BUFGCE #(
+    .CE_TYPE("ASYNC"),
+    .SIM_DEVICE("ULTRASCALE_PLUS")) 
+    bufgx2
+       (.CE(1'b1),
+        .I(clkix2),
+        .O(clkx2));
   (* XILINX_LEGACY_PRIM = "MMCME2_BASE" *) 
   (* box_type = "PRIMITIVE" *) 
   MMCME4_ADV #(
@@ -12716,7 +12740,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
     .CLKOUT1_DUTY_CYCLE(0.500000),
     .CLKOUT1_PHASE(0.000000),
     .CLKOUT1_USE_FINE_PS("FALSE"),
-    .CLKOUT2_DIVIDE(1),
+    .CLKOUT2_DIVIDE(10),
     .CLKOUT2_DUTY_CYCLE(0.500000),
     .CLKOUT2_PHASE(0.000000),
     .CLKOUT2_USE_FINE_PS("FALSE"),
@@ -12760,7 +12784,7 @@ module design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
         .CLKOUT0B(NLW_mmcm_CLKOUT0B_UNCONNECTED),
         .CLKOUT1(scpyi),
         .CLKOUT1B(NLW_mmcm_CLKOUT1B_UNCONNECTED),
-        .CLKOUT2(NLW_mmcm_CLKOUT2_UNCONNECTED),
+        .CLKOUT2(clkix2),
         .CLKOUT2B(NLW_mmcm_CLKOUT2B_UNCONNECTED),
         .CLKOUT3(NLW_mmcm_CLKOUT3_UNCONNECTED),
         .CLKOUT3B(NLW_mmcm_CLKOUT3B_UNCONNECTED),

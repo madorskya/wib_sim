@@ -154,7 +154,7 @@ module frame_builder_single #(parameter NUM = 0)
     wire [3:0] fr_ver = 4'h2; 
     wire [1:0] femb_val = 0; 
     wire       fnum = NUM; // FELIX fiber number
-    reg  [63:0] timestamp_reclocked;
+    (* ASYNC_REG = "TRUE" *) reg  [63:0] timestamp_reclocked;
     reg  [19:0] crc_20 = 0; // this is just a place holder, actual CRC is in crc_out
     reg [2:0] cdts_id; // shows which time stamp to report, is cycling through all values
     (* async_reg *) reg [3:0] data_ready;
@@ -421,9 +421,9 @@ module frame_builder_single #(parameter NUM = 0)
         data_ready[3:1] = data_ready[2:0]; 
     end
 
-    generate
-        if (NUM == 0)
-        begin
+//    generate
+//        if (NUM == 0)
+//        begin
             ila_3 ila_daq_rq 
             (
                 .clk    (rxclk2x), // input wire clk
@@ -453,8 +453,8 @@ module frame_builder_single #(parameter NUM = 0)
                 .probe2 (data_ready[3:1]), // input wire [2:0]  probe2
                 .probe3 (rq_served[0]) // input wire [0:0]  probe3
             );
-        end
-    endgenerate    
+//        end
+//    endgenerate    
 
 
 endmodule

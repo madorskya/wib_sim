@@ -27,6 +27,7 @@ entity pdts_endpoint_stdlogic is
         pll_locked: in std_logic;
 --		io_rdy: in std_logic; -- Sampled in sclk domaain
 		clk: out std_logic; -- 50MHz clock output
+		clkx2: out std_logic; -- Maq double system clock
         rst: out std_logic; -- 50MHz domain reset
 		rdy: out std_logic; -- Timestamp valid flag
 		sync: out std_logic_vector(3 downto 0); -- Sync command output (clk domain)
@@ -44,8 +45,9 @@ architecture rtl of pdts_endpoint_stdlogic is
 
     attribute X_INTERFACE_PARAMETER: string;
     attribute X_INTERFACE_PARAMETER of clk: signal is "FREQ_HZ 62500000";
+    attribute X_INTERFACE_PARAMETER of clkx2: signal is "FREQ_HZ 125000000"; -- Maq
 
-    -- Madorsky: adding RST polarity to make the schematics happy
+    -- Maq: adding RST polarity to make the schematics happy
     -- Declare the attributes in the architecture section
     ATTRIBUTE X_INTERFACE_INFO : STRING;
     ATTRIBUTE X_INTERFACE_INFO of rst: SIGNAL is "xilinx.com:signal:reset:1.0 rst RST";
@@ -80,6 +82,7 @@ begin
 			io_rdy => io_rdy,
 			sfp_tx_dis => tx_dis,
 			clk => clk,
+			clkx2 => clkx2, -- Maq double system clock
 			rst => rst,
 			rdy => rdy,
 			sync => sync,

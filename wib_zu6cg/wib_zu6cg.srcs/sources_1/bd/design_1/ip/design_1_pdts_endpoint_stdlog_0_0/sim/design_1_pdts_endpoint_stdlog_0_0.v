@@ -67,6 +67,7 @@ module design_1_pdts_endpoint_stdlog_0_0 (
   cdr_lol,
   pll_locked,
   clk,
+  clkx2,
   rst,
   rdy,
   sync,
@@ -83,7 +84,7 @@ input wire srst;
 input wire [7 : 0] addr;
 input wire [1 : 0] tgrp;
 output wire [3 : 0] stat;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 250000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 rec_clk CLK" *)
 input wire rec_clk;
 input wire rec_d;
@@ -94,6 +95,7 @@ input wire pll_locked;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_pdts_endpoint_stdlog_0_0_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 output wire clk;
+output wire clkx2;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 output wire rst;
@@ -119,6 +121,7 @@ output wire tx_dis;
     .cdr_lol(cdr_lol),
     .pll_locked(pll_locked),
     .clk(clk),
+    .clkx2(clkx2),
     .rst(rst),
     .rdy(rdy),
     .sync(sync),

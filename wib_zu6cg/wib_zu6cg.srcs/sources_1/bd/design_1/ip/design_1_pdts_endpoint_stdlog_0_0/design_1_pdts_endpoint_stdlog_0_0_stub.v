@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Jun  1 11:29:38 2022
+// Date        : Mon Jun 13 17:43:18 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_pdts_endpoint_stdlog_0_0/design_1_pdts_endpoint_stdlog_0_0_stub.v
@@ -15,8 +15,8 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "pdts_endpoint_stdlogic,Vivado 2020.1" *)
 module design_1_pdts_endpoint_stdlog_0_0(sclk, srst, addr, tgrp, stat, rec_clk, rec_d, sfp_los, 
-  cdr_los, cdr_lol, pll_locked, clk, rst, rdy, sync, sync_stb, sync_first, tstamp, debug, txd, tx_dis)
-/* synthesis syn_black_box black_box_pad_pin="sclk,srst,addr[7:0],tgrp[1:0],stat[3:0],rec_clk,rec_d,sfp_los,cdr_los,cdr_lol,pll_locked,clk,rst,rdy,sync[3:0],sync_stb,sync_first,tstamp[63:0],debug[31:0],txd,tx_dis" */;
+  cdr_los, cdr_lol, pll_locked, clk, clkx2, rst, rdy, sync, sync_stb, sync_first, tstamp, debug, txd, tx_dis)
+/* synthesis syn_black_box black_box_pad_pin="sclk,srst,addr[7:0],tgrp[1:0],stat[3:0],rec_clk,rec_d,sfp_los,cdr_los,cdr_lol,pll_locked,clk,clkx2,rst,rdy,sync[3:0],sync_stb,sync_first,tstamp[63:0],debug[31:0],txd,tx_dis" */;
   input sclk;
   input srst;
   input [7:0]addr;
@@ -29,6 +29,7 @@ module design_1_pdts_endpoint_stdlog_0_0(sclk, srst, addr, tgrp, stat, rec_clk, 
   input cdr_lol;
   input pll_locked;
   output clk;
+  output clkx2;
   output rst;
   output rdy;
   output [3:0]sync;

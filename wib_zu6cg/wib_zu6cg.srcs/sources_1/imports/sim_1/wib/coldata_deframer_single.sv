@@ -5,8 +5,8 @@ module coldata_deframer_single #(parameter NUM = 0)
     input [15 :0] rx_data,
     input [1:0]   rx_k,
 
-    output reg [7:0] rx_byte0,
-    output reg rx_k0,
+    (* ASYNC_REG = "TRUE" *) output reg [7:0] rx_byte0,
+    (* ASYNC_REG = "TRUE" *) output reg rx_k0,
     
     output [13:0] deframed [31:0], // aligned deframed data
     output reg [7:0] time8,
@@ -229,7 +229,7 @@ module coldata_deframer_single #(parameter NUM = 0)
 //        .rd_rst_busy ()  // output wire rd_rst_busy
 //    );
     
-    reg [17:0] rsh;
+    (* ASYNC_REG = "TRUE" *) reg [17:0] rsh;
     reg clk62p5_ff;
     reg [3:0] clk62p5_r;
     always @(posedge clk62p5) clk62p5_ff = ~clk62p5_ff; 
@@ -278,12 +278,12 @@ module coldata_deframer_single #(parameter NUM = 0)
         .DO  ({time16_a, valid14_a, valid12_a, parallel_frame_a})
     );
 
-//            ila_0 ila_rx 
-//            (
-//                .clk     (clk62p5), // input wire clk
-//                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
-//                .probe1  (rx_k)
-//            ); 
+            ila_0 ila_rx 
+            (
+                .clk     (clk62p5), // input wire clk
+                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
+                .probe1  (rx_k)
+            ); 
             
 //            ila_2 ila_deframer 
 //            (

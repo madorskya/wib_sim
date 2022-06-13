@@ -76,26 +76,17 @@ set_property LOC R31 [get_ports ch1_gthtxp_out]
 create_clock -period 16.000 -name dune_clk_fpga_in_p [get_ports dune_clk_fpga_in_p]
 #create_clock -period 4.166 -name daq_clk [get_ports daq_clk]
 
-set_clock_groups -group [get_clocks -include_generated_clocks dune_clk_fpga_in_p] -asynchronous
-#set_clock_groups -group [get_clocks -include_generated_clocks daq_clk] -asynchronous
-
-
 set_property CLOCK_DEDICATED_ROUTE ANY_CMT_COLUMN [get_nets clk50]
 create_clock -period 20 -name clk50 [get_ports clk_in_50mhz]
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk50]
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks clk_pl_0]
-
-
-
-set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
-set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT0]]
 
 set_false_path -from [get_ports bp_crate_addr[*]]
 set_false_path -from [get_ports bp_slot_addr[*]]
 
 
-create_clock -period 3.1 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
-set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
+create_clock -period 3.2 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock via PLL
+create_clock -period 3.2 -name adn2814_fpga_clk_p [get_ports adn2814_fpga_clk_p]; # timing endpoint clock direct
+
+# set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
  
 # timing data input constraints relative to clock
 # measured at UPenn setup by Ben on 2020-12-09
@@ -104,10 +95,8 @@ set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si53
  
 set_false_path -to [get_ports misc_io[*]] 
 
-set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/timing_module/clk_wiz_0/inst/mmcme4_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
-set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]]
-set_false_path -from [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT1]] -to [get_clocks -of_objects [get_pins tmf/mcmm50/inst/mmcme4_adv_inst/CLKOUT2]]
-
+# isolate AXI clock
+set_clock_groups -asynchronous -group [get_clocks clk_pl_0]
 
 # below copied from Jack's project
 

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Jun  1 11:29:38 2022
+-- Date        : Mon Jun 13 17:43:18 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_pdts_endpoint_stdlog_0_0/design_1_pdts_endpoint_stdlog_0_0_sim_netlist.vhdl
@@ -12909,6 +12909,7 @@ entity design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm is
   port (
     phase_locked : out STD_LOGIC;
     clk : out STD_LOGIC;
+    clkx2 : out STD_LOGIC;
     rec_clk : in STD_LOGIC;
     phase_rst : in STD_LOGIC
   );
@@ -12921,6 +12922,7 @@ architecture STRUCTURE of design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm is
   signal clkfbin : STD_LOGIC;
   signal clkfbout : STD_LOGIC;
   signal clki : STD_LOGIC;
+  signal clkix2 : STD_LOGIC;
   signal scpyi : STD_LOGIC;
   signal NLW_mmcm_CDDCDONE_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
@@ -12928,7 +12930,6 @@ architecture STRUCTURE of design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm is
   signal NLW_mmcm_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_CLKOUT0B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_CLKOUT1B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_CLKOUT2_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_CLKOUT2B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_CLKOUT3_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_CLKOUT3B_UNCONNECTED : STD_LOGIC;
@@ -12946,6 +12947,8 @@ architecture STRUCTURE of design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm is
   attribute box_type of bufgcp : label is "PRIMITIVE";
   attribute XILINX_LEGACY_PRIM of bufgfb : label is "BUFG";
   attribute box_type of bufgfb : label is "PRIMITIVE";
+  attribute XILINX_LEGACY_PRIM of bufgx2 : label is "BUFG";
+  attribute box_type of bufgx2 : label is "PRIMITIVE";
   attribute XILINX_LEGACY_PRIM of mmcm : label is "MMCME2_BASE";
   attribute box_type of mmcm : label is "PRIMITIVE";
 begin
@@ -12979,6 +12982,16 @@ bufgfb: unisim.vcomponents.BUFGCE
       I => clkfbout,
       O => clkfbin
     );
+bufgx2: unisim.vcomponents.BUFGCE
+    generic map(
+      CE_TYPE => "ASYNC",
+      SIM_DEVICE => "ULTRASCALE_PLUS"
+    )
+        port map (
+      CE => '1',
+      I => clkix2,
+      O => clkx2
+    );
 mmcm: unisim.vcomponents.MMCME4_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
@@ -12995,7 +13008,7 @@ mmcm: unisim.vcomponents.MMCME4_ADV
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT1_USE_FINE_PS => "FALSE",
-      CLKOUT2_DIVIDE => 1,
+      CLKOUT2_DIVIDE => 10,
       CLKOUT2_DUTY_CYCLE => 0.500000,
       CLKOUT2_PHASE => 0.000000,
       CLKOUT2_USE_FINE_PS => "FALSE",
@@ -13040,7 +13053,7 @@ mmcm: unisim.vcomponents.MMCME4_ADV
       CLKOUT0B => NLW_mmcm_CLKOUT0B_UNCONNECTED,
       CLKOUT1 => scpyi,
       CLKOUT1B => NLW_mmcm_CLKOUT1B_UNCONNECTED,
-      CLKOUT2 => NLW_mmcm_CLKOUT2_UNCONNECTED,
+      CLKOUT2 => clkix2,
       CLKOUT2B => NLW_mmcm_CLKOUT2B_UNCONNECTED,
       CLKOUT3 => NLW_mmcm_CLKOUT3_UNCONNECTED,
       CLKOUT3B => NLW_mmcm_CLKOUT3B_UNCONNECTED,
@@ -22087,6 +22100,7 @@ entity design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint is
     Q : out STD_LOGIC_VECTOR ( 0 to 0 );
     stat : out STD_LOGIC_VECTOR ( 3 downto 0 );
     tstamp : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    clkx2 : out STD_LOGIC;
     sync_stb : out STD_LOGIC;
     sync_first : out STD_LOGIC;
     tx_dis : out STD_LOGIC;
@@ -22231,6 +22245,7 @@ adj: entity work.design_1_pdts_endpoint_stdlog_0_0_pdts_adjust
 clkgen: entity work.design_1_pdts_endpoint_stdlog_0_0_pdts_rx_div_mmcm
      port map (
       clk => \^clk\,
+      clkx2 => clkx2,
       phase_locked => phase_locked,
       phase_rst => phase_rst,
       rec_clk => rec_clk
@@ -22400,6 +22415,7 @@ entity design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint_stdlogic is
     Q : out STD_LOGIC_VECTOR ( 0 to 0 );
     stat : out STD_LOGIC_VECTOR ( 3 downto 0 );
     tstamp : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    clkx2 : out STD_LOGIC;
     sync_stb : out STD_LOGIC;
     sync_first : out STD_LOGIC;
     tx_dis : out STD_LOGIC;
@@ -22429,6 +22445,7 @@ ep: entity work.design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint
       cdr_lol => cdr_lol,
       cdr_los => cdr_los,
       clk => clk,
+      clkx2 => clkx2,
       debug(21 downto 0) => debug(21 downto 0),
       pll_locked => pll_locked,
       rec_clk => rec_clk,
@@ -22464,6 +22481,7 @@ entity design_1_pdts_endpoint_stdlog_0_0 is
     cdr_lol : in STD_LOGIC;
     pll_locked : in STD_LOGIC;
     clk : out STD_LOGIC;
+    clkx2 : out STD_LOGIC;
     rst : out STD_LOGIC;
     rdy : out STD_LOGIC;
     sync : out STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -22495,7 +22513,7 @@ architecture STRUCTURE of design_1_pdts_endpoint_stdlog_0_0 is
   attribute X_INTERFACE_PARAMETER : string;
   attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_pdts_endpoint_stdlog_0_0_clk, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of rec_clk : signal is "xilinx.com:signal:clock:1.0 rec_clk CLK";
-  attribute X_INTERFACE_PARAMETER of rec_clk : signal is "XIL_INTERFACENAME rec_clk, FREQ_HZ 250000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of rec_clk : signal is "XIL_INTERFACENAME rec_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of rst : signal is "xilinx.com:signal:reset:1.0 rst RST";
   attribute X_INTERFACE_PARAMETER of rst : signal is "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0";
 begin
@@ -22533,6 +22551,7 @@ inst: entity work.design_1_pdts_endpoint_stdlog_0_0_pdts_endpoint_stdlogic
       cdr_lol => cdr_lol,
       cdr_los => cdr_los,
       clk => clk,
+      clkx2 => clkx2,
       debug(21 downto 6) => \^debug\(31 downto 16),
       debug(5 downto 2) => \^debug\(7 downto 4),
       debug(1 downto 0) => \^debug\(2 downto 1),

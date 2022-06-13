@@ -17,6 +17,7 @@ entity pdts_rx_div_mmcm is
 	port(
 		sclk: in std_logic;
 		clk: out std_logic;
+		clkx2: out std_logic; -- Maq
 		scpy: out std_logic;
 		phase_rst: in std_logic;
 		phase_locked: out std_logic
@@ -27,6 +28,7 @@ end pdts_rx_div_mmcm;
 architecture rtl of pdts_rx_div_mmcm is
 
 	signal clkfbout, clkfbin, clki, scpyi: std_logic;
+	signal clkix2: std_logic; -- Maq
 	
 begin
 
@@ -35,13 +37,15 @@ begin
 			CLKIN1_PERIOD => (1000.0 / CLK_FREQ) / real(SCLK_RATIO), -- Fast clock input
 			CLKFBOUT_MULT_F => real(VCO_RATIO), -- Around 1GHz VCO freq
 			CLKOUT0_DIVIDE_F => real(VCO_RATIO) * real(SCLK_RATIO), -- System clock output
-			CLKOUT1_DIVIDE => VCO_RATIO -- Copy of fast clock
+			CLKOUT1_DIVIDE => VCO_RATIO, -- Copy of fast clock
+			CLKOUT2_DIVIDE => 10 -- Maq: double system clock, 125M
 		)
 		port map(
 			clkin1 => sclk,
 			clkfbin => clkfbin,
 			clkout0 => clki,
 			clkout1 => scpyi,
+			clkout2 => clkix2, -- Maq
 			clkfbout => clkfbout,
 			locked => phase_locked,
 			rst => phase_rst,
@@ -54,6 +58,13 @@ begin
 			o => clk
 	);
 	
+	-- Maq buffer for x2 clock
+	bufgx2: BUFG
+		port map(
+			i => clkix2,
+			o => clkx2
+	);
+
 	bufgfb: BUFG
 		port map(
 			i => clkfbout,

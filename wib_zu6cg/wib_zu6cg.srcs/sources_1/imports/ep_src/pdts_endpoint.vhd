@@ -33,6 +33,7 @@ entity pdts_endpoint is
 		io_rdy: in std_logic;
 		sfp_tx_dis: out std_logic; -- SFP tx disable line (clk domain)
 		clk: out std_logic; -- 50MHz clock output
+		clkx2: out std_logic; -- Maq double system clock
 		rst: out std_logic; -- 50MHz domain reset
 		rdy: out std_logic; -- Timestamp valid flag
 		sync: out std_logic_vector(SCMD_W - 1 downto 0); -- Sync command output (clk domain)
@@ -113,6 +114,7 @@ begin
 		port map(
 			sclk => rec_clk,
 			clk => clk_i,
+			clkx2 => clkx2, -- Maq double system clock
 			phase_rst => phase_rst,
 			phase_locked => phase_locked
 		);
