@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Sat Jun  4 12:00:42 2022
+// Date        : Tue Jun 14 17:48:15 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top design_1_coldata_i2c_0_2 -prefix
 //               design_1_coldata_i2c_0_2_ design_1_coldata_i2c_0_0_sim_netlist.v
@@ -16,14 +16,15 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
    (sda_in_out,
     sda_out_p,
     sda_out_n,
-    sda_out_out,
     s00_axi_awready,
     s00_axi_wready,
     s00_axi_arready,
     s00_axi_rdata,
+    scl,
+    scl_out,
+    sda_out_out,
     s00_axi_rvalid,
     s00_axi_bvalid,
-    scl,
     clk62p5,
     sda_in_p,
     sda_in_n,
@@ -41,14 +42,15 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
   output sda_in_out;
   output sda_out_p;
   output sda_out_n;
-  output sda_out_out;
   output s00_axi_awready;
   output s00_axi_wready;
   output s00_axi_arready;
   output [31:0]s00_axi_rdata;
+  output scl;
+  output scl_out;
+  output sda_out_out;
   output s00_axi_rvalid;
   output s00_axi_bvalid;
-  output scl;
   input clk62p5;
   input sda_in_p;
   input sda_in_n;
@@ -161,7 +163,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
   wire \lb_stim_reg[2]_srl3_n_0 ;
   wire \lb_stim_reg_n_0_[3] ;
   wire lb_stim_sda_out;
-  wire [1:0]p_0_in_0;
+  wire [1:0]p_0_in;
   wire [0:0]p_2_out;
   wire \rd_reg[1][26]_i_1_n_0 ;
   wire \rd_reg[1][26]_i_2_n_0 ;
@@ -189,10 +191,12 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
   wire [3:0]s00_axi_wstrb;
   wire s00_axi_wvalid;
   wire scl;
-  wire scl_i_2_n_0;
-  wire scl_i_3_n_0;
-  wire scl_i_4_n_0;
-  wire scl_i_5_n_0;
+  wire scl_i_i_2_n_0;
+  wire scl_i_i_3_n_0;
+  wire scl_i_i_4_n_0;
+  wire scl_i_i_5_n_0;
+  wire scl_out;
+  wire sda_in;
   wire sda_in_n;
   wire sda_in_out;
   wire sda_in_p;
@@ -200,6 +204,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
   wire \sda_in_sh[26]_i_1_n_0 ;
   wire \sda_in_sh[26]_i_2_n_0 ;
   wire \sda_in_sh[26]_i_3_n_0 ;
+  wire sda_out_i;
   wire sda_out_i_1_n_0;
   wire sda_out_n;
   wire sda_out_out;
@@ -266,8 +271,8 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
         .I1(state[1]),
         .I2(state[2]),
         .I3(state[0]),
-        .I4(p_0_in_0[1]),
-        .I5(p_0_in_0[0]),
+        .I4(p_0_in[1]),
+        .I5(p_0_in[0]),
         .O(\FSM_sequential_state[0]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT5 #(
@@ -303,7 +308,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
     .INIT(64'hFFFEFFFFFEFEFEFE)) 
     \FSM_sequential_state[1]_i_2 
        (.I0(\bit_count[4]_i_3_n_0 ),
-        .I1(scl_i_5_n_0),
+        .I1(scl_i_i_5_n_0),
         .I2(\FSM_sequential_state[1]_i_7_n_0 ),
         .I3(\FSM_sequential_state[2]_i_4_n_0 ),
         .I4(state[0]),
@@ -843,7 +848,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
        (.I0(\bit_phase_reg_n_0_[5] ),
         .I1(\bit_phase_reg_n_0_[1] ),
         .I2(\FSM_sequential_state[2]_i_6_n_0 ),
-        .I3(scl_i_5_n_0),
+        .I3(scl_i_i_5_n_0),
         .I4(\bit_phase[7]_i_3_n_0 ),
         .I5(\bit_phase_reg_n_0_[4] ),
         .O(\bit_phase[4]_i_2_n_0 ));
@@ -974,7 +979,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
     .INIT(64'hFAFA00000000FFFC)) 
     \bit_phase[5]_i_7 
        (.I0(\bit_phase[5]_i_10_n_0 ),
-        .I1(scl_i_5_n_0),
+        .I1(scl_i_i_5_n_0),
         .I2(\bit_phase[4]_i_4_n_0 ),
         .I3(\bit_phase[5]_i_11_n_0 ),
         .I4(\bit_phase[5]_i_12_n_0 ),
@@ -984,7 +989,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
     .INIT(64'h0808080808080888)) 
     \bit_phase[5]_i_8 
        (.I0(\bit_phase_reg_n_0_[5] ),
-        .I1(scl_i_5_n_0),
+        .I1(scl_i_i_5_n_0),
         .I2(\bit_phase_reg_n_0_[4] ),
         .I3(\bit_phase_reg_n_0_[3] ),
         .I4(\bit_phase_reg_n_0_[2] ),
@@ -1079,8 +1084,8 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
         .I1(state[0]),
         .I2(s00_axi_aresetn),
         .I3(state[1]),
-        .I4(p_0_in_0[1]),
-        .I5(p_0_in_0[0]),
+        .I4(p_0_in[1]),
+        .I5(p_0_in[0]),
         .O(\bit_phase[8]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFF100000FF00FF10)) 
@@ -1219,7 +1224,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
     ibuf_sda
        (.I(sda_in_p),
         .IB(sda_in_n),
-        .O(sda_in_out));
+        .O(sda_in));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h45)) 
@@ -1420,7 +1425,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
   OBUFDS #(
     .IOSTANDARD("DEFAULT")) 
     obuf_sda
-       (.I(sda_out_out),
+       (.I(sda_out_i),
         .O(sda_out_p),
         .OB(sda_out_n));
   LUT6 #(
@@ -1683,49 +1688,61 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
         .S(\rd_reg[2][7]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h1FDF1F1111D11111)) 
-    scl_i_2
+    scl_i_i_2
        (.I0(state[0]),
         .I1(state[1]),
-        .I2(scl_i_3_n_0),
+        .I2(scl_i_i_3_n_0),
         .I3(state[2]),
-        .I4(scl_i_4_n_0),
-        .I5(scl),
-        .O(scl_i_2_n_0));
+        .I4(scl_i_i_4_n_0),
+        .I5(scl_out),
+        .O(scl_i_i_2_n_0));
   LUT6 #(
     .INIT(64'h0000001000000000)) 
-    scl_i_3
+    scl_i_i_3
        (.I0(\bit_phase[2]_i_4_n_0 ),
         .I1(\bit_phase_reg_n_0_[2] ),
         .I2(\bit_phase_reg_n_0_[3] ),
         .I3(\bit_phase_reg_n_0_[5] ),
         .I4(\bit_phase_reg_n_0_[4] ),
-        .I5(scl_i_5_n_0),
-        .O(scl_i_3_n_0));
+        .I5(scl_i_i_5_n_0),
+        .O(scl_i_i_3_n_0));
   (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
-    scl_i_4
+    scl_i_i_4
        (.I0(\sda_in_sh[26]_i_3_n_0 ),
         .I1(\bit_phase_reg_n_0_[6] ),
         .I2(\bit_phase_reg_n_0_[7] ),
         .I3(\bit_phase_reg_n_0_[8] ),
-        .O(scl_i_4_n_0));
+        .O(scl_i_i_4_n_0));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h00000004)) 
-    scl_i_5
+    scl_i_i_5
        (.I0(state[2]),
         .I1(state[1]),
         .I2(\bit_phase_reg_n_0_[6] ),
         .I3(\bit_phase_reg_n_0_[7] ),
         .I4(\bit_phase_reg_n_0_[8] ),
-        .O(scl_i_5_n_0));
-  FDSE scl_reg
+        .O(scl_i_i_5_n_0));
+  FDSE scl_i_reg
        (.C(clk62p5),
         .CE(1'b1),
-        .D(scl_i_2_n_0),
-        .Q(scl),
+        .D(scl_i_i_2_n_0),
+        .Q(scl_out),
         .S(coldata_i2c_v1_0_S00_AXI_inst_n_1));
+  FDRE scl_reg
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(scl_out),
+        .Q(scl),
+        .R(1'b0));
+  FDRE sda_in_out_reg
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(sda_in),
+        .Q(sda_in_out),
+        .R(1'b0));
   LUT6 #(
     .INIT(64'h0000000000000008)) 
     \sda_in_sh[26]_i_1 
@@ -1925,6 +1942,12 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
         .I4(state[2]),
         .I5(sda_out_reg_n_0),
         .O(sda_out_i_1_n_0));
+  FDRE sda_out_i_reg
+       (.C(clk62p5),
+        .CE(1'b1),
+        .D(sda_out_out),
+        .Q(sda_out_i),
+        .R(1'b0));
   LUT2 #(
     .INIT(4'h8)) 
     sda_out_out_INST_0
@@ -2121,15 +2144,15 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0
        (.C(clk62p5),
         .CE(1'b1),
         .D(\tx_start_r_reg_n_0_[1] ),
-        .Q(p_0_in_0[0]),
+        .Q(p_0_in[0]),
         .R(coldata_i2c_v1_0_S00_AXI_inst_n_1));
   FDRE #(
     .INIT(1'b0)) 
     \tx_start_r_reg[3] 
        (.C(clk62p5),
         .CE(1'b1),
-        .D(p_0_in_0[0]),
-        .Q(p_0_in_0[1]),
+        .D(p_0_in[0]),
+        .Q(p_0_in[1]),
         .R(coldata_i2c_v1_0_S00_AXI_inst_n_1));
 endmodule
 
@@ -2191,6 +2214,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   wire aw_en_i_1_n_0;
   wire aw_en_reg_n_0;
   wire axi_arready0;
+  wire [4:2]axi_awaddr;
   wire axi_awready0;
   wire axi_bvalid_i_1_n_0;
   wire \axi_rdata[0]_i_2_n_0 ;
@@ -2228,7 +2252,6 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   wire [26:0]\axi_rdata_reg[26]_0 ;
   wire axi_rvalid_i_1_n_0;
   wire axi_wready0;
-  wire [2:0]p_0_in;
   wire [31:7]p_1_in;
   wire [0:0]p_2_out;
   wire [7:0]\rd_reg_reg[2] ;
@@ -2279,7 +2302,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   wire \wr_reg1[7]_i_1_n_0 ;
   wire \wr_reg2[0]_i_1_n_0 ;
   wire \wr_reg2[0]_i_2_n_0 ;
-  wire \wr_reg[2]_1 ;
+  wire \wr_reg[2]_0 ;
 
   LUT6 #(
     .INIT(64'hF0FFFFFF88888888)) 
@@ -2331,19 +2354,19 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
        (.C(s00_axi_aclk),
         .CE(axi_awready0),
         .D(s00_axi_awaddr[0]),
-        .Q(p_0_in[0]),
+        .Q(axi_awaddr[2]),
         .R(SR));
   FDRE \axi_awaddr_reg[3] 
        (.C(s00_axi_aclk),
         .CE(axi_awready0),
         .D(s00_axi_awaddr[1]),
-        .Q(p_0_in[1]),
+        .Q(axi_awaddr[3]),
         .R(SR));
   FDRE \axi_awaddr_reg[4] 
        (.C(s00_axi_aclk),
         .CE(axi_awready0),
         .D(s00_axi_awaddr[2]),
-        .Q(p_0_in[2]),
+        .Q(axi_awaddr[4]),
         .R(SR));
   LUT4 #(
     .INIT(16'h4000)) 
@@ -3204,11 +3227,11 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT1 #(
     .INIT(2'h1)) 
     \lb_stim_reg[2]_srl3_i_1 
-       (.I0(\wr_reg[2]_1 ),
+       (.I0(\wr_reg[2]_0 ),
         .O(p_2_out));
   LUT1 #(
     .INIT(2'h1)) 
-    scl_i_1
+    scl_i_i_1
        (.I0(s00_axi_aresetn),
         .O(SR));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
@@ -3431,28 +3454,28 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT5 #(
     .INIT(32'h00400000)) 
     \slv_reg4[15]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[1]),
         .O(p_1_in[15]));
   LUT5 #(
     .INIT(32'h00400000)) 
     \slv_reg4[23]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[2]),
         .O(p_1_in[23]));
   LUT5 #(
     .INIT(32'h00400000)) 
     \slv_reg4[31]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[3]),
         .O(p_1_in[31]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
@@ -3467,10 +3490,10 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT5 #(
     .INIT(32'h00400000)) 
     \slv_reg4[7]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[0]),
         .O(p_1_in[7]));
   FDRE \slv_reg4_reg[0] 
@@ -3669,36 +3692,36 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
     .INIT(32'h00800000)) 
     \slv_reg5[15]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[1]),
         .O(\slv_reg5[15]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg5[23]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[2]),
         .O(\slv_reg5[23]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg5[31]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[3]),
         .O(\slv_reg5[31]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg5[7]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[0]),
         .O(\slv_reg5[7]_i_1_n_0 ));
   FDRE \slv_reg5_reg[0] 
@@ -3896,37 +3919,37 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg6[15]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[1]),
         .O(\slv_reg6[15]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg6[23]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[2]),
         .O(\slv_reg6[23]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg6[31]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[3]),
         .O(\slv_reg6[31]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h00800000)) 
     \slv_reg6[7]_i_1 
-       (.I0(p_0_in[1]),
-        .I1(p_0_in[2]),
+       (.I0(axi_awaddr[3]),
+        .I1(axi_awaddr[4]),
         .I2(\slv_reg4[31]_i_2_n_0 ),
-        .I3(p_0_in[0]),
+        .I3(axi_awaddr[2]),
         .I4(s00_axi_wstrb[0]),
         .O(\slv_reg6[7]_i_1_n_0 ));
   FDRE \slv_reg6_reg[0] 
@@ -4125,36 +4148,36 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
     .INIT(32'h80000000)) 
     \slv_reg7[15]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[1]),
         .O(\slv_reg7[15]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h80000000)) 
     \slv_reg7[23]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[2]),
         .O(\slv_reg7[23]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h80000000)) 
     \slv_reg7[31]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[3]),
         .O(\slv_reg7[31]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h80000000)) 
     \slv_reg7[7]_i_1 
        (.I0(\slv_reg4[31]_i_2_n_0 ),
-        .I1(p_0_in[2]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(s00_axi_wstrb[0]),
         .O(\slv_reg7[7]_i_1_n_0 ));
   FDRE \slv_reg7_reg[0] 
@@ -4361,8 +4384,8 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
     \wr_reg0[0]_i_1 
        (.I0(s00_axi_wdata[0]),
         .I1(s00_axi_wstrb[0]),
-        .I2(p_0_in[0]),
-        .I3(p_0_in[1]),
+        .I2(axi_awaddr[2]),
+        .I3(axi_awaddr[3]),
         .I4(\wr_reg2[0]_i_2_n_0 ),
         .I5(D),
         .O(\wr_reg0[0]_i_1_n_0 ));
@@ -4377,9 +4400,9 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT6 #(
     .INIT(64'h0200000000000000)) 
     \wr_reg1[15]_i_1 
-       (.I0(p_0_in[0]),
-        .I1(p_0_in[1]),
-        .I2(p_0_in[2]),
+       (.I0(axi_awaddr[2]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[4]),
         .I3(s00_axi_aresetn),
         .I4(\slv_reg4[31]_i_2_n_0 ),
         .I5(s00_axi_wstrb[1]),
@@ -4387,9 +4410,9 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT6 #(
     .INIT(64'h0200000000000000)) 
     \wr_reg1[23]_i_1 
-       (.I0(p_0_in[0]),
-        .I1(p_0_in[1]),
-        .I2(p_0_in[2]),
+       (.I0(axi_awaddr[2]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[4]),
         .I3(s00_axi_aresetn),
         .I4(\slv_reg4[31]_i_2_n_0 ),
         .I5(s00_axi_wstrb[2]),
@@ -4397,9 +4420,9 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT6 #(
     .INIT(64'h0200000000000000)) 
     \wr_reg1[26]_i_1 
-       (.I0(p_0_in[0]),
-        .I1(p_0_in[1]),
-        .I2(p_0_in[2]),
+       (.I0(axi_awaddr[2]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[4]),
         .I3(s00_axi_aresetn),
         .I4(\slv_reg4[31]_i_2_n_0 ),
         .I5(s00_axi_wstrb[3]),
@@ -4407,9 +4430,9 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
   LUT6 #(
     .INIT(64'h0200000000000000)) 
     \wr_reg1[7]_i_1 
-       (.I0(p_0_in[0]),
-        .I1(p_0_in[1]),
-        .I2(p_0_in[2]),
+       (.I0(axi_awaddr[2]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[4]),
         .I3(s00_axi_aresetn),
         .I4(\slv_reg4[31]_i_2_n_0 ),
         .I5(s00_axi_wstrb[0]),
@@ -4635,15 +4658,15 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
     \wr_reg2[0]_i_1 
        (.I0(s00_axi_wdata[0]),
         .I1(s00_axi_wstrb[0]),
-        .I2(p_0_in[1]),
-        .I3(p_0_in[0]),
+        .I2(axi_awaddr[3]),
+        .I3(axi_awaddr[2]),
         .I4(\wr_reg2[0]_i_2_n_0 ),
-        .I5(\wr_reg[2]_1 ),
+        .I5(\wr_reg[2]_0 ),
         .O(\wr_reg2[0]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h4000000000000000)) 
     \wr_reg2[0]_i_2 
-       (.I0(p_0_in[2]),
+       (.I0(axi_awaddr[4]),
         .I1(s00_axi_aresetn),
         .I2(s00_axi_wvalid),
         .I3(s00_axi_awvalid),
@@ -4656,7 +4679,7 @@ module design_1_coldata_i2c_0_2_coldata_i2c_v1_0_S00_AXI
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\wr_reg2[0]_i_1_n_0 ),
-        .Q(\wr_reg[2]_1 ),
+        .Q(\wr_reg[2]_0 ),
         .R(1'b0));
 endmodule
 
@@ -4664,6 +4687,7 @@ endmodule
 (* NotValidForBitStream *)
 module design_1_coldata_i2c_0_2
    (scl,
+    scl_out,
     sda_out_p,
     sda_out_n,
     sda_in_p,
@@ -4693,6 +4717,7 @@ module design_1_coldata_i2c_0_2
     s00_axi_rvalid,
     s00_axi_rready);
   output scl;
+  output scl_out;
   output sda_out_p;
   output sda_out_n;
   input sda_in_p;
@@ -4742,11 +4767,12 @@ module design_1_coldata_i2c_0_2
   wire [3:0]s00_axi_wstrb;
   wire s00_axi_wvalid;
   wire scl;
+  wire scl_out;
   (* IBUF_LOW_PWR *) wire sda_in_n;
-  (* IBUF_LOW_PWR *) wire sda_in_out;
+  wire sda_in_out;
   (* IBUF_LOW_PWR *) wire sda_in_p;
   (* SLEW = "SLOW" *) wire sda_out_n;
-  (* SLEW = "SLOW" *) wire sda_out_out;
+  wire sda_out_out;
   (* SLEW = "SLOW" *) wire sda_out_p;
 
   assign s00_axi_bresp[1] = \<const0> ;
@@ -4775,6 +4801,7 @@ module design_1_coldata_i2c_0_2
         .s00_axi_wstrb(s00_axi_wstrb),
         .s00_axi_wvalid(s00_axi_wvalid),
         .scl(scl),
+        .scl_out(scl_out),
         .sda_in_n(sda_in_n),
         .sda_in_out(sda_in_out),
         .sda_in_p(sda_in_p),

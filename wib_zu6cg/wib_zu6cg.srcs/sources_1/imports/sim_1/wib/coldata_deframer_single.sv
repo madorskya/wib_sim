@@ -285,18 +285,18 @@ module coldata_deframer_single #(parameter NUM = 0)
                 .probe1  (rx_k)
             ); 
             
-//            ila_2 ila_deframer 
-//            (
-//                .clk    (rxclk2x), // input wire clk
-//                .probe0 (rx_byte0), // input wire [7:0]  probe0
-//                .probe1 (rx_k0), // input wire [0:0]  probe2
-//                .probe2 (df_state), // input wire [3:0]  probe4
-//                .probe3 (byte_cnt), // input wire [7:0]  probe5
-//                .probe4 (valid12),
-//                .probe5 (valid14),
-//                .probe6 (dfifo_empty),
-//                .probe7 (dfifo_valid)
-//            );
+            ila_2 ila_deframer 
+            (
+                .clk    (rxclk2x), // input wire clk
+                .probe0 (rx_byte0), // input wire [7:0]  probe0
+                .probe1 (rx_k0), // input wire [0:0]  probe2
+                .probe2 (df_state), // input wire [3:0]  probe4
+                .probe3 (byte_cnt), // input wire [7:0]  probe5
+                .probe4 (valid12),
+                .probe5 (valid14),
+                .probe6 (dfifo_empty),
+                .probe7 (dfifo_valid)
+            );
 
 endmodule
 

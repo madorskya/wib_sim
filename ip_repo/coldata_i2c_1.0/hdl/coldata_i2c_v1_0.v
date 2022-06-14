@@ -20,9 +20,11 @@
 	(
 		// Users to add ports here
 		output reg scl,
+		output scl_out,
 		output sda_out_p, sda_out_n,
 		input sda_in_p, sda_in_n,
-		output sda_in_out, sda_out_out,
+		output reg sda_in_out, 
+		output sda_out_out,
 		input clk62p5,
 
 		// User ports ends
@@ -99,15 +101,13 @@
 	);
 
 	// Add user logic here
-    reg sda_out; 
+    reg sda_out, sda_out_i; 
     wire sda_in;
     wire lb_stim_sda_out;
 
     // SDA output is controlled by I2C or by loopback logic
-    OBUFDS obuf_sda (.I(sda_out_out), .O(sda_out_p), .OB(sda_out_n));
+    OBUFDS obuf_sda (.I(sda_out_i), .O(sda_out_p), .OB(sda_out_n));
     IBUFDS ibuf_sda (.I(sda_in_p), .IB(sda_in_n), .O(sda_in));
-    assign sda_in_out = sda_in;
-    assign sda_out_out = sda_out & lb_stim_sda_out;
 
     wire tx_start = wr_reg[0][0];
     reg [3:0] tx_start_r = 0;
@@ -127,12 +127,18 @@
     
     reg [2:0] state = ST_IDLE; // FSM state
     reg [26:0] sda_out_sh, sda_in_sh; // shift regs
+    reg scl_i;
+    assign sda_out_out = sda_out & lb_stim_sda_out;
+    assign scl_out = scl_i;
 
     always @(posedge clk62p5)
     begin
+        scl = scl_i;
+        sda_out_i = sda_out_out;
+        
         if (s00_axi_aresetn == 1'b0)
         begin
-            scl = 1'b1;
+            scl_i = 1'b1;
             sda_out = 1'b1;
             tx_start_r = 4'b0;
             state = ST_IDLE;
@@ -148,7 +154,7 @@
                         state = ST_STRT;
                         bit_phase = 9'd0;    
                     end
-                    scl = 1'b1;
+                    scl_i = 1'b1;
                     sda_out = 1'b1;
                 end
                 
@@ -164,7 +170,7 @@
                     sda_out = 1'b0;
                     if (bit_phase == scl_down)
                     begin 
-                        scl = 1'b0;
+                        scl_i = 1'b0;
                     end
                     bit_phase = bit_phase + 1;                        
                 end
@@ -182,11 +188,11 @@
                         bit_phase = 9'b0;
                     end
                     
-                    if (bit_phase == scl_up  ) scl = 1'b1;
+                    if (bit_phase == scl_up  ) scl_i = 1'b1;
                     if (bit_phase == scl_down)
                     begin 
-                        scl = 1'b0;
-                        sda_in_sh = {sda_in_sh[25:0], sda_in};  // also lock rd bit here
+                        scl_i = 1'b0;
+                        sda_in_sh = {sda_in_sh[25:0], sda_in_out};  // also lock rd bit here
                     end
                     
                     bit_phase = bit_phase + 1;
@@ -213,11 +219,11 @@
                         end
                     end
 
-                    if (bit_phase == scl_up  ) scl = 1'b1;
+                    if (bit_phase == scl_up  ) scl_i = 1'b1;
                     if (bit_phase == scl_down) 
                     begin 
-                        scl = 1'b0;
-                        sda_in_sh = {sda_in_sh[25:0], sda_in};  // also lock rd bit here
+                        scl_i = 1'b0;
+                        sda_in_sh = {sda_in_sh[25:0], sda_in_out};  // also lock rd bit here
                     end
 
                     if (bit_phase < ack_timeout)
@@ -235,7 +241,7 @@
                 ST_STOP:
                 begin
                     // just keep fixed outputs for ack duration
-                    scl = 1'b1;
+                    scl_i = 1'b1;
                     sda_out = 1'b0;
                     if (bit_phase >= ack_duration)
                     begin
@@ -248,6 +254,8 @@
             
             tx_start_r = {tx_start_r[2:0], tx_start};
         end
+        sda_in_out = sda_in;
+        
     end
 
     reg [7:0] lat_cnt = 0;
@@ -277,7 +285,7 @@
         // loopback stimulus comes from wr_reg [1] bit 0
         lb_stim = {lb_stim[3:0], ~wr_reg[2][0]};
         
-        lb_resp = {lb_resp[2:0], sda_in};
+        lb_resp = {lb_resp[2:0], sda_in_out};
     end
 
 

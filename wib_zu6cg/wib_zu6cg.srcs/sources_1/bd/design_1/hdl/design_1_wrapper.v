@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Jun 13 17:42:04 2022
+//Date        : Tue Jun 14 17:47:06 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -53,37 +53,21 @@ module design_1_wrapper
     scl_p_2,
     scl_p_3,
     sda_in_n_0,
-    sda_in_n_1,
     sda_in_n_2,
-    sda_in_n_3,
     sda_in_n_4,
-    sda_in_n_5,
     sda_in_n_6,
-    sda_in_n_7,
     sda_in_p_0,
-    sda_in_p_1,
     sda_in_p_2,
-    sda_in_p_3,
     sda_in_p_4,
-    sda_in_p_5,
     sda_in_p_6,
-    sda_in_p_7,
     sda_out_n_0,
-    sda_out_n_1,
     sda_out_n_2,
-    sda_out_n_3,
     sda_out_n_4,
-    sda_out_n_5,
     sda_out_n_6,
-    sda_out_n_7,
     sda_out_p_0,
-    sda_out_p_1,
     sda_out_p_2,
-    sda_out_p_3,
     sda_out_p_4,
-    sda_out_p_5,
     sda_out_p_6,
-    sda_out_p_7,
     spy_addr_0,
     spy_addr_1,
     spy_rec_time,
@@ -147,37 +131,21 @@ module design_1_wrapper
   output [0:0]scl_p_2;
   output [0:0]scl_p_3;
   input sda_in_n_0;
-  input sda_in_n_1;
   input sda_in_n_2;
-  input sda_in_n_3;
   input sda_in_n_4;
-  input sda_in_n_5;
   input sda_in_n_6;
-  input sda_in_n_7;
   input sda_in_p_0;
-  input sda_in_p_1;
   input sda_in_p_2;
-  input sda_in_p_3;
   input sda_in_p_4;
-  input sda_in_p_5;
   input sda_in_p_6;
-  input sda_in_p_7;
   output sda_out_n_0;
-  output sda_out_n_1;
   output sda_out_n_2;
-  output sda_out_n_3;
   output sda_out_n_4;
-  output sda_out_n_5;
   output sda_out_n_6;
-  output sda_out_n_7;
   output sda_out_p_0;
-  output sda_out_p_1;
   output sda_out_p_2;
-  output sda_out_p_3;
   output sda_out_p_4;
-  output sda_out_p_5;
   output sda_out_p_6;
-  output sda_out_p_7;
   output [19:0]spy_addr_0;
   output [19:0]spy_addr_1;
   input [17:0]spy_rec_time;
@@ -248,37 +216,21 @@ module design_1_wrapper
   wire [0:0]scl_p_2;
   wire [0:0]scl_p_3;
   wire sda_in_n_0;
-  wire sda_in_n_1;
   wire sda_in_n_2;
-  wire sda_in_n_3;
   wire sda_in_n_4;
-  wire sda_in_n_5;
   wire sda_in_n_6;
-  wire sda_in_n_7;
   wire sda_in_p_0;
-  wire sda_in_p_1;
   wire sda_in_p_2;
-  wire sda_in_p_3;
   wire sda_in_p_4;
-  wire sda_in_p_5;
   wire sda_in_p_6;
-  wire sda_in_p_7;
   wire sda_out_n_0;
-  wire sda_out_n_1;
   wire sda_out_n_2;
-  wire sda_out_n_3;
   wire sda_out_n_4;
-  wire sda_out_n_5;
   wire sda_out_n_6;
-  wire sda_out_n_7;
   wire sda_out_p_0;
-  wire sda_out_p_1;
   wire sda_out_p_2;
-  wire sda_out_p_3;
   wire sda_out_p_4;
-  wire sda_out_p_5;
   wire sda_out_p_6;
-  wire sda_out_p_7;
   wire [19:0]spy_addr_0;
   wire [19:0]spy_addr_1;
   wire [17:0]spy_rec_time;
@@ -348,37 +300,21 @@ module design_1_wrapper
         .scl_p_2(scl_p_2),
         .scl_p_3(scl_p_3),
         .sda_in_n_0(sda_in_n_0),
-        .sda_in_n_1(sda_in_n_1),
         .sda_in_n_2(sda_in_n_2),
-        .sda_in_n_3(sda_in_n_3),
         .sda_in_n_4(sda_in_n_4),
-        .sda_in_n_5(sda_in_n_5),
         .sda_in_n_6(sda_in_n_6),
-        .sda_in_n_7(sda_in_n_7),
         .sda_in_p_0(sda_in_p_0),
-        .sda_in_p_1(sda_in_p_1),
         .sda_in_p_2(sda_in_p_2),
-        .sda_in_p_3(sda_in_p_3),
         .sda_in_p_4(sda_in_p_4),
-        .sda_in_p_5(sda_in_p_5),
         .sda_in_p_6(sda_in_p_6),
-        .sda_in_p_7(sda_in_p_7),
         .sda_out_n_0(sda_out_n_0),
-        .sda_out_n_1(sda_out_n_1),
         .sda_out_n_2(sda_out_n_2),
-        .sda_out_n_3(sda_out_n_3),
         .sda_out_n_4(sda_out_n_4),
-        .sda_out_n_5(sda_out_n_5),
         .sda_out_n_6(sda_out_n_6),
-        .sda_out_n_7(sda_out_n_7),
         .sda_out_p_0(sda_out_p_0),
-        .sda_out_p_1(sda_out_p_1),
         .sda_out_p_2(sda_out_p_2),
-        .sda_out_p_3(sda_out_p_3),
         .sda_out_p_4(sda_out_p_4),
-        .sda_out_p_5(sda_out_p_5),
         .sda_out_p_6(sda_out_p_6),
-        .sda_out_p_7(sda_out_p_7),
         .spy_addr_0(spy_addr_0),
         .spy_addr_1(spy_addr_1),
         .spy_rec_time(spy_rec_time),

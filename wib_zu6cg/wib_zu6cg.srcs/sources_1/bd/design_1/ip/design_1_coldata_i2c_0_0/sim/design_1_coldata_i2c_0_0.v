@@ -48,13 +48,14 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 19
+// IP Revision: 23
 
 `timescale 1ns/1ps
 
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_coldata_i2c_0_0 (
   scl,
+  scl_out,
   sda_out_p,
   sda_out_n,
   sda_in_p,
@@ -86,6 +87,7 @@ module design_1_coldata_i2c_0_0 (
 );
 
 output wire scl;
+output wire scl_out;
 output wire sda_out_p;
 output wire sda_out_n;
 input wire sda_in_p;
@@ -149,6 +151,7 @@ input wire s00_axi_rready;
     .scl_down(36)
   ) inst (
     .scl(scl),
+    .scl_out(scl_out),
     .sda_out_p(sda_out_p),
     .sda_out_n(sda_out_n),
     .sda_in_p(sda_in_p),

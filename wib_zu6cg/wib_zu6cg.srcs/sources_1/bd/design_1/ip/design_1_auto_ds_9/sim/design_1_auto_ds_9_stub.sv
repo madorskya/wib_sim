@@ -68,7 +68,7 @@ module design_1_auto_ds_9 (
   input bit_as_bool s_axi_aclk,
   input bit_as_bool s_axi_aresetn,
   input bit [15 : 0] s_axi_awid,
-  input bit [39 : 0] s_axi_awaddr,
+  input bit [15 : 0] s_axi_awaddr,
   input bit [7 : 0] s_axi_awlen,
   input bit [2 : 0] s_axi_awsize,
   input bit [1 : 0] s_axi_awburst,
@@ -89,7 +89,7 @@ module design_1_auto_ds_9 (
   output bit_as_bool s_axi_bvalid,
   input bit_as_bool s_axi_bready,
   input bit [15 : 0] s_axi_arid,
-  input bit [39 : 0] s_axi_araddr,
+  input bit [15 : 0] s_axi_araddr,
   input bit [7 : 0] s_axi_arlen,
   input bit [2 : 0] s_axi_arsize,
   input bit [1 : 0] s_axi_arburst,
@@ -106,7 +106,7 @@ module design_1_auto_ds_9 (
   output bit_as_bool s_axi_rlast,
   output bit_as_bool s_axi_rvalid,
   input bit_as_bool s_axi_rready,
-  output bit [39 : 0] m_axi_awaddr,
+  output bit [15 : 0] m_axi_awaddr,
   output bit [7 : 0] m_axi_awlen,
   output bit [2 : 0] m_axi_awsize,
   output bit [1 : 0] m_axi_awburst,
@@ -125,7 +125,7 @@ module design_1_auto_ds_9 (
   input bit [1 : 0] m_axi_bresp,
   input bit_as_bool m_axi_bvalid,
   output bit_as_bool m_axi_bready,
-  output bit [39 : 0] m_axi_araddr,
+  output bit [15 : 0] m_axi_araddr,
   output bit [7 : 0] m_axi_arlen,
   output bit [2 : 0] m_axi_arsize,
   output bit [1 : 0] m_axi_arburst,
@@ -153,7 +153,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   input bit s_axi_aclk;
   input bit s_axi_aresetn;
   input bit [15 : 0] s_axi_awid;
-  input bit [39 : 0] s_axi_awaddr;
+  input bit [15 : 0] s_axi_awaddr;
   input bit [7 : 0] s_axi_awlen;
   input bit [2 : 0] s_axi_awsize;
   input bit [1 : 0] s_axi_awburst;
@@ -174,7 +174,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   output wire s_axi_bvalid;
   input bit s_axi_bready;
   input bit [15 : 0] s_axi_arid;
-  input bit [39 : 0] s_axi_araddr;
+  input bit [15 : 0] s_axi_araddr;
   input bit [7 : 0] s_axi_arlen;
   input bit [2 : 0] s_axi_arsize;
   input bit [1 : 0] s_axi_arburst;
@@ -191,7 +191,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   output wire s_axi_rlast;
   output wire s_axi_rvalid;
   input bit s_axi_rready;
-  output wire [39 : 0] m_axi_awaddr;
+  output wire [15 : 0] m_axi_awaddr;
   output wire [7 : 0] m_axi_awlen;
   output wire [2 : 0] m_axi_awsize;
   output wire [1 : 0] m_axi_awburst;
@@ -210,7 +210,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   input bit [1 : 0] m_axi_bresp;
   input bit m_axi_bvalid;
   output wire m_axi_bready;
-  output wire [39 : 0] m_axi_araddr;
+  output wire [15 : 0] m_axi_araddr;
   output wire [7 : 0] m_axi_arlen;
   output wire [2 : 0] m_axi_arsize;
   output wire [1 : 0] m_axi_arburst;
@@ -235,7 +235,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   input bit s_axi_aclk;
   input bit s_axi_aresetn;
   input bit [15 : 0] s_axi_awid;
-  input bit [39 : 0] s_axi_awaddr;
+  input bit [15 : 0] s_axi_awaddr;
   input bit [7 : 0] s_axi_awlen;
   input bit [2 : 0] s_axi_awsize;
   input bit [1 : 0] s_axi_awburst;
@@ -256,7 +256,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   output wire s_axi_bvalid;
   input bit s_axi_bready;
   input bit [15 : 0] s_axi_arid;
-  input bit [39 : 0] s_axi_araddr;
+  input bit [15 : 0] s_axi_araddr;
   input bit [7 : 0] s_axi_arlen;
   input bit [2 : 0] s_axi_arsize;
   input bit [1 : 0] s_axi_arburst;
@@ -273,7 +273,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   output wire s_axi_rlast;
   output wire s_axi_rvalid;
   input bit s_axi_rready;
-  output wire [39 : 0] m_axi_awaddr;
+  output wire [15 : 0] m_axi_awaddr;
   output wire [7 : 0] m_axi_awlen;
   output wire [2 : 0] m_axi_awsize;
   output wire [1 : 0] m_axi_awburst;
@@ -292,7 +292,7 @@ module design_1_auto_ds_9 (s_axi_aclk,s_axi_aresetn,s_axi_awid,s_axi_awaddr,s_ax
   input bit [1 : 0] m_axi_bresp;
   input bit m_axi_bvalid;
   output wire m_axi_bready;
-  output wire [39 : 0] m_axi_araddr;
+  output wire [15 : 0] m_axi_araddr;
   output wire [7 : 0] m_axi_arlen;
   output wire [2 : 0] m_axi_arsize;
   output wire [1 : 0] m_axi_arburst;

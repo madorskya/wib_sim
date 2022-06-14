@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="design_1" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1655156526"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1655156526"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1655156526"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1655156526"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1655243229"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1655243229"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1655243229"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1655243229"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci" Type="IP">
         <Instance HierarchyPath="zynq_ultra_ps_e_0"/>
@@ -55,14 +55,6 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_coldata_i2c_1_0/design_1_coldata_i2c_1_0.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual1/coldata_i2c_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1605639679" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip/design_1_util_ds_buf_0_0/design_1_util_ds_buf_0_0.xci" Type="IP">
         <Instance HierarchyPath="coldata_i2c_dual0/util_ds_buf_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="1598199928" IsTrackable="true" IsStatusTracked="true"/>
@@ -71,49 +63,9 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_util_vector_logic_0_1/design_1_util_vector_logic_0_1.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual0/util_vector_logic_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1598199544" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_coldata_i2c_1_1/design_1_coldata_i2c_1_1.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual2/coldata_i2c_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1605639972" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_coldata_i2c_0_1/design_1_coldata_i2c_0_1.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual0/coldata_i2c_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1605639679" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1.xci" Type="IP">
         <Instance HierarchyPath="coldata_i2c_dual1/util_ds_buf_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="1598199929" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_util_vector_logic_0_2/design_1_util_vector_logic_0_2.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual1/util_vector_logic_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1598199545" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_coldata_i2c_1_2/design_1_coldata_i2c_1_2.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual3/coldata_i2c_1"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1605639972" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
@@ -135,14 +87,6 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_util_vector_logic_0_3/design_1_util_vector_logic_0_3.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual2/util_vector_logic_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1598199545" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip/design_1_coldata_i2c_0_3/design_1_coldata_i2c_0_3.xci" Type="IP">
         <Instance HierarchyPath="coldata_i2c_dual2/coldata_i2c_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="1605639972" IsTrackable="true" IsStatusTracked="true"/>
@@ -154,14 +98,6 @@
       <File Name="ip/design_1_util_ds_buf_0_3/design_1_util_ds_buf_0_3.xci" Type="IP">
         <Instance HierarchyPath="coldata_i2c_dual3/util_ds_buf_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="1598199929" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_util_vector_logic_0_4/design_1_util_vector_logic_0_4.xci" Type="IP">
-        <Instance HierarchyPath="coldata_i2c_dual3/util_vector_logic_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="1598199546" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
@@ -376,22 +312,6 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip/design_1_auto_ds_3/design_1_auto_ds_3.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m04_couplers/auto_ds"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_pc_2/design_1_auto_pc_2.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m04_couplers/auto_pc"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_ds_4/design_1_auto_ds_4.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m05_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -399,7 +319,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_3/design_1_auto_pc_3.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_2/design_1_auto_pc_2.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m05_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -407,23 +327,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_5/design_1_auto_ds_5.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m06_couplers/auto_ds"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_pc_4/design_1_auto_pc_4.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m06_couplers/auto_pc"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_ds_6/design_1_auto_ds_6.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_4/design_1_auto_ds_4.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m07_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -431,7 +335,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_5/design_1_auto_pc_5.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_3/design_1_auto_pc_3.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m07_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -439,23 +343,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_7/design_1_auto_ds_7.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m08_couplers/auto_ds"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_pc_6/design_1_auto_pc_6.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m08_couplers/auto_pc"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_ds_8/design_1_auto_ds_8.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_5/design_1_auto_ds_5.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m09_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -463,7 +351,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_7/design_1_auto_pc_7.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_4/design_1_auto_pc_4.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m09_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -471,23 +359,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_9/design_1_auto_ds_9.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m10_couplers/auto_ds"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_pc_8/design_1_auto_pc_8.xci" Type="IP">
-        <Instance HierarchyPath="ps8_0_axi_periph/m10_couplers/auto_pc"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip/design_1_auto_ds_10/design_1_auto_ds_10.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_6/design_1_auto_ds_6.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m11_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -495,7 +367,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_9/design_1_auto_pc_9.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_5/design_1_auto_pc_5.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m11_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -503,7 +375,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_11/design_1_auto_ds_11.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_7/design_1_auto_ds_7.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m12_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -511,7 +383,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_10/design_1_auto_pc_10.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_6/design_1_auto_pc_6.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m12_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -519,7 +391,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_12/design_1_auto_ds_12.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_8/design_1_auto_ds_8.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m13_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -527,7 +399,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_11/design_1_auto_pc_11.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_7/design_1_auto_pc_7.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m13_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -535,7 +407,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_13/design_1_auto_ds_13.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_9/design_1_auto_ds_9.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m14_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -543,7 +415,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_pc_12/design_1_auto_pc_12.xci" Type="IP">
+      <File Name="ip/design_1_auto_pc_8/design_1_auto_pc_8.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m14_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -551,7 +423,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/design_1_auto_ds_14/design_1_auto_ds_14.xci" Type="IP">
+      <File Name="ip/design_1_auto_ds_10/design_1_auto_ds_10.xci" Type="IP">
         <Instance HierarchyPath="ps8_0_axi_periph/m15_couplers/auto_ds"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>

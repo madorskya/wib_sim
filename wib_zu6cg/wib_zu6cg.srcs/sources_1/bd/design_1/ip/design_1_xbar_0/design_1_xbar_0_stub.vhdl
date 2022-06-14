@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:23:15 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
--- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_xbar_0 -prefix
---               design_1_xbar_0_ design_1_xbar_0_stub.vhdl
+-- Date        : Tue Jun 14 15:21:41 2022
+-- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_xbar_0/design_1_xbar_0_stub.vhdl
 -- Design      : design_1_xbar_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
@@ -106,6 +106,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "aclk,aresetn,s_axi_awid[15:0],s_axi_awaddr[39:0],s_axi_awlen[7:0],s_axi_awsize[2:0],s_axi_awburst[1:0],s_axi_awlock[0:0],s_axi_awcache[3:0],s_axi_awprot[2:0],s_axi_awqos[3:0],s_axi_awuser[15:0],s_axi_awvalid[0:0],s_axi_awready[0:0],s_axi_wdata[127:0],s_axi_wstrb[15:0],s_axi_wlast[0:0],s_axi_wvalid[0:0],s_axi_wready[0:0],s_axi_bid[15:0],s_axi_bresp[1:0],s_axi_bvalid[0:0],s_axi_bready[0:0],s_axi_arid[15:0],s_axi_araddr[39:0],s_axi_arlen[7:0],s_axi_arsize[2:0],s_axi_arburst[1:0],s_axi_arlock[0:0],s_axi_arcache[3:0],s_axi_arprot[2:0],s_axi_arqos[3:0],s_axi_aruser[15:0],s_axi_arvalid[0:0],s_axi_arready[0:0],s_axi_rid[15:0],s_axi_rdata[127:0],s_axi_rresp[1:0],s_axi_rlast[0:0],s_axi_rvalid[0:0],s_axi_rready[0:0],m_axi_awid[255:0],m_axi_awaddr[639:0],m_axi_awlen[127:0],m_axi_awsize[47:0],m_axi_awburst[31:0],m_axi_awlock[15:0],m_axi_awcache[63:0],m_axi_awprot[47:0],m_axi_awregion[63:0],m_axi_awqos[63:0],m_axi_awuser[255:0],m_axi_awvalid[15:0],m_axi_awready[15:0],m_axi_wdata[2047:0],m_axi_wstrb[255:0],m_axi_wlast[15:0],m_axi_wvalid[15:0],m_axi_wready[15:0],m_axi_bid[255:0],m_axi_bresp[31:0],m_axi_bvalid[15:0],m_axi_bready[15:0],m_axi_arid[255:0],m_axi_araddr[639:0],m_axi_arlen[127:0],m_axi_arsize[47:0],m_axi_arburst[31:0],m_axi_arlock[15:0],m_axi_arcache[63:0],m_axi_arprot[47:0],m_axi_arregion[63:0],m_axi_arqos[63:0],m_axi_aruser[255:0],m_axi_arvalid[15:0],m_axi_arready[15:0],m_axi_rid[255:0],m_axi_rdata[2047:0],m_axi_rresp[31:0],m_axi_rlast[15:0],m_axi_rvalid[15:0],m_axi_rready[15:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "axi_crossbar_v2_1_22_axi_crossbar,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "axi_crossbar_v2_1_22_axi_crossbar,Vivado 2020.1";
 begin
 end;

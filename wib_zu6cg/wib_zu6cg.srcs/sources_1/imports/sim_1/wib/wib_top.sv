@@ -11,10 +11,6 @@ module wib_top
     input  [3:0] i2c_lvds_sda_c2w_n,
     output [3:0] i2c_lvds_sda_w2c_p,
     output [3:0] i2c_lvds_sda_w2c_n,
-    output [3:0] i2c_lvds_l2_sda_w2c_p,
-    output [3:0] i2c_lvds_l2_sda_w2c_n,
-    input  [3:0] i2c_lvds_l2_sda_c2w_p,
-    input  [3:0] i2c_lvds_l2_sda_c2w_n,
     
     // clocks for COLDATA PLL [femb*coldata]
     output [7:0] coldata_clk40,
@@ -419,10 +415,6 @@ module wib_top
         .i2c_lvds_sda_c2w_n    (i2c_lvds_sda_c2w_n   ),
         .i2c_lvds_sda_w2c_p    (i2c_lvds_sda_w2c_p   ),
         .i2c_lvds_sda_w2c_n    (i2c_lvds_sda_w2c_n   ),
-        .i2c_lvds_l2_sda_c2w_p (i2c_lvds_l2_sda_c2w_p),
-        .i2c_lvds_l2_sda_c2w_n (i2c_lvds_l2_sda_c2w_n),
-        .i2c_lvds_l2_sda_w2c_p (i2c_lvds_l2_sda_w2c_p),
-        .i2c_lvds_l2_sda_w2c_n (i2c_lvds_l2_sda_w2c_n),
         
         // timing point signals
         .ts_cdr_lol        (adn2814_lol      ),
