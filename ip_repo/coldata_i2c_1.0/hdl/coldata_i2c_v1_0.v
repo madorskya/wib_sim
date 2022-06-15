@@ -128,6 +128,7 @@
     reg [2:0] state = ST_IDLE; // FSM state
     reg [26:0] sda_out_sh, sda_in_sh; // shift regs
     reg scl_i;
+    reg busy;
     assign sda_out_out = sda_out & lb_stim_sda_out;
     assign scl_out = scl_i;
 
@@ -142,6 +143,7 @@
             sda_out = 1'b1;
             tx_start_r = 4'b0;
             state = ST_IDLE;
+            busy = 1'b0;
         end
         else
         begin
@@ -156,6 +158,7 @@
                     end
                     scl_i = 1'b1;
                     sda_out = 1'b1;
+                    busy = 1'b0;
                 end
                 
                 ST_STRT: // this state drops sda, then scl, and waits a bit to create a start condition
@@ -172,7 +175,8 @@
                     begin 
                         scl_i = 1'b0;
                     end
-                    bit_phase = bit_phase + 1;                        
+                    bit_phase = bit_phase + 1;
+                    busy = 1'b1;                        
                 end
             
                 ST_TX:
@@ -233,7 +237,7 @@
                     else
                     begin
                         state = ST_IDLE; // timeout on ACK, back to IDLE
-                        rd_reg[0][0] = 1'b1; // timeout error flag 
+                        // rd_reg[0][0] = 1'b1; // timeout error flag 
                     end
                 
                 end
@@ -253,6 +257,7 @@
             endcase
             
             tx_start_r = {tx_start_r[2:0], tx_start};
+            rd_reg[0][0] = busy;
         end
         sda_in_out = sda_in;
         
@@ -269,7 +274,7 @@
     
         if (lb_stim[4:3] == 2'b10) // stimulus just fell
         begin
-            lat_cnt = -4'h4; // reset latency counter
+            lat_cnt = -4'h6; // reset latency counter. -6 is compensation for residual latency from internal logic
         end
         else
         begin

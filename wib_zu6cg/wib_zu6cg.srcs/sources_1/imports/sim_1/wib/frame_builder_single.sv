@@ -271,6 +271,11 @@ module frame_builder_single #(parameter NUM = 0)
                     rq_state = DAQ_WAIT; // go wait for next request
                 end
             end
+            
+            default:
+            begin
+                rq_state = DAQ_WAIT;
+            end
         endcase
         // demetastab the response
         rq_served[3:1] = rq_served[2:0];
@@ -411,6 +416,10 @@ module frame_builder_single #(parameter NUM = 0)
                 fb_state = IDLE;
             end
             
+            default:
+            begin
+                fb_state = IDLE;
+            end
         endcase
 
         if (crc_inject[2]) // time to inject CRC into daq stream

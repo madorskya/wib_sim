@@ -101,6 +101,10 @@ module daq_spy_control
                     full = 1'b1; 
                     // exit only on reset
                 end
+                default:
+                begin
+                    state = IDLE;
+                end
             endcase
         end
         bram_din = daq_stream_r;

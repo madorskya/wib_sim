@@ -207,6 +207,11 @@ module coldata_deframer_single #(parameter NUM = 0)
                 df_state = IDLE;
             end
             
+            default:
+            begin
+                df_state = IDLE;
+            end
+            
         endcase
       end
     end

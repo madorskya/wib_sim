@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 23
+// IP Revision: 24
 
 (* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_coldata_i2c_0_4,coldata_i2c_v1_0,{}" *)
@@ -145,10 +145,10 @@ input wire s00_axi_rready;
   coldata_i2c_v1_0 #(
     .C_S00_AXI_DATA_WIDTH(32),  // Width of S_AXI data bus
     .C_S00_AXI_ADDR_WIDTH(5),  // Width of S_AXI address bus
-    .bit_duration(50),
+    .bit_duration(62),
     .ack_timeout(500),
-    .scl_up(11),
-    .scl_down(36)
+    .scl_up(5),
+    .scl_down(30)
   ) inst (
     .scl(scl),
     .scl_out(scl_out),
