@@ -109,7 +109,8 @@ ila_deframer your_instance_name (
 	.probe49(probe49), // input wire [17:0]  probe49 
 	.probe50(probe50), // input wire [17:0]  probe50 
 	.probe51(probe51), // input wire [17:0]  probe51 
-	.probe52(probe52) // input wire [17:0]  probe52
+	.probe52(probe52), // input wire [17:0]  probe52 
+	.probe53(probe53) // input wire [15:0]  probe53
 );
 
 // INST_TAG_END ------ End INSTANTIATION Template ---------

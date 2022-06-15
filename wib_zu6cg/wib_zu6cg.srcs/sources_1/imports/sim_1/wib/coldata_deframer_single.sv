@@ -19,10 +19,11 @@ module coldata_deframer_single #(parameter NUM = 0)
     output reg [7:0] align8, // automatic calculated alignment delay
     input align_en, // enable alignment
 
-    output reg [1:0] crc_err
+    output reg [1:0] crc_err,
+    output [3:0] df_state_out
 );
 
-    typedef enum bit[3:0]
+    typedef enum reg [3:0]
     {
         IDLE = 4'h0,
         HEAD = 4'h1,
@@ -38,7 +39,8 @@ module coldata_deframer_single #(parameter NUM = 0)
         TI12_2 = 4'hb
     } df_state_t;
     
-    df_state_t df_state = IDLE;
+    (* fsm_encoding = "none" *) df_state_t df_state = IDLE; // use my encoding as specified
+    assign df_state_out = df_state;
     reg [7:0] byte_cnt;
     wire dfifo_valid = 1;
     reg [15:0] time16_prelim, time16;
@@ -283,25 +285,25 @@ module coldata_deframer_single #(parameter NUM = 0)
         .DO  ({time16_a, valid14_a, valid12_a, parallel_frame_a})
     );
 
-            ila_0 ila_rx 
-            (
-                .clk     (clk62p5), // input wire clk
-                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
-                .probe1  (rx_k)
-            ); 
+//            ila_0 ila_rx 
+//            (
+//                .clk     (clk62p5), // input wire clk
+//                .probe0  ({rx_data[7:0], rx_data[15:8]}), // input wire [15:0]  probe0
+//                .probe1  (rx_k)
+//            ); 
             
-            ila_2 ila_deframer 
-            (
-                .clk    (rxclk2x), // input wire clk
-                .probe0 (rx_byte0), // input wire [7:0]  probe0
-                .probe1 (rx_k0), // input wire [0:0]  probe2
-                .probe2 (df_state), // input wire [3:0]  probe4
-                .probe3 (byte_cnt), // input wire [7:0]  probe5
-                .probe4 (valid12),
-                .probe5 (valid14),
-                .probe6 (dfifo_empty),
-                .probe7 (dfifo_valid)
-            );
+//            ila_2 ila_deframer 
+//            (
+//                .clk    (rxclk2x), // input wire clk
+//                .probe0 (rx_byte0), // input wire [7:0]  probe0
+//                .probe1 (rx_k0), // input wire [0:0]  probe2
+//                .probe2 (df_state), // input wire [3:0]  probe4
+//                .probe3 (byte_cnt), // input wire [7:0]  probe5
+//                .probe4 (valid12),
+//                .probe5 (valid14),
+//                .probe6 (dfifo_empty),
+//                .probe7 (dfifo_valid)
+//            );
 
 endmodule
 

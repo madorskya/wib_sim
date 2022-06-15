@@ -24,6 +24,7 @@ module coldata_deframer
     wire ts_valid_del;
     wire [7:0] rx_byte0 [15:0];
     wire [15:0] rx_k0; 
+    wire [3:0] df_state_out [15:0];
     genvar gi;
     generate
         for (gi = 0; gi < 16; gi++)
@@ -47,7 +48,8 @@ module coldata_deframer
                 .align8           (align8 [gi]     ),
                 .align_en         (align_en),
                 
-                .crc_err    (crc_err  [gi])
+                .crc_err    (crc_err  [gi]),
+                .df_state_out (df_state_out[gi])
             );
             
         end
@@ -123,7 +125,8 @@ module coldata_deframer
         .probe49 ({rx_k [12], rx_data [12]}),
         .probe50 ({rx_k [13], rx_data [13]}),
         .probe51 ({rx_k [14], rx_data [14]}),
-        .probe52 ({rx_k [15], rx_data [15]})
+        .probe52 ({rx_k [15], rx_data [15]}),
+        .probe53 ({df_state_out[3], df_state_out[2], df_state_out[1], df_state_out[0]})
     );
     
 endmodule
