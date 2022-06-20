@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 25
+// IP Revision: 29
 
 (* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_coldata_i2c_0_2,coldata_i2c_v1_0,{}" *)

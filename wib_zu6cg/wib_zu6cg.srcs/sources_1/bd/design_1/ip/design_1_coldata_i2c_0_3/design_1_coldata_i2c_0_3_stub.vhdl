@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Jun 17 20:49:03 2022
+-- Date        : Mon Jun 20 12:05:44 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_coldata_i2c_0_3 -prefix
 --               design_1_coldata_i2c_0_3_ design_1_coldata_i2c_0_0_stub.vhdl
