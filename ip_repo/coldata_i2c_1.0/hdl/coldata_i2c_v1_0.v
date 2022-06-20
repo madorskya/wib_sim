@@ -4,10 +4,14 @@
 	module coldata_i2c_v1_0 #
 	(
 		// Users to add parameters here
-        parameter integer bit_duration = 90*2, // duration of one bit in clocks 
-        parameter integer ack_timeout  = 500, // timeout for ack from coldata 
-        parameter integer scl_up   = 20*2, // start of scl pulse 
-        parameter integer scl_down = 65*2, // end of scl pulse 
+        parameter integer bit_duration = 64, // duration of one bit in clocks 
+        parameter integer scl_up   = 15, // start of scl pulse 
+        parameter integer scl_down = 47, // end of scl pulse 
+        parameter integer start_duration = 32, // start condition duration
+        parameter integer scl_down_start = 15, // scl down during start condition
+        parameter integer ack_duration   = 190,
+        parameter integer prestop_duration = 15,
+        parameter integer stop_duration = 17,
     
 		// User parameters ends
 		// Do not modify the parameters beyond this line
@@ -119,11 +123,8 @@
     localparam ST_STRT = 3'h1;
     localparam ST_TX   = 3'h2;
     localparam ST_ACK  = 3'h3;
-    localparam ST_STOP = 3'h4;
-    
-    localparam integer start_duration = bit_duration * 1.5;
-    localparam integer past_first_bit = bit_duration * 1.1;
-    localparam integer ack_duration   = bit_duration * 2;
+    localparam ST_PRESTOP = 3'h4;
+    localparam ST_STOP = 3'h5;
     
     reg [2:0] state = ST_IDLE; // FSM state
     reg [26:0] sda_out_sh, sda_in_sh; // shift regs
@@ -165,13 +166,13 @@
                 begin
                     if (bit_phase > start_duration)
                     begin
-                        bit_phase = past_first_bit; // so first bit starts immediately
+                        bit_phase = bit_duration; // so first bit starts immediately 
                         bit_count = 5'b0;
                         sda_out_sh = wr_reg[1][26:0]; // load out shifter
                         state = ST_TX;
                     end
                     sda_out = 1'b0;
-                    if (bit_phase == scl_down)
+                    if (bit_phase == scl_down_start)
                     begin 
                         scl_i = 1'b0;
                     end
@@ -206,21 +207,13 @@
                 begin
                     if (bit_phase >= ack_duration)
                     begin
-                         // check ack at bit duration mark
-                         // due to a feature in coldata, ack may not come the very first time after reset
-                         // so proceed if it's first byte and no ack
-                        //if (sda_in == 1'b1 || bit_count == 5'd9)
-                        // disabled ack check for now, ack bits are stored with data
-                        // so software can check them
-                        begin 
-                            if (bit_count >= 5'd26)
-                            begin
-                                rd_reg[1] = {5'b0, sda_in_sh}; // store rd data in register
-                                bit_phase = 9'b0; 
-                                state = ST_STOP; // last byte
-                            end
-                            else state = ST_TX; // not the last byte, back to TX
+                        if (bit_count >= 5'd26)
+                        begin
+                            rd_reg[1] = {5'b0, sda_in_sh}; // store rd data in register
+                            bit_phase = 9'b0; 
+                            state = ST_PRESTOP; // last byte
                         end
+                        else state = ST_TX; // not the last byte, back to TX
                     end
 
                     if (bit_phase == scl_up  ) scl_i = 1'b1;
@@ -229,27 +222,30 @@
                         scl_i = 1'b0;
                         sda_in_sh = {sda_in_sh[25:0], sda_in_out};  // also lock rd bit here
                     end
-
-                    if (bit_phase < ack_timeout)
-                    begin                    
-                        bit_phase = bit_phase + 1;
-                    end
-                    else
-                    begin
-                        state = ST_IDLE; // timeout on ACK, back to IDLE
-                        // rd_reg[0][0] = 1'b1; // timeout error flag 
-                    end
-                
+                    bit_phase = bit_phase + 1;
                 end
                 
+                ST_PRESTOP:
+                begin
+                    // just keep fixed outputs
+                    scl_i = 1'b0;
+                    sda_out = 1'b0;
+                    if (bit_phase >= prestop_duration)
+                    begin
+                        state = ST_STOP;
+                        bit_phase = 9'b0; 
+                    end                    
+                    bit_phase = bit_phase + 1;
+                end
                 ST_STOP:
                 begin
-                    // just keep fixed outputs for ack duration
+                    // stop condition
                     scl_i = 1'b1;
                     sda_out = 1'b0;
-                    if (bit_phase >= ack_duration)
+                    if (bit_phase >= stop_duration)
                     begin
                         state = ST_IDLE;
+                        bit_phase = 9'b0; 
                     end                    
                     bit_phase = bit_phase + 1;
                 end

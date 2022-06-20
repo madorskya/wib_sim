@@ -44,7 +44,7 @@ void FEMB::i2c_bugfix(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uint
 }
 
 void FEMB::i2c_write(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uint8_t reg_addr, uint8_t data) {
-    i2c_bugfix(coldata_idx,chip_addr,reg_page,reg_addr);
+//    i2c_bugfix(coldata_idx,chip_addr,reg_page,reg_addr);
     uint32_t ctrl = ((chip_addr & 0xF) << COLD_I2C_CHIP_ADDR)
                   | ((reg_page & 0x7) << COLD_I2C_REG_PAGE)
                   | (0x0 << COLD_I2C_RW)
@@ -58,7 +58,7 @@ void FEMB::i2c_write(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uint8
 
 
 uint8_t FEMB::i2c_read(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uint8_t reg_addr) {
-    i2c_bugfix(coldata_idx,chip_addr,reg_page,reg_addr);    
+//    i2c_bugfix(coldata_idx,chip_addr,reg_page,reg_addr);    
     uint32_t ctrl = ((chip_addr & 0xF) << COLD_I2C_CHIP_ADDR)
                   | ((reg_page & 0x7) << COLD_I2C_REG_PAGE)
                   | (0x1 << COLD_I2C_RW)

@@ -7,47 +7,52 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "C_S00_AXI_ADDR_WIDTH" -parent ${Page_0}
   ipgui::add_param $IPINST -name "C_S00_AXI_BASEADDR" -parent ${Page_0}
   ipgui::add_param $IPINST -name "C_S00_AXI_HIGHADDR" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "bit_duration" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "ack_timeout" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "scl_up" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "scl_down" -parent ${Page_0}
 
 
 }
 
-proc update_PARAM_VALUE.ack_timeout { PARAM_VALUE.ack_timeout } {
-	# Procedure called to update ack_timeout when any of the dependent parameters in the arguments change
+proc update_PARAM_VALUE.ack_duration { PARAM_VALUE.ack_duration } {
+	# Procedure called to update ack_duration when any of the dependent parameters in the arguments change
 }
 
-proc validate_PARAM_VALUE.ack_timeout { PARAM_VALUE.ack_timeout } {
-	# Procedure called to validate ack_timeout
+proc validate_PARAM_VALUE.ack_duration { PARAM_VALUE.ack_duration } {
+	# Procedure called to validate ack_duration
 	return true
 }
 
-proc update_PARAM_VALUE.bit_duration { PARAM_VALUE.bit_duration } {
-	# Procedure called to update bit_duration when any of the dependent parameters in the arguments change
+proc update_PARAM_VALUE.prestop_duration { PARAM_VALUE.prestop_duration } {
+	# Procedure called to update prestop_duration when any of the dependent parameters in the arguments change
 }
 
-proc validate_PARAM_VALUE.bit_duration { PARAM_VALUE.bit_duration } {
-	# Procedure called to validate bit_duration
+proc validate_PARAM_VALUE.prestop_duration { PARAM_VALUE.prestop_duration } {
+	# Procedure called to validate prestop_duration
 	return true
 }
 
-proc update_PARAM_VALUE.scl_down { PARAM_VALUE.scl_down } {
-	# Procedure called to update scl_down when any of the dependent parameters in the arguments change
+proc update_PARAM_VALUE.scl_down_start { PARAM_VALUE.scl_down_start } {
+	# Procedure called to update scl_down_start when any of the dependent parameters in the arguments change
 }
 
-proc validate_PARAM_VALUE.scl_down { PARAM_VALUE.scl_down } {
-	# Procedure called to validate scl_down
+proc validate_PARAM_VALUE.scl_down_start { PARAM_VALUE.scl_down_start } {
+	# Procedure called to validate scl_down_start
 	return true
 }
 
-proc update_PARAM_VALUE.scl_up { PARAM_VALUE.scl_up } {
-	# Procedure called to update scl_up when any of the dependent parameters in the arguments change
+proc update_PARAM_VALUE.start_duration { PARAM_VALUE.start_duration } {
+	# Procedure called to update start_duration when any of the dependent parameters in the arguments change
 }
 
-proc validate_PARAM_VALUE.scl_up { PARAM_VALUE.scl_up } {
-	# Procedure called to validate scl_up
+proc validate_PARAM_VALUE.start_duration { PARAM_VALUE.start_duration } {
+	# Procedure called to validate start_duration
+	return true
+}
+
+proc update_PARAM_VALUE.stop_duration { PARAM_VALUE.stop_duration } {
+	# Procedure called to update stop_duration when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.stop_duration { PARAM_VALUE.stop_duration } {
+	# Procedure called to validate stop_duration
 	return true
 }
 
@@ -98,23 +103,46 @@ proc update_MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH { MODELPARAM_VALUE.C_S00_AXI_A
 	set_property value [get_property value ${PARAM_VALUE.C_S00_AXI_ADDR_WIDTH}] ${MODELPARAM_VALUE.C_S00_AXI_ADDR_WIDTH}
 }
 
-proc update_MODELPARAM_VALUE.bit_duration { MODELPARAM_VALUE.bit_duration PARAM_VALUE.bit_duration } {
+proc update_MODELPARAM_VALUE.bit_duration { MODELPARAM_VALUE.bit_duration } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.bit_duration}] ${MODELPARAM_VALUE.bit_duration}
+	# WARNING: There is no corresponding user parameter named "bit_duration". Setting updated value from the model parameter.
+set_property value 64 ${MODELPARAM_VALUE.bit_duration}
 }
 
-proc update_MODELPARAM_VALUE.ack_timeout { MODELPARAM_VALUE.ack_timeout PARAM_VALUE.ack_timeout } {
+proc update_MODELPARAM_VALUE.scl_up { MODELPARAM_VALUE.scl_up } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.ack_timeout}] ${MODELPARAM_VALUE.ack_timeout}
+	# WARNING: There is no corresponding user parameter named "scl_up". Setting updated value from the model parameter.
+set_property value 15 ${MODELPARAM_VALUE.scl_up}
 }
 
-proc update_MODELPARAM_VALUE.scl_up { MODELPARAM_VALUE.scl_up PARAM_VALUE.scl_up } {
+proc update_MODELPARAM_VALUE.scl_down { MODELPARAM_VALUE.scl_down } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.scl_up}] ${MODELPARAM_VALUE.scl_up}
+	# WARNING: There is no corresponding user parameter named "scl_down". Setting updated value from the model parameter.
+set_property value 47 ${MODELPARAM_VALUE.scl_down}
 }
 
-proc update_MODELPARAM_VALUE.scl_down { MODELPARAM_VALUE.scl_down PARAM_VALUE.scl_down } {
+proc update_MODELPARAM_VALUE.start_duration { MODELPARAM_VALUE.start_duration PARAM_VALUE.start_duration } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.scl_down}] ${MODELPARAM_VALUE.scl_down}
+	set_property value [get_property value ${PARAM_VALUE.start_duration}] ${MODELPARAM_VALUE.start_duration}
+}
+
+proc update_MODELPARAM_VALUE.scl_down_start { MODELPARAM_VALUE.scl_down_start PARAM_VALUE.scl_down_start } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.scl_down_start}] ${MODELPARAM_VALUE.scl_down_start}
+}
+
+proc update_MODELPARAM_VALUE.ack_duration { MODELPARAM_VALUE.ack_duration PARAM_VALUE.ack_duration } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.ack_duration}] ${MODELPARAM_VALUE.ack_duration}
+}
+
+proc update_MODELPARAM_VALUE.prestop_duration { MODELPARAM_VALUE.prestop_duration PARAM_VALUE.prestop_duration } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.prestop_duration}] ${MODELPARAM_VALUE.prestop_duration}
+}
+
+proc update_MODELPARAM_VALUE.stop_duration { MODELPARAM_VALUE.stop_duration PARAM_VALUE.stop_duration } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.stop_duration}] ${MODELPARAM_VALUE.stop_duration}
 }
 

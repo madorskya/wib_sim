@@ -22,6 +22,11 @@ addr+=(0xA00C00A8 0xA00C00AC 0xA00C00B0 0xA00C00B4)
 bnum+=(0          0          0          0         )
 mask+=(0xffffffff 0xffffffff 0xffffffff 0xffffffff)
 
+name+=(cds_reset  cds_diff  ) 
+addr+=(0xA00C0004 0xA00C009C)
+bnum+=(15         0         )
+mask+=(1          0xffff    )
+
 #syntax: devreg reg_name [wr_value]
 
 if [ $1 ]
