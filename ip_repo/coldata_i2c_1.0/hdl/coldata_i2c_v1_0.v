@@ -23,11 +23,11 @@
 	)
 	(
 		// Users to add ports here
-		output scl,
+		output reg scl,
 		output scl_out,
 		output sda_out_p, sda_out_n,
 		input  sda_in_p, sda_in_n,
-		output sda_in_out, 
+		output reg sda_in_out, 
 		output sda_out_out,
 		input  clk62p5,
 
@@ -60,7 +60,7 @@
 	);
 	
 	
-    wire [C_S00_AXI_DATA_WIDTH-1:0] rd_reg [3:0];
+    reg  [C_S00_AXI_DATA_WIDTH-1:0] rd_reg [3:0];
         
     wire [C_S00_AXI_DATA_WIDTH-1:0] wr_reg [3:0];
 	
@@ -105,7 +105,7 @@
 	);
 
 	// Add user logic here
-    wire sda_out, sda_out_i; 
+    reg  sda_out, sda_out_i; 
     wire sda_in;
     wire lb_stim_sda_out;
 
@@ -115,31 +115,30 @@
 
     wire tx_start = wr_reg[0][0];
 
-
-    coldadc_i2c_master bnl_i2c
-    (
-        .clk         (clk62p5), // IN     STD_LOGIC;                    -- system clock
-        .reset       (~s00_axi_aresetn), // IN     STD_LOGIC;                    -- reset, active high reset
-        .enable      (tx_start), // IN     STD_LOGIC;                    -- enable signal for i2c bus.
-        .FEMB_Long_cable_en (1'b0), // IN     STD_LOGIC;                  
-        .reg_addr    (wr_reg[1][17:10]), // IN     STD_LOGIC_VECTOR(7 downto 0); -- 8 bits register address
-        .reg_data    (wr_reg[1][8:1]), // IN     STD_LOGIC_VECTOR(7 downto 0); -- 8 bits of register value to be written
-        .reg_data_rd (rd_reg[1][8:1]), // OUT    STD_LOGIC_VECTOR(7 downto 0); -- 8 bits of register data output 
-        .rw          (wr_reg[1][19]), // IN     STD_LOGIC;                    -- read or write control, 0 for write, 1 for read
-        .busy        (rd_reg[0][0]), // OUT    STD_LOGIC;                    -- indicates transaction in progress
-        .ack_error   (), // buffer STD_LOGIC;                    -- ack error.
-        .chip_id     (wr_reg[1][26:23]), // IN     STD_LOGIC_VECTOR(3 downto 0); -- 4 bits of chip ID
-        .page        (wr_reg[1][22:20]), // IN     STD_LOGIC_VECTOR(2 downto 0); -- 3 bits of page, 0,1,2
-        .sda_c2w     (sda_in), // IN     STD_LOGIC;                    -- input from cold to warm
-        .sda_w2c     (sda_out_i), // OUT    STD_LOGIC;                    -- output from warm to cold
-        .scl         (scl), // OUT    STD_LOGIC;                     -- serial clock output of i2c bus
+// Jack's I2C module, does not work well in CERN 
+//    coldadc_i2c_master bnl_i2c
+//    (
+//        .clk         (clk62p5), // IN     STD_LOGIC;                    -- system clock
+//        .reset       (~s00_axi_aresetn), // IN     STD_LOGIC;                    -- reset, active high reset
+//        .enable      (tx_start), // IN     STD_LOGIC;                    -- enable signal for i2c bus.
+//        .FEMB_Long_cable_en (1'b0), // IN     STD_LOGIC;                  
+//        .reg_addr    (wr_reg[1][17:10]), // IN     STD_LOGIC_VECTOR(7 downto 0); -- 8 bits register address
+//        .reg_data    (wr_reg[1][8:1]), // IN     STD_LOGIC_VECTOR(7 downto 0); -- 8 bits of register value to be written
+//        .reg_data_rd (rd_reg[1][8:1]), // OUT    STD_LOGIC_VECTOR(7 downto 0); -- 8 bits of register data output 
+//        .rw          (wr_reg[1][19]), // IN     STD_LOGIC;                    -- read or write control, 0 for write, 1 for read
+//        .busy        (rd_reg[0][0]), // OUT    STD_LOGIC;                    -- indicates transaction in progress
+//        .ack_error   (), // buffer STD_LOGIC;                    -- ack error.
+//        .chip_id     (wr_reg[1][26:23]), // IN     STD_LOGIC_VECTOR(3 downto 0); -- 4 bits of chip ID
+//        .page        (wr_reg[1][22:20]), // IN     STD_LOGIC_VECTOR(2 downto 0); -- 3 bits of page, 0,1,2
+//        .sda_c2w     (sda_in), // IN     STD_LOGIC;                    -- input from cold to warm
+//        .sda_w2c     (sda_out_i), // OUT    STD_LOGIC;                    -- output from warm to cold
+//        .scl         (scl), // OUT    STD_LOGIC;                     -- serial clock output of i2c bus
          
-        .tp_sda_o    (sda_out_out), // OUT    STD_LOGIC;                    --add 2 test pins
-        .tp_scl_o    (scl_out), // OUT    STD_LOGIC;               
-        .tp_sda_i    (sda_in_out)  // OUT    STD_LOGIC
-    );                   
+//        .tp_sda_o    (sda_out_out), // OUT    STD_LOGIC;                    --add 2 test pins
+//        .tp_scl_o    (scl_out), // OUT    STD_LOGIC;               
+//        .tp_sda_i    (sda_in_out)  // OUT    STD_LOGIC
+//    );                   
     
-/*
     reg [3:0] tx_start_r = 0;
     reg [8:0] bit_phase = 0; // bit phase time counter
     reg [4:0] bit_count = 0; // bit number counter
@@ -159,7 +158,7 @@
     assign sda_out_out = sda_out & lb_stim_sda_out;
     assign scl_out = scl_i;
 
-    always @(posedge clk62p5)
+    always @(negedge clk62p5) // trying negative edge in order to fix issues with ADC communications
     begin
         scl = scl_i;
         sda_out_i = sda_out_out;
@@ -291,7 +290,7 @@
     assign lb_stim_sda_out = lb_stim[4];
     
     // latency measurement logic
-    always @(posedge clk62p5)
+    always @(negedge clk62p5)
     begin
     
         if (lb_stim[4:3] == 2'b10) // stimulus just fell
@@ -314,7 +313,6 @@
         
         lb_resp = {lb_resp[2:0], sda_in_out};
     end
-*/
 
 	// User logic ends
 

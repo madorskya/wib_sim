@@ -81,32 +81,32 @@ preplace portBus bp_io_t -pg 1 -lvl 0 -x 0 -y 930 -defaultsOSRD
 preplace portBus bp_io_o -pg 1 -lvl 0 -x 0 -y 950 -defaultsOSRD
 preplace portBus cmd_stamp_sync -pg 1 -lvl 0 -x 0 -y 970 -defaultsOSRD
 preplace inst timing_module -pg 1 -lvl 2 -x 1020 -y 810 -defaultsOSRD
-preplace inst coldata_i2c_dual0 -pg 1 -lvl 3 -x 1960 -y 1388 -defaultsOSRD
-preplace inst coldata_i2c_dual1 -pg 1 -lvl 3 -x 1960 -y 3138 -defaultsOSRD
-preplace inst coldata_i2c_dual2 -pg 1 -lvl 3 -x 1960 -y 2628 -defaultsOSRD
-preplace inst coldata_i2c_dual3 -pg 1 -lvl 3 -x 1960 -y 3556 -defaultsOSRD
-preplace inst dbg -pg 1 -lvl 3 -x 1960 -y 2138 -defaultsOSRD
+preplace inst coldata_i2c_dual0 -pg 1 -lvl 3 -x 1960 -y 1390 -defaultsOSRD
+preplace inst coldata_i2c_dual1 -pg 1 -lvl 3 -x 1960 -y 3232 -defaultsOSRD
+preplace inst coldata_i2c_dual2 -pg 1 -lvl 3 -x 1960 -y 2724 -defaultsOSRD
+preplace inst coldata_i2c_dual3 -pg 1 -lvl 3 -x 1960 -y 3650 -defaultsOSRD
+preplace inst dbg -pg 1 -lvl 3 -x 1960 -y 2232 -defaultsOSRD
 preplace inst daq_spy_0 -pg 1 -lvl 3 -x 1960 -y 480 -defaultsOSRD
 preplace inst daq_spy_1 -pg 1 -lvl 3 -x 1960 -y 164 -defaultsOSRD
-preplace inst axi_gpio_1 -pg 1 -lvl 3 -x 1960 -y 2274 -defaultsOSRD
-preplace inst axi_iic_0 -pg 1 -lvl 3 -x 1960 -y 2420 -defaultsOSRD
+preplace inst axi_gpio_1 -pg 1 -lvl 3 -x 1960 -y 2370 -defaultsOSRD
+preplace inst axi_iic_0 -pg 1 -lvl 3 -x 1960 -y 2514 -defaultsOSRD
 preplace inst ps8_0_axi_periph -pg 1 -lvl 2 -x 1020 -y 1590 -defaultsOSRD
 preplace inst reg_bank_64_0 -pg 1 -lvl 3 -x 1960 -y 770 -defaultsOSRD
 preplace inst rst_ps8_0_99M -pg 1 -lvl 2 -x 1020 -y 2140 -defaultsOSRD
 preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 400 -y 1270 -defaultsOSRD
 preplace inst coldata_fast_cmd_0 -pg 1 -lvl 3 -x 1960 -y 1080 -defaultsOSRD
-preplace inst coldata_i2c_dual0|util_ds_buf_0 -pg 1 -lvl 2 -x 2320 -y 1368 -defaultsOSRD
-preplace inst coldata_i2c_dual0|coldata_i2c_0 -pg 1 -lvl 1 -x 2020 -y 1448 -defaultsOSRD
-preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 20 1360 770 460 1380 2058 2620J
+preplace inst coldata_i2c_dual0|util_ds_buf_0 -pg 1 -lvl 2 -x 2320 -y 1370 -defaultsOSRD
+preplace inst coldata_i2c_dual0|coldata_i2c_0 -pg 1 -lvl 1 -x 2020 -y 1450 -defaultsOSRD
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 40 1180 770 460 1380 2152 2610J
 preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 1 1 760 1280n
-preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 3 790 1160 1390 2510 2690J
-preplace netloc rst_ps8_0_99M_interconnect_aresetn 1 1 2 800 1170 1230
-preplace netloc coldata_i2c_0_scl_p 1 3 1 2680J 1350n
-preplace netloc coldata_i2c_0_scl_n 1 3 1 2740J 1370n
-preplace netloc coldata_i2c_0_sda_out_p 1 3 1 2660J 1310n
-preplace netloc coldata_i2c_0_sda_out_n 1 3 1 2670J 1330n
-preplace netloc sda_in_p_0_1 1 0 3 NJ 1130 NJ 1130 1260J
-preplace netloc sda_in_n_0_1 1 0 3 NJ 1150 NJ 1150 1240J
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 3 790 1160 1390 2614 2680J
+preplace netloc rst_ps8_0_99M_interconnect_aresetn 1 1 2 800 1170 1220
+preplace netloc coldata_i2c_0_scl_p 1 3 1 2670J 1350n
+preplace netloc coldata_i2c_0_scl_n 1 3 1 2730J 1370n
+preplace netloc coldata_i2c_0_sda_out_p 1 3 1 2650J 1310n
+preplace netloc coldata_i2c_0_sda_out_n 1 3 1 2660J 1330n
+preplace netloc sda_in_p_0_1 1 0 3 NJ 1130 760J 1140 1260J
+preplace netloc sda_in_n_0_1 1 0 3 NJ 1150 NJ 1150 1250J
 preplace netloc coldata_fast_cmd_0_fastcommand_out_p 1 3 1 NJ 1050
 preplace netloc coldata_fast_cmd_0_fastcommand_out_n 1 3 1 NJ 1070
 preplace netloc rec_d_clk_0_1 1 0 2 NJ 590 NJ
@@ -115,45 +115,45 @@ preplace netloc rec_clk_locked_0_1 1 0 2 NJ 630 NJ
 preplace netloc sfp_los_0_1 1 0 2 NJ 650 NJ
 preplace netloc cdr_los_0_1 1 0 2 NJ 670 NJ
 preplace netloc cdr_lol_0_1 1 0 2 NJ 690 NJ
-preplace netloc pdts_endpoint_0_clk 1 2 2 1420 2500 2700J
-preplace netloc pdts_endpoint_0_rst 1 2 2 1460J 670 NJ
-preplace netloc pdts_endpoint_0_rdy 1 2 2 1350J 660 2660J
-preplace netloc pdts_endpoint_0_sync 1 2 2 1520J 870 2660J
-preplace netloc pdts_endpoint_0_sync_v 1 2 2 1510J 860 2650J
-preplace netloc pdts_endpoint_0_tstamp 1 2 2 1260 640 2630J
-preplace netloc pdts_endpoint_0_evtctr 1 2 2 1410J 680 2650J
-preplace netloc coldata_i2c_dual1_sda_out_p_0 1 3 1 2710J 2290n
-preplace netloc coldata_i2c_dual1_sda_out_n_0 1 3 1 2720J 2310n
-preplace netloc coldata_i2c_dual2_sda_out_p_0 1 3 1 2650J 2020n
-preplace netloc coldata_i2c_dual2_sda_out_n_0 1 3 1 2660J 2040n
-preplace netloc coldata_i2c_dual3_sda_out_p_0 1 3 1 2750J 2570n
-preplace netloc coldata_i2c_dual3_sda_out_n_0 1 3 1 2760J 2590n
-preplace netloc coldata_i2c_dual3_scl_p_0 1 3 1 2770J 2610n
-preplace netloc coldata_i2c_dual3_scl_n_0 1 3 1 2780J 2630n
-preplace netloc coldata_i2c_dual2_scl_p_0 1 3 1 2670J 2060n
-preplace netloc coldata_i2c_dual2_scl_n_0 1 3 1 2680J 2080n
-preplace netloc coldata_i2c_dual1_scl_n_0 1 3 1 2740J 2350n
-preplace netloc coldata_i2c_dual1_scl_p_0 1 3 1 2730J 2330n
+preplace netloc pdts_endpoint_0_clk 1 2 2 1420 2604 2690J
+preplace netloc pdts_endpoint_0_rst 1 2 2 1290J 680 2660J
+preplace netloc pdts_endpoint_0_rdy 1 2 2 NJ 670 2650J
+preplace netloc pdts_endpoint_0_sync 1 2 2 1520J 870 2650J
+preplace netloc pdts_endpoint_0_sync_v 1 2 2 1510J 860 2640J
+preplace netloc pdts_endpoint_0_tstamp 1 2 2 1230 640 2620J
+preplace netloc pdts_endpoint_0_evtctr 1 2 2 1350J 650 2640J
+preplace netloc coldata_i2c_dual1_sda_out_p_0 1 3 1 2700J 2290n
+preplace netloc coldata_i2c_dual1_sda_out_n_0 1 3 1 2710J 2310n
+preplace netloc coldata_i2c_dual2_sda_out_p_0 1 3 1 2640J 2020n
+preplace netloc coldata_i2c_dual2_sda_out_n_0 1 3 1 2650J 2040n
+preplace netloc coldata_i2c_dual3_sda_out_p_0 1 3 1 2740J 2570n
+preplace netloc coldata_i2c_dual3_sda_out_n_0 1 3 1 2750J 2590n
+preplace netloc coldata_i2c_dual3_scl_p_0 1 3 1 2760J 2610n
+preplace netloc coldata_i2c_dual3_scl_n_0 1 3 1 2770J 2630n
+preplace netloc coldata_i2c_dual2_scl_p_0 1 3 1 2660J 2060n
+preplace netloc coldata_i2c_dual2_scl_n_0 1 3 1 2670J 2080n
+preplace netloc coldata_i2c_dual1_scl_n_0 1 3 1 2730J 2350n
+preplace netloc coldata_i2c_dual1_scl_p_0 1 3 1 2720J 2330n
 preplace netloc sda_in_p_0_0_1 1 0 3 NJ 2300 NJ 2300 1250J
 preplace netloc sda_in_n_0_0_1 1 0 3 NJ 2320 NJ 2320 1240J
-preplace netloc sda_in_p_0_1_1 1 0 3 NJ 2220 780J 2250 1260J
+preplace netloc sda_in_p_0_1_1 1 0 3 30J 2250 NJ 2250 1260J
 preplace netloc sda_in_n_0_1_1 1 0 3 NJ 2240 NJ 2240 1270J
-preplace netloc sda_in_p_0_2_1 1 0 3 NJ 2580 NJ 2580 1230J
-preplace netloc sda_in_n_0_2_1 1 0 3 NJ 2600 NJ 2600 1220J
-preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 30 2010 NJ 2010 NJ 2010 2610
-preplace netloc reg_ro_0_1 1 0 3 NJ 510 NJ 510 1280J
-preplace netloc reg_bank_64_0_reg_rw 1 1 3 790 490 1240J 880 2640
-preplace netloc daq_stream_k1_0_1 1 0 3 NJ 140 NJ 140 1260J
-preplace netloc daq_stream1_0_1 1 0 3 20J 114 NJ 114 NJ
+preplace netloc sda_in_p_0_2_1 1 0 3 30J 2604 NJ 2604 1230J
+preplace netloc sda_in_n_0_2_1 1 0 3 20J 2614 NJ 2614 1220J
+preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 40 2594 NJ 2594 NJ 2594 2630
+preplace netloc reg_ro_0_1 1 0 3 NJ 510 760J 500 1530J
+preplace netloc reg_bank_64_0_reg_rw 1 1 3 800 510 1280J 880 2630
+preplace netloc daq_stream_k1_0_1 1 0 3 40J 134 NJ 134 NJ
+preplace netloc daq_stream1_0_1 1 0 3 NJ 120 NJ 120 1230J
 preplace netloc daq_stream_k0_0_1 1 0 3 NJ 450 NJ 450 NJ
 preplace netloc daq_stream0_0_1 1 0 3 NJ 430 NJ 430 NJ
-preplace netloc daq_clk_0_1 1 0 3 NJ 160 NJ 160 1510
-preplace netloc reset_0_1 1 0 3 NJ 470 NJ 470 1500J
+preplace netloc daq_clk_0_1 1 0 3 NJ 160 NJ 160 1560
+preplace netloc reset_0_1 1 0 3 NJ 470 NJ 470 1550J
 preplace netloc daq_spy_full_0 1 3 1 NJ 470
-preplace netloc daq_spy_reset_0_1 1 0 3 NJ 220 NJ 220 1220J
-preplace netloc daq_spy_1_daq_spy_full 1 3 1 2630J 154n
-preplace netloc timing_module_stat_0 1 2 2 1500J 890 2670J
-preplace netloc timing_module_ts_valid_0 1 2 2 1490J 900 2680J
+preplace netloc daq_spy_reset_0_1 1 0 3 NJ 220 NJ 220 1240J
+preplace netloc daq_spy_1_daq_spy_full 1 3 1 2620J 154n
+preplace netloc timing_module_stat_0 1 2 2 1500J 890 2660J
+preplace netloc timing_module_ts_valid_0 1 2 2 1490J 900 2670J
 preplace netloc cmd_code_idle_0_1 1 0 2 NJ 730 NJ
 preplace netloc cmd_code_edge_0_1 1 0 2 NJ 750 NJ
 preplace netloc cmd_code_sync_0_1 1 0 2 NJ 770 NJ
@@ -161,63 +161,63 @@ preplace netloc cmd_code_act_0_1 1 0 2 NJ 790 NJ
 preplace netloc cmd_code_reset_0_1 1 0 2 NJ 810 NJ
 preplace netloc cmd_code_adc_reset_0_1 1 0 2 NJ 830 NJ
 preplace netloc timing_module_cmd_bit_idle 1 2 1 1480 810n
-preplace netloc timing_module_cmd_bit_edge 1 2 1 1460 830n
+preplace netloc timing_module_cmd_bit_edge 1 2 1 1470 830n
 preplace netloc timing_module_cmd_bit_sync 1 2 1 1450 850n
-preplace netloc timing_module_cmd_bit_act 1 2 1 1430 870n
+preplace netloc timing_module_cmd_bit_act 1 2 1 1440 870n
 preplace netloc timing_module_cmd_bit_reset 1 2 1 1410 890n
-preplace netloc timing_module_cmd_bit_adc_reset 1 2 1 1280 910n
+preplace netloc timing_module_cmd_bit_adc_reset 1 2 1 1290 910n
 preplace netloc fake_time_stamp_en_0_1 1 0 2 NJ 850 NJ
 preplace netloc fake_time_stamp_init_0_1 1 0 2 NJ 870 NJ
-preplace netloc timing_module_txd_0 1 2 2 1350J 910 2740J
-preplace netloc timing_module_tx_dis_0 1 2 2 1440J 920 NJ
-preplace netloc daq_data_type_0_1 1 0 3 NJ 240 NJ 240 1280J
-preplace netloc daq_data_type_1_1 1 0 3 20J 480 NJ 480 1490J
-preplace netloc coldata_fast_cmd_0_fastcommand_out 1 1 3 800 500 1470J 650 2630
-preplace netloc rec_time_0_1 1 0 3 NJ 260 NJ 260 1520
+preplace netloc timing_module_txd_0 1 2 2 1350J 910 2730J
+preplace netloc timing_module_tx_dis_0 1 2 2 1430J 920 NJ
+preplace netloc daq_data_type_0_1 1 0 3 NJ 240 NJ 240 1240J
+preplace netloc daq_data_type_1_1 1 0 3 NJ 490 NJ 490 1220J
+preplace netloc coldata_fast_cmd_0_fastcommand_out 1 1 3 790 480 1540J 660 2620
+preplace netloc rec_time_0_1 1 0 3 NJ 260 NJ 260 1570
 preplace netloc trigger_1 1 2 1 1400 274n
-preplace netloc daq_spy_1_spy_addr_0 1 3 1 2630J 174n
+preplace netloc daq_spy_1_spy_addr_0 1 3 1 2620J 174n
 preplace netloc daq_spy_0_spy_addr_1 1 3 1 NJ 490
 preplace netloc cmd_code_trigger_0_1 1 0 2 NJ 910 NJ
 preplace netloc bp_io_t 1 0 2 NJ 930 NJ
 preplace netloc bp_io_o 1 0 2 NJ 950 NJ
 preplace netloc cmd_stamp_sync_0_1 1 0 2 NJ 970 NJ
 preplace netloc cmd_stamp_sync_en_0_1 1 0 2 NJ 990 NJ
-preplace netloc coldata_i2c_dual0_sda_in_out 1 1 3 780 1120 1360J 1230 2650
-preplace netloc coldata_i2c_dual0_sda_out_out 1 1 3 790 1140 1280J 1240 2640
-preplace netloc coldata_i2c_dual0_Res 1 1 3 800 1110 1350J 1250 2630
-preplace netloc timing_module_clk_125 1 2 2 1360J 930 2660J
+preplace netloc coldata_i2c_dual0_sda_in_out 1 1 3 780 1120 1350J 1240 2630
+preplace netloc coldata_i2c_dual0_sda_out_out 1 1 3 790 1130 1280J 1250 2620
+preplace netloc coldata_i2c_dual0_Res 1 1 3 800 1110 1360J 1230 2640
+preplace netloc timing_module_clk_125 1 2 2 1360J 930 2650J
 preplace netloc S00_AXI_1 1 2 1 1290 1540n
 preplace netloc ps8_0_axi_periph_M13_AXI 1 2 1 1310 1700n
 preplace netloc S00_AXI_2 1 2 1 1330 1580n
 preplace netloc ps8_0_axi_periph_M11_AXI 1 2 1 1320 1660n
 preplace netloc ps8_0_axi_periph_M14_AXI 1 2 1 1300 1720n
-preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 760 1230n
-preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 1520 1398n
-preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1470 740n
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 780 1230n
+preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 1570 1400n
+preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1460 740n
 preplace netloc ps8_0_axi_periph_M15_AXI 1 2 1 1340 54n
-preplace netloc ps8_0_axi_periph_M00_AXI 1 2 1 1220 370n
+preplace netloc ps8_0_axi_periph_M00_AXI 1 2 1 1240 370n
 preplace netloc ps8_0_axi_periph_M03_AXI 1 2 1 1370 990n
-preplace netloc axi_gpio_1_GPIO 1 3 1 2630J 1710n
+preplace netloc axi_gpio_1_GPIO 1 3 1 2620J 1710n
 preplace netloc S00_AXI_3 1 2 1 1280 1620n
-preplace netloc axi_iic_0_IIC 1 3 1 2640J 1830n
-preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_out_p 1 1 2 N 1438 NJ
-preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_out_n 1 1 2 N 1458 NJ
-preplace netloc coldata_i2c_dual0|sda_in_p_0_1 1 0 1 N 1418
-preplace netloc coldata_i2c_dual0|sda_in_n_0_1 1 0 1 N 1438
-preplace netloc coldata_i2c_dual0|zynq_ultra_ps_e_0_pl_clk0 1 0 1 N 1478
-preplace netloc coldata_i2c_dual0|rst_ps8_0_99M_peripheral_aresetn 1 0 1 N 1498
-preplace netloc coldata_i2c_dual0|util_ds_buf_0_OBUF_DS_P 1 2 1 2470 1358n
-preplace netloc coldata_i2c_dual0|util_ds_buf_0_OBUF_DS_N 1 2 1 2460 1378n
-preplace netloc coldata_i2c_dual0|clk62p5_1 1 0 1 1880 1458n
-preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_in_out 1 1 2 2180 1518 NJ
-preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_out_out 1 1 2 2160 1538 NJ
-preplace netloc coldata_i2c_dual0|coldata_i2c_0_scl 1 1 1 2180 1368n
-preplace netloc coldata_i2c_dual0|coldata_i2c_0_scl_out 1 1 2 2170 1558 NJ
-preplace netloc coldata_i2c_dual0|ps8_0_axi_periph_M01_AXI 1 0 1 N 1398
+preplace netloc axi_iic_0_IIC 1 3 1 2630J 1830n
+preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_out_p 1 1 2 N 1440 NJ
+preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_out_n 1 1 2 N 1460 NJ
+preplace netloc coldata_i2c_dual0|sda_in_p_0_1 1 0 1 N 1420
+preplace netloc coldata_i2c_dual0|sda_in_n_0_1 1 0 1 N 1440
+preplace netloc coldata_i2c_dual0|zynq_ultra_ps_e_0_pl_clk0 1 0 1 N 1480
+preplace netloc coldata_i2c_dual0|rst_ps8_0_99M_peripheral_aresetn 1 0 1 N 1500
+preplace netloc coldata_i2c_dual0|util_ds_buf_0_OBUF_DS_P 1 2 1 2470 1360n
+preplace netloc coldata_i2c_dual0|util_ds_buf_0_OBUF_DS_N 1 2 1 2460 1380n
+preplace netloc coldata_i2c_dual0|clk62p5_1 1 0 1 1880 1460n
+preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_in_out 1 1 2 2180 1520 NJ
+preplace netloc coldata_i2c_dual0|coldata_i2c_0_sda_out_out 1 1 2 2160 1540 NJ
+preplace netloc coldata_i2c_dual0|coldata_i2c_0_scl 1 1 1 2180 1370n
+preplace netloc coldata_i2c_dual0|coldata_i2c_0_scl_out 1 1 2 2170 1560 NJ
+preplace netloc coldata_i2c_dual0|ps8_0_axi_periph_M01_AXI 1 0 1 N 1400
 levelinfo -pg 1 0 400 1020 1960 2800
 levelinfo -hier coldata_i2c_dual0 * 2020 2320 *
-pagesize -pg 1 -db -bbox -sgen -250 -10 3020 3670
-pagesize -hier coldata_i2c_dual0 -db -bbox -sgen 1850 1298 2500 1568
+pagesize -pg 1 -db -bbox -sgen -250 -10 3020 3750
+pagesize -hier coldata_i2c_dual0 -db -bbox -sgen 1850 1300 2500 1570
 ",
    "Color Coded_ScaleFactor":"1.32268",
    "Color Coded_TopLeft":"1521,1127",

@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:coldata_i2c:1.0
-// IP Revision: 29
+// IP Revision: 30
 
 `timescale 1ns/1ps
 
