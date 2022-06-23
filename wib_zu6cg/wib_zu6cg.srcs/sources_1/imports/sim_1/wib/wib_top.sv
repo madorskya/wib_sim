@@ -484,8 +484,6 @@ module wib_top
     wire [15:0] time16 [15:0]; // [link] time stamps from each link, P3 format
     wire [15:0] valid14;
     wire [15:0] valid12;
-    reg [15:0] valid14_r [1:0];
-    reg [15:0] valid12_r [1:0];
     wire [1:0]  crc_err [15:0];
     wire [63:0] dts_time_delayed; // delayed DTS stamp matching data
 
@@ -668,20 +666,6 @@ module wib_top
         .ADN2814_SCL (adn2814_scl),   
         .ADN2814_SDA (adn2814_sda) 
     );
-
-    // logic for valid12 and 14 bit extention, so we can watch them using rx clock
-    reg [15:0] valid12_ila;
-    reg [15:0] valid14_ila;
-    always @(posedge clk125)
-    begin
-        valid12_ila = valid12_r[1] | valid12_r[0];
-        valid14_ila = valid14_r[1] | valid14_r[0];
-    
-        valid12_r[1] = valid12_r[0];
-        valid12_r[0] = valid12;
-        valid14_r[1] = valid14_r[0];
-        valid14_r[0] = valid14;
-    end
 
     ila_1 ila_daq 
     (

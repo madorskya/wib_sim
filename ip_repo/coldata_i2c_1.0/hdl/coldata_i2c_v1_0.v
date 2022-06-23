@@ -314,6 +314,18 @@
         lb_resp = {lb_resp[2:0], sda_in_out};
     end
 
+    ila_latency ilal
+    (
+        .clk    (~clk62p5), // input wire clk
+        .probe0 (lat_cnt), // input wire [2:0]  probe0
+        .probe1 (lb_stim), // input wire [0:0]  probe1
+        .probe2 (lb_resp), // input wire [3:0]  probe2
+        .probe3 (rd_reg[2]), // input wire [7:0]  probe3
+        .probe4 (wr_reg[2]), // input wire [7:0]  probe4
+        .probe5 (lb_stim_sda_out), // input wire [7:0]  probe5
+        .probe6 (sda_in_out)        
+    );
+
 	// User logic ends
 
 endmodule

@@ -58,6 +58,9 @@ int main (int argc, char * argv[])
 		// issue stimulus
 		io_reg_write (&(femb->coldata_i2c[0]), REG_COLD_I2C_STIM, 1);
 
+		// wait a bit for loopback to arrive
+		usleep(10);
+
 		// read measured latency
 		uint32_t latn = io_reg_read (&(femb->coldata_i2c[0]), REG_COLD_I2C_LATN);
 

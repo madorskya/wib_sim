@@ -34,7 +34,7 @@ int main (int argc, char * argv[])
 	// ADC BOT:  4, 5, 6, 7
 
 	int i, j, t;
-	uint8_t val = 1;
+	uint8_t val = 0xa9;
 	int err_cnt = 0;
 
 //goto distort_test;
@@ -45,7 +45,7 @@ int main (int argc, char * argv[])
 //		if (val == 0) val = 1;
 		val++;		
 		for (i = 1; i >= 0; i--) // COLDATA loop
-//		i = 0;
+		//i = 0;
 		{
 			//j = 0;
 			for (j = 0; j <= 3; j++ ) // ADC loop
@@ -76,7 +76,7 @@ int main (int argc, char * argv[])
 		}
 	}
 //		usleep (100000);
-
+//exit(0);
 distort_test:
 
 	printf ("register distort test\n");

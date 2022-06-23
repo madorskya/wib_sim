@@ -124,23 +124,6 @@ module frame_builder
         .flex          (flex       )
     );
 
-    // async fifo for time stamp reclocking into deframed data domain
-//    time_stamp_fifo ts_fifo 
-//    (
-//        .srst        (1'b0),  
-//        .wr_clk      (ts_clk),
-//        .rd_clk      (rxclk2x),
-//        .din         (ts_tstamp),   
-//        .wr_en       (1'b1), 
-//        .rd_en       (1'b1), 
-//        .dout        (tstamp_deframed),  
-//        .full        (),  
-//        .empty       (), 
-//        .valid       (), 
-//        .wr_rst_busy (),
-//        .rd_rst_busy () 
-//    );
-
     // FIFO not needed anymore, everything is synchronous    
     always @(posedge rxclk2x) tstamp_deframed = ts_tstamp;
 

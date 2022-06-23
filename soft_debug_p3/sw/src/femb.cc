@@ -53,7 +53,7 @@ void FEMB::i2c_write(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uint8
     io_reg_write(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_CTRL,ctrl);
     io_reg_write(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_START,1);
     io_reg_write(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_START,0);
-    //usleep(I2C_DELAY_WR);
+//    usleep(I2C_DELAY_WR);
 	do
 	{
     	ctrl = io_reg_read(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_START);
@@ -75,17 +75,11 @@ uint8_t FEMB::i2c_read(int coldata_idx, uint8_t chip_addr, uint8_t reg_page, uin
     io_reg_write(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_CTRL,ctrl);
     io_reg_write(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_START,1);
     io_reg_write(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_START,0);
-//    usleep(I2C_DELAY_RD);
 	do
 	{
     	ctrl = io_reg_read(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_START);
 	}while (ctrl == 1);
     ctrl = io_reg_read(&this->coldata_i2c[coldata_idx],REG_COLD_I2C_CTRL);
-
-	// fix for C2W signal inversion in COLDATA chip #0 (???)
-//	printf ("*%d* ", coldata_idx);
-//	removing the inversion fix for mono FEMB
-//	if (coldata_idx == 0) ctrl = ~ctrl;
 
     return (ctrl >> COLD_I2C_DATA) & 0xFF;
 }
