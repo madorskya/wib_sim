@@ -168,7 +168,7 @@ module wib_top
 //    BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
     
     // clock mux, so that PLL clock can be used when timing master is not available
-    BUFGMUX ts_clk_mux (.I0(ts_fpga_clk_pad), .I1(ts_rec_d_clk_pll), .S(), .O(ts_rec_d_clk));
+    BUFGMUX ts_clk_mux (.I0(ts_fpga_clk_pad), .I1(ts_rec_d_clk_pll), .S(ts_clk_sel), .O(ts_rec_d_clk));
     
     wire csd_reset;
     wire [15:0] csd_diff;
@@ -303,9 +303,9 @@ module wib_top
     assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
     wire coldata_rxbufreset = `CONFIG_BITS(1,14, 1); // 0xA00C0004
     assign csd_reset        = `CONFIG_BITS(1,15, 1); // 0xA00C0004
-    assign ps_reset         = `CONFIG_BITS(1,16, 1); // 0xA00C0004
-    assign ps_en_in         = `CONFIG_BITS(1,17, 1); // 0xA00C0004
-    assign ts_clk_sel       = `CONFIG_BITS(1,18, 1); // 0xA00C0004
+    assign ts_clk_sel       = `CONFIG_BITS(1,16, 1); // 0xA00C0004
+    assign ps_reset         = `CONFIG_BITS(1,17, 1); // 0xA00C0004
+    assign ps_en_in         = `CONFIG_BITS(1,18, 1); // 0xA00C0004
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     

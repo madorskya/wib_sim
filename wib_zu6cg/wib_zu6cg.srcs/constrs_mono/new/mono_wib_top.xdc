@@ -85,8 +85,12 @@ set_false_path -from [get_ports bp_crate_addr[*]]
 set_false_path -from [get_ports bp_slot_addr[*]]
 
 
-create_clock -period 3.2 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock via PLL
+#create_clock -period 3.2 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock via PLL
 create_clock -period 3.2 -name adn2814_fpga_clk_p [get_ports adn2814_fpga_clk_p]; # timing endpoint clock direct
+#set_false_path -from [get_clocks si5344_out1_p] -to [get_clocks adn2814_fpga_clk_p];
+#set_false_path -from [get_clocks adn2814_fpga_clk_p] -to [get_clocks si5344_out1_p]
+# tell vivado that the BUFGMUXed clocks never interact
+set_clock_groups -physically_exclusive -group si5344_out1_p -group adn2814_fpga_clk_p
 
 # set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
  
