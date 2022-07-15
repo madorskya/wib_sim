@@ -68,7 +68,12 @@ module bd_tux
     input fake_time_stamp_en, // enable fake time stamp
     input [63:0] fake_time_stamp_init,
     input [14:0] cmd_stamp_sync,
-    input        cmd_stamp_sync_en
+    input        cmd_stamp_sync_en,
+    
+    // i2c clock phase adjustment 
+    input ps_reset,
+    input ps_en_in,
+    output ps_locked
 );
     
     design_1 design_1_i
@@ -161,7 +166,11 @@ module bd_tux
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init),
         .cmd_stamp_sync    (cmd_stamp_sync),
-        .cmd_stamp_sync_en (cmd_stamp_sync_en)
+        .cmd_stamp_sync_en (cmd_stamp_sync_en),
+
+        .ps_reset  (ps_reset ),
+        .ps_en_in  (ps_en_in ),
+        .ps_locked (ps_locked)
     );
 
 endmodule

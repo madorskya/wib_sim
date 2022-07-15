@@ -152,6 +152,7 @@ module wib_top
     wire iic_rtl_0_sda_t;
     wire ts_edge_sel;
     wire ts_fpga_clk_pad;
+    wire ts_clk_sel; // 0 = CDR clock, 1 = PLL clock
     
     // this input is unused, see Jack's message 2020-08-23
     IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
@@ -164,7 +165,10 @@ module wib_top
 
     // clock from CDR, only available on WIB rev 3
     IBUFDS tp_fpga_clk_buf_in (.I(adn2814_fpga_clk_p), .IB(adn2814_fpga_clk_n), .O(ts_fpga_clk_pad));
-    BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
+//    BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
+    
+    // clock mux, so that PLL clock can be used when timing master is not available
+    BUFGMUX ts_clk_mux (.I0(ts_fpga_clk_pad), .I1(ts_rec_d_clk_pll), .S(), .O(ts_rec_d_clk));
     
     wire csd_reset;
     wire [15:0] csd_diff;
@@ -279,6 +283,9 @@ module wib_top
     wire        ws; //
     wire [15:0] flex; // 
     wire [7:0]  align8 [15:0]; // automatic alignment delays
+    wire ps_reset;
+    wire ps_en_in;
+    wire ps_locked;
     
     // config and status registers mapping
     
@@ -296,6 +303,9 @@ module wib_top
     assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
     wire coldata_rxbufreset = `CONFIG_BITS(1,14, 1); // 0xA00C0004
     assign csd_reset        = `CONFIG_BITS(1,15, 1); // 0xA00C0004
+    assign ps_reset         = `CONFIG_BITS(1,16, 1); // 0xA00C0004
+    assign ps_en_in         = `CONFIG_BITS(1,17, 1); // 0xA00C0004
+    assign ts_clk_sel       = `CONFIG_BITS(1,18, 1); // 0xA00C0004
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
@@ -350,6 +360,8 @@ module wib_top
     
 
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
+    assign `STATUS_BITS( 0, 2,  1) = ps_locked;
+    
     assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;  // 0xA00C0084
     assign `STATUS_BITS( 2, 0, 32) = fw_date;        // 0xA00C0088
 
@@ -471,7 +483,11 @@ module wib_top
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init),
         .cmd_stamp_sync    (cmd_stamp_sync),
-        .cmd_stamp_sync_en (cmd_stamp_sync_en)
+        .cmd_stamp_sync_en (cmd_stamp_sync_en),
+        
+        .ps_reset  (ps_reset ),
+        .ps_en_in  (ps_en_in ),
+        .ps_locked (ps_locked)
     );
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];

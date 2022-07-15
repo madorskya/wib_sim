@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# daq_spy_control, daq_spy_control, pdts_endpoint_stdlogic, ts_reclock
+# dyn_phase_adjust, daq_spy_control, daq_spy_control, pdts_endpoint_stdlogic, ts_reclock
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -1031,6 +1031,12 @@ proc create_root_design { parentCell } {
   set fake_time_stamp_init [ create_bd_port -dir I -from 63 -to 0 fake_time_stamp_init ]
   set fastcommand_out_n_0 [ create_bd_port -dir O fastcommand_out_n_0 ]
   set fastcommand_out_p_0 [ create_bd_port -dir O fastcommand_out_p_0 ]
+  set ps_en_in [ create_bd_port -dir I ps_en_in ]
+  set ps_locked [ create_bd_port -dir O ps_locked ]
+  set ps_reset [ create_bd_port -dir I -type rst ps_reset ]
+  set_property -dict [ list \
+   CONFIG.POLARITY {ACTIVE_HIGH} \
+ ] $ps_reset
   set reg_ro [ create_bd_port -dir I -from 1023 -to 0 reg_ro ]
   set reg_rw [ create_bd_port -dir O -from 1023 -to 0 reg_rw ]
   set scl_n_0 [ create_bd_port -dir O -from 0 -to 0 scl_n_0 ]
@@ -1121,6 +1127,31 @@ proc create_root_design { parentCell } {
 
   # Create instance: dbg
   create_hier_cell_dbg [current_bd_instance .] dbg
+
+  # Create instance: dyn_phase_adjust_0, and set properties
+  set block_name dyn_phase_adjust
+  set block_cell_name dyn_phase_adjust_0
+  if { [catch {set dyn_phase_adjust_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $dyn_phase_adjust_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: i2c_clk_phase, and set properties
+  set i2c_clk_phase [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 i2c_clk_phase ]
+  set_property -dict [ list \
+   CONFIG.CLKOUT1_JITTER {142.224} \
+   CONFIG.CLKOUT1_PHASE_ERROR {131.709} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {62.5} \
+   CONFIG.CLK_OUT1_USE_FINE_PS_GUI {true} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {19.000} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {19.000} \
+   CONFIG.MMCM_CLKOUT0_USE_FINE_PS {true} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
+   CONFIG.USE_DYN_PHASE_SHIFT {true} \
+ ] $i2c_clk_phase
 
   # Create instance: ps8_0_axi_periph, and set properties
   set ps8_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps8_0_axi_periph ]
@@ -2738,15 +2769,19 @@ proc create_root_design { parentCell } {
   connect_bd_net -net daq_stream1_0_1 [get_bd_ports daq_stream1] [get_bd_pins daq_spy_1/daq_stream0]
   connect_bd_net -net daq_stream_k0_0_1 [get_bd_ports daq_stream_k0] [get_bd_pins daq_spy_0/daq_stream_k0]
   connect_bd_net -net daq_stream_k1_0_1 [get_bd_ports daq_stream_k1] [get_bd_pins daq_spy_1/daq_stream_k0]
+  connect_bd_net -net dyn_phase_adjust_0_psen [get_bd_pins dyn_phase_adjust_0/psen] [get_bd_pins i2c_clk_phase/psen]
+  connect_bd_net -net dyn_phase_adjust_0_psincdec [get_bd_pins dyn_phase_adjust_0/psincdec] [get_bd_pins i2c_clk_phase/psincdec]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_ports fake_time_stamp_en] [get_bd_pins timing_module/fake_time_stamp_en_0]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_ports fake_time_stamp_init] [get_bd_pins timing_module/fake_time_stamp_init_0]
-  connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins coldata_i2c_dual0/clk62p5] [get_bd_pins coldata_i2c_dual1/clk62p5] [get_bd_pins coldata_i2c_dual2/clk62p5] [get_bd_pins coldata_i2c_dual3/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins timing_module/ts_clk]
+  connect_bd_net -net i2c_clk_phase_locked [get_bd_ports ps_locked] [get_bd_pins i2c_clk_phase/locked]
+  connect_bd_net -net pdts_endpoint_0_clk [get_bd_ports ts_clk] [get_bd_pins coldata_fast_cmd_0/clk62p5] [get_bd_pins coldata_i2c_dual0/clk62p5] [get_bd_pins coldata_i2c_dual1/clk62p5] [get_bd_pins coldata_i2c_dual2/clk62p5] [get_bd_pins coldata_i2c_dual3/clk62p5] [get_bd_pins daq_spy_0/ts_clk] [get_bd_pins daq_spy_1/ts_clk] [get_bd_pins dyn_phase_adjust_0/clk] [get_bd_pins i2c_clk_phase/clk_in1] [get_bd_pins i2c_clk_phase/psclk] [get_bd_pins timing_module/ts_clk]
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_ports ts_evtctr] [get_bd_pins timing_module/ts_evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_ports ts_rdy] [get_bd_pins timing_module/ts_rdy]
   connect_bd_net -net pdts_endpoint_0_rst [get_bd_ports ts_rst] [get_bd_pins timing_module/ts_rst]
   connect_bd_net -net pdts_endpoint_0_sync [get_bd_ports ts_sync] [get_bd_pins timing_module/ts_sync]
   connect_bd_net -net pdts_endpoint_0_sync_v [get_bd_ports ts_sync_v] [get_bd_pins timing_module/ts_sync_v]
   connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_ports ts_tstamp] [get_bd_pins daq_spy_0/ts_tstamp] [get_bd_pins daq_spy_1/ts_tstamp] [get_bd_pins timing_module/ts_tstamp]
+  connect_bd_net -net psen_in_0_1 [get_bd_ports ps_en_in] [get_bd_pins dyn_phase_adjust_0/psen_in]
   connect_bd_net -net rec_clk_locked_0_1 [get_bd_ports ts_rec_clk_locked] [get_bd_pins timing_module/ts_rec_clk_locked]
   connect_bd_net -net rec_d_0_1 [get_bd_ports ts_rec_d] [get_bd_pins timing_module/ts_rec_d]
   connect_bd_net -net rec_d_clk_0_1 [get_bd_ports ts_rec_d_clk] [get_bd_pins timing_module/ts_rec_d_clk]
@@ -2754,6 +2789,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net reg_bank_64_0_reg_rw [get_bd_ports reg_rw] [get_bd_pins reg_bank_64_0/reg_rw] [get_bd_pins timing_module/Din]
   connect_bd_net -net reg_ro_0_1 [get_bd_ports reg_ro] [get_bd_pins reg_bank_64_0/reg_ro]
   connect_bd_net -net reset_0_1 [get_bd_ports daq_spy_reset_0] [get_bd_pins daq_spy_0/daq_spy_reset]
+  connect_bd_net -net reset_0_2 [get_bd_ports ps_reset] [get_bd_pins i2c_clk_phase/reset]
   connect_bd_net -net rst_ps8_0_99M_interconnect_aresetn [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins rst_ps8_0_99M/interconnect_aresetn]
   connect_bd_net -net rst_ps8_0_99M_peripheral_aresetn [get_bd_ports AXI_RSTn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins coldata_fast_cmd_0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual0/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual1/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual2/s00_axi_aresetn] [get_bd_pins coldata_i2c_dual3/s00_axi_aresetn] [get_bd_pins daq_spy_0/AXI_RSTn] [get_bd_pins daq_spy_1/AXI_RSTn] [get_bd_pins dbg/AXI_RSTn] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/M10_ARESETN] [get_bd_pins ps8_0_axi_periph/M11_ARESETN] [get_bd_pins ps8_0_axi_periph/M12_ARESETN] [get_bd_pins ps8_0_axi_periph/M13_ARESETN] [get_bd_pins ps8_0_axi_periph/M14_ARESETN] [get_bd_pins ps8_0_axi_periph/M15_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins reg_bank_64_0/s00_axi_aresetn] [get_bd_pins rst_ps8_0_99M/peripheral_aresetn]
   connect_bd_net -net sda_in_n_0_0_1 [get_bd_ports sda_in_n_2] [get_bd_pins coldata_i2c_dual1/sda_in_n_0]

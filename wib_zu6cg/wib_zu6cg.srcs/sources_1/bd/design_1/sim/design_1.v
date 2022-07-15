@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Jun 23 16:37:42 2022
+//Date        : Fri Jul 15 03:15:40 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1316,7 +1316,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=78,numReposBlks=52,numNonXlnxBlks=6,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=80,numReposBlks=54,numNonXlnxBlks=6,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -1354,6 +1354,9 @@ module design_1
     iic_rtl_0_sda_i,
     iic_rtl_0_sda_o,
     iic_rtl_0_sda_t,
+    ps_en_in,
+    ps_locked,
+    ps_reset,
     reg_ro,
     reg_rw,
     scl_n_0,
@@ -1436,6 +1439,9 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SDA_I" *) input iic_rtl_0_sda_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SDA_O" *) output iic_rtl_0_sda_o;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SDA_T" *) output iic_rtl_0_sda_t;
+  input ps_en_in;
+  output ps_locked;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.PS_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.PS_RESET, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input ps_reset;
   input [1023:0]reg_ro;
   output [1023:0]reg_rw;
   output [0:0]scl_n_0;
@@ -1595,8 +1601,11 @@ module design_1
   wire [31:0]daq_stream1_0_1;
   wire [3:0]daq_stream_k0_0_1;
   wire [3:0]daq_stream_k1_0_1;
+  wire dyn_phase_adjust_0_psen;
+  wire dyn_phase_adjust_0_psincdec;
   wire fake_time_stamp_en_0_1;
   wire [63:0]fake_time_stamp_init_0_1;
+  wire i2c_clk_phase_locked;
   wire pdts_endpoint_0_clk;
   wire [31:0]pdts_endpoint_0_evtctr;
   wire pdts_endpoint_0_rdy;
@@ -1776,6 +1785,7 @@ module design_1
   wire ps8_0_axi_periph_M15_AXI_WREADY;
   wire [3:0]ps8_0_axi_periph_M15_AXI_WSTRB;
   wire ps8_0_axi_periph_M15_AXI_WVALID;
+  wire psen_in_0_1;
   wire rec_clk_locked_0_1;
   wire rec_d_0_1;
   wire rec_d_clk_0_1;
@@ -1783,6 +1793,7 @@ module design_1
   wire [1023:0]reg_bank_64_0_reg_rw;
   wire [1023:0]reg_ro_0_1;
   wire reset_0_1;
+  wire reset_0_2;
   wire [0:0]rst_ps8_0_99M_interconnect_aresetn;
   wire [0:0]rst_ps8_0_99M_peripheral_aresetn;
   wire sda_in_n_0_0_1;
@@ -1882,6 +1893,8 @@ module design_1
   assign iic_rtl_0_scl_t = axi_iic_0_IIC_SCL_T;
   assign iic_rtl_0_sda_o = axi_iic_0_IIC_SDA_O;
   assign iic_rtl_0_sda_t = axi_iic_0_IIC_SDA_T;
+  assign ps_locked = i2c_clk_phase_locked;
+  assign psen_in_0_1 = ps_en_in;
   assign rec_clk_locked_0_1 = ts_rec_clk_locked;
   assign rec_d_0_1 = ts_rec_d;
   assign rec_d_clk_0_1 = ts_rec_d_clk;
@@ -1889,6 +1902,7 @@ module design_1
   assign reg_ro_0_1 = reg_ro[1023:0];
   assign reg_rw[1023:0] = reg_bank_64_0_reg_rw;
   assign reset_0_1 = daq_spy_reset_0;
+  assign reset_0_2 = ps_reset;
   assign scl_n_0[0] = coldata_i2c_0_scl_n;
   assign scl_n_1[0] = coldata_i2c_dual1_scl_n_0;
   assign scl_n_2[0] = coldata_i2c_dual2_scl_n_0;
@@ -2238,6 +2252,18 @@ module design_1
         .S_AXI_wready(ps8_0_axi_periph_M14_AXI_WREADY),
         .S_AXI_wstrb(ps8_0_axi_periph_M14_AXI_WSTRB),
         .S_AXI_wvalid(ps8_0_axi_periph_M14_AXI_WVALID));
+  design_1_dyn_phase_adjust_0_0 dyn_phase_adjust_0
+       (.clk(pdts_endpoint_0_clk),
+        .psen(dyn_phase_adjust_0_psen),
+        .psen_in(psen_in_0_1),
+        .psincdec(dyn_phase_adjust_0_psincdec));
+  design_1_clk_wiz_0_0 i2c_clk_phase
+       (.clk_in1(pdts_endpoint_0_clk),
+        .locked(i2c_clk_phase_locked),
+        .psclk(pdts_endpoint_0_clk),
+        .psen(dyn_phase_adjust_0_psen),
+        .psincdec(dyn_phase_adjust_0_psincdec),
+        .reset(reset_0_2));
   design_1_ps8_0_axi_periph_0 ps8_0_axi_periph
        (.ACLK(zynq_ultra_ps_e_0_pl_clk0),
         .ARESETN(rst_ps8_0_99M_interconnect_aresetn),

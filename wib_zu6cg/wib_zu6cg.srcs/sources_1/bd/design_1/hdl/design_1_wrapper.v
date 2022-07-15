@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Thu Jun 23 16:37:43 2022
+//Date        : Fri Jul 15 03:15:41 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -42,6 +42,9 @@ module design_1_wrapper
     fastcommand_out_p_0,
     iic_rtl_0_scl_io,
     iic_rtl_0_sda_io,
+    ps_en_in,
+    ps_locked,
+    ps_reset,
     reg_ro,
     reg_rw,
     scl_n_0,
@@ -120,6 +123,9 @@ module design_1_wrapper
   output fastcommand_out_p_0;
   inout iic_rtl_0_scl_io;
   inout iic_rtl_0_sda_io;
+  input ps_en_in;
+  output ps_locked;
+  input ps_reset;
   input [1023:0]reg_ro;
   output [1023:0]reg_rw;
   output [0:0]scl_n_0;
@@ -205,6 +211,9 @@ module design_1_wrapper
   wire iic_rtl_0_sda_io;
   wire iic_rtl_0_sda_o;
   wire iic_rtl_0_sda_t;
+  wire ps_en_in;
+  wire ps_locked;
+  wire ps_reset;
   wire [1023:0]reg_ro;
   wire [1023:0]reg_rw;
   wire [0:0]scl_n_0;
@@ -289,6 +298,9 @@ module design_1_wrapper
         .iic_rtl_0_sda_i(iic_rtl_0_sda_i),
         .iic_rtl_0_sda_o(iic_rtl_0_sda_o),
         .iic_rtl_0_sda_t(iic_rtl_0_sda_t),
+        .ps_en_in(ps_en_in),
+        .ps_locked(ps_locked),
+        .ps_reset(ps_reset),
         .reg_ro(reg_ro),
         .reg_rw(reg_rw),
         .scl_n_0(scl_n_0),
