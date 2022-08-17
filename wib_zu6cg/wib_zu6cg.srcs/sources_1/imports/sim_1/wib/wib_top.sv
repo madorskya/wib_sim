@@ -554,33 +554,34 @@ module wib_top
     
     frame_builder fbld
     (
-        .deframed     (deframed),
-        .time8        (time8),
-        .time16       (time16),
-        .valid14      (valid14 ),
-        .valid12      (valid12 ),
-        .rxclk2x      (clk125),
-        .link_mask    (link_mask   ), // this input allows to disable some links in case they are broken
-        .daq_stream   (daq_stream  ), // data to felix
-        .daq_stream_k (daq_stream_k), // K symbol flags to felix
-        .daq_data_type(daq_data_type), // data type flags for felix
-        .daq_clk      (clk240_from_felix_gth), // replaced according to Adrian's FELIX branch
-        .ts_tstamp    (dts_time_delayed), // delayed time stamp matching data
-        .ts_clk       (clk62p5  ), // this is 62.5 M clock coming with time stamp
-        .reset        (fb_reset),
-        .fake_daq_stream (fake_daq_stream),
-        .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (~si5344_lol),
-        .link          (link    ),
-        .crate_id      (crate_id),
-        .det_id        (det_id  ),
+        .deframed             (deframed),
+        .time8                (time8),
+        .time16               (time16),
+        .valid14              (valid14 ),
+        .valid12              (valid12 ),
+        .rxclk2x              (clk125),
+        .link_mask            (link_mask   ),           // this input allows to disable some links in case they are broken
+        .daq_stream           (daq_stream  ),           // data to felix
+        .daq_stream_k         (daq_stream_k),           // K symbol flags to felix
+        .daq_data_type        (daq_data_type),          // data type flags for felix
+        .daq_clk              (clk240_from_felix_gth),  // replaced according to Adrian's FELIX branch
+        .ts_tstamp            (dts_time_delayed),       // delayed time stamp matching data
+        .ts_clk               (clk62p5  ),              // this is 62.5 M clock coming with time stamp
+        .reset                (fb_reset),
+        .fake_daq_stream      (fake_daq_stream),
+        .bp_crate_addr        (bp_crate_addr),
+        .bp_slot_addr         (bp_slot_addr & 4'b0111), // mask out unused high bit to make DAQ happy 
+        .si5344_lol           (~si5344_lol),
+        .link                 (link    ),
+        .crate_id             (crate_id),
+        .det_id               (det_id  ),
         .femb_pulser_in_frame (femb_pulser_in_frame),
-        .context_fld   (context_fld), 
-        .ready         (ready      ), 
-        .psr_cal       (psr_cal    ), 
-        .ws            (ws         ), 
-        .flex          (flex       )
+        .context_fld          (context_fld), 
+        .ready                (ready      ), 
+        .psr_cal              (psr_cal    ), 
+        .ws                   (ws         ), 
+        .flex                 (flex       )
+        
     );    
 
 
