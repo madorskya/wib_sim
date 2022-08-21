@@ -73,7 +73,11 @@ module bd_tux
     // i2c clock phase adjustment 
     input ps_reset,
     input ps_en_in,
-    output ps_locked
+    output ps_locked,
+    
+    inout       mon_adc_sck,
+    inout [3:0] mon_adc_sdo,
+    output      mon_adc_cs
 );
     
     design_1 design_1_i
@@ -170,7 +174,12 @@ module bd_tux
 
         .ps_reset  (ps_reset ),
         .ps_en_in  (ps_en_in ),
-        .ps_locked (ps_locked)
+        .ps_locked (ps_locked),
+        
+        .mon_adc_sck (mon_adc_sck),
+        .mon_adc_sdo (mon_adc_sdo),
+        .mon_adc_cs  (mon_adc_cs )
+        
     );
 
 endmodule

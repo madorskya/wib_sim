@@ -103,8 +103,11 @@ module wib_top
     
     input [3:0] bp_crate_addr,
     input [3:0] bp_slot_addr,
-    inout [7:0] bp_io
+    inout [7:0] bp_io,
     
+    inout       mon_adc_sck,
+    inout [3:0] mon_adc_sdo,
+    output      mon_adc_cs
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
@@ -487,7 +490,11 @@ module wib_top
         
         .ps_reset  (ps_reset ),
         .ps_en_in  (ps_en_in ),
-        .ps_locked (ps_locked)
+        .ps_locked (ps_locked),
+
+        .mon_adc_sck (mon_adc_sck),
+        .mon_adc_sdo (mon_adc_sdo),
+        .mon_adc_cs  (mon_adc_cs )
     );
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];

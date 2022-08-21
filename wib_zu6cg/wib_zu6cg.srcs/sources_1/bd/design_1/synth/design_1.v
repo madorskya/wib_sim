@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Fri Jul 15 03:15:40 2022
+//Date        : Sat Aug 20 16:51:31 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1316,7 +1316,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=80,numReposBlks=54,numNonXlnxBlks=6,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=81,numReposBlks=55,numNonXlnxBlks=6,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=4,da_bram_cntlr_cnt=2,da_clkrst_cnt=8,da_zynq_ultra_ps_e_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -1354,6 +1354,9 @@ module design_1
     iic_rtl_0_sda_i,
     iic_rtl_0_sda_o,
     iic_rtl_0_sda_t,
+    mon_adc_cs,
+    mon_adc_sck,
+    mon_adc_sdo,
     ps_en_in,
     ps_locked,
     ps_reset,
@@ -1439,6 +1442,9 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SDA_I" *) input iic_rtl_0_sda_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SDA_O" *) output iic_rtl_0_sda_o;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SDA_T" *) output iic_rtl_0_sda_t;
+  output mon_adc_cs;
+  inout mon_adc_sck;
+  inout [3:0]mon_adc_sdo;
   input ps_en_in;
   output ps_locked;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.PS_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.PS_RESET, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input ps_reset;
@@ -1489,6 +1495,8 @@ module design_1
   output [0:0]tx_dis;
   output txd;
 
+  wire Net;
+  wire [3:0]Net1;
   wire [39:0]S00_AXI_1_ARADDR;
   wire [2:0]S00_AXI_1_ARPROT;
   wire S00_AXI_1_ARREADY;
@@ -1805,6 +1813,7 @@ module design_1
   wire sda_in_p_0_1_1;
   wire sda_in_p_0_2_1;
   wire sfp_los_0_1;
+  wire spi_mux_0_adc_cs;
   wire timing_module_clk_125;
   wire timing_module_cmd_bit_act;
   wire timing_module_cmd_bit_adc_reset;
@@ -1856,6 +1865,18 @@ module design_1
   wire zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WREADY;
   wire [15:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WSTRB;
   wire zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_WVALID;
+  wire zynq_ultra_ps_e_0_SPI_0_IO0_I;
+  wire zynq_ultra_ps_e_0_SPI_0_IO0_O;
+  wire zynq_ultra_ps_e_0_SPI_0_IO0_T;
+  wire zynq_ultra_ps_e_0_SPI_0_IO1_I;
+  wire zynq_ultra_ps_e_0_SPI_0_IO1_O;
+  wire zynq_ultra_ps_e_0_SPI_0_IO1_T;
+  wire zynq_ultra_ps_e_0_SPI_0_SCK_I;
+  wire zynq_ultra_ps_e_0_SPI_0_SCK_O;
+  wire zynq_ultra_ps_e_0_SPI_0_SCK_T;
+  wire zynq_ultra_ps_e_0_SPI_0_SS1_O;
+  wire zynq_ultra_ps_e_0_SPI_0_SS_O;
+  wire zynq_ultra_ps_e_0_SPI_0_SS_T;
   wire zynq_ultra_ps_e_0_pl_clk0;
   wire zynq_ultra_ps_e_0_pl_resetn0;
 
@@ -1893,6 +1914,7 @@ module design_1
   assign iic_rtl_0_scl_t = axi_iic_0_IIC_SCL_T;
   assign iic_rtl_0_sda_o = axi_iic_0_IIC_SDA_O;
   assign iic_rtl_0_sda_t = axi_iic_0_IIC_SDA_T;
+  assign mon_adc_cs = spi_mux_0_adc_cs;
   assign ps_locked = i2c_clk_phase_locked;
   assign psen_in_0_1 = ps_en_in;
   assign rec_clk_locked_0_1 = ts_rec_clk_locked;
@@ -2656,6 +2678,22 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .slowest_sync_clk(zynq_ultra_ps_e_0_pl_clk0));
+  design_1_spi_mux_0_0 spi_mux_0
+       (.adc_cs(spi_mux_0_adc_cs),
+        .adc_sck(mon_adc_sck),
+        .adc_sdo(mon_adc_sdo[3:0]),
+        .io0_i(zynq_ultra_ps_e_0_SPI_0_IO0_I),
+        .io0_o(zynq_ultra_ps_e_0_SPI_0_IO0_O),
+        .io0_t(zynq_ultra_ps_e_0_SPI_0_IO0_T),
+        .io1_i(zynq_ultra_ps_e_0_SPI_0_IO1_I),
+        .io1_o(zynq_ultra_ps_e_0_SPI_0_IO1_O),
+        .io1_t(zynq_ultra_ps_e_0_SPI_0_IO1_T),
+        .sck_i(zynq_ultra_ps_e_0_SPI_0_SCK_I),
+        .sck_o(zynq_ultra_ps_e_0_SPI_0_SCK_O),
+        .sck_t(zynq_ultra_ps_e_0_SPI_0_SCK_T),
+        .ss1_o(zynq_ultra_ps_e_0_SPI_0_SS1_O),
+        .ss_o(zynq_ultra_ps_e_0_SPI_0_SS_O),
+        .ss_t(zynq_ultra_ps_e_0_SPI_0_SS_T));
   timing_module_imp_2RES6C timing_module
        (.Din(reg_bank_64_0_reg_rw),
         .bp_io_o(bp_io_o),
@@ -2702,7 +2740,20 @@ module design_1
         .tx_dis_0(timing_module_tx_dis_0),
         .txd_0(timing_module_txd_0));
   design_1_zynq_ultra_ps_e_0_0 zynq_ultra_ps_e_0
-       (.maxigp0_araddr(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR),
+       (.emio_spi0_m_i(zynq_ultra_ps_e_0_SPI_0_IO1_I),
+        .emio_spi0_m_o(zynq_ultra_ps_e_0_SPI_0_IO0_O),
+        .emio_spi0_mo_t(zynq_ultra_ps_e_0_SPI_0_IO0_T),
+        .emio_spi0_s_i(zynq_ultra_ps_e_0_SPI_0_IO0_I),
+        .emio_spi0_s_o(zynq_ultra_ps_e_0_SPI_0_IO1_O),
+        .emio_spi0_sclk_i(zynq_ultra_ps_e_0_SPI_0_SCK_I),
+        .emio_spi0_sclk_o(zynq_ultra_ps_e_0_SPI_0_SCK_O),
+        .emio_spi0_sclk_t(zynq_ultra_ps_e_0_SPI_0_SCK_T),
+        .emio_spi0_so_t(zynq_ultra_ps_e_0_SPI_0_IO1_T),
+        .emio_spi0_ss1_o_n(zynq_ultra_ps_e_0_SPI_0_SS1_O),
+        .emio_spi0_ss_i_n(1'b1),
+        .emio_spi0_ss_n_t(zynq_ultra_ps_e_0_SPI_0_SS_T),
+        .emio_spi0_ss_o_n(zynq_ultra_ps_e_0_SPI_0_SS_O),
+        .maxigp0_araddr(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR),
         .maxigp0_arburst(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST),
         .maxigp0_arcache(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARCACHE),
         .maxigp0_arid(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARID),

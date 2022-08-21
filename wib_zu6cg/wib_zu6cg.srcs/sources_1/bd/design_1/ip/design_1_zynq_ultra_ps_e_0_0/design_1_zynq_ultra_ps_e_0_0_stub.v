@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Feb  4 22:13:56 2021
-// Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
-// Command     : write_verilog -force -mode synth_stub -rename_top design_1_zynq_ultra_ps_e_0_0 -prefix
-//               design_1_zynq_ultra_ps_e_0_0_ design_1_zynq_ultra_ps_e_0_0_stub.v
+// Date        : Sat Aug 20 16:53:16 2022
+// Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
+// Command     : write_verilog -force -mode synth_stub
+//               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_stub.v
 // Design      : design_1_zynq_ultra_ps_e_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu6cg-ffvb1156-1-e
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1.1_AR73018" *)
+(* X_CORE_INFO = "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1" *)
 module design_1_zynq_ultra_ps_e_0_0(maxihpm0_fpd_aclk, maxigp0_awid, 
   maxigp0_awaddr, maxigp0_awlen, maxigp0_awsize, maxigp0_awburst, maxigp0_awlock, 
   maxigp0_awcache, maxigp0_awprot, maxigp0_awvalid, maxigp0_awuser, maxigp0_awready, 
@@ -22,8 +22,11 @@ module design_1_zynq_ultra_ps_e_0_0(maxihpm0_fpd_aclk, maxigp0_awid,
   maxigp0_arsize, maxigp0_arburst, maxigp0_arlock, maxigp0_arcache, maxigp0_arprot, 
   maxigp0_arvalid, maxigp0_aruser, maxigp0_arready, maxigp0_rid, maxigp0_rdata, 
   maxigp0_rresp, maxigp0_rlast, maxigp0_rvalid, maxigp0_rready, maxigp0_awqos, maxigp0_arqos, 
-  emio_enet0_enet_tsu_timer_cnt, pl_ps_irq0, pl_resetn0, pl_clk0)
-/* synthesis syn_black_box black_box_pad_pin="maxihpm0_fpd_aclk,maxigp0_awid[15:0],maxigp0_awaddr[39:0],maxigp0_awlen[7:0],maxigp0_awsize[2:0],maxigp0_awburst[1:0],maxigp0_awlock,maxigp0_awcache[3:0],maxigp0_awprot[2:0],maxigp0_awvalid,maxigp0_awuser[15:0],maxigp0_awready,maxigp0_wdata[127:0],maxigp0_wstrb[15:0],maxigp0_wlast,maxigp0_wvalid,maxigp0_wready,maxigp0_bid[15:0],maxigp0_bresp[1:0],maxigp0_bvalid,maxigp0_bready,maxigp0_arid[15:0],maxigp0_araddr[39:0],maxigp0_arlen[7:0],maxigp0_arsize[2:0],maxigp0_arburst[1:0],maxigp0_arlock,maxigp0_arcache[3:0],maxigp0_arprot[2:0],maxigp0_arvalid,maxigp0_aruser[15:0],maxigp0_arready,maxigp0_rid[15:0],maxigp0_rdata[127:0],maxigp0_rresp[1:0],maxigp0_rlast,maxigp0_rvalid,maxigp0_rready,maxigp0_awqos[3:0],maxigp0_arqos[3:0],emio_enet0_enet_tsu_timer_cnt[93:0],pl_ps_irq0[0:0],pl_resetn0,pl_clk0" */;
+  emio_enet0_enet_tsu_timer_cnt, emio_spi0_sclk_i, emio_spi0_sclk_o, emio_spi0_sclk_t, 
+  emio_spi0_m_i, emio_spi0_m_o, emio_spi0_mo_t, emio_spi0_s_i, emio_spi0_s_o, emio_spi0_so_t, 
+  emio_spi0_ss_i_n, emio_spi0_ss_o_n, emio_spi0_ss1_o_n, emio_spi0_ss_n_t, pl_ps_irq0, 
+  pl_resetn0, pl_clk0)
+/* synthesis syn_black_box black_box_pad_pin="maxihpm0_fpd_aclk,maxigp0_awid[15:0],maxigp0_awaddr[39:0],maxigp0_awlen[7:0],maxigp0_awsize[2:0],maxigp0_awburst[1:0],maxigp0_awlock,maxigp0_awcache[3:0],maxigp0_awprot[2:0],maxigp0_awvalid,maxigp0_awuser[15:0],maxigp0_awready,maxigp0_wdata[127:0],maxigp0_wstrb[15:0],maxigp0_wlast,maxigp0_wvalid,maxigp0_wready,maxigp0_bid[15:0],maxigp0_bresp[1:0],maxigp0_bvalid,maxigp0_bready,maxigp0_arid[15:0],maxigp0_araddr[39:0],maxigp0_arlen[7:0],maxigp0_arsize[2:0],maxigp0_arburst[1:0],maxigp0_arlock,maxigp0_arcache[3:0],maxigp0_arprot[2:0],maxigp0_arvalid,maxigp0_aruser[15:0],maxigp0_arready,maxigp0_rid[15:0],maxigp0_rdata[127:0],maxigp0_rresp[1:0],maxigp0_rlast,maxigp0_rvalid,maxigp0_rready,maxigp0_awqos[3:0],maxigp0_arqos[3:0],emio_enet0_enet_tsu_timer_cnt[93:0],emio_spi0_sclk_i,emio_spi0_sclk_o,emio_spi0_sclk_t,emio_spi0_m_i,emio_spi0_m_o,emio_spi0_mo_t,emio_spi0_s_i,emio_spi0_s_o,emio_spi0_so_t,emio_spi0_ss_i_n,emio_spi0_ss_o_n,emio_spi0_ss1_o_n,emio_spi0_ss_n_t,pl_ps_irq0[0:0],pl_resetn0,pl_clk0" */;
   input maxihpm0_fpd_aclk;
   output [15:0]maxigp0_awid;
   output [39:0]maxigp0_awaddr;
@@ -65,6 +68,19 @@ module design_1_zynq_ultra_ps_e_0_0(maxihpm0_fpd_aclk, maxigp0_awid,
   output [3:0]maxigp0_awqos;
   output [3:0]maxigp0_arqos;
   output [93:0]emio_enet0_enet_tsu_timer_cnt;
+  input emio_spi0_sclk_i;
+  output emio_spi0_sclk_o;
+  output emio_spi0_sclk_t;
+  input emio_spi0_m_i;
+  output emio_spi0_m_o;
+  output emio_spi0_mo_t;
+  input emio_spi0_s_i;
+  output emio_spi0_s_o;
+  output emio_spi0_so_t;
+  input emio_spi0_ss_i_n;
+  output emio_spi0_ss_o_n;
+  output emio_spi0_ss1_o_n;
+  output emio_spi0_ss_n_t;
   input [0:0]pl_ps_irq0;
   output pl_resetn0;
   output pl_clk0;
