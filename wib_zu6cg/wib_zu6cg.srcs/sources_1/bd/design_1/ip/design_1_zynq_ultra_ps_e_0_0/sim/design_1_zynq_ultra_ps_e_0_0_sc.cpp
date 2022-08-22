@@ -95,7 +95,7 @@ design_1_zynq_ultra_ps_e_0_0_sc::design_1_zynq_ultra_ps_e_0_0_sc(const sc_core::
     model_param_props.addString("C_EN_FIFO_ENET2", "0");
     model_param_props.addString("C_EN_FIFO_ENET3", "0");
     model_param_props.addString("C_PL_CLK0_BUF", "TRUE");
-    model_param_props.addString("C_PL_CLK1_BUF", "FALSE");
+    model_param_props.addString("C_PL_CLK1_BUF", "TRUE");
     model_param_props.addString("C_PL_CLK2_BUF", "FALSE");
     model_param_props.addString("C_PL_CLK3_BUF", "FALSE");
 

@@ -75,9 +75,7 @@ module bd_tux
     input ps_en_in,
     output ps_locked,
     
-    inout       mon_adc_sck,
-    inout [3:0] mon_adc_sdo,
-    output      mon_adc_cs
+    output pl_clk_10M
 );
     
     design_1 design_1_i
@@ -176,9 +174,7 @@ module bd_tux
         .ps_en_in  (ps_en_in ),
         .ps_locked (ps_locked),
         
-        .mon_adc_sck (mon_adc_sck),
-        .mon_adc_sdo (mon_adc_sdo),
-        .mon_adc_cs  (mon_adc_cs )
+        .pl_clk_10M (pl_clk_10M)
         
     );
 

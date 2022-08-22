@@ -19,7 +19,8 @@ module coldata_deframer_single #(parameter NUM = 0)
     output reg [7:0] align8, // automatic calculated alignment delay
     input align_en, // enable alignment
 
-    output reg [1:0] crc_err,
+    output reg [1:0] crc_err_sticky, // sticky CRC error bits
+    input crc_err_reset, // reset of sticky CRC errors
     output [3:0] df_state_out
 );
 
@@ -73,6 +74,7 @@ module coldata_deframer_single #(parameter NUM = 0)
     
     reg valid14;
     reg valid12;
+    reg [1:0] crc_err;
     
     genvar gi;
     // deframe from parallel storage
@@ -215,6 +217,10 @@ module coldata_deframer_single #(parameter NUM = 0)
             end
             
         endcase
+        
+        crc_err_sticky |= crc_err;
+        if (crc_err_reset == 1'b1) crc_err_sticky = 2'b0;
+        
       end
     end
     

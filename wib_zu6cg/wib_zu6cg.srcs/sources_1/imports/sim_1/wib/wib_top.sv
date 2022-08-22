@@ -105,15 +105,27 @@ module wib_top
     input [3:0] bp_slot_addr,
     inout [7:0] bp_io,
     
-    inout       mon_adc_sck,
-    inout [3:0] mon_adc_sdo,
-    output      mon_adc_cs
+    // monitoring ADC
+    output      mon_adc_sck,
+    input [3:0] mon_adc_sdo,
+    output      mon_adc_cs,
+    
+    // front panel LEMO
+    output [1:0] lemo_io,
+    output [1:0] lemo_dir,
+    
+    // DAC source select for FEMBs [3:0]
+    output [3:0] dac_src_sel,
+    output mon_vs_pulse_sel, // monitor vs pulse select
+    output inj_cal_pulse // inject calibration pulse select
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
     assign femb_clk_sel = 1'b1; // select FPGA clk permanently
     assign femb_cmd_sel = 1'b0; // select FPGA command permanently
     assign si5344_oe = 1'b0;
+    assign lemo_dir = 2'b11; // bit 0 = output (10M clock), bit 1 = output, unused
+     
     wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
     
@@ -289,6 +301,11 @@ module wib_top
     wire ps_reset;
     wire ps_en_in;
     wire ps_locked;
+    wire mon_adc_start;
+    wire [15:0] mon_adc_val [3:0];
+    wire [1:0]  crc_err [15:0];
+    wire crc_err_reset;
+
     
     // config and status registers mapping
     
@@ -309,6 +326,8 @@ module wib_top
     assign ts_clk_sel       = `CONFIG_BITS(1,16, 1); // 0xA00C0004
     assign ps_reset         = `CONFIG_BITS(1,17, 1); // 0xA00C0004
     assign ps_en_in         = `CONFIG_BITS(1,18, 1); // 0xA00C0004
+    assign mon_adc_start    = `CONFIG_BITS(1,19, 1); // 0xA00C0004 // monitor ADC conversion start pulse
+    assign crc_err_reset    = `CONFIG_BITS(1,20, 1); // 0xA00C0004 // reset of sticky crc error flags
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
@@ -361,6 +380,10 @@ module wib_top
     assign felix_rx_reset                     = `CONFIG_BITS(14,  6, 1);
     assign tx8b10ben_in                       = `CONFIG_BITS(14,  8, 2);
     
+    assign dac_src_sel                        = `CONFIG_BITS(15,  0, 4); // 0xA00C003C
+    assign mon_vs_pulse_sel                   = `CONFIG_BITS(15,  4, 1); // 0xA00C003C
+    assign inj_cal_pulse                      = `CONFIG_BITS(15,  5, 1); // 0xA00C003C
+    
 
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
     assign `STATUS_BITS( 0, 2,  1) = ps_locked;
@@ -394,12 +417,20 @@ module wib_top
     assign `STATUS_BITS(11, 0, 32) = {align8[ 7], align8[ 6], align8[ 5], align8[ 4]}; // 0xA00C00AC
     assign `STATUS_BITS(12, 0, 32) = {align8[11], align8[10], align8[ 9], align8[ 8]}; // 0xA00C00B0
     assign `STATUS_BITS(13, 0, 32) = {align8[15], align8[14], align8[13], align8[12]}; // 0xA00C00B4
+
+    assign `STATUS_BITS(14, 0, 32) = {crc_err[15], crc_err[14], crc_err[13], crc_err[12], 
+                                      crc_err[11], crc_err[10], crc_err[9], crc_err[8], 
+                                      crc_err[7], crc_err[6], crc_err[5], crc_err[4], 
+                                      crc_err[3], crc_err[2], crc_err[1], crc_err[0]}; // 0xA00C00B4
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
 
-    assign `STATUS_BITS(16, 0, 1)      = gtwiz_reset_tx_done_out; // 0xA00C00C0
-    assign `STATUS_BITS(16, 4, 1)      = gtwiz_userclk_tx_active_out;
-    assign `STATUS_BITS(16, 8, 2)      = felix_powergood_out;
+    assign `STATUS_BITS(16, 0, 1)  = gtwiz_reset_tx_done_out; // 0xA00C00C0
+    assign `STATUS_BITS(16, 4, 1)  = gtwiz_userclk_tx_active_out;
+    assign `STATUS_BITS(16, 8, 2)  = felix_powergood_out;
+    
+    assign `STATUS_BITS(17, 0, 32) = {mon_adc_val[1], mon_adc_val[0]}; // 0xA00C00C4
+    assign `STATUS_BITS(18, 0, 32) = {mon_adc_val[3], mon_adc_val[2]}; // 0xA00C00C8
 
     wire sfp_dis;
     
@@ -491,10 +522,8 @@ module wib_top
         .ps_reset  (ps_reset ),
         .ps_en_in  (ps_en_in ),
         .ps_locked (ps_locked),
-
-        .mon_adc_sck (mon_adc_sck),
-        .mon_adc_sdo (mon_adc_sdo),
-        .mon_adc_cs  (mon_adc_cs )
+        
+        .pl_clk_10M (lemo_io[0])
     );
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];
@@ -507,7 +536,6 @@ module wib_top
     wire [15:0] time16 [15:0]; // [link] time stamps from each link, P3 format
     wire [15:0] valid14;
     wire [15:0] valid12;
-    wire [1:0]  crc_err [15:0];
     wire [63:0] dts_time_delayed; // delayed DTS stamp matching data
 
     assign coldata_clk40 = 8'h0; // COLDATA P3 don't need this clock anymore
@@ -540,22 +568,23 @@ module wib_top
     
     coldata_deframer coldata_df
     (
-        .clk62p5    (clk62p5           ), // system clock
-        .rx_data    (rx_data           ),
-        .rx_k       (rx_k              ),
-        .mmcm_reset (!reset_rx_done_out),
-        .deframed   (deframed),
-        .time8      (time8),
-        .time16     (time16),
-        .valid14    (valid14 ),
-        .valid12    (valid12 ),
-        .crc_err    (crc_err ),
-        .align8     (align8  ),
-        .align_en   (align_en),
-        .dts_time   (ts_tstamp), // original DTS stamp, in 62.5M domain
-        .dts_time_delayed (dts_time_delayed), // delayed DTS stamp matching data
-        .dts_time_delay   (dts_time_delay), // DTS stamp delay, must me longer than max cable delay
-        .rxclk2x    (clk125)
+        .clk62p5          (clk62p5           ), // system clock
+        .rx_data          (rx_data           ),
+        .rx_k             (rx_k              ),
+        .mmcm_reset       (!reset_rx_done_out),
+        .deframed         (deframed),
+        .time8            (time8),
+        .time16           (time16),
+        .valid14          (valid14 ),
+        .valid12          (valid12 ),
+        .crc_err          (crc_err ),
+        .align8           (align8  ),
+        .align_en         (align_en),
+        .crc_err_reset    (crc_err_reset),
+        .dts_time         (ts_tstamp),          // original DTS stamp, in 62.5M domain
+        .dts_time_delayed (dts_time_delayed),   // delayed DTS stamp matching data
+        .dts_time_delay   (dts_time_delay),     // DTS stamp delay, must me longer than max cable delay
+        .rxclk2x          (clk125)
     );
     
     
@@ -689,6 +718,17 @@ module wib_top
         
         .ADN2814_SCL (adn2814_scl),   
         .ADN2814_SDA (adn2814_sda) 
+    );
+
+    mon_adc_spi mon_adc
+    (
+        .adc_sck     (mon_adc_sck),
+        .adc_sdo     (mon_adc_sdo),
+        .adc_cs      (mon_adc_cs),
+        
+        .axi_clk     (axi_clk_out),   // system clock
+        .start       (mon_adc_start), // start pulse. Conversion starts at rising edge
+        .mon_adc_val (mon_adc_val)    // measured values
     );
 
     ila_1 ila_daq 

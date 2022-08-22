@@ -53,8 +53,8 @@
 (* X_CORE_INFO = "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "design_1_zynq_ultra_ps_e_0_0,zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,{}" *)
 (* CORE_GENERATION_INFO = "design_1_zynq_ultra_ps_e_0_0,zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=zynq_ultra_ps_e,x_ipVersion=3.3,x_ipCoreRevision=2,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_DP_USE_AUDIO=0,C_DP_USE_VIDEO=0,C_MAXIGP0_DATA_WIDTH=128,C_MAXIGP1_DATA_WIDTH=128,C_MAXIGP2_DATA_WIDTH=32,C_SAXIGP0_DATA_WIDTH=128,C_SAXIGP1_DATA_WIDTH=128,C_SAXIGP2_DATA_WIDTH=128,C_SAXIGP3_DATA_WIDTH=128,C_SAXIGP4_DATA_WIDTH=128,C_SAXIGP5_DATA_WIDTH=128,C_SAXIG\
-P6_DATA_WIDTH=128,C_USE_DIFF_RW_CLK_GP0=0,C_USE_DIFF_RW_CLK_GP1=0,C_USE_DIFF_RW_CLK_GP2=0,C_USE_DIFF_RW_CLK_GP3=0,C_USE_DIFF_RW_CLK_GP4=0,C_USE_DIFF_RW_CLK_GP5=0,C_USE_DIFF_RW_CLK_GP6=0,C_EN_FIFO_ENET0=0,C_EN_FIFO_ENET1=0,C_EN_FIFO_ENET2=0,C_EN_FIFO_ENET3=0,C_PL_CLK0_BUF=TRUE,C_PL_CLK1_BUF=FALSE,C_PL_CLK2_BUF=FALSE,C_PL_CLK3_BUF=FALSE,C_TRACE_PIPELINE_WIDTH=8,C_EN_EMIO_TRACE=0,C_TRACE_DATA_WIDTH=32,C_USE_DEBUG_TEST=0,C_SD0_INTERNAL_BUS_WIDTH=8,C_SD1_INTERNAL_BUS_WIDTH=4,C_NUM_F2P_0_INTR_INPUTS=1\
-,C_NUM_F2P_1_INTR_INPUTS=1,C_EMIO_GPIO_WIDTH=1,C_NUM_FABRIC_RESETS=1}" *)
+P6_DATA_WIDTH=128,C_USE_DIFF_RW_CLK_GP0=0,C_USE_DIFF_RW_CLK_GP1=0,C_USE_DIFF_RW_CLK_GP2=0,C_USE_DIFF_RW_CLK_GP3=0,C_USE_DIFF_RW_CLK_GP4=0,C_USE_DIFF_RW_CLK_GP5=0,C_USE_DIFF_RW_CLK_GP6=0,C_EN_FIFO_ENET0=0,C_EN_FIFO_ENET1=0,C_EN_FIFO_ENET2=0,C_EN_FIFO_ENET3=0,C_PL_CLK0_BUF=TRUE,C_PL_CLK1_BUF=TRUE,C_PL_CLK2_BUF=FALSE,C_PL_CLK3_BUF=FALSE,C_TRACE_PIPELINE_WIDTH=8,C_EN_EMIO_TRACE=0,C_TRACE_DATA_WIDTH=32,C_USE_DEBUG_TEST=0,C_SD0_INTERNAL_BUS_WIDTH=8,C_SD1_INTERNAL_BUS_WIDTH=4,C_NUM_F2P_0_INTR_INPUTS=1,\
+C_NUM_F2P_1_INTR_INPUTS=1,C_EMIO_GPIO_WIDTH=1,C_NUM_FABRIC_RESETS=1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_zynq_ultra_ps_e_0_0 (
   maxihpm0_fpd_aclk,
@@ -98,22 +98,10 @@ module design_1_zynq_ultra_ps_e_0_0 (
   maxigp0_awqos,
   maxigp0_arqos,
   emio_enet0_enet_tsu_timer_cnt,
-  emio_spi0_sclk_i,
-  emio_spi0_sclk_o,
-  emio_spi0_sclk_t,
-  emio_spi0_m_i,
-  emio_spi0_m_o,
-  emio_spi0_mo_t,
-  emio_spi0_s_i,
-  emio_spi0_s_o,
-  emio_spi0_so_t,
-  emio_spi0_ss_i_n,
-  emio_spi0_ss_o_n,
-  emio_spi0_ss1_o_n,
-  emio_spi0_ss_n_t,
   pl_ps_irq0,
   pl_resetn0,
-  pl_clk0
+  pl_clk0,
+  pl_clk1
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXI_HPM0_FPD_ACLK, ASSOCIATED_BUSIF M_AXI_HPM0_FPD, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *)
@@ -200,32 +188,6 @@ THREADS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, IN
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARQOS" *)
 output wire [3 : 0] maxigp0_arqos;
 output wire [93 : 0] emio_enet0_enet_tsu_timer_cnt;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SCK_I" *)
-input wire emio_spi0_sclk_i;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SCK_O" *)
-output wire emio_spi0_sclk_o;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SCK_T" *)
-output wire emio_spi0_sclk_t;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 IO1_I" *)
-input wire emio_spi0_m_i;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 IO0_O" *)
-output wire emio_spi0_m_o;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 IO0_T" *)
-output wire emio_spi0_mo_t;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 IO0_I" *)
-input wire emio_spi0_s_i;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 IO1_O" *)
-output wire emio_spi0_s_o;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 IO1_T" *)
-output wire emio_spi0_so_t;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SS_I" *)
-input wire emio_spi0_ss_i_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SS_O" *)
-output wire emio_spi0_ss_o_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SS1_O" *)
-output wire emio_spi0_ss1_o_n;
-(* X_INTERFACE_INFO = "xilinx.com:interface:spi:1.0 SPI_0 SS_T" *)
-output wire emio_spi0_ss_n_t;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_PS_IRQ0, SENSITIVITY LEVEL_HIGH, PortWidth 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 PL_PS_IRQ0 INTERRUPT" *)
 input wire [0 : 0] pl_ps_irq0;
@@ -235,6 +197,9 @@ output wire pl_resetn0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_CLK0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 PL_CLK0 CLK" *)
 output wire pl_clk0;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_CLK1, FREQ_HZ 10000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk1, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 PL_CLK1 CLK" *)
+output wire pl_clk1;
 
   zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e #(
     .C_DP_USE_AUDIO(0),
@@ -261,7 +226,7 @@ output wire pl_clk0;
     .C_EN_FIFO_ENET2("0"),
     .C_EN_FIFO_ENET3("0"),
     .C_PL_CLK0_BUF("TRUE"),
-    .C_PL_CLK1_BUF("FALSE"),
+    .C_PL_CLK1_BUF("TRUE"),
     .C_PL_CLK2_BUF("FALSE"),
     .C_PL_CLK3_BUF("FALSE"),
     .C_TRACE_PIPELINE_WIDTH(8),
@@ -1102,20 +1067,20 @@ output wire pl_clk0;
     .emio_sdio1_ledcontrol(),
     .emio_sdio1_buspower(),
     .emio_sdio1_bus_volt(),
-    .emio_spi0_sclk_i(emio_spi0_sclk_i),
-    .emio_spi0_sclk_o(emio_spi0_sclk_o),
-    .emio_spi0_sclk_t(emio_spi0_sclk_t),
-    .emio_spi0_m_i(emio_spi0_m_i),
-    .emio_spi0_m_o(emio_spi0_m_o),
-    .emio_spi0_mo_t(emio_spi0_mo_t),
-    .emio_spi0_s_i(emio_spi0_s_i),
-    .emio_spi0_s_o(emio_spi0_s_o),
-    .emio_spi0_so_t(emio_spi0_so_t),
-    .emio_spi0_ss_i_n(emio_spi0_ss_i_n),
-    .emio_spi0_ss_o_n(emio_spi0_ss_o_n),
-    .emio_spi0_ss1_o_n(emio_spi0_ss1_o_n),
+    .emio_spi0_sclk_i(1'B0),
+    .emio_spi0_sclk_o(),
+    .emio_spi0_sclk_t(),
+    .emio_spi0_m_i(1'B0),
+    .emio_spi0_m_o(),
+    .emio_spi0_mo_t(),
+    .emio_spi0_s_i(1'B0),
+    .emio_spi0_s_o(),
+    .emio_spi0_so_t(),
+    .emio_spi0_ss_i_n(1'B1),
+    .emio_spi0_ss_o_n(),
+    .emio_spi0_ss1_o_n(),
     .emio_spi0_ss2_o_n(),
-    .emio_spi0_ss_n_t(emio_spi0_ss_n_t),
+    .emio_spi0_ss_n_t(),
     .emio_spi1_sclk_i(1'B0),
     .emio_spi1_sclk_o(),
     .emio_spi1_sclk_t(),
@@ -1250,7 +1215,7 @@ output wire pl_clk0;
     .pmu_error_to_pl(),
     .pl_acpinact(1'B0),
     .pl_clk0(pl_clk0),
-    .pl_clk1(),
+    .pl_clk1(pl_clk1),
     .pl_clk2(),
     .pl_clk3(),
     .ps_pl_irq_can0(),

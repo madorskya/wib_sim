@@ -99,22 +99,10 @@ maxigp0_rready,
 maxigp0_awqos, 
 maxigp0_arqos, 
 emio_enet0_enet_tsu_timer_cnt, 
-emio_spi0_sclk_i, 
-emio_spi0_sclk_o, 
-emio_spi0_sclk_t, 
-emio_spi0_m_i, 
-emio_spi0_m_o, 
-emio_spi0_mo_t, 
-emio_spi0_s_i, 
-emio_spi0_s_o, 
-emio_spi0_so_t, 
-emio_spi0_ss_i_n, 
-emio_spi0_ss_o_n, 
-emio_spi0_ss1_o_n, 
-emio_spi0_ss_n_t, 
 pl_ps_irq0, 
 pl_resetn0, 
-pl_clk0 
+pl_clk0, 
+pl_clk1 
 );
 input maxihpm0_fpd_aclk;
 output [15 : 0] maxigp0_awid;
@@ -157,22 +145,10 @@ output maxigp0_rready;
 output [3 : 0] maxigp0_awqos;
 output [3 : 0] maxigp0_arqos;
 output [93 : 0] emio_enet0_enet_tsu_timer_cnt;
-input emio_spi0_sclk_i;
-output emio_spi0_sclk_o;
-output emio_spi0_sclk_t;
-input emio_spi0_m_i;
-output emio_spi0_m_o;
-output emio_spi0_mo_t;
-input emio_spi0_s_i;
-output emio_spi0_s_o;
-output emio_spi0_so_t;
-input emio_spi0_ss_i_n;
-output emio_spi0_ss_o_n;
-output emio_spi0_ss1_o_n;
-output emio_spi0_ss_n_t;
 input [0 : 0] pl_ps_irq0;
 output pl_resetn0;
 output pl_clk0;
+output pl_clk1;
 wire pl_clk_t[3:0] ;
 
 wire saxihpc0_fpd_rclk_temp;
@@ -193,7 +169,7 @@ wire saxi_lpd_wclk_temp;
 
 assign pl_clk0 = pl_clk_t[0] ;
 
- assign  pl_clk1 = 1'b0 ;
+ assign pl_clk1 = pl_clk_t[1] ;
 
  assign  pl_clk2 = 1'b0 ;
 
@@ -234,7 +210,7 @@ assign pl_clk0 = pl_clk_t[0] ;
     .C_S_AXI_GP5_DATA_WIDTH(128),
     .C_S_AXI_GP6_DATA_WIDTH(128),
     .C_FCLK_CLK0_FREQ(100.000000),
-    .C_FCLK_CLK1_FREQ(40.000000),
+    .C_FCLK_CLK1_FREQ(10.000000),
     .C_FCLK_CLK2_FREQ(100),
     .C_FCLK_CLK3_FREQ(100)
   ) inst (

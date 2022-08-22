@@ -137,15 +137,21 @@ set_property PACKAGE_PIN AN14 [get_ports {misc_io[15]}]
 
 #BANK  47 HD  3.3V
 
+# switches for DAC source select
+#FEMB0   U89  A20
+#FEMB1   U111 B21
+#FEMB2   U92  C21
+#FEMB3   U113 C22
 
+set_property PACKAGE_PIN A20 [get_ports dac_src_sel[0]]
+set_property PACKAGE_PIN B21 [get_ports dac_src_sel[1]]
+set_property PACKAGE_PIN C21 [get_ports dac_src_sel[2]]
+set_property PACKAGE_PIN C22 [get_ports dac_src_sel[3]]
+set_property IOSTANDARD LVCMOS33 [get_ports dac_src_sel[*]]
 
-set_property PACKAGE_PIN A20 [get_ports qsfp_sel]
 set_property PACKAGE_PIN B20 [get_ports qsfp_sda]
 set_property PACKAGE_PIN A22 [get_ports qsfp_scl]
 set_property PACKAGE_PIN A21 [get_ports qsfp_rst]
-set_property PACKAGE_PIN B21 [get_ports qsfp_mode]
-set_property PACKAGE_PIN C21 [get_ports qsfp_intn]
-set_property PACKAGE_PIN C22 [get_ports qsfp_prsn]
 set_property PACKAGE_PIN D21 [get_ports uart_nrst]
 set_property PACKAGE_PIN D20 [get_ports adn2814_lol]
 set_property PACKAGE_PIN E20 [get_ports adn2814_los]
@@ -236,8 +242,10 @@ set_property PACKAGE_PIN H14 [get_ports si5344_rst]
 set_property PACKAGE_PIN J14 [get_ports si5344_oe]
 set_property PACKAGE_PIN G14 [get_ports si5344_intr]
 
-#set_property PACKAGE_PIN G15 [get_ports
-#set_property PACKAGE_PIN G13 [get_ports
+#Switch for monitor vs pulse select     U90,U110,U112,U114  G15
+#Switch to inject calibration pulse     U91  G13
+set_property PACKAGE_PIN G15 [get_ports mon_vs_pulse_sel] 
+set_property PACKAGE_PIN G13 [get_ports inj_cal_pulse]
 
 set_property PACKAGE_PIN H13 [get_ports si5342_sda]
 set_property PACKAGE_PIN H12 [get_ports si5342_scl]
@@ -534,6 +542,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports pwr_good]
 set_property IOSTANDARD LVCMOS33 [get_ports ltc2977_sda]
 set_property IOSTANDARD LVCMOS33 [get_ports ltc2977_scl]
 
+set_property IOB TRUE [get_ports mon_adc_*]
 
 #BANK  50 HD   2.5V
 
@@ -547,8 +556,8 @@ set_property IOSTANDARD LVCMOS25 [get_ports si5344_rst]
 set_property IOSTANDARD LVCMOS25 [get_ports si5344_oe]
 set_property IOSTANDARD LVCMOS25 [get_ports si5344_intr]
 
-#set_property PACKAGE_PIN G15 [get_ports
-#set_property PACKAGE_PIN G13 [get_ports
+set_property IOSTANDARD LVCMOS25 [get_ports mon_vs_pulse_sel] 
+set_property IOSTANDARD LVCMOS25 [get_ports inj_cal_pulse]
 
 set_property IOSTANDARD LVCMOS25 [get_ports si5342_sda]
 set_property IOSTANDARD LVCMOS25 [get_ports si5342_scl]

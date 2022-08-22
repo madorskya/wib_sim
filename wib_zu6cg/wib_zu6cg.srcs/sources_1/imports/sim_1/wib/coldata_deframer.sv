@@ -13,6 +13,7 @@ module coldata_deframer
     output [1:0]  crc_err [15:0],
     output [7:0]  align8 [15:0],
     input align_en,
+    input crc_err_reset,
     
     input  [63:0] dts_time, // original DTS stamp, in 62.5M domain
     output [63:0] dts_time_delayed, // delayed DTS stamp matching data
@@ -31,25 +32,26 @@ module coldata_deframer
         begin
             coldata_deframer_single #(.NUM(gi)) df_s
             (
-                .rxclk2x    (rxclk2x      ),
-                .clk62p5    (clk62p5      ),
-                .rx_data    (rx_data  [gi]),
-                .rx_k       (rx_k     [gi]),
-                .rx_byte0   (rx_byte0 [gi]),
-                .rx_k0      (rx_k0    [gi]),
-                .deframed   (deframed [gi]),
-                .time8      (time8    [gi]),
-                .time16_a     (time16   [gi]),
-                .valid14_a    (valid14  [gi]),
-                .valid12_a    (valid12  [gi]),
+                .rxclk2x          (rxclk2x      ),
+                .clk62p5          (clk62p5      ),
+                .rx_data          (rx_data  [gi]),
+                .rx_k             (rx_k     [gi]),
+                .rx_byte0         (rx_byte0 [gi]),
+                .rx_k0            (rx_k0    [gi]),
+                .deframed         (deframed [gi]),
+                .time8            (time8    [gi]),
+                .time16_a         (time16   [gi]),
+                .valid14_a        (valid14  [gi]),
+                .valid12_a        (valid12  [gi]),
                 
                 .dts_time_delayed (dts_time_delayed[14:0]),
                 .ts_valid_del     (ts_valid_del),
                 .align8           (align8 [gi]     ),
                 .align_en         (align_en),
                 
-                .crc_err    (crc_err  [gi]),
-                .df_state_out (df_state_out[gi])
+                .crc_err_sticky   (crc_err  [gi]),
+                .crc_err_reset    (crc_err_reset),
+                .df_state_out     (df_state_out[gi])
             );
             
         end
