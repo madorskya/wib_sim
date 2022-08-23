@@ -17,15 +17,15 @@ addr+=(0xA00C0038     0xA0030000    0xA0030004        0xA00C0004         0xA00C0
 bnum+=(6              0             0                 14                 2                 16             8              3)
 mask+=(1              0x3f          0xffffffff        1                  1                 0x7fff         0xff           1)
 
-name+=(align0     align1     align2     align3    ) 
-addr+=(0xA00C00A8 0xA00C00AC 0xA00C00B0 0xA00C00B4)
-bnum+=(0          0          0          0         )
-mask+=(0xffffffff 0xffffffff 0xffffffff 0xffffffff)
+name+=(align0     align1     align2     align3     crc_err    mon_adc0   mon_adc1   mon_adc2   mon_adc3) 
+addr+=(0xA00C00A8 0xA00C00AC 0xA00C00B0 0xA00C00B4 0xA00C00B8 0xA00C00C4 0xA00C00C4 0xA00C00C8 0xA00C00C8)
+bnum+=(0          0          0          0          0          0          16         0          16)
+mask+=(0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffff     0xffff     0xffff     0xffff)
 
-name+=(cds_reset  cds_diff  ) 
-addr+=(0xA00C0004 0xA00C009C)
-bnum+=(15         0         )
-mask+=(1          0xffff    )
+name+=(cds_reset  cds_diff   mon_adc_start crc_err_reset dac_src_sel mon_vs_pulse_sel inj_cal_pulse) 
+addr+=(0xA00C0004 0xA00C009C 0xA00C0004    0xA00C0004    0xA00C003C  0xA00C003C       0xA00C003C)
+bnum+=(15         0          19            20            0           4                5)
+mask+=(1          0xffff     1             1             0xf         1                1)
 
 #syntax: devreg reg_name [wr_value]
 
