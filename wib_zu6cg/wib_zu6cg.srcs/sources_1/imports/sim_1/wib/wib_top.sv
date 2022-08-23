@@ -305,6 +305,7 @@ module wib_top
     wire [15:0] mon_adc_val [3:0];
     wire [1:0]  crc_err [15:0];
     wire crc_err_reset;
+    wire mon_adc_busy;
 
     
     // config and status registers mapping
@@ -393,7 +394,7 @@ module wib_top
 
     assign `STATUS_BITS( 3, 0, 8) = {bp_crate_addr, bp_slot_addr}; // 0xA00C008c 
 
-    assign `STATUS_BITS( 4,20,  8) = 8'hff;            // 0xA00C0090
+    assign `STATUS_BITS( 4,19,  1) = mon_adc_busy; // 0xA00C0090
     assign `STATUS_BITS( 4,18,  1) = adn2814_los;
     assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
     assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
@@ -728,7 +729,8 @@ module wib_top
         
         .axi_clk     (axi_clk_out),   // system clock
         .start       (mon_adc_start), // start pulse. Conversion starts at rising edge
-        .mon_adc_val (mon_adc_val)    // measured values
+        .mon_adc_val (mon_adc_val),    // measured values
+        .busy        (mon_adc_busy)
     );
 
     ila_1 ila_daq 

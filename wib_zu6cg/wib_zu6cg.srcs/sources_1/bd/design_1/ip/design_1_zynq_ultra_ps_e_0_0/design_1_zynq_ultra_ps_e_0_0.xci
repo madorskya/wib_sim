@@ -1476,7 +1476,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__AFI5_REF__ENABLE">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_CTRL__DIV2">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_CTRL__FBDIV">72</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_CTRL__FRACDATA">0.000000</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_CTRL__FRACDATA">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_CTRL__FRACFREQ">27.138</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_CTRL__SRCSEL">PSS_REF_CLK</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__APLL_FRAC_CFG__ENABLED">0</spirit:configurableElementValue>
@@ -1507,7 +1507,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPDMA_REF_CTRL__SRCSEL">APLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__DIV2">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FBDIV">63</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FRACDATA">0.000000</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FRACDATA">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__FRACFREQ">27.138</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_CTRL__SRCSEL">PSS_REF_CLK</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__DPLL_FRAC_CFG__ENABLED">0</spirit:configurableElementValue>
@@ -1560,7 +1560,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__TOPSW_MAIN_CTRL__SRCSEL">DPLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__DIV2">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__FBDIV">90</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__FRACDATA">0.000000</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__FRACDATA">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__FRACFREQ">27.138</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_CTRL__SRCSEL">PSS_REF_CLK</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRF_APB__VPLL_FRAC_CFG__ENABLED">0</spirit:configurableElementValue>
@@ -1645,7 +1645,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__I2C1_REF_CTRL__SRCSEL">IOPLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_CTRL__DIV2">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_CTRL__FBDIV">90</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_CTRL__FRACDATA">0.000000</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_CTRL__FRACDATA">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_CTRL__FRACFREQ">27.138</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_CTRL__SRCSEL">PSS_REF_CLK</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__IOPLL_FRAC_CFG__ENABLED">0</spirit:configurableElementValue>
@@ -1684,7 +1684,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR0">50</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR1">3</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL1_REF_CTRL__FREQMHZ">10</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL1_REF_CTRL__SRCSEL">RPLL</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL1_REF_CTRL__SRCSEL">IOPLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL2_REF_CTRL__ACT_FREQMHZ">100</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL2_REF_CTRL__DIVISOR0">4</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__PL2_REF_CTRL__DIVISOR1">1</spirit:configurableElementValue>
@@ -1702,7 +1702,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__QSPI_REF_CTRL__SRCSEL">IOPLL</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_CTRL__DIV2">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_CTRL__FBDIV">90</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_CTRL__FRACDATA">0.000000</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_CTRL__FRACDATA">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_CTRL__FRACFREQ">27.138</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_CTRL__SRCSEL">PSS_REF_CLK</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__CRL_APB__RPLL_FRAC_CFG__ENABLED">0</spirit:configurableElementValue>
@@ -2188,7 +2188,7 @@
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__OCM_BANK2__POWER__ON">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__OCM_BANK3__POWER__ON">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__OVERRIDE_HPX_QOS">0</spirit:configurableElementValue>
-        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__OVERRIDE__BASIC_CLOCK">0</spirit:configurableElementValue>
+        <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__OVERRIDE__BASIC_CLOCK">1</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__PCIE__ACS_VIOLAION">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__PCIE__ACS_VIOLATION">0</spirit:configurableElementValue>
         <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.PSU__PCIE__AER_CAPABILITY">0</spirit:configurableElementValue>
