@@ -125,6 +125,7 @@ module wib_top
     assign femb_cmd_sel = 1'b0; // select FPGA command permanently
     assign si5344_oe = 1'b0;
     assign lemo_dir = 2'b11; // bit 0 = output (10M clock), bit 1 = output, unused
+    assign lemo_io[1] = 1'b0; // ground unused LEMO output to prevent oscillations of the buffer
      
     wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
@@ -420,9 +421,9 @@ module wib_top
     assign `STATUS_BITS(13, 0, 32) = {align8[15], align8[14], align8[13], align8[12]}; // 0xA00C00B4
 
     assign `STATUS_BITS(14, 0, 32) = {crc_err[15], crc_err[14], crc_err[13], crc_err[12], 
-                                      crc_err[11], crc_err[10], crc_err[9], crc_err[8], 
-                                      crc_err[7], crc_err[6], crc_err[5], crc_err[4], 
-                                      crc_err[3], crc_err[2], crc_err[1], crc_err[0]}; // 0xA00C00B4
+                                      crc_err[11], crc_err[10], crc_err[9],  crc_err[8], 
+                                      crc_err[7],  crc_err[6],  crc_err[5],  crc_err[4], 
+                                      crc_err[3],  crc_err[2],  crc_err[1],  crc_err[0]}; // 0xA00C00B8
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
 
