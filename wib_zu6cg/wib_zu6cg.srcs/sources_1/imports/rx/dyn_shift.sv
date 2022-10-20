@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ps 
 
 // this module infers cascaded SRLC32E primitives
 // copied from XST manual, reworked a bit
