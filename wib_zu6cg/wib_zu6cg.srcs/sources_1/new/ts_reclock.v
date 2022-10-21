@@ -5,16 +5,15 @@ module ts_reclock
     input [3:0] stat_in,
     input rst_in,
     input rdy_in,
-    input [3:0] sync_in,
+    input [7:0] sync_in,
     input sync_stb_in,
     input sync_first_in,
     input [63:0] tstamp_in,
-//    input clk50,
     
     output [3:0] stat_out,
     output rst_out,
     output rdy_out,
-    output [3:0] sync_out,
+    output [7:0] sync_out,
     output sync_stb_out,
     output sync_first_out,
     output reg [63:0] tstamp_out,
@@ -32,6 +31,14 @@ module ts_reclock
     input [7:0] cmd_code_adc_reset,
     input [7:0] cmd_code_trigger  ,
 
+    input cmd_en_idle     ,
+    input cmd_en_edge     ,
+    input cmd_en_sync     ,
+    input cmd_en_act      ,
+    input cmd_en_reset    ,
+    input cmd_en_adc_reset,
+    input cmd_en_trigger  ,
+
     output reg cmd_bit_idle     ,
     output reg cmd_bit_edge     ,
     output reg cmd_bit_sync     ,
@@ -47,7 +54,7 @@ module ts_reclock
     input cmd_stamp_sync_en // enable issuing SYNC command on matching lower TLU stamp bits
 );
 
-    wire [75:0] din = 
+    wire [79:0] din = 
     {
         stat_in,
         rst_in,
@@ -58,7 +65,7 @@ module ts_reclock
         tstamp_in
     };
 
-    wire [75:0] dout;
+    wire [79:0] dout;
     wire [63:0] tstamp_int;
     assign 
     {
@@ -72,27 +79,11 @@ module ts_reclock
     } = dout;
 
     wire ts_valid_int = 1'b1;
-//    ts_reclock_fifo tsrf 
-//    ( 
-//        .rst         (fifo_rst),                  // input wire rst
-//        .wr_clk      (clk50),            // input wire wr_clk
-//        .rd_clk      (clk62p5),            // input wire rd_clk
-//        .din         (din),                  // input wire [75 : 0] din
-//        .wr_en       (1'b1),              // input wire wr_en
-//        .rd_en       (1'b1),              // input wire rd_en
-//        .dout        (dout),                // output wire [75 : 0] dout
-//        .full        (),                // output wire full
-//        .empty       (),              // output wire empty
-//        .valid       (ts_valid_int),
-//        .wr_rst_busy (),  // output wire wr_rst_busy
-//        .rd_rst_busy ()  // output wire rd_rst_busy
-//    );
-
     assign dout = din; // FIFO is removed for 62.5M migration
     
     assign fifo_valid = ts_valid_int;
     
-`define CMD_DECODE(c,b) if (c != 8'h0 && c[3:0] == sync_out) b = 1'b1
+`define CMD_DECODE(c,e,b) if (e == 1'h1 && c == sync_out) b = 1'b1
     
     reg [63:0] tstamp_fake = 64'h12340000_00000000;
     
@@ -113,13 +104,13 @@ module ts_reclock
         if (sync_stb_out == 1'b1 && sync_first_out == 1'b1) // stb && first
         begin
             // decode and flag
-            `CMD_DECODE(cmd_code_idle     , cmd_bit_idle     );
-            `CMD_DECODE(cmd_code_edge     , cmd_bit_edge     );
-            `CMD_DECODE(cmd_code_sync     , cmd_bit_sync     );
-            `CMD_DECODE(cmd_code_act      , cmd_bit_act      );
-            `CMD_DECODE(cmd_code_reset    , cmd_bit_reset    );
-            `CMD_DECODE(cmd_code_adc_reset, cmd_bit_adc_reset);
-            `CMD_DECODE(cmd_code_trigger  , cmd_bit_trigger  );
+            `CMD_DECODE(cmd_code_idle     , cmd_en_idle     , cmd_bit_idle     );
+            `CMD_DECODE(cmd_code_edge     , cmd_en_edge     , cmd_bit_edge     );
+            `CMD_DECODE(cmd_code_sync     , cmd_en_sync     , cmd_bit_sync     );
+            `CMD_DECODE(cmd_code_act      , cmd_en_act      , cmd_bit_act      );
+            `CMD_DECODE(cmd_code_reset    , cmd_en_reset    , cmd_bit_reset    );
+            `CMD_DECODE(cmd_code_adc_reset, cmd_en_adc_reset, cmd_bit_adc_reset);
+            `CMD_DECODE(cmd_code_trigger  , cmd_en_trigger  , cmd_bit_trigger  );
         end
 
         //decode time stamp valid

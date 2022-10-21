@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
 -- Date        : Mon Dec  6 10:42:07 2021
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_coldata_fast_cmd_0_0 -prefix
+--               design_1_coldata_fast_cmd_0_0_ design_1_coldata_fast_cmd_0_0_sim_netlist.vhdl
 -- Design      : design_1_coldata_fast_cmd_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -45,8 +45,6 @@ entity design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI : entity is "coldata_fast_cmd_v1_0_S00_AXI";
 end design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI;
 
 architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0_S00_AXI is
@@ -5733,8 +5731,6 @@ entity design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 : entity is "coldata_fast_cmd_v1_0";
 end design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0;
 
 architecture STRUCTURE of design_1_coldata_fast_cmd_0_0_coldata_fast_cmd_v1_0 is

@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb  4 22:14:39 2021
--- Host        : endcap-tf1.phys.ufl.edu running 64-bit CentOS Linux release 7.8.2003 (Core)
+-- Date        : Fri Oct 21 11:48:47 2022
+-- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top design_1_axi_bram_ctrl_0_1 -prefix
 --               design_1_axi_bram_ctrl_0_1_ design_1_axi_bram_ctrl_0_0_sim_netlist.vhdl
 -- Design      : design_1_axi_bram_ctrl_0_0
@@ -8756,7 +8756,7 @@ entity design_1_axi_bram_ctrl_0_1 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_axi_bram_ctrl_0_1 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of design_1_axi_bram_ctrl_0_1 : entity is "axi_bram_ctrl,Vivado 2020.1.1_AR73018";
+  attribute x_core_info of design_1_axi_bram_ctrl_0_1 : entity is "axi_bram_ctrl,Vivado 2020.1";
 end design_1_axi_bram_ctrl_0_1;
 
 architecture STRUCTURE of design_1_axi_bram_ctrl_0_1 is

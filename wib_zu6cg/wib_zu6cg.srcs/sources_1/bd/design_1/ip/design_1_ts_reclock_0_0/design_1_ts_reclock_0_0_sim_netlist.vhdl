@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu May 26 22:32:01 2022
+-- Date        : Fri Oct 21 11:48:38 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.vhdl
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_ts_reclock_0_0/design_1_ts_reclock_0_0_sim_netlist.vhdl
 -- Design      : design_1_ts_reclock_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,22 +25,29 @@ entity design_1_ts_reclock_0_0_ts_reclock is
     cmd_bit_adc_reset : out STD_LOGIC;
     cmd_bit_trigger : out STD_LOGIC;
     cmd_bit_sync : out STD_LOGIC;
+    cmd_en_sync : in STD_LOGIC;
     sync_first_in : in STD_LOGIC;
     sync_stb_in : in STD_LOGIC;
+    fake_time_stamp_init : in STD_LOGIC_VECTOR ( 63 downto 0 );
     clk62p5 : in STD_LOGIC;
     fake_time_stamp_en : in STD_LOGIC;
-    cmd_code_edge : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    sync_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    cmd_stamp_sync_en : in STD_LOGIC;
+    cmd_en_edge : in STD_LOGIC;
+    sync_in : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    cmd_en_idle : in STD_LOGIC;
+    cmd_en_act : in STD_LOGIC;
+    cmd_en_reset : in STD_LOGIC;
+    cmd_en_adc_reset : in STD_LOGIC;
+    cmd_en_trigger : in STD_LOGIC;
     cmd_stamp_sync : in STD_LOGIC_VECTOR ( 14 downto 0 );
     tstamp_in : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    cmd_stamp_sync_en : in STD_LOGIC;
     cmd_code_idle : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    cmd_code_edge : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_sync : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_act : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_adc_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    cmd_code_trigger : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    fake_time_stamp_init : in STD_LOGIC_VECTOR ( 63 downto 0 )
+    cmd_code_trigger : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of design_1_ts_reclock_0_0_ts_reclock : entity is "ts_reclock";
@@ -48,25 +55,25 @@ end design_1_ts_reclock_0_0_ts_reclock;
 
 architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal cmd_bit_act0 : STD_LOGIC;
-  signal cmd_bit_act16_in : STD_LOGIC;
   signal cmd_bit_act_i_2_n_0 : STD_LOGIC;
+  signal cmd_bit_act_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_act_i_4_n_0 : STD_LOGIC;
   signal cmd_bit_adc_reset0 : STD_LOGIC;
-  signal cmd_bit_adc_reset14_in : STD_LOGIC;
   signal cmd_bit_adc_reset_i_2_n_0 : STD_LOGIC;
+  signal cmd_bit_adc_reset_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_adc_reset_i_4_n_0 : STD_LOGIC;
   signal cmd_bit_edge_i_1_n_0 : STD_LOGIC;
   signal cmd_bit_edge_i_2_n_0 : STD_LOGIC;
   signal cmd_bit_edge_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_edge_i_4_n_0 : STD_LOGIC;
   signal cmd_bit_idle0 : STD_LOGIC;
-  signal cmd_bit_idle111_in : STD_LOGIC;
   signal cmd_bit_idle_i_1_n_0 : STD_LOGIC;
   signal cmd_bit_idle_i_3_n_0 : STD_LOGIC;
+  signal cmd_bit_idle_i_4_n_0 : STD_LOGIC;
   signal cmd_bit_idle_i_5_n_0 : STD_LOGIC;
   signal cmd_bit_reset0 : STD_LOGIC;
-  signal cmd_bit_reset15_in : STD_LOGIC;
   signal cmd_bit_reset_i_2_n_0 : STD_LOGIC;
+  signal cmd_bit_reset_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_reset_i_4_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_10_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_11_n_0 : STD_LOGIC;
@@ -79,6 +86,7 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal cmd_bit_sync_i_18_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_19_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_1_n_0 : STD_LOGIC;
+  signal cmd_bit_sync_i_20_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_2_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_4_n_0 : STD_LOGIC;
@@ -88,12 +96,14 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal cmd_bit_sync_i_8_n_0 : STD_LOGIC;
   signal cmd_bit_sync_i_9_n_0 : STD_LOGIC;
   signal cmd_bit_trigger0 : STD_LOGIC;
-  signal cmd_bit_trigger13_in : STD_LOGIC;
   signal cmd_bit_trigger_i_2_n_0 : STD_LOGIC;
+  signal cmd_bit_trigger_i_3_n_0 : STD_LOGIC;
   signal cmd_bit_trigger_i_4_n_0 : STD_LOGIC;
   signal fts_en : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal p_0_in : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal ts_valid0 : STD_LOGIC;
+  signal ts_valid_i_2_n_0 : STD_LOGIC;
+  signal ts_valid_i_3_n_0 : STD_LOGIC;
   signal tstamp_fake : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal tstamp_fake0 : STD_LOGIC_VECTOR ( 63 downto 1 );
   signal \tstamp_fake0_carry__0_n_0\ : STD_LOGIC;
@@ -225,15 +235,18 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   signal \NLW_tstamp_fake0_carry__6_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 downto 6 );
   signal \NLW_tstamp_fake0_carry__6_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 7 to 7 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_10 : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_11 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_12 : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_13 : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_14 : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_15 : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_7 : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_8 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of cmd_bit_sync_i_9 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_10 : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_11 : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_12 : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_13 : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_14 : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_15 : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_16 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_17 : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_18 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_19 : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_20 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of cmd_bit_sync_i_9 : label is "soft_lutpair8";
   attribute ADDER_THRESHOLD : integer;
   attribute ADDER_THRESHOLD of tstamp_fake0_carry : label is 35;
   attribute ADDER_THRESHOLD of \tstamp_fake0_carry__0\ : label is 35;
@@ -243,117 +256,117 @@ architecture STRUCTURE of design_1_ts_reclock_0_0_ts_reclock is
   attribute ADDER_THRESHOLD of \tstamp_fake0_carry__4\ : label is 35;
   attribute ADDER_THRESHOLD of \tstamp_fake0_carry__5\ : label is 35;
   attribute ADDER_THRESHOLD of \tstamp_fake0_carry__6\ : label is 35;
-  attribute SOFT_HLUTNM of \tstamp_fake[0]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \tstamp_out[0]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \tstamp_out[10]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \tstamp_out[11]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \tstamp_out[12]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \tstamp_out[13]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \tstamp_out[14]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \tstamp_out[15]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \tstamp_out[16]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \tstamp_out[17]_i_1\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \tstamp_out[18]_i_1\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \tstamp_out[19]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \tstamp_out[1]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \tstamp_out[20]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \tstamp_out[21]_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \tstamp_out[22]_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \tstamp_out[23]_i_1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \tstamp_out[24]_i_1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \tstamp_out[25]_i_1\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \tstamp_out[26]_i_1\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \tstamp_out[27]_i_1\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \tstamp_out[28]_i_1\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \tstamp_out[29]_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \tstamp_out[2]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \tstamp_out[30]_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \tstamp_out[31]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \tstamp_out[32]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \tstamp_out[33]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \tstamp_out[34]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \tstamp_out[35]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \tstamp_out[36]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \tstamp_fake[0]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \tstamp_out[0]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \tstamp_out[10]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \tstamp_out[11]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \tstamp_out[12]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \tstamp_out[13]_i_1\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \tstamp_out[14]_i_1\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \tstamp_out[15]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \tstamp_out[16]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \tstamp_out[17]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \tstamp_out[18]_i_1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \tstamp_out[19]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \tstamp_out[1]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \tstamp_out[20]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \tstamp_out[21]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \tstamp_out[22]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \tstamp_out[23]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \tstamp_out[24]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \tstamp_out[25]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \tstamp_out[26]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \tstamp_out[27]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \tstamp_out[28]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \tstamp_out[29]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \tstamp_out[2]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \tstamp_out[30]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \tstamp_out[31]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \tstamp_out[32]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \tstamp_out[33]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \tstamp_out[34]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \tstamp_out[35]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \tstamp_out[36]_i_1\ : label is "soft_lutpair24";
   attribute SOFT_HLUTNM of \tstamp_out[37]_i_1\ : label is "soft_lutpair25";
   attribute SOFT_HLUTNM of \tstamp_out[38]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \tstamp_out[39]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \tstamp_out[3]_i_1\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \tstamp_out[40]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \tstamp_out[41]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \tstamp_out[42]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \tstamp_out[43]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \tstamp_out[44]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \tstamp_out[45]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \tstamp_out[46]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \tstamp_out[47]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \tstamp_out[48]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \tstamp_out[49]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \tstamp_out[4]_i_1\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \tstamp_out[50]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \tstamp_out[51]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \tstamp_out[52]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \tstamp_out[53]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \tstamp_out[54]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \tstamp_out[55]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \tstamp_out[56]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \tstamp_out[57]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \tstamp_out[58]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \tstamp_out[59]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \tstamp_out[5]_i_1\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \tstamp_out[60]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \tstamp_out[61]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \tstamp_out[62]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \tstamp_out[63]_i_1\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \tstamp_out[6]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \tstamp_out[7]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \tstamp_out[8]_i_1\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \tstamp_out[9]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \tstamp_out[39]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \tstamp_out[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \tstamp_out[40]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \tstamp_out[41]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \tstamp_out[42]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \tstamp_out[43]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \tstamp_out[44]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \tstamp_out[45]_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \tstamp_out[46]_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \tstamp_out[47]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \tstamp_out[48]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \tstamp_out[49]_i_1\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \tstamp_out[4]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \tstamp_out[50]_i_1\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \tstamp_out[51]_i_1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \tstamp_out[52]_i_1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \tstamp_out[53]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \tstamp_out[54]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \tstamp_out[55]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \tstamp_out[56]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \tstamp_out[57]_i_1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \tstamp_out[58]_i_1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \tstamp_out[59]_i_1\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \tstamp_out[5]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \tstamp_out[60]_i_1\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \tstamp_out[61]_i_1\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \tstamp_out[62]_i_1\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \tstamp_out[6]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \tstamp_out[7]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \tstamp_out[8]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \tstamp_out[9]_i_1\ : label is "soft_lutpair7";
 begin
-cmd_bit_act_i_1: unisim.vcomponents.LUT6
+cmd_bit_act_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"8200008200000000"
+      INIT => X"0080"
     )
         port map (
-      I0 => cmd_bit_act_i_2_n_0,
-      I1 => sync_in(2),
-      I2 => cmd_code_act(2),
-      I3 => cmd_code_act(3),
-      I4 => sync_in(3),
-      I5 => cmd_bit_act16_in,
+      I0 => cmd_en_act,
+      I1 => cmd_bit_act_i_2_n_0,
+      I2 => cmd_bit_act_i_3_n_0,
+      I3 => cmd_bit_act_i_4_n_0,
       O => cmd_bit_act0
     );
-cmd_bit_act_i_2: unisim.vcomponents.LUT4
+cmd_bit_act_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_act(0),
       I1 => sync_in(0),
-      I2 => cmd_code_act(1),
-      I3 => sync_in(1),
+      I2 => sync_in(2),
+      I3 => cmd_code_act(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_act(1),
       O => cmd_bit_act_i_2_n_0
     );
-cmd_bit_act_i_3: unisim.vcomponents.LUT5
+cmd_bit_act_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFE"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_act(3),
-      I1 => cmd_code_act(2),
-      I2 => cmd_code_act(1),
-      I3 => cmd_code_act(0),
-      I4 => cmd_bit_act_i_4_n_0,
-      O => cmd_bit_act16_in
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_act(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_act(4),
+      O => cmd_bit_act_i_3_n_0
     );
 cmd_bit_act_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFE"
+      INIT => X"6FF6"
     )
         port map (
-      I0 => cmd_code_act(4),
-      I1 => cmd_code_act(5),
+      I0 => cmd_code_act(6),
+      I1 => sync_in(6),
       I2 => cmd_code_act(7),
-      I3 => cmd_code_act(6),
+      I3 => sync_in(7),
       O => cmd_bit_act_i_4_n_0
     );
 cmd_bit_act_reg: unisim.vcomponents.FDRE
@@ -364,51 +377,52 @@ cmd_bit_act_reg: unisim.vcomponents.FDRE
       Q => cmd_bit_act,
       R => cmd_bit_idle_i_1_n_0
     );
-cmd_bit_adc_reset_i_1: unisim.vcomponents.LUT6
+cmd_bit_adc_reset_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"8200008200000000"
+      INIT => X"0080"
     )
         port map (
-      I0 => cmd_bit_adc_reset_i_2_n_0,
-      I1 => sync_in(2),
-      I2 => cmd_code_adc_reset(2),
-      I3 => cmd_code_adc_reset(3),
-      I4 => sync_in(3),
-      I5 => cmd_bit_adc_reset14_in,
+      I0 => cmd_en_adc_reset,
+      I1 => cmd_bit_adc_reset_i_2_n_0,
+      I2 => cmd_bit_adc_reset_i_3_n_0,
+      I3 => cmd_bit_adc_reset_i_4_n_0,
       O => cmd_bit_adc_reset0
     );
-cmd_bit_adc_reset_i_2: unisim.vcomponents.LUT4
+cmd_bit_adc_reset_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_adc_reset(0),
       I1 => sync_in(0),
-      I2 => cmd_code_adc_reset(1),
-      I3 => sync_in(1),
+      I2 => sync_in(2),
+      I3 => cmd_code_adc_reset(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_adc_reset(1),
       O => cmd_bit_adc_reset_i_2_n_0
     );
-cmd_bit_adc_reset_i_3: unisim.vcomponents.LUT5
+cmd_bit_adc_reset_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFE"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_adc_reset(3),
-      I1 => cmd_code_adc_reset(2),
-      I2 => cmd_code_adc_reset(1),
-      I3 => cmd_code_adc_reset(0),
-      I4 => cmd_bit_adc_reset_i_4_n_0,
-      O => cmd_bit_adc_reset14_in
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_adc_reset(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_adc_reset(4),
+      O => cmd_bit_adc_reset_i_3_n_0
     );
 cmd_bit_adc_reset_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFE"
+      INIT => X"6FF6"
     )
         port map (
-      I0 => cmd_code_adc_reset(4),
-      I1 => cmd_code_adc_reset(5),
+      I0 => cmd_code_adc_reset(6),
+      I1 => sync_in(6),
       I2 => cmd_code_adc_reset(7),
-      I3 => cmd_code_adc_reset(6),
+      I3 => sync_in(7),
       O => cmd_bit_adc_reset_i_4_n_0
     );
 cmd_bit_adc_reset_reg: unisim.vcomponents.FDRE
@@ -421,50 +435,52 @@ cmd_bit_adc_reset_reg: unisim.vcomponents.FDRE
     );
 cmd_bit_edge_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0900090009000000"
+      INIT => X"0800000000000000"
     )
         port map (
-      I0 => cmd_code_edge(1),
-      I1 => sync_in(1),
-      I2 => cmd_bit_idle_i_1_n_0,
-      I3 => cmd_bit_edge_i_2_n_0,
-      I4 => cmd_bit_edge_i_3_n_0,
-      I5 => cmd_bit_edge_i_4_n_0,
+      I0 => sync_first_in,
+      I1 => sync_stb_in,
+      I2 => cmd_bit_edge_i_2_n_0,
+      I3 => cmd_bit_edge_i_3_n_0,
+      I4 => cmd_bit_edge_i_4_n_0,
+      I5 => cmd_en_edge,
       O => cmd_bit_edge_i_1_n_0
     );
-cmd_bit_edge_i_2: unisim.vcomponents.LUT6
+cmd_bit_edge_i_2: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"6FF6"
+    )
+        port map (
+      I0 => cmd_code_edge(6),
+      I1 => sync_in(6),
+      I2 => cmd_code_edge(7),
+      I3 => sync_in(7),
+      O => cmd_bit_edge_i_2_n_0
+    );
+cmd_bit_edge_i_3: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => sync_in(0),
-      I1 => cmd_code_edge(0),
-      I2 => sync_in(3),
-      I3 => cmd_code_edge(3),
-      I4 => cmd_code_edge(2),
-      I5 => sync_in(2),
-      O => cmd_bit_edge_i_2_n_0
-    );
-cmd_bit_edge_i_3: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => cmd_code_edge(4),
-      I1 => cmd_code_edge(5),
-      I2 => cmd_code_edge(7),
-      I3 => cmd_code_edge(6),
+      I0 => cmd_code_edge(3),
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_edge(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_edge(4),
       O => cmd_bit_edge_i_3_n_0
     );
-cmd_bit_edge_i_4: unisim.vcomponents.LUT4
+cmd_bit_edge_i_4: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFE"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_edge(0),
-      I1 => cmd_code_edge(1),
-      I2 => cmd_code_edge(2),
-      I3 => cmd_code_edge(3),
+      I1 => sync_in(0),
+      I2 => sync_in(2),
+      I3 => cmd_code_edge(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_edge(1),
       O => cmd_bit_edge_i_4_n_0
     );
 cmd_bit_edge_reg: unisim.vcomponents.FDRE
@@ -480,55 +496,56 @@ cmd_bit_idle_i_1: unisim.vcomponents.LUT2
       INIT => X"7"
     )
         port map (
-      I0 => sync_stb_in,
-      I1 => sync_first_in,
+      I0 => sync_first_in,
+      I1 => sync_stb_in,
       O => cmd_bit_idle_i_1_n_0
     );
-cmd_bit_idle_i_2: unisim.vcomponents.LUT6
+cmd_bit_idle_i_2: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"8200008200000000"
+      INIT => X"0080"
     )
         port map (
-      I0 => cmd_bit_idle_i_3_n_0,
-      I1 => sync_in(2),
-      I2 => cmd_code_idle(2),
-      I3 => cmd_code_idle(3),
-      I4 => sync_in(3),
-      I5 => cmd_bit_idle111_in,
+      I0 => cmd_en_idle,
+      I1 => cmd_bit_idle_i_3_n_0,
+      I2 => cmd_bit_idle_i_4_n_0,
+      I3 => cmd_bit_idle_i_5_n_0,
       O => cmd_bit_idle0
     );
-cmd_bit_idle_i_3: unisim.vcomponents.LUT4
+cmd_bit_idle_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_idle(0),
       I1 => sync_in(0),
-      I2 => cmd_code_idle(1),
-      I3 => sync_in(1),
+      I2 => sync_in(2),
+      I3 => cmd_code_idle(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_idle(1),
       O => cmd_bit_idle_i_3_n_0
     );
-cmd_bit_idle_i_4: unisim.vcomponents.LUT5
+cmd_bit_idle_i_4: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFE"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_idle(3),
-      I1 => cmd_code_idle(2),
-      I2 => cmd_code_idle(1),
-      I3 => cmd_code_idle(0),
-      I4 => cmd_bit_idle_i_5_n_0,
-      O => cmd_bit_idle111_in
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_idle(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_idle(4),
+      O => cmd_bit_idle_i_4_n_0
     );
 cmd_bit_idle_i_5: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFE"
+      INIT => X"6FF6"
     )
         port map (
-      I0 => cmd_code_idle(4),
-      I1 => cmd_code_idle(5),
+      I0 => cmd_code_idle(6),
+      I1 => sync_in(6),
       I2 => cmd_code_idle(7),
-      I3 => cmd_code_idle(6),
+      I3 => sync_in(7),
       O => cmd_bit_idle_i_5_n_0
     );
 cmd_bit_idle_reg: unisim.vcomponents.FDRE
@@ -539,51 +556,52 @@ cmd_bit_idle_reg: unisim.vcomponents.FDRE
       Q => cmd_bit_idle,
       R => cmd_bit_idle_i_1_n_0
     );
-cmd_bit_reset_i_1: unisim.vcomponents.LUT6
+cmd_bit_reset_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"8200008200000000"
+      INIT => X"0080"
     )
         port map (
-      I0 => cmd_bit_reset_i_2_n_0,
-      I1 => sync_in(2),
-      I2 => cmd_code_reset(2),
-      I3 => cmd_code_reset(3),
-      I4 => sync_in(3),
-      I5 => cmd_bit_reset15_in,
+      I0 => cmd_en_reset,
+      I1 => cmd_bit_reset_i_2_n_0,
+      I2 => cmd_bit_reset_i_3_n_0,
+      I3 => cmd_bit_reset_i_4_n_0,
       O => cmd_bit_reset0
     );
-cmd_bit_reset_i_2: unisim.vcomponents.LUT4
+cmd_bit_reset_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_reset(0),
       I1 => sync_in(0),
-      I2 => cmd_code_reset(1),
-      I3 => sync_in(1),
+      I2 => sync_in(2),
+      I3 => cmd_code_reset(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_reset(1),
       O => cmd_bit_reset_i_2_n_0
     );
-cmd_bit_reset_i_3: unisim.vcomponents.LUT5
+cmd_bit_reset_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFE"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_reset(3),
-      I1 => cmd_code_reset(2),
-      I2 => cmd_code_reset(1),
-      I3 => cmd_code_reset(0),
-      I4 => cmd_bit_reset_i_4_n_0,
-      O => cmd_bit_reset15_in
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_reset(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_reset(4),
+      O => cmd_bit_reset_i_3_n_0
     );
 cmd_bit_reset_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFE"
+      INIT => X"6FF6"
     )
         port map (
-      I0 => cmd_code_reset(4),
-      I1 => cmd_code_reset(5),
+      I0 => cmd_code_reset(6),
+      I1 => sync_in(6),
       I2 => cmd_code_reset(7),
-      I3 => cmd_code_reset(6),
+      I3 => sync_in(7),
       O => cmd_bit_reset_i_4_n_0
     );
 cmd_bit_reset_reg: unisim.vcomponents.FDRE
@@ -596,31 +614,31 @@ cmd_bit_reset_reg: unisim.vcomponents.FDRE
     );
 cmd_bit_sync_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFF00000002"
+      INIT => X"AAAAAAAAAAAAAEAA"
     )
         port map (
       I0 => cmd_bit_sync_i_2_n_0,
-      I1 => cmd_bit_sync_i_3_n_0,
+      I1 => cmd_stamp_sync_en,
       I2 => cmd_bit_edge_i_1_n_0,
-      I3 => cmd_bit_sync_i_4_n_0,
-      I4 => cmd_bit_sync_i_5_n_0,
-      I5 => cmd_bit_sync_i_6_n_0,
+      I3 => cmd_bit_sync_i_3_n_0,
+      I4 => cmd_bit_sync_i_4_n_0,
+      I5 => cmd_bit_sync_i_5_n_0,
       O => cmd_bit_sync_i_1_n_0
     );
 cmd_bit_sync_i_10: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
-      I0 => cmd_stamp_sync(10),
-      I1 => tstamp_in(10),
+      I0 => cmd_stamp_sync(11),
+      I1 => tstamp_in(11),
       I2 => fts_en(2),
-      I3 => tstamp_fake(10),
+      I3 => tstamp_fake(11),
       O => cmd_bit_sync_i_10_n_0
     );
 cmd_bit_sync_i_11: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
       I0 => cmd_stamp_sync(9),
@@ -631,18 +649,18 @@ cmd_bit_sync_i_11: unisim.vcomponents.LUT4
     );
 cmd_bit_sync_i_12: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
-      I0 => cmd_stamp_sync(11),
-      I1 => tstamp_in(11),
+      I0 => cmd_stamp_sync(13),
+      I1 => tstamp_in(13),
       I2 => fts_en(2),
-      I3 => tstamp_fake(11),
+      I3 => tstamp_fake(13),
       O => cmd_bit_sync_i_12_n_0
     );
 cmd_bit_sync_i_13: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
       I0 => cmd_stamp_sync(14),
@@ -653,166 +671,179 @@ cmd_bit_sync_i_13: unisim.vcomponents.LUT4
     );
 cmd_bit_sync_i_14: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"56A6"
-    )
-        port map (
-      I0 => cmd_stamp_sync(6),
-      I1 => tstamp_in(6),
-      I2 => fts_en(2),
-      I3 => tstamp_fake(6),
-      O => cmd_bit_sync_i_14_n_0
-    );
-cmd_bit_sync_i_15: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"56A6"
-    )
-        port map (
-      I0 => cmd_stamp_sync(7),
-      I1 => tstamp_in(7),
-      I2 => fts_en(2),
-      I3 => tstamp_fake(7),
-      O => cmd_bit_sync_i_15_n_0
-    );
-cmd_bit_sync_i_16: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => cmd_code_sync(0),
-      I1 => cmd_code_sync(1),
-      I2 => cmd_code_sync(2),
-      I3 => cmd_code_sync(3),
-      O => cmd_bit_sync_i_16_n_0
-    );
-cmd_bit_sync_i_17: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => cmd_code_sync(4),
-      I1 => cmd_code_sync(5),
-      I2 => cmd_code_sync(7),
-      I3 => cmd_code_sync(6),
-      O => cmd_bit_sync_i_17_n_0
-    );
-cmd_bit_sync_i_18: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9009"
-    )
-        port map (
-      I0 => sync_in(2),
-      I1 => cmd_code_sync(2),
-      I2 => cmd_code_sync(3),
-      I3 => sync_in(3),
-      O => cmd_bit_sync_i_18_n_0
-    );
-cmd_bit_sync_i_19: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9009"
-    )
-        port map (
-      I0 => cmd_code_sync(0),
-      I1 => sync_in(0),
-      I2 => cmd_code_sync(1),
-      I3 => sync_in(1),
-      O => cmd_bit_sync_i_19_n_0
-    );
-cmd_bit_sync_i_2: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"90090000"
-    )
-        port map (
-      I0 => cmd_stamp_sync(0),
-      I1 => \tstamp_out[0]_i_1_n_0\,
-      I2 => cmd_stamp_sync(2),
-      I3 => \tstamp_out[2]_i_1_n_0\,
-      I4 => cmd_bit_sync_i_7_n_0,
-      O => cmd_bit_sync_i_2_n_0
-    );
-cmd_bit_sync_i_3: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFFFFFFFE"
-    )
-        port map (
-      I0 => cmd_bit_sync_i_8_n_0,
-      I1 => cmd_bit_sync_i_9_n_0,
-      I2 => cmd_bit_sync_i_10_n_0,
-      I3 => cmd_bit_sync_i_11_n_0,
-      I4 => cmd_bit_sync_i_12_n_0,
-      I5 => cmd_bit_sync_i_13_n_0,
-      O => cmd_bit_sync_i_3_n_0
-    );
-cmd_bit_sync_i_4: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"47B8FFFFFFFF47B8"
-    )
-        port map (
-      I0 => tstamp_fake(8),
-      I1 => fts_en(2),
-      I2 => tstamp_in(8),
-      I3 => cmd_stamp_sync(8),
-      I4 => \tstamp_out[5]_i_1_n_0\,
-      I5 => cmd_stamp_sync(5),
-      O => cmd_bit_sync_i_4_n_0
-    );
-cmd_bit_sync_i_5: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFFFF6FF6"
-    )
-        port map (
-      I0 => cmd_stamp_sync(3),
-      I1 => \tstamp_out[3]_i_1_n_0\,
-      I2 => cmd_stamp_sync(4),
-      I3 => \tstamp_out[4]_i_1_n_0\,
-      I4 => cmd_bit_sync_i_14_n_0,
-      I5 => cmd_bit_sync_i_15_n_0,
-      O => cmd_bit_sync_i_5_n_0
-    );
-cmd_bit_sync_i_6: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"E000000000000000"
-    )
-        port map (
-      I0 => cmd_bit_sync_i_16_n_0,
-      I1 => cmd_bit_sync_i_17_n_0,
-      I2 => cmd_bit_sync_i_18_n_0,
-      I3 => cmd_bit_sync_i_19_n_0,
-      I4 => sync_first_in,
-      I5 => sync_stb_in,
-      O => cmd_bit_sync_i_6_n_0
-    );
-cmd_bit_sync_i_7: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8470000"
-    )
-        port map (
-      I0 => tstamp_fake(1),
-      I1 => fts_en(2),
-      I2 => tstamp_in(1),
-      I3 => cmd_stamp_sync(1),
-      I4 => cmd_stamp_sync_en,
-      O => cmd_bit_sync_i_7_n_0
-    );
-cmd_bit_sync_i_8: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"56A6"
-    )
-        port map (
-      I0 => cmd_stamp_sync(13),
-      I1 => tstamp_in(13),
-      I2 => fts_en(2),
-      I3 => tstamp_fake(13),
-      O => cmd_bit_sync_i_8_n_0
-    );
-cmd_bit_sync_i_9: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"56A6"
+      INIT => X"A959"
     )
         port map (
       I0 => cmd_stamp_sync(12),
       I1 => tstamp_in(12),
       I2 => fts_en(2),
       I3 => tstamp_fake(12),
+      O => cmd_bit_sync_i_14_n_0
+    );
+cmd_bit_sync_i_15: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(4),
+      I1 => tstamp_in(4),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(4),
+      O => cmd_bit_sync_i_15_n_0
+    );
+cmd_bit_sync_i_16: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(5),
+      I1 => tstamp_in(5),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(5),
+      O => cmd_bit_sync_i_16_n_0
+    );
+cmd_bit_sync_i_17: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(3),
+      I1 => tstamp_in(3),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(3),
+      O => cmd_bit_sync_i_17_n_0
+    );
+cmd_bit_sync_i_18: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(7),
+      I1 => tstamp_in(7),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(7),
+      O => cmd_bit_sync_i_18_n_0
+    );
+cmd_bit_sync_i_19: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(8),
+      I1 => tstamp_in(8),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(8),
+      O => cmd_bit_sync_i_19_n_0
+    );
+cmd_bit_sync_i_2: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"4000000000000000"
+    )
+        port map (
+      I0 => cmd_bit_sync_i_6_n_0,
+      I1 => cmd_bit_sync_i_7_n_0,
+      I2 => cmd_bit_sync_i_8_n_0,
+      I3 => cmd_en_sync,
+      I4 => sync_first_in,
+      I5 => sync_stb_in,
+      O => cmd_bit_sync_i_2_n_0
+    );
+cmd_bit_sync_i_20: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(6),
+      I1 => tstamp_in(6),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(6),
+      O => cmd_bit_sync_i_20_n_0
+    );
+cmd_bit_sync_i_3: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"9009000000009009"
+    )
+        port map (
+      I0 => \tstamp_out[0]_i_1_n_0\,
+      I1 => cmd_stamp_sync(0),
+      I2 => cmd_stamp_sync(2),
+      I3 => \tstamp_out[2]_i_1_n_0\,
+      I4 => cmd_stamp_sync(1),
+      I5 => \tstamp_out[1]_i_1_n_0\,
+      O => cmd_bit_sync_i_3_n_0
+    );
+cmd_bit_sync_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7FFFFFFFFFFFFFFF"
+    )
+        port map (
+      I0 => cmd_bit_sync_i_9_n_0,
+      I1 => cmd_bit_sync_i_10_n_0,
+      I2 => cmd_bit_sync_i_11_n_0,
+      I3 => cmd_bit_sync_i_12_n_0,
+      I4 => cmd_bit_sync_i_13_n_0,
+      I5 => cmd_bit_sync_i_14_n_0,
+      O => cmd_bit_sync_i_4_n_0
+    );
+cmd_bit_sync_i_5: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7FFFFFFFFFFFFFFF"
+    )
+        port map (
+      I0 => cmd_bit_sync_i_15_n_0,
+      I1 => cmd_bit_sync_i_16_n_0,
+      I2 => cmd_bit_sync_i_17_n_0,
+      I3 => cmd_bit_sync_i_18_n_0,
+      I4 => cmd_bit_sync_i_19_n_0,
+      I5 => cmd_bit_sync_i_20_n_0,
+      O => cmd_bit_sync_i_5_n_0
+    );
+cmd_bit_sync_i_6: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"6FF6"
+    )
+        port map (
+      I0 => cmd_code_sync(6),
+      I1 => sync_in(6),
+      I2 => cmd_code_sync(7),
+      I3 => sync_in(7),
+      O => cmd_bit_sync_i_6_n_0
+    );
+cmd_bit_sync_i_7: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"9009000000009009"
+    )
+        port map (
+      I0 => cmd_code_sync(3),
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_sync(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_sync(4),
+      O => cmd_bit_sync_i_7_n_0
+    );
+cmd_bit_sync_i_8: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"9009000000009009"
+    )
+        port map (
+      I0 => cmd_code_sync(0),
+      I1 => sync_in(0),
+      I2 => sync_in(2),
+      I3 => cmd_code_sync(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_sync(1),
+      O => cmd_bit_sync_i_8_n_0
+    );
+cmd_bit_sync_i_9: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A959"
+    )
+        port map (
+      I0 => cmd_stamp_sync(10),
+      I1 => tstamp_in(10),
+      I2 => fts_en(2),
+      I3 => tstamp_fake(10),
       O => cmd_bit_sync_i_9_n_0
     );
 cmd_bit_sync_reg: unisim.vcomponents.FDRE
@@ -823,51 +854,52 @@ cmd_bit_sync_reg: unisim.vcomponents.FDRE
       Q => cmd_bit_sync,
       R => '0'
     );
-cmd_bit_trigger_i_1: unisim.vcomponents.LUT6
+cmd_bit_trigger_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"8200008200000000"
+      INIT => X"0080"
     )
         port map (
-      I0 => cmd_bit_trigger_i_2_n_0,
-      I1 => sync_in(2),
-      I2 => cmd_code_trigger(2),
-      I3 => cmd_code_trigger(3),
-      I4 => sync_in(3),
-      I5 => cmd_bit_trigger13_in,
+      I0 => cmd_en_trigger,
+      I1 => cmd_bit_trigger_i_2_n_0,
+      I2 => cmd_bit_trigger_i_3_n_0,
+      I3 => cmd_bit_trigger_i_4_n_0,
       O => cmd_bit_trigger0
     );
-cmd_bit_trigger_i_2: unisim.vcomponents.LUT4
+cmd_bit_trigger_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"9009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_trigger(0),
       I1 => sync_in(0),
-      I2 => cmd_code_trigger(1),
-      I3 => sync_in(1),
+      I2 => sync_in(2),
+      I3 => cmd_code_trigger(2),
+      I4 => sync_in(1),
+      I5 => cmd_code_trigger(1),
       O => cmd_bit_trigger_i_2_n_0
     );
-cmd_bit_trigger_i_3: unisim.vcomponents.LUT5
+cmd_bit_trigger_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFE"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => cmd_code_trigger(3),
-      I1 => cmd_code_trigger(2),
-      I2 => cmd_code_trigger(1),
-      I3 => cmd_code_trigger(0),
-      I4 => cmd_bit_trigger_i_4_n_0,
-      O => cmd_bit_trigger13_in
+      I1 => sync_in(3),
+      I2 => sync_in(5),
+      I3 => cmd_code_trigger(5),
+      I4 => sync_in(4),
+      I5 => cmd_code_trigger(4),
+      O => cmd_bit_trigger_i_3_n_0
     );
 cmd_bit_trigger_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFE"
+      INIT => X"6FF6"
     )
         port map (
-      I0 => cmd_code_trigger(4),
-      I1 => cmd_code_trigger(5),
+      I0 => cmd_code_trigger(6),
+      I1 => sync_in(6),
       I2 => cmd_code_trigger(7),
-      I3 => cmd_code_trigger(6),
+      I3 => sync_in(7),
       O => cmd_bit_trigger_i_4_n_0
     );
 cmd_bit_trigger_reg: unisim.vcomponents.FDRE
@@ -904,16 +936,36 @@ cmd_bit_trigger_reg: unisim.vcomponents.FDRE
     );
 ts_valid_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0001000000000000"
+      INIT => X"0000000000000002"
+    )
+        port map (
+      I0 => ts_valid_i_2_n_0,
+      I1 => ts_valid_i_3_n_0,
+      I2 => sync_in(7),
+      I3 => sync_in(6),
+      I4 => sync_in(4),
+      I5 => sync_in(5),
+      O => ts_valid0
+    );
+ts_valid_i_2: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"8"
+    )
+        port map (
+      I0 => sync_stb_in,
+      I1 => sync_first_in,
+      O => ts_valid_i_2_n_0
+    );
+ts_valid_i_3: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
     )
         port map (
       I0 => sync_in(2),
       I1 => sync_in(3),
       I2 => sync_in(0),
       I3 => sync_in(1),
-      I4 => sync_first_in,
-      I5 => sync_stb_in,
-      O => ts_valid0
+      O => ts_valid_i_3_n_0
     );
 ts_valid_reg: unisim.vcomponents.FDRE
      port map (
@@ -1054,705 +1106,705 @@ tstamp_fake0_carry: unisim.vcomponents.CARRY8
     );
 \tstamp_fake[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"08FB"
+      INIT => X"20FD"
     )
         port map (
-      I0 => fake_time_stamp_init(0),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(0),
       I3 => tstamp_fake(0),
       O => p_0_in(0)
     );
 \tstamp_fake[10]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(10),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(10),
       I3 => tstamp_fake0(10),
       O => p_0_in(10)
     );
 \tstamp_fake[11]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(11),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(11),
       I3 => tstamp_fake0(11),
       O => p_0_in(11)
     );
 \tstamp_fake[12]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(12),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(12),
       I3 => tstamp_fake0(12),
       O => p_0_in(12)
     );
 \tstamp_fake[13]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(13),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(13),
       I3 => tstamp_fake0(13),
       O => p_0_in(13)
     );
 \tstamp_fake[14]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(14),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(14),
       I3 => tstamp_fake0(14),
       O => p_0_in(14)
     );
 \tstamp_fake[15]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(15),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(15),
       I3 => tstamp_fake0(15),
       O => p_0_in(15)
     );
 \tstamp_fake[16]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(16),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(16),
       I3 => tstamp_fake0(16),
       O => p_0_in(16)
     );
 \tstamp_fake[17]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(17),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(17),
       I3 => tstamp_fake0(17),
       O => p_0_in(17)
     );
 \tstamp_fake[18]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(18),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(18),
       I3 => tstamp_fake0(18),
       O => p_0_in(18)
     );
 \tstamp_fake[19]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(19),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(19),
       I3 => tstamp_fake0(19),
       O => p_0_in(19)
     );
 \tstamp_fake[1]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(1),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(1),
       I3 => tstamp_fake0(1),
       O => p_0_in(1)
     );
 \tstamp_fake[20]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(20),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(20),
       I3 => tstamp_fake0(20),
       O => p_0_in(20)
     );
 \tstamp_fake[21]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(21),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(21),
       I3 => tstamp_fake0(21),
       O => p_0_in(21)
     );
 \tstamp_fake[22]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(22),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(22),
       I3 => tstamp_fake0(22),
       O => p_0_in(22)
     );
 \tstamp_fake[23]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(23),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(23),
       I3 => tstamp_fake0(23),
       O => p_0_in(23)
     );
 \tstamp_fake[24]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(24),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(24),
       I3 => tstamp_fake0(24),
       O => p_0_in(24)
     );
 \tstamp_fake[25]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(25),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(25),
       I3 => tstamp_fake0(25),
       O => p_0_in(25)
     );
 \tstamp_fake[26]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(26),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(26),
       I3 => tstamp_fake0(26),
       O => p_0_in(26)
     );
 \tstamp_fake[27]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(27),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(27),
       I3 => tstamp_fake0(27),
       O => p_0_in(27)
     );
 \tstamp_fake[28]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(28),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(28),
       I3 => tstamp_fake0(28),
       O => p_0_in(28)
     );
 \tstamp_fake[29]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(29),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(29),
       I3 => tstamp_fake0(29),
       O => p_0_in(29)
     );
 \tstamp_fake[2]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(2),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(2),
       I3 => tstamp_fake0(2),
       O => p_0_in(2)
     );
 \tstamp_fake[30]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(30),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(30),
       I3 => tstamp_fake0(30),
       O => p_0_in(30)
     );
 \tstamp_fake[31]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(31),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(31),
       I3 => tstamp_fake0(31),
       O => p_0_in(31)
     );
 \tstamp_fake[32]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(32),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(32),
       I3 => tstamp_fake0(32),
       O => p_0_in(32)
     );
 \tstamp_fake[33]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(33),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(33),
       I3 => tstamp_fake0(33),
       O => p_0_in(33)
     );
 \tstamp_fake[34]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(34),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(34),
       I3 => tstamp_fake0(34),
       O => p_0_in(34)
     );
 \tstamp_fake[35]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(35),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(35),
       I3 => tstamp_fake0(35),
       O => p_0_in(35)
     );
 \tstamp_fake[36]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(36),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(36),
       I3 => tstamp_fake0(36),
       O => p_0_in(36)
     );
 \tstamp_fake[37]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(37),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(37),
       I3 => tstamp_fake0(37),
       O => p_0_in(37)
     );
 \tstamp_fake[38]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(38),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(38),
       I3 => tstamp_fake0(38),
       O => p_0_in(38)
     );
 \tstamp_fake[39]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(39),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(39),
       I3 => tstamp_fake0(39),
       O => p_0_in(39)
     );
 \tstamp_fake[3]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(3),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(3),
       I3 => tstamp_fake0(3),
       O => p_0_in(3)
     );
 \tstamp_fake[40]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(40),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(40),
       I3 => tstamp_fake0(40),
       O => p_0_in(40)
     );
 \tstamp_fake[41]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(41),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(41),
       I3 => tstamp_fake0(41),
       O => p_0_in(41)
     );
 \tstamp_fake[42]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(42),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(42),
       I3 => tstamp_fake0(42),
       O => p_0_in(42)
     );
 \tstamp_fake[43]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(43),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(43),
       I3 => tstamp_fake0(43),
       O => p_0_in(43)
     );
 \tstamp_fake[44]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(44),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(44),
       I3 => tstamp_fake0(44),
       O => p_0_in(44)
     );
 \tstamp_fake[45]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(45),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(45),
       I3 => tstamp_fake0(45),
       O => p_0_in(45)
     );
 \tstamp_fake[46]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(46),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(46),
       I3 => tstamp_fake0(46),
       O => p_0_in(46)
     );
 \tstamp_fake[47]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(47),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(47),
       I3 => tstamp_fake0(47),
       O => p_0_in(47)
     );
 \tstamp_fake[48]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(48),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(48),
       I3 => tstamp_fake0(48),
       O => p_0_in(48)
     );
 \tstamp_fake[49]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(49),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(49),
       I3 => tstamp_fake0(49),
       O => p_0_in(49)
     );
 \tstamp_fake[4]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(4),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(4),
       I3 => tstamp_fake0(4),
       O => p_0_in(4)
     );
 \tstamp_fake[50]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(50),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(50),
       I3 => tstamp_fake0(50),
       O => p_0_in(50)
     );
 \tstamp_fake[51]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(51),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(51),
       I3 => tstamp_fake0(51),
       O => p_0_in(51)
     );
 \tstamp_fake[52]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(52),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(52),
       I3 => tstamp_fake0(52),
       O => p_0_in(52)
     );
 \tstamp_fake[53]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(53),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(53),
       I3 => tstamp_fake0(53),
       O => p_0_in(53)
     );
 \tstamp_fake[54]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(54),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(54),
       I3 => tstamp_fake0(54),
       O => p_0_in(54)
     );
 \tstamp_fake[55]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(55),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(55),
       I3 => tstamp_fake0(55),
       O => p_0_in(55)
     );
 \tstamp_fake[56]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(56),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(56),
       I3 => tstamp_fake0(56),
       O => p_0_in(56)
     );
 \tstamp_fake[57]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(57),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(57),
       I3 => tstamp_fake0(57),
       O => p_0_in(57)
     );
 \tstamp_fake[58]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(58),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(58),
       I3 => tstamp_fake0(58),
       O => p_0_in(58)
     );
 \tstamp_fake[59]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(59),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(59),
       I3 => tstamp_fake0(59),
       O => p_0_in(59)
     );
 \tstamp_fake[5]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(5),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(5),
       I3 => tstamp_fake0(5),
       O => p_0_in(5)
     );
 \tstamp_fake[60]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(60),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(60),
       I3 => tstamp_fake0(60),
       O => p_0_in(60)
     );
 \tstamp_fake[61]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(61),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(61),
       I3 => tstamp_fake0(61),
       O => p_0_in(61)
     );
 \tstamp_fake[62]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(62),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(62),
       I3 => tstamp_fake0(62),
       O => p_0_in(62)
     );
 \tstamp_fake[63]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(63),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(63),
       I3 => tstamp_fake0(63),
       O => p_0_in(63)
     );
 \tstamp_fake[6]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(6),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(6),
       I3 => tstamp_fake0(6),
       O => p_0_in(6)
     );
 \tstamp_fake[7]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(7),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(7),
       I3 => tstamp_fake0(7),
       O => p_0_in(7)
     );
 \tstamp_fake[8]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(8),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(8),
       I3 => tstamp_fake0(8),
       O => p_0_in(8)
     );
 \tstamp_fake[9]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FB08"
+      INIT => X"FD20"
     )
         port map (
-      I0 => fake_time_stamp_init(9),
-      I1 => fts_en(1),
-      I2 => fts_en(2),
+      I0 => fts_en(1),
+      I1 => fts_en(2),
+      I2 => fake_time_stamp_init(9),
       I3 => tstamp_fake0(9),
       O => p_0_in(9)
     );
@@ -3622,14 +3674,14 @@ entity design_1_ts_reclock_0_0 is
     stat_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
     rst_in : in STD_LOGIC;
     rdy_in : in STD_LOGIC;
-    sync_in : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    sync_in : in STD_LOGIC_VECTOR ( 7 downto 0 );
     sync_stb_in : in STD_LOGIC;
     sync_first_in : in STD_LOGIC;
     tstamp_in : in STD_LOGIC_VECTOR ( 63 downto 0 );
     stat_out : out STD_LOGIC_VECTOR ( 3 downto 0 );
     rst_out : out STD_LOGIC;
     rdy_out : out STD_LOGIC;
-    sync_out : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    sync_out : out STD_LOGIC_VECTOR ( 7 downto 0 );
     sync_stb_out : out STD_LOGIC;
     sync_first_out : out STD_LOGIC;
     tstamp_out : out STD_LOGIC_VECTOR ( 63 downto 0 );
@@ -3644,6 +3696,13 @@ entity design_1_ts_reclock_0_0 is
     cmd_code_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_adc_reset : in STD_LOGIC_VECTOR ( 7 downto 0 );
     cmd_code_trigger : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    cmd_en_idle : in STD_LOGIC;
+    cmd_en_edge : in STD_LOGIC;
+    cmd_en_sync : in STD_LOGIC;
+    cmd_en_act : in STD_LOGIC;
+    cmd_en_reset : in STD_LOGIC;
+    cmd_en_adc_reset : in STD_LOGIC;
+    cmd_en_trigger : in STD_LOGIC;
     cmd_bit_idle : out STD_LOGIC;
     cmd_bit_edge : out STD_LOGIC;
     cmd_bit_sync : out STD_LOGIC;
@@ -3674,7 +3733,7 @@ architecture STRUCTURE of design_1_ts_reclock_0_0 is
   signal \^rst_in\ : STD_LOGIC;
   signal \^stat_in\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \^sync_first_in\ : STD_LOGIC;
-  signal \^sync_in\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \^sync_in\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \^sync_stb_in\ : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of cmd_bit_adc_reset : signal is "xilinx.com:signal:reset:1.0 cmd_bit_adc_reset RST";
@@ -3682,6 +3741,10 @@ architecture STRUCTURE of design_1_ts_reclock_0_0 is
   attribute X_INTERFACE_PARAMETER of cmd_bit_adc_reset : signal is "XIL_INTERFACENAME cmd_bit_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of cmd_bit_reset : signal is "xilinx.com:signal:reset:1.0 cmd_bit_reset RST";
   attribute X_INTERFACE_PARAMETER of cmd_bit_reset : signal is "XIL_INTERFACENAME cmd_bit_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
+  attribute X_INTERFACE_INFO of cmd_en_adc_reset : signal is "xilinx.com:signal:reset:1.0 cmd_en_adc_reset RST";
+  attribute X_INTERFACE_PARAMETER of cmd_en_adc_reset : signal is "XIL_INTERFACENAME cmd_en_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
+  attribute X_INTERFACE_INFO of cmd_en_reset : signal is "xilinx.com:signal:reset:1.0 cmd_en_reset RST";
+  attribute X_INTERFACE_PARAMETER of cmd_en_reset : signal is "XIL_INTERFACENAME cmd_en_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of fifo_rst : signal is "xilinx.com:signal:reset:1.0 fifo_rst RST";
   attribute X_INTERFACE_PARAMETER of fifo_rst : signal is "XIL_INTERFACENAME fifo_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of cmd_code_adc_reset : signal is "xilinx.com:signal:reset:1.0 cmd_code_adc_reset RST";
@@ -3693,14 +3756,14 @@ begin
   \^rst_in\ <= rst_in;
   \^stat_in\(3 downto 0) <= stat_in(3 downto 0);
   \^sync_first_in\ <= sync_first_in;
-  \^sync_in\(3 downto 0) <= sync_in(3 downto 0);
+  \^sync_in\(7 downto 0) <= sync_in(7 downto 0);
   \^sync_stb_in\ <= sync_stb_in;
   fifo_valid <= \<const1>\;
   rdy_out <= \^rdy_in\;
   rst_out <= \^rst_in\;
   stat_out(3 downto 0) <= \^stat_in\(3 downto 0);
   sync_first_out <= \^sync_first_in\;
-  sync_out(3 downto 0) <= \^sync_in\(3 downto 0);
+  sync_out(7 downto 0) <= \^sync_in\(7 downto 0);
   sync_stb_out <= \^sync_stb_in\;
 VCC: unisim.vcomponents.VCC
      port map (
@@ -3723,12 +3786,19 @@ inst: entity work.design_1_ts_reclock_0_0_ts_reclock
       cmd_code_reset(7 downto 0) => cmd_code_reset(7 downto 0),
       cmd_code_sync(7 downto 0) => cmd_code_sync(7 downto 0),
       cmd_code_trigger(7 downto 0) => cmd_code_trigger(7 downto 0),
+      cmd_en_act => cmd_en_act,
+      cmd_en_adc_reset => cmd_en_adc_reset,
+      cmd_en_edge => cmd_en_edge,
+      cmd_en_idle => cmd_en_idle,
+      cmd_en_reset => cmd_en_reset,
+      cmd_en_sync => cmd_en_sync,
+      cmd_en_trigger => cmd_en_trigger,
       cmd_stamp_sync(14 downto 0) => cmd_stamp_sync(14 downto 0),
       cmd_stamp_sync_en => cmd_stamp_sync_en,
       fake_time_stamp_en => fake_time_stamp_en,
       fake_time_stamp_init(63 downto 0) => fake_time_stamp_init(63 downto 0),
       sync_first_in => \^sync_first_in\,
-      sync_in(3 downto 0) => \^sync_in\(3 downto 0),
+      sync_in(7 downto 0) => \^sync_in\(7 downto 0),
       sync_stb_in => \^sync_stb_in\,
       ts_valid => ts_valid,
       tstamp_in(63 downto 0) => tstamp_in(63 downto 0),

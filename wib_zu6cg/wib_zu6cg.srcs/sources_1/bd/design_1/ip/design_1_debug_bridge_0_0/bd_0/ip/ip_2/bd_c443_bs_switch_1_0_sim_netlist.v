@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
 // Date        : Mon Dec  6 10:40:08 2021
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_2/bd_c443_bs_switch_1_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top bd_c443_bs_switch_1_0 -prefix
+//               bd_c443_bs_switch_1_0_ bd_c443_bs_switch_1_0_sim_netlist.v
 // Design      : bd_c443_bs_switch_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -491,8 +491,7 @@ module bd_c443_bs_switch_1_0
 endmodule
 
 (* C_NUM_BS_MASTER = "1" *) (* C_ONLY_PRIMITIVE = "0" *) (* C_USER_SCAN_CHAIN = "1" *) 
-(* C_USE_EXT_BSCAN = "1" *) (* C_XDEVICEFAMILY = "zynquplus" *) (* ORIG_REF_NAME = "bs_switch_v1_0_0_bs_switch" *) 
-(* dont_touch = "true" *) 
+(* C_USE_EXT_BSCAN = "1" *) (* C_XDEVICEFAMILY = "zynquplus" *) (* dont_touch = "true" *) 
 module bd_c443_bs_switch_1_0_bs_switch_v1_0_0_bs_switch
    (s_bscan_drck,
     s_bscan_reset,
@@ -1167,8 +1166,8 @@ module bd_c443_bs_switch_1_0_bs_switch_v1_0_0_bs_switch
 endmodule
 
 (* ERROR = "7" *) (* FORWARD = "4" *) (* IDLE = "0" *) 
-(* ORIG_REF_NAME = "bs_switch_v1_0_0_core" *) (* PORTS = "1" *) (* PORT_SELECT = "3" *) 
-(* SWITCH_SELECT = "2" *) (* XILINX_JEP106_ID = "12'b000001001001" *) (* dont_touch = "true" *) 
+(* PORTS = "1" *) (* PORT_SELECT = "3" *) (* SWITCH_SELECT = "2" *) 
+(* XILINX_JEP106_ID = "12'b000001001001" *) (* dont_touch = "true" *) 
 module bd_c443_bs_switch_1_0_bs_switch_v1_0_0_core
    (s_bscan_drck,
     s_bscan_reset,

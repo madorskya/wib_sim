@@ -85,14 +85,42 @@ set_false_path -from [get_ports bp_crate_addr[*]]
 set_false_path -from [get_ports bp_slot_addr[*]]
 
 
-#create_clock -period 3.2 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock via PLL
-create_clock -period 3.2 -name adn2814_fpga_clk_p [get_ports adn2814_fpga_clk_p]; # timing endpoint clock direct
+#create_clock -period 16.000 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock via PLL
+#set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
+#create_clock -period 4.000 -name adn2814_fpga_clk_p [get_ports adn2814_fpga_clk_p]; # timing endpoint clock via CDR
+#set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks adn2814_fpga_clk_p]
 #set_false_path -from [get_clocks si5344_out1_p] -to [get_clocks adn2814_fpga_clk_p];
 #set_false_path -from [get_clocks adn2814_fpga_clk_p] -to [get_clocks si5344_out1_p]
-# tell vivado that the BUFGMUXed clocks never interact
-set_clock_groups -physically_exclusive -group si5344_out1_p -group adn2814_fpga_clk_p
 
-# set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
+# tell vivado that the BUFGMUXed clocks never interact
+#set_clock_groups -physically_exclusive -group si5344_out1_p -group adn2814_fpga_clk_p
+
+# New timing endpoint uses duty-cycle-shift-keyed "clock" from CDR DATA (passthrough)
+create_clock -period 16.000 -name adn2814_data_p [get_ports adn2814_data_p]
+set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks adn2814_data_p]
+set_false_path -from [get_ports adn2814_data_p]
+# If using CDR bypass (DATA direct from MUX), comment out line below, route ts_fpga_clk_pad into endpoint rx:
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets tp_data_buf_in/O]
+# endpoint ourput clock, and PLL clock, can be MUX'd with register bit
+# set_clock_groups -physically_exclusive -group si5344_out1_p -group adn2814_data_p
+#set_clock_groups -logically_exclusive -group si5344_out1_p -group adn2814_data_p
+#set_clock_groups -logically_exclusive -group [get_clocks -include_generated_clock si5344_out1_p] -group [get_clocks -include_generated_clock adn2814_data_p]
+#set_clock_groups -asynchronous -group [get_clocks -include_generated_clock si5344_out1_p] -group [get_clocks -include_generated_clock adn2814_data_p]
+#create_generated_clock -name clk1mux -divide_by 1 -source [get_nets ts_fake_mmcm/clkin1] [get_nets ts_fake_mmcm/clkout1]
+#create_generated_clock -name clk2mux -divide_by 1 -add -master_clock ts_rec_d_clk_pll -source [get_nets ts_fake_mmcm/clkin1] [get_nets ts_fake_mmcm/clkout2]
+#set_clock_groups -physically_exclusive -group clk1mux -group clk2mux
+
+
+# for BUFGMUX in wib_top.sv
+create_clock -period 8 -name mux_in_0 [get_pins ts_clk_mux2x/I0]
+create_clock -period 8 -name mux_in_1 [get_pins ts_clk_mux2x/I1]
+set_clock_groups -physically_exclusive -group mux_in_0 -group mux_in_1 
+ 
+# for BUFGMUX in endpoint
+create_clock -period 16 -name mux_inx1_0 [get_pins wrp/design_1_i/timing_module/pdts_endpoint_wrapper_0/inst/ts_clk_mux/I0]
+create_clock -period 16 -name mux_inx1_1 [get_pins wrp/design_1_i/timing_module/pdts_endpoint_wrapper_0/inst/ts_clk_mux/I1]
+set_clock_groups -physically_exclusive -group mux_inx1_0 -group mux_inx1_1 
+ 
  
 # timing data input constraints relative to clock
 # measured at UPenn setup by Ben on 2020-12-09

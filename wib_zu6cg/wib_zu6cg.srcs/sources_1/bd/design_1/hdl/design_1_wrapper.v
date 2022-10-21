@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Aug 22 16:37:23 2022
+//Date        : Fri Oct 21 12:57:24 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -23,6 +23,13 @@ module design_1_wrapper
     cmd_code_reset,
     cmd_code_sync,
     cmd_code_trigger,
+    cmd_en_act,
+    cmd_en_adc_reset,
+    cmd_en_edge,
+    cmd_en_idle,
+    cmd_en_reset,
+    cmd_en_sync,
+    cmd_en_trigger,
     cmd_stamp_sync,
     cmd_stamp_sync_en,
     daq_clk,
@@ -78,6 +85,7 @@ module design_1_wrapper
     ts_cdr_lol,
     ts_cdr_los,
     ts_clk,
+    ts_clk_sel,
     ts_evtctr,
     ts_rdy,
     ts_rec_clk_locked,
@@ -105,6 +113,13 @@ module design_1_wrapper
   input [7:0]cmd_code_reset;
   input [7:0]cmd_code_sync;
   input [7:0]cmd_code_trigger;
+  input cmd_en_act;
+  input cmd_en_adc_reset;
+  input cmd_en_edge;
+  input cmd_en_idle;
+  input cmd_en_reset;
+  input cmd_en_sync;
+  input cmd_en_trigger;
   input [14:0]cmd_stamp_sync;
   input cmd_stamp_sync_en;
   input daq_clk;
@@ -160,6 +175,7 @@ module design_1_wrapper
   input ts_cdr_lol;
   input ts_cdr_los;
   output ts_clk;
+  input ts_clk_sel;
   output [31:0]ts_evtctr;
   output ts_rdy;
   input ts_rec_clk_locked;
@@ -168,7 +184,7 @@ module design_1_wrapper
   output ts_rst;
   input ts_sfp_los;
   output [3:0]ts_stat;
-  output [3:0]ts_sync;
+  output [7:0]ts_sync;
   output [0:0]ts_sync_v;
   output [63:0]ts_tstamp;
   output ts_valid;
@@ -188,6 +204,13 @@ module design_1_wrapper
   wire [7:0]cmd_code_reset;
   wire [7:0]cmd_code_sync;
   wire [7:0]cmd_code_trigger;
+  wire cmd_en_act;
+  wire cmd_en_adc_reset;
+  wire cmd_en_edge;
+  wire cmd_en_idle;
+  wire cmd_en_reset;
+  wire cmd_en_sync;
+  wire cmd_en_trigger;
   wire [14:0]cmd_stamp_sync;
   wire cmd_stamp_sync_en;
   wire daq_clk;
@@ -249,6 +272,7 @@ module design_1_wrapper
   wire ts_cdr_lol;
   wire ts_cdr_los;
   wire ts_clk;
+  wire ts_clk_sel;
   wire [31:0]ts_evtctr;
   wire ts_rdy;
   wire ts_rec_clk_locked;
@@ -257,7 +281,7 @@ module design_1_wrapper
   wire ts_rst;
   wire ts_sfp_los;
   wire [3:0]ts_stat;
-  wire [3:0]ts_sync;
+  wire [7:0]ts_sync;
   wire [0:0]ts_sync_v;
   wire [63:0]ts_tstamp;
   wire ts_valid;
@@ -278,6 +302,13 @@ module design_1_wrapper
         .cmd_code_reset(cmd_code_reset),
         .cmd_code_sync(cmd_code_sync),
         .cmd_code_trigger(cmd_code_trigger),
+        .cmd_en_act(cmd_en_act),
+        .cmd_en_adc_reset(cmd_en_adc_reset),
+        .cmd_en_edge(cmd_en_edge),
+        .cmd_en_idle(cmd_en_idle),
+        .cmd_en_reset(cmd_en_reset),
+        .cmd_en_sync(cmd_en_sync),
+        .cmd_en_trigger(cmd_en_trigger),
         .cmd_stamp_sync(cmd_stamp_sync),
         .cmd_stamp_sync_en(cmd_stamp_sync_en),
         .daq_clk(daq_clk),
@@ -337,6 +368,7 @@ module design_1_wrapper
         .ts_cdr_lol(ts_cdr_lol),
         .ts_cdr_los(ts_cdr_los),
         .ts_clk(ts_clk),
+        .ts_clk_sel(ts_clk_sel),
         .ts_evtctr(ts_evtctr),
         .ts_rdy(ts_rdy),
         .ts_rec_clk_locked(ts_rec_clk_locked),

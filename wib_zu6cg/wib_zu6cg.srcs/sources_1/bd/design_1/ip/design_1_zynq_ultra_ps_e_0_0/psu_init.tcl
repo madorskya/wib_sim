@@ -106,19 +106,6 @@ set psu_pll_init_data {
 		#(OFFSET, MASK, VALUE)      (0XFF5E0048, 0x00003F00U ,0x00000300U)  */
     mask_write 0XFF5E0048 0x00003F00 0x00000300
 		# : RPLL FRAC CFG
-		# Register : RPLL_FRAC_CFG @ 0XFF5E0038</p>
-
-		# Fractional SDM bypass control. When 0, PLL is in integer mode and it ign
-    # ores all fractional data. When 1, PLL is in fractional mode and uses DAT
-    # A of this register for the fractional portion of the feedback divider.
-		# PSU_CRL_APB_RPLL_FRAC_CFG_ENABLED                                               0x0
-
-		# Fractional value for the Feedback value.
-		# PSU_CRL_APB_RPLL_FRAC_CFG_DATA                                                  0x0
-
-		# Fractional control for the PLL
-		#(OFFSET, MASK, VALUE)      (0XFF5E0038, 0x8000FFFFU ,0x00000000U)  */
-    mask_write 0XFF5E0038 0x8000FFFF 0x00000000
 		# : SYSMON CLOCK PRESET TO RPLL AGAIN TO AVOID GLITCH WHEN NEXT IOPLL WILL BE PUT IN BYPASS MODE
 		# Register : AMS_REF_CTRL @ 0XFF5E0108</p>
 
@@ -238,19 +225,6 @@ set psu_pll_init_data {
 		#(OFFSET, MASK, VALUE)      (0XFF5E0044, 0x00003F00U ,0x00000300U)  */
     mask_write 0XFF5E0044 0x00003F00 0x00000300
 		# : IOPLL FRAC CFG
-		# Register : IOPLL_FRAC_CFG @ 0XFF5E0028</p>
-
-		# Fractional SDM bypass control. When 0, PLL is in integer mode and it ign
-    # ores all fractional data. When 1, PLL is in fractional mode and uses DAT
-    # A of this register for the fractional portion of the feedback divider.
-		# PSU_CRL_APB_IOPLL_FRAC_CFG_ENABLED                                              0x0
-
-		# Fractional value for the Feedback value.
-		# PSU_CRL_APB_IOPLL_FRAC_CFG_DATA                                                 0x0
-
-		# Fractional control for the PLL
-		#(OFFSET, MASK, VALUE)      (0XFF5E0028, 0x8000FFFFU ,0x00000000U)  */
-    mask_write 0XFF5E0028 0x8000FFFF 0x00000000
 		# : APU_PLL INIT
 		# Register : APLL_CFG @ 0XFD1A0024</p>
 
@@ -350,19 +324,6 @@ set psu_pll_init_data {
 		#(OFFSET, MASK, VALUE)      (0XFD1A0048, 0x00003F00U ,0x00000300U)  */
     mask_write 0XFD1A0048 0x00003F00 0x00000300
 		# : APLL FRAC CFG
-		# Register : APLL_FRAC_CFG @ 0XFD1A0028</p>
-
-		# Fractional SDM bypass control. When 0, PLL is in integer mode and it ign
-    # ores all fractional data. When 1, PLL is in fractional mode and uses DAT
-    # A of this register for the fractional portion of the feedback divider.
-		# PSU_CRF_APB_APLL_FRAC_CFG_ENABLED                                               0x0
-
-		# Fractional value for the Feedback value.
-		# PSU_CRF_APB_APLL_FRAC_CFG_DATA                                                  0x0
-
-		# Fractional control for the PLL
-		#(OFFSET, MASK, VALUE)      (0XFD1A0028, 0x8000FFFFU ,0x00000000U)  */
-    mask_write 0XFD1A0028 0x8000FFFF 0x00000000
 		# : DDR_PLL INIT
 		# Register : DPLL_CFG @ 0XFD1A0030</p>
 
@@ -462,19 +423,6 @@ set psu_pll_init_data {
 		#(OFFSET, MASK, VALUE)      (0XFD1A004C, 0x00003F00U ,0x00000200U)  */
     mask_write 0XFD1A004C 0x00003F00 0x00000200
 		# : DPLL FRAC CFG
-		# Register : DPLL_FRAC_CFG @ 0XFD1A0034</p>
-
-		# Fractional SDM bypass control. When 0, PLL is in integer mode and it ign
-    # ores all fractional data. When 1, PLL is in fractional mode and uses DAT
-    # A of this register for the fractional portion of the feedback divider.
-		# PSU_CRF_APB_DPLL_FRAC_CFG_ENABLED                                               0x0
-
-		# Fractional value for the Feedback value.
-		# PSU_CRF_APB_DPLL_FRAC_CFG_DATA                                                  0x0
-
-		# Fractional control for the PLL
-		#(OFFSET, MASK, VALUE)      (0XFD1A0034, 0x8000FFFFU ,0x00000000U)  */
-    mask_write 0XFD1A0034 0x8000FFFF 0x00000000
 		# : VIDEO_PLL INIT
 		# Register : VPLL_CFG @ 0XFD1A003C</p>
 
@@ -574,19 +522,6 @@ set psu_pll_init_data {
 		#(OFFSET, MASK, VALUE)      (0XFD1A0050, 0x00003F00U ,0x00000300U)  */
     mask_write 0XFD1A0050 0x00003F00 0x00000300
 		# : VIDEO FRAC CFG
-		# Register : VPLL_FRAC_CFG @ 0XFD1A0040</p>
-
-		# Fractional SDM bypass control. When 0, PLL is in integer mode and it ign
-    # ores all fractional data. When 1, PLL is in fractional mode and uses DAT
-    # A of this register for the fractional portion of the feedback divider.
-		# PSU_CRF_APB_VPLL_FRAC_CFG_ENABLED                                               0x0
-
-		# Fractional value for the Feedback value.
-		# PSU_CRF_APB_VPLL_FRAC_CFG_DATA                                                  0x0
-
-		# Fractional control for the PLL
-		#(OFFSET, MASK, VALUE)      (0XFD1A0040, 0x8000FFFFU ,0x00000000U)  */
-    mask_write 0XFD1A0040 0x8000FFFF 0x00000000
 }
 
 set psu_clock_init_data {
@@ -923,11 +858,11 @@ set psu_clock_init_data {
 		# 000 = IOPLL; 010 = RPLL; 011 = DPLL; (This signal may only be toggled af
     # ter 4 cycles of the old clock and 4 cycles of the new clock. This is not
     #  usually an issue, but designers must be aware.)
-		# PSU_CRL_APB_PL1_REF_CTRL_SRCSEL                                                 0x0
+		# PSU_CRL_APB_PL1_REF_CTRL_SRCSEL                                                 0x2
 
 		# This register controls this reference clock
-		#(OFFSET, MASK, VALUE)      (0XFF5E00C4, 0x013F3F07U ,0x01033200U)  */
-    mask_write 0XFF5E00C4 0x013F3F07 0x01033200
+		#(OFFSET, MASK, VALUE)      (0XFF5E00C4, 0x013F3F07U ,0x01033202U)  */
+    mask_write 0XFF5E00C4 0x013F3F07 0x01033202
 		# Register : AMS_REF_CTRL @ 0XFF5E0108</p>
 
 		# 6 bit divider

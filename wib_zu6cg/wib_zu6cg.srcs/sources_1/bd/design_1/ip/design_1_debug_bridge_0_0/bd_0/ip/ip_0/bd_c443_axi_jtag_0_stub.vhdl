@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
 -- Date        : Mon Dec  6 10:41:34 2021
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top bd_c443_axi_jtag_0 -prefix
+--               bd_c443_axi_jtag_0_ bd_c443_axi_jtag_0_stub.vhdl
 -- Design      : bd_c443_axi_jtag_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e

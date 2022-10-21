@@ -96,6 +96,8 @@ set_false_path -from [get_ports bp_slot_addr[*]]
 
 create_clock -period 3.1 -name si5344_out1_p [get_ports si5344_out1_p]; # timing endpoint clock
 set_clock_groups -asynchronous -group [get_clocks -include_generated_clocks si5344_out1_p]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets tp_data_buf_in/O]
  
 # timing data input constraints relative to clock
 # measured at UPenn setup by Ben on 2020-12-09

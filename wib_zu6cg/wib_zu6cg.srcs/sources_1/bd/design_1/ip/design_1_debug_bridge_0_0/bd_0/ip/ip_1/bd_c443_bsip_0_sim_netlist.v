@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Dec  6 10:40:20 2021
+// Date        : Mon Dec  6 10:40:19 2021
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_1/bd_c443_bsip_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top bd_c443_bsip_0 -prefix
+//               bd_c443_bsip_0_ bd_c443_bsip_0_sim_netlist.v
 // Design      : bd_c443_bsip_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -103,7 +103,6 @@ module bd_c443_bsip_0
         .update(update));
 endmodule
 
-(* ORIG_REF_NAME = "bsip_v1_1_0_bscan_tap" *) 
 module bd_c443_bsip_0_bsip_v1_1_0_bscan_tap
    (AR,
     tap_tdo,
@@ -186,7 +185,6 @@ endmodule
 (* C_CHIP_ID = "0" *) (* C_DEVICE_FAMILY = "0" *) (* C_EN_MUX = "0" *) 
 (* C_EN_MUX_EXT_BS = "0" *) (* C_IR_ID_INSTR = "0" *) (* C_IR_USER1_INSTR = "0" *) 
 (* C_IR_WIDTH = "0" *) (* C_USER_SCAN_CHAIN = "1" *) (* C_USE_SOFTBSCAN = "1" *) 
-(* ORIG_REF_NAME = "bsip_v1_1_0_bsip" *) 
 module bd_c443_bsip_0_bsip_v1_1_0_bsip
    (drck,
     reset,
@@ -285,7 +283,6 @@ module bd_c443_bsip_0_bsip_v1_1_0_bsip
         .O(tck));
 endmodule
 
-(* ORIG_REF_NAME = "bsip_v1_1_0_jtag_reg" *) 
 module bd_c443_bsip_0_bsip_v1_1_0_jtag_reg
    (D,
     Q,
@@ -756,7 +753,6 @@ module bd_c443_bsip_0_bsip_v1_1_0_jtag_reg__parameterized3
         .R(\sh_reg_reg[31]_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "bsip_v1_1_0_jtag_tap" *) 
 module bd_c443_bsip_0_bsip_v1_1_0_jtag_tap
    (out,
     tap_tdo,
@@ -898,7 +894,6 @@ module bd_c443_bsip_0_bsip_v1_1_0_jtag_tap
         .O(dr_tdo_inferred_i_3_n_0));
 endmodule
 
-(* ORIG_REF_NAME = "bsip_v1_1_0_jtag_tapctl" *) 
 module bd_c443_bsip_0_bsip_v1_1_0_jtag_tapctl
    (AS,
     capir_lcl,

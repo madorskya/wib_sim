@@ -23,6 +23,7 @@ module bd_tux
     output [31:0]ts_evtctr,
     output ts_rdy,
     input  ts_rec_clk_locked,
+    input  ts_clk_sel,
     input  ts_rec_d,
     input  ts_rec_d_clk,
     output ts_rst,
@@ -57,6 +58,7 @@ module bd_tux
     input  [31:0] daq_stream [1:0],
     input  [3:0]  daq_stream_k [1:0],
     input  [1:0]  daq_data_type [1:0], // data_type flags for spy memory
+    
     input [7:0] cmd_code_idle,
     input [7:0] cmd_code_edge,
     input [7:0] cmd_code_sync,
@@ -65,6 +67,14 @@ module bd_tux
     input [7:0] cmd_code_adc_reset,
     input [7:0] cmd_code_trigger,
     
+    input cmd_en_idle     ,
+    input cmd_en_edge     ,
+    input cmd_en_sync     ,
+    input cmd_en_act      ,
+    input cmd_en_reset    ,
+    input cmd_en_adc_reset,
+    input cmd_en_trigger  ,
+
     input fake_time_stamp_en, // enable fake time stamp
     input [63:0] fake_time_stamp_init,
     input [14:0] cmd_stamp_sync,
@@ -117,6 +127,7 @@ module bd_tux
         .ts_evtctr    (ts_evtctr),
         .ts_rdy       (ts_rdy),
         .ts_rec_clk_locked (ts_rec_clk_locked),
+        .ts_clk_sel   (ts_clk_sel),
         .ts_rec_d     (ts_rec_d),
         .ts_rec_d_clk (ts_rec_d_clk),
         .ts_rst       (ts_rst),
@@ -165,6 +176,14 @@ module bd_tux
         .cmd_code_adc_reset (cmd_code_adc_reset),
         .cmd_code_trigger   (cmd_code_trigger  ),
         
+        .cmd_en_idle      (cmd_en_idle     ),
+        .cmd_en_edge      (cmd_en_edge     ),
+        .cmd_en_sync      (cmd_en_sync     ),
+        .cmd_en_act       (cmd_en_act      ),
+        .cmd_en_reset     (cmd_en_reset    ),
+        .cmd_en_adc_reset (cmd_en_adc_reset),
+        .cmd_en_trigger   (cmd_en_trigger  ),
+
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init),
         .cmd_stamp_sync    (cmd_stamp_sync),

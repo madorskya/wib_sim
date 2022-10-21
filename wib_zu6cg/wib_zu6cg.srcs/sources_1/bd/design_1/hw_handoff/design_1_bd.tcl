@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# dyn_phase_adjust, daq_spy_control, daq_spy_control, pdts_endpoint_stdlogic, ts_reclock
+# dyn_phase_adjust, daq_spy_control, daq_spy_control, pdts_endpoint_wrapper, ts_reclock
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -183,6 +183,13 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -from 7 -to 0 -type rst cmd_code_reset_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_sync_0
   create_bd_pin -dir I -from 7 -to 0 cmd_code_trigger_0
+  create_bd_pin -dir I cmd_en_act_0
+  create_bd_pin -dir I -type rst cmd_en_adc_reset_0
+  create_bd_pin -dir I cmd_en_edge_0
+  create_bd_pin -dir I cmd_en_idle_0
+  create_bd_pin -dir I -type rst cmd_en_reset_0
+  create_bd_pin -dir I cmd_en_sync_0
+  create_bd_pin -dir I cmd_en_trigger_0
   create_bd_pin -dir I -from 14 -to 0 cmd_stamp_sync_0
   create_bd_pin -dir I cmd_stamp_sync_en_0
   create_bd_pin -dir I fake_time_stamp_en_0
@@ -196,6 +203,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I ts_cdr_lol
   create_bd_pin -dir I ts_cdr_los
   create_bd_pin -dir O -type clk ts_clk
+  create_bd_pin -dir I ts_clk_sel
   create_bd_pin -dir O -from 31 -to 0 ts_evtctr
   create_bd_pin -dir O ts_rdy
   create_bd_pin -dir I ts_rec_clk_locked
@@ -203,7 +211,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   create_bd_pin -dir I -type clk ts_rec_d_clk
   create_bd_pin -dir O -type rst ts_rst
   create_bd_pin -dir I ts_sfp_los
-  create_bd_pin -dir O -from 3 -to 0 ts_sync
+  create_bd_pin -dir O -from 7 -to 0 ts_sync
   create_bd_pin -dir O -from 0 -to 0 ts_sync_v
   create_bd_pin -dir O -from 63 -to 0 ts_tstamp
   create_bd_pin -dir O ts_valid_0
@@ -222,17 +230,17 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
    CONFIG.C_PROBE16_WIDTH {1} \
    CONFIG.C_PROBE18_WIDTH {8} \
    CONFIG.C_PROBE19_WIDTH {8} \
-   CONFIG.C_PROBE3_WIDTH {4} \
+   CONFIG.C_PROBE3_WIDTH {8} \
    CONFIG.C_PROBE6_WIDTH {64} \
  ] $ila_0
 
-  # Create instance: pdts_endpoint_stdlog_0, and set properties
-  set block_name pdts_endpoint_stdlogic
-  set block_cell_name pdts_endpoint_stdlog_0
-  if { [catch {set pdts_endpoint_stdlog_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: pdts_endpoint_wrapper_0, and set properties
+  set block_name pdts_endpoint_wrapper
+  set block_cell_name pdts_endpoint_wrapper_0
+  if { [catch {set pdts_endpoint_wrapper_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $pdts_endpoint_stdlog_0 eq "" } {
+   } elseif { $pdts_endpoint_wrapper_0 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -264,8 +272,8 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   # Create instance: xlslice_0, and set properties
   set xlslice_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_0 ]
   set_property -dict [ list \
-   CONFIG.DIN_FROM {9} \
-   CONFIG.DIN_TO {8} \
+   CONFIG.DIN_FROM {17} \
+   CONFIG.DIN_TO {16} \
    CONFIG.DIN_WIDTH {1024} \
    CONFIG.DOUT_WIDTH {2} \
  ] $xlslice_0
@@ -273,9 +281,9 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   # Create instance: xlslice_1, and set properties
   set xlslice_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_1 ]
   set_property -dict [ list \
-   CONFIG.DIN_FROM {7} \
+   CONFIG.DIN_FROM {15} \
    CONFIG.DIN_WIDTH {1024} \
-   CONFIG.DOUT_WIDTH {8} \
+   CONFIG.DOUT_WIDTH {16} \
  ] $xlslice_1
 
   # Create instance: xlslice_2, and set properties
@@ -291,7 +299,7 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net axi_gpio_1_gpio_io_o [get_bd_pins Din] [get_bd_pins xlslice_0/Din] [get_bd_pins xlslice_1/Din] [get_bd_pins xlslice_2/Din]
   connect_bd_net -net bp_io_o_1 [get_bd_pins bp_io_o] [get_bd_pins ila_0/probe19]
   connect_bd_net -net bp_io_t_1 [get_bd_pins bp_io_t] [get_bd_pins ila_0/probe18]
-  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins ts_clk] [get_bd_pins ila_0/clk] [get_bd_pins pdts_endpoint_stdlog_0/clk] [get_bd_pins ts_reclock_0/clk62p5]
+  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins ts_clk] [get_bd_pins ila_0/clk] [get_bd_pins pdts_endpoint_wrapper_0/clk] [get_bd_pins ts_reclock_0/clk62p5]
   connect_bd_net -net cmd_code_act_0_1 [get_bd_pins cmd_code_act_0] [get_bd_pins ts_reclock_0/cmd_code_act]
   connect_bd_net -net cmd_code_adc_reset_0_1 [get_bd_pins cmd_code_adc_reset_0] [get_bd_pins ts_reclock_0/cmd_code_adc_reset]
   connect_bd_net -net cmd_code_edge_0_1 [get_bd_pins cmd_code_edge_0] [get_bd_pins ts_reclock_0/cmd_code_edge]
@@ -299,30 +307,38 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_pins cmd_code_reset_0] [get_bd_pins ts_reclock_0/cmd_code_reset]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_pins cmd_code_sync_0] [get_bd_pins ts_reclock_0/cmd_code_sync]
   connect_bd_net -net cmd_code_trigger [get_bd_pins cmd_code_trigger_0] [get_bd_pins ts_reclock_0/cmd_code_trigger]
+  connect_bd_net -net cmd_en_act_0_1 [get_bd_pins cmd_en_act_0] [get_bd_pins ts_reclock_0/cmd_en_act]
+  connect_bd_net -net cmd_en_adc_reset_0_1 [get_bd_pins cmd_en_adc_reset_0] [get_bd_pins ts_reclock_0/cmd_en_adc_reset]
+  connect_bd_net -net cmd_en_edge_0_1 [get_bd_pins cmd_en_edge_0] [get_bd_pins ts_reclock_0/cmd_en_edge]
+  connect_bd_net -net cmd_en_idle_0_1 [get_bd_pins cmd_en_idle_0] [get_bd_pins ts_reclock_0/cmd_en_idle]
+  connect_bd_net -net cmd_en_reset_0_1 [get_bd_pins cmd_en_reset_0] [get_bd_pins ts_reclock_0/cmd_en_reset]
+  connect_bd_net -net cmd_en_sync_0_1 [get_bd_pins cmd_en_sync_0] [get_bd_pins ts_reclock_0/cmd_en_sync]
+  connect_bd_net -net cmd_en_trigger_0_1 [get_bd_pins cmd_en_trigger_0] [get_bd_pins ts_reclock_0/cmd_en_trigger]
   connect_bd_net -net cmd_stamp_sync_0_1 [get_bd_pins cmd_stamp_sync_0] [get_bd_pins ts_reclock_0/cmd_stamp_sync]
   connect_bd_net -net cmd_stamp_sync_en_0_1 [get_bd_pins cmd_stamp_sync_en_0] [get_bd_pins ts_reclock_0/cmd_stamp_sync_en]
   connect_bd_net -net fake_time_stamp_en_0_1 [get_bd_pins fake_time_stamp_en_0] [get_bd_pins ts_reclock_0/fake_time_stamp_en]
   connect_bd_net -net fake_time_stamp_init_0_1 [get_bd_pins fake_time_stamp_init_0] [get_bd_pins ts_reclock_0/fake_time_stamp_init]
   connect_bd_net -net fast_command_out [get_bd_pins probe15] [get_bd_pins ila_0/probe15]
-  connect_bd_net -net pdts_endpoint_stdlog_0_clkx2 [get_bd_pins clk_125] [get_bd_pins pdts_endpoint_stdlog_0/clkx2]
-  connect_bd_net -net pdts_endpoint_stdlog_0_rdy [get_bd_pins pdts_endpoint_stdlog_0/rdy] [get_bd_pins ts_reclock_0/rdy_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_rst [get_bd_pins pdts_endpoint_stdlog_0/rst] [get_bd_pins ts_reclock_0/rst_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_stat [get_bd_pins pdts_endpoint_stdlog_0/stat] [get_bd_pins ts_reclock_0/stat_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_sync [get_bd_pins pdts_endpoint_stdlog_0/sync] [get_bd_pins ts_reclock_0/sync_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_sync_first [get_bd_pins pdts_endpoint_stdlog_0/sync_first] [get_bd_pins ts_reclock_0/sync_first_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_sync_stb [get_bd_pins pdts_endpoint_stdlog_0/sync_stb] [get_bd_pins ts_reclock_0/sync_stb_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_tstamp [get_bd_pins pdts_endpoint_stdlog_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
-  connect_bd_net -net pdts_endpoint_stdlog_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins ila_0/probe17] [get_bd_pins pdts_endpoint_stdlog_0/tx_dis]
-  connect_bd_net -net pdts_endpoint_stdlog_0_txd [get_bd_pins txd_0] [get_bd_pins ila_0/probe16] [get_bd_pins pdts_endpoint_stdlog_0/txd]
+  connect_bd_net -net pdts_endpoint_wrapper_0_clkx2 [get_bd_pins clk_125] [get_bd_pins pdts_endpoint_wrapper_0/clkx2]
+  connect_bd_net -net pdts_endpoint_wrapper_0_rdy [get_bd_pins pdts_endpoint_wrapper_0/rdy] [get_bd_pins ts_reclock_0/rdy_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_rst [get_bd_pins pdts_endpoint_wrapper_0/rst] [get_bd_pins ts_reclock_0/rst_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_stat [get_bd_pins pdts_endpoint_wrapper_0/stat] [get_bd_pins ts_reclock_0/stat_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_sync [get_bd_pins pdts_endpoint_wrapper_0/sync] [get_bd_pins ts_reclock_0/sync_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_sync_first [get_bd_pins pdts_endpoint_wrapper_0/sync_first] [get_bd_pins ts_reclock_0/sync_first_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_sync_stb [get_bd_pins pdts_endpoint_wrapper_0/sync_stb] [get_bd_pins ts_reclock_0/sync_stb_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_tstamp [get_bd_pins pdts_endpoint_wrapper_0/tstamp] [get_bd_pins ts_reclock_0/tstamp_in]
+  connect_bd_net -net pdts_endpoint_wrapper_0_tx_dis [get_bd_pins tx_dis_0] [get_bd_pins ila_0/probe17] [get_bd_pins pdts_endpoint_wrapper_0/tx_dis]
+  connect_bd_net -net pdts_endpoint_wrapper_0_txd [get_bd_pins txd_0] [get_bd_pins ila_0/probe16] [get_bd_pins pdts_endpoint_wrapper_0/txd]
   connect_bd_net -net scl [get_bd_pins probe22] [get_bd_pins ila_0/probe22]
-  connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_stdlog_0/sclk]
+  connect_bd_net -net sclk_1 [get_bd_pins sclk] [get_bd_pins pdts_endpoint_wrapper_0/sclk]
   connect_bd_net -net sda_in [get_bd_pins probe20] [get_bd_pins ila_0/probe20]
   connect_bd_net -net sda_out [get_bd_pins probe21] [get_bd_pins ila_0/probe21]
-  connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_stdlog_0/cdr_lol]
-  connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins pdts_endpoint_stdlog_0/cdr_los]
-  connect_bd_net -net ts_rec_clk_locked_1 [get_bd_pins ts_rec_clk_locked] [get_bd_pins pdts_endpoint_stdlog_0/pll_locked]
-  connect_bd_net -net ts_rec_d_1 [get_bd_pins ts_rec_d] [get_bd_pins pdts_endpoint_stdlog_0/rec_d]
-  connect_bd_net -net ts_rec_d_clk_1 [get_bd_pins ts_rec_d_clk] [get_bd_pins pdts_endpoint_stdlog_0/rec_clk]
+  connect_bd_net -net ts_cdr_lol_1 [get_bd_pins ts_cdr_lol] [get_bd_pins pdts_endpoint_wrapper_0/cdr_lol]
+  connect_bd_net -net ts_cdr_los_1 [get_bd_pins ts_cdr_los] [get_bd_pins pdts_endpoint_wrapper_0/cdr_los]
+  connect_bd_net -net ts_clk_sel_1 [get_bd_pins ts_clk_sel] [get_bd_pins pdts_endpoint_wrapper_0/ts_clk_sel]
+  connect_bd_net -net ts_rec_clk_locked_1 [get_bd_pins ts_rec_clk_locked] [get_bd_pins pdts_endpoint_wrapper_0/pll_locked]
+  connect_bd_net -net ts_rec_d_1 [get_bd_pins ts_rec_d] [get_bd_pins pdts_endpoint_wrapper_0/rec_d]
+  connect_bd_net -net ts_rec_d_clk_1 [get_bd_pins ts_rec_d_clk] [get_bd_pins pdts_endpoint_wrapper_0/rec_clk]
   connect_bd_net -net ts_reclock_0_cmd_bit_act [get_bd_pins cmd_bit_act] [get_bd_pins ila_0/probe11] [get_bd_pins ts_reclock_0/cmd_bit_act]
   connect_bd_net -net ts_reclock_0_cmd_bit_adc_reset [get_bd_pins cmd_bit_adc_reset] [get_bd_pins ila_0/probe13] [get_bd_pins ts_reclock_0/cmd_bit_adc_reset]
   connect_bd_net -net ts_reclock_0_cmd_bit_edge [get_bd_pins cmd_bit_edge] [get_bd_pins ila_0/probe9] [get_bd_pins ts_reclock_0/cmd_bit_edge]
@@ -339,12 +355,12 @@ proc create_hier_cell_timing_module { parentCell nameHier } {
   connect_bd_net -net ts_reclock_0_sync_stb_out [get_bd_pins ila_0/probe4] [get_bd_pins ts_reclock_0/sync_stb_out]
   connect_bd_net -net ts_reclock_0_ts_valid [get_bd_pins ts_valid_0] [get_bd_pins ila_0/probe7] [get_bd_pins ts_reclock_0/ts_valid]
   connect_bd_net -net ts_reclock_0_tstamp_out [get_bd_pins ts_tstamp] [get_bd_pins ila_0/probe6] [get_bd_pins ts_reclock_0/tstamp_out]
-  connect_bd_net -net ts_sfp_los_1 [get_bd_pins ts_sfp_los] [get_bd_pins pdts_endpoint_stdlog_0/sfp_los]
+  connect_bd_net -net ts_sfp_los_1 [get_bd_pins ts_sfp_los] [get_bd_pins pdts_endpoint_wrapper_0/sfp_los]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins ts_sync_v] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_pins ts_evtctr] [get_bd_pins xlconstant_2/dout]
-  connect_bd_net -net xlslice_0_Dout [get_bd_pins pdts_endpoint_stdlog_0/tgrp] [get_bd_pins xlslice_0/Dout]
-  connect_bd_net -net xlslice_1_Dout [get_bd_pins pdts_endpoint_stdlog_0/addr] [get_bd_pins xlslice_1/Dout]
-  connect_bd_net -net xlslice_2_Dout [get_bd_pins pdts_endpoint_stdlog_0/srst] [get_bd_pins ts_reclock_0/fifo_rst] [get_bd_pins xlslice_2/Dout]
+  connect_bd_net -net xlslice_0_Dout [get_bd_pins pdts_endpoint_wrapper_0/tgrp] [get_bd_pins xlslice_0/Dout]
+  connect_bd_net -net xlslice_1_Dout [get_bd_pins pdts_endpoint_wrapper_0/addr] [get_bd_pins xlslice_1/Dout]
+  connect_bd_net -net xlslice_2_Dout [get_bd_pins pdts_endpoint_wrapper_0/srst] [get_bd_pins ts_reclock_0/fifo_rst] [get_bd_pins xlslice_2/Dout]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -1008,6 +1024,13 @@ proc create_root_design { parentCell } {
   set cmd_code_reset [ create_bd_port -dir I -from 7 -to 0 -type rst cmd_code_reset ]
   set cmd_code_sync [ create_bd_port -dir I -from 7 -to 0 cmd_code_sync ]
   set cmd_code_trigger [ create_bd_port -dir I -from 7 -to 0 cmd_code_trigger ]
+  set cmd_en_act [ create_bd_port -dir I cmd_en_act ]
+  set cmd_en_adc_reset [ create_bd_port -dir I -type rst cmd_en_adc_reset ]
+  set cmd_en_edge [ create_bd_port -dir I cmd_en_edge ]
+  set cmd_en_idle [ create_bd_port -dir I cmd_en_idle ]
+  set cmd_en_reset [ create_bd_port -dir I -type rst cmd_en_reset ]
+  set cmd_en_sync [ create_bd_port -dir I cmd_en_sync ]
+  set cmd_en_trigger [ create_bd_port -dir I cmd_en_trigger ]
   set cmd_stamp_sync [ create_bd_port -dir I -from 14 -to 0 cmd_stamp_sync ]
   set cmd_stamp_sync_en [ create_bd_port -dir I cmd_stamp_sync_en ]
   set daq_clk [ create_bd_port -dir I -type clk daq_clk ]
@@ -1073,6 +1096,7 @@ proc create_root_design { parentCell } {
   set ts_cdr_lol [ create_bd_port -dir I ts_cdr_lol ]
   set ts_cdr_los [ create_bd_port -dir I ts_cdr_los ]
   set ts_clk [ create_bd_port -dir O -type clk ts_clk ]
+  set ts_clk_sel [ create_bd_port -dir I -type data ts_clk_sel ]
   set ts_evtctr [ create_bd_port -dir O -from 31 -to 0 ts_evtctr ]
   set ts_rdy [ create_bd_port -dir O ts_rdy ]
   set ts_rec_clk_locked [ create_bd_port -dir I ts_rec_clk_locked ]
@@ -1084,7 +1108,7 @@ proc create_root_design { parentCell } {
   set ts_rst [ create_bd_port -dir O -type rst ts_rst ]
   set ts_sfp_los [ create_bd_port -dir I ts_sfp_los ]
   set ts_stat [ create_bd_port -dir O -from 3 -to 0 ts_stat ]
-  set ts_sync [ create_bd_port -dir O -from 3 -to 0 ts_sync ]
+  set ts_sync [ create_bd_port -dir O -from 7 -to 0 ts_sync ]
   set ts_sync_v [ create_bd_port -dir O -from 0 -to 0 ts_sync_v ]
   set ts_tstamp [ create_bd_port -dir O -from 63 -to 0 ts_tstamp ]
   set ts_valid [ create_bd_port -dir O ts_valid ]
@@ -1146,14 +1170,14 @@ proc create_root_design { parentCell } {
   # Create instance: i2c_clk_phase, and set properties
   set i2c_clk_phase [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 i2c_clk_phase ]
   set_property -dict [ list \
-   CONFIG.CLKOUT1_JITTER {142.224} \
-   CONFIG.CLKOUT1_PHASE_ERROR {131.709} \
+   CONFIG.CLKOUT1_JITTER {228.953} \
+   CONFIG.CLKOUT1_PHASE_ERROR {358.649} \
    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {62.5} \
    CONFIG.CLK_OUT1_USE_FINE_PS_GUI {true} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {19.000} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {95.000} \
    CONFIG.MMCM_CLKOUT0_DIVIDE_F {19.000} \
    CONFIG.MMCM_CLKOUT0_USE_FINE_PS {true} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {8} \
    CONFIG.USE_DYN_PHASE_SHIFT {true} \
  ] $i2c_clk_phase
 
@@ -1733,7 +1757,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRF_APB__AFI5_REF__ENABLE {0} \
    CONFIG.PSU__CRF_APB__APLL_CTRL__DIV2 {1} \
    CONFIG.PSU__CRF_APB__APLL_CTRL__FBDIV {72} \
-   CONFIG.PSU__CRF_APB__APLL_CTRL__FRACDATA {0} \
+   CONFIG.PSU__CRF_APB__APLL_CTRL__FRACDATA {0.000000} \
    CONFIG.PSU__CRF_APB__APLL_CTRL__FRACFREQ {27.138} \
    CONFIG.PSU__CRF_APB__APLL_CTRL__SRCSEL {PSS_REF_CLK} \
    CONFIG.PSU__CRF_APB__APLL_FRAC_CFG__ENABLED {0} \
@@ -1763,7 +1787,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRF_APB__DPDMA_REF_CTRL__SRCSEL {APLL} \
    CONFIG.PSU__CRF_APB__DPLL_CTRL__DIV2 {1} \
    CONFIG.PSU__CRF_APB__DPLL_CTRL__FBDIV {63} \
-   CONFIG.PSU__CRF_APB__DPLL_CTRL__FRACDATA {0} \
+   CONFIG.PSU__CRF_APB__DPLL_CTRL__FRACDATA {0.000000} \
    CONFIG.PSU__CRF_APB__DPLL_CTRL__FRACFREQ {27.138} \
    CONFIG.PSU__CRF_APB__DPLL_CTRL__SRCSEL {PSS_REF_CLK} \
    CONFIG.PSU__CRF_APB__DPLL_FRAC_CFG__ENABLED {0} \
@@ -1816,7 +1840,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRF_APB__TOPSW_MAIN_CTRL__SRCSEL {DPLL} \
    CONFIG.PSU__CRF_APB__VPLL_CTRL__DIV2 {1} \
    CONFIG.PSU__CRF_APB__VPLL_CTRL__FBDIV {90} \
-   CONFIG.PSU__CRF_APB__VPLL_CTRL__FRACDATA {0} \
+   CONFIG.PSU__CRF_APB__VPLL_CTRL__FRACDATA {0.000000} \
    CONFIG.PSU__CRF_APB__VPLL_CTRL__FRACFREQ {27.138} \
    CONFIG.PSU__CRF_APB__VPLL_CTRL__SRCSEL {PSS_REF_CLK} \
    CONFIG.PSU__CRF_APB__VPLL_FRAC_CFG__ENABLED {0} \
@@ -1901,7 +1925,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRL_APB__I2C1_REF_CTRL__SRCSEL {IOPLL} \
    CONFIG.PSU__CRL_APB__IOPLL_CTRL__DIV2 {1} \
    CONFIG.PSU__CRL_APB__IOPLL_CTRL__FBDIV {90} \
-   CONFIG.PSU__CRL_APB__IOPLL_CTRL__FRACDATA {0} \
+   CONFIG.PSU__CRL_APB__IOPLL_CTRL__FRACDATA {0.000000} \
    CONFIG.PSU__CRL_APB__IOPLL_CTRL__FRACFREQ {27.138} \
    CONFIG.PSU__CRL_APB__IOPLL_CTRL__SRCSEL {PSS_REF_CLK} \
    CONFIG.PSU__CRL_APB__IOPLL_FRAC_CFG__ENABLED {0} \
@@ -1940,7 +1964,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR0 {50} \
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__DIVISOR1 {3} \
    CONFIG.PSU__CRL_APB__PL1_REF_CTRL__FREQMHZ {10} \
-   CONFIG.PSU__CRL_APB__PL1_REF_CTRL__SRCSEL {IOPLL} \
+   CONFIG.PSU__CRL_APB__PL1_REF_CTRL__SRCSEL {RPLL} \
    CONFIG.PSU__CRL_APB__PL2_REF_CTRL__ACT_FREQMHZ {100} \
    CONFIG.PSU__CRL_APB__PL2_REF_CTRL__DIVISOR0 {4} \
    CONFIG.PSU__CRL_APB__PL2_REF_CTRL__DIVISOR1 {1} \
@@ -1958,7 +1982,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRL_APB__QSPI_REF_CTRL__SRCSEL {IOPLL} \
    CONFIG.PSU__CRL_APB__RPLL_CTRL__DIV2 {1} \
    CONFIG.PSU__CRL_APB__RPLL_CTRL__FBDIV {90} \
-   CONFIG.PSU__CRL_APB__RPLL_CTRL__FRACDATA {0} \
+   CONFIG.PSU__CRL_APB__RPLL_CTRL__FRACDATA {0.000000} \
    CONFIG.PSU__CRL_APB__RPLL_CTRL__FRACFREQ {27.138} \
    CONFIG.PSU__CRL_APB__RPLL_CTRL__SRCSEL {PSS_REF_CLK} \
    CONFIG.PSU__CRL_APB__RPLL_FRAC_CFG__ENABLED {0} \
@@ -1973,7 +1997,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__CRL_APB__SDIO1_REF_CTRL__DIVISOR1 {1} \
    CONFIG.PSU__CRL_APB__SDIO1_REF_CTRL__FREQMHZ {200} \
    CONFIG.PSU__CRL_APB__SDIO1_REF_CTRL__SRCSEL {IOPLL} \
-   CONFIG.PSU__CRL_APB__SPI0_REF_CTRL__ACT_FREQMHZ {200.000000} \
+   CONFIG.PSU__CRL_APB__SPI0_REF_CTRL__ACT_FREQMHZ {214} \
    CONFIG.PSU__CRL_APB__SPI0_REF_CTRL__DIVISOR0 {7} \
    CONFIG.PSU__CRL_APB__SPI0_REF_CTRL__DIVISOR1 {1} \
    CONFIG.PSU__CRL_APB__SPI0_REF_CTRL__FREQMHZ {200} \
@@ -2391,7 +2415,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__OCM_BANK2__POWER__ON {1} \
    CONFIG.PSU__OCM_BANK3__POWER__ON {1} \
    CONFIG.PSU__OVERRIDE_HPX_QOS {0} \
-   CONFIG.PSU__OVERRIDE__BASIC_CLOCK {1} \
+   CONFIG.PSU__OVERRIDE__BASIC_CLOCK {0} \
    CONFIG.PSU__PCIE__ACS_VIOLAION {0} \
    CONFIG.PSU__PCIE__ACS_VIOLATION {0} \
    CONFIG.PSU__PCIE__AER_CAPABILITY {0} \
@@ -2476,7 +2500,7 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__PCIE__VENDOR_ID {0x10EE} \
    CONFIG.PSU__PJTAG__PERIPHERAL__ENABLE {0} \
    CONFIG.PSU__PL_CLK0_BUF {TRUE} \
-   CONFIG.PSU__PL_CLK1_BUF {TRUE} \
+   CONFIG.PSU__PL_CLK1_BUF {FALSE} \
    CONFIG.PSU__PL_CLK2_BUF {FALSE} \
    CONFIG.PSU__PL_CLK3_BUF {FALSE} \
    CONFIG.PSU__PL__POWER__ON {1} \
@@ -2569,17 +2593,13 @@ proc create_root_design { parentCell } {
    CONFIG.PSU__SD1__SLOT_TYPE {SD 2.0} \
    CONFIG.PSU__SPI0_LOOP_SPI1__ENABLE {0} \
    CONFIG.PSU__SPI0__GRP_SS0__ENABLE {0} \
-   CONFIG.PSU__SPI0__GRP_SS0__IO {<Select>} \
    CONFIG.PSU__SPI0__GRP_SS1__ENABLE {0} \
-   CONFIG.PSU__SPI0__GRP_SS1__IO {<Select>} \
    CONFIG.PSU__SPI0__GRP_SS2__ENABLE {0} \
    CONFIG.PSU__SPI0__PERIPHERAL__ENABLE {0} \
-   CONFIG.PSU__SPI0__PERIPHERAL__IO {<Select>} \
    CONFIG.PSU__SPI1__GRP_SS0__ENABLE {0} \
    CONFIG.PSU__SPI1__GRP_SS1__ENABLE {0} \
    CONFIG.PSU__SPI1__GRP_SS2__ENABLE {0} \
    CONFIG.PSU__SPI1__PERIPHERAL__ENABLE {0} \
-   CONFIG.PSU__SPI1__PERIPHERAL__IO {<Select>} \
    CONFIG.PSU__SWDT0__CLOCK__ENABLE {0} \
    CONFIG.PSU__SWDT0__PERIPHERAL__ENABLE {0} \
    CONFIG.PSU__SWDT0__PERIPHERAL__IO {NA} \
@@ -2741,6 +2761,13 @@ proc create_root_design { parentCell } {
   connect_bd_net -net cmd_code_reset_0_1 [get_bd_ports cmd_code_reset] [get_bd_pins timing_module/cmd_code_reset_0]
   connect_bd_net -net cmd_code_sync_0_1 [get_bd_ports cmd_code_sync] [get_bd_pins timing_module/cmd_code_sync_0]
   connect_bd_net -net cmd_code_trigger_0_1 [get_bd_ports cmd_code_trigger] [get_bd_pins timing_module/cmd_code_trigger_0]
+  connect_bd_net -net cmd_en_act_0_1 [get_bd_ports cmd_en_act] [get_bd_pins timing_module/cmd_en_act_0]
+  connect_bd_net -net cmd_en_adc_reset_0_1 [get_bd_ports cmd_en_adc_reset] [get_bd_pins timing_module/cmd_en_adc_reset_0]
+  connect_bd_net -net cmd_en_edge_0_1 [get_bd_ports cmd_en_edge] [get_bd_pins timing_module/cmd_en_edge_0]
+  connect_bd_net -net cmd_en_idle_0_1 [get_bd_ports cmd_en_idle] [get_bd_pins timing_module/cmd_en_idle_0]
+  connect_bd_net -net cmd_en_reset_0_1 [get_bd_ports cmd_en_reset] [get_bd_pins timing_module/cmd_en_reset_0]
+  connect_bd_net -net cmd_en_sync_0_1 [get_bd_ports cmd_en_sync] [get_bd_pins timing_module/cmd_en_sync_0]
+  connect_bd_net -net cmd_en_trigger_0_1 [get_bd_ports cmd_en_trigger] [get_bd_pins timing_module/cmd_en_trigger_0]
   connect_bd_net -net cmd_stamp_sync_0_1 [get_bd_ports cmd_stamp_sync] [get_bd_pins timing_module/cmd_stamp_sync_0]
   connect_bd_net -net cmd_stamp_sync_en_0_1 [get_bd_ports cmd_stamp_sync_en] [get_bd_pins timing_module/cmd_stamp_sync_en_0]
   connect_bd_net -net coldata_fast_cmd_0_fastcommand_out [get_bd_pins coldata_fast_cmd_0/fastcommand_out] [get_bd_pins timing_module/probe15]
@@ -2786,7 +2813,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net pdts_endpoint_0_evtctr [get_bd_ports ts_evtctr] [get_bd_pins timing_module/ts_evtctr]
   connect_bd_net -net pdts_endpoint_0_rdy [get_bd_ports ts_rdy] [get_bd_pins timing_module/ts_rdy]
   connect_bd_net -net pdts_endpoint_0_rst [get_bd_ports ts_rst] [get_bd_pins timing_module/ts_rst]
-  connect_bd_net -net pdts_endpoint_0_sync [get_bd_ports ts_sync] [get_bd_pins timing_module/ts_sync]
   connect_bd_net -net pdts_endpoint_0_sync_v [get_bd_ports ts_sync_v] [get_bd_pins timing_module/ts_sync_v]
   connect_bd_net -net pdts_endpoint_0_tstamp [get_bd_ports ts_tstamp] [get_bd_pins daq_spy_0/ts_tstamp] [get_bd_pins daq_spy_1/ts_tstamp] [get_bd_pins timing_module/ts_tstamp]
   connect_bd_net -net psen_in_0_1 [get_bd_ports ps_en_in] [get_bd_pins dyn_phase_adjust_0/psen_in]
@@ -2817,10 +2843,12 @@ proc create_root_design { parentCell } {
   connect_bd_net -net timing_module_cmd_bit_reset [get_bd_pins coldata_fast_cmd_0/cmd_reset] [get_bd_pins timing_module/cmd_bit_reset]
   connect_bd_net -net timing_module_cmd_bit_sync [get_bd_pins coldata_fast_cmd_0/cmd_sync] [get_bd_pins timing_module/cmd_bit_sync]
   connect_bd_net -net timing_module_stat_0 [get_bd_ports ts_stat] [get_bd_pins timing_module/stat_0]
+  connect_bd_net -net timing_module_ts_sync [get_bd_ports ts_sync] [get_bd_pins timing_module/ts_sync]
   connect_bd_net -net timing_module_ts_valid_0 [get_bd_ports ts_valid] [get_bd_pins timing_module/ts_valid_0]
   connect_bd_net -net timing_module_tx_dis_0 [get_bd_ports tx_dis] [get_bd_pins timing_module/tx_dis_0]
   connect_bd_net -net timing_module_txd_0 [get_bd_ports txd] [get_bd_pins timing_module/txd_0]
   connect_bd_net -net trigger_1 [get_bd_pins daq_spy_0/trigger] [get_bd_pins daq_spy_1/trigger] [get_bd_pins timing_module/cmd_bit_trigger]
+  connect_bd_net -net ts_clk_sel_1 [get_bd_ports ts_clk_sel] [get_bd_pins timing_module/ts_clk_sel]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_ports AXI_CLK_OUT] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins coldata_fast_cmd_0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual0/s00_axi_aclk] [get_bd_pins coldata_i2c_dual1/s00_axi_aclk] [get_bd_pins coldata_i2c_dual2/s00_axi_aclk] [get_bd_pins coldata_i2c_dual3/s00_axi_aclk] [get_bd_pins daq_spy_0/AXI_CLK_OUT] [get_bd_pins daq_spy_1/AXI_CLK_OUT] [get_bd_pins dbg/AXI_CLK_OUT] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/M10_ACLK] [get_bd_pins ps8_0_axi_periph/M11_ACLK] [get_bd_pins ps8_0_axi_periph/M12_ACLK] [get_bd_pins ps8_0_axi_periph/M13_ACLK] [get_bd_pins ps8_0_axi_periph/M14_ACLK] [get_bd_pins ps8_0_axi_periph/M15_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins reg_bank_64_0/s00_axi_aclk] [get_bd_pins rst_ps8_0_99M/slowest_sync_clk] [get_bd_pins timing_module/sclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_clk1 [get_bd_ports pl_clk_10M] [get_bd_pins zynq_ultra_ps_e_0/pl_clk1]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins rst_ps8_0_99M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]

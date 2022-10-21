@@ -149,7 +149,7 @@ module wib_top
     wire ts_rec_d_clk_pad;
     wire ts_rec_d_clk_pll;
     wire ts_rst;
-    wire [3:0] ts_sync;
+    wire [7:0] ts_sync;
     wire ts_sync_v;
     wire [63:0] ts_tstamp;
     
@@ -171,7 +171,7 @@ module wib_top
     wire ts_clk_sel; // 0 = CDR clock, 1 = PLL clock
     
     // this input is unused, see Jack's message 2020-08-23
-    IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
+    //IBUFDS clk_buf_in  (.I(dune_clk_fpga_in_p), .IB(dune_clk_fpga_in_n), .O());
     
     IBUFDS tp_data_buf_in (.I(adn2814_data_p), .IB(adn2814_data_n), .O(ts_rec_d_pad));
     
@@ -180,11 +180,12 @@ module wib_top
     BUFG ts_rec_bufg (.I(ts_rec_d_clk_pad), .O(ts_rec_d_clk_pll));
 
     // clock from CDR, only available on WIB rev 3
-    IBUFDS tp_fpga_clk_buf_in (.I(adn2814_fpga_clk_p), .IB(adn2814_fpga_clk_n), .O(ts_fpga_clk_pad));
-//    BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
+    //IBUFDS tp_fpga_clk_buf_in (.I(adn2814_fpga_clk_p), .IB(adn2814_fpga_clk_n), .O(ts_fpga_clk_pad));
+    BUFG ts_fpga_bufg (.I(ts_fpga_clk_pad), .O(ts_rec_d_clk));
     
     // clock mux, so that PLL clock can be used when timing master is not available
-    BUFGMUX ts_clk_mux (.I0(ts_fpga_clk_pad), .I1(ts_rec_d_clk_pll), .S(ts_clk_sel), .O(ts_rec_d_clk));
+    //BUFGMUX ts_clk_mux (.I0(ts_fpga_clk_pad), .I1(ts_rec_d_clk_pll), .S(ts_clk_sel), .O(ts_rec_d_clk));
+    //BUFGMUX ts_clk_mux (.I0(ts_rec_d_pad), .I1(ts_rec_d_clk_pad), .S(ts_clk_sel), .O(ts_rec_d_clk));
     
     wire csd_reset;
     wire [15:0] csd_diff;
@@ -200,17 +201,17 @@ module wib_top
     );    
     
     // have to add an input FF for timing data, it's missing in the timing endpoint
-    always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
+    //always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
     
-    IDDRE1 #(.DDR_CLK_EDGE ("SAME_EDGE_PIPELINED")) iddr_timing
-    (
-        .Q1 (ts_rec_d_ddr[0]),
-        .Q2 (ts_rec_d_ddr[1]),
-        .C  (ts_rec_d_clk),
-        .CB (~ts_rec_d_clk),
-        .D  (ts_rec_d_pad),
-        .R  (1'b0)
-    );    
+    //IDDRE1 #(.DDR_CLK_EDGE ("SAME_EDGE_PIPELINED")) iddr_timing
+    //(
+    //    .Q1 (ts_rec_d_ddr[0]),
+    //    .Q2 (ts_rec_d_ddr[1]),
+    //    .C  (ts_rec_d_clk),
+    //    .CB (~ts_rec_d_clk),
+    //    .D  (ts_rec_d_pad),
+    //    .R  (1'b0)
+    //);    
 
 
     
@@ -349,6 +350,15 @@ module wib_top
     wire [7:0] cmd_code_reset     = `CONFIG_BITS(5,  0, 8); // 0xA00C0014
     wire [7:0] cmd_code_adc_reset = `CONFIG_BITS(5,  8, 8); // 0xA00C0014
     wire [7:0] cmd_code_trigger   = `CONFIG_BITS(5, 16, 8); // 0xA00C0014
+
+    // enable flags for corresponding commands above
+    wire cmd_en_idle      = `CONFIG_BITS(5, 24, 1); // 0xA00C0014
+    wire cmd_en_edge      = `CONFIG_BITS(5, 25, 1); // 0xA00C0014
+    wire cmd_en_sync      = `CONFIG_BITS(5, 26, 1); // 0xA00C0014
+    wire cmd_en_act       = `CONFIG_BITS(5, 27, 1); // 0xA00C0014
+    wire cmd_en_reset     = `CONFIG_BITS(5, 28, 1); // 0xA00C0014
+    wire cmd_en_adc_reset = `CONFIG_BITS(5, 29, 1); // 0xA00C0014
+    wire cmd_en_trigger   = `CONFIG_BITS(5, 30, 1); // 0xA00C0014
     
     wire [63:0] fake_time_stamp_init; // initial value for FTS
     assign fake_time_stamp_init[31: 0] = `CONFIG_BITS(6,  0, 32); // 0xA00C0018
@@ -399,8 +409,8 @@ module wib_top
     assign `STATUS_BITS( 4,18,  1) = adn2814_los;
     assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
     assign `STATUS_BITS( 4,16,  1) = ts_sync_v;
-    assign `STATUS_BITS( 4,12,  4) = ts_sync;
-    assign `STATUS_BITS( 4, 8,  1) = ts_rdy;
+    assign `STATUS_BITS( 4, 8,  8) = ts_sync;
+    assign `STATUS_BITS( 4, 5,  1) = ts_rdy;
     assign `STATUS_BITS( 4, 4,  1) = ts_rst;
     assign `STATUS_BITS( 4, 0,  4) = ts_stat;
     
@@ -450,6 +460,10 @@ module wib_top
     wire [1:0] rxpmaresetdone_out;
     wire clk125;
     
+    wire clk125_from_ts;
+    wire gen_clk;
+    wire gen_clk2x;
+    
     bd_tux wrp
     (
         // coldata fast command
@@ -468,12 +482,13 @@ module wib_top
         .ts_cdr_lol        (adn2814_lol      ),
         .ts_cdr_los        (adn2814_los      ),
         .ts_clk            (clk62p5          ), // this is 62.5 M clock for WIB logic
-        .clk_125           (clk125           ), // doubled system clock
+        .clk_125           (clk125_from_ts   ), // doubled system clock
         .ts_evtctr         (ts_evtctr        ),
         .ts_rdy            (ts_rdy           ),
         .ts_rec_clk_locked (si5344_lol       ), // si5344_lol is inverted already
-        .ts_rec_d          (ts_rec_d         ),
-        .ts_rec_d_clk      (ts_rec_d_clk     ), // 312.5 (or 250) M clock from CDR
+        .ts_clk_sel        (ts_clk_sel       ),
+        .ts_rec_d          (ts_rec_d_pad     ), // 62.5Mbps DCSK data
+        .ts_rec_d_clk      (gen_clk          ), // 62.5MHz PLL alt clock, MUX'd inside
         .ts_rst            (ts_rst           ),
         .ts_sfp_los        (1'b0             ),
         .ts_sync           (ts_sync          ),
@@ -516,6 +531,14 @@ module wib_top
         .cmd_code_adc_reset (cmd_code_adc_reset),
         .cmd_code_trigger   (cmd_code_trigger  ),
 
+        .cmd_en_idle      (cmd_en_idle     ),
+        .cmd_en_edge      (cmd_en_edge     ),
+        .cmd_en_sync      (cmd_en_sync     ),
+        .cmd_en_act       (cmd_en_act      ),
+        .cmd_en_reset     (cmd_en_reset    ),
+        .cmd_en_adc_reset (cmd_en_adc_reset),
+        .cmd_en_trigger   (cmd_en_trigger  ),
+
         .fake_time_stamp_en (fake_time_stamp_en),
         .fake_time_stamp_init (fake_time_stamp_init),
         .cmd_stamp_sync    (cmd_stamp_sync),
@@ -527,6 +550,19 @@ module wib_top
         
         .pl_clk_10M (lemo_io[0])
     );
+
+    // Generate fake output clock
+    ts_fake_mmcm fake_endpoint
+    (
+        .clk_out1 (gen_clk),
+        .clk_out2 (gen_clk2x),             
+        .reset    (1'b0),
+        .locked   (),
+        .clk_in1  (ts_rec_d_clk_pll)
+    );
+
+    // MUX between endpoint output (default) and PLL-based clocks (reg sel when no timing system)
+    BUFGMUX ts_clk_mux2x (.I0(clk125_from_ts), .I1(gen_clk2x), .S(ts_clk_sel), .O(clk125));    
 
     (* mark_debug *) wire [1:0]   rx_k [15:0];
     wire [1:0]   rx_comma [15:0];

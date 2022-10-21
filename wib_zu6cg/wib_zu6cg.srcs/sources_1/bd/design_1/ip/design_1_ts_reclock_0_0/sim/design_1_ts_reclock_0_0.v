@@ -80,6 +80,13 @@ module design_1_ts_reclock_0_0 (
   cmd_code_reset,
   cmd_code_adc_reset,
   cmd_code_trigger,
+  cmd_en_idle,
+  cmd_en_edge,
+  cmd_en_sync,
+  cmd_en_act,
+  cmd_en_reset,
+  cmd_en_adc_reset,
+  cmd_en_trigger,
   cmd_bit_idle,
   cmd_bit_edge,
   cmd_bit_sync,
@@ -96,14 +103,14 @@ module design_1_ts_reclock_0_0 (
 input wire [3 : 0] stat_in;
 input wire rst_in;
 input wire rdy_in;
-input wire [3 : 0] sync_in;
+input wire [7 : 0] sync_in;
 input wire sync_stb_in;
 input wire sync_first_in;
 input wire [63 : 0] tstamp_in;
 output wire [3 : 0] stat_out;
 output wire rst_out;
 output wire rdy_out;
-output wire [3 : 0] sync_out;
+output wire [7 : 0] sync_out;
 output wire sync_stb_out;
 output wire sync_first_out;
 output wire [63 : 0] tstamp_out;
@@ -124,6 +131,17 @@ input wire [7 : 0] cmd_code_reset;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_code_adc_reset RST" *)
 input wire [7 : 0] cmd_code_adc_reset;
 input wire [7 : 0] cmd_code_trigger;
+input wire cmd_en_idle;
+input wire cmd_en_edge;
+input wire cmd_en_sync;
+input wire cmd_en_act;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_en_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_en_reset RST" *)
+input wire cmd_en_reset;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cmd_en_adc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cmd_en_adc_reset RST" *)
+input wire cmd_en_adc_reset;
+input wire cmd_en_trigger;
 output wire cmd_bit_idle;
 output wire cmd_bit_edge;
 output wire cmd_bit_sync;
@@ -166,6 +184,13 @@ input wire cmd_stamp_sync_en;
     .cmd_code_reset(cmd_code_reset),
     .cmd_code_adc_reset(cmd_code_adc_reset),
     .cmd_code_trigger(cmd_code_trigger),
+    .cmd_en_idle(cmd_en_idle),
+    .cmd_en_edge(cmd_en_edge),
+    .cmd_en_sync(cmd_en_sync),
+    .cmd_en_act(cmd_en_act),
+    .cmd_en_reset(cmd_en_reset),
+    .cmd_en_adc_reset(cmd_en_adc_reset),
+    .cmd_en_trigger(cmd_en_trigger),
     .cmd_bit_idle(cmd_bit_idle),
     .cmd_bit_edge(cmd_bit_edge),
     .cmd_bit_sync(cmd_bit_sync),
