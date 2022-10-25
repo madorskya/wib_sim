@@ -24,10 +24,10 @@
 #include <sys/mman.h>
 #include <linux/limits.h>
 
-#include "Si5344-RevD-wib62.5-p3-Registers.h"
-//#include "Si5344-RevD-wib-Registers.h"
-//#include "wib-Si5344-non-zd-Registers.h"
-//#include "Jack-25M-Registers.h"
+// DCSK timing endpoint
+#include "Si5344-RevD-wib62.5_DCSK-Registers.h"
+// old-style timing endpoint
+//#include "Si5344-RevD-wib62.5-p3-Registers.h"
 
 // Make the SDK console work in the debugger
 #define printf(...) \

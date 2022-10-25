@@ -58,22 +58,16 @@ module design_1_pdts_endpoint_wrapper_0_0 (
   sclk,
   srst,
   addr,
-  tgrp,
   ts_clk_sel,
   rec_clk,
   rec_d,
-  sfp_los,
-  cdr_los,
-  cdr_lol,
-  pll_locked,
   stat,
   clk,
-  clkx2,
+  clk2x,
   rst,
   rdy,
   sync,
   sync_stb,
-  sync_first,
   tstamp,
   txd,
   tx_dis
@@ -82,28 +76,22 @@ module design_1_pdts_endpoint_wrapper_0_0 (
 input wire sclk;
 input wire srst;
 input wire [15 : 0] addr;
-input wire [1 : 0] tgrp;
 input wire ts_clk_sel;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 rec_clk CLK" *)
 input wire rec_clk;
 input wire rec_d;
-input wire sfp_los;
-input wire cdr_los;
-input wire cdr_lol;
-input wire pll_locked;
 output wire [3 : 0] stat;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_pdts_endpoint_wrapper_0_0_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 output wire clk;
-output wire clkx2;
+output wire clk2x;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 output wire rst;
 output wire rdy;
 output wire [7 : 0] sync;
 output wire sync_stb;
-output wire sync_first;
 output wire [63 : 0] tstamp;
 output wire txd;
 output wire tx_dis;
@@ -112,22 +100,16 @@ output wire tx_dis;
     .sclk(sclk),
     .srst(srst),
     .addr(addr),
-    .tgrp(tgrp),
     .ts_clk_sel(ts_clk_sel),
     .rec_clk(rec_clk),
     .rec_d(rec_d),
-    .sfp_los(sfp_los),
-    .cdr_los(cdr_los),
-    .cdr_lol(cdr_lol),
-    .pll_locked(pll_locked),
     .stat(stat),
     .clk(clk),
-    .clkx2(clkx2),
+    .clk2x(clk2x),
     .rst(rst),
     .rdy(rdy),
     .sync(sync),
     .sync_stb(sync_stb),
-    .sync_first(sync_first),
     .tstamp(tstamp),
     .txd(txd),
     .tx_dis(tx_dis)

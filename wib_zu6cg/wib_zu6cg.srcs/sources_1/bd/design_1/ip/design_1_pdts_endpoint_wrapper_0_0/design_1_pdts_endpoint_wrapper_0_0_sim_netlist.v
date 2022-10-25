@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Fri Oct 21 12:58:34 2022
+// Date        : Tue Oct 25 11:03:12 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_pdts_endpoint_wrapper_0_0/design_1_pdts_endpoint_wrapper_0_0_sim_netlist.v
@@ -19,51 +19,39 @@ module design_1_pdts_endpoint_wrapper_0_0
    (sclk,
     srst,
     addr,
-    tgrp,
     ts_clk_sel,
     rec_clk,
     rec_d,
-    sfp_los,
-    cdr_los,
-    cdr_lol,
-    pll_locked,
     stat,
     clk,
-    clkx2,
+    clk2x,
     rst,
     rdy,
     sync,
     sync_stb,
-    sync_first,
     tstamp,
     txd,
     tx_dis);
   input sclk;
   input srst;
   input [15:0]addr;
-  input [1:0]tgrp;
   input ts_clk_sel;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 rec_clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rec_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_rec_d_clk, INSERT_VIP 0" *) input rec_clk;
   input rec_d;
-  input sfp_los;
-  input cdr_los;
-  input cdr_lol;
-  input pll_locked;
   output [3:0]stat;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_pdts_endpoint_wrapper_0_0_clk, INSERT_VIP 0" *) output clk;
-  output clkx2;
+  output clk2x;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output rst;
   output rdy;
   output [7:0]sync;
   output sync_stb;
-  output sync_first;
   output [63:0]tstamp;
   output txd;
   output tx_dis;
 
-  wire \<const0> ;
   wire [15:0]addr;
   wire clk;
+  wire clk2x;
   wire rdy;
   wire rec_clk;
   wire rec_d;
@@ -78,13 +66,10 @@ module design_1_pdts_endpoint_wrapper_0_0
   wire tx_dis;
   wire txd;
 
-  assign clkx2 = \<const0> ;
-  assign sync_first = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
   design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper inst
        (.addr(addr),
         .clk(clk),
+        .clk2x(clk2x),
         .out(stat[3]),
         .rdy(rdy),
         .rec_clk(rec_clk),
@@ -3106,6 +3091,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint
     clk,
     rst,
     tstamp,
+    clk2x,
     rdy,
     stat,
     tx_dis,
@@ -3119,6 +3105,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint
   output clk;
   output rst;
   output [63:0]tstamp;
+  output clk2x;
   output rdy;
   output [3:0]stat;
   output tx_dis;
@@ -3132,6 +3119,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint
   wire [15:0]addr;
   wire cdr_locked;
   wire clk;
+  wire clk2x;
   wire d;
   wire [11:0]phase;
   wire phase_done;
@@ -3148,7 +3136,6 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint
   wire tx_dis;
   wire txd;
   wire [0:0]wb;
-  wire NLW_rxcdr_clko2x_UNCONNECTED;
   wire NLW_rxcdr_rclko_UNCONNECTED;
   wire [7:0]NLW_rxcdr_dbg_UNCONNECTED;
 
@@ -3175,7 +3162,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint
   (* USE_EXT_PLL = "FALSE" *) 
   design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr rxcdr
        (.clko(clk),
-        .clko2x(NLW_rxcdr_clko2x_UNCONNECTED),
+        .clko2x(clk2x),
         .clko4x(rxcdr_n_2),
         .d(rec_d),
         .dbg(NLW_rxcdr_dbg_UNCONNECTED[7:0]),
@@ -3199,6 +3186,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper
    (sync,
     rst,
     tstamp,
+    clk2x,
     rdy,
     out,
     tx_dis,
@@ -3215,6 +3203,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper
   output [7:0]sync;
   output rst;
   output [63:0]tstamp;
+  output clk2x;
   output rdy;
   output [0:0]out;
   output tx_dis;
@@ -3231,6 +3220,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper
 
   wire [15:0]addr;
   wire clk;
+  wire clk2x;
   wire clk_from_endpoint;
   wire [0:0]out;
   wire rdy;
@@ -3269,6 +3259,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper
   design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint ts_ep
        (.addr(addr),
         .clk(clk_from_endpoint),
+        .clk2x(clk2x),
         .rdy(rdy),
         .rec_d(rec_d),
         .rst(rst),
@@ -3315,8 +3306,8 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr
   wire \<const0> ;
   wire bclk;
   wire bclk_f;
-  wire bufg2x_n_0;
   wire clko;
+  wire clko2x;
   wire clko4x;
   wire clku;
   wire clku2x;
@@ -3412,7 +3403,6 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr
   wire [7:0]NLW_psincdec_reg_i_2_O_UNCONNECTED;
   wire [7:0]NLW_sm_dbg_UNCONNECTED;
 
-  assign clko2x = \<const0> ;
   assign dbg[7] = \<const0> ;
   assign dbg[6] = \<const0> ;
   assign dbg[5] = \<const0> ;
@@ -3443,7 +3433,7 @@ module design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr
     bufg2x
        (.CE(1'b1),
         .I(clku2x),
-        .O(bufg2x_n_0));
+        .O(clko2x));
   (* XILINX_LEGACY_PRIM = "BUFG" *) 
   (* box_type = "PRIMITIVE" *) 
   BUFGCE #(

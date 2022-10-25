@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 21 12:57:26 2022" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Oct 25 11:02:01 2022" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynquplus" DEVICE="xczu6cg" NAME="design_1" PACKAGE="ffvb1156" SPEEDGRADE="-1"/>
 
@@ -24,9 +24,9 @@
         <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe18"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_125" SIGIS="clk" SIGNAME="timing_module_pdts_endpoint_wrapper_0_clkx2">
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_125" SIGIS="clk" SIGNAME="timing_module_pdts_endpoint_wrapper_0_clk2x">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="clkx2"/>
+        <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="clk2x"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="7" NAME="cmd_code_act" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_cmd_code_act">
@@ -314,16 +314,8 @@
         <CONNECTION INSTANCE="daq_spy_1_daq_spy_control_0" PORT="rec_time"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="ts_cdr_lol" SIGIS="undef" SIGNAME="External_Ports_ts_cdr_lol">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="cdr_lol"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="ts_cdr_los" SIGIS="undef" SIGNAME="External_Ports_ts_cdr_los">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="cdr_los"/>
-      </CONNECTIONS>
-    </PORT>
+    <PORT DIR="I" NAME="ts_cdr_lol" SIGIS="undef"/>
+    <PORT DIR="I" NAME="ts_cdr_los" SIGIS="undef"/>
     <PORT CLKFREQUENCY="100000000" DIR="O" NAME="ts_clk" SIGIS="clk" SIGNAME="timing_module_pdts_endpoint_wrapper_0_clk">
       <CONNECTIONS>
         <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="clk"/>
@@ -344,11 +336,7 @@
         <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="rdy_out"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="ts_rec_clk_locked" SIGIS="undef" SIGNAME="External_Ports_ts_rec_clk_locked">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="pll_locked"/>
-      </CONNECTIONS>
-    </PORT>
+    <PORT DIR="I" NAME="ts_rec_clk_locked" SIGIS="undef"/>
     <PORT DIR="I" NAME="ts_rec_d" SIGIS="undef" SIGNAME="External_Ports_ts_rec_d">
       <CONNECTIONS>
         <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="rec_d"/>
@@ -364,11 +352,7 @@
         <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="rst_out"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="ts_sfp_los" SIGIS="undef" SIGNAME="External_Ports_ts_sfp_los">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="sfp_los"/>
-      </CONNECTIONS>
-    </PORT>
+    <PORT DIR="I" NAME="ts_sfp_los" SIGIS="undef"/>
     <PORT DIR="O" LEFT="3" NAME="ts_stat" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_stat_out">
       <CONNECTIONS>
         <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="stat_out"/>
@@ -2079,7 +2063,7 @@
         </PORT>
         <PORT DIR="O" NAME="scl_out" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_scl_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe22"/>
+            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe14"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="sda_out_p" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_sda_out_p">
@@ -2109,7 +2093,7 @@
         </PORT>
         <PORT DIR="O" NAME="sda_out_out" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_sda_out_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe21"/>
+            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe5"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="clk62p5" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_clk">
@@ -12205,7 +12189,6 @@
         <PORT DIR="O" LEFT="1023" NAME="reg_rw" RIGHT="0" SIGIS="undef" SIGNAME="reg_bank_64_0_reg_rw">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="reg_rw"/>
-            <CONNECTION INSTANCE="timing_module_xlslice_0" PORT="Din"/>
             <CONNECTION INSTANCE="timing_module_xlslice_1" PORT="Din"/>
             <CONNECTION INSTANCE="timing_module_xlslice_2" PORT="Din"/>
           </CONNECTIONS>
@@ -12477,7 +12460,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="23"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="21"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="4096"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="1"/>
@@ -15627,9 +15610,9 @@
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="sync_stb_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_sync_first_out">
+        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_sda_out_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="sync_first_out"/>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="sda_out_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="63" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_tstamp_out">
@@ -15672,9 +15655,9 @@
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="cmd_bit_adc_reset"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_fifo_valid">
+        <PORT DIR="I" LEFT="0" NAME="probe14" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_scl_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fifo_valid"/>
+            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="scl_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe15" RIGHT="0" SIGIS="undef" SIGNAME="coldata_fast_cmd_0_fastcommand_out">
@@ -15707,16 +15690,6 @@
             <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="sda_in_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe21" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_sda_out_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="sda_out_out"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe22" RIGHT="0" SIGIS="undef" SIGNAME="coldata_i2c_dual0_coldata_i2c_0_scl_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="coldata_i2c_dual0_coldata_i2c_0" PORT="scl_out"/>
-          </CONNECTIONS>
-        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -15742,11 +15715,6 @@
             <CONNECTION INSTANCE="timing_module_xlslice_1" PORT="Dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="tgrp" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_0_Dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_xlslice_0" PORT="Dout"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" NAME="ts_clk_sel" SIGIS="undef" SIGNAME="External_Ports_ts_clk_sel">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="ts_clk_sel"/>
@@ -15760,26 +15728,6 @@
         <PORT DIR="I" NAME="rec_d" SIGIS="undef" SIGNAME="External_Ports_ts_rec_d">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="ts_rec_d"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="sfp_los" SIGIS="undef" SIGNAME="External_Ports_ts_sfp_los">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="ts_sfp_los"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="cdr_los" SIGIS="undef" SIGNAME="External_Ports_ts_cdr_los">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="ts_cdr_los"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="cdr_lol" SIGIS="undef" SIGNAME="External_Ports_ts_cdr_lol">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="ts_cdr_lol"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="pll_locked" SIGIS="undef" SIGNAME="External_Ports_ts_rec_clk_locked">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="ts_rec_clk_locked"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="stat" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_stat">
@@ -15804,7 +15752,7 @@
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="clk62p5"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="clkx2" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_clkx2">
+        <PORT DIR="O" NAME="clk2x" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_clk2x">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="clk_125"/>
           </CONNECTIONS>
@@ -15827,11 +15775,6 @@
         <PORT DIR="O" NAME="sync_stb" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_sync_stb">
           <CONNECTIONS>
             <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="sync_stb_in"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="sync_first" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_sync_first">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="sync_first_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="63" NAME="tstamp" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_tstamp">
@@ -15886,11 +15829,6 @@
             <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="sync_stb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="sync_first_in" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_sync_first">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="sync_first"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="63" NAME="tstamp_in" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_pdts_endpoint_wrapper_0_tstamp">
           <CONNECTIONS>
             <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="tstamp"/>
@@ -15925,11 +15863,6 @@
             <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe4"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="sync_first_out" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_sync_first_out">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe5"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="63" NAME="tstamp_out" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_tstamp_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="ts_tstamp"/>
@@ -15952,11 +15885,6 @@
         <PORT DIR="I" NAME="fifo_rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="timing_module_xlslice_2_Dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="timing_module_xlslice_2" PORT="Dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="fifo_valid" SIGIS="undef" SIGNAME="timing_module_ts_reclock_0_fifo_valid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ila_0" PORT="probe14"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="7" NAME="cmd_code_idle" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_cmd_code_idle">
@@ -16129,30 +16057,6 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="2" FULLNAME="/timing_module/xlslice_0" HWVERSION="1.0" INSTANCE="timing_module_xlslice_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="DIN_WIDTH" VALUE="1024"/>
-        <PARAMETER NAME="DIN_FROM" VALUE="17"/>
-        <PARAMETER NAME="DIN_TO" VALUE="16"/>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_xlslice_0_0"/>
-        <PARAMETER NAME="DOUT_WIDTH" VALUE="2"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="1023" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="reg_bank_64_0_reg_rw">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="reg_bank_64_0" PORT="reg_rw"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_0_Dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="tgrp"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
     <MODULE COREREVISION="2" FULLNAME="/timing_module/xlslice_1" HWVERSION="1.0" INSTANCE="timing_module_xlslice_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -16195,8 +16099,8 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="timing_module_xlslice_2_Dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fifo_rst"/>
             <CONNECTION INSTANCE="timing_module_pdts_endpoint_wrapper_0" PORT="srst"/>
+            <CONNECTION INSTANCE="timing_module_ts_reclock_0" PORT="fifo_rst"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

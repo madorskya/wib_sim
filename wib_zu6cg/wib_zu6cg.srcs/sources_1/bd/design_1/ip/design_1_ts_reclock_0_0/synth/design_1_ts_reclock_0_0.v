@@ -61,19 +61,16 @@ module design_1_ts_reclock_0_0 (
   rdy_in,
   sync_in,
   sync_stb_in,
-  sync_first_in,
   tstamp_in,
   stat_out,
   rst_out,
   rdy_out,
   sync_out,
   sync_stb_out,
-  sync_first_out,
   tstamp_out,
   ts_valid,
   clk62p5,
   fifo_rst,
-  fifo_valid,
   cmd_code_idle,
   cmd_code_edge,
   cmd_code_sync,
@@ -106,21 +103,18 @@ input wire rst_in;
 input wire rdy_in;
 input wire [7 : 0] sync_in;
 input wire sync_stb_in;
-input wire sync_first_in;
 input wire [63 : 0] tstamp_in;
 output wire [3 : 0] stat_out;
 output wire rst_out;
 output wire rdy_out;
 output wire [7 : 0] sync_out;
 output wire sync_stb_out;
-output wire sync_first_out;
 output wire [63 : 0] tstamp_out;
 output wire ts_valid;
 input wire clk62p5;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME fifo_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 fifo_rst RST" *)
 input wire fifo_rst;
-output wire fifo_valid;
 input wire [7 : 0] cmd_code_idle;
 input wire [7 : 0] cmd_code_edge;
 input wire [7 : 0] cmd_code_sync;
@@ -165,19 +159,16 @@ input wire cmd_stamp_sync_en;
     .rdy_in(rdy_in),
     .sync_in(sync_in),
     .sync_stb_in(sync_stb_in),
-    .sync_first_in(sync_first_in),
     .tstamp_in(tstamp_in),
     .stat_out(stat_out),
     .rst_out(rst_out),
     .rdy_out(rdy_out),
     .sync_out(sync_out),
     .sync_stb_out(sync_stb_out),
-    .sync_first_out(sync_first_out),
     .tstamp_out(tstamp_out),
     .ts_valid(ts_valid),
     .clk62p5(clk62p5),
     .fifo_rst(fifo_rst),
-    .fifo_valid(fifo_valid),
     .cmd_code_idle(cmd_code_idle),
     .cmd_code_edge(cmd_code_edge),
     .cmd_code_sync(cmd_code_sync),

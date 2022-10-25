@@ -28,7 +28,7 @@ module bd_tux
     input  ts_rec_d_clk,
     output ts_rst,
     input  ts_sfp_los,
-    output [3:0] ts_sync,
+    output [7:0] ts_sync,
     output ts_sync_v,
     output [63:0] ts_tstamp,
     output [3:0]  ts_stat,

@@ -3,22 +3,16 @@ module pdts_endpoint_wrapper
     input sclk,
     input srst,
     input [15:0] addr,
-    input [1:0] tgrp,
     input ts_clk_sel,
     input rec_clk,
     input rec_d,
-    input sfp_los,
-    input cdr_los,
-    input cdr_lol,
-    input pll_locked,
     output [3:0] stat,
     output clk,
-    output clkx2,
+    output clk2x,
     output rst,
     output rdy,
     output [7:0] sync,
     output sync_stb,
-    output sync_first,
     output [63:0] tstamp,
     output txd,
     output tx_dis
@@ -27,6 +21,7 @@ module pdts_endpoint_wrapper
     wire clk_from_endpoint;
     // MUX between endpoint output (default) and PLL-based clocks (reg sel when no timing system)
     BUFGMUX ts_clk_mux (.I0(clk_from_endpoint), .I1(rec_clk), .S(ts_clk_sel), .O(clk));
+    // need to mux 2x clock here as well
 
     pdts_endpoint #( 
         .SCLK_FREQ(100.0),

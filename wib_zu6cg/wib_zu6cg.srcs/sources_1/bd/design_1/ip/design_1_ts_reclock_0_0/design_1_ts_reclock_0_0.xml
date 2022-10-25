@@ -268,7 +268,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80a4cd40</spirit:value>
+            <spirit:value>9:2c5e80f9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -279,7 +279,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80a4cd40</spirit:value>
+            <spirit:value>9:2c5e80f9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -295,11 +295,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 21 15:46:19 UTC 2022</spirit:value>
+            <spirit:value>Tue Oct 25 15:02:00 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80a4cd40</spirit:value>
+            <spirit:value>9:2c5e80f9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -311,7 +311,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37f06c56</spirit:value>
+            <spirit:value>9:698b8793</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -327,11 +327,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 21 15:46:19 UTC 2022</spirit:value>
+            <spirit:value>Tue Oct 25 15:02:00 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:37f06c56</spirit:value>
+            <spirit:value>9:698b8793</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -345,11 +345,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Oct 21 15:48:38 UTC 2022</spirit:value>
+            <spirit:value>Tue Oct 25 15:03:09 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80a4cd40</spirit:value>
+            <spirit:value>9:2c5e80f9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -417,19 +417,6 @@
       </spirit:port>
       <spirit:port>
         <spirit:name>sync_stb_in</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>sync_first_in</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -532,19 +519,6 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>sync_first_out</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
         <spirit:name>tstamp_out</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
@@ -591,19 +565,6 @@
         <spirit:name>fifo_rst</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>fifo_valid</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>std_logic</spirit:typeName>
