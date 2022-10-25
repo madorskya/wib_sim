@@ -1,16 +1,16 @@
 /*
  * Si5344 Rev D Configuration Register Export Header File
  *
- * This file represents a series of Silicon Labs Si5344 Rev D 
+ * This file represents a series of Skyworks Si5344 Rev D 
  * register writes that can be performed to load a single configuration 
- * on a device. It was created by a Silicon Labs ClockBuilder Pro
+ * on a device. It was created by a Skyworks ClockBuilder Pro
  * export tool.
  *
  * Part:		                                       Si5344 Rev D
  * Design ID:                                          wib62.5
  * Includes Pre/Post Download Control Register Writes: Yes
- * Created By:                                         ClockBuilder Pro v3.3 [2021-04-08]
- * Timestamp:                                          2022-10-04 13:42:55 GMT-04:00
+ * Created By:                                         ClockBuilder Pro v4.1 [2021-09-22]
+ * Timestamp:                                          2022-10-25 17:21:16 GMT-04:00
  *
  * A complete design report corresponding to this export is included at the end 
  * of this header file.
@@ -136,7 +136,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
 	{ 0x00EC, 0x00 },
 	{ 0x00ED, 0x00 },
 	{ 0x0102, 0x01 },
-	{ 0x0112, 0x02 },
+	{ 0x0112, 0x06 },
 	{ 0x0113, 0x09 },
 	{ 0x0114, 0x3B },
 	{ 0x0115, 0x29 },
@@ -211,7 +211,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
 	{ 0x023C, 0x00 },
 	{ 0x023D, 0x00 },
 	{ 0x023E, 0x80 },
-	{ 0x0250, 0x01 },
+	{ 0x0250, 0x00 },
 	{ 0x0251, 0x00 },
 	{ 0x0252, 0x00 },
 	{ 0x0253, 0x03 },
@@ -264,8 +264,8 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
 	{ 0x030D, 0x00 },
 	{ 0x030E, 0x00 },
 	{ 0x030F, 0x00 },
-	{ 0x0310, 0x2F },
-	{ 0x0311, 0x0D },
+	{ 0x0310, 0x00 },
+	{ 0x0311, 0x1B },
 	{ 0x0312, 0x00 },
 	{ 0x0313, 0x00 },
 	{ 0x0314, 0x00 },
@@ -488,7 +488,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
 	{ 0x095E, 0x00 },
 	{ 0x0A02, 0x00 },
 	{ 0x0A03, 0x03 },
-	{ 0x0A04, 0x01 },
+	{ 0x0A04, 0x03 },
 	{ 0x0A05, 0x03 },
 	{ 0x0A14, 0x00 },
 	{ 0x0A1A, 0x00 },
@@ -518,11 +518,11 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  *
  * Overview
  * ========
- * Part:               Si5344AB Rev D
- * Project File:       C:\Users\nikolica\Box Sync\adrian_Penn\WIB\timing_new\Si5344-RevD-wib62.5-Project_03.slabtimeproj
+ * Part:               Si5344ABCD Rev D
+ * Project File:       F:\madorsky\github\zynq\wib_sim\clock\coldata_p3_DCSK\Si5344-RevD-wib62.5-Project_DCSK.slabtimeproj
  * Design ID:          wib62.5
- * Created By:         ClockBuilder Pro v3.3 [2021-04-08]
- * Timestamp:          2022-10-04 13:42:55 GMT-04:00
+ * Created By:         ClockBuilder Pro v4.1 [2021-09-22]
+ * Timestamp:          2022-10-25 17:21:15 GMT-04:00
  * 
  * Design Rule Check
  * =================
@@ -530,33 +530,24 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * - No errors
  * 
  * Warnings:
- * - OUT0 [128 MHz] and OUT1 [62.5 MHz] may have coupling [1]
- * 
- * Footnotes:
- * [1] To avoid coupling in outputs, Silicon Labs recommends the following:
- * 
- * - Avoid adjacent frequency values that are close. CBPro uses an output's integration bandwidth (IBW) to determine whether two adjacent frequencies are too close. An IBW of 20 MHz is used for frequencies 80 MHz and larger. Lower frequencies will use IBW of OUT/4. CBPro will flag fundamental coupling and coupling up to the fourth harmonic, where coupling frequency = Absolute(OUTa*x - OUTb*y) for all combinations of x and y 1 through 4. If any one of these values is less than or equal to the IBW, the output is flagged as having possible coupling.
- * - Adjacent frequency values that are integer multiples of one another are okay and these outputs should be grouped accordingly. For example, a 155.52 MHz and 622.08 MHz (155.52 x 4) can be adjacent.
- * - Unused outputs can be used to separate clock outputs that might otherwise interfere with one another.
- * 
- * Silicon Labs recommends you validate your design's jitter performance using an Evaluation Board. You can request a custom phase noise report for your design from CBPro's design dashboard.
+ * - No warnings
  * 
  * Device Grade
  * ============
  * Maximum Output Frequency: 250 MHz
- * Frequency Synthesis Mode: Fractional
- * Frequency Plan Grade:     B
- * Minimum Base OPN:         Si5344B*
+ * Frequency Synthesis Mode: Integer
+ * Frequency Plan Grade:     D
+ * Minimum Base OPN:         Si5344D*
  * 
  * Base       Output Clock         Supported Frequency Synthesis Modes
  * OPN Grade  Frequency Range      (Typical Jitter)
  * ---------  -------------------  --------------------------------------------
  * Si5344A    100 Hz to 1.028 GHz  Integer (< 100 fs) and fractional (< 150 fs)
- * Si5344B*   100 Hz to 350 MHz    "
+ * Si5344B    100 Hz to 350 MHz    "
  * Si5344C    100 Hz to 1.028 GHz  Integer only (< 100 fs)
- * Si5344D    100 Hz to 350 MHz    "
+ * Si5344D*   100 Hz to 350 MHz    "
  * 
- * * Based on your calculated frequency plan, a Si5344B grade device is
+ * * Based on your calculated frequency plan, a Si5344D grade device is
  * sufficient for your design. For more in-system configuration flexibility
  * (higher frequencies and/or to enable fractional synthesis), consider
  * selecting device grade Si5344A when specifying an ordering part number (OPN)
@@ -581,7 +572,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  *          Standard
  * 
  * Outputs:
- *    OUT0: 128 MHz
+ *    OUT0: 125 MHz
  *          Enabled, LVDS 2.5 V
  *    OUT1: 62.5 MHz
  *          Enabled, LVDS 2.5 V
@@ -597,7 +588,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * Fvco = 13.5 GHz
  * Fpfd = 2 MHz
  * Fms0 = 500 MHz
- * Fms1 = 512 MHz
+ * Fms1 = 250 MHz
  * 
  * P dividers:
  *    P0  = 125
@@ -615,15 +606,15 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  *       OUT2: 62.5 MHz [ 62 + 1/2 MHz ]
  *       OUT3: 250 MHz
  *    N1:
- *       Value: 26.3671875
- *       OUT0: 128 MHz
+ *       Value: 54
+ *       OUT0: 125 MHz
  *    N2:
  *       Unused
  *    N3:
  *       Unused
  * 
  * R dividers:
- *    R0 = 4
+ *    R0 = 2
  *    R1 = 8
  *    R2 = 8
  *    R3 = 2
@@ -675,18 +666,18 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * Theta-JA: 18.4 °C/W
  * Airflow:  2 m/s
  * 
- * Total Power: 790 mW, On Chip Power: 766 mW, Tj: 39 °C
+ * Total Power: 767 mW, On Chip Power: 743 mW, Tj: 39 °C
  * 
  *         Frequency  Format   Voltage   Current     Power
  *         ---------  ------  --------  --------  --------
- * VDD                           1.8 V  138.2 mA    249 mW
- * VDDA                          3.3 V  116.8 mA    385 mW
- * VDDO0     128 MHz  LVDS       2.5 V   15.6 mA     39 mW
+ * VDD                           1.8 V  127.6 mA    230 mW
+ * VDDA                          3.3 V  115.6 mA    381 mW
+ * VDDO0     125 MHz  LVDS       2.5 V   15.6 mA     39 mW
  * VDDO1    62.5 MHz  LVDS       2.5 V   15.3 mA     38 mW
  * VDDO2    62.5 MHz  LVDS       2.5 V   15.3 mA     38 mW
  * VDDO3     250 MHz  LVDS       2.5 V   16.1 mA     40 mW
  *                                      --------  --------
- *                               Total  317.3 mA    790 mW
+ *                               Total  305.4 mA    767 mW
  * 
  * Note:
  * 
@@ -782,7 +773,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * 0x0102[0]     OUTALL_DISABLE_LOW          1                  0x1              
  * 0x0112[0]     OUT0_PDN                    0                  0x0              
  * 0x0112[1]     OUT0_OE                     1                  0x1              
- * 0x0112[2]     OUT0_RDIV_FORCE2            0                  0x0              
+ * 0x0112[2]     OUT0_RDIV_FORCE2            1                  0x1              
  * 0x0113[2:0]   OUT0_FORMAT                 1                  0x1              
  * 0x0113[3]     OUT0_SYNC_EN                1                  0x1              
  * 0x0113[5:4]   OUT0_DIS_STATE              0                  0x0              
@@ -858,7 +849,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * 0x0234[4]     P3_FRACN_EN                 0                  0x0              
  * 0x0235[43:0]  MXAXB_NUM                   603979776000       0x08CA0000000    
  * 0x023B[31:0]  MXAXB_DEN                   2147483648         0x80000000       
- * 0x0250[23:0]  R0_REG                      1                  0x000001         
+ * 0x0250[23:0]  R0_REG                      0                  0x000000         
  * 0x0253[23:0]  R1_REG                      3                  0x000003         
  * 0x025C[23:0]  R2_REG                      3                  0x000003         
  * 0x025F[23:0]  R3_REG                      0                  0x000000         
@@ -888,7 +879,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * 0x0302[43:0]  N0_NUM                      57982058496        0x00D80000000    
  * 0x0308[31:0]  N0_DEN                      2147483648         0x80000000       
  * 0x030C[0]     N0_UPDATE                   0                  0x0              
- * 0x030D[43:0]  N1_NUM                      56623104000        0x00D2F000000    
+ * 0x030D[43:0]  N1_NUM                      115964116992       0x01B00000000    
  * 0x0313[31:0]  N1_DEN                      2147483648         0x80000000       
  * 0x0317[0]     N1_UPDATE                   0                  0x0              
  * 0x0318[43:0]  N2_NUM                      0                  0x00000000000    
@@ -1041,7 +1032,7 @@ si5344_revd_register_t const si5344_revd_registers[SI5344_REVD_REG_CONFIG_NUM_RE
  * 0x095E[0]     MXAXB_INTEGER               0                  0x0              
  * 0x0A02[4:0]   N_ADD_0P5                   0                  0x00             
  * 0x0A03[4:0]   N_CLK_TO_OUTX_EN            3                  0x03             
- * 0x0A04[4:0]   N_PIBYP                     1                  0x01             
+ * 0x0A04[4:0]   N_PIBYP                     3                  0x03             
  * 0x0A05[4:0]   N_PDNB                      3                  0x03             
  * 0x0A14[3]     N0_HIGH_FREQ                0                  0x0              
  * 0x0A1A[3]     N1_HIGH_FREQ                0                  0x0              
