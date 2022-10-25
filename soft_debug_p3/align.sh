@@ -1,5 +1,8 @@
 # enable 2 MHz clock reset on time stamp updates
-./devreg.sh cmd_code_edge 0x10
+# command code 0 = time stamp
+./devreg.sh cmd_code_edge 0
+# enable command
+./devreg.sh cmd_en_edge   1
 
 # enable sending SYNC on certain time stamp lower bits
 # FAST command latency is 19 clocks + 1 clock for cable and COLDATA

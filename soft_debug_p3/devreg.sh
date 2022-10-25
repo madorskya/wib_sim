@@ -7,10 +7,31 @@ addr=(0xA00C0080	0xA00C0080		0xA00C0084	0xA00C0088	0xA00C0088	0xA00C0088	0xA00C0
 bnum=(0				1				0			0			6			12			17			23			27			0				4				0			4			8			12			16			17			18			20			0			0			0			0			0)
 mask=(1				1				0xffff		0x3f		0x3f		0x1f		0x3f		0xf			0x1f		0xf				0xf				0xf			1			1			0xf			1			1			1			0xff 		0xfffff		0xfffff		0xffffffff	0xffffffff	0xffffffff)
 
-name+=(ts_addr		ts_tgrp		ts_srst		i2c_select	fp_sfp_sel	rx_timing_sel	daq_spy_reset0	daq_spy_reset1	PRBS_selection	fb_reset	coldata_rx_reset	link_mask	ts_edge_sel	fake_time_stamp_en	cmd_code_idle	cmd_code_edge	cmd_code_sync	cmd_code_act	cmd_code_reset	cmd_code_adc_reset	cmd_code_trigger	fake_time_stamp_init_l	fake_time_stamp_init_h	fake_daq_stream	spy_rec_time)
-addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004	0xA00C0004			0xA00C0008	0xA00C000C	0xA00C000C			0xA00C0010		0xA00C0010		0xA00C0010		0xA00C0010		0xA00C0014		0xA00C0014			0xA00C0014			0xA00C0018				0xA00C001C				0xA00C0020		0xA00C0024)
-bnum+=(0			8			28			0			4			5				6				7				8				12			13					0			0			1					0				8				16				24				0				8					16					0						0						0				0)
-mask+=(0xff			3			1			0xf			1			1				1				1				0xf				1			1					0xffff		1			1					0xff			0xff			0xff			0xff			0xff			0xff				0xff				0xffffffff				0xffffffff				1				0x3ffff)
+name+=(ts_addr		ts_tgrp		ts_srst		i2c_select	fp_sfp_sel	rx_timing_sel	daq_spy_reset0	daq_spy_reset1	PRBS_selection	fb_reset	coldata_rx_reset	)
+addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004	0xA00C0004			)
+bnum+=(0			8			28			0			4			5				6				7				8				12			13					)
+mask+=(0xff			3			1			0xf			1			1				1				1				0xf				1			1					)
+
+name+=(coldata_rxbufreset	csd_reset	ts_clk_sel	ps_reset	ps_en_in	mon_adc_start	crc_err_reset)
+addr+=(0xA00C0004			0xA00C0004	0xA00C0004	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C0004   )
+bnum+=(14					15			16			17			18			19				20           )
+mask+=(1					1			1			1			1			1				1            )
+
+name+=(link_mask	ts_edge_sel	fake_time_stamp_en	fake_time_stamp_init_l	fake_time_stamp_init_h	fake_daq_stream	spy_rec_time)
+addr+=(0xA00C0008	0xA00C000C	0xA00C000C			0xA00C0018				0xA00C001C				0xA00C0020		0xA00C0024  )
+bnum+=(0			0			1					0						0						0				0           )
+mask+=(0xffff		1			1					0xffffffff				0xffffffff				1				0x3ffff     )
+
+
+name+=(cmd_code_idle	cmd_code_edge	cmd_code_sync	cmd_code_act	cmd_code_reset	cmd_code_adc_reset	cmd_code_trigger)
+addr+=(0xA00C0010		0xA00C0010		0xA00C0010		0xA00C0010		0xA00C0014		0xA00C0014			0xA00C0014		)	
+bnum+=(0				8				16				24				0				8					16				)	
+mask+=(0xff				0xff			0xff			0xff			0xff			0xff				0xff			)
+
+name+=(cmd_en_idle	cmd_en_edge	cmd_en_sync	cmd_en_act	cmd_en_reset	cmd_en_adc_reset	cmd_en_trigger)
+addr+=(0xA00C0014	0xA00C0014	0xA00C0014	0xA00C0014	0xA00C0014		0xA00C0014			0xA00C0014	  )
+bnum+=(24			25			26			27			28				29				    30            )	
+mask+=(1			1			1			1			1			    1				    1			  )	
 
 name+=(felix_rx_reset fast_cmd_code edge_to_act_delay coldata_rxbufreset cmd_stamp_sync_en cmd_stamp_sync dts_time_delay align_en)
 addr+=(0xA00C0038     0xA0030000    0xA0030004        0xA00C0004         0xA00C000C        0xA00C000C     0xA00C000C     0xA00C000C)
@@ -22,10 +43,10 @@ addr+=(0xA00C00A8 0xA00C00AC 0xA00C00B0 0xA00C00B4 0xA00C00B8 0xA00C00C4 0xA00C0
 bnum+=(0          0          0          0          0          0          16         0          16)
 mask+=(0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffff     0xffff     0xffff     0xffff)
 
-name+=(cds_reset  cds_diff   mon_adc_start crc_err_reset dac_src_sel mon_vs_pulse_sel inj_cal_pulse) 
-addr+=(0xA00C0004 0xA00C009C 0xA00C0004    0xA00C0004    0xA00C003C  0xA00C003C       0xA00C003C)
-bnum+=(15         0          19            20            0           4                5)
-mask+=(1          0xffff     1             1             0xf         1                1)
+name+=(cds_diff   dac_src_sel mon_vs_pulse_sel inj_cal_pulse) 
+addr+=(0xA00C009C 0xA00C003C  0xA00C003C       0xA00C003C)
+bnum+=(0          0           4                5)
+mask+=(0xffff     0xf         1                1)
 
 #syntax: devreg reg_name [wr_value]
 

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Oct 21 12:58:34 2022
+-- Date        : Tue Oct 25 11:03:12 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_pdts_endpoint_wrapper_0_0/design_1_pdts_endpoint_wrapper_0_0_sim_netlist.vhdl
@@ -10326,7 +10326,6 @@ architecture STRUCTURE of design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr is
   signal \<const0>\ : STD_LOGIC;
   signal bclk : STD_LOGIC;
   signal bclk_f : STD_LOGIC;
-  signal bufg2x_n_0 : STD_LOGIC;
   signal \^clko\ : STD_LOGIC;
   signal \^clko4x\ : STD_LOGIC;
   signal clku : STD_LOGIC;
@@ -10487,7 +10486,6 @@ architecture STRUCTURE of design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr is
   attribute mark_debug_string of phase : signal is "true";
 begin
   clko <= \^clko\;
-  clko2x <= \<const0>\;
   clko4x <= \^clko4x\;
   dbg(7) <= \<const0>\;
   dbg(6) <= \<const0>\;
@@ -10522,7 +10520,7 @@ bufg2x: unisim.vcomponents.BUFGCE
         port map (
       CE => '1',
       I => clku2x,
-      O => bufg2x_n_0
+      O => clko2x
     );
 bufg4x: unisim.vcomponents.BUFGCE
     generic map(
@@ -16727,6 +16725,7 @@ entity design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint is
     clk : out STD_LOGIC;
     rst : out STD_LOGIC;
     tstamp : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    clk2x : out STD_LOGIC;
     rdy : out STD_LOGIC;
     stat : out STD_LOGIC_VECTOR ( 3 downto 0 );
     tx_dis : out STD_LOGIC;
@@ -16750,7 +16749,6 @@ architecture STRUCTURE of design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint is
   signal \^rst\ : STD_LOGIC;
   signal rxcdr_n_2 : STD_LOGIC;
   signal wb : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_rxcdr_clko2x_UNCONNECTED : STD_LOGIC;
   signal NLW_rxcdr_rclko_UNCONNECTED : STD_LOGIC;
   signal NLW_rxcdr_dbg_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
   attribute EXT_PLL_DIV : integer;
@@ -16785,7 +16783,7 @@ ep: entity work.design_1_pdts_endpoint_wrapper_0_0_pdts_ep_core
 rxcdr: entity work.design_1_pdts_endpoint_wrapper_0_0_pdts_ep_cdr
      port map (
       clko => \^clk\,
-      clko2x => NLW_rxcdr_clko2x_UNCONNECTED,
+      clko2x => clk2x,
       clko4x => rxcdr_n_2,
       d => rec_d,
       dbg(7 downto 0) => NLW_rxcdr_dbg_UNCONNECTED(7 downto 0),
@@ -16815,6 +16813,7 @@ entity design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper is
     sync : out STD_LOGIC_VECTOR ( 7 downto 0 );
     rst : out STD_LOGIC;
     tstamp : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    clk2x : out STD_LOGIC;
     rdy : out STD_LOGIC;
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     tx_dis : out STD_LOGIC;
@@ -16865,6 +16864,7 @@ ts_ep: entity work.design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint
      port map (
       addr(15 downto 0) => addr(15 downto 0),
       clk => clk_from_endpoint,
+      clk2x => clk2x,
       rdy => rdy,
       rec_d => rec_d,
       rst => rst,
@@ -16888,22 +16888,16 @@ entity design_1_pdts_endpoint_wrapper_0_0 is
     sclk : in STD_LOGIC;
     srst : in STD_LOGIC;
     addr : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    tgrp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     ts_clk_sel : in STD_LOGIC;
     rec_clk : in STD_LOGIC;
     rec_d : in STD_LOGIC;
-    sfp_los : in STD_LOGIC;
-    cdr_los : in STD_LOGIC;
-    cdr_lol : in STD_LOGIC;
-    pll_locked : in STD_LOGIC;
     stat : out STD_LOGIC_VECTOR ( 3 downto 0 );
     clk : out STD_LOGIC;
-    clkx2 : out STD_LOGIC;
+    clk2x : out STD_LOGIC;
     rst : out STD_LOGIC;
     rdy : out STD_LOGIC;
     sync : out STD_LOGIC_VECTOR ( 7 downto 0 );
     sync_stb : out STD_LOGIC;
-    sync_first : out STD_LOGIC;
     tstamp : out STD_LOGIC_VECTOR ( 63 downto 0 );
     txd : out STD_LOGIC;
     tx_dis : out STD_LOGIC
@@ -16921,7 +16915,6 @@ entity design_1_pdts_endpoint_wrapper_0_0 is
 end design_1_pdts_endpoint_wrapper_0_0;
 
 architecture STRUCTURE of design_1_pdts_endpoint_wrapper_0_0 is
-  signal \<const0>\ : STD_LOGIC;
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
   attribute X_INTERFACE_PARAMETER : string;
@@ -16931,16 +16924,11 @@ architecture STRUCTURE of design_1_pdts_endpoint_wrapper_0_0 is
   attribute X_INTERFACE_INFO of rst : signal is "xilinx.com:signal:reset:1.0 rst RST";
   attribute X_INTERFACE_PARAMETER of rst : signal is "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 begin
-  clkx2 <= \<const0>\;
-  sync_first <= \<const0>\;
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
 inst: entity work.design_1_pdts_endpoint_wrapper_0_0_pdts_endpoint_wrapper
      port map (
       addr(15 downto 0) => addr(15 downto 0),
       clk => clk,
+      clk2x => clk2x,
       \out\(0) => stat(3),
       rdy => rdy,
       rec_clk => rec_clk,

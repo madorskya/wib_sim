@@ -7,7 +7,6 @@ module ts_reclock
     input rdy_in,
     input [7:0] sync_in,
     input sync_stb_in,
-    input sync_first_in,
     input [63:0] tstamp_in,
     
     output [3:0] stat_out,
@@ -15,13 +14,11 @@ module ts_reclock
     output rdy_out,
     output [7:0] sync_out,
     output sync_stb_out,
-    output sync_first_out,
     output reg [63:0] tstamp_out,
     output reg ts_valid,
     input clk62p5,
     
     input fifo_rst,
-    output fifo_valid,
 
     input [7:0] cmd_code_idle     ,
     input [7:0] cmd_code_edge     ,
@@ -54,18 +51,17 @@ module ts_reclock
     input cmd_stamp_sync_en // enable issuing SYNC command on matching lower TLU stamp bits
 );
 
-    wire [79:0] din = 
+    wire [78:0] din = 
     {
         stat_in,
         rst_in,
         rdy_in,
         sync_in,
         sync_stb_in,
-        sync_first_in,
         tstamp_in
     };
 
-    wire [79:0] dout;
+    wire [78:0] dout;
     wire [63:0] tstamp_int;
     assign 
     {
@@ -74,14 +70,10 @@ module ts_reclock
         rdy_out,
         sync_out,
         sync_stb_out,
-        sync_first_out,
         tstamp_int
     } = dout;
 
-    wire ts_valid_int = 1'b1;
     assign dout = din; // FIFO is removed for 62.5M migration
-    
-    assign fifo_valid = ts_valid_int;
     
 `define CMD_DECODE(c,e,b) if (e == 1'h1 && c == sync_out) b = 1'b1
     
@@ -101,7 +93,7 @@ module ts_reclock
         cmd_bit_adc_reset = 1'b0;
         cmd_bit_trigger   = 1'b0;
 
-        if (sync_stb_out == 1'b1 && sync_first_out == 1'b1) // stb && first
+        if (sync_stb_out == 1'b1) 
         begin
             // decode and flag
             `CMD_DECODE(cmd_code_idle     , cmd_en_idle     , cmd_bit_idle     );
@@ -114,7 +106,7 @@ module ts_reclock
         end
 
         //decode time stamp valid
-        ts_valid = ts_valid_int && sync_stb_out && sync_first_out && (sync_out == 4'b0);
+        ts_valid = sync_stb_out && (sync_out == 8'b0);
         tstamp_out = (fts_en[2] == 1'b1) ? tstamp_fake : tstamp_int; // to match valid signal latency
         tstamp_fake = tstamp_fake + 64'h1;
         
