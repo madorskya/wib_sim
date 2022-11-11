@@ -18,8 +18,6 @@ module ts_reclock
     output reg ts_valid,
     input clk62p5,
     
-    input fifo_rst,
-
     input [7:0] cmd_code_idle     ,
     input [7:0] cmd_code_edge     ,
     input [7:0] cmd_code_sync     ,

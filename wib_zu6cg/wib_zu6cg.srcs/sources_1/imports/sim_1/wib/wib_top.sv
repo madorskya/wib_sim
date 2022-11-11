@@ -140,7 +140,6 @@ module wib_top
     wire [15 :0] gtpowergood_out     ;
     wire clk62p5;
     
-    wire [31:0] ts_evtctr;
     wire ts_rdy;
     wire ts_rec_d_pad; 
     wire [1:0] ts_rec_d_ddr;
@@ -308,6 +307,13 @@ module wib_top
     wire [1:0]  crc_err [15:0];
     wire crc_err_reset;
     wire mon_adc_busy;
+    wire cmd_bit_idle     ;
+    wire cmd_bit_edge     ;
+    wire cmd_bit_sync     ;
+    wire cmd_bit_act      ;
+    wire cmd_bit_reset    ;
+    wire cmd_bit_adc_reset;
+    wire cmd_bit_trigger  ;
 
     
     // config and status registers mapping
@@ -317,6 +323,9 @@ module wib_top
 `define CONFIG_BITS(a,b,n) config_reg[((a)*32+(b))+:(n)]
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
 
+    wire [15:0] tp_addr     = `CONFIG_BITS(0, 0,16); // 0xA00C0000 timing endpoint address
+    wire        tp_srst     = `CONFIG_BITS(0,28, 1); // 0xA00C0000 timing endpoint reset
+    
     wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
     assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1); // 0xA00C0004
     assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1); // 0xA00C0004
@@ -463,12 +472,15 @@ module wib_top
     wire clk125_from_ts;
     wire gen_clk;
     wire gen_clk2x;
+    wire fastcommand_out;
+    wire sda_in_out, sda_out_out, scl_out;
     
     bd_tux wrp
     (
         // coldata fast command
         .fastcommand_out_p (femb_cmd_fpga_out_p),
         .fastcommand_out_n (femb_cmd_fpga_out_n),
+        .fastcommand_out   (fastcommand_out),
         
         // coldata I2C
         .i2c_lvds_scl_p        (i2c_lvds_scl_p       ),
@@ -479,26 +491,8 @@ module wib_top
         .i2c_lvds_sda_w2c_n    (i2c_lvds_sda_w2c_n   ),
         
         // timing point signals
-        .ts_cdr_lol        (adn2814_lol      ),
-        .ts_cdr_los        (adn2814_los      ),
         .ts_clk            (clk62p5          ), // this is 62.5 M clock for WIB logic
-        .clk_125           (clk125_from_ts   ), // doubled system clock
-        .ts_evtctr         (ts_evtctr        ),
-        .ts_rdy            (ts_rdy           ),
-        .ts_rec_clk_locked (si5344_lol       ), // si5344_lol is inverted already
-        .ts_clk_sel        (ts_clk_sel       ),
-        .ts_rec_d          (ts_rec_d_pad     ), // 62.5Mbps DCSK data
-        .ts_rec_d_clk      (gen_clk          ), // 62.5MHz PLL alt clock, MUX'd inside
-        .ts_rst            (ts_rst           ),
-        .ts_sfp_los        (1'b0             ),
-        .ts_sync           (ts_sync          ),
-        .ts_sync_v         (ts_sync_v        ),
         .ts_tstamp         (ts_tstamp        ),
-        .ts_stat           (ts_stat          ),
-        .txd               (tx_timing        ),
-        .tx_dis            (sfp_dis          ),
-        .bp_io_t           (sfp_dis_od       ),
-        .bp_io_o           (bp_io_o          ),
 
         .axi_clk_out (axi_clk_out),
         .axi_rstn    (axi_rstn   ),
@@ -523,32 +517,22 @@ module wib_top
         .daq_stream_k  (daq_stream_k ),
         .daq_data_type (daq_data_type), 
 
-        .cmd_code_idle      (cmd_code_idle     ),
-        .cmd_code_edge      (cmd_code_edge     ),
-        .cmd_code_sync      (cmd_code_sync     ),
-        .cmd_code_act       (cmd_code_act      ),
-        .cmd_code_reset     (cmd_code_reset    ),
-        .cmd_code_adc_reset (cmd_code_adc_reset),
-        .cmd_code_trigger   (cmd_code_trigger  ),
+        .cmd_bit_idle      (cmd_bit_idle     ),
+        .cmd_bit_edge      (cmd_bit_edge     ),
+        .cmd_bit_sync      (cmd_bit_sync     ),
+        .cmd_bit_act       (cmd_bit_act      ),
+        .cmd_bit_reset     (cmd_bit_reset    ),
+        .cmd_bit_adc_reset (cmd_bit_adc_reset),
+        .cmd_bit_trigger   (cmd_bit_trigger  ),
 
-        .cmd_en_idle      (cmd_en_idle     ),
-        .cmd_en_edge      (cmd_en_edge     ),
-        .cmd_en_sync      (cmd_en_sync     ),
-        .cmd_en_act       (cmd_en_act      ),
-        .cmd_en_reset     (cmd_en_reset    ),
-        .cmd_en_adc_reset (cmd_en_adc_reset),
-        .cmd_en_trigger   (cmd_en_trigger  ),
-
-        .fake_time_stamp_en (fake_time_stamp_en),
-        .fake_time_stamp_init (fake_time_stamp_init),
-        .cmd_stamp_sync    (cmd_stamp_sync),
-        .cmd_stamp_sync_en (cmd_stamp_sync_en),
-        
         .ps_reset  (ps_reset ),
         .ps_en_in  (ps_en_in ),
         .ps_locked (ps_locked),
         
-        .pl_clk_10M (lemo_io[0])
+        .pl_clk_10M (lemo_io[0]),
+        .sda_in_out (sda_in_out),
+        .sda_out_out (sda_out_out),
+        .scl_out     (scl_out)
     );
 
     // Generate fake output clock
@@ -658,7 +642,57 @@ module wib_top
         
     );    
 
-
+    timing_endpoint_dcsk timing_i
+    (
+        .tp_addr                (tp_addr),
+        .tp_srst                (tp_srst),
+        .bp_io_o                (bp_io_o),
+        .bp_io_t                (sfp_dis_od),
+        .clk_125                (clk125_from_ts),
+        .cmd_bit_act            (cmd_bit_act),
+        .cmd_bit_adc_reset      (cmd_bit_adc_reset),
+        .cmd_bit_edge           (cmd_bit_edge),
+        .cmd_bit_idle           (cmd_bit_idle),
+        .cmd_bit_reset          (cmd_bit_reset),
+        .cmd_bit_sync           (cmd_bit_sync),
+        .cmd_bit_trigger        (cmd_bit_trigger),
+        .cmd_code_act_0         (cmd_code_act),
+        .cmd_code_adc_reset_0   (cmd_code_adc_reset),
+        .cmd_code_edge_0        (cmd_code_edge),
+        .cmd_code_idle_0        (cmd_code_idle),
+        .cmd_code_reset_0       (cmd_code_reset),
+        .cmd_code_sync_0        (cmd_code_sync),
+        .cmd_code_trigger_0     (cmd_code_trigger),
+        .cmd_en_act_0           (cmd_en_act),
+        .cmd_en_adc_reset_0     (cmd_en_adc_reset),
+        .cmd_en_edge_0          (cmd_en_edge),
+        .cmd_en_idle_0          (cmd_en_idle),
+        .cmd_en_reset_0         (cmd_en_reset),
+        .cmd_en_sync_0          (cmd_en_sync),
+        .cmd_en_trigger_0       (cmd_en_trigger),
+        .cmd_stamp_sync_0       (cmd_stamp_sync),
+        .cmd_stamp_sync_en_0    (cmd_stamp_sync_en),
+        .fake_time_stamp_en_0   (fake_time_stamp_en),
+        .fake_time_stamp_init_0 (fake_time_stamp_init),
+        .fast_command_out       (fastcommand_out),
+        .sda_in                 (sda_in_out),
+        .sda_out                (sda_out_out),
+        .scl                    (scl_out),
+        .sclk                   (axi_clk_out),
+        .stat_0                 (ts_stat),
+        .ts_clk                 (clk62p5),
+        .ts_clk_sel             (ts_clk_sel),
+        .ts_rdy                 (ts_rdy),
+        .ts_rec_d               (ts_rec_d_pad     ), // 62.5Mbps DCSK data
+        .ts_rec_d_clk           (gen_clk          ), // 62.5MHz PLL alt clock, MUX'd inside
+        .ts_rst                 (ts_rst),
+        .ts_sync                (ts_sync),
+        .ts_sync_v              (ts_sync_v),
+        .ts_tstamp              (ts_tstamp),
+        .tx_dis_0               (sfp_dis),
+        .txd_0                  (tx_timing)
+    );
+    
     
     FELIX_GTH_v1f felix_gth_inst (
        .gthrxn_in                               (gthrxn_int),

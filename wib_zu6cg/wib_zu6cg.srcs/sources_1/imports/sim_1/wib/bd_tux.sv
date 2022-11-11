@@ -6,6 +6,7 @@ module bd_tux
     // coldata fast command
     output fastcommand_out_p,
     output fastcommand_out_n,
+    output fastcommand_out,
     
     // coldata I2C
     output [3:0] i2c_lvds_scl_p,
@@ -16,26 +17,8 @@ module bd_tux
     output [3:0] i2c_lvds_sda_w2c_n,
     
     // timing point signals
-    input  ts_cdr_lol,
-    input  ts_cdr_los,
-    output ts_clk,
-    output clk_125,
-    output [31:0]ts_evtctr,
-    output ts_rdy,
-    input  ts_rec_clk_locked,
-    input  ts_clk_sel,
-    input  ts_rec_d,
-    input  ts_rec_d_clk,
-    output ts_rst,
-    input  ts_sfp_los,
-    output [7:0] ts_sync,
-    output ts_sync_v,
-    output [63:0] ts_tstamp,
-    output [3:0]  ts_stat,
-    output txd,
-    output tx_dis,
-    input  [7:0] bp_io_t, // tri-states for bp_io pins
-    input  [7:0] bp_io_o, // actual states of bp_io pins
+    input ts_clk,
+    input [63:0] ts_tstamp,
     
     output        axi_clk_out,
     output        axi_rstn,
@@ -59,39 +42,31 @@ module bd_tux
     input  [3:0]  daq_stream_k [1:0],
     input  [1:0]  daq_data_type [1:0], // data_type flags for spy memory
     
-    input [7:0] cmd_code_idle,
-    input [7:0] cmd_code_edge,
-    input [7:0] cmd_code_sync,
-    input [7:0] cmd_code_act ,
-    input [7:0] cmd_code_reset,
-    input [7:0] cmd_code_adc_reset,
-    input [7:0] cmd_code_trigger,
-    
-    input cmd_en_idle     ,
-    input cmd_en_edge     ,
-    input cmd_en_sync     ,
-    input cmd_en_act      ,
-    input cmd_en_reset    ,
-    input cmd_en_adc_reset,
-    input cmd_en_trigger  ,
+    input cmd_bit_act,
+    input cmd_bit_adc_reset,
+    input cmd_bit_edge,
+    input cmd_bit_idle,
+    input cmd_bit_reset,
+    input cmd_bit_sync,
+    input cmd_bit_trigger,
 
-    input fake_time_stamp_en, // enable fake time stamp
-    input [63:0] fake_time_stamp_init,
-    input [14:0] cmd_stamp_sync,
-    input        cmd_stamp_sync_en,
-    
     // i2c clock phase adjustment 
     input ps_reset,
     input ps_en_in,
     output ps_locked,
     
-    output pl_clk_10M
+    output pl_clk_10M,
+    
+    output sda_in_out,
+    output sda_out_out,
+    output scl_out
 );
     
     design_1 design_1_i
     (
-        .fastcommand_out_n_0(fastcommand_out_n),
-        .fastcommand_out_p_0(fastcommand_out_p),
+        .fastcommand_out_n_0 (fastcommand_out_n),
+        .fastcommand_out_p_0 (fastcommand_out_p),
+        .fastcommand_out     (fastcommand_out),
         
         .scl_n_0 (i2c_lvds_scl_n [0]),
         .scl_n_1 (i2c_lvds_scl_n [1]),
@@ -120,26 +95,8 @@ module bd_tux
         .sda_out_p_4 (i2c_lvds_sda_w2c_p    [2]),
         .sda_out_p_6 (i2c_lvds_sda_w2c_p    [3]),
         
-        .ts_cdr_lol   (ts_cdr_lol),
-        .ts_cdr_los   (ts_cdr_los),
         .ts_clk       (ts_clk), // this is 62.5 M clock from timing point
-        .clk_125      (clk_125),
-        .ts_evtctr    (ts_evtctr),
-        .ts_rdy       (ts_rdy),
-        .ts_rec_clk_locked (ts_rec_clk_locked),
-        .ts_clk_sel   (ts_clk_sel),
-        .ts_rec_d     (ts_rec_d),
-        .ts_rec_d_clk (ts_rec_d_clk),
-        .ts_rst       (ts_rst),
-        .ts_sfp_los   (ts_sfp_los),
-        .ts_sync      (ts_sync),
-        .ts_sync_v    (ts_sync_v),
         .ts_tstamp    (ts_tstamp),
-        .ts_stat      (ts_stat),
-        .txd          (txd),
-        .tx_dis       (tx_dis),
-        .bp_io_t      (bp_io_t),
-        .bp_io_o      (bp_io_o),
         
         .AXI_CLK_OUT  (axi_clk_out),
         .AXI_RSTn     (axi_rstn),
@@ -168,33 +125,23 @@ module bd_tux
         .daq_data_type0  (daq_data_type[0]),
         .daq_data_type1  (daq_data_type[1]),
         
-        .cmd_code_idle      (cmd_code_idle     ),
-        .cmd_code_edge      (cmd_code_edge     ),
-        .cmd_code_sync      (cmd_code_sync     ),
-        .cmd_code_act       (cmd_code_act      ),
-        .cmd_code_reset     (cmd_code_reset    ),
-        .cmd_code_adc_reset (cmd_code_adc_reset),
-        .cmd_code_trigger   (cmd_code_trigger  ),
-        
-        .cmd_en_idle      (cmd_en_idle     ),
-        .cmd_en_edge      (cmd_en_edge     ),
-        .cmd_en_sync      (cmd_en_sync     ),
-        .cmd_en_act       (cmd_en_act      ),
-        .cmd_en_reset     (cmd_en_reset    ),
-        .cmd_en_adc_reset (cmd_en_adc_reset),
-        .cmd_en_trigger   (cmd_en_trigger  ),
-
-        .fake_time_stamp_en (fake_time_stamp_en),
-        .fake_time_stamp_init (fake_time_stamp_init),
-        .cmd_stamp_sync    (cmd_stamp_sync),
-        .cmd_stamp_sync_en (cmd_stamp_sync_en),
+        .cmd_bit_idle      (cmd_bit_idle     ),
+        .cmd_bit_edge      (cmd_bit_edge     ),
+        .cmd_bit_sync      (cmd_bit_sync     ),
+        .cmd_bit_act       (cmd_bit_act      ),
+        .cmd_bit_reset     (cmd_bit_reset    ),
+        .cmd_bit_adc_reset (cmd_bit_adc_reset),
+        .cmd_bit_trigger   (cmd_bit_trigger  ),
 
         .ps_reset  (ps_reset ),
         .ps_en_in  (ps_en_in ),
         .ps_locked (ps_locked),
         
-        .pl_clk_10M (pl_clk_10M)
+        .pl_clk_10M (pl_clk_10M),
         
+        .sda_in_out  (sda_in_out),
+        .sda_out_out (sda_out_out),
+        .scl_out     (scl_out)
     );
 
 endmodule

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Oct 25 11:01:57 2022
+//Date        : Wed Oct 26 16:06:09 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -10,8 +10,7 @@
 `timescale 1 ps / 1 ps
 
 module coldata_i2c_dual0_imp_LTEQQX
-   (Res,
-    S00_AXI_araddr,
+   (S00_AXI_araddr,
     S00_AXI_arprot,
     S00_AXI_arready,
     S00_AXI_arvalid,
@@ -34,6 +33,7 @@ module coldata_i2c_dual0_imp_LTEQQX
     s00_axi_aclk,
     s00_axi_aresetn,
     scl_n_0,
+    scl_out,
     scl_p_0,
     sda_in_n_0,
     sda_in_out,
@@ -41,7 +41,6 @@ module coldata_i2c_dual0_imp_LTEQQX
     sda_out_n_0,
     sda_out_out,
     sda_out_p_0);
-  output [0:0]Res;
   input [39:0]S00_AXI_araddr;
   input [2:0]S00_AXI_arprot;
   output S00_AXI_arready;
@@ -65,6 +64,7 @@ module coldata_i2c_dual0_imp_LTEQQX
   input s00_axi_aclk;
   input s00_axi_aresetn;
   output [0:0]scl_n_0;
+  output [0:0]scl_out;
   output [0:0]scl_p_0;
   input sda_in_n_0;
   output sda_in_out;
@@ -106,7 +106,6 @@ module coldata_i2c_dual0_imp_LTEQQX
   wire [0:0]util_ds_buf_0_OBUF_DS_P;
   wire zynq_ultra_ps_e_0_pl_clk0;
 
-  assign Res[0] = coldata_i2c_0_scl_out;
   assign S00_AXI_arready = ps8_0_axi_periph_M01_AXI_ARREADY;
   assign S00_AXI_awready = ps8_0_axi_periph_M01_AXI_AWREADY;
   assign S00_AXI_bresp[1:0] = ps8_0_axi_periph_M01_AXI_BRESP;
@@ -129,6 +128,7 @@ module coldata_i2c_dual0_imp_LTEQQX
   assign ps8_0_axi_periph_M01_AXI_WVALID = S00_AXI_wvalid;
   assign rst_ps8_0_99M_peripheral_aresetn = s00_axi_aresetn;
   assign scl_n_0[0] = util_ds_buf_0_OBUF_DS_N;
+  assign scl_out[0] = coldata_i2c_0_scl_out;
   assign scl_p_0[0] = util_ds_buf_0_OBUF_DS_P;
   assign sda_in_n_0_1 = sda_in_n_0;
   assign sda_in_out = coldata_i2c_0_sda_in_out;
@@ -1316,30 +1316,18 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=79,numReposBlks=53,numNonXlnxBlks=6,numHierBlks=26,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=5,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=71,numReposBlks=46,numNonXlnxBlks=6,numHierBlks=25,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
     WIB_LED_tri_o,
-    bp_io_o,
-    bp_io_t,
-    clk_125,
-    cmd_code_act,
-    cmd_code_adc_reset,
-    cmd_code_edge,
-    cmd_code_idle,
-    cmd_code_reset,
-    cmd_code_sync,
-    cmd_code_trigger,
-    cmd_en_act,
-    cmd_en_adc_reset,
-    cmd_en_edge,
-    cmd_en_idle,
-    cmd_en_reset,
-    cmd_en_sync,
-    cmd_en_trigger,
-    cmd_stamp_sync,
-    cmd_stamp_sync_en,
+    cmd_bit_act,
+    cmd_bit_adc_reset,
+    cmd_bit_edge,
+    cmd_bit_idle,
+    cmd_bit_reset,
+    cmd_bit_sync,
+    cmd_bit_trigger,
     daq_clk,
     daq_data_type0,
     daq_data_type1,
@@ -1351,8 +1339,7 @@ module design_1
     daq_stream1,
     daq_stream_k0,
     daq_stream_k1,
-    fake_time_stamp_en,
-    fake_time_stamp_init,
+    fastcommand_out,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
     iic_rtl_0_scl_i,
@@ -1371,6 +1358,7 @@ module design_1
     scl_n_1,
     scl_n_2,
     scl_n_3,
+    scl_out,
     scl_p_0,
     scl_p_1,
     scl_p_2,
@@ -1379,6 +1367,7 @@ module design_1
     sda_in_n_2,
     sda_in_n_4,
     sda_in_n_6,
+    sda_in_out,
     sda_in_p_0,
     sda_in_p_2,
     sda_in_p_4,
@@ -1387,6 +1376,7 @@ module design_1
     sda_out_n_2,
     sda_out_n_4,
     sda_out_n_6,
+    sda_out_out,
     sda_out_p_0,
     sda_out_p_2,
     sda_out_p_4,
@@ -1394,46 +1384,18 @@ module design_1
     spy_addr_0,
     spy_addr_1,
     spy_rec_time,
-    ts_cdr_lol,
-    ts_cdr_los,
     ts_clk,
-    ts_clk_sel,
-    ts_evtctr,
-    ts_rdy,
-    ts_rec_clk_locked,
-    ts_rec_d,
-    ts_rec_d_clk,
-    ts_rst,
-    ts_sfp_los,
-    ts_stat,
-    ts_sync,
-    ts_sync_v,
-    ts_tstamp,
-    ts_valid,
-    tx_dis,
-    txd);
+    ts_tstamp);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.AXI_CLK_OUT CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.AXI_CLK_OUT, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output AXI_CLK_OUT;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.AXI_RSTN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.AXI_RSTN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output [0:0]AXI_RSTn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 WIB_LED TRI_O" *) output [31:0]WIB_LED_tri_o;
-  input [7:0]bp_io_o;
-  input [7:0]bp_io_t;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_125 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_125, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output clk_125;
-  input [7:0]cmd_code_act;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_ADC_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_ADC_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_adc_reset;
-  input [7:0]cmd_code_edge;
-  input [7:0]cmd_code_idle;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_CODE_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_CODE_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input [7:0]cmd_code_reset;
-  input [7:0]cmd_code_sync;
-  input [7:0]cmd_code_trigger;
-  input cmd_en_act;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_EN_ADC_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_EN_ADC_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input cmd_en_adc_reset;
-  input cmd_en_edge;
-  input cmd_en_idle;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_EN_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_EN_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input cmd_en_reset;
-  input cmd_en_sync;
-  input cmd_en_trigger;
-  input [14:0]cmd_stamp_sync;
-  input cmd_stamp_sync_en;
+  input cmd_bit_act;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_BIT_ADC_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_BIT_ADC_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input cmd_bit_adc_reset;
+  input cmd_bit_edge;
+  input cmd_bit_idle;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_BIT_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_BIT_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input cmd_bit_reset;
+  input cmd_bit_sync;
+  input cmd_bit_trigger;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DAQ_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DAQ_CLK, ASSOCIATED_RESET daq_spy_reset_0:daq_spy_reset_1, CLK_DOMAIN design_1_daq_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input daq_clk;
   input [1:0]daq_data_type0;
   input [1:0]daq_data_type1;
@@ -1445,8 +1407,7 @@ module design_1
   input [31:0]daq_stream1;
   input [3:0]daq_stream_k0;
   input [3:0]daq_stream_k1;
-  input fake_time_stamp_en;
-  input [63:0]fake_time_stamp_init;
+  output fastcommand_out;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
   (* X_INTERFACE_INFO = "xilinx.com:interface:iic:1.0 iic_rtl_0 SCL_I" *) input iic_rtl_0_scl_i;
@@ -1465,6 +1426,7 @@ module design_1
   output [0:0]scl_n_1;
   output [0:0]scl_n_2;
   output [0:0]scl_n_3;
+  output [0:0]scl_out;
   output [0:0]scl_p_0;
   output [0:0]scl_p_1;
   output [0:0]scl_p_2;
@@ -1473,6 +1435,7 @@ module design_1
   input sda_in_n_2;
   input sda_in_n_4;
   input sda_in_n_6;
+  output sda_in_out;
   input sda_in_p_0;
   input sda_in_p_2;
   input sda_in_p_4;
@@ -1481,6 +1444,7 @@ module design_1
   output sda_out_n_2;
   output sda_out_n_4;
   output sda_out_n_6;
+  output sda_out_out;
   output sda_out_p_0;
   output sda_out_p_2;
   output sda_out_p_4;
@@ -1488,24 +1452,8 @@ module design_1
   output [19:0]spy_addr_0;
   output [19:0]spy_addr_1;
   input [17:0]spy_rec_time;
-  input ts_cdr_lol;
-  input ts_cdr_los;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_CLK, CLK_DOMAIN design_1_pdts_endpoint_wrapper_0_0_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) output ts_clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.TS_CLK_SEL DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.TS_CLK_SEL, LAYERED_METADATA undef" *) input ts_clk_sel;
-  output [31:0]ts_evtctr;
-  output ts_rdy;
-  input ts_rec_clk_locked;
-  input ts_rec_d;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_REC_D_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_REC_D_CLK, ASSOCIATED_RESET daq_spy_reset_0, CLK_DOMAIN design_1_ts_rec_d_clk, FREQ_HZ 312500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ts_rec_d_clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.TS_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.TS_RST, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) output ts_rst;
-  input ts_sfp_los;
-  output [3:0]ts_stat;
-  output [7:0]ts_sync;
-  output [0:0]ts_sync_v;
-  output [63:0]ts_tstamp;
-  output ts_valid;
-  output [0:0]tx_dis;
-  output txd;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_CLK, CLK_DOMAIN design_1_ts_clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ts_clk;
+  input [63:0]ts_tstamp;
 
   wire [39:0]S00_AXI_1_ARADDR;
   wire [2:0]S00_AXI_1_ARPROT;
@@ -1572,24 +1520,12 @@ module design_1
   wire axi_iic_0_IIC_SDA_O;
   wire axi_iic_0_IIC_SDA_T;
   wire axi_iic_0_iic2intc_irpt;
-  wire [7:0]bp_io_o;
-  wire [7:0]bp_io_t;
-  wire [7:0]cmd_code_act_0_1;
-  wire [7:0]cmd_code_adc_reset_0_1;
-  wire [7:0]cmd_code_edge_0_1;
-  wire [7:0]cmd_code_idle_0_1;
-  wire [7:0]cmd_code_reset_0_1;
-  wire [7:0]cmd_code_sync_0_1;
-  wire [7:0]cmd_code_trigger_0_1;
-  wire cmd_en_act_0_1;
-  wire cmd_en_adc_reset_0_1;
-  wire cmd_en_edge_0_1;
-  wire cmd_en_idle_0_1;
-  wire cmd_en_reset_0_1;
-  wire cmd_en_sync_0_1;
-  wire cmd_en_trigger_0_1;
-  wire [14:0]cmd_stamp_sync_0_1;
-  wire cmd_stamp_sync_en_0_1;
+  wire cmd_act_0_1;
+  wire cmd_adc_reset_0_1;
+  wire cmd_edge_0_1;
+  wire cmd_idle_0_1;
+  wire cmd_reset_0_1;
+  wire cmd_sync_0_1;
   wire coldata_fast_cmd_0_fastcommand_out;
   wire coldata_fast_cmd_0_fastcommand_out_n;
   wire coldata_fast_cmd_0_fastcommand_out_p;
@@ -1597,7 +1533,7 @@ module design_1
   wire [0:0]coldata_i2c_0_scl_p;
   wire coldata_i2c_0_sda_out_n;
   wire coldata_i2c_0_sda_out_p;
-  wire [0:0]coldata_i2c_dual0_Res;
+  wire [0:0]coldata_i2c_dual0_scl_out;
   wire coldata_i2c_dual0_sda_in_out;
   wire coldata_i2c_dual0_sda_out_out;
   wire [0:0]coldata_i2c_dual1_scl_n_0;
@@ -1626,15 +1562,8 @@ module design_1
   wire [3:0]daq_stream_k1_0_1;
   wire dyn_phase_adjust_0_psen;
   wire dyn_phase_adjust_0_psincdec;
-  wire fake_time_stamp_en_0_1;
-  wire [63:0]fake_time_stamp_init_0_1;
   wire i2c_clk_phase_locked;
   wire pdts_endpoint_0_clk;
-  wire [31:0]pdts_endpoint_0_evtctr;
-  wire pdts_endpoint_0_rdy;
-  wire pdts_endpoint_0_rst;
-  wire [0:0]pdts_endpoint_0_sync_v;
-  wire [63:0]pdts_endpoint_0_tstamp;
   wire [19:0]ps8_0_axi_periph_M00_AXI_ARADDR;
   wire [1:0]ps8_0_axi_periph_M00_AXI_ARBURST;
   wire [3:0]ps8_0_axi_periph_M00_AXI_ARCACHE;
@@ -1808,8 +1737,6 @@ module design_1
   wire [3:0]ps8_0_axi_periph_M15_AXI_WSTRB;
   wire ps8_0_axi_periph_M15_AXI_WVALID;
   wire psen_in_0_1;
-  wire rec_d_0_1;
-  wire rec_d_clk_0_1;
   wire [17:0]rec_time_0_1;
   wire [1023:0]reg_bank_64_0_reg_rw;
   wire [1023:0]reg_ro_0_1;
@@ -1825,20 +1752,8 @@ module design_1
   wire sda_in_p_0_1;
   wire sda_in_p_0_1_1;
   wire sda_in_p_0_2_1;
-  wire timing_module_clk_125;
-  wire timing_module_cmd_bit_act;
-  wire timing_module_cmd_bit_adc_reset;
-  wire timing_module_cmd_bit_edge;
-  wire timing_module_cmd_bit_idle;
-  wire timing_module_cmd_bit_reset;
-  wire timing_module_cmd_bit_sync;
-  wire [3:0]timing_module_stat_0;
-  wire [7:0]timing_module_ts_sync;
-  wire timing_module_ts_valid_0;
-  wire [0:0]timing_module_tx_dis_0;
-  wire timing_module_txd_0;
-  wire trigger_1;
-  wire ts_clk_sel_1;
+  wire trigger_0_1;
+  wire [63:0]ts_tstamp_0_1;
   wire [39:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR;
   wire [1:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST;
   wire [3:0]zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARCACHE;
@@ -1887,23 +1802,12 @@ module design_1
   assign WIB_LED_tri_o[31:0] = axi_gpio_1_GPIO_TRI_O;
   assign axi_iic_0_IIC_SCL_I = iic_rtl_0_scl_i;
   assign axi_iic_0_IIC_SDA_I = iic_rtl_0_sda_i;
-  assign clk_125 = timing_module_clk_125;
-  assign cmd_code_act_0_1 = cmd_code_act[7:0];
-  assign cmd_code_adc_reset_0_1 = cmd_code_adc_reset[7:0];
-  assign cmd_code_edge_0_1 = cmd_code_edge[7:0];
-  assign cmd_code_idle_0_1 = cmd_code_idle[7:0];
-  assign cmd_code_reset_0_1 = cmd_code_reset[7:0];
-  assign cmd_code_sync_0_1 = cmd_code_sync[7:0];
-  assign cmd_code_trigger_0_1 = cmd_code_trigger[7:0];
-  assign cmd_en_act_0_1 = cmd_en_act;
-  assign cmd_en_adc_reset_0_1 = cmd_en_adc_reset;
-  assign cmd_en_edge_0_1 = cmd_en_edge;
-  assign cmd_en_idle_0_1 = cmd_en_idle;
-  assign cmd_en_reset_0_1 = cmd_en_reset;
-  assign cmd_en_sync_0_1 = cmd_en_sync;
-  assign cmd_en_trigger_0_1 = cmd_en_trigger;
-  assign cmd_stamp_sync_0_1 = cmd_stamp_sync[14:0];
-  assign cmd_stamp_sync_en_0_1 = cmd_stamp_sync_en;
+  assign cmd_act_0_1 = cmd_bit_act;
+  assign cmd_adc_reset_0_1 = cmd_bit_adc_reset;
+  assign cmd_edge_0_1 = cmd_bit_edge;
+  assign cmd_idle_0_1 = cmd_bit_idle;
+  assign cmd_reset_0_1 = cmd_bit_reset;
+  assign cmd_sync_0_1 = cmd_bit_sync;
   assign daq_clk_0_1 = daq_clk;
   assign daq_data_type_0_1 = daq_data_type1[1:0];
   assign daq_data_type_1_1 = daq_data_type0[1:0];
@@ -1913,19 +1817,17 @@ module design_1
   assign daq_stream1_0_1 = daq_stream1[31:0];
   assign daq_stream_k0_0_1 = daq_stream_k0[3:0];
   assign daq_stream_k1_0_1 = daq_stream_k1[3:0];
-  assign fake_time_stamp_en_0_1 = fake_time_stamp_en;
-  assign fake_time_stamp_init_0_1 = fake_time_stamp_init[63:0];
+  assign fastcommand_out = coldata_fast_cmd_0_fastcommand_out;
   assign fastcommand_out_n_0 = coldata_fast_cmd_0_fastcommand_out_n;
   assign fastcommand_out_p_0 = coldata_fast_cmd_0_fastcommand_out_p;
   assign iic_rtl_0_scl_o = axi_iic_0_IIC_SCL_O;
   assign iic_rtl_0_scl_t = axi_iic_0_IIC_SCL_T;
   assign iic_rtl_0_sda_o = axi_iic_0_IIC_SDA_O;
   assign iic_rtl_0_sda_t = axi_iic_0_IIC_SDA_T;
+  assign pdts_endpoint_0_clk = ts_clk;
   assign pl_clk_10M = zynq_ultra_ps_e_0_pl_clk1;
   assign ps_locked = i2c_clk_phase_locked;
   assign psen_in_0_1 = ps_en_in;
-  assign rec_d_0_1 = ts_rec_d;
-  assign rec_d_clk_0_1 = ts_rec_d_clk;
   assign rec_time_0_1 = spy_rec_time[17:0];
   assign reg_ro_0_1 = reg_ro[1023:0];
   assign reg_rw[1023:0] = reg_bank_64_0_reg_rw;
@@ -1935,6 +1837,7 @@ module design_1
   assign scl_n_1[0] = coldata_i2c_dual1_scl_n_0;
   assign scl_n_2[0] = coldata_i2c_dual2_scl_n_0;
   assign scl_n_3[0] = coldata_i2c_dual3_scl_n_0;
+  assign scl_out[0] = coldata_i2c_dual0_scl_out;
   assign scl_p_0[0] = coldata_i2c_0_scl_p;
   assign scl_p_1[0] = coldata_i2c_dual1_scl_p_0;
   assign scl_p_2[0] = coldata_i2c_dual2_scl_p_0;
@@ -1943,6 +1846,7 @@ module design_1
   assign sda_in_n_0_1 = sda_in_n_0;
   assign sda_in_n_0_1_1 = sda_in_n_4;
   assign sda_in_n_0_2_1 = sda_in_n_6;
+  assign sda_in_out = coldata_i2c_dual0_sda_in_out;
   assign sda_in_p_0_0_1 = sda_in_p_2;
   assign sda_in_p_0_1 = sda_in_p_0;
   assign sda_in_p_0_1_1 = sda_in_p_4;
@@ -1951,24 +1855,15 @@ module design_1
   assign sda_out_n_2 = coldata_i2c_dual1_sda_out_n_0;
   assign sda_out_n_4 = coldata_i2c_dual2_sda_out_n_0;
   assign sda_out_n_6 = coldata_i2c_dual3_sda_out_n_0;
+  assign sda_out_out = coldata_i2c_dual0_sda_out_out;
   assign sda_out_p_0 = coldata_i2c_0_sda_out_p;
   assign sda_out_p_2 = coldata_i2c_dual1_sda_out_p_0;
   assign sda_out_p_4 = coldata_i2c_dual2_sda_out_p_0;
   assign sda_out_p_6 = coldata_i2c_dual3_sda_out_p_0;
   assign spy_addr_0[19:0] = daq_spy_1_spy_addr_0;
   assign spy_addr_1[19:0] = daq_spy_0_spy_addr_1;
-  assign ts_clk = pdts_endpoint_0_clk;
-  assign ts_clk_sel_1 = ts_clk_sel;
-  assign ts_evtctr[31:0] = pdts_endpoint_0_evtctr;
-  assign ts_rdy = pdts_endpoint_0_rdy;
-  assign ts_rst = pdts_endpoint_0_rst;
-  assign ts_stat[3:0] = timing_module_stat_0;
-  assign ts_sync[7:0] = timing_module_ts_sync;
-  assign ts_sync_v[0] = pdts_endpoint_0_sync_v;
-  assign ts_tstamp[63:0] = pdts_endpoint_0_tstamp;
-  assign ts_valid = timing_module_ts_valid_0;
-  assign tx_dis[0] = timing_module_tx_dis_0;
-  assign txd = timing_module_txd_0;
+  assign trigger_0_1 = cmd_bit_trigger;
+  assign ts_tstamp_0_1 = ts_tstamp[63:0];
   design_1_axi_gpio_1_0 axi_gpio_1
        (.gpio_io_o(axi_gpio_1_GPIO_TRI_O),
         .s_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
@@ -2019,12 +1914,12 @@ module design_1
         .sda_t(axi_iic_0_IIC_SDA_T));
   design_1_coldata_fast_cmd_0_0 coldata_fast_cmd_0
        (.clk62p5(pdts_endpoint_0_clk),
-        .cmd_act(timing_module_cmd_bit_act),
-        .cmd_adc_reset(timing_module_cmd_bit_adc_reset),
-        .cmd_edge(timing_module_cmd_bit_edge),
-        .cmd_idle(timing_module_cmd_bit_idle),
-        .cmd_reset(timing_module_cmd_bit_reset),
-        .cmd_sync(timing_module_cmd_bit_sync),
+        .cmd_act(cmd_act_0_1),
+        .cmd_adc_reset(cmd_adc_reset_0_1),
+        .cmd_edge(cmd_edge_0_1),
+        .cmd_idle(cmd_idle_0_1),
+        .cmd_reset(cmd_reset_0_1),
+        .cmd_sync(cmd_sync_0_1),
         .fastcommand_out(coldata_fast_cmd_0_fastcommand_out),
         .fastcommand_out_n(coldata_fast_cmd_0_fastcommand_out_n),
         .fastcommand_out_p(coldata_fast_cmd_0_fastcommand_out_p),
@@ -2050,8 +1945,7 @@ module design_1
         .s00_axi_wstrb(ps8_0_axi_periph_M03_AXI_WSTRB),
         .s00_axi_wvalid(ps8_0_axi_periph_M03_AXI_WVALID));
   coldata_i2c_dual0_imp_LTEQQX coldata_i2c_dual0
-       (.Res(coldata_i2c_dual0_Res),
-        .S00_AXI_araddr(ps8_0_axi_periph_M01_AXI_ARADDR),
+       (.S00_AXI_araddr(ps8_0_axi_periph_M01_AXI_ARADDR),
         .S00_AXI_arprot(ps8_0_axi_periph_M01_AXI_ARPROT),
         .S00_AXI_arready(ps8_0_axi_periph_M01_AXI_ARREADY),
         .S00_AXI_arvalid(ps8_0_axi_periph_M01_AXI_ARVALID),
@@ -2074,6 +1968,7 @@ module design_1
         .s00_axi_aclk(zynq_ultra_ps_e_0_pl_clk0),
         .s00_axi_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .scl_n_0(coldata_i2c_0_scl_n),
+        .scl_out(coldata_i2c_dual0_scl_out),
         .scl_p_0(coldata_i2c_0_scl_p),
         .sda_in_n_0(sda_in_n_0_1),
         .sda_in_out(coldata_i2c_dual0_sda_in_out),
@@ -2210,9 +2105,9 @@ module design_1
         .daq_stream_k0(daq_stream_k0_0_1),
         .rec_time_0(rec_time_0_1),
         .spy_addr_1(daq_spy_0_spy_addr_1),
-        .trigger(trigger_1),
+        .trigger(trigger_0_1),
         .ts_clk(pdts_endpoint_0_clk),
-        .ts_tstamp(pdts_endpoint_0_tstamp));
+        .ts_tstamp(ts_tstamp_0_1));
   daq_spy_1_imp_Q79PU8 daq_spy_1
        (.AXI_CLK_OUT(zynq_ultra_ps_e_0_pl_clk0),
         .AXI_RSTn(rst_ps8_0_99M_peripheral_aresetn),
@@ -2255,9 +2150,9 @@ module design_1
         .daq_stream_k0(daq_stream_k1_0_1),
         .rec_time_0(rec_time_0_1),
         .spy_addr_0(daq_spy_1_spy_addr_0),
-        .trigger(trigger_1),
+        .trigger(trigger_0_1),
         .ts_clk(pdts_endpoint_0_clk),
-        .ts_tstamp(pdts_endpoint_0_tstamp));
+        .ts_tstamp(ts_tstamp_0_1));
   dbg_imp_5R9Y5 dbg
        (.AXI_CLK_OUT(zynq_ultra_ps_e_0_pl_clk0),
         .AXI_RSTn(rst_ps8_0_99M_peripheral_aresetn),
@@ -2674,55 +2569,6 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .slowest_sync_clk(zynq_ultra_ps_e_0_pl_clk0));
-  timing_module_imp_2RES6C timing_module
-       (.Din(reg_bank_64_0_reg_rw),
-        .bp_io_o(bp_io_o),
-        .bp_io_t(bp_io_t),
-        .clk_125(timing_module_clk_125),
-        .cmd_bit_act(timing_module_cmd_bit_act),
-        .cmd_bit_adc_reset(timing_module_cmd_bit_adc_reset),
-        .cmd_bit_edge(timing_module_cmd_bit_edge),
-        .cmd_bit_idle(timing_module_cmd_bit_idle),
-        .cmd_bit_reset(timing_module_cmd_bit_reset),
-        .cmd_bit_sync(timing_module_cmd_bit_sync),
-        .cmd_bit_trigger(trigger_1),
-        .cmd_code_act_0(cmd_code_act_0_1),
-        .cmd_code_adc_reset_0(cmd_code_adc_reset_0_1),
-        .cmd_code_edge_0(cmd_code_edge_0_1),
-        .cmd_code_idle_0(cmd_code_idle_0_1),
-        .cmd_code_reset_0(cmd_code_reset_0_1),
-        .cmd_code_sync_0(cmd_code_sync_0_1),
-        .cmd_code_trigger_0(cmd_code_trigger_0_1),
-        .cmd_en_act_0(cmd_en_act_0_1),
-        .cmd_en_adc_reset_0(cmd_en_adc_reset_0_1),
-        .cmd_en_edge_0(cmd_en_edge_0_1),
-        .cmd_en_idle_0(cmd_en_idle_0_1),
-        .cmd_en_reset_0(cmd_en_reset_0_1),
-        .cmd_en_sync_0(cmd_en_sync_0_1),
-        .cmd_en_trigger_0(cmd_en_trigger_0_1),
-        .cmd_stamp_sync_0(cmd_stamp_sync_0_1),
-        .cmd_stamp_sync_en_0(cmd_stamp_sync_en_0_1),
-        .fake_time_stamp_en_0(fake_time_stamp_en_0_1),
-        .fake_time_stamp_init_0(fake_time_stamp_init_0_1),
-        .probe15(coldata_fast_cmd_0_fastcommand_out),
-        .probe20(coldata_i2c_dual0_sda_in_out),
-        .probe21(coldata_i2c_dual0_sda_out_out),
-        .probe22(coldata_i2c_dual0_Res),
-        .sclk(zynq_ultra_ps_e_0_pl_clk0),
-        .stat_0(timing_module_stat_0),
-        .ts_clk(pdts_endpoint_0_clk),
-        .ts_clk_sel(ts_clk_sel_1),
-        .ts_evtctr(pdts_endpoint_0_evtctr),
-        .ts_rdy(pdts_endpoint_0_rdy),
-        .ts_rec_d(rec_d_0_1),
-        .ts_rec_d_clk(rec_d_clk_0_1),
-        .ts_rst(pdts_endpoint_0_rst),
-        .ts_sync(timing_module_ts_sync),
-        .ts_sync_v(pdts_endpoint_0_sync_v),
-        .ts_tstamp(pdts_endpoint_0_tstamp),
-        .ts_valid_0(timing_module_ts_valid_0),
-        .tx_dis_0(timing_module_tx_dis_0),
-        .txd_0(timing_module_txd_0));
   design_1_zynq_ultra_ps_e_0_0 zynq_ultra_ps_e_0
        (.maxigp0_araddr(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARADDR),
         .maxigp0_arburst(zynq_ultra_ps_e_0_M_AXI_HPM0_FPD_ARBURST),
@@ -12644,301 +12490,4 @@ module s00_couplers_imp_1A7ZMW4
   assign s00_couplers_to_s00_couplers_WREADY = M_AXI_wready;
   assign s00_couplers_to_s00_couplers_WSTRB = S_AXI_wstrb[15:0];
   assign s00_couplers_to_s00_couplers_WVALID = S_AXI_wvalid;
-endmodule
-
-module timing_module_imp_2RES6C
-   (Din,
-    bp_io_o,
-    bp_io_t,
-    clk_125,
-    cmd_bit_act,
-    cmd_bit_adc_reset,
-    cmd_bit_edge,
-    cmd_bit_idle,
-    cmd_bit_reset,
-    cmd_bit_sync,
-    cmd_bit_trigger,
-    cmd_code_act_0,
-    cmd_code_adc_reset_0,
-    cmd_code_edge_0,
-    cmd_code_idle_0,
-    cmd_code_reset_0,
-    cmd_code_sync_0,
-    cmd_code_trigger_0,
-    cmd_en_act_0,
-    cmd_en_adc_reset_0,
-    cmd_en_edge_0,
-    cmd_en_idle_0,
-    cmd_en_reset_0,
-    cmd_en_sync_0,
-    cmd_en_trigger_0,
-    cmd_stamp_sync_0,
-    cmd_stamp_sync_en_0,
-    fake_time_stamp_en_0,
-    fake_time_stamp_init_0,
-    probe15,
-    probe20,
-    probe21,
-    probe22,
-    sclk,
-    stat_0,
-    ts_clk,
-    ts_clk_sel,
-    ts_evtctr,
-    ts_rdy,
-    ts_rec_d,
-    ts_rec_d_clk,
-    ts_rst,
-    ts_sync,
-    ts_sync_v,
-    ts_tstamp,
-    ts_valid_0,
-    tx_dis_0,
-    txd_0);
-  input [1023:0]Din;
-  input [7:0]bp_io_o;
-  input [7:0]bp_io_t;
-  output clk_125;
-  output cmd_bit_act;
-  output cmd_bit_adc_reset;
-  output cmd_bit_edge;
-  output cmd_bit_idle;
-  output cmd_bit_reset;
-  output cmd_bit_sync;
-  output cmd_bit_trigger;
-  input [7:0]cmd_code_act_0;
-  input [7:0]cmd_code_adc_reset_0;
-  input [7:0]cmd_code_edge_0;
-  input [7:0]cmd_code_idle_0;
-  input [7:0]cmd_code_reset_0;
-  input [7:0]cmd_code_sync_0;
-  input [7:0]cmd_code_trigger_0;
-  input cmd_en_act_0;
-  input cmd_en_adc_reset_0;
-  input cmd_en_edge_0;
-  input cmd_en_idle_0;
-  input cmd_en_reset_0;
-  input cmd_en_sync_0;
-  input cmd_en_trigger_0;
-  input [14:0]cmd_stamp_sync_0;
-  input cmd_stamp_sync_en_0;
-  input fake_time_stamp_en_0;
-  input [63:0]fake_time_stamp_init_0;
-  input [0:0]probe15;
-  input probe20;
-  input probe21;
-  input [0:0]probe22;
-  input sclk;
-  output [3:0]stat_0;
-  output ts_clk;
-  input ts_clk_sel;
-  output [31:0]ts_evtctr;
-  output ts_rdy;
-  input ts_rec_d;
-  input ts_rec_d_clk;
-  output ts_rst;
-  output [7:0]ts_sync;
-  output [0:0]ts_sync_v;
-  output [63:0]ts_tstamp;
-  output ts_valid_0;
-  output [0:0]tx_dis_0;
-  output txd_0;
-
-  wire [1023:0]axi_gpio_1_gpio_io_o;
-  wire [7:0]bp_io_o_1;
-  wire [7:0]bp_io_t_1;
-  wire clk_wiz_0_clk_out1;
-  wire [7:0]cmd_code_act_0_1;
-  wire [7:0]cmd_code_adc_reset_0_1;
-  wire [7:0]cmd_code_edge_0_1;
-  wire [7:0]cmd_code_idle_0_1;
-  wire [7:0]cmd_code_reset_0_1;
-  wire [7:0]cmd_code_sync_0_1;
-  wire [7:0]cmd_code_trigger;
-  wire cmd_en_act_0_1;
-  wire cmd_en_adc_reset_0_1;
-  wire cmd_en_edge_0_1;
-  wire cmd_en_idle_0_1;
-  wire cmd_en_reset_0_1;
-  wire cmd_en_sync_0_1;
-  wire cmd_en_trigger_0_1;
-  wire [14:0]cmd_stamp_sync_0_1;
-  wire cmd_stamp_sync_en_0_1;
-  wire fake_time_stamp_en_0_1;
-  wire [63:0]fake_time_stamp_init_0_1;
-  wire [0:0]fast_command_out;
-  wire pdts_endpoint_wrapper_0_clkx2;
-  wire pdts_endpoint_wrapper_0_rdy;
-  wire pdts_endpoint_wrapper_0_rst;
-  wire [3:0]pdts_endpoint_wrapper_0_stat;
-  wire [7:0]pdts_endpoint_wrapper_0_sync;
-  wire pdts_endpoint_wrapper_0_sync_stb;
-  wire [63:0]pdts_endpoint_wrapper_0_tstamp;
-  wire pdts_endpoint_wrapper_0_tx_dis;
-  wire pdts_endpoint_wrapper_0_txd;
-  wire [0:0]scl;
-  wire sclk_1;
-  wire sda_in;
-  wire sda_out;
-  wire ts_clk_sel_1;
-  wire ts_rec_d_1;
-  wire ts_rec_d_clk_1;
-  wire ts_reclock_0_cmd_bit_act;
-  wire ts_reclock_0_cmd_bit_adc_reset;
-  wire ts_reclock_0_cmd_bit_edge;
-  wire ts_reclock_0_cmd_bit_idle;
-  wire ts_reclock_0_cmd_bit_reset;
-  wire ts_reclock_0_cmd_bit_sync;
-  wire ts_reclock_0_cmd_bit_trigger;
-  wire ts_reclock_0_rdy_out;
-  wire ts_reclock_0_rst_out;
-  wire [3:0]ts_reclock_0_stat_out;
-  wire [7:0]ts_reclock_0_sync_out;
-  wire ts_reclock_0_sync_stb_out;
-  wire ts_reclock_0_ts_valid;
-  wire [63:0]ts_reclock_0_tstamp_out;
-  wire [0:0]xlconstant_1_dout;
-  wire [31:0]xlconstant_2_dout;
-  wire [15:0]xlslice_1_Dout;
-  wire [0:0]xlslice_2_Dout;
-
-  assign axi_gpio_1_gpio_io_o = Din[1023:0];
-  assign bp_io_o_1 = bp_io_o[7:0];
-  assign bp_io_t_1 = bp_io_t[7:0];
-  assign clk_125 = pdts_endpoint_wrapper_0_clkx2;
-  assign cmd_bit_act = ts_reclock_0_cmd_bit_act;
-  assign cmd_bit_adc_reset = ts_reclock_0_cmd_bit_adc_reset;
-  assign cmd_bit_edge = ts_reclock_0_cmd_bit_edge;
-  assign cmd_bit_idle = ts_reclock_0_cmd_bit_idle;
-  assign cmd_bit_reset = ts_reclock_0_cmd_bit_reset;
-  assign cmd_bit_sync = ts_reclock_0_cmd_bit_sync;
-  assign cmd_bit_trigger = ts_reclock_0_cmd_bit_trigger;
-  assign cmd_code_act_0_1 = cmd_code_act_0[7:0];
-  assign cmd_code_adc_reset_0_1 = cmd_code_adc_reset_0[7:0];
-  assign cmd_code_edge_0_1 = cmd_code_edge_0[7:0];
-  assign cmd_code_idle_0_1 = cmd_code_idle_0[7:0];
-  assign cmd_code_reset_0_1 = cmd_code_reset_0[7:0];
-  assign cmd_code_sync_0_1 = cmd_code_sync_0[7:0];
-  assign cmd_code_trigger = cmd_code_trigger_0[7:0];
-  assign cmd_en_act_0_1 = cmd_en_act_0;
-  assign cmd_en_adc_reset_0_1 = cmd_en_adc_reset_0;
-  assign cmd_en_edge_0_1 = cmd_en_edge_0;
-  assign cmd_en_idle_0_1 = cmd_en_idle_0;
-  assign cmd_en_reset_0_1 = cmd_en_reset_0;
-  assign cmd_en_sync_0_1 = cmd_en_sync_0;
-  assign cmd_en_trigger_0_1 = cmd_en_trigger_0;
-  assign cmd_stamp_sync_0_1 = cmd_stamp_sync_0[14:0];
-  assign cmd_stamp_sync_en_0_1 = cmd_stamp_sync_en_0;
-  assign fake_time_stamp_en_0_1 = fake_time_stamp_en_0;
-  assign fake_time_stamp_init_0_1 = fake_time_stamp_init_0[63:0];
-  assign fast_command_out = probe15[0];
-  assign scl = probe22[0];
-  assign sclk_1 = sclk;
-  assign sda_in = probe20;
-  assign sda_out = probe21;
-  assign stat_0[3:0] = ts_reclock_0_stat_out;
-  assign ts_clk = clk_wiz_0_clk_out1;
-  assign ts_clk_sel_1 = ts_clk_sel;
-  assign ts_evtctr[31:0] = xlconstant_2_dout;
-  assign ts_rdy = ts_reclock_0_rdy_out;
-  assign ts_rec_d_1 = ts_rec_d;
-  assign ts_rec_d_clk_1 = ts_rec_d_clk;
-  assign ts_rst = ts_reclock_0_rst_out;
-  assign ts_sync[7:0] = ts_reclock_0_sync_out;
-  assign ts_sync_v[0] = xlconstant_1_dout;
-  assign ts_tstamp[63:0] = ts_reclock_0_tstamp_out;
-  assign ts_valid_0 = ts_reclock_0_ts_valid;
-  assign tx_dis_0[0] = pdts_endpoint_wrapper_0_tx_dis;
-  assign txd_0 = pdts_endpoint_wrapper_0_txd;
-  design_1_ila_0_1 ila_0
-       (.clk(clk_wiz_0_clk_out1),
-        .probe0(ts_reclock_0_stat_out),
-        .probe1(ts_reclock_0_rst_out),
-        .probe10(ts_reclock_0_cmd_bit_sync),
-        .probe11(ts_reclock_0_cmd_bit_act),
-        .probe12(ts_reclock_0_cmd_bit_reset),
-        .probe13(ts_reclock_0_cmd_bit_adc_reset),
-        .probe14(scl),
-        .probe15(fast_command_out),
-        .probe16(pdts_endpoint_wrapper_0_txd),
-        .probe17(pdts_endpoint_wrapper_0_tx_dis),
-        .probe18(bp_io_t_1),
-        .probe19(bp_io_o_1),
-        .probe2(ts_reclock_0_rdy_out),
-        .probe20(sda_in),
-        .probe3(ts_reclock_0_sync_out),
-        .probe4(ts_reclock_0_sync_stb_out),
-        .probe5(sda_out),
-        .probe6(ts_reclock_0_tstamp_out),
-        .probe7(ts_reclock_0_ts_valid),
-        .probe8(ts_reclock_0_cmd_bit_idle),
-        .probe9(ts_reclock_0_cmd_bit_edge));
-  design_1_pdts_endpoint_wrapper_0_0 pdts_endpoint_wrapper_0
-       (.addr(xlslice_1_Dout),
-        .clk(clk_wiz_0_clk_out1),
-        .clk2x(pdts_endpoint_wrapper_0_clkx2),
-        .rdy(pdts_endpoint_wrapper_0_rdy),
-        .rec_clk(ts_rec_d_clk_1),
-        .rec_d(ts_rec_d_1),
-        .rst(pdts_endpoint_wrapper_0_rst),
-        .sclk(sclk_1),
-        .srst(xlslice_2_Dout),
-        .stat(pdts_endpoint_wrapper_0_stat),
-        .sync(pdts_endpoint_wrapper_0_sync),
-        .sync_stb(pdts_endpoint_wrapper_0_sync_stb),
-        .ts_clk_sel(ts_clk_sel_1),
-        .tstamp(pdts_endpoint_wrapper_0_tstamp),
-        .tx_dis(pdts_endpoint_wrapper_0_tx_dis),
-        .txd(pdts_endpoint_wrapper_0_txd));
-  design_1_ts_reclock_0_0 ts_reclock_0
-       (.clk62p5(clk_wiz_0_clk_out1),
-        .cmd_bit_act(ts_reclock_0_cmd_bit_act),
-        .cmd_bit_adc_reset(ts_reclock_0_cmd_bit_adc_reset),
-        .cmd_bit_edge(ts_reclock_0_cmd_bit_edge),
-        .cmd_bit_idle(ts_reclock_0_cmd_bit_idle),
-        .cmd_bit_reset(ts_reclock_0_cmd_bit_reset),
-        .cmd_bit_sync(ts_reclock_0_cmd_bit_sync),
-        .cmd_bit_trigger(ts_reclock_0_cmd_bit_trigger),
-        .cmd_code_act(cmd_code_act_0_1),
-        .cmd_code_adc_reset(cmd_code_adc_reset_0_1),
-        .cmd_code_edge(cmd_code_edge_0_1),
-        .cmd_code_idle(cmd_code_idle_0_1),
-        .cmd_code_reset(cmd_code_reset_0_1),
-        .cmd_code_sync(cmd_code_sync_0_1),
-        .cmd_code_trigger(cmd_code_trigger),
-        .cmd_en_act(cmd_en_act_0_1),
-        .cmd_en_adc_reset(cmd_en_adc_reset_0_1),
-        .cmd_en_edge(cmd_en_edge_0_1),
-        .cmd_en_idle(cmd_en_idle_0_1),
-        .cmd_en_reset(cmd_en_reset_0_1),
-        .cmd_en_sync(cmd_en_sync_0_1),
-        .cmd_en_trigger(cmd_en_trigger_0_1),
-        .cmd_stamp_sync(cmd_stamp_sync_0_1),
-        .cmd_stamp_sync_en(cmd_stamp_sync_en_0_1),
-        .fake_time_stamp_en(fake_time_stamp_en_0_1),
-        .fake_time_stamp_init(fake_time_stamp_init_0_1),
-        .fifo_rst(xlslice_2_Dout),
-        .rdy_in(pdts_endpoint_wrapper_0_rdy),
-        .rdy_out(ts_reclock_0_rdy_out),
-        .rst_in(pdts_endpoint_wrapper_0_rst),
-        .rst_out(ts_reclock_0_rst_out),
-        .stat_in(pdts_endpoint_wrapper_0_stat),
-        .stat_out(ts_reclock_0_stat_out),
-        .sync_in(pdts_endpoint_wrapper_0_sync),
-        .sync_out(ts_reclock_0_sync_out),
-        .sync_stb_in(pdts_endpoint_wrapper_0_sync_stb),
-        .sync_stb_out(ts_reclock_0_sync_stb_out),
-        .ts_valid(ts_reclock_0_ts_valid),
-        .tstamp_in(pdts_endpoint_wrapper_0_tstamp),
-        .tstamp_out(ts_reclock_0_tstamp_out));
-  design_1_xlconstant_1_0 xlconstant_1
-       (.dout(xlconstant_1_dout));
-  design_1_xlconstant_2_0 xlconstant_2
-       (.dout(xlconstant_2_dout));
-  design_1_xlslice_1_0 xlslice_1
-       (.Din(axi_gpio_1_gpio_io_o),
-        .Dout(xlslice_1_Dout));
-  design_1_xlslice_2_0 xlslice_2
-       (.Din(axi_gpio_1_gpio_io_o),
-        .Dout(xlslice_2_Dout));
 endmodule

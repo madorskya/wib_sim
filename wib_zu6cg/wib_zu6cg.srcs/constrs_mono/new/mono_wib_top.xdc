@@ -117,8 +117,8 @@ create_clock -period 8 -name mux_in_1 [get_pins ts_clk_mux2x/I1]
 set_clock_groups -physically_exclusive -group mux_in_0 -group mux_in_1 
  
 # for BUFGMUX in endpoint
-create_clock -period 16 -name mux_inx1_0 [get_pins wrp/design_1_i/timing_module/pdts_endpoint_wrapper_0/inst/ts_clk_mux/I0]
-create_clock -period 16 -name mux_inx1_1 [get_pins wrp/design_1_i/timing_module/pdts_endpoint_wrapper_0/inst/ts_clk_mux/I1]
+create_clock -period 16 -name mux_inx1_0 [get_pins timing_i/pdts_endpoint_wrapper_i/ts_clk_mux/I0]
+create_clock -period 16 -name mux_inx1_1 [get_pins timing_i/pdts_endpoint_wrapper_i/ts_clk_mux/I1]
 set_clock_groups -physically_exclusive -group mux_inx1_0 -group mux_inx1_1 
  
  
