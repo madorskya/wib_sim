@@ -16,7 +16,7 @@ int main (int argc, char * argv[])
     sscanf (argv[1], "%d", &femb_ind);
     if (femb_ind < 0 || femb_ind > 3)
     {   
-        printf ("invalid FEMB index. Usage: femb_test index(0..3)");
+        printf ("invalid FEMB index. Usage: adc_test index(0..3)");
         exit (4);
     }
 
@@ -37,7 +37,7 @@ int main (int argc, char * argv[])
 	uint8_t val = 0xa9;
 	int err_cnt = 0;
 
-//goto distort_test;
+goto distort_test;
 	printf ("register write/read\n");
 	for (t = 0; t < 10000; t++)
 	{
@@ -78,11 +78,29 @@ int main (int argc, char * argv[])
 //		usleep (100000);
 //exit(0);
 distort_test:
+    int adc_ind = -1;
+    sscanf (argv[2], "%d", &adc_ind);
+
+	int adc_low, adc_high;
+	if (adc_ind == -1) // test all ADCs
+	{
+		adc_low = 4; 
+		adc_high = 11;
+	}
+	else // just one
+	{
+		if (adc_ind < 4 || adc_ind > 11)
+		{
+			printf ("ADC index must be between 4 and 11\n");
+			exit(0);
+		}
+		adc_low = adc_high = adc_ind;
+	}
 
 	printf ("register distort test\n");
-	for (int t = 0; t < 1000; t++) // iterations loop
+	for (int t = 0; t < 10000; t++) // iterations loop
 	{
-		for (int i = 4; i <= 11; i++) // ADC loop
+		for (int i = adc_low; i <= adc_high; i++) // ADC loop
 		{
 			bool res = true;
 

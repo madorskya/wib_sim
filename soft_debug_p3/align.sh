@@ -6,8 +6,9 @@
 
 # enable sending SYNC on certain time stamp lower bits
 # FAST command latency is 19 clocks + 1 clock for cable and COLDATA
-# 0x7fec = -20
-./devreg.sh cmd_stamp_sync 0x7fec
+# 0x7fec = -20 for short cable
+# 0x7fe3 = -29 for 22 m cable with extra adapter
+./devreg.sh cmd_stamp_sync 0x7fe3
 ./devreg.sh cmd_stamp_sync_en 1
 
 # set DTS time stamp delay for alignment
