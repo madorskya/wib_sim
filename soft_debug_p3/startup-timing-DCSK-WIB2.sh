@@ -122,7 +122,7 @@ echo 'reset PLL'
 #wib_synthesizer_soft/si5345_config-50M
 #clock/si5345_config
 #clock/si5345_config-62p5
-uf/clock/si5345_config-DCSK
+clock/si5345_config
 
 sleep $sleep_seconds
 
