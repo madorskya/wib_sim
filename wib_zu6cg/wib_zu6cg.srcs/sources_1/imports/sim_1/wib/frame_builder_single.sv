@@ -27,7 +27,8 @@ module frame_builder_single #(parameter NUM = 0)
     input        ready, 
     input [3:0]  psr_cal, 
     input        ws, 
-    input [15:0] flex
+    input [15:0] flex,
+    input raw_channel_map
 );
 
     reg [13:0] deframed_aligned [7:0][31:0]; // [link][sample]
@@ -80,13 +81,15 @@ module frame_builder_single #(parameter NUM = 0)
     frame_builder_femb fbf0
     (
         .deframed_mapped (deframed_mapped [0]),
-        .tx_words        (tx_words_0)
+        .tx_words        (tx_words_0),
+        .raw_channel_map (raw_channel_map)
     );
 
     frame_builder_femb fbf1
     (
         .deframed_mapped (deframed_mapped [1]),
-        .tx_words        (tx_words_1)
+        .tx_words        (tx_words_1),
+        .raw_channel_map (raw_channel_map)
     );
 
     reg crc_reset, crc_calc;

@@ -340,6 +340,7 @@ module wib_top
     assign ps_en_in         = `CONFIG_BITS(1,18, 1); // 0xA00C0004
     assign mon_adc_start    = `CONFIG_BITS(1,19, 1); // 0xA00C0004 // monitor ADC conversion start pulse
     assign crc_err_reset    = `CONFIG_BITS(1,20, 1); // 0xA00C0004 // reset of sticky crc error flags
+    wire   raw_channel_map  = `CONFIG_BITS(1,21, 1); // 0xA00C0004 // 0=UVX map, 1=raw channel map
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
@@ -638,8 +639,8 @@ module wib_top
         .ready                (ready      ), 
         .psr_cal              (psr_cal    ), 
         .ws                   (ws         ), 
-        .flex                 (flex       )
-        
+        .flex                 (flex       ),
+        .raw_channel_map      (raw_channel_map)
     );    
 
     timing_endpoint_dcsk timing_i

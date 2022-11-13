@@ -31,8 +31,8 @@ module frame_builder
     input        ready, 
     input [3:0]  psr_cal, 
     input        ws, 
-    input [15:0] flex
-
+    input [15:0] flex,
+    input raw_channel_map
 );
 
     // passing deframed [7:0] into frame_builder_single does not work in simulation for some reason
@@ -90,7 +90,8 @@ module frame_builder
         .ready         (ready      ), 
         .psr_cal       (psr_cal    ), 
         .ws            (ws         ), 
-        .flex          (flex       )
+        .flex          (flex       ),
+        .raw_channel_map (raw_channel_map)
     );
 
     frame_builder_single #(.NUM(1)) fbs1
@@ -121,7 +122,8 @@ module frame_builder
         .ready         (ready      ), 
         .psr_cal       (psr_cal    ), 
         .ws            (ws         ), 
-        .flex          (flex       )
+        .flex          (flex       ),
+        .raw_channel_map (raw_channel_map)
     );
 
     // FIFO not needed anymore, everything is synchronous    
