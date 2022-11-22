@@ -635,10 +635,11 @@ module wib_top
         .valid12              (valid12 ),
         .rxclk2x              (clk125),
         .link_mask            (link_mask   ),           // this input allows to disable some links in case they are broken
-        .daq_stream           (daq_stream  ),           // data to felix
-        .daq_stream_k         (daq_stream_k),           // K symbol flags to felix
-        .daq_data_type        (daq_data_type),          // data type flags for felix
-        .daq_clk              (clk240_from_felix_gth),  // replaced according to Adrian's FELIX branch
+        
+        .ddi_d                (ddi_d       ),
+        .ddi_d_last           (ddi_d_last  ),
+        .ddi_d_valid          (ddi_d_valid ),
+        
         .ts_tstamp            (dts_time_delayed),       // delayed time stamp matching data
         .ts_clk               (clk62p5  ),              // this is 62.5 M clock coming with time stamp
         .reset                (fb_reset),

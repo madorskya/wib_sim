@@ -1,17 +1,18 @@
 module frame_builder_single #(parameter NUM = 0)
 (
-    input [13:0] deframed [7:0][31:0], // [link][sample]
-    input [7:0]  time8 [7:0], //[link]
-    input [15:0] time16 [7:0], //[link]
-    input [7:0]  valid14,
-    input [7:0]  valid12,
-    input [7:0]  link_mask, // this input allows to disable some links in case they are broken
-    input [1:0]  crc_err [7:0],
+    input [13:0] deframed [1:0][31:0], // [link][sample]
+    input [7:0]  time8 [1:0], //[link]
+    input [15:0] time16 [1:0], //[link]
+    input [1:0]  valid14,
+    input [1:0]  valid12,
+    input [1:0]  link_mask, // this input allows to disable some links in case they are broken
+    input [1:0]  crc_err [1:0],
     input        rxclk2x, // deframed data clock
-    output reg [31:0] daq_stream, // data to felix
-    output reg [3:0]  daq_stream_k, // K symbol flags to felix
-    output reg [1:0]  daq_data_type, // data type flags needed by felix
-    input             daq_clk,
+
+    output [63:0] ddi_d,
+    output        ddi_d_last,
+    output        ddi_d_valid,
+
     input [63:0] ts_tstamp, // time stamp is in deframed data domain
     input reset,
     input fake_daq_stream,
