@@ -221,18 +221,18 @@ module wib_top
     OBUFDS tx_tim_buf_out (.I(tx_timing), .O(tx_timing_p), .OB(tx_timing_n));
     
     // FELIX GTH buffering
-    wire mgtrefclk0_x0y1_int;
-    IBUFDS_GTE4 #(
-        .REFCLK_EN_TX_PATH  (1'b0),
-        .REFCLK_HROW_CK_SEL (2'b00),
-        .REFCLK_ICNTL_RX    (2'b00)
-    ) IBUFDS_GTE4_MGTREFCLK0_X0Y1_INST (
-        .I     (mgtrefclk0_x0y1_p),
-        .IB    (mgtrefclk0_x0y1_n),
-        .CEB   (1'b0),
-        .O     (mgtrefclk0_x0y1_int),
-        .ODIV2 ()
-    );
+//    wire mgtrefclk0_x0y1_int;
+//    IBUFDS_GTE4 #(
+//        .REFCLK_EN_TX_PATH  (1'b0),
+//        .REFCLK_HROW_CK_SEL (2'b00),
+//        .REFCLK_ICNTL_RX    (2'b00)
+//    ) IBUFDS_GTE4_MGTREFCLK0_X0Y1_INST (
+//        .I     (mgtrefclk0_x0y1_p),
+//        .IB    (mgtrefclk0_x0y1_n),
+//        .CEB   (1'b0),
+//        .O     (mgtrefclk0_x0y1_int),
+//        .ODIV2 ()
+//    );
     
     // FELIX channel breakout
     wire [1:0] gthrxn_int;
@@ -475,65 +475,80 @@ module wib_top
     wire gen_clk2x;
     wire fastcommand_out;
     wire sda_in_out, sda_out_out, scl_out;
+
+    wire  [63:0] ddi_d [7:0];
+    wire  [7:0]  ddi_d_last;
+    wire  [7:0]  ddi_d_valid;
     
     bd_tux wrp
     (
-        // coldata fast command
-        .fastcommand_out_p (femb_cmd_fpga_out_p),
-        .fastcommand_out_n (femb_cmd_fpga_out_n),
-        .fastcommand_out   (fastcommand_out),
+        .fastcommand_out_p  (femb_cmd_fpga_out_p),
+        .fastcommand_out_n  (femb_cmd_fpga_out_n),
+        .fastcommand_out    (fastcommand_out),
         
         // coldata I2C
-        .i2c_lvds_scl_p        (i2c_lvds_scl_p       ),
-        .i2c_lvds_scl_n        (i2c_lvds_scl_n       ),
-        .i2c_lvds_sda_c2w_p    (i2c_lvds_sda_c2w_p   ),
-        .i2c_lvds_sda_c2w_n    (i2c_lvds_sda_c2w_n   ),
-        .i2c_lvds_sda_w2c_p    (i2c_lvds_sda_w2c_p   ),
-        .i2c_lvds_sda_w2c_n    (i2c_lvds_sda_w2c_n   ),
+        .i2c_lvds_scl_p     (i2c_lvds_scl_p       ),
+        .i2c_lvds_scl_n     (i2c_lvds_scl_n       ),
+        .i2c_lvds_sda_c2w_p (i2c_lvds_sda_c2w_p   ),
+        .i2c_lvds_sda_c2w_n (i2c_lvds_sda_c2w_n   ),
+        .i2c_lvds_sda_w2c_p (i2c_lvds_sda_w2c_p   ),
+        .i2c_lvds_sda_w2c_n (i2c_lvds_sda_w2c_n   ),
         
-        // timing point signals
-        .ts_clk            (clk62p5          ), // this is 62.5 M clock for WIB logic
-        .ts_tstamp         (ts_tstamp        ),
-
-        .axi_clk_out (axi_clk_out),
-        .axi_rstn    (axi_rstn   ),
-        .reg_rw      (config_reg),
-        .reg_ro      (status_reg),
-    
-        .iic_rtl_0_scl_i (iic_rtl_0_scl_i),
-        .iic_rtl_0_scl_o (iic_rtl_0_scl_o),
-        .iic_rtl_0_scl_t (iic_rtl_0_scl_t),
-        .iic_rtl_0_sda_i (iic_rtl_0_sda_i),
-        .iic_rtl_0_sda_o (iic_rtl_0_sda_o),
-        .iic_rtl_0_sda_t (iic_rtl_0_sda_t),
-
-        .daq_clk       (clk240_from_felix_gth),
-        .daq_spy_full  (daq_spy_full ),
-        .daq_spy_reset (daq_spy_reset),
-
-        .spy_rec_time    (spy_rec_time),
-        .spy_addr        (spy_addr    ),
-
-        .daq_stream    (daq_stream   ),
-        .daq_stream_k  (daq_stream_k ),
-        .daq_data_type (daq_data_type), 
-
-        .cmd_bit_idle      (cmd_bit_idle     ),
-        .cmd_bit_edge      (cmd_bit_edge     ),
-        .cmd_bit_sync      (cmd_bit_sync     ),
-        .cmd_bit_act       (cmd_bit_act      ),
-        .cmd_bit_reset     (cmd_bit_reset    ),
-        .cmd_bit_adc_reset (cmd_bit_adc_reset),
-        .cmd_bit_trigger   (cmd_bit_trigger  ),
-
-        .ps_reset  (ps_reset ),
-        .ps_en_in  (ps_en_in ),
-        .ps_locked (ps_locked),
+         // timing point signals
+        .ts_clk             (clk62p5   ), // this is 62.5 M clock for WIB logic
+        .ts_rst             (ts_rst    ),
+        .ts_tstamp          (ts_tstamp ),
         
-        .pl_clk_10M (lemo_io[0]),
-        .sda_in_out (sda_in_out),
-        .sda_out_out (sda_out_out),
-        .scl_out     (scl_out)
+        .axi_clk_out        (axi_clk_out),
+        .axi_rstn           (axi_rstn   ),
+        .reg_rw             (config_reg),
+        .reg_ro             (status_reg),
+        
+        .iic_rtl_0_scl_i    (iic_rtl_0_scl_i),
+        .iic_rtl_0_scl_o    (iic_rtl_0_scl_o),
+        .iic_rtl_0_scl_t    (iic_rtl_0_scl_t),
+        .iic_rtl_0_sda_i    (iic_rtl_0_sda_i),
+        .iic_rtl_0_sda_o    (iic_rtl_0_sda_o),
+        .iic_rtl_0_sda_t    (iic_rtl_0_sda_t),
+        
+        .daq_clk            (clk240_from_felix_gth),
+        .daq_spy_full       (daq_spy_full ),
+        .daq_spy_reset      (daq_spy_reset),
+        
+        .spy_rec_time       (spy_rec_time),
+        .spy_addr           (spy_addr    ),
+        
+        .daq_stream         (daq_stream   ),
+        .daq_stream_k       (daq_stream_k ),
+        .daq_data_type      (daq_data_type), 
+        
+        .cmd_bit_idle       (cmd_bit_idle     ),
+        .cmd_bit_edge       (cmd_bit_edge     ),
+        .cmd_bit_sync       (cmd_bit_sync     ),
+        .cmd_bit_act        (cmd_bit_act      ),
+        .cmd_bit_reset      (cmd_bit_reset    ),
+        .cmd_bit_adc_reset  (cmd_bit_adc_reset),
+        .cmd_bit_trigger    (cmd_bit_trigger  ),
+        
+        .ps_reset           (ps_reset ),
+        .ps_en_in           (ps_en_in ),
+        .ps_locked          (ps_locked),
+        
+        .pl_clk_10M         (lemo_io[0]),
+        .sda_in_out         (sda_in_out),
+        .sda_out_out        (sda_out_out),
+        .scl_out            (scl_out),
+        
+        .ddi_d              (ddi_d       ),
+        .ddi_d_last         (ddi_d_last  ),
+        .ddi_d_valid        (ddi_d_valid ),
+        
+        .deimos_clk_n       (mgtrefclk0_x0y1_n),
+        .deimos_clk_p       (mgtrefclk0_x0y1_p),
+        .deimos_rxn         (gthrxn_int),
+        .deimos_rxp         (gthrxp_int),
+        .deimos_txn         (gthtxn_int),
+        .deimos_txp         (gthtxp_int)
     );
 
     // Generate fake output clock
@@ -695,102 +710,99 @@ module wib_top
     );
     
     
-    FELIX_GTH_v1f felix_gth_inst (
-       .gthrxn_in                               (gthrxn_int),
-       .gthrxp_in                               (gthrxp_int),
-       .gthtxn_out                              (gthtxn_int),
-       .gthtxp_out                              (gthtxp_int),
-       .gtwiz_userclk_tx_reset_in               (~(&txpmaresetdone_out)),
-       .gtwiz_userclk_tx_srcclk_out             (),
-       .gtwiz_userclk_tx_usrclk_out             (),
-       .gtwiz_userclk_tx_usrclk2_out            (clk240_from_felix_gth),
-       .gtwiz_userclk_tx_active_out             (gtwiz_userclk_tx_active_out),
-       .gtwiz_userclk_rx_reset_in               (~(&rxpmaresetdone_out)),//  (felix_rx_reset),
-       .gtwiz_userclk_rx_srcclk_out             (),
-       .gtwiz_userclk_rx_usrclk_out             (),
-       .gtwiz_userclk_rx_usrclk2_out            (felix_rx_clk),
-       .gtwiz_userclk_rx_active_out             (),
-       .gtwiz_reset_clk_freerun_in              (axi_clk_out),
-       .gtwiz_reset_all_in                      (felix_rx_reset), // (~axi_rstn),
-       .gtwiz_reset_tx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
-       .gtwiz_reset_tx_datapath_in              (gtwiz_reset_tx_datapath_in),
-       .gtwiz_reset_rx_pll_and_datapath_in      (gtwiz_reset_rx_pll_and_datapath_in),
-       .gtwiz_reset_rx_datapath_in              (gtwiz_reset_rx_datapath_in),
-       .gtwiz_reset_rx_cdr_stable_out           (),
-       .gtwiz_reset_tx_done_out                 (gtwiz_reset_tx_done_out),
-       .gtwiz_reset_rx_done_out                 (felix_gtwiz_reset_rx_done_out),
-       .gtwiz_userdata_tx_in                    ({daq_stream[1],daq_stream[0]}),
-       .gtwiz_userdata_rx_out                   (felix_gtwiz_userdata_rx_out),
-       .gtrefclk01_in                           (mgtrefclk0_x0y1_int),
-       .qpll1outclk_out                         (),
-       .qpll1outrefclk_out                      (),
-       .rx8b10ben_in                            (2'b11),
-       .tx8b10ben_in                            (2'b11),
-       .txctrl0_in                              (32'h0),
-       .txctrl1_in                              (32'h0),
-       .txctrl2_in                              ({4'b0000,daq_stream_k[1],4'b0000,daq_stream_k[0]}),
-       .gtpowergood_out                         (felix_powergood_out),
-       .rxctrl0_out                             (felix_rxctrl0_out),
-       .rxctrl1_out                             (),
-       .rxctrl2_out                             (),
-       .rxctrl3_out                             (),
-       .rxpmaresetdone_out                      (rxpmaresetdone_out),
-       .txpmaresetdone_out                      (txpmaresetdone_out),
-       .txprbssel_in                            ({2{rx_prbs_sel}}),
+//    FELIX_GTH_v1f felix_gth_inst (
+//       .gthrxn_in                               (gthrxn_int),
+//       .gthrxp_in                               (gthrxp_int),
+//       .gthtxn_out                              (gthtxn_int),
+//       .gthtxp_out                              (gthtxp_int),
+//       .gtwiz_userclk_tx_reset_in               (~(&txpmaresetdone_out)),
+//       .gtwiz_userclk_tx_srcclk_out             (),
+//       .gtwiz_userclk_tx_usrclk_out             (),
+//       .gtwiz_userclk_tx_usrclk2_out            (clk240_from_felix_gth),
+//       .gtwiz_userclk_tx_active_out             (gtwiz_userclk_tx_active_out),
+//       .gtwiz_userclk_rx_reset_in               (~(&rxpmaresetdone_out)),//  (felix_rx_reset),
+//       .gtwiz_userclk_rx_srcclk_out             (),
+//       .gtwiz_userclk_rx_usrclk_out             (),
+//       .gtwiz_userclk_rx_usrclk2_out            (felix_rx_clk),
+//       .gtwiz_userclk_rx_active_out             (),
+//       .gtwiz_reset_clk_freerun_in              (axi_clk_out),
+//       .gtwiz_reset_all_in                      (felix_rx_reset), // (~axi_rstn),
+//       .gtwiz_reset_tx_pll_and_datapath_in      (gtwiz_reset_tx_pll_and_datapath_in),
+//       .gtwiz_reset_tx_datapath_in              (gtwiz_reset_tx_datapath_in),
+//       .gtwiz_reset_rx_pll_and_datapath_in      (gtwiz_reset_rx_pll_and_datapath_in),
+//       .gtwiz_reset_rx_datapath_in              (gtwiz_reset_rx_datapath_in),
+//       .gtwiz_reset_rx_cdr_stable_out           (),
+//       .gtwiz_reset_tx_done_out                 (gtwiz_reset_tx_done_out),
+//       .gtwiz_reset_rx_done_out                 (felix_gtwiz_reset_rx_done_out),
+//       .gtwiz_userdata_tx_in                    ({daq_stream[1],daq_stream[0]}),
+//       .gtwiz_userdata_rx_out                   (felix_gtwiz_userdata_rx_out),
+//       .gtrefclk01_in                           (mgtrefclk0_x0y1_int),
+//       .qpll1outclk_out                         (),
+//       .qpll1outrefclk_out                      (),
+//       .rx8b10ben_in                            (2'b11),
+//       .tx8b10ben_in                            (2'b11),
+//       .txctrl0_in                              (32'h0),
+//       .txctrl1_in                              (32'h0),
+//       .txctrl2_in                              ({4'b0000,daq_stream_k[1],4'b0000,daq_stream_k[0]}),
+//       .gtpowergood_out                         (felix_powergood_out),
+//       .rxctrl0_out                             (felix_rxctrl0_out),
+//       .rxctrl1_out                             (),
+//       .rxctrl2_out                             (),
+//       .rxctrl3_out                             (),
+//       .rxpmaresetdone_out                      (rxpmaresetdone_out),
+//       .txpmaresetdone_out                      (txpmaresetdone_out),
+//       .txprbssel_in                            ({2{rx_prbs_sel}}),
        
-       // receiver ports for loopback test
-       .rxbyteisaligned_out (felix_rxbyteisaligned_out),
-       .rxbyterealign_out   (felix_rxbyterealign_out),
-       .rxcommadet_out      (felix_rxcommadet_out),
-       .rxcommadeten_in     (2'b11),
-       .rxmcommaalignen_in  (2'b00),
-       .rxpcommaalignen_in  (2'b11)
-    );    
+//       // receiver ports for loopback test
+//       .rxbyteisaligned_out (felix_rxbyteisaligned_out),
+//       .rxbyterealign_out   (felix_rxbyterealign_out),
+//       .rxcommadet_out      (felix_rxcommadet_out),
+//       .rxcommadeten_in     (2'b11),
+//       .rxmcommaalignen_in  (2'b00),
+//       .rxpcommaalignen_in  (2'b11)
+//    );    
 
     I2C_CONTROL i2c_ctrl
     ( 
-        .I2C_SELECT ({4'b0, i2c_select}), 
-          
-        .iic_rtl_0_scl_i (iic_rtl_0_scl_i), 
-        .iic_rtl_0_scl_o (iic_rtl_0_scl_o), 
-        .iic_rtl_0_scl_t (iic_rtl_0_scl_t), 
+        .I2C_SELECT       ({4'b0, i2c_select}), 
         
-        .iic_rtl_0_sda_i (iic_rtl_0_sda_i), 
-        .iic_rtl_0_sda_o (iic_rtl_0_sda_o), 
-        .iic_rtl_0_sda_t (iic_rtl_0_sda_t), 
+        .iic_rtl_0_scl_i  (iic_rtl_0_scl_i), 
+        .iic_rtl_0_scl_o  (iic_rtl_0_scl_o), 
+        .iic_rtl_0_scl_t  (iic_rtl_0_scl_t), 
         
-        .SI5344_SCL (si5344_scl), 
-        .SI5344_SDA (si5344_sda), 
+        .iic_rtl_0_sda_i  (iic_rtl_0_sda_i), 
+        .iic_rtl_0_sda_o  (iic_rtl_0_sda_o), 
+        .iic_rtl_0_sda_t  (iic_rtl_0_sda_t), 
         
-        .SI5342_SCL (si5342_scl), 
-        .SI5342_SDA (si5342_sda), 
+        .SI5344_SCL       (si5344_scl), 
+        .SI5344_SDA       (si5344_sda), 
         
-        .QSFP_SCL (qsfp_scl),     
-        .QSFP_SDA (qsfp_sda), 
+        .SI5342_SCL       (si5342_scl), 
+        .SI5342_SDA       (si5342_sda), 
         
-        .PL_FEMB_PWR_SCL (pl_femb_pwr_scl), 
-        .PL_FEMB_PWR_SDA (pl_femb_pwr_sda), 
+        .QSFP_SCL         (qsfp_scl),     
+        .QSFP_SDA         (qsfp_sda), 
         
-        .PL_FEMB_EN_SCL (pl_femb_en_scl), 
-        .PL_FEMB_EN_SDA (pl_femb_en_sda), 
+        .PL_FEMB_PWR_SCL  (pl_femb_pwr_scl), 
+        .PL_FEMB_PWR_SDA  (pl_femb_pwr_sda), 
         
-        .SENSOR_I2C_SCL (sensor_i2c_scl), 
-        .SENSOR_I2C_SDA (sensor_i2c_sda), 
+        .PL_FEMB_EN_SCL   (pl_femb_en_scl), 
+        .PL_FEMB_EN_SDA   (pl_femb_en_sda), 
+        
+        .SENSOR_I2C_SCL   (sensor_i2c_scl), 
+        .SENSOR_I2C_SDA   (sensor_i2c_sda), 
         
         .PL_FEMB_PWR2_SCL (pl_femb_pwr2_scl), 
         .PL_FEMB_PWR2_SDA (pl_femb_pwr2_sda), 
         
-//        .LTC2977_SCL (ltc2977_scl), 
-//        .LTC2977_SDA (ltc2977_sda), 
-        
         .PL_FEMB_PWR3_SCL (pl_femb_pwr3_scl),  
         .PL_FEMB_PWR3_SDA (pl_femb_pwr3_sda),  
         
-        .FLASH_SCL (flash_scl), 
-        .FLASH_SDA (flash_sda), 
+        .FLASH_SCL        (flash_scl), 
+        .FLASH_SDA        (flash_sda), 
         
-        .ADN2814_SCL (adn2814_scl),   
-        .ADN2814_SDA (adn2814_sda) 
+        .ADN2814_SCL      (adn2814_scl),   
+        .ADN2814_SDA      (adn2814_sda) 
     );
 
     mon_adc_spi mon_adc
@@ -817,37 +829,37 @@ module wib_top
     );
 
 
-   ila_14probe ila_felix
-   (
-        .clk    (clk240_from_felix_gth),
-        .probe0 (fake_daq_stream), // 1-bit
-        .probe1 (txpmaresetdone_out), // 1-bit
-        .probe2 (gtwiz_userclk_tx_active_out), // 1-bit
-        .probe3 (felix_powergood_out), // 1-bit
-        .probe4 (axi_rstn), // 1-bit
-        .probe5 (gtwiz_reset_tx_pll_and_datapath_in), // 1-bit
-        .probe6 (gtwiz_reset_tx_datapath_in), // 1-bit
-        .probe7 (gtwiz_reset_tx_done_out), // 1-bit
-        .probe8 (tx8b10ben_in[0]), // 1-bit
-        .probe9 (tx8b10ben_in[1]), // 1-bit
-        .probe10 (txctrl0_in), // 32-bit
-        .probe11 (txctrl1_in), // 32-bit
-        .probe12 ({daq_stream_k[1], daq_stream_k[0]}), // 8-bit
-        .probe13 ({daq_stream[1],daq_stream[0]}) // 64-bit
-    );
+//   ila_14probe ila_felix
+//   (
+//        .clk    (clk240_from_felix_gth),
+//        .probe0 (fake_daq_stream), // 1-bit
+//        .probe1 (txpmaresetdone_out), // 1-bit
+//        .probe2 (gtwiz_userclk_tx_active_out), // 1-bit
+//        .probe3 (felix_powergood_out), // 1-bit
+//        .probe4 (axi_rstn), // 1-bit
+//        .probe5 (gtwiz_reset_tx_pll_and_datapath_in), // 1-bit
+//        .probe6 (gtwiz_reset_tx_datapath_in), // 1-bit
+//        .probe7 (gtwiz_reset_tx_done_out), // 1-bit
+//        .probe8 (tx8b10ben_in[0]), // 1-bit
+//        .probe9 (tx8b10ben_in[1]), // 1-bit
+//        .probe10 (txctrl0_in), // 32-bit
+//        .probe11 (txctrl1_in), // 32-bit
+//        .probe12 ({daq_stream_k[1], daq_stream_k[0]}), // 8-bit
+//        .probe13 ({daq_stream[1],daq_stream[0]}) // 64-bit
+//    );
     
-    ila_felix_rx ila_felix_rx_i
-    (    
-        .clk     (felix_rx_clk       ),
-        .probe0  (felix_rxbyteisaligned_out),
-        .probe1  (felix_rxbyterealign_out),
-        .probe2  (felix_rxcommadet_out),
-        .probe3  (felix_rxctrl0_out [3:0]),
-        .probe4  (felix_rxctrl0_out [19:16]),
-        .probe5  (felix_gtwiz_userdata_rx_out [31:0]),
-        .probe6  (felix_gtwiz_userdata_rx_out [63:32]),
-        .probe7  (felix_gtwiz_reset_rx_done_out)
-    );  
+//    ila_felix_rx ila_felix_rx_i
+//    (    
+//        .clk     (felix_rx_clk       ),
+//        .probe0  (felix_rxbyteisaligned_out),
+//        .probe1  (felix_rxbyterealign_out),
+//        .probe2  (felix_rxcommadet_out),
+//        .probe3  (felix_rxctrl0_out [3:0]),
+//        .probe4  (felix_rxctrl0_out [19:16]),
+//        .probe5  (felix_gtwiz_userdata_rx_out [31:0]),
+//        .probe6  (felix_gtwiz_userdata_rx_out [63:32]),
+//        .probe7  (felix_gtwiz_reset_rx_done_out)
+//    );  
 
 
     always @(*)

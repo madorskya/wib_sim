@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Fri Nov 11 14:30:12 2022
+//Date        : Tue Nov 22 17:03:04 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -31,6 +31,36 @@ module design_1_wrapper
     daq_stream1,
     daq_stream_k0,
     daq_stream_k1,
+    ddi0_d,
+    ddi0_d_last,
+    ddi0_d_valid,
+    ddi1_d,
+    ddi1_d_last,
+    ddi1_d_valid,
+    ddi2_d,
+    ddi2_d_last,
+    ddi2_d_valid,
+    ddi3_d,
+    ddi3_d_last,
+    ddi3_d_valid,
+    ddi4_d,
+    ddi4_d_last,
+    ddi4_d_valid,
+    ddi5_d,
+    ddi5_d_last,
+    ddi5_d_valid,
+    ddi6_d,
+    ddi6_d_last,
+    ddi6_d_valid,
+    ddi7_d,
+    ddi7_d_last,
+    ddi7_d_valid,
+    deimos_clk_clk_n,
+    deimos_clk_clk_p,
+    deimos_rxn,
+    deimos_rxp,
+    deimos_txn,
+    deimos_txp,
     fastcommand_out,
     fastcommand_out_n_0,
     fastcommand_out_p_0,
@@ -73,6 +103,7 @@ module design_1_wrapper
     spy_addr_1,
     spy_rec_time,
     ts_clk,
+    ts_rst,
     ts_tstamp);
   output AXI_CLK_OUT;
   output [0:0]AXI_RSTn;
@@ -95,6 +126,36 @@ module design_1_wrapper
   input [31:0]daq_stream1;
   input [3:0]daq_stream_k0;
   input [3:0]daq_stream_k1;
+  input [63:0]ddi0_d;
+  input ddi0_d_last;
+  input ddi0_d_valid;
+  input [63:0]ddi1_d;
+  input ddi1_d_last;
+  input ddi1_d_valid;
+  input [63:0]ddi2_d;
+  input ddi2_d_last;
+  input ddi2_d_valid;
+  input [63:0]ddi3_d;
+  input ddi3_d_last;
+  input ddi3_d_valid;
+  input [63:0]ddi4_d;
+  input ddi4_d_last;
+  input ddi4_d_valid;
+  input [63:0]ddi5_d;
+  input ddi5_d_last;
+  input ddi5_d_valid;
+  input [63:0]ddi6_d;
+  input ddi6_d_last;
+  input ddi6_d_valid;
+  input [63:0]ddi7_d;
+  input ddi7_d_last;
+  input ddi7_d_valid;
+  input deimos_clk_clk_n;
+  input deimos_clk_clk_p;
+  input deimos_rxn;
+  input deimos_rxp;
+  output deimos_txn;
+  output deimos_txp;
   output fastcommand_out;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
@@ -137,6 +198,7 @@ module design_1_wrapper
   output [19:0]spy_addr_1;
   input [17:0]spy_rec_time;
   input ts_clk;
+  input ts_rst;
   input [63:0]ts_tstamp;
 
   wire AXI_CLK_OUT;
@@ -160,6 +222,36 @@ module design_1_wrapper
   wire [31:0]daq_stream1;
   wire [3:0]daq_stream_k0;
   wire [3:0]daq_stream_k1;
+  wire [63:0]ddi0_d;
+  wire ddi0_d_last;
+  wire ddi0_d_valid;
+  wire [63:0]ddi1_d;
+  wire ddi1_d_last;
+  wire ddi1_d_valid;
+  wire [63:0]ddi2_d;
+  wire ddi2_d_last;
+  wire ddi2_d_valid;
+  wire [63:0]ddi3_d;
+  wire ddi3_d_last;
+  wire ddi3_d_valid;
+  wire [63:0]ddi4_d;
+  wire ddi4_d_last;
+  wire ddi4_d_valid;
+  wire [63:0]ddi5_d;
+  wire ddi5_d_last;
+  wire ddi5_d_valid;
+  wire [63:0]ddi6_d;
+  wire ddi6_d_last;
+  wire ddi6_d_valid;
+  wire [63:0]ddi7_d;
+  wire ddi7_d_last;
+  wire ddi7_d_valid;
+  wire deimos_clk_clk_n;
+  wire deimos_clk_clk_p;
+  wire deimos_rxn;
+  wire deimos_rxp;
+  wire deimos_txn;
+  wire deimos_txp;
   wire fastcommand_out;
   wire fastcommand_out_n_0;
   wire fastcommand_out_p_0;
@@ -208,6 +300,7 @@ module design_1_wrapper
   wire [19:0]spy_addr_1;
   wire [17:0]spy_rec_time;
   wire ts_clk;
+  wire ts_rst;
   wire [63:0]ts_tstamp;
 
   design_1 design_1_i
@@ -232,6 +325,36 @@ module design_1_wrapper
         .daq_stream1(daq_stream1),
         .daq_stream_k0(daq_stream_k0),
         .daq_stream_k1(daq_stream_k1),
+        .ddi0_d(ddi0_d),
+        .ddi0_d_last(ddi0_d_last),
+        .ddi0_d_valid(ddi0_d_valid),
+        .ddi1_d(ddi1_d),
+        .ddi1_d_last(ddi1_d_last),
+        .ddi1_d_valid(ddi1_d_valid),
+        .ddi2_d(ddi2_d),
+        .ddi2_d_last(ddi2_d_last),
+        .ddi2_d_valid(ddi2_d_valid),
+        .ddi3_d(ddi3_d),
+        .ddi3_d_last(ddi3_d_last),
+        .ddi3_d_valid(ddi3_d_valid),
+        .ddi4_d(ddi4_d),
+        .ddi4_d_last(ddi4_d_last),
+        .ddi4_d_valid(ddi4_d_valid),
+        .ddi5_d(ddi5_d),
+        .ddi5_d_last(ddi5_d_last),
+        .ddi5_d_valid(ddi5_d_valid),
+        .ddi6_d(ddi6_d),
+        .ddi6_d_last(ddi6_d_last),
+        .ddi6_d_valid(ddi6_d_valid),
+        .ddi7_d(ddi7_d),
+        .ddi7_d_last(ddi7_d_last),
+        .ddi7_d_valid(ddi7_d_valid),
+        .deimos_clk_clk_n(deimos_clk_clk_n),
+        .deimos_clk_clk_p(deimos_clk_clk_p),
+        .deimos_rxn(deimos_rxn),
+        .deimos_rxp(deimos_rxp),
+        .deimos_txn(deimos_txn),
+        .deimos_txp(deimos_txp),
         .fastcommand_out(fastcommand_out),
         .fastcommand_out_n_0(fastcommand_out_n_0),
         .fastcommand_out_p_0(fastcommand_out_p_0),
@@ -278,6 +401,7 @@ module design_1_wrapper
         .spy_addr_1(spy_addr_1),
         .spy_rec_time(spy_rec_time),
         .ts_clk(ts_clk),
+        .ts_rst(ts_rst),
         .ts_tstamp(ts_tstamp));
   IOBUF iic_rtl_0_scl_iobuf
        (.I(iic_rtl_0_scl_o),
