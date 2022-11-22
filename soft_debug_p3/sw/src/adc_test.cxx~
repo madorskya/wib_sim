@@ -89,7 +89,7 @@ distort_test:
 	}
 	else // just one
 	{
-		if (adc_ind < 4 || adc_ind > 12)
+		if (adc_ind < 4 || adc_ind > 11)
 		{
 			printf ("ADC index must be between 4 and 11\n");
 			exit(0);

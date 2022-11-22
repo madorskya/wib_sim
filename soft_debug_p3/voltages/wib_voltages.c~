@@ -50,7 +50,9 @@ int run_command(char* cline, char* output)
 void REG_WR (unsigned addr, unsigned value)
 {
 	char cline[100], output[100];
-	sprintf (cline, "./devreg.sh i2c_select 0x%x", value);
+	unsigned int reg_addr = 0xa00c0000 + addr * 4;
+	unsigned int reg_data = 0x20 + value;
+	sprintf (cline, "devmem 0x%x 32 0x%x", reg_addr, reg_data);
 	run_command (cline, output);
 	if (strlen(output) > 0) 
 		printf ("%s %s", cline, output);

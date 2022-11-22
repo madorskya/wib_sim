@@ -1,23 +1,26 @@
 ./coldata_power_off.sh
-#./eth0_start.sh
-#./rx_timing_sel_sfp_si5344.sh
 ./devreg.sh i2c_select 0
 clock/si5345_config
-# switch to dts clocks
-./devreg.sh ts_clk_sel 0
+# switch to standalone clocks
+./devreg.sh ts_clk_sel 1
 
 voltages/wib_voltages
+
 ./coldata_power_on.sh
+
 sleep 1
 # reset COLDATA chips - this leads to data missing for some reason
 ./devreg.sh fast_cmd_code 1
 sleep 0.1
 
 sw/femb_test 0
+
 ./devreg.sh link_mask 0xfff0
+
 #./coldata_rx_reset.sh
 sleep 1
 ./coldadc_power_on.sh
+
 sleep 1
 # set EDGE to ACT delay
 ./devreg.sh edge_to_act_delay 19
