@@ -218,6 +218,7 @@ module frame_builder_single #
         rq_served[3:1] = rq_served[2:0];
     end
     
+    reg [5:0] tick; // clock tick counter
     // formatting FSM, runs on the same clock as request FSM
     // the request mechanism is a leftover from asynchronous FELIX, keeping for now
     always @(posedge rxclk2x)
@@ -225,6 +226,7 @@ module frame_builder_single #
         if (reset)
         begin
             fb_state = IDLE;
+            tick = 6'h0;
         end
     
         rq_served[0] = 1'b0; 
@@ -232,7 +234,14 @@ module frame_builder_single #
             IDLE:
             begin
                 if (data_ready[2] == 1'b1) // request on
-                    fb_state = HEAD0; // start frame
+                begin
+                    if (tick == 6'h0)
+                        fb_state = HEAD0; // start new frame if all ticks were sent 
+                    else
+                        fb_state = DATA; // continue previous frame
+                        
+                    rq_served[0] = 1'b1; // tell request FSM that it's been served 
+                end
                 ddi_d = 64'h0;
                 ddi_d_valid = 1'b0;
                 ddi_d_last  = 1'b0;
@@ -240,7 +249,6 @@ module frame_builder_single #
             
             HEAD0: // start of frame
             begin
-                rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 // store prepared tx words in register for shifting out
                 tx_words = tx_words_w;
                 ddi_d = header[0];
@@ -251,7 +259,6 @@ module frame_builder_single #
             
             HEAD1:
             begin
-                rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 ddi_d = header[1];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
@@ -260,7 +267,6 @@ module frame_builder_single #
             
             HEAD2:
             begin
-                rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 ddi_d = header[2];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
@@ -269,7 +275,6 @@ module frame_builder_single #
             
             HEAD3:
             begin
-                rq_served[0] = 1'b1; // tell request FSM that it's been served 
                 ddi_d = header[3];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
@@ -278,14 +283,13 @@ module frame_builder_single #
             
             DATA:
             begin
-                if (data_cnt == ((NADCS*16*14/64)-1))
+                ddi_d_last  = 1'b0;
+                if (data_cnt == ((NADCS*16*14/64)-1)) // last data word in time tick
                 begin
                     fb_state = IDLE;
-                    ddi_d_last  = 1'b1;
-                end
-                else
-                begin
-                    ddi_d_last  = 1'b0;
+                    if (tick == 6'b111111) // this is last data word in the whole frame
+                        ddi_d_last  = 1'b1;
+                    tick++; 
                 end
                 ddi_d = tx_words[0];
                 ddi_d_valid = 1'b1;
@@ -327,7 +331,8 @@ module frame_builder_single #
         .probe11 (data_cnt),
         .probe12 (data_ready[3:1]),
         .probe13 (rq_served[0]),
-        .probe14 (timestamp_reclocked)
+        .probe14 (timestamp_reclocked),
+        .probe15 (tick)
     );
 
 endmodule
