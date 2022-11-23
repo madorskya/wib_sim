@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: user.org:user:tx_mux_wib:1.0
--- IP Revision: 2
+-- IP Revision: 3
 
 -- The following code must appear in the VHDL architecture header.
 
@@ -90,7 +90,25 @@ COMPONENT tx_mux_wib_i
     d0_last : IN STD_LOGIC;
     d1 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
     d1_valid : IN STD_LOGIC;
-    d1_last : IN STD_LOGIC
+    d1_last : IN STD_LOGIC;
+    d2 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    d2_valid : IN STD_LOGIC;
+    d2_last : IN STD_LOGIC;
+    d3 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    d3_valid : IN STD_LOGIC;
+    d3_last : IN STD_LOGIC;
+    d4 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    d4_valid : IN STD_LOGIC;
+    d4_last : IN STD_LOGIC;
+    d5 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    d5_valid : IN STD_LOGIC;
+    d5_last : IN STD_LOGIC;
+    d6 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    d6_valid : IN STD_LOGIC;
+    d6_last : IN STD_LOGIC;
+    d7 : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    d7_valid : IN STD_LOGIC;
+    d7_last : IN STD_LOGIC
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -137,7 +155,25 @@ your_instance_name : tx_mux_wib_i
     d0_last => d0_last,
     d1 => d1,
     d1_valid => d1_valid,
-    d1_last => d1_last
+    d1_last => d1_last,
+    d2 => d2,
+    d2_valid => d2_valid,
+    d2_last => d2_last,
+    d3 => d3,
+    d3_valid => d3_valid,
+    d3_last => d3_last,
+    d4 => d4,
+    d4_valid => d4_valid,
+    d4_last => d4_last,
+    d5 => d5,
+    d5_valid => d5_valid,
+    d5_last => d5_last,
+    d6 => d6,
+    d6_valid => d6_valid,
+    d6_last => d6_last,
+    d7 => d7,
+    d7_valid => d7_valid,
+    d7_last => d7_last
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ---------
 

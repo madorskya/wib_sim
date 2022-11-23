@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Nov 22 17:03:04 2022
+//Date        : Wed Nov 23 14:17:47 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -55,6 +55,7 @@ module design_1_wrapper
     ddi7_d,
     ddi7_d_last,
     ddi7_d_valid,
+    ddi_clk,
     deimos_clk_clk_n,
     deimos_clk_clk_p,
     deimos_rxn,
@@ -150,6 +151,7 @@ module design_1_wrapper
   input [63:0]ddi7_d;
   input ddi7_d_last;
   input ddi7_d_valid;
+  input ddi_clk;
   input deimos_clk_clk_n;
   input deimos_clk_clk_p;
   input deimos_rxn;
@@ -246,6 +248,7 @@ module design_1_wrapper
   wire [63:0]ddi7_d;
   wire ddi7_d_last;
   wire ddi7_d_valid;
+  wire ddi_clk;
   wire deimos_clk_clk_n;
   wire deimos_clk_clk_p;
   wire deimos_rxn;
@@ -349,6 +352,7 @@ module design_1_wrapper
         .ddi7_d(ddi7_d),
         .ddi7_d_last(ddi7_d_last),
         .ddi7_d_valid(ddi7_d_valid),
+        .ddi_clk(ddi_clk),
         .deimos_clk_clk_n(deimos_clk_clk_n),
         .deimos_clk_clk_p(deimos_clk_clk_p),
         .deimos_rxn(deimos_rxn),

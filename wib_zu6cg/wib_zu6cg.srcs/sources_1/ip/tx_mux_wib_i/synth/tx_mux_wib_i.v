@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:tx_mux_wib:1.0
-// IP Revision: 2
+// IP Revision: 3
 
 (* X_CORE_INFO = "tx_mux_wib,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "tx_mux_wib_i,tx_mux_wib,{}" *)
@@ -91,7 +91,25 @@ module tx_mux_wib_i (
   d0_last,
   d1,
   d1_valid,
-  d1_last
+  d1_last,
+  d2,
+  d2_valid,
+  d2_last,
+  d3,
+  d3_valid,
+  d3_last,
+  d4,
+  d4_valid,
+  d4_last,
+  d5,
+  d5_valid,
+  d5_last,
+  d6,
+  d6_valid,
+  d6_last,
+  d7,
+  d7_valid,
+  d7_last
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET S_AXI_ARESETN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0" *)
@@ -164,6 +182,24 @@ input wire d0_last;
 input wire [63 : 0] d1;
 input wire d1_valid;
 input wire d1_last;
+input wire [63 : 0] d2;
+input wire d2_valid;
+input wire d2_last;
+input wire [63 : 0] d3;
+input wire d3_valid;
+input wire d3_last;
+input wire [63 : 0] d4;
+input wire d4_valid;
+input wire d4_last;
+input wire [63 : 0] d5;
+input wire d5_valid;
+input wire d5_last;
+input wire [63 : 0] d6;
+input wire d6_valid;
+input wire d6_last;
+input wire [63 : 0] d7;
+input wire d7_valid;
+input wire d7_last;
 
   tx_mux_wib inst (
     .S_AXI_ACLK(S_AXI_ACLK),
@@ -202,6 +238,24 @@ input wire d1_last;
     .d0_last(d0_last),
     .d1(d1),
     .d1_valid(d1_valid),
-    .d1_last(d1_last)
+    .d1_last(d1_last),
+    .d2(d2),
+    .d2_valid(d2_valid),
+    .d2_last(d2_last),
+    .d3(d3),
+    .d3_valid(d3_valid),
+    .d3_last(d3_last),
+    .d4(d4),
+    .d4_valid(d4_valid),
+    .d4_last(d4_last),
+    .d5(d5),
+    .d5_valid(d5_valid),
+    .d5_last(d5_last),
+    .d6(d6),
+    .d6_valid(d6_valid),
+    .d6_last(d6_last),
+    .d7(d7),
+    .d7_valid(d7_valid),
+    .d7_last(d7_last)
   );
 endmodule

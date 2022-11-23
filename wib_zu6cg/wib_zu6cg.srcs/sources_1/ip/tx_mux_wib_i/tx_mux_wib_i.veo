@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: user.org:user:tx_mux_wib:1.0
-// IP Revision: 2
+// IP Revision: 3
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -91,7 +91,25 @@ tx_mux_wib_i your_instance_name (
   .d0_last(d0_last),              // input wire d0_last
   .d1(d1),                        // input wire [63 : 0] d1
   .d1_valid(d1_valid),            // input wire d1_valid
-  .d1_last(d1_last)              // input wire d1_last
+  .d1_last(d1_last),              // input wire d1_last
+  .d2(d2),                        // input wire [63 : 0] d2
+  .d2_valid(d2_valid),            // input wire d2_valid
+  .d2_last(d2_last),              // input wire d2_last
+  .d3(d3),                        // input wire [63 : 0] d3
+  .d3_valid(d3_valid),            // input wire d3_valid
+  .d3_last(d3_last),              // input wire d3_last
+  .d4(d4),                        // input wire [63 : 0] d4
+  .d4_valid(d4_valid),            // input wire d4_valid
+  .d4_last(d4_last),              // input wire d4_last
+  .d5(d5),                        // input wire [63 : 0] d5
+  .d5_valid(d5_valid),            // input wire d5_valid
+  .d5_last(d5_last),              // input wire d5_last
+  .d6(d6),                        // input wire [63 : 0] d6
+  .d6_valid(d6_valid),            // input wire d6_valid
+  .d6_last(d6_last),              // input wire d6_last
+  .d7(d7),                        // input wire [63 : 0] d7
+  .d7_valid(d7_valid),            // input wire d7_valid
+  .d7_last(d7_last)              // input wire d7_last
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

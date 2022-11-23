@@ -62,6 +62,7 @@ module bd_tux
     output sda_out_out,
     output scl_out,
 
+    input        ddi_clk,
     input [63:0] ddi_d [7:0],
     input [7:0]  ddi_d_last,
     input [7:0]  ddi_d_valid,
@@ -155,6 +156,8 @@ module bd_tux
         .sda_in_out          (sda_in_out),
         .sda_out_out         (sda_out_out),
         .scl_out             (scl_out),
+        
+        .ddi_clk             (ddi_clk),
         
         .ddi0_d              (ddi_d      [0]),
         .ddi0_d_last         (ddi_d_last [0]),
