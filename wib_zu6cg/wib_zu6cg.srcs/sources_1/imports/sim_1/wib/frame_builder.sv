@@ -58,6 +58,7 @@ module frame_builder
                 .ddi_d_valid          (ddi_d_valid [gi]),
                 
                 .ts_tstamp            (tstamp_deframed),
+                .ts_clk               (ts_clk),
                 .reset                (reset),
                 .fake_daq_stream      (fake_daq_stream),
                 .bp_crate_addr        (bp_crate_addr),

@@ -18,6 +18,7 @@ module frame_builder_single #
     output reg        ddi_d_valid,
 
     input [63:0] ts_tstamp, // time stamp is in deframed data domain
+    input ts_clk, // time stamp clock, 62.5M
     input reset,
     input fake_daq_stream,
     input [3:0] bp_crate_addr,
@@ -219,9 +220,8 @@ module frame_builder_single #
     end
     
     reg [5:0] tick; // clock tick counter
-    // formatting FSM, runs on the same clock as request FSM
-    // the request mechanism is a leftover from asynchronous FELIX, keeping for now
-    always @(posedge rxclk2x)
+    // formatting FSM
+    always @(posedge ts_clk)
     begin
         if (reset)
         begin

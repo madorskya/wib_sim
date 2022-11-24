@@ -539,7 +539,7 @@ module wib_top
         .sda_out_out        (sda_out_out),
         .scl_out            (scl_out),
         
-        .ddi_clk            (clk125      ),
+        .ddi_clk            (clk62p5     ),
         .ddi_d              (ddi_d       ),
         .ddi_d_last         (ddi_d_last  ),
         .ddi_d_valid        (ddi_d_valid ),
