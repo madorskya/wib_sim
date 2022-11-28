@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:tx_mux_wib:1.0
-// IP Revision: 3
+// IP Revision: 5
 
 (* X_CORE_INFO = "tx_mux_wib,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "tx_mux_wib_i,tx_mux_wib,{}" *)

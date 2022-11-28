@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Oct 21 11:49:12 2022
+-- Date        : Sun Nov 27 16:23:11 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0_sim_netlist.vhdl
@@ -149,9 +149,9 @@ architecture STRUCTURE of design_1_debug_bridge_0_0_bd_c443 is
   signal bsip_m_bscan_UPDATE : STD_LOGIC;
   signal bsip_tap_tdo : STD_LOGIC;
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of axi_jtag : label is "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018";
-  attribute X_CORE_INFO of bs_switch_1 : label is "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018";
-  attribute X_CORE_INFO of bsip : label is "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of axi_jtag : label is "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1";
+  attribute X_CORE_INFO of bs_switch_1 : label is "bs_switch_v1_0_0_bs_switch,Vivado 2020.1";
+  attribute X_CORE_INFO of bsip : label is "bsip_v1_1_0_bsip,Vivado 2020.1";
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of S_AXI_arready : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARREADY";
   attribute X_INTERFACE_INFO of S_AXI_arvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARVALID";

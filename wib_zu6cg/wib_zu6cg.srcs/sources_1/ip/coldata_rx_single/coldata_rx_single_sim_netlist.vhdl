@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu May 19 17:07:34 2022
+-- Date        : Sun Nov 27 16:19:00 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top coldata_rx_single -prefix
---               coldata_rx_single_ coldata_rx_single_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/coldata_rx_single/coldata_rx_single_sim_netlist.vhdl
 -- Design      : coldata_rx_single
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -20,6 +20,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_bit_synchronizer is
     rxresetdone_out : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_bit_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_bit_synchronizer";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_bit_synchronizer;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_bit_synchronizer is
@@ -4761,6 +4763,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_channel is
     lopt_2 : out STD_LOGIC;
     lopt_3 : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_channel : entity is "gtwizard_ultrascale_v1_7_8_gthe4_channel";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_channel;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_channel is
@@ -19730,6 +19734,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_common is
     qpllrsvd4_in : in STD_LOGIC_VECTOR ( 7 downto 0 );
     tcongpi_in : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_common : entity is "gtwizard_ultrascale_v1_7_8_gthe4_common";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_common;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_common is
@@ -20777,6 +20783,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood is
     rxrate_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     rxpmareset_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood : entity is "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood is
@@ -26306,6 +26314,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx is
     lopt_1 : in STD_LOGIC;
     lopt_2 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx : entity is "gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx is
@@ -26385,6 +26395,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer is
     rxusrclk2_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     rst_in_sync2_reg_0 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer is
@@ -26583,6 +26595,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_synchronizer is
     gtwiz_reset_clk_freerun_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_all_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_synchronizer : entity is "gtwizard_ultrascale_v1_7_8_reset_synchronizer";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_synchronizer;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_synchronizer is
@@ -27745,6 +27759,8 @@ entity coldata_rx_single_coldata_rx_single_gthe4_channel_wrapper is
     txdataextendrsvd_in : in STD_LOGIC_VECTOR ( 31 downto 0 );
     drpaddr_in : in STD_LOGIC_VECTOR ( 39 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_coldata_rx_single_gthe4_channel_wrapper : entity is "coldata_rx_single_gthe4_channel_wrapper";
 end coldata_rx_single_coldata_rx_single_gthe4_channel_wrapper;
 
 architecture STRUCTURE of coldata_rx_single_coldata_rx_single_gthe4_channel_wrapper is
@@ -30322,6 +30338,8 @@ entity coldata_rx_single_coldata_rx_single_gthe4_common_wrapper is
     qpllrsvd4_in : in STD_LOGIC_VECTOR ( 7 downto 0 );
     tcongpi_in : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_coldata_rx_single_gthe4_common_wrapper : entity is "coldata_rx_single_gthe4_common_wrapper";
 end coldata_rx_single_coldata_rx_single_gthe4_common_wrapper;
 
 architecture STRUCTURE of coldata_rx_single_coldata_rx_single_gthe4_common_wrapper is
@@ -31037,6 +31055,8 @@ entity coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_reset is
     gtwiz_reset_rx_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     gtwiz_reset_rx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_reset : entity is "gtwizard_ultrascale_v1_7_8_gtwiz_reset";
 end coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_reset;
 
 architecture STRUCTURE of coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_reset is
@@ -33869,6 +33889,8 @@ entity coldata_rx_single_coldata_rx_single_gtwizard_gthe4 is
     gtwiz_reset_rx_pll_and_datapath_in : in STD_LOGIC_VECTOR ( 0 to 0 );
     rxpmareset_in : in STD_LOGIC_VECTOR ( 15 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_coldata_rx_single_gtwizard_gthe4 : entity is "coldata_rx_single_gtwizard_gthe4";
 end coldata_rx_single_coldata_rx_single_gtwizard_gthe4;
 
 architecture STRUCTURE of coldata_rx_single_coldata_rx_single_gtwizard_gthe4 is
@@ -37131,6 +37153,8 @@ entity coldata_rx_single_coldata_rx_single_gtwizard_top is
   attribute C_TX_USRCLK_FREQUENCY of coldata_rx_single_coldata_rx_single_gtwizard_top : entity is "64.000000";
   attribute C_USER_GTPOWERGOOD_DELAY_EN : integer;
   attribute C_USER_GTPOWERGOOD_DELAY_EN of coldata_rx_single_coldata_rx_single_gtwizard_top : entity is 1;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of coldata_rx_single_coldata_rx_single_gtwizard_top : entity is "coldata_rx_single_gtwizard_top";
 end coldata_rx_single_coldata_rx_single_gtwizard_top;
 
 architecture STRUCTURE of coldata_rx_single_coldata_rx_single_gtwizard_top is

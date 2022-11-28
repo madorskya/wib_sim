@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:40:35 2021
+-- Date        : Sun Nov 27 16:22:39 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode synth_stub -rename_top bd_0412_xsdbm_0 -prefix
---               bd_0412_xsdbm_0_ bd_0482_xsdbm_0_stub.vhdl
--- Design      : bd_0482_xsdbm_0
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_1_0/bd_0/ip/ip_0/bd_0412_xsdbm_0_stub.vhdl
+-- Design      : bd_0412_xsdbm_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
@@ -37,6 +37,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "update,capture,reset,runtest,tck,tms,tdi,sel,shift,drck,tdo,bscanid_en,clk";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1";
 begin
 end;

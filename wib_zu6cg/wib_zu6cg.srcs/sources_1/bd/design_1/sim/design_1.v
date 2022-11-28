@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Wed Nov 23 14:17:46 2022
+//Date        : Mon Nov 28 11:36:40 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1439,37 +1439,37 @@ module design_1
   input [31:0]daq_stream1;
   input [3:0]daq_stream_k0;
   input [3:0]daq_stream_k1;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 " *) input [63:0]ddi0_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 " *) input ddi0_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 " *) input ddi0_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi1 " *) input [63:0]ddi1_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi1 " *) input ddi1_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi1 " *) input ddi1_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi2 " *) input [63:0]ddi2_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi2 " *) input ddi2_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi2 " *) input ddi2_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi3 " *) input [63:0]ddi3_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi3 " *) input ddi3_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi3 " *) input ddi3_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi4 " *) input [63:0]ddi4_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi4 " *) input ddi4_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi4 " *) input ddi4_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi5 " *) input [63:0]ddi5_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi5 " *) input ddi5_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi5 " *) input ddi5_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 " *) input [63:0]ddi6_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 " *) input ddi6_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 " *) input ddi6_d_valid;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 " *) input [63:0]ddi7_d;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 " *) input ddi7_d_last;
-  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 " *) input ddi7_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d" *) input [63:0]ddi0_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d_last" *) input ddi0_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d_valid" *) input ddi0_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi1 d" *) input [63:0]ddi1_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi1 d_last" *) input ddi1_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi1 d_valid" *) input ddi1_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi2 d" *) input [63:0]ddi2_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi2 d_last" *) input ddi2_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi2 d_valid" *) input ddi2_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi3 d" *) input [63:0]ddi3_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi3 d_last" *) input ddi3_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi3 d_valid" *) input ddi3_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi4 d" *) input [63:0]ddi4_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi4 d_last" *) input ddi4_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi4 d_valid" *) input ddi4_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi5 d" *) input [63:0]ddi5_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi5 d_last" *) input ddi5_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi5 d_valid" *) input ddi5_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 d" *) input [63:0]ddi6_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 d_last" *) input ddi6_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 d_valid" *) input ddi6_d_valid;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d" *) input [63:0]ddi7_d;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last" *) input ddi7_d_last;
+  (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_valid" *) input ddi7_d_valid;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DDI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DDI_CLK, ASSOCIATED_RESET ts_rst, CLK_DOMAIN design_1_clk_0, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ddi_clk;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk " *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME deimos_clk, CAN_DEBUG false, FREQ_HZ 156.25" *) input deimos_clk_clk_n;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk " *) input deimos_clk_clk_p;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos " *) input deimos_rxn;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos " *) input deimos_rxp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos " *) output deimos_txn;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos " *) output deimos_txp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk CLK_N" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME deimos_clk, CAN_DEBUG false, FREQ_HZ 156.25" *) input deimos_clk_clk_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk CLK_P" *) input deimos_clk_clk_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos RXN" *) input deimos_rxn;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos RXP" *) input deimos_rxp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos TXN" *) output deimos_txn;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos TXP" *) output deimos_txp;
   output fastcommand_out;
   output fastcommand_out_n_0;
   output fastcommand_out_p_0;
@@ -1723,7 +1723,7 @@ module design_1
   wire ps8_0_axi_periph_M02_AXI_RVALID;
   wire [31:0]ps8_0_axi_periph_M02_AXI_WDATA;
   wire ps8_0_axi_periph_M02_AXI_WREADY;
-  wire ps8_0_axi_periph_M02_AXI_WSTRB;
+  wire [3:0]ps8_0_axi_periph_M02_AXI_WSTRB;
   wire ps8_0_axi_periph_M02_AXI_WVALID;
   wire [39:0]ps8_0_axi_periph_M03_AXI_ARADDR;
   wire [2:0]ps8_0_axi_periph_M03_AXI_ARPROT;
@@ -3400,7 +3400,7 @@ module design_1_ps8_0_axi_periph_0
   input M02_AXI_rvalid;
   output [31:0]M02_AXI_wdata;
   input M02_AXI_wready;
-  output M02_AXI_wstrb;
+  output [3:0]M02_AXI_wstrb;
   output M02_AXI_wvalid;
   input M03_ACLK;
   input M03_ARESETN;
@@ -3914,7 +3914,7 @@ module design_1_ps8_0_axi_periph_0
   wire m02_couplers_to_ps8_0_axi_periph_RVALID;
   wire [31:0]m02_couplers_to_ps8_0_axi_periph_WDATA;
   wire m02_couplers_to_ps8_0_axi_periph_WREADY;
-  wire m02_couplers_to_ps8_0_axi_periph_WSTRB;
+  wire [3:0]m02_couplers_to_ps8_0_axi_periph_WSTRB;
   wire m02_couplers_to_ps8_0_axi_periph_WVALID;
   wire [39:0]m03_couplers_to_ps8_0_axi_periph_ARADDR;
   wire [2:0]m03_couplers_to_ps8_0_axi_periph_ARPROT;
@@ -5022,7 +5022,7 @@ module design_1_ps8_0_axi_periph_0
   assign M02_AXI_bready = m02_couplers_to_ps8_0_axi_periph_BREADY;
   assign M02_AXI_rready = m02_couplers_to_ps8_0_axi_periph_RREADY;
   assign M02_AXI_wdata[31:0] = m02_couplers_to_ps8_0_axi_periph_WDATA;
-  assign M02_AXI_wstrb = m02_couplers_to_ps8_0_axi_periph_WSTRB;
+  assign M02_AXI_wstrb[3:0] = m02_couplers_to_ps8_0_axi_periph_WSTRB;
   assign M02_AXI_wvalid = m02_couplers_to_ps8_0_axi_periph_WVALID;
   assign M03_ACLK_1 = M03_ACLK;
   assign M03_ARESETN_1 = M03_ARESETN;
@@ -7623,7 +7623,7 @@ module m02_couplers_imp_P3UMW5
   input M_AXI_rvalid;
   output [31:0]M_AXI_wdata;
   input M_AXI_wready;
-  output M_AXI_wstrb;
+  output [3:0]M_AXI_wstrb;
   output M_AXI_wvalid;
   input S_ACLK;
   input S_ARESETN;
@@ -7772,7 +7772,7 @@ module m02_couplers_imp_P3UMW5
   assign M_AXI_bready = auto_pc_to_m02_couplers_BREADY;
   assign M_AXI_rready = auto_pc_to_m02_couplers_RREADY;
   assign M_AXI_wdata[31:0] = auto_pc_to_m02_couplers_WDATA;
-  assign M_AXI_wstrb = auto_pc_to_m02_couplers_WSTRB[0];
+  assign M_AXI_wstrb[3:0] = auto_pc_to_m02_couplers_WSTRB;
   assign M_AXI_wvalid = auto_pc_to_m02_couplers_WVALID;
   assign S_ACLK_1 = S_ACLK;
   assign S_ARESETN_1 = S_ARESETN;

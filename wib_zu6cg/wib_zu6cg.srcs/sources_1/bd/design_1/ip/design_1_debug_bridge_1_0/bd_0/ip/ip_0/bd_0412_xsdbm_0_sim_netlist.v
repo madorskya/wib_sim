@@ -1,18 +1,18 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Dec  6 10:40:35 2021
+// Date        : Sun Nov 27 16:22:39 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top bd_0412_xsdbm_0 -prefix
-//               bd_0412_xsdbm_0_ bd_0482_xsdbm_0_sim_netlist.v
-// Design      : bd_0482_xsdbm_0
+// Command     : write_verilog -force -mode funcsim
+//               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_1_0/bd_0/ip/ip_0/bd_0412_xsdbm_0_sim_netlist.v
+// Design      : bd_0412_xsdbm_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xczu6cg-ffvb1156-1-e
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "bd_0482_xsdbm_0,xsdbm_v3_0_0_xsdbm,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018" *) 
+(* CHECK_LICENSE_TYPE = "bd_0412_xsdbm_0,xsdbm_v3_0_0_xsdbm,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module bd_0412_xsdbm_0
    (update,
@@ -1267,7 +1267,7 @@ endmodule
 (* C_USER_SCAN_CHAIN = "1" *) (* C_USER_SCAN_CHAIN1 = "1" *) (* C_USE_BUFR = "0" *) 
 (* C_USE_EXT_BSCAN = "1" *) (* C_USE_STARTUP_CLK = "0" *) (* C_XDEVICEFAMILY = "zynquplus" *) 
 (* C_XSDB_NUM_SLAVES = "0" *) (* C_XSDB_PERIOD_FRC = "0" *) (* C_XSDB_PERIOD_INT = "10" *) 
-(* dont_touch = "true" *) 
+(* ORIG_REF_NAME = "xsdbm_v3_0_0_xsdbm" *) (* dont_touch = "true" *) 
 module bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm
    (sl_iport0_o,
     sl_iport1_o,
@@ -4253,7 +4253,7 @@ endmodule
 (* C_USER_SCAN_CHAIN = "1" *) (* C_USER_SCAN_CHAIN1 = "1" *) (* C_USE_BUFR = "0" *) 
 (* C_USE_EXT_BSCAN = "1" *) (* C_USE_STARTUP_CLK = "0" *) (* C_XDEVICEFAMILY = "zynquplus" *) 
 (* C_XSDB_NUM_SLAVES = "0" *) (* C_XSDB_PERIOD_FRC = "0" *) (* C_XSDB_PERIOD_INT = "10" *) 
-(* LC_CLKIN1_PERIOD = "3.333333" *) (* dont_touch = "true" *) 
+(* LC_CLKIN1_PERIOD = "3.333333" *) (* ORIG_REF_NAME = "xsdbm_v3_0_0_xsdbm_id" *) (* dont_touch = "true" *) 
 module bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id
    (sl_iport0_o,
     sl_iport1_o,
