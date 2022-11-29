@@ -235,6 +235,9 @@ module frame_builder_single #
             begin
                 if (data_ready[2] == 1'b1) // request on
                 begin
+                    data_cnt = 7'h0;
+                    // store prepared tx words in register for shifting out
+                    tx_words = tx_words_w;
                     if (tick == 6'h0)
                         fb_state = HEAD0; // start new frame if all ticks were sent 
                     else
@@ -249,8 +252,6 @@ module frame_builder_single #
             
             HEAD0: // start of frame
             begin
-                // store prepared tx words in register for shifting out
-                tx_words = tx_words_w;
                 ddi_d = header[0];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
@@ -332,7 +333,10 @@ module frame_builder_single #
         .probe12 (data_ready[3:1]),
         .probe13 (rq_served[0]),
         .probe14 (timestamp_reclocked),
-        .probe15 (tick)
+        .probe15 (tick),
+        .probe16 (ddi_d),
+        .probe17 (ddi_d_valid),
+        .probe18 (ddi_d_last)
     );
 
 endmodule

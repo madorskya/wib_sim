@@ -888,6 +888,7 @@ module wib_top
     assign misc_io[5:4]  = rx_k[2];
     assign misc_io[7:6]  = rx_k[3];
     assign misc_io[11:8] = valid12[3:0];
+    assign misc_io[13]   = ts_rec_d_pad;
     assign misc_io[14]   = clk125;
     assign misc_io[15]   = clk62p5;
 
