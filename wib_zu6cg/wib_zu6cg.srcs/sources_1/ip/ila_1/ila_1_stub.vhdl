@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:41:13 2021
+-- Date        : Sun Nov 27 16:20:12 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/ila_1/ila_1_stub.vhdl
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/ila_1/ila_1_stub.vhdl
 -- Design      : ila_1
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
@@ -31,6 +31,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "clk,probe0[31:0],probe1[31:0],probe2[3:0],probe3[3:0],probe4[1:0],probe5[1:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "ila,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "ila,Vivado 2020.1";
 begin
 end;

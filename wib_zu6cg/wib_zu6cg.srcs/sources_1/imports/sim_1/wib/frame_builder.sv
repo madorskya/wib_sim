@@ -9,10 +9,11 @@ module frame_builder
     input rxclk2x, // deframed data clock
 
     input  [15:0] link_mask, // this input allows to disable some links in case the are broken
-    output [31:0] daq_stream [1:0], // data to felix
-    output [3:0]  daq_stream_k [1:0], // K symbol flags to felix
-    output [1:0]  daq_data_type [1:0], // data_type flags for felix
-    input         daq_clk,
+    
+    output [63:0] ddi_d [7:0],
+    output [7:0]  ddi_d_last,
+    output [7:0]  ddi_d_valid,
+
     input  [63:0] ts_tstamp, // time stamp from timing endpoint
     input         ts_clk, // time stamp clock
     input         reset,
@@ -31,98 +32,51 @@ module frame_builder
     input        ready, 
     input [3:0]  psr_cal, 
     input        ws, 
-    input [15:0] flex
-
+    input [15:0] flex,
+    input raw_channel_map
 );
 
-    // passing deframed [7:0] into frame_builder_single does not work in simulation for some reason
-    // even though it should, and does work in synthesis.
-    // have to assign each sub-bus separately
-    wire [13:0] deframed0 [7:0][31:0];
-    wire [13:0] deframed1 [7:0][31:0];
-
-    assign deframed0[0] = deframed[0];
-    assign deframed0[1] = deframed[1];
-    assign deframed0[2] = deframed[2];
-    assign deframed0[3] = deframed[3];
-    assign deframed0[4] = deframed[4];
-    assign deframed0[5] = deframed[5];
-    assign deframed0[6] = deframed[6];
-    assign deframed0[7] = deframed[7];
-    
-    assign deframed1[0] = deframed[8];
-    assign deframed1[1] = deframed[9];
-    assign deframed1[2] = deframed[10];
-    assign deframed1[3] = deframed[11];
-    assign deframed1[4] = deframed[12];
-    assign deframed1[5] = deframed[13];
-    assign deframed1[6] = deframed[14];
-    assign deframed1[7] = deframed[15];
-
     reg [63:0] tstamp_deframed;
-
-    // modules below generate daq streams for each of the FELIX links
-    frame_builder_single #(.NUM(0)) fbs0
-    (
-        .deframed     (deframed0),
-        .time8        (time8    [7:0]),
-        .time16       (time16   [7:0]),
-        .valid14      (valid14  [7:0]),
-        .valid12      (valid12  [7:0]),
-        .crc_err      (crc_err  [7:0]),
-        .rxclk2x      (rxclk2x       ), 
-        .link_mask    (link_mask[7:0]),
-        .daq_stream   (daq_stream   [0]),
-        .daq_stream_k (daq_stream_k [0]),
-        .daq_data_type(daq_data_type[0]),
-        .daq_clk      (daq_clk),
-        .ts_tstamp    (tstamp_deframed),
-        .reset        (reset),
-        .fake_daq_stream (fake_daq_stream),
-        .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (si5344_lol),
-        .link          (link [0]),
-        .crate_id      (crate_id),
-        .det_id        (det_id  ),
-        .femb_pulser_in_frame (femb_pulser_in_frame),
-        .context_fld   (context_fld), 
-        .ready         (ready      ), 
-        .psr_cal       (psr_cal    ), 
-        .ws            (ws         ), 
-        .flex          (flex       )
-    );
-
-    frame_builder_single #(.NUM(1)) fbs1
-    (
-        .deframed     (deframed1),
-        .time8        (time8    [15:8]),
-        .time16       (time16   [15:8]),
-        .valid14      (valid14  [15:8]),
-        .valid12      (valid12  [15:8]),
-        .crc_err      (crc_err  [15:8]),
-        .rxclk2x      (rxclk2x        ), 
-        .link_mask    (link_mask[15:8]),
-        .daq_stream   (daq_stream   [1]),
-        .daq_stream_k (daq_stream_k [1]),
-        .daq_data_type(daq_data_type[1]),
-        .daq_clk      (daq_clk),
-        .ts_tstamp    (tstamp_deframed),
-        .reset        (reset),
-        .fake_daq_stream (fake_daq_stream),
-        .bp_crate_addr (bp_crate_addr),
-        .bp_slot_addr  (bp_slot_addr ),
-        .si5344_lol    (si5344_lol),
-        .link          (link [1]),
-        .crate_id      (crate_id),
-        .det_id        (det_id  ),
-        .femb_pulser_in_frame (femb_pulser_in_frame),
-        .context_fld   (context_fld), 
-        .ready         (ready      ), 
-        .psr_cal       (psr_cal    ), 
-        .ws            (ws         ), 
-        .flex          (flex       )
-    );
+    genvar gi;
+    generate
+        for (gi = 0; gi < 8; gi++)
+        begin
+            // one FB for every 64 channels
+            frame_builder_single #(.NUM(gi)) fbs
+            (
+                .deframed             (deframed [gi*2+1 : gi*2]),
+                .time8                (time8    [gi*2+1 : gi*2]),
+                .time16               (time16   [gi*2+1 : gi*2]),
+                .valid14              (valid14  [gi*2+1 : gi*2]),
+                .valid12              (valid12  [gi*2+1 : gi*2]),
+                .crc_err              (crc_err  [gi*2+1 : gi*2]),
+                .rxclk2x              (rxclk2x       ), 
+                .link_mask            (link_mask[gi*2+1 : gi*2]),
+                
+                .ddi_d                (ddi_d       [gi]),
+                .ddi_d_last           (ddi_d_last  [gi]),
+                .ddi_d_valid          (ddi_d_valid [gi]),
+                
+                .ts_tstamp            (tstamp_deframed),
+                .ts_clk               (ts_clk),
+                .reset                (reset),
+                .fake_daq_stream      (fake_daq_stream),
+                .bp_crate_addr        (bp_crate_addr),
+                .bp_slot_addr         (bp_slot_addr ),
+                .si5344_lol           (si5344_lol),
+                .link                 (link [gi/4]),
+                .crate_id             (crate_id),
+                .det_id               (det_id  ),
+                .femb_pulser_in_frame (femb_pulser_in_frame),
+                .context_fld          (context_fld), 
+                .ready                (ready      ), 
+                .psr_cal              (psr_cal [gi/2] ), 
+                .ws                   (ws         ), 
+                .flex                 (flex       ),
+                .raw_channel_map      (raw_channel_map)
+            );
+        end
+    endgenerate
 
     // FIFO not needed anymore, everything is synchronous    
     always @(posedge rxclk2x) tstamp_deframed = ts_tstamp;

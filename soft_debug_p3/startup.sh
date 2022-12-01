@@ -3,6 +3,11 @@
 #./rx_timing_sel_sfp_si5344.sh
 ./devreg.sh i2c_select 0
 clock/si5345_config
+# switch to dts clocks
+./devreg.sh ts_clk_sel 0
+# select front panel clock input
+./devreg.sh rx_timing_sel 1
+
 voltages/wib_voltages
 ./coldata_power_on.sh
 sleep 1

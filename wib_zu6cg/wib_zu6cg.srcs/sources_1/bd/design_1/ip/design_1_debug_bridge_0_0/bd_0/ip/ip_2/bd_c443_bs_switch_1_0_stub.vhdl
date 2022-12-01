@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:40:08 2021
+-- Date        : Sun Nov 27 16:21:09 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode synth_stub -rename_top bd_c443_bs_switch_1_0 -prefix
---               bd_c443_bs_switch_1_0_ bd_c443_bs_switch_1_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_2/bd_c443_bs_switch_1_0_stub.vhdl
 -- Design      : bd_c443_bs_switch_1_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
@@ -48,6 +48,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "s_bscan_drck,s_bscan_reset,s_bscan_sel,s_bscan_capture,s_bscan_shift,s_bscan_update,s_bscan_tdi,s_bscan_runtest,s_bscan_tck,s_bscan_tms,s_bscanid_en,s_bscan_tdo,drck_0,reset_0,sel_0,capture_0,shift_0,update_0,tdi_0,runtest_0,tck_0,tms_0,bscanid_en_0,tdo_0";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018";
+attribute X_CORE_INFO of stub : architecture is "bs_switch_v1_0_0_bs_switch,Vivado 2020.1";
 begin
 end;

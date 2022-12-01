@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:40:35 2021
+-- Date        : Sun Nov 27 16:22:39 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top bd_0412_xsdbm_0 -prefix
---               bd_0412_xsdbm_0_ bd_0482_xsdbm_0_sim_netlist.vhdl
--- Design      : bd_0482_xsdbm_0
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_1_0/bd_0/ip/ip_0/bd_0412_xsdbm_0_sim_netlist.vhdl
+-- Design      : bd_0412_xsdbm_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xczu6cg-ffvb1156-1-e
@@ -796,6 +796,8 @@ entity bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id is
   attribute C_XSDB_PERIOD_INT of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is 10;
   attribute LC_CLKIN1_PERIOD : string;
   attribute LC_CLKIN1_PERIOD of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is "3.333333";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is "xsdbm_v3_0_0_xsdbm_id";
   attribute dont_touch : string;
   attribute dont_touch of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id : entity is "true";
 end bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm_id;
@@ -2779,6 +2781,8 @@ entity bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm is
   attribute C_XSDB_PERIOD_FRC of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is 0;
   attribute C_XSDB_PERIOD_INT : integer;
   attribute C_XSDB_PERIOD_INT of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is 10;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is "xsdbm_v3_0_0_xsdbm";
   attribute dont_touch : string;
   attribute dont_touch of bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm : entity is "true";
 end bd_0412_xsdbm_0_xsdbm_v3_0_0_xsdbm;
@@ -3809,11 +3813,11 @@ entity bd_0412_xsdbm_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of bd_0412_xsdbm_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of bd_0412_xsdbm_0 : entity is "bd_0482_xsdbm_0,xsdbm_v3_0_0_xsdbm,{}";
+  attribute CHECK_LICENSE_TYPE of bd_0412_xsdbm_0 : entity is "bd_0412_xsdbm_0,xsdbm_v3_0_0_xsdbm,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of bd_0412_xsdbm_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of bd_0412_xsdbm_0 : entity is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of bd_0412_xsdbm_0 : entity is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1";
 end bd_0412_xsdbm_0;
 
 architecture STRUCTURE of bd_0412_xsdbm_0 is

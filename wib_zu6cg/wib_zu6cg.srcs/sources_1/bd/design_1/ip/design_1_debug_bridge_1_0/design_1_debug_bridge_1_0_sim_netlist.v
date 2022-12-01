@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Fri Oct 21 11:49:47 2022
+// Date        : Sun Nov 27 16:24:12 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_1_0/design_1_debug_bridge_1_0_sim_netlist.v
@@ -128,7 +128,7 @@ module design_1_debug_bridge_1_0_bd_0412
   wire lut_buffer_m_bscan_TMS;
   wire lut_buffer_m_bscan_UPDATE;
 
-  (* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018" *) 
+  (* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1" *) 
   design_1_debug_bridge_1_0_bd_0412_lut_buffer_0 lut_buffer
        (.bscanid_en_i(S_BSCAN_bscanid_en),
         .bscanid_en_o(lut_buffer_m_bscan_BSCANID_EN),
@@ -154,7 +154,7 @@ module design_1_debug_bridge_1_0_bd_0412
         .tms_o(lut_buffer_m_bscan_TMS),
         .update_i(S_BSCAN_update),
         .update_o(lut_buffer_m_bscan_UPDATE));
-  (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018" *) 
+  (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1" *) 
   design_1_debug_bridge_1_0_bd_0412_xsdbm_0 xsdbm
        (.bscanid_en(lut_buffer_m_bscan_BSCANID_EN),
         .capture(lut_buffer_m_bscan_CAPTURE),
@@ -171,7 +171,7 @@ module design_1_debug_bridge_1_0_bd_0412
         .update(lut_buffer_m_bscan_UPDATE));
 endmodule
 
-(* ORIG_REF_NAME = "bd_0412_lut_buffer_0" *) (* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_0412_lut_buffer_0" *) (* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1" *) 
 module design_1_debug_bridge_1_0_bd_0412_lut_buffer_0
    (tdi_i,
     tms_i,
@@ -225,7 +225,7 @@ module design_1_debug_bridge_1_0_bd_0412_lut_buffer_0
 
 endmodule
 
-(* ORIG_REF_NAME = "bd_0412_xsdbm_0" *) (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_0412_xsdbm_0" *) (* X_CORE_INFO = "xsdbm_v3_0_0_xsdbm,Vivado 2020.1" *) 
 module design_1_debug_bridge_1_0_bd_0412_xsdbm_0
    (update,
     capture,

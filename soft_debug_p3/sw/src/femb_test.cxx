@@ -103,7 +103,7 @@ int main (int argc, char * argv[])
 		reg3 = femb->i2c_read  (0, 3-i, 5, 0x53);	if (reg3 != 0x1 ) err = 0x53; printf("CONGIF_DRV_BIAS_CML_INTERNAL = %x\n",reg3);
 		reg3 = femb->i2c_read  (0, 3-i, 5, 0x54);	if (reg3 != 0x1 ) err = 0x54; printf("CONGIF_DRV_BIAS_CS_INTERNAL = %x\n",reg3);
   */                                                                                  
-		reg3 = femb->i2c_read  (0, 3-i, 0, 0x01);	if (reg3 != 0x0 ) err = 0x01; printf("FRAME = %x\n",reg3);
+		reg3 = femb->i2c_read  (0, 3-i, 0, 0x01);	if (reg3 != 0x1 ) err = 0x01; printf("FRAME = %x\n",reg3);
 		reg3 = femb->i2c_read  (0, 3-i, 0, 0x03);	if (reg3 != 0x3c) err = 0x03; printf("PRBS = %x\n",reg3);
 		reg3 = femb->i2c_read  (0, 3-i, 0, 0x20);	if (reg3 != 0x05) err = 0x20; printf("ACT = %x\n",reg3);
 		if (err != 0) printf ("FEMB: %d COLDATA: %d register %x mismatch\n", femb_ind, i, err);

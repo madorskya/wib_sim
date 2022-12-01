@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Dec  6 10:41:34 2021
+// Date        : Sun Nov 27 16:21:15 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top bd_c443_axi_jtag_0 -prefix
-//               bd_c443_axi_jtag_0_ bd_c443_axi_jtag_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_sim_netlist.v
 // Design      : bd_c443_axi_jtag_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "bd_c443_axi_jtag_0,axi_jtag_v1_0_0_axi_jtag,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018" *) 
+(* CHECK_LICENSE_TYPE = "bd_c443_axi_jtag_0,axi_jtag_v1_0_0_axi_jtag,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module bd_c443_axi_jtag_0
    (s_axi_aclk,
@@ -126,6 +126,7 @@ module bd_c443_axi_jtag_0
         .tms(tms));
 endmodule
 
+(* ORIG_REF_NAME = "axi_jtag_v1_0_0_axi4liteif" *) 
 module bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi4liteif
    (axi_wready_reg_0,
     reset,
@@ -2476,7 +2477,7 @@ module bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi4liteif
 endmodule
 
 (* C_S_AXI_ADDR_WIDTH = "5" *) (* C_S_AXI_DATA_WIDTH = "32" *) (* C_TCK_CLOCK_RATIO = "8" *) 
-(* C_USE_MUX_STATUS = "0" *) 
+(* C_USE_MUX_STATUS = "0" *) (* ORIG_REF_NAME = "axi_jtag_v1_0_0_axi_jtag" *) 
 module bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag
    (s_axi_aclk,
     s_axi_aresetn,
@@ -2663,6 +2664,7 @@ module bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag
         .\tms_output_reg[30]_0 (slv_reg1));
 endmodule
 
+(* ORIG_REF_NAME = "axi_jtag_v1_0_0_jtagproc" *) 
 module bd_c443_axi_jtag_0_axi_jtag_v1_0_0_jtagproc
    (done,
     enable_d,

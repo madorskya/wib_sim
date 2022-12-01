@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu May 19 17:07:34 2022
+// Date        : Sun Nov 27 16:18:59 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top coldata_rx_single -prefix
-//               coldata_rx_single_ coldata_rx_single_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/coldata_rx_single/coldata_rx_single_sim_netlist.v
 // Design      : coldata_rx_single
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -931,6 +931,7 @@ module coldata_rx_single
         .ubtxuart_out(NLW_inst_ubtxuart_out_UNCONNECTED[0]));
 endmodule
 
+(* ORIG_REF_NAME = "coldata_rx_single_gthe4_channel_wrapper" *) 
 module coldata_rx_single_coldata_rx_single_gthe4_channel_wrapper
    (\gthrxn_in[7] ,
     GTHE4_CHANNEL_GTPOWERGOOD,
@@ -6482,6 +6483,7 @@ module coldata_rx_single_coldata_rx_single_gthe4_channel_wrapper_2
         .txsysclksel_in(txsysclksel_in));
 endmodule
 
+(* ORIG_REF_NAME = "coldata_rx_single_gthe4_common_wrapper" *) 
 module coldata_rx_single_coldata_rx_single_gthe4_common_wrapper
    (drprdy_common_out,
     qpll0fbclklost_out,
@@ -7910,6 +7912,7 @@ module coldata_rx_single_coldata_rx_single_gthe4_common_wrapper_5
         .tconrsvdout0_out(tconrsvdout0_out));
 endmodule
 
+(* ORIG_REF_NAME = "coldata_rx_single_gtwizard_gthe4" *) 
 module coldata_rx_single_coldata_rx_single_gtwizard_gthe4
    (gtpowergood_out,
     gtwiz_userclk_tx_usrclk2_out,
@@ -11495,7 +11498,7 @@ endmodule
 (* C_TX_PLL_TYPE = "0" *) (* C_TX_REFCLK_FREQUENCY = "128.000000" *) (* C_TX_USER_CLOCKING_CONTENTS = "0" *) 
 (* C_TX_USER_CLOCKING_INSTANCE_CTRL = "0" *) (* C_TX_USER_CLOCKING_RATIO_FSRC_FUSRCLK = "1" *) (* C_TX_USER_CLOCKING_RATIO_FUSRCLK_FUSRCLK2 = "1" *) 
 (* C_TX_USER_CLOCKING_SOURCE = "0" *) (* C_TX_USER_DATA_WIDTH = "16" *) (* C_TX_USRCLK2_FREQUENCY = "64.000000" *) 
-(* C_TX_USRCLK_FREQUENCY = "64.000000" *) (* C_USER_GTPOWERGOOD_DELAY_EN = "1" *) 
+(* C_TX_USRCLK_FREQUENCY = "64.000000" *) (* C_USER_GTPOWERGOOD_DELAY_EN = "1" *) (* ORIG_REF_NAME = "coldata_rx_single_gtwizard_top" *) 
 module coldata_rx_single_coldata_rx_single_gtwizard_top
    (gtwiz_userclk_tx_reset_in,
     gtwiz_userclk_tx_active_in,
@@ -13473,6 +13476,7 @@ module coldata_rx_single_coldata_rx_single_gtwizard_top
         .txsysclksel_in(txsysclksel_in));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_bit_synchronizer" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_bit_synchronizer
    (\gen_gtwizard_gthe4.gen_reset_controller_internal.gen_single_instance.rxresetdone_sync ,
     rxresetdone_out,
@@ -16887,6 +16891,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_bit_synchronizer_61
         .O(sm_reset_rx_cdr_to_clr0__0));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_channel" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_channel
    (gthrxn_in_3_sp_1,
     GTHE4_CHANNEL_GTPOWERGOOD,
@@ -34711,6 +34716,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_channel_75
         .TXUSRCLK2(gtwiz_userclk_tx_usrclk2_out));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_common" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_common
    (drprdy_common_out,
     qpll0fbclklost_out,
@@ -36481,6 +36487,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_common_72
         .TCONRSVDOUT0(tconrsvdout0_out));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood
    (out,
     GTHE4_CHANNEL_RXPD,
@@ -40836,6 +40843,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gthe4_delay_powergood_9
         .O(GTHE4_CHANNEL_RXRATE[0]));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gtwiz_reset" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_reset
    (GTHE4_CHANNEL_TXPROGDIVRESET,
     gtwiz_reset_tx_done_out,
@@ -42707,6 +42715,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_reset
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx
    (gtwiz_userclk_tx_usrclk2_out,
     gtwiz_userclk_tx_active_out,
@@ -42773,6 +42782,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_gtwiz_userclk_tx
         .Q(\gen_gtwiz_userclk_tx_main.gtwiz_userclk_tx_active_sync ));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer
    (gtwiz_reset_rx_done_out,
     rxusrclk2_in,
@@ -42918,6 +42928,7 @@ module coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_inv_synchronizer_68
         .Q(rst_in_sync3));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_ultrascale_v1_7_8_reset_synchronizer" *) 
 module coldata_rx_single_gtwizard_ultrascale_v1_7_8_reset_synchronizer
    (gtwiz_reset_all_sync,
     gtwiz_reset_clk_freerun_in,

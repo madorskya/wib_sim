@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Fri Oct 21 11:49:12 2022
+// Date        : Sun Nov 27 16:23:11 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0_sim_netlist.v
@@ -271,7 +271,7 @@ module design_1_debug_bridge_0_0_bd_c443
   wire s_axi_aclk;
   wire s_axi_aresetn;
 
-  (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018" *) 
+  (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1" *) 
   design_1_debug_bridge_0_0_bd_c443_axi_jtag_0 axi_jtag
        (.s_axi_aclk(s_axi_aclk),
         .s_axi_araddr(S_AXI_araddr),
@@ -298,7 +298,7 @@ module design_1_debug_bridge_0_0_bd_c443
         .tdi(axi_jtag_tdi),
         .tdo(bsip_tap_tdo),
         .tms(axi_jtag_tms));
-  (* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018" *) 
+  (* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1" *) 
   design_1_debug_bridge_0_0_bd_c443_bs_switch_1_0 bs_switch_1
        (.bscanid_en_0(m0_bscan_bscanid_en),
         .capture_0(m0_bscan_capture),
@@ -324,7 +324,7 @@ module design_1_debug_bridge_0_0_bd_c443
         .tdo_0(m0_bscan_tdo),
         .tms_0(m0_bscan_tms),
         .update_0(m0_bscan_update));
-  (* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018" *) 
+  (* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1" *) 
   design_1_debug_bridge_0_0_bd_c443_bsip_0 bsip
        (.capture(bsip_m_bscan_CAPTURE),
         .drck(bsip_m_bscan_DRCK),
@@ -343,7 +343,7 @@ module design_1_debug_bridge_0_0_bd_c443
         .update(bsip_m_bscan_UPDATE));
 endmodule
 
-(* ORIG_REF_NAME = "bd_c443_axi_jtag_0" *) (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_c443_axi_jtag_0" *) (* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1" *) 
 module design_1_debug_bridge_0_0_bd_c443_axi_jtag_0
    (s_axi_aclk,
     s_axi_aresetn,
@@ -399,7 +399,7 @@ module design_1_debug_bridge_0_0_bd_c443_axi_jtag_0
 
 endmodule
 
-(* ORIG_REF_NAME = "bd_c443_bs_switch_1_0" *) (* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_c443_bs_switch_1_0" *) (* X_CORE_INFO = "bs_switch_v1_0_0_bs_switch,Vivado 2020.1" *) 
 module design_1_debug_bridge_0_0_bd_c443_bs_switch_1_0
    (s_bscan_drck,
     s_bscan_reset,
@@ -453,7 +453,7 @@ module design_1_debug_bridge_0_0_bd_c443_bs_switch_1_0
 
 endmodule
 
-(* ORIG_REF_NAME = "bd_c443_bsip_0" *) (* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018" *) 
+(* ORIG_REF_NAME = "bd_c443_bsip_0" *) (* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1" *) 
 module design_1_debug_bridge_0_0_bd_c443_bsip_0
    (drck,
     reset,

@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Sun Feb 27 18:58:16 2022
+-- Date        : Sun Nov 27 16:21:28 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_auto_ds_8 -prefix
---               design_1_auto_ds_8_ design_1_auto_ds_4_stub.vhdl
--- Design      : design_1_auto_ds_4
+--               design_1_auto_ds_8_ design_1_auto_ds_2_stub.vhdl
+-- Design      : design_1_auto_ds_2
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
 -- --------------------------------------------------------------------------------
