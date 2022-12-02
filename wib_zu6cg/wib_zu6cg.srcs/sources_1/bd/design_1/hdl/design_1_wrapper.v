@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Nov 28 11:36:41 2022
+//Date        : Tue Nov 29 13:40:17 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -20,17 +20,10 @@ module design_1_wrapper
     cmd_bit_reset,
     cmd_bit_sync,
     cmd_bit_trigger,
-    daq_clk,
-    daq_data_type0,
-    daq_data_type1,
     daq_spy_full_0,
     daq_spy_full_1,
     daq_spy_reset_0,
     daq_spy_reset_1,
-    daq_stream0,
-    daq_stream1,
-    daq_stream_k0,
-    daq_stream_k1,
     ddi0_d,
     ddi0_d_last,
     ddi0_d_valid,
@@ -116,17 +109,10 @@ module design_1_wrapper
   input cmd_bit_reset;
   input cmd_bit_sync;
   input cmd_bit_trigger;
-  input daq_clk;
-  input [1:0]daq_data_type0;
-  input [1:0]daq_data_type1;
   output daq_spy_full_0;
   output daq_spy_full_1;
   input daq_spy_reset_0;
   input daq_spy_reset_1;
-  input [31:0]daq_stream0;
-  input [31:0]daq_stream1;
-  input [3:0]daq_stream_k0;
-  input [3:0]daq_stream_k1;
   input [63:0]ddi0_d;
   input ddi0_d_last;
   input ddi0_d_valid;
@@ -213,17 +199,10 @@ module design_1_wrapper
   wire cmd_bit_reset;
   wire cmd_bit_sync;
   wire cmd_bit_trigger;
-  wire daq_clk;
-  wire [1:0]daq_data_type0;
-  wire [1:0]daq_data_type1;
   wire daq_spy_full_0;
   wire daq_spy_full_1;
   wire daq_spy_reset_0;
   wire daq_spy_reset_1;
-  wire [31:0]daq_stream0;
-  wire [31:0]daq_stream1;
-  wire [3:0]daq_stream_k0;
-  wire [3:0]daq_stream_k1;
   wire [63:0]ddi0_d;
   wire ddi0_d_last;
   wire ddi0_d_valid;
@@ -317,17 +296,10 @@ module design_1_wrapper
         .cmd_bit_reset(cmd_bit_reset),
         .cmd_bit_sync(cmd_bit_sync),
         .cmd_bit_trigger(cmd_bit_trigger),
-        .daq_clk(daq_clk),
-        .daq_data_type0(daq_data_type0),
-        .daq_data_type1(daq_data_type1),
         .daq_spy_full_0(daq_spy_full_0),
         .daq_spy_full_1(daq_spy_full_1),
         .daq_spy_reset_0(daq_spy_reset_0),
         .daq_spy_reset_1(daq_spy_reset_1),
-        .daq_stream0(daq_stream0),
-        .daq_stream1(daq_stream1),
-        .daq_stream_k0(daq_stream_k0),
-        .daq_stream_k1(daq_stream_k1),
         .ddi0_d(ddi0_d),
         .ddi0_d_last(ddi0_d_last),
         .ddi0_d_valid(ddi0_d_valid),

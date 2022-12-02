@@ -34,14 +34,10 @@ module bd_tux
     output iic_rtl_0_sda_o,
     output iic_rtl_0_sda_t,
     
-    input         daq_clk,
     output [1:0]  daq_spy_full,
     input  [1:0]  daq_spy_reset,
     input  [17:0] spy_rec_time,
     output [19:0] spy_addr [1:0],
-    input  [31:0] daq_stream [1:0],
-    input  [3:0]  daq_stream_k [1:0],
-    input  [1:0]  daq_data_type [1:0], // data_type flags for spy memory
     
     input cmd_bit_act,
     input cmd_bit_adc_reset,
@@ -124,7 +120,6 @@ module bd_tux
         .iic_rtl_0_sda_o     (iic_rtl_0_sda_o),
         .iic_rtl_0_sda_t     (iic_rtl_0_sda_t),
         
-        .daq_clk             (daq_clk         ),
         .daq_spy_full_0      (daq_spy_full[0] ),
         .daq_spy_full_1      (daq_spy_full[1] ),
         .daq_spy_reset_0     (daq_spy_reset[0]),
@@ -132,12 +127,6 @@ module bd_tux
         .spy_rec_time        (spy_rec_time),
         .spy_addr_0          (spy_addr [0]),
         .spy_addr_1          (spy_addr [1]),
-        .daq_stream0         (daq_stream[0]   ),
-        .daq_stream_k0       (daq_stream_k[0] ),
-        .daq_stream1         (daq_stream[1]   ),
-        .daq_stream_k1       (daq_stream_k[1] ),
-        .daq_data_type0      (daq_data_type[0]),
-        .daq_data_type1      (daq_data_type[1]),
         
         .cmd_bit_idle        (cmd_bit_idle     ),
         .cmd_bit_edge        (cmd_bit_edge     ),

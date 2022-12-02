@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Mon Nov 28 11:36:40 2022
+//Date        : Tue Nov 29 13:40:17 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1316,7 +1316,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=74,numReposBlks=49,numNonXlnxBlks=6,numHierBlks=25,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=75,numReposBlks=50,numNonXlnxBlks=6,numHierBlks=25,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -1328,17 +1328,10 @@ module design_1
     cmd_bit_reset,
     cmd_bit_sync,
     cmd_bit_trigger,
-    daq_clk,
-    daq_data_type0,
-    daq_data_type1,
     daq_spy_full_0,
     daq_spy_full_1,
     daq_spy_reset_0,
     daq_spy_reset_1,
-    daq_stream0,
-    daq_stream1,
-    daq_stream_k0,
-    daq_stream_k1,
     ddi0_d,
     ddi0_d_last,
     ddi0_d_valid,
@@ -1428,17 +1421,10 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CMD_BIT_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CMD_BIT_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input cmd_bit_reset;
   input cmd_bit_sync;
   input cmd_bit_trigger;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DAQ_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DAQ_CLK, ASSOCIATED_RESET daq_spy_reset_0:daq_spy_reset_1, CLK_DOMAIN design_1_daq_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input daq_clk;
-  input [1:0]daq_data_type0;
-  input [1:0]daq_data_type1;
   output daq_spy_full_0;
   output daq_spy_full_1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.DAQ_SPY_RESET_0 RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.DAQ_SPY_RESET_0, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input daq_spy_reset_0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.DAQ_SPY_RESET_1 RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.DAQ_SPY_RESET_1, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input daq_spy_reset_1;
-  input [31:0]daq_stream0;
-  input [31:0]daq_stream1;
-  input [3:0]daq_stream_k0;
-  input [3:0]daq_stream_k1;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d" *) input [63:0]ddi0_d;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d_last" *) input ddi0_d_last;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d_valid" *) input ddi0_d_valid;
@@ -1463,7 +1449,7 @@ module design_1
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d" *) input [63:0]ddi7_d;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last" *) input ddi7_d_last;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_valid" *) input ddi7_d_valid;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DDI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DDI_CLK, ASSOCIATED_RESET ts_rst, CLK_DOMAIN design_1_clk_0, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ddi_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DDI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DDI_CLK, ASSOCIATED_RESET ts_rst:daq_spy_reset_1:daq_spy_reset_0, CLK_DOMAIN design_1_clk_0, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ddi_clk;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk CLK_N" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME deimos_clk, CAN_DEBUG false, FREQ_HZ 156.25" *) input deimos_clk_clk_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk CLK_P" *) input deimos_clk_clk_p;
   (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos RXN" *) input deimos_rxn;
@@ -1613,18 +1599,11 @@ module design_1
   wire [0:0]coldata_i2c_dual3_scl_p_0;
   wire coldata_i2c_dual3_sda_out_n_0;
   wire coldata_i2c_dual3_sda_out_p_0;
-  wire daq_clk_0_1;
-  wire [1:0]daq_data_type_0_1;
-  wire [1:0]daq_data_type_1_1;
   wire [19:0]daq_spy_0_spy_addr_1;
   wire daq_spy_1_daq_spy_full;
   wire [19:0]daq_spy_1_spy_addr_0;
   wire daq_spy_full_0;
   wire daq_spy_reset_0_1;
-  wire [31:0]daq_stream0_0_1;
-  wire [31:0]daq_stream1_0_1;
-  wire [3:0]daq_stream_k0_0_1;
-  wire [3:0]daq_stream_k1_0_1;
   wire [63:0]ddi0_0_1_d;
   wire ddi0_0_1_d_last;
   wire ddi0_0_1_d_valid;
@@ -1706,25 +1685,25 @@ module design_1
   wire ps8_0_axi_periph_M01_AXI_WREADY;
   wire [3:0]ps8_0_axi_periph_M01_AXI_WSTRB;
   wire ps8_0_axi_periph_M01_AXI_WVALID;
-  wire [39:0]ps8_0_axi_periph_M02_AXI_ARADDR;
-  wire [2:0]ps8_0_axi_periph_M02_AXI_ARPROT;
-  wire ps8_0_axi_periph_M02_AXI_ARREADY;
-  wire ps8_0_axi_periph_M02_AXI_ARVALID;
-  wire [39:0]ps8_0_axi_periph_M02_AXI_AWADDR;
-  wire [2:0]ps8_0_axi_periph_M02_AXI_AWPROT;
-  wire ps8_0_axi_periph_M02_AXI_AWREADY;
-  wire ps8_0_axi_periph_M02_AXI_AWVALID;
-  wire ps8_0_axi_periph_M02_AXI_BREADY;
-  wire [1:0]ps8_0_axi_periph_M02_AXI_BRESP;
-  wire ps8_0_axi_periph_M02_AXI_BVALID;
-  wire [31:0]ps8_0_axi_periph_M02_AXI_RDATA;
-  wire ps8_0_axi_periph_M02_AXI_RREADY;
-  wire [1:0]ps8_0_axi_periph_M02_AXI_RRESP;
-  wire ps8_0_axi_periph_M02_AXI_RVALID;
-  wire [31:0]ps8_0_axi_periph_M02_AXI_WDATA;
-  wire ps8_0_axi_periph_M02_AXI_WREADY;
-  wire [3:0]ps8_0_axi_periph_M02_AXI_WSTRB;
-  wire ps8_0_axi_periph_M02_AXI_WVALID;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARADDR" *) (* DONT_TOUCH *) wire [39:0]ps8_0_axi_periph_M02_AXI_ARADDR;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARPROT" *) (* DONT_TOUCH *) wire [2:0]ps8_0_axi_periph_M02_AXI_ARPROT;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_ARREADY;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_ARVALID;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWADDR" *) (* DONT_TOUCH *) wire [39:0]ps8_0_axi_periph_M02_AXI_AWADDR;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWPROT" *) (* DONT_TOUCH *) wire [2:0]ps8_0_axi_periph_M02_AXI_AWPROT;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_AWREADY;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_AWVALID;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE BREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_BREADY;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE BRESP" *) (* DONT_TOUCH *) wire [1:0]ps8_0_axi_periph_M02_AXI_BRESP;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE BVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_BVALID;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RDATA" *) (* DONT_TOUCH *) wire [31:0]ps8_0_axi_periph_M02_AXI_RDATA;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_RREADY;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RRESP" *) (* DONT_TOUCH *) wire [1:0]ps8_0_axi_periph_M02_AXI_RRESP;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_RVALID;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WDATA" *) (* DONT_TOUCH *) wire [31:0]ps8_0_axi_periph_M02_AXI_WDATA;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_WREADY;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WSTRB" *) (* DONT_TOUCH *) wire [3:0]ps8_0_axi_periph_M02_AXI_WSTRB;
+  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_WVALID;
   wire [39:0]ps8_0_axi_periph_M03_AXI_ARADDR;
   wire [2:0]ps8_0_axi_periph_M03_AXI_ARPROT;
   wire ps8_0_axi_periph_M03_AXI_ARREADY;
@@ -1925,15 +1904,8 @@ module design_1
   assign cmd_idle_0_1 = cmd_bit_idle;
   assign cmd_reset_0_1 = cmd_bit_reset;
   assign cmd_sync_0_1 = cmd_bit_sync;
-  assign daq_clk_0_1 = daq_clk;
-  assign daq_data_type_0_1 = daq_data_type1[1:0];
-  assign daq_data_type_1_1 = daq_data_type0[1:0];
   assign daq_spy_full_1 = daq_spy_1_daq_spy_full;
   assign daq_spy_reset_0_1 = daq_spy_reset_1;
-  assign daq_stream0_0_1 = daq_stream0[31:0];
-  assign daq_stream1_0_1 = daq_stream1[31:0];
-  assign daq_stream_k0_0_1 = daq_stream_k0[3:0];
-  assign daq_stream_k1_0_1 = daq_stream_k1[3:0];
   assign ddi0_0_1_d = ddi0_d[63:0];
   assign ddi0_0_1_d_last = ddi0_d_last;
   assign ddi0_0_1_d_valid = ddi0_d_valid;
@@ -2245,12 +2217,12 @@ module design_1
         .S_AXI_wready(ps8_0_axi_periph_M00_AXI_WREADY),
         .S_AXI_wstrb(ps8_0_axi_periph_M00_AXI_WSTRB),
         .S_AXI_wvalid(ps8_0_axi_periph_M00_AXI_WVALID),
-        .daq_clk(daq_clk_0_1),
-        .daq_data_type_1(daq_data_type_1_1),
+        .daq_clk(clk_0_1),
+        .daq_data_type_1({1'b0,1'b0}),
         .daq_spy_full(daq_spy_full_0),
         .daq_spy_reset(reset_0_1),
-        .daq_stream0(daq_stream0_0_1),
-        .daq_stream_k0(daq_stream_k0_0_1),
+        .daq_stream0({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .daq_stream_k0({1'b0,1'b0,1'b0,1'b0}),
         .rec_time_0(rec_time_0_1),
         .spy_addr_1(daq_spy_0_spy_addr_1),
         .trigger(trigger_0_1),
@@ -2290,12 +2262,12 @@ module design_1
         .S_AXI_wready(ps8_0_axi_periph_M15_AXI_WREADY),
         .S_AXI_wstrb(ps8_0_axi_periph_M15_AXI_WSTRB),
         .S_AXI_wvalid(ps8_0_axi_periph_M15_AXI_WVALID),
-        .daq_clk(daq_clk_0_1),
-        .daq_data_type_0(daq_data_type_0_1),
+        .daq_clk(clk_0_1),
+        .daq_data_type_0({1'b0,1'b0}),
         .daq_spy_full(daq_spy_1_daq_spy_full),
         .daq_spy_reset(daq_spy_reset_0_1),
-        .daq_stream0(daq_stream1_0_1),
-        .daq_stream_k0(daq_stream_k1_0_1),
+        .daq_stream0({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .daq_stream_k0({1'b0,1'b0,1'b0,1'b0}),
         .rec_time_0(rec_time_0_1),
         .spy_addr_0(daq_spy_1_spy_addr_0),
         .trigger(trigger_0_1),
@@ -2736,6 +2708,28 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .slowest_sync_clk(zynq_ultra_ps_e_0_pl_clk0));
+  design_1_system_ila_0_0 system_ila_0
+       (.SLOT_0_AXI_araddr(ps8_0_axi_periph_M02_AXI_ARADDR[7:0]),
+        .SLOT_0_AXI_arprot(ps8_0_axi_periph_M02_AXI_ARPROT),
+        .SLOT_0_AXI_arready(ps8_0_axi_periph_M02_AXI_ARREADY),
+        .SLOT_0_AXI_arvalid(ps8_0_axi_periph_M02_AXI_ARVALID),
+        .SLOT_0_AXI_awaddr(ps8_0_axi_periph_M02_AXI_AWADDR[7:0]),
+        .SLOT_0_AXI_awprot(ps8_0_axi_periph_M02_AXI_AWPROT),
+        .SLOT_0_AXI_awready(ps8_0_axi_periph_M02_AXI_AWREADY),
+        .SLOT_0_AXI_awvalid(ps8_0_axi_periph_M02_AXI_AWVALID),
+        .SLOT_0_AXI_bready(ps8_0_axi_periph_M02_AXI_BREADY),
+        .SLOT_0_AXI_bresp(ps8_0_axi_periph_M02_AXI_BRESP),
+        .SLOT_0_AXI_bvalid(ps8_0_axi_periph_M02_AXI_BVALID),
+        .SLOT_0_AXI_rdata(ps8_0_axi_periph_M02_AXI_RDATA),
+        .SLOT_0_AXI_rready(ps8_0_axi_periph_M02_AXI_RREADY),
+        .SLOT_0_AXI_rresp(ps8_0_axi_periph_M02_AXI_RRESP),
+        .SLOT_0_AXI_rvalid(ps8_0_axi_periph_M02_AXI_RVALID),
+        .SLOT_0_AXI_wdata(ps8_0_axi_periph_M02_AXI_WDATA),
+        .SLOT_0_AXI_wready(ps8_0_axi_periph_M02_AXI_WREADY),
+        .SLOT_0_AXI_wstrb(ps8_0_axi_periph_M02_AXI_WSTRB),
+        .SLOT_0_AXI_wvalid(ps8_0_axi_periph_M02_AXI_WVALID),
+        .clk(zynq_ultra_ps_e_0_pl_clk0),
+        .resetn(rst_ps8_0_99M_peripheral_aresetn));
   design_1_tx_mux_wib_tux_0_0 tx_mux_wib_tux_0
        (.S_AXI_ACLK(zynq_ultra_ps_e_0_pl_clk0),
         .S_AXI_ARADDR(ps8_0_axi_periph_M02_AXI_ARADDR[7:0]),

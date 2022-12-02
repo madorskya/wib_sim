@@ -124,16 +124,16 @@
       }
     },
     "interface_nets": {
-      "lut_buffer_m_bscan": {
-        "interface_ports": [
-          "lut_buffer/m_bscan",
-          "xsdbm/s_bscan"
-        ]
-      },
       "S_BSCAN_1": {
         "interface_ports": [
           "S_BSCAN",
           "lut_buffer/s_bscan"
+        ]
+      },
+      "lut_buffer_m_bscan": {
+        "interface_ports": [
+          "lut_buffer/m_bscan",
+          "xsdbm/s_bscan"
         ]
       }
     },
