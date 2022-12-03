@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "bd_f60c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f60c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1_system_ila_0_0.hwdef" *) 
+(* CORE_GENERATION_INFO = "bd_f60c,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=bd_f60c,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=SBD,synth_mode=Global}" *) (* HW_HANDOFF = "design_1_system_ila_0_0.hwdef" *) 
 module bd_f60c
    (SLOT_0_AXI_araddr,
     SLOT_0_AXI_arprot,
@@ -28,6 +28,13 @@ module bd_f60c
     SLOT_0_AXI_wstrb,
     SLOT_0_AXI_wvalid,
     clk,
+    probe0,
+    probe1,
+    probe2,
+    probe3,
+    probe4,
+    probe5,
+    probe6,
     resetn);
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 SLOT_0_AXI ARADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SLOT_0_AXI, ADDR_WIDTH 8, ARUSER_WIDTH 0, AWUSER_WIDTH 0, BUSER_WIDTH 0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, DATA_WIDTH 32, FREQ_HZ 100000000, HAS_BRESP 1, HAS_BURST 0, HAS_CACHE 0, HAS_LOCK 0, HAS_PROT 1, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, HAS_WSTRB 1, ID_WIDTH 0, INSERT_VIP 0, MAX_BURST_LENGTH 1, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_OUTSTANDING 1, NUM_WRITE_THREADS 1, PHASE 0.000, PROTOCOL AXI4LITE, READ_WRITE_MODE READ_WRITE, RUSER_BITS_PER_BYTE 0, RUSER_WIDTH 0, SUPPORTS_NARROW_BURST 0, WUSER_BITS_PER_BYTE 0, WUSER_WIDTH 0" *) input [7:0]SLOT_0_AXI_araddr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 SLOT_0_AXI ARPROT" *) input [2:0]SLOT_0_AXI_arprot;
@@ -49,6 +56,13 @@ module bd_f60c
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 SLOT_0_AXI WSTRB" *) input [3:0]SLOT_0_AXI_wstrb;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 SLOT_0_AXI WVALID" *) input SLOT_0_AXI_wvalid;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF SLOT_0_AXI, ASSOCIATED_RESET resetn, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input clk;
+  input [31:0]probe0;
+  input [31:0]probe1;
+  input [0:0]probe2;
+  input [0:0]probe3;
+  input [31:0]probe4;
+  input [0:0]probe5;
+  input [0:0]probe6;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESETN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input resetn;
 
   wire [7:0]Conn_ARADDR;
@@ -99,6 +113,13 @@ module bd_f60c
   wire net_slot_0_axi_wready;
   wire [3:0]net_slot_0_axi_wstrb;
   wire net_slot_0_axi_wvalid;
+  wire [31:0]probe0_1;
+  wire [31:0]probe1_1;
+  wire [0:0]probe2_1;
+  wire [0:0]probe3_1;
+  wire [31:0]probe4_1;
+  wire [0:0]probe5_1;
+  wire [0:0]probe6_1;
   wire resetn_1;
 
   assign Conn_ARADDR = SLOT_0_AXI_araddr[7:0];
@@ -121,6 +142,13 @@ module bd_f60c
   assign Conn_WSTRB = SLOT_0_AXI_wstrb[3:0];
   assign Conn_WVALID = SLOT_0_AXI_wvalid;
   assign clk_1 = clk;
+  assign probe0_1 = probe0[31:0];
+  assign probe1_1 = probe1[31:0];
+  assign probe2_1 = probe2[0];
+  assign probe3_1 = probe3[0];
+  assign probe4_1 = probe4[31:0];
+  assign probe5_1 = probe5[0];
+  assign probe6_1 = probe6[0];
   assign resetn_1 = resetn;
   bd_f60c_g_inst_0 g_inst
        (.aclk(clk_1),
@@ -169,24 +197,31 @@ module bd_f60c
         .slot_0_axi_wvalid(Conn_WVALID));
   bd_f60c_ila_lib_0 ila_lib
        (.clk(clk_1),
-        .probe0(net_slot_0_axi_ar_cnt),
-        .probe1(net_slot_0_axi_araddr),
-        .probe10(net_slot_0_axi_rresp),
-        .probe11(net_slot_0_axi_wdata),
-        .probe12(net_slot_0_axi_wstrb),
-        .probe13(net_slot_0_axi_aw_ctrl),
-        .probe14(net_slot_0_axi_w_ctrl),
-        .probe15(net_slot_0_axi_b_ctrl),
-        .probe16(net_slot_0_axi_ar_ctrl),
-        .probe17(net_slot_0_axi_r_ctrl),
-        .probe2(net_slot_0_axi_arprot),
-        .probe3(net_slot_0_axi_aw_cnt),
-        .probe4(net_slot_0_axi_awaddr),
-        .probe5(net_slot_0_axi_awprot),
-        .probe6(net_slot_0_axi_b_cnt),
-        .probe7(net_slot_0_axi_bresp),
-        .probe8(net_slot_0_axi_r_cnt),
-        .probe9(net_slot_0_axi_rdata));
+        .probe0(probe0_1),
+        .probe1(probe1_1),
+        .probe10(net_slot_0_axi_aw_cnt),
+        .probe11(net_slot_0_axi_awaddr),
+        .probe12(net_slot_0_axi_awprot),
+        .probe13(net_slot_0_axi_b_cnt),
+        .probe14(net_slot_0_axi_bresp),
+        .probe15(net_slot_0_axi_r_cnt),
+        .probe16(net_slot_0_axi_rdata),
+        .probe17(net_slot_0_axi_rresp),
+        .probe18(net_slot_0_axi_wdata),
+        .probe19(net_slot_0_axi_wstrb),
+        .probe2(probe2_1),
+        .probe20(net_slot_0_axi_aw_ctrl),
+        .probe21(net_slot_0_axi_w_ctrl),
+        .probe22(net_slot_0_axi_b_ctrl),
+        .probe23(net_slot_0_axi_ar_ctrl),
+        .probe24(net_slot_0_axi_r_ctrl),
+        .probe3(probe3_1),
+        .probe4(probe4_1),
+        .probe5(probe5_1),
+        .probe6(probe6_1),
+        .probe7(net_slot_0_axi_ar_cnt),
+        .probe8(net_slot_0_axi_araddr),
+        .probe9(net_slot_0_axi_arprot));
   bd_f60c_slot_0_ar_0 slot_0_ar
        (.In0(net_slot_0_axi_arvalid),
         .In1(net_slot_0_axi_arready),

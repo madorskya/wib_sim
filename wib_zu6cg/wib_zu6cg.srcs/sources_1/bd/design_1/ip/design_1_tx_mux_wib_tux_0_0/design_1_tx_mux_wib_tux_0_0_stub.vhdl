@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Nov 28 11:38:31 2022
+-- Date        : Fri Dec  2 20:13:21 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_tx_mux_wib_tux_0_0/design_1_tx_mux_wib_tux_0_0_stub.vhdl
@@ -66,7 +66,14 @@ entity design_1_tx_mux_wib_tux_0_0 is
     d6_last : in STD_LOGIC;
     d7 : in STD_LOGIC_VECTOR ( 63 downto 0 );
     d7_valid : in STD_LOGIC;
-    d7_last : in STD_LOGIC
+    d7_last : in STD_LOGIC;
+    dipb_addr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    dipb_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    dipb_strobe : out STD_LOGIC;
+    dipb_write : out STD_LOGIC;
+    dipb_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    dipb_ack : out STD_LOGIC;
+    dipb_err : out STD_LOGIC
   );
 
 end design_1_tx_mux_wib_tux_0_0;
@@ -75,7 +82,7 @@ architecture stub of design_1_tx_mux_wib_tux_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "S_AXI_ACLK,S_AXI_ARESETN,S_AXI_AWADDR[7:0],S_AXI_AWPROT[2:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_BRESP[1:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_ARADDR[7:0],S_AXI_ARPROT[2:0],S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],S_AXI_RVALID,S_AXI_RREADY,eth_tx_p,eth_tx_n,eth_rx_p,eth_rx_n,eth_clk_p,eth_clk_n,clk,rst,d0[63:0],d0_valid,d0_last,d1[63:0],d1_valid,d1_last,d2[63:0],d2_valid,d2_last,d3[63:0],d3_valid,d3_last,d4[63:0],d4_valid,d4_last,d5[63:0],d5_valid,d5_last,d6[63:0],d6_valid,d6_last,d7[63:0],d7_valid,d7_last";
+attribute black_box_pad_pin of stub : architecture is "S_AXI_ACLK,S_AXI_ARESETN,S_AXI_AWADDR[7:0],S_AXI_AWPROT[2:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_BRESP[1:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_ARADDR[7:0],S_AXI_ARPROT[2:0],S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],S_AXI_RVALID,S_AXI_RREADY,eth_tx_p,eth_tx_n,eth_rx_p,eth_rx_n,eth_clk_p,eth_clk_n,clk,rst,d0[63:0],d0_valid,d0_last,d1[63:0],d1_valid,d1_last,d2[63:0],d2_valid,d2_last,d3[63:0],d3_valid,d3_last,d4[63:0],d4_valid,d4_last,d5[63:0],d5_valid,d5_last,d6[63:0],d6_valid,d6_last,d7[63:0],d7_valid,d7_last,dipb_addr[31:0],dipb_wdata[31:0],dipb_strobe,dipb_write,dipb_rdata[31:0],dipb_ack,dipb_err";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "tx_mux_wib_tux,Vivado 2020.1";
 begin

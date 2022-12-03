@@ -107,7 +107,14 @@ module design_1_tx_mux_wib_tux_0_0 (
   d6_last,
   d7,
   d7_valid,
-  d7_last
+  d7_last,
+  dipb_addr,
+  dipb_wdata,
+  dipb_strobe,
+  dipb_write,
+  dipb_rdata,
+  dipb_ack,
+  dipb_err
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET S_AXI_ARESETN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0" *)
@@ -169,7 +176,7 @@ input wire eth_clk_p;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME eth_clk, FREQ_HZ 156.25, CAN_DEBUG false" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 eth_clk CLK_N" *)
 input wire eth_clk_n;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_clk_0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ddi_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -223,6 +230,13 @@ input wire [63 : 0] d7;
 input wire d7_valid;
 (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last" *)
 input wire d7_last;
+output wire [31 : 0] dipb_addr;
+output wire [31 : 0] dipb_wdata;
+output wire dipb_strobe;
+output wire dipb_write;
+output wire [31 : 0] dipb_rdata;
+output wire dipb_ack;
+output wire dipb_err;
 
   tx_mux_wib_tux inst (
     .S_AXI_ACLK(S_AXI_ACLK),
@@ -277,6 +291,13 @@ input wire d7_last;
     .d6_last(d6_last),
     .d7(d7),
     .d7_valid(d7_valid),
-    .d7_last(d7_last)
+    .d7_last(d7_last),
+    .dipb_addr(dipb_addr),
+    .dipb_wdata(dipb_wdata),
+    .dipb_strobe(dipb_strobe),
+    .dipb_write(dipb_write),
+    .dipb_rdata(dipb_rdata),
+    .dipb_ack(dipb_ack),
+    .dipb_err(dipb_err)
   );
 endmodule

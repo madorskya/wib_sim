@@ -53,10 +53,6 @@ architecture rtl of tx_mux is
     signal ipbr_buf: ipb_rbus_array(N_SRC - 1 downto 0);
     signal q: src_d_array(N_SRC - 1 downto 0);
     signal re, ierr: std_logic_vector(N_SRC - 1 downto 0);
-    -- Maq: reclock register for rst
---    signal rst_sh: std_logic_vector(3 downto 0);
---    attribute ASYNC_REG : string;
---    attribute ASYNC_REG of rst_sh : signal is "TRUE";     
 
 begin
 
@@ -141,8 +137,6 @@ begin
     begin
         if rising_edge(src_clk) then
             if rst = '1' then
--- Maq: using reclocked rst
---            if rst_sh(rst_sh'high) = '1' then
                 sctr <= (others => '0');
                 ctr <= (others => '0');
             else
@@ -154,10 +148,6 @@ begin
                     ctr <= ctr + 1;
                 end if;
             end if;
-            
--- Maq: reclocking rst            
---            rst_sh <= rst_sh(rst_sh'high - 1 downto rst_sh'low) & rst;
-            
         end if;
     end process;
 

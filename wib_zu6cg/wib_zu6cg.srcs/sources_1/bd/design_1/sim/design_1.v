@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Tue Nov 29 13:40:17 2022
+//Date        : Fri Dec  2 20:07:49 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1449,7 +1449,7 @@ module design_1
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d" *) input [63:0]ddi7_d;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last" *) input ddi7_d_last;
   (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_valid" *) input ddi7_d_valid;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DDI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DDI_CLK, ASSOCIATED_RESET ts_rst:daq_spy_reset_1:daq_spy_reset_0, CLK_DOMAIN design_1_clk_0, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ddi_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.DDI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.DDI_CLK, ASSOCIATED_RESET daq_spy_reset_1:daq_spy_reset_0:ts_rst, CLK_DOMAIN design_1_ddi_clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ddi_clk;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk CLK_N" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME deimos_clk, CAN_DEBUG false, FREQ_HZ 156.25" *) input deimos_clk_clk_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 deimos_clk CLK_P" *) input deimos_clk_clk_p;
   (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 deimos RXN" *) input deimos_rxn;
@@ -1501,7 +1501,7 @@ module design_1
   output [19:0]spy_addr_0;
   output [19:0]spy_addr_1;
   input [17:0]spy_rec_time;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_CLK, ASSOCIATED_RESET ts_rst, CLK_DOMAIN design_1_ts_clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ts_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.TS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.TS_CLK, CLK_DOMAIN design_1_ts_clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input ts_clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.TS_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.TS_RST, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input ts_rst;
   input [63:0]ts_tstamp;
 
@@ -1628,6 +1628,13 @@ module design_1
   wire [63:0]ddi7_0_1_d;
   wire ddi7_0_1_d_last;
   wire ddi7_0_1_d_valid;
+  wire dipb_ack;
+  wire [31:0]dipb_addr;
+  wire dipb_err;
+  wire [31:0]dipb_rdata;
+  wire dipb_strobe;
+  wire [31:0]dipb_wdata;
+  wire dipb_write;
   wire dyn_phase_adjust_0_psen;
   wire dyn_phase_adjust_0_psincdec;
   wire eth_clk_0_1_CLK_N;
@@ -2729,6 +2736,13 @@ module design_1
         .SLOT_0_AXI_wstrb(ps8_0_axi_periph_M02_AXI_WSTRB),
         .SLOT_0_AXI_wvalid(ps8_0_axi_periph_M02_AXI_WVALID),
         .clk(zynq_ultra_ps_e_0_pl_clk0),
+        .probe0(dipb_addr),
+        .probe1(dipb_wdata),
+        .probe2(dipb_strobe),
+        .probe3(dipb_write),
+        .probe4(dipb_rdata),
+        .probe5(dipb_ack),
+        .probe6(dipb_err),
         .resetn(rst_ps8_0_99M_peripheral_aresetn));
   design_1_tx_mux_wib_tux_0_0 tx_mux_wib_tux_0
        (.S_AXI_ACLK(zynq_ultra_ps_e_0_pl_clk0),
@@ -2777,6 +2791,13 @@ module design_1
         .d7(ddi7_0_1_d),
         .d7_last(ddi7_0_1_d_last),
         .d7_valid(ddi7_0_1_d_valid),
+        .dipb_ack(dipb_ack),
+        .dipb_addr(dipb_addr),
+        .dipb_err(dipb_err),
+        .dipb_rdata(dipb_rdata),
+        .dipb_strobe(dipb_strobe),
+        .dipb_wdata(dipb_wdata),
+        .dipb_write(dipb_write),
         .eth_clk_n(eth_clk_0_1_CLK_N),
         .eth_clk_p(eth_clk_0_1_CLK_P),
         .eth_rx_n(tx_mux_wib_tux_0_eth_RXN),

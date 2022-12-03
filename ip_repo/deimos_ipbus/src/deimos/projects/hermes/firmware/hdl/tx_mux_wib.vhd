@@ -79,7 +79,17 @@ entity tx_mux_wib is
 
         d7: in std_logic_vector(63 downto 0);
         d7_valid: in std_logic;
-        d7_last: in std_logic
+        d7_last: in std_logic;
+        
+        -- debugging IPBUS outputs
+        dipb_addr: out std_logic_vector(31 downto 0);
+        dipb_wdata: out std_logic_vector(31 downto 0);
+        dipb_strobe: out std_logic;
+        dipb_write: out std_logic;
+
+        dipb_rdata: out std_logic_vector(31 downto 0);
+        dipb_ack: out std_logic;
+        dipb_err: out std_logic
 
     );
 
@@ -87,6 +97,7 @@ end entity tx_mux_wib;
 
 architecture rtl of tx_mux_wib is
 
+    attribute MARK_DEBUG : string;
     signal ipbw: ipb_wbus;
 	signal ipbr: ipb_rbus;
     signal ipb_rst: std_logic;
@@ -128,6 +139,15 @@ begin
             ipb_in_rdata => ipbr.ipb_rdata,
             ipb_rst => ipb_rst
         );
+
+    dipb_addr   <= ipbw.ipb_addr;
+    dipb_wdata  <= ipbw.ipb_wdata;
+    dipb_strobe <= ipbw.ipb_strobe;
+    dipb_write  <= ipbw.ipb_write;
+
+    dipb_rdata  <= ipbr.ipb_rdata;
+    dipb_ack    <= ipbr.ipb_ack;
+    dipb_err    <= ipbr.ipb_err;
 
     mux: entity work.tx_mux_top
         generic map(

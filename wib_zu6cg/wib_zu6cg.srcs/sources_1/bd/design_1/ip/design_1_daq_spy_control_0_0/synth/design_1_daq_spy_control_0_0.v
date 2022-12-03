@@ -78,7 +78,7 @@ module design_1_daq_spy_control_0_0 (
 input wire [31 : 0] daq_stream;
 input wire [3 : 0] daq_stream_k;
 input wire [1 : 0] daq_data_type;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME daq_clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_daq_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME daq_clk, ASSOCIATED_RESET reset, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ddi_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 daq_clk CLK" *)
 input wire daq_clk;
 output wire [19 : 0] bram_addr;

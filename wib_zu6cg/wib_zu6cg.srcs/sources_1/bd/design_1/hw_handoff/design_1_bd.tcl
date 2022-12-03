@@ -944,7 +944,10 @@ proc create_root_design { parentCell } {
   # Create instance: system_ila_0, and set properties
   set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
   set_property -dict [ list \
+   CONFIG.C_BRAM_CNT {4} \
    CONFIG.C_INPUT_PIPE_STAGES {6} \
+   CONFIG.C_MON_TYPE {MIX} \
+   CONFIG.C_NUM_OF_PROBES {7} \
  ] $system_ila_0
 
   # Create instance: tx_mux_wib_tux_0, and set properties
@@ -2558,6 +2561,13 @@ connect_bd_intf_net -intf_net [get_bd_intf_nets ps8_0_axi_periph_M02_AXI] [get_b
   connect_bd_net -net daq_spy_1_spy_addr_0 [get_bd_ports spy_addr_0] [get_bd_pins daq_spy_1/spy_addr_0]
   connect_bd_net -net daq_spy_full_0 [get_bd_ports daq_spy_full_0] [get_bd_pins daq_spy_0/daq_spy_full]
   connect_bd_net -net daq_spy_reset_0_1 [get_bd_ports daq_spy_reset_1] [get_bd_pins daq_spy_1/daq_spy_reset]
+  connect_bd_net -net dipb_ack [get_bd_pins system_ila_0/probe5] [get_bd_pins tx_mux_wib_tux_0/dipb_ack]
+  connect_bd_net -net dipb_addr [get_bd_pins system_ila_0/probe0] [get_bd_pins tx_mux_wib_tux_0/dipb_addr]
+  connect_bd_net -net dipb_err [get_bd_pins system_ila_0/probe6] [get_bd_pins tx_mux_wib_tux_0/dipb_err]
+  connect_bd_net -net dipb_rdata [get_bd_pins system_ila_0/probe4] [get_bd_pins tx_mux_wib_tux_0/dipb_rdata]
+  connect_bd_net -net dipb_strobe [get_bd_pins system_ila_0/probe2] [get_bd_pins tx_mux_wib_tux_0/dipb_strobe]
+  connect_bd_net -net dipb_wdata [get_bd_pins system_ila_0/probe1] [get_bd_pins tx_mux_wib_tux_0/dipb_wdata]
+  connect_bd_net -net dipb_write [get_bd_pins system_ila_0/probe3] [get_bd_pins tx_mux_wib_tux_0/dipb_write]
   connect_bd_net -net dyn_phase_adjust_0_psen [get_bd_pins dyn_phase_adjust_0/psen] [get_bd_pins i2c_clk_phase/psen]
   connect_bd_net -net dyn_phase_adjust_0_psincdec [get_bd_pins dyn_phase_adjust_0/psincdec] [get_bd_pins i2c_clk_phase/psincdec]
   connect_bd_net -net i2c_clk_phase_clk_out1 [get_bd_pins coldata_i2c_dual0/clk62p5] [get_bd_pins coldata_i2c_dual1/clk62p5] [get_bd_pins coldata_i2c_dual2/clk62p5] [get_bd_pins coldata_i2c_dual3/clk62p5] [get_bd_pins i2c_clk_phase/clk_out1]

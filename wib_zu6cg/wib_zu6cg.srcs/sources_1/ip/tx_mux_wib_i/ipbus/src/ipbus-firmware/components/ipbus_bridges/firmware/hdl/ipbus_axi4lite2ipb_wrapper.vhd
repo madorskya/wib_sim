@@ -13,7 +13,7 @@ use work.ipbus_axi4lite_decl.all;
 
 entity ipbus_axi4lite2ipb_wrapper is
     generic(
-        IPB_ADDR_MASK: std_logic_vector(31 downto 0) := X"11111111";
+        IPB_ADDR_MASK: std_logic_vector(31 downto 0) := X"000000FF"; -- Maq: was 0x11111111 here, that leads to wrong address masking
         IPB_ADDR_BASE: std_logic_vector(31 downto 0) := X"00000000";
         C_S_AXI_ADDR_WIDTH: integer	:= 4
     );

@@ -63,7 +63,16 @@ module tx_mux_wib_tux
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 d_last"  *) input        d6_last,
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d"       *) input [63:0] d7,
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_valid" *) input        d7_valid,
-    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last"  *) input        d7_last
+    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last"  *) input        d7_last,
+    
+    output wire [31 : 0] dipb_addr,
+    output wire [31 : 0] dipb_wdata,
+    output wire dipb_strobe,
+    output wire dipb_write,
+    output wire [31 : 0] dipb_rdata,
+    output wire dipb_ack,
+    output wire dipb_err
+    
 );
 
     tx_mux_wib_i tmw 
@@ -122,7 +131,15 @@ module tx_mux_wib_tux
         .d6_last       (d6_last),       
         .d7            (d7),            
         .d7_valid      (d7_valid),      
-        .d7_last       (d7_last)        
+        .d7_last       (d7_last),
+                
+        .dipb_addr(dipb_addr),
+        .dipb_wdata(dipb_wdata),
+        .dipb_strobe(dipb_strobe),
+        .dipb_write(dipb_write),
+        .dipb_rdata(dipb_rdata),
+        .dipb_ack(dipb_ack),
+        .dipb_err(dipb_err)
     );
 
 

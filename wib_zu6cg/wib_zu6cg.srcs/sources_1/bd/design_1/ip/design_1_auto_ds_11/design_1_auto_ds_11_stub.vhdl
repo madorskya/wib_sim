@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Sun Nov 27 16:23:36 2022
+-- Date        : Fri Dec  2 20:14:44 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_auto_ds_11 -prefix
---               design_1_auto_ds_11_ design_1_auto_ds_11_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_auto_ds_11/design_1_auto_ds_11_stub.vhdl
 -- Design      : design_1_auto_ds_11
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e
