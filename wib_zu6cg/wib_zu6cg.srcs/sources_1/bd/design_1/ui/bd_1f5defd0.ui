@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.883883",
-   "Default View_TopLeft":"791,-459",
+   "Default View_TopLeft":"1364,-328",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
@@ -89,9 +89,8 @@ preplace inst ps8_0_axi_periph -pg 1 -lvl 2 -x 1297 -y 1800 -defaultsOSRD
 preplace inst reg_bank_64_0 -pg 1 -lvl 3 -x 2220 -y 1798 -defaultsOSRD
 preplace inst rst_ps8_0_99M -pg 1 -lvl 2 -x 1297 -y 2360 -defaultsOSRD
 preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 480 -y 1500 -defaultsOSRD
-preplace inst system_ila_0 -pg 1 -lvl 3 -x 2220 -y -240 -defaultsOSRD
 preplace inst tx_mux_wib_tux_0 -pg 1 -lvl 3 -x 2220 -y 80 -defaultsOSRD
-preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 -150 2240 NJ 2240 1920J 1910 2440
+preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 -150 2240 NJ 2240 1840J 1910 2400
 preplace netloc coldata_fast_cmd_0_fastcommand_out_n 1 3 1 2450J 970n
 preplace netloc coldata_fast_cmd_0_fastcommand_out_p 1 3 1 2440J 950n
 preplace netloc coldata_i2c_0_scl_n 1 3 1 2510J 1640n
@@ -131,7 +130,7 @@ preplace netloc sda_in_n_0_1 1 0 3 NJ 1390 880J 2230 1600J
 preplace netloc sda_in_n_0_1_1 1 0 3 NJ 2520 NJ 2520 1510J
 preplace netloc sda_in_n_0_2_1 1 0 3 NJ 2710 NJ 2710 1490J
 preplace netloc sda_in_p_0_0_1 1 0 3 NJ 2490 NJ 2490 1520J
-preplace netloc sda_in_p_0_1 1 0 3 -160J 1400 870J 2220 1610J
+preplace netloc sda_in_p_0_1 1 0 3 -160J 1400 870J 2220 1620J
 preplace netloc sda_in_p_0_1_1 1 0 3 NJ 2540 NJ 2540 1500J
 preplace netloc sda_in_p_0_2_1 1 0 3 NJ 2730 NJ 2730 1480J
 preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 -160 1600 890 2260 1710 1900 2550J
@@ -150,41 +149,34 @@ preplace netloc coldata_i2c_dual0_sda_out_out 1 3 1 2560 1780n
 preplace netloc coldata_i2c_dual0_scl_out 1 3 1 2500 1620n
 preplace netloc ts_tstamp_0_1 1 0 3 NJ 590 NJ 590 1740J
 preplace netloc reg_bank_64_0_reg_rw 1 3 1 2470 1340n
-preplace netloc i2c_clk_phase_clk_out1 1 2 2 1940 1890 2400
+preplace netloc i2c_clk_phase_clk_out1 1 2 2 1870 1890 2400
 preplace netloc rst_0_1 1 0 3 NJ -80 NJ -80 1790J
 preplace netloc clk_0_1 1 0 3 NJ -50 NJ -50 1620J
-preplace netloc dipb_addr 1 2 2 1940 -400 2390
-preplace netloc dipb_wdata 1 2 2 1920 -420 2410
-preplace netloc dipb_strobe 1 2 2 1900 -440 2430
-preplace netloc dipb_write 1 2 2 1930 -390 2400
-preplace netloc dipb_rdata 1 2 2 1880 -450 2450
-preplace netloc dipb_ack 1 2 2 1910 -410 2420
-preplace netloc dipb_err 1 2 2 1890 -430 2440
-preplace netloc ddi1_0_1 1 0 3 NJ -250 NJ -250 1850J
-preplace netloc tx_mux_wib_tux_0_eth 1 3 1 2460J -170n
-preplace netloc ps8_0_axi_periph_M13_AXI 1 2 1 1570 1910n
-preplace netloc ps8_0_axi_periph_M14_AXI 1 2 1 1560 1930n
-preplace netloc ps8_0_axi_periph_M00_AXI 1 2 1 1650 930n
-preplace netloc ps8_0_axi_periph_M11_AXI 1 2 1 1580 1870n
-preplace netloc ddi5_0_1 1 0 3 NJ -170 NJ -170 1810J
-preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 1600 1670n
-preplace netloc S00_AXI_1 1 2 1 1590 1750n
-preplace netloc ddi3_0_1 1 0 3 NJ -210 NJ -210 1830J
-preplace netloc ps8_0_axi_periph_M02_AXI 1 2 1 1640 -330n
 preplace netloc ps8_0_axi_periph_M15_AXI 1 2 1 1680 612n
-preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 860 1440n
-preplace netloc axi_iic_0_IIC 1 3 1 2590J 2090n
-preplace netloc eth_clk_0_1 1 0 3 NJ -300 NJ -300 1870
-preplace netloc ddi7_0_1 1 0 3 NJ -130 NJ -130 1800J
-preplace netloc axi_gpio_1_GPIO 1 3 1 2580J 1950n
-preplace netloc S00_AXI_3 1 2 1 1530 1830n
-preplace netloc ddi0_0_1 1 0 3 NJ -270 NJ -270 1860J
+preplace netloc ps8_0_axi_periph_M02_AXI 1 2 1 1640 -50n
+preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 1600 1670n
 preplace netloc S00_AXI_2 1 2 1 1550 1790n
-preplace netloc ddi2_0_1 1 0 3 NJ -230 NJ -230 1840J
-preplace netloc ddi6_0_1 1 0 3 NJ -150 NJ -150 1680J
-preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1690 1768n
-preplace netloc ddi4_0_1 1 0 3 NJ -190 NJ -190 1820J
+preplace netloc S00_AXI_3 1 2 1 1530 1830n
+preplace netloc ddi2_0_1 1 0 3 NJ -230 NJ -230 1850J
+preplace netloc ddi4_0_1 1 0 3 NJ -190 NJ -190 1830J
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 860 1440n
+preplace netloc axi_gpio_1_GPIO 1 3 1 2580J 1950n
+preplace netloc ddi7_0_1 1 0 3 NJ -130 NJ -130 1800J
+preplace netloc ddi5_0_1 1 0 3 NJ -170 NJ -170 1820J
+preplace netloc S00_AXI_1 1 2 1 1590 1750n
+preplace netloc ps8_0_axi_periph_M13_AXI 1 2 1 1570 1910n
+preplace netloc ddi1_0_1 1 0 3 NJ -250 NJ -250 1860J
+preplace netloc ps8_0_axi_periph_M11_AXI 1 2 1 1580 1870n
+preplace netloc axi_iic_0_IIC 1 3 1 2590J 2090n
+preplace netloc ps8_0_axi_periph_M14_AXI 1 2 1 1560 1930n
+preplace netloc eth_clk_0_1 1 0 3 NJ -300 NJ -300 1880
 preplace netloc ps8_0_axi_periph_M03_AXI 1 2 1 1690 1420n
+preplace netloc ddi3_0_1 1 0 3 NJ -210 NJ -210 1840J
+preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1690 1768n
+preplace netloc ddi6_0_1 1 0 3 NJ -150 NJ -150 1810J
+preplace netloc tx_mux_wib_tux_0_eth 1 3 1 2390J -170n
+preplace netloc ps8_0_axi_periph_M00_AXI 1 2 1 1650 930n
+preplace netloc ddi0_0_1 1 0 3 NJ -270 NJ -270 1870J
 levelinfo -pg 1 -180 480 1297 2220 2730
 pagesize -pg 1 -db -bbox -sgen -370 -600 2950 3340
 "

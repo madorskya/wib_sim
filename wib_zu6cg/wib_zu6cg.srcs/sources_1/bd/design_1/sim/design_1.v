@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-//Date        : Fri Dec  2 20:07:49 2022
+//Date        : Sun Dec  4 11:40:08 2022
 //Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -1316,7 +1316,7 @@ module dbg_imp_5R9Y5
         .clk(zynq_ultra_ps_e_0_pl_clk0));
 endmodule
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=75,numReposBlks=50,numNonXlnxBlks=6,numHierBlks=25,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=74,numReposBlks=49,numNonXlnxBlks=6,numHierBlks=25,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (AXI_CLK_OUT,
     AXI_RSTn,
@@ -1628,13 +1628,6 @@ module design_1
   wire [63:0]ddi7_0_1_d;
   wire ddi7_0_1_d_last;
   wire ddi7_0_1_d_valid;
-  wire dipb_ack;
-  wire [31:0]dipb_addr;
-  wire dipb_err;
-  wire [31:0]dipb_rdata;
-  wire dipb_strobe;
-  wire [31:0]dipb_wdata;
-  wire dipb_write;
   wire dyn_phase_adjust_0_psen;
   wire dyn_phase_adjust_0_psincdec;
   wire eth_clk_0_1_CLK_N;
@@ -1692,25 +1685,25 @@ module design_1
   wire ps8_0_axi_periph_M01_AXI_WREADY;
   wire [3:0]ps8_0_axi_periph_M01_AXI_WSTRB;
   wire ps8_0_axi_periph_M01_AXI_WVALID;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARADDR" *) (* DONT_TOUCH *) wire [39:0]ps8_0_axi_periph_M02_AXI_ARADDR;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARPROT" *) (* DONT_TOUCH *) wire [2:0]ps8_0_axi_periph_M02_AXI_ARPROT;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_ARREADY;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE ARVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_ARVALID;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWADDR" *) (* DONT_TOUCH *) wire [39:0]ps8_0_axi_periph_M02_AXI_AWADDR;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWPROT" *) (* DONT_TOUCH *) wire [2:0]ps8_0_axi_periph_M02_AXI_AWPROT;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_AWREADY;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE AWVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_AWVALID;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE BREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_BREADY;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE BRESP" *) (* DONT_TOUCH *) wire [1:0]ps8_0_axi_periph_M02_AXI_BRESP;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE BVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_BVALID;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RDATA" *) (* DONT_TOUCH *) wire [31:0]ps8_0_axi_periph_M02_AXI_RDATA;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_RREADY;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RRESP" *) (* DONT_TOUCH *) wire [1:0]ps8_0_axi_periph_M02_AXI_RRESP;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE RVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_RVALID;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WDATA" *) (* DONT_TOUCH *) wire [31:0]ps8_0_axi_periph_M02_AXI_WDATA;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WREADY" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_WREADY;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WSTRB" *) (* DONT_TOUCH *) wire [3:0]ps8_0_axi_periph_M02_AXI_WSTRB;
-  (* CONN_BUS_INFO = "ps8_0_axi_periph_M02_AXI xilinx.com:interface:aximm:1.0 AXI4LITE WVALID" *) (* DONT_TOUCH *) wire ps8_0_axi_periph_M02_AXI_WVALID;
+  wire [39:0]ps8_0_axi_periph_M02_AXI_ARADDR;
+  wire [2:0]ps8_0_axi_periph_M02_AXI_ARPROT;
+  wire ps8_0_axi_periph_M02_AXI_ARREADY;
+  wire ps8_0_axi_periph_M02_AXI_ARVALID;
+  wire [39:0]ps8_0_axi_periph_M02_AXI_AWADDR;
+  wire [2:0]ps8_0_axi_periph_M02_AXI_AWPROT;
+  wire ps8_0_axi_periph_M02_AXI_AWREADY;
+  wire ps8_0_axi_periph_M02_AXI_AWVALID;
+  wire ps8_0_axi_periph_M02_AXI_BREADY;
+  wire [1:0]ps8_0_axi_periph_M02_AXI_BRESP;
+  wire ps8_0_axi_periph_M02_AXI_BVALID;
+  wire [31:0]ps8_0_axi_periph_M02_AXI_RDATA;
+  wire ps8_0_axi_periph_M02_AXI_RREADY;
+  wire [1:0]ps8_0_axi_periph_M02_AXI_RRESP;
+  wire ps8_0_axi_periph_M02_AXI_RVALID;
+  wire [31:0]ps8_0_axi_periph_M02_AXI_WDATA;
+  wire ps8_0_axi_periph_M02_AXI_WREADY;
+  wire [3:0]ps8_0_axi_periph_M02_AXI_WSTRB;
+  wire ps8_0_axi_periph_M02_AXI_WVALID;
   wire [39:0]ps8_0_axi_periph_M03_AXI_ARADDR;
   wire [2:0]ps8_0_axi_periph_M03_AXI_ARPROT;
   wire ps8_0_axi_periph_M03_AXI_ARREADY;
@@ -2715,35 +2708,6 @@ module design_1
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps8_0_99M_peripheral_aresetn),
         .slowest_sync_clk(zynq_ultra_ps_e_0_pl_clk0));
-  design_1_system_ila_0_0 system_ila_0
-       (.SLOT_0_AXI_araddr(ps8_0_axi_periph_M02_AXI_ARADDR[7:0]),
-        .SLOT_0_AXI_arprot(ps8_0_axi_periph_M02_AXI_ARPROT),
-        .SLOT_0_AXI_arready(ps8_0_axi_periph_M02_AXI_ARREADY),
-        .SLOT_0_AXI_arvalid(ps8_0_axi_periph_M02_AXI_ARVALID),
-        .SLOT_0_AXI_awaddr(ps8_0_axi_periph_M02_AXI_AWADDR[7:0]),
-        .SLOT_0_AXI_awprot(ps8_0_axi_periph_M02_AXI_AWPROT),
-        .SLOT_0_AXI_awready(ps8_0_axi_periph_M02_AXI_AWREADY),
-        .SLOT_0_AXI_awvalid(ps8_0_axi_periph_M02_AXI_AWVALID),
-        .SLOT_0_AXI_bready(ps8_0_axi_periph_M02_AXI_BREADY),
-        .SLOT_0_AXI_bresp(ps8_0_axi_periph_M02_AXI_BRESP),
-        .SLOT_0_AXI_bvalid(ps8_0_axi_periph_M02_AXI_BVALID),
-        .SLOT_0_AXI_rdata(ps8_0_axi_periph_M02_AXI_RDATA),
-        .SLOT_0_AXI_rready(ps8_0_axi_periph_M02_AXI_RREADY),
-        .SLOT_0_AXI_rresp(ps8_0_axi_periph_M02_AXI_RRESP),
-        .SLOT_0_AXI_rvalid(ps8_0_axi_periph_M02_AXI_RVALID),
-        .SLOT_0_AXI_wdata(ps8_0_axi_periph_M02_AXI_WDATA),
-        .SLOT_0_AXI_wready(ps8_0_axi_periph_M02_AXI_WREADY),
-        .SLOT_0_AXI_wstrb(ps8_0_axi_periph_M02_AXI_WSTRB),
-        .SLOT_0_AXI_wvalid(ps8_0_axi_periph_M02_AXI_WVALID),
-        .clk(zynq_ultra_ps_e_0_pl_clk0),
-        .probe0(dipb_addr),
-        .probe1(dipb_wdata),
-        .probe2(dipb_strobe),
-        .probe3(dipb_write),
-        .probe4(dipb_rdata),
-        .probe5(dipb_ack),
-        .probe6(dipb_err),
-        .resetn(rst_ps8_0_99M_peripheral_aresetn));
   design_1_tx_mux_wib_tux_0_0 tx_mux_wib_tux_0
        (.S_AXI_ACLK(zynq_ultra_ps_e_0_pl_clk0),
         .S_AXI_ARADDR(ps8_0_axi_periph_M02_AXI_ARADDR[7:0]),
@@ -2791,13 +2755,6 @@ module design_1
         .d7(ddi7_0_1_d),
         .d7_last(ddi7_0_1_d_last),
         .d7_valid(ddi7_0_1_d_valid),
-        .dipb_ack(dipb_ack),
-        .dipb_addr(dipb_addr),
-        .dipb_err(dipb_err),
-        .dipb_rdata(dipb_rdata),
-        .dipb_strobe(dipb_strobe),
-        .dipb_wdata(dipb_wdata),
-        .dipb_write(dipb_write),
         .eth_clk_n(eth_clk_0_1_CLK_N),
         .eth_clk_p(eth_clk_0_1_CLK_P),
         .eth_rx_n(tx_mux_wib_tux_0_eth_RXN),

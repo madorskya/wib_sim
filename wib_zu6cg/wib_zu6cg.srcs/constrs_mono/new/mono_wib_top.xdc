@@ -133,8 +133,10 @@ set_false_path -to [get_ports misc_io[*]]
 set_clock_groups -asynchronous -group [get_clocks clk_pl_0]
 
 # constraints for DEIMOS module
-set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/tx_mux_wib_tux_0/inst/tmw/inst/mux/mmcm/CLKOUT1]] -to [get_clocks mux_inx1_*]
-
+# with IP
+#set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/tx_mux_wib_tux_0/inst/tmw/inst/mux/mmcm/CLKOUT1]] -to [get_clocks mux_inx1_*]
+# with direct HDL inclusion
+set_false_path -from [get_clocks -of_objects [get_pins wrp/design_1_i/tx_mux_wib_tux_0/inst/tmw/mux/mmcm/CLKOUT1]] -to [get_clocks mux_inx1_*]
 # below copied from Jack's project
 
 #BANK  44 HD  2.5V
