@@ -491,7 +491,7 @@ module wib_top
         
          // timing point signals
         .ts_clk             (clk62p5   ), // this is 62.5 M clock for WIB logic
-        .ts_rst             (ts_rst    ),
+        .ts_rst             (~ts_rdy   ), // ts_rst does not work for some reason, using ~ts_rdy instead
         .ts_tstamp          (ts_tstamp ),
         
         .axi_clk_out        (axi_clk_out),

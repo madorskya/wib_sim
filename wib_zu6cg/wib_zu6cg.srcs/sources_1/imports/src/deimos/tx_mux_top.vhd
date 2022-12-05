@@ -48,8 +48,8 @@ architecture rtl of tx_mux_top is
     signal ipbw: ipb_wbus_array(N_SLAVES - 1 downto 0);
 	signal ipbr: ipb_rbus_array(N_SLAVES - 1 downto 0);
     signal q: src_d;    
-    signal gtclku, gtclk, clkfb, clku, eth_clk, eth_rst, eth_ready, locked: std_logic;
-
+    signal gtclku, gtclk, clkfb, clku, eth_clk, eth_ready, locked: std_logic;
+    signal eth_rst: std_logic := '1';
 begin
 
 -- Tied-off signals
@@ -62,7 +62,7 @@ begin
 
     clkibuf: IBUFDS_GTE4
         generic map(
-            REFCLK_EN_TX_PATH => '1',
+            REFCLK_EN_TX_PATH => '0',
             REFCLK_HROW_CK_SEL => "00",
             REFCLK_ICNTL_RX => "00"
         )

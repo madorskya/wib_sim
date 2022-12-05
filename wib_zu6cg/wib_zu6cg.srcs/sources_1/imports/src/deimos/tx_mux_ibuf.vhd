@@ -60,15 +60,33 @@ architecture rtl of tx_mux_ibuf is
     signal cts: std_logic_vector(63 downto 0);
     signal first, tinc, rinc: std_logic;
     signal vctr, tctr, rctr: unsigned(63 downto 0);
+    signal rx_state_w: std_logic_vector(3 downto 0);
 
+    COMPONENT ila_mux_rd
+    PORT (
+        clk : IN STD_LOGIC;
+        probe0 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe1 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe2 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe3 : IN STD_LOGIC_VECTOR(0 DOWNTO 0)
+    );
+    END COMPONENT; 
     COMPONENT ila_mux
-    
     PORT (
         clk : IN STD_LOGIC;
         probe0 : IN STD_LOGIC_VECTOR(7 DOWNTO 0); 
         probe1 : IN STD_LOGIC_VECTOR(63 DOWNTO 0); 
         probe2 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-        probe3 : IN STD_LOGIC_VECTOR(0 DOWNTO 0)
+        probe3 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe4 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe5 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe6 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe7 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        probe8 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe9 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe10 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe11 : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        probe12 : IN STD_LOGIC_VECTOR(0 DOWNTO 0)
     );
     END COMPONENT  ;
 
@@ -189,13 +207,32 @@ begin
             wr_en => fifo_we
         );
 
+        rx_state_w <= std_logic_vector(to_unsigned(rx_state_t'pos(rx_state), 4));
+        ila_fifo_rd : ila_mux_rd
+        PORT MAP (
+            clk       => eth_clk,
+            probe0(0) => txw,
+            probe1(0) => fifo_busy_tx,
+            probe2(0) => lfifo_busy_tx,
+            probe3(0) => eth_rst
+        );
+
         ila_fifo : ila_mux
         PORT MAP (
             clk    => src_clk,
             probe0 => fifo_c, 
             probe1 => d.d, 
             probe2(0) => src_rst,
-            probe3(0) => fifo_we
+            probe3(0) => fifo_we,
+            probe4(0) => d.valid,
+            probe5(0) => rx_run,
+            probe6(0) => wfull,
+            probe7 => rx_state_w,
+            probe8(0) => d.last,
+            probe9(0) => fifo_busy_rx,
+            probe10(0) => lfifo_busy_rx,
+            probe11(0) => fifo_full,
+            probe12(0) => lfifo_full
         );
 
 
