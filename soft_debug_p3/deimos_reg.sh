@@ -6,7 +6,7 @@ devmem="devmem"
 # offset 0
 name=(csr.ctrl.en	csr.ctrl.en_buf	csr.ctrl.sample	csr.ctrl.sel)
 addr=(0xA0020000	0xA0020000		0xA0020000	    0xA0020000	)
-bnum=(0				1				2			    16			)
+bnum=(0				1				2			    8			)
 mask=(1				1				1		        0x3f		)
 
 name+=(csr.stat.err csr.stat.eth_rdy csr.stat.src_rdy csr.stat.samp_done  csr.stat.samp_period)

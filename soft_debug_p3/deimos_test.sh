@@ -70,9 +70,10 @@ do
 
 	tr=0 
 
-	for i in {0..3}
+	for i in {0..7}
 	do
 		./deimos_reg.sh csr.ctrl.sel $i
+		./deimos_reg_rd.sh csr.ctrl.sel
 
 		wm_l=`./deimos_reg.sh buf.buf_mon.lwm`
 		wm_h=`./deimos_reg.sh buf.buf_mon.hwm`
