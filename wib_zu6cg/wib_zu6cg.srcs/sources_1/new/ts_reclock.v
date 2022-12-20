@@ -59,7 +59,7 @@ module ts_reclock
         tstamp_in
     };
 
-    wire [78:0] dout;
+    reg [78:0] dout;
     wire [63:0] tstamp_int;
     assign 
     {
@@ -71,8 +71,6 @@ module ts_reclock
         tstamp_int
     } = dout;
 
-    assign dout = din; // FIFO is removed for 62.5M migration
-    
 `define CMD_DECODE(c,e,b) if (e == 1'h1 && c == sync_out) b = 1'b1
     
     reg [63:0] tstamp_fake = 64'h12340000_00000000;
@@ -117,6 +115,9 @@ module ts_reclock
         
         // fake time stamp enable reset pipeline
         fts_en = {fts_en[1:0], fake_time_stamp_en};
-    end
+
+        dout = din; // extra register to fix the missing spy memory trigger issue
+
+  end
 
 endmodule
