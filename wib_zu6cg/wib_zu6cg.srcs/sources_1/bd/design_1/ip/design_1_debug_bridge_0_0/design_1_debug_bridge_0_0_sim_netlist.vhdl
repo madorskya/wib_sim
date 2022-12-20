@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Oct 21 11:49:12 2022
+-- Date        : Mon Dec  5 09:32:42 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_debug_bridge_0_0 -prefix
+--               design_1_debug_bridge_0_0_ design_1_debug_bridge_0_0_sim_netlist.vhdl
 -- Design      : design_1_debug_bridge_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -52,8 +52,6 @@ entity design_1_debug_bridge_0_0_bd_c443 is
   );
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1_debug_bridge_0_0_bd_c443 : entity is "design_1_debug_bridge_0_0.hwdef";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_debug_bridge_0_0_bd_c443 : entity is "bd_c443";
 end design_1_debug_bridge_0_0_bd_c443;
 
 architecture STRUCTURE of design_1_debug_bridge_0_0_bd_c443 is
@@ -149,9 +147,9 @@ architecture STRUCTURE of design_1_debug_bridge_0_0_bd_c443 is
   signal bsip_m_bscan_UPDATE : STD_LOGIC;
   signal bsip_tap_tdo : STD_LOGIC;
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of axi_jtag : label is "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018";
-  attribute X_CORE_INFO of bs_switch_1 : label is "bs_switch_v1_0_0_bs_switch,Vivado 2020.1.1_AR73018";
-  attribute X_CORE_INFO of bsip : label is "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of axi_jtag : label is "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1";
+  attribute X_CORE_INFO of bs_switch_1 : label is "bs_switch_v1_0_0_bs_switch,Vivado 2020.1";
+  attribute X_CORE_INFO of bsip : label is "bsip_v1_1_0_bsip,Vivado 2020.1";
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of S_AXI_arready : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARREADY";
   attribute X_INTERFACE_INFO of S_AXI_arvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARVALID";

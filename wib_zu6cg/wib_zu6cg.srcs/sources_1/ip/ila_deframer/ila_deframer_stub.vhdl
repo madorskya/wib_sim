@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Tue Oct 25 12:06:08 2022
+-- Date        : Mon Dec  5 09:30:52 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/ila_deframer/ila_deframer_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top ila_deframer -prefix
+--               ila_deframer_ ila_deframer_stub.vhdl
 -- Design      : ila_deframer
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e

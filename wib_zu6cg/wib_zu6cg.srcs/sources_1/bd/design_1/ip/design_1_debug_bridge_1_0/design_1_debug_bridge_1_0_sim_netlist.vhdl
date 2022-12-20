@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Oct 21 11:49:47 2022
+-- Date        : Mon Dec  5 09:32:54 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_1_0/design_1_debug_bridge_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_debug_bridge_1_0 -prefix
+--               design_1_debug_bridge_1_0_ design_1_debug_bridge_1_0_sim_netlist.vhdl
 -- Design      : design_1_debug_bridge_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -32,8 +32,6 @@ entity design_1_debug_bridge_1_0_bd_0412 is
   );
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1_debug_bridge_1_0_bd_0412 : entity is "design_1_debug_bridge_1_0.hwdef";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_debug_bridge_1_0_bd_0412 : entity is "bd_0412";
 end design_1_debug_bridge_1_0_bd_0412;
 
 architecture STRUCTURE of design_1_debug_bridge_1_0_bd_0412 is
@@ -95,8 +93,8 @@ architecture STRUCTURE of design_1_debug_bridge_1_0_bd_0412 is
   signal lut_buffer_m_bscan_TMS : STD_LOGIC;
   signal lut_buffer_m_bscan_UPDATE : STD_LOGIC;
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of lut_buffer : label is "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018";
-  attribute X_CORE_INFO of xsdbm : label is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1.1_AR73018";
+  attribute X_CORE_INFO of lut_buffer : label is "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1";
+  attribute X_CORE_INFO of xsdbm : label is "xsdbm_v3_0_0_xsdbm,Vivado 2020.1";
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of S_BSCAN_bscanid_en : signal is "xilinx.com:interface:bscan:1.0 S_BSCAN BSCANID_EN";
   attribute X_INTERFACE_INFO of S_BSCAN_capture : signal is "xilinx.com:interface:bscan:1.0 S_BSCAN CAPTURE";

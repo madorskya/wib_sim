@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Jun  1 16:23:56 2022
+-- Date        : Tue Dec 20 11:03:06 2022
 -- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/madorsky/github/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/ila_3/ila_3_stub.vhdl
+--               /home/madorsky/github/zynq/wib_sim_felix/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/ila_3/ila_3_stub.vhdl
 -- Design      : ila_3
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu6cg-ffvb1156-1-e

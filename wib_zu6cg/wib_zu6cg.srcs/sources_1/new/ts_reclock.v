@@ -59,7 +59,7 @@ module ts_reclock
         tstamp_in
     };
 
-    wire [78:0] dout;
+    reg [78:0] dout;
     wire [63:0] tstamp_int;
     assign 
     {
@@ -71,7 +71,7 @@ module ts_reclock
         tstamp_int
     } = dout;
 
-    assign dout = din; // FIFO is removed for 62.5M migration
+//    assign dout = din; // FIFO is removed for 62.5M migration
     
 `define CMD_DECODE(c,e,b) if (e == 1'h1 && c == sync_out) b = 1'b1
     
@@ -117,6 +117,9 @@ module ts_reclock
         
         // fake time stamp enable reset pipeline
         fts_en = {fts_en[1:0], fake_time_stamp_en};
-    end
+
+        dout = din; // trying to clock in din cleanly, debugging missing cmd_bit_trigger in timing master mode
+
+  end
 
 endmodule

@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Oct 26 16:07:20 2022
+// Date        : Mon Dec  5 09:28:52 2022
 // Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/madorsky/github/zynq/wib_sim/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_i2c_clk_phase_0/design_1_i2c_clk_phase_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_i2c_clk_phase_0 -prefix
+//               design_1_i2c_clk_phase_0_ design_1_i2c_clk_phase_0_sim_netlist.v
 // Design      : design_1_i2c_clk_phase_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -51,7 +51,6 @@ module design_1_i2c_clk_phase_0
         .reset(reset));
 endmodule
 
-(* ORIG_REF_NAME = "design_1_i2c_clk_phase_0_clk_wiz" *) 
 module design_1_i2c_clk_phase_0_design_1_i2c_clk_phase_0_clk_wiz
    (clk_out1,
     psclk,
