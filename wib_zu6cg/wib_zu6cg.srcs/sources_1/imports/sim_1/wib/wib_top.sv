@@ -50,10 +50,10 @@ module wib_top
      input  wire mgtrefclk0_x0y1_n,
 
      // Serial data ports for FELIX GTH bank 128 channel 0
-//     input  wire ch0_gthrxn_in,
-//     input  wire ch0_gthrxp_in,
-//     output wire ch0_gthtxn_out,
-//     output wire ch0_gthtxp_out,
+     input  wire ch0_gthrxn_in,
+     input  wire ch0_gthrxp_in,
+     output wire ch0_gthtxn_out,
+     output wire ch0_gthtxp_out,
 
 //     // Serial data ports for FELIX GTH bank 128 channel 1
 //     input  wire ch1_gthrxn_in,
@@ -236,19 +236,19 @@ module wib_top
     
     // FELIX channel breakout
     wire [1:0] gthrxn_int;
-//    assign gthrxn_int[0:0] = ch0_gthrxn_in;
+    assign gthrxn_int[0:0] = ch0_gthrxn_in;
 //    assign gthrxn_int[1:1] = ch1_gthrxn_in;
     
     wire [1:0] gthrxp_int;
-//    assign gthrxp_int[0:0] = ch0_gthrxp_in;
+    assign gthrxp_int[0:0] = ch0_gthrxp_in;
 //    assign gthrxp_int[1:1] = ch1_gthrxp_in;   
     
     wire [1:0] gthtxn_int;
-//    assign gthtxn_int[0:0] = ch0_gthtxn_out;
+    assign gthtxn_int[0:0] = ch0_gthtxn_out;
 //    assign gthtxn_int[1:1] = ch1_gthtxn_out;
     
     wire [1:0] gthtxp_int;
-//    assign gthtxp_int[0:0] = ch0_gthtxp_out;
+    assign gthtxp_int[0:0] = ch0_gthtxp_out;
 //    assign gthtxp_int[1:1] = ch1_gthtxp_out; 
 
     genvar gi;

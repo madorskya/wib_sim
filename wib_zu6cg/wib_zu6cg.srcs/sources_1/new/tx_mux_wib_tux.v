@@ -67,7 +67,7 @@ module tx_mux_wib_tux
     
 );
 
-    tx_mux_wib tmw 
+    deimos_mux tmw 
     (
         .S_AXI_ACLK    (S_AXI_ACLK),    // input wire S_AXI_ACLK
         .S_AXI_ARESETN (S_AXI_ARESETN), // input wire S_AXI_ARESETN
@@ -95,7 +95,6 @@ module tx_mux_wib_tux
         .eth_tx_p      (eth_tx_p),      // output wire eth_tx_p
         .eth_tx_n      (eth_tx_n),      // output wire eth_tx_n
         .eth_tx_dis    (),    // output wire eth_tx_dis
-        .eth_los       (1'b0),       // input wire eth_los
         .eth_clk_p     (eth_clk_p),     // input wire eth_clk_p
         .eth_clk_n     (eth_clk_n),     // input wire eth_clk_n
         .clk           (clk),           // input wire clk

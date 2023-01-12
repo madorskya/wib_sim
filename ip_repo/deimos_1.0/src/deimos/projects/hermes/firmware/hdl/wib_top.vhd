@@ -54,7 +54,25 @@ entity wib_top is
         d0_last: in std_logic;
         d1: in std_logic_vector(63 downto 0);
         d1_valid: in std_logic;
-        d1_last: in std_logic
+        d1_last: in std_logic;
+        d2: in std_logic_vector(63 downto 0);
+        d2_valid: in std_logic;
+        d2_last: in std_logic;
+        d3: in std_logic_vector(63 downto 0);
+        d3_valid: in std_logic;
+        d3_last: in std_logic;
+        d4: in std_logic_vector(63 downto 0);
+        d4_valid: in std_logic;
+        d4_last: in std_logic;
+        d5: in std_logic_vector(63 downto 0);
+        d5_valid: in std_logic;
+        d5_last: in std_logic;
+        d6: in std_logic_vector(63 downto 0);
+        d6_valid: in std_logic;
+        d6_last: in std_logic;
+        d7: in std_logic_vector(63 downto 0);
+        d7_valid: in std_logic;
+        d7_last: in std_logic
     );
 
 end entity wib_top;
@@ -105,7 +123,7 @@ begin
 
     mux: entity work.tx_mux_wib
         generic map(
-            N_SRC => 2
+            N_SRC => 8
         )
         port map(
             ipb_clk => S_AXI_ACLK,
@@ -126,7 +144,25 @@ begin
             d(0).last => d0_last,
             d(1).d => d1,
             d(1).valid => d1_valid,
-            d(1).last => d1_last
+            d(1).last => d1_last,
+            d(2).d => d2,
+            d(2).valid => d2_valid,
+            d(2).last => d2_last,
+            d(3).d => d3,
+            d(3).valid => d3_valid,
+            d(3).last => d3_last,
+            d(4).d => d4,
+            d(4).valid => d4_valid,
+            d(4).last => d4_last,
+            d(5).d => d5,
+            d(5).valid => d5_valid,
+            d(5).last => d5_last,
+            d(6).d => d6,
+            d(6).valid => d6_valid,
+            d(6).last => d6_last,
+            d(7).d => d7,
+            d(7).valid => d7_valid,
+            d(7).last => d7_last
         );
 
 end architecture rtl;
