@@ -1,3 +1,33 @@
+echo 'configure Ethernet IP according to Slack msg from D. Newbold, 2023-01-12'
+
+# Set link 0 mac address
+./deimos_reg.sh src_mac_addr_lower 0x00000001
+./deimos_reg.sh src_mac_addr_upper 0x00000200
+
+# Set link 0 IP address
+# 192.168.51.1
+./deimos_reg.sh src_ip_addr 0xc0a83301
+
+# Set destination mac address (no ARP for now)
+# host computer MAC: 00:0e:1e:51:df:20
+./deimos_reg.sh dst_mac_addr_lower 0x1e51df20
+./deimos_reg.sh dst_mac_addr_upper 0x0000000e
+
+# Set destination IP address
+# 192.168.51.2
+./deimos_reg.sh dst_ip_addr 0xc0a83302
+
+# Set UDP source / destination ports
+./deimos_reg.sh udp_ports 0xf0d1f0d0
+
+./deimos_reg_rd.sh src_mac_addr_lower
+./deimos_reg_rd.sh src_mac_addr_upper
+./deimos_reg_rd.sh src_ip_addr
+./deimos_reg_rd.sh dst_mac_addr_lower
+./deimos_reg_rd.sh dst_mac_addr_upper
+./deimos_reg_rd.sh dst_ip_addr
+./deimos_reg_rd.sh udp_ports
+
 ./deimos_reg_rd.sh csr.stat.err
 ./deimos_reg_rd.sh csr.stat.eth_rdy
 ./deimos_reg_rd.sh csr.stat.src_rdy
@@ -70,7 +100,7 @@ do
 
 	tr=0 
 
-	for i in {0..7}
+	for i in {0..1}
 	do
 		./deimos_reg.sh csr.ctrl.sel $i
 		./deimos_reg_rd.sh csr.ctrl.sel
@@ -107,5 +137,9 @@ do
 	done
 	printf "\tTot %d Gb/s\n" "$tr"
  
+	./deimos_reg_rd.sh rx.stat.err 
+	./deimos_reg_rd.sh rx.ctrs.d_blks 	
+	./deimos_reg_rd.sh rx.ctrs.h_blks
+
 	sleep 2
 done

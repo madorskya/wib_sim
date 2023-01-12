@@ -48,6 +48,10 @@ addr+=(0xA00C009C 0xA00C003C  0xA00C003C       0xA00C003C)
 bnum+=(0          0           4                5)
 mask+=(0xffff     0xf         1                1)
 
+
+
+
+
 #syntax: devreg reg_name [wr_value]
 
 if [ $1 ]
@@ -99,7 +103,8 @@ then
 				# split field
 				reg_read_value=$(( $reg_read_value >> ${bnum[$i]} ))
 				reg_read_value=$(( $reg_read_value &  ${mask[$i]} ))
-				printf "%s = 0x%x\n" "$n" "$reg_read_value"
+				# printf "%s = 0x%x\n" "$n" "$reg_read_value"
+				printf "0x%x\n" "$reg_read_value"
 				found=1		
 			fi
 			i=$(( $i + 1 ))
