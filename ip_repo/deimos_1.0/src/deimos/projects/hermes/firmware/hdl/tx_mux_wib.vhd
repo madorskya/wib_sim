@@ -75,7 +75,7 @@ begin
 
     mux: entity work.tx_mux
         generic map(
-            N_SRC => 2
+            N_SRC => N_SRC
         )
         port map(
             ipb_clk => ipb_clk,
