@@ -62,7 +62,7 @@
         "OUTPUTDIR": [ { "value": "../../../../../../wib_zu6cg.gen/sources_1/bd/design_1/ip/design_1_auto_pc_1" } ],
         "SELECTEDSIMMODEL": [ { "value": "rtl" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
-        "SWVERSION": [ { "value": "2022.2.1" } ],
+        "SWVERSION": [ { "value": "2022.2" } ],
         "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },

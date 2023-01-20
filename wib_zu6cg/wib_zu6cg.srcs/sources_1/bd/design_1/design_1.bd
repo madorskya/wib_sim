@@ -7,7 +7,7 @@
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2022.2.1",
+      "tool_version": "2022.2",
       "validated": "true"
     },
     "design_tree": {
@@ -7707,6 +7707,24 @@
           "PSU__SATA__PERIPHERAL__ENABLE": {
             "value": "0"
           },
+          "PSU__SD0__CLK_100_SDR_OTAP_DLY": {
+            "value": "0x3"
+          },
+          "PSU__SD0__CLK_200_SDR_OTAP_DLY": {
+            "value": "0x3"
+          },
+          "PSU__SD0__CLK_50_DDR_ITAP_DLY": {
+            "value": "0x3D"
+          },
+          "PSU__SD0__CLK_50_DDR_OTAP_DLY": {
+            "value": "0x4"
+          },
+          "PSU__SD0__CLK_50_SDR_ITAP_DLY": {
+            "value": "0x15"
+          },
+          "PSU__SD0__CLK_50_SDR_OTAP_DLY": {
+            "value": "0x5"
+          },
           "PSU__SD0__PERIPHERAL__ENABLE": {
             "value": "0"
           },
@@ -8036,6 +8054,9 @@
           },
           "USB1_BOARD_INTERFACE": {
             "value": "custom"
+          },
+          "preset": {
+            "value": "None"
           }
         },
         "interface_ports": {

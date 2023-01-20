@@ -31,7 +31,7 @@
         "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/deimos_mux" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
-        "SWVERSION": [ { "value": "2022.2.1" } ],
+        "SWVERSION": [ { "value": "2022.2" } ],
         "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },
