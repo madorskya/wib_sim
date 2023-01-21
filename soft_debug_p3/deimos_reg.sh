@@ -49,13 +49,15 @@ addr+=(0xA0020090  0xA0020098     0xA002009C)
 bnum+=(0           0              0) 
 mask+=(1           0xffffffff     0xffffffff)
 
+# DEIMOS registers, Slack message from D. Newbold 2023-01-17
+
 name+=(src_mac_addr_lower src_mac_addr_upper src_ip_addr)
-addr+=(0xA0032000         0xA0032004         0xA0032024)
+addr+=(0xA0020400         0xA0020404         0xA0020424)
 bnum+=(0                  0                  0)
 mask+=(0xffffffff         0xffff             0xffffffff)
 
 name+=(dst_mac_addr_lower dst_mac_addr_upper dst_ip_addr udp_ports)
-addr+=(0xA0032008         0xA003200C         0xA0032020  0xA0032028)
+addr+=(0xA0020408         0xA002040C         0xA0020420  0xA0020428)
 bnum+=(0                  0                  0           0)
 mask+=(0xffffffff         0xffff             0xffffffff  0xffffffff)
 
