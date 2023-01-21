@@ -8288,7 +8288,7 @@
               "AWADDR": {
                 "physical_name": "S_AXI_AWADDR",
                 "direction": "I",
-                "left": "7",
+                "left": "15",
                 "right": "0"
               },
               "AWPROT": {
@@ -8342,7 +8342,7 @@
               "ARADDR": {
                 "physical_name": "S_AXI_ARADDR",
                 "direction": "I",
-                "left": "7",
+                "left": "15",
                 "right": "0"
               },
               "ARPROT": {

@@ -5,7 +5,7 @@ module tx_mux_wib_tux
     (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK" *)    input wire S_AXI_ACLK,
     (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST" *) input wire S_AXI_ARESETN,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *)   input wire [7 : 0] S_AXI_AWADDR,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *)   input wire [15 : 0] S_AXI_AWADDR,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWPROT" *)   input wire [2 : 0] S_AXI_AWPROT,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWVALID" *)  input wire S_AXI_AWVALID,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI AWREADY" *)  output wire S_AXI_AWREADY,
@@ -16,7 +16,7 @@ module tx_mux_wib_tux
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BRESP" *)    output wire [1 : 0] S_AXI_BRESP,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BVALID" *)   output wire S_AXI_BVALID,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI BREADY" *)   input wire S_AXI_BREADY,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *)   input wire [7 : 0] S_AXI_ARADDR,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARADDR" *)   input wire [15 : 0] S_AXI_ARADDR,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARPROT" *)   input wire [2 : 0] S_AXI_ARPROT,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARVALID" *)  input wire S_AXI_ARVALID,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI ARREADY" *)  output wire S_AXI_ARREADY,
@@ -67,7 +67,7 @@ module tx_mux_wib_tux
     
 );
 
-    deimos_mux tmw 
+    deimos_1_1 tmw 
     (
         .S_AXI_ACLK    (S_AXI_ACLK),    // input wire S_AXI_ACLK
         .S_AXI_ARESETN (S_AXI_ARESETN), // input wire S_AXI_ARESETN
