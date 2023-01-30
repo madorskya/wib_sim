@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Mon Dec  5 09:30:52 2022
-// Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
-// Command     : write_verilog -force -mode synth_stub -rename_top ila_deframer -prefix
-//               ila_deframer_ ila_deframer_stub.v
+// Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+// Date        : Mon Jan 30 16:31:20 2023
+// Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub
+//               c:/github/wib_felix/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/ila_deframer/ila_deframer_stub.v
 // Design      : ila_deframer
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu6cg-ffvb1156-1-e
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "ila,Vivado 2020.1" *)
+(* X_CORE_INFO = "ila,Vivado 2020.1.1_AR73018" *)
 module ila_deframer(clk, probe0, probe1, probe2, probe3, probe4, probe5, 
   probe6, probe7, probe8, probe9, probe10, probe11, probe12, probe13, probe14, probe15, probe16, probe17, 
   probe18, probe19, probe20, probe21, probe22, probe23, probe24, probe25, probe26, probe27, probe28, 

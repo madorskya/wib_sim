@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,7 +50,7 @@
 // IP VLNV: user.org:user:reg_bank_64:1.0
 // IP Revision: 2
 
-(* X_CORE_INFO = "reg_bank_64_v1_0,Vivado 2020.1" *)
+(* X_CORE_INFO = "reg_bank_64_v1_0,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "design_1_reg_bank_64_0_0,reg_bank_64_v1_0,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_reg_bank_64_0_0 (

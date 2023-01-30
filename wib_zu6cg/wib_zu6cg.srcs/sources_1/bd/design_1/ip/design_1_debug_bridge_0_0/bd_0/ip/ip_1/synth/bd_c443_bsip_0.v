@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:ip:bsip:1.1
 // IP Revision: 0
 
-(* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1" *)
+(* X_CORE_INFO = "bsip_v1_1_0_bsip,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "bd_c443_bsip_0,bsip_v1_1_0_bsip,{}" *)
-(* CORE_GENERATION_INFO = "bd_c443_bsip_0,bsip_v1_1_0_bsip,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=bsip,x_ipVersion=1.1,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_EN_MUX=0,C_EN_MUX_EXT_BS=0,C_USE_SOFTBSCAN=1,C_DEVICE_FAMILY=0,C_IR_WIDTH=0,C_CHIP_ID=0,C_IR_ID_INSTR=0,C_IR_USER1_INSTR=0,C_USER_SCAN_CHAIN=1}" *)
+(* CORE_GENERATION_INFO = "bd_c443_bsip_0,bsip_v1_1_0_bsip,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=bsip,x_ipVersion=1.1,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_EN_MUX=0,C_EN_MUX_EXT_BS=0,C_USE_SOFTBSCAN=1,C_DEVICE_FAMILY=0,C_IR_WIDTH=0,C_CHIP_ID=0,C_IR_ID_INSTR=0,C_IR_USER1_INSTR=0,C_USER_SCAN_CHAIN=1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 (* DONT_TOUCH = "true" *)
 module bd_c443_bsip_0 (

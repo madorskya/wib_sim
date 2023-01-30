@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Tue Dec 20 11:02:20 2022
--- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Mon Jan 30 16:28:26 2023
+-- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               /home/madorsky/github/zynq/wib_sim_felix/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_sim_netlist.vhdl
+--               c:/github/wib_felix/wib_zu6cg/wib_zu6cg.srcs/sources_1/ip/FELIX_GTH_v1f/FELIX_GTH_v1f_sim_netlist.vhdl
 -- Design      : FELIX_GTH_v1f
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -11730,7 +11730,7 @@ entity FELIX_GTH_v1f is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of FELIX_GTH_v1f : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of FELIX_GTH_v1f : entity is "FELIX_GTH_v1f_gtwizard_top,Vivado 2020.1";
+  attribute X_CORE_INFO of FELIX_GTH_v1f : entity is "FELIX_GTH_v1f_gtwizard_top,Vivado 2020.1.1_AR73018";
 end FELIX_GTH_v1f;
 
 architecture STRUCTURE of FELIX_GTH_v1f is

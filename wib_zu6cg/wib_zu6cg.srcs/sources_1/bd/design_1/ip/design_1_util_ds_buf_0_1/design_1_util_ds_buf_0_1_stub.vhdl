@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  5 09:28:51 2022
--- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Mon Jan 30 16:30:22 2023
+-- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_util_ds_buf_0_1 -prefix
 --               design_1_util_ds_buf_0_1_ design_1_util_ds_buf_0_0_stub.vhdl
 -- Design      : design_1_util_ds_buf_0_0
@@ -27,6 +27,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "OBUF_IN[0:0],OBUF_DS_P[0:0],OBUF_DS_N[0:0]";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "util_ds_buf,Vivado 2020.1";
+attribute x_core_info of stub : architecture is "util_ds_buf,Vivado 2020.1.1_AR73018";
 begin
 end;

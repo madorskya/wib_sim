@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:module_ref:dyn_phase_adjust:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "dyn_phase_adjust,Vivado 2020.1" *)
+(* X_CORE_INFO = "dyn_phase_adjust,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "design_1_dyn_phase_adjust_0_0,dyn_phase_adjust,{}" *)
-(* CORE_GENERATION_INFO = "design_1_dyn_phase_adjust_0_0,dyn_phase_adjust,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dyn_phase_adjust,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "design_1_dyn_phase_adjust_0_0,dyn_phase_adjust,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=dyn_phase_adjust,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_dyn_phase_adjust_0_0 (
@@ -62,7 +62,7 @@ module design_1_dyn_phase_adjust_0_0 (
   psincdec
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_pdts_endpoint_wrapper_0_0_clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 62500000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_ts_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 input wire psen_in;

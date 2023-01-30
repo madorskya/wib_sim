@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:ip:lut_buffer:2.0
 // IP Revision: 0
 
-(* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1" *)
+(* X_CORE_INFO = "lut_buffer_v2_0_0_lut_buffer,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "bd_0412_lut_buffer_0,lut_buffer_v2_0_0_lut_buffer,{}" *)
-(* CORE_GENERATION_INFO = "bd_0412_lut_buffer_0,lut_buffer_v2_0_0_lut_buffer,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=lut_buffer,x_ipVersion=2.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_EN_BSCANID_VEC=0}" *)
+(* CORE_GENERATION_INFO = "bd_0412_lut_buffer_0,lut_buffer_v2_0_0_lut_buffer,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=lut_buffer,x_ipVersion=2.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_EN_BSCANID_VEC=0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_0412_lut_buffer_0 (
   tdi_i,

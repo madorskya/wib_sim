@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:ip:axi_jtag:1.0
 // IP Revision: 0
 
-(* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1" *)
+(* X_CORE_INFO = "axi_jtag_v1_0_0_axi_jtag,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "bd_c443_axi_jtag_0,axi_jtag_v1_0_0_axi_jtag,{}" *)
-(* CORE_GENERATION_INFO = "bd_c443_axi_jtag_0,axi_jtag_v1_0_0_axi_jtag,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_jtag,x_ipVersion=1.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S_AXI_DATA_WIDTH=32,C_S_AXI_ADDR_WIDTH=5,C_TCK_CLOCK_RATIO=8,C_USE_MUX_STATUS=0}" *)
+(* CORE_GENERATION_INFO = "bd_c443_axi_jtag_0,axi_jtag_v1_0_0_axi_jtag,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_jtag,x_ipVersion=1.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S_AXI_DATA_WIDTH=32,C_S_AXI_ADDR_WIDTH=5,C_TCK_CLOCK_RATIO=8,C_USE_MUX_STATUS=0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_c443_axi_jtag_0 (
   s_axi_aclk,

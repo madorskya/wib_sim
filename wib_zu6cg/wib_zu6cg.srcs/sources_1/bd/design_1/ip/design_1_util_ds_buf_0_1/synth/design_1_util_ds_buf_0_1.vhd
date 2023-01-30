@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -164,11 +164,11 @@ ARCHITECTURE design_1_util_ds_buf_0_1_arch OF design_1_util_ds_buf_0_1 IS
     );
   END COMPONENT util_ds_buf;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF design_1_util_ds_buf_0_1_arch: ARCHITECTURE IS "util_ds_buf,Vivado 2020.1";
+  ATTRIBUTE X_CORE_INFO OF design_1_util_ds_buf_0_1_arch: ARCHITECTURE IS "util_ds_buf,Vivado 2020.1.1_AR73018";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF design_1_util_ds_buf_0_1_arch : ARCHITECTURE IS "design_1_util_ds_buf_0_1,util_ds_buf,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF design_1_util_ds_buf_0_1_arch: ARCHITECTURE IS "design_1_util_ds_buf_0_1,util_ds_buf,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=util_ds_buf,x_ipVersion=2.1,x_ipCoreRevision=22,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_BUF_TYPE=OBUFDS,C_SIZE=1,C_BUFGCE_DIV=1,C_BUFG_GT_SYNC=0,C_SIM_DEVICE=VERSAL_AI_CORE_ES1,C_OBUFDS_GTE5_ADV=00,C_REFCLK_ICNTL_TX=00000}";
+  ATTRIBUTE CORE_GENERATION_INFO OF design_1_util_ds_buf_0_1_arch: ARCHITECTURE IS "design_1_util_ds_buf_0_1,util_ds_buf,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=util_ds_buf,x_ipVersion=2.1,x_ipCoreRevision=22,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_BUF_TYPE=OBUFDS,C_SIZE=1,C_BUFGCE_DIV=1,C_BUFG_GT_SYNC=0,C_SIM_DEVICE=VERSAL_AI_CORE_ES1,C_OBUFDS_GTE5_ADV=00,C_REFCLK_ICNTL_TX=00000}";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER OF OBUF_DS_N: SIGNAL IS "XIL_INTERFACENAME OBUF_DS_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_util_ds_buf_0_1_OBUF_DS_N, INSERT_VIP 0";

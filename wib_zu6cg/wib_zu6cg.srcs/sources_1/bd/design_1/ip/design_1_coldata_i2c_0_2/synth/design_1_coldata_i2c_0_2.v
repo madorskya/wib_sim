@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,7 +50,7 @@
 // IP VLNV: user.org:user:coldata_i2c:1.0
 // IP Revision: 32
 
-(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *)
+(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "design_1_coldata_i2c_0_2,coldata_i2c_v1_0,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_coldata_i2c_0_2 (

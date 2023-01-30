@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  5 09:29:06 2022
--- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top design_1_zynq_ultra_ps_e_0_0 -prefix
---               design_1_zynq_ultra_ps_e_0_0_ design_1_zynq_ultra_ps_e_0_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Mon Jan 30 16:30:02 2023
+-- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               c:/github/wib_felix/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0_sim_netlist.vhdl
 -- Design      : design_1_zynq_ultra_ps_e_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -1584,6 +1584,8 @@ entity design_1_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e is
   attribute C_USE_DIFF_RW_CLK_GP6 of design_1_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e : entity is 0;
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e : entity is "design_1_zynq_ultra_ps_e_0_0.hwdef";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e : entity is "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e";
   attribute PSS_IO : string;
   attribute PSS_IO of design_1_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e : entity is "Signal Name, DiffPair Type, DiffPair Signal,Direction, Site Type, IO Standard, Drive (mA), Slew Rate, Pull Type, IBIS Model, ODT, OUTPUT_IMPEDANCE " & LF &
  "QSPI_X4_SCLK_OUT, , , OUT, PS_MIO0_500, LVCMOS18, 12, FAST, PULLUP, PS_MIO_LVCMOS18_F_12,,  " & LF &
@@ -6405,7 +6407,7 @@ entity design_1_zynq_ultra_ps_e_0_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_zynq_ultra_ps_e_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_zynq_ultra_ps_e_0_0 : entity is "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1";
+  attribute X_CORE_INFO of design_1_zynq_ultra_ps_e_0_0 : entity is "zynq_ultra_ps_e_v3_3_2_zynq_ultra_ps_e,Vivado 2020.1.1_AR73018";
 end design_1_zynq_ultra_ps_e_0_0;
 
 architecture STRUCTURE of design_1_zynq_ultra_ps_e_0_0 is
@@ -7430,7 +7432,7 @@ architecture STRUCTURE of design_1_zynq_ultra_ps_e_0_0 is
   attribute X_INTERFACE_INFO of maxigp0_arlen : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARLEN";
   attribute X_INTERFACE_INFO of maxigp0_arprot : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARPROT";
   attribute X_INTERFACE_INFO of maxigp0_arqos : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARQOS";
-  attribute X_INTERFACE_PARAMETER of maxigp0_arqos : signal is "XIL_INTERFACENAME M_AXI_HPM0_FPD, NUM_WRITE_OUTSTANDING 8, NUM_READ_OUTSTANDING 8, DATA_WIDTH 128, PROTOCOL AXI4, FREQ_HZ 100000000, ID_WIDTH 16, ADDR_WIDTH 40, AWUSER_WIDTH 16, ARUSER_WIDTH 16, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, MAX_BURST_LENGTH 256, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of maxigp0_arqos : signal is "XIL_INTERFACENAME M_AXI_HPM0_FPD, NUM_WRITE_OUTSTANDING 8, NUM_READ_OUTSTANDING 8, DATA_WIDTH 128, PROTOCOL AXI4, FREQ_HZ 100000000, ID_WIDTH 16, ADDR_WIDTH 39, AWUSER_WIDTH 16, ARUSER_WIDTH 16, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 1, MAX_BURST_LENGTH 256, PHASE 0.000, CLK_DOMAIN design_1_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of maxigp0_arsize : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARSIZE";
   attribute X_INTERFACE_INFO of maxigp0_aruser : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD ARUSER";
   attribute X_INTERFACE_INFO of maxigp0_awaddr : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_FPD AWADDR";

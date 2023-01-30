@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Mon Dec  6 10:41:34 2021
--- Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top bd_c443_axi_jtag_0 -prefix
---               bd_c443_axi_jtag_0_ bd_c443_axi_jtag_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+-- Date        : Mon Jan 30 16:35:44 2023
+-- Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               c:/github/wib_felix/wib_zu6cg/wib_zu6cg.srcs/sources_1/bd/design_1/ip/design_1_debug_bridge_0_0/bd_0/ip/ip_0/bd_c443_axi_jtag_0_sim_netlist.vhdl
 -- Design      : bd_c443_axi_jtag_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -47,6 +47,8 @@ entity bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi4liteif is
     \slv_reg3_reg[31]_0\ : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_araddr : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi4liteif : entity is "axi_jtag_v1_0_0_axi4liteif";
 end bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi4liteif;
 
 architecture STRUCTURE of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi4liteif is
@@ -3055,6 +3057,8 @@ entity bd_c443_axi_jtag_0_axi_jtag_v1_0_0_jtagproc is
     D : in STD_LOGIC_VECTOR ( 0 to 0 );
     \tdi_output_reg[31]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_jtagproc : entity is "axi_jtag_v1_0_0_jtagproc";
 end bd_c443_axi_jtag_0_axi_jtag_v1_0_0_jtagproc;
 
 architecture STRUCTURE of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_jtagproc is
@@ -7241,6 +7245,8 @@ entity bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag is
   attribute C_TCK_CLOCK_RATIO of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag : entity is 8;
   attribute C_USE_MUX_STATUS : integer;
   attribute C_USE_MUX_STATUS of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag : entity is 0;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag : entity is "axi_jtag_v1_0_0_axi_jtag";
 end bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag;
 
 architecture STRUCTURE of bd_c443_axi_jtag_0_axi_jtag_v1_0_0_axi_jtag is

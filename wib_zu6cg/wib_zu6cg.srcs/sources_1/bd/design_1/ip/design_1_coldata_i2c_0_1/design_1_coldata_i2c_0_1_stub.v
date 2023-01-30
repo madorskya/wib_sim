@@ -1,11 +1,11 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Jun 23 16:40:26 2022
-// Host        : endcap-tf2 running 64-bit Ubuntu 18.04.6 LTS
+// Tool Version: Vivado v.2020.1.1_AR73018 (win64) Build 2960000 Wed Aug  5 22:57:20 MDT 2020
+// Date        : Mon Jan 30 16:35:08 2023
+// Host        : uf-eng-srv-1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub -rename_top design_1_coldata_i2c_0_1 -prefix
-//               design_1_coldata_i2c_0_1_ design_1_coldata_i2c_0_0_stub.v
-// Design      : design_1_coldata_i2c_0_0
+//               design_1_coldata_i2c_0_1_ design_1_coldata_i2c_0_3_stub.v
+// Design      : design_1_coldata_i2c_0_3
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xczu6cg-ffvb1156-1-e
 // --------------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1" *)
+(* X_CORE_INFO = "coldata_i2c_v1_0,Vivado 2020.1.1_AR73018" *)
 module design_1_coldata_i2c_0_1(scl, scl_out, sda_out_p, sda_out_n, sda_in_p, 
   sda_in_n, sda_in_out, sda_out_out, clk62p5, s00_axi_aclk, s00_axi_aresetn, s00_axi_awaddr, 
   s00_axi_awprot, s00_axi_awvalid, s00_axi_awready, s00_axi_wdata, s00_axi_wstrb, 

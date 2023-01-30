@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2022 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -50,9 +50,9 @@
 // IP VLNV: xilinx.com:module_ref:daq_spy_control:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "daq_spy_control,Vivado 2020.1" *)
+(* X_CORE_INFO = "daq_spy_control,Vivado 2020.1.1_AR73018" *)
 (* CHECK_LICENSE_TYPE = "design_1_daq_spy_control_0_1,daq_spy_control,{}" *)
-(* CORE_GENERATION_INFO = "design_1_daq_spy_control_0_1,daq_spy_control,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=daq_spy_control,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,IDLE=000,IDLE_CHECK=001,RECORD=010,LAST=011,FULL=100,FRAME_LNG=0x001E0,DT_INTERMEDIATE=00,DT_FIRST=01,DT_LAST=10,DT_IGNORE=11}" *)
+(* CORE_GENERATION_INFO = "design_1_daq_spy_control_0_1,daq_spy_control,{x_ipProduct=Vivado 2020.1.1_AR73018,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=daq_spy_control,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,IDLE=000,IDLE_CHECK=001,RECORD=010,LAST=011,FULL=100,FRAME_LNG=0x001E0,DT_INTERMEDIATE=00,DT_FIRST=01,DT_LAST=10,DT_IGNORE=11}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_daq_spy_control_0_1 (
