@@ -375,8 +375,9 @@ module wib_top
     
     assign fake_time_stamp_init[63:32] = `CONFIG_BITS(7,  0, 32); // 0xA00C001C
     
-    wire fake_daq_stream = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
-    assign context_fld   = `CONFIG_BITS(8,  1,  8); // 0xA00C0020
+    wire fake_daq_stream  = `CONFIG_BITS(8,  0,  1); // 0xA00C0020
+    assign context_fld    = `CONFIG_BITS(8,  1,  8); // 0xA00C0020
+    wire [5:0] edge_delay = `CONFIG_BITS(8,  9,  6); // 0xA00C0020
     
     wire [17:0] spy_rec_time     = `CONFIG_BITS(9,  0, 18); // 0xA00C0024;
 
@@ -657,6 +658,7 @@ module wib_top
         .cmd_bit_reset          (cmd_bit_reset),
         .cmd_bit_sync           (cmd_bit_sync),
         .cmd_bit_trigger        (cmd_bit_trigger),
+        .edge_delay             (edge_delay),
         .cmd_code_act_0         (cmd_code_act),
         .cmd_code_adc_reset_0   (cmd_code_adc_reset),
         .cmd_code_edge_0        (cmd_code_edge),

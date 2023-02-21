@@ -33,6 +33,7 @@ module ts_reclock
     input cmd_en_reset    ,
     input cmd_en_adc_reset,
     input cmd_en_trigger  ,
+    input [5:0] edge_delay,
 
     output reg cmd_bit_idle     ,
     output reg cmd_bit_edge     ,
@@ -78,13 +79,14 @@ module ts_reclock
     reg [63:0] tstamp_fake = 64'h12340000_00000000;
     
     reg [2:0] fts_en;
+    reg cmd_bit_edge_t; // edge command bit before delay
     
     always @(posedge clk62p5)
     begin
     
         // decode commands
         cmd_bit_idle      = 1'b0;
-        cmd_bit_edge      = 1'b0;
+        cmd_bit_edge_t    = 1'b0;
         cmd_bit_sync      = 1'b0;
         cmd_bit_act       = 1'b0;
         cmd_bit_reset     = 1'b0;
@@ -95,7 +97,7 @@ module ts_reclock
         begin
             // decode and flag
             `CMD_DECODE(cmd_code_idle     , cmd_en_idle     , cmd_bit_idle     );
-            `CMD_DECODE(cmd_code_edge     , cmd_en_edge     , cmd_bit_edge     );
+            `CMD_DECODE(cmd_code_edge     , cmd_en_edge     , cmd_bit_edge_t   );
             `CMD_DECODE(cmd_code_sync     , cmd_en_sync     , cmd_bit_sync     );
             `CMD_DECODE(cmd_code_act      , cmd_en_act      , cmd_bit_act      );
             `CMD_DECODE(cmd_code_reset    , cmd_en_reset    , cmd_bit_reset    );
@@ -121,5 +123,15 @@ module ts_reclock
         dout = din; // trying to clock in din cleanly, debugging missing cmd_bit_trigger in timing master mode
 
   end
+
+    dyn_shift #(.SELWIDTH(6), .BW (1)) edge_ds  
+    (
+        .CLK (clk62p5), 
+        .CE  ('b1), 
+        .SEL (edge_delay), // value of 0 gives delay of 1
+        .SI  (cmd_bit_edge_t), 
+        .DO  (cmd_bit_edge)
+    );
+    
 
 endmodule

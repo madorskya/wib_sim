@@ -1085,10 +1085,6 @@ Each I/O pin of the AXI GPIO is individually programmable as an input or output 
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jan 30 15:29:44 UTC 2023</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>9:3009d708</spirit:value>
           </spirit:parameter>
