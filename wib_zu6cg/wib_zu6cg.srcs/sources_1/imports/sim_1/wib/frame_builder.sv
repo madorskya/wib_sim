@@ -5,7 +5,7 @@ module frame_builder
     input [15:0] time16 [15:0], //[link]
     input [15:0] valid14,
     input [15:0] valid12,
-    input [1:0]  crc_err [15:0],
+    input [1:0]  crc_err [15:0], // instant CRC errors for each frame [link][adc]
     input rxclk2x, // deframed data clock
 
     input  [15:0] link_mask, // this input allows to disable some links in case the are broken
