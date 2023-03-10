@@ -36,7 +36,7 @@ module ts_reclock
     input [5:0] edge_delay,
 
     output reg cmd_bit_idle     ,
-    output reg cmd_bit_edge     ,
+    output     cmd_bit_edge     ,
     output reg cmd_bit_sync     ,
     output reg cmd_bit_act      ,
     output reg cmd_bit_reset    ,

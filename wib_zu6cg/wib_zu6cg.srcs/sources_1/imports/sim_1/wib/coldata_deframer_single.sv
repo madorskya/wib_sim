@@ -19,6 +19,7 @@ module coldata_deframer_single #(parameter NUM = 0)
     output reg [7:0] align8, // automatic calculated alignment delay
     input align_en, // enable alignment
 
+    output reg [1:0] crc_err, // CRC error bits for each frame
     output reg [1:0] crc_err_sticky, // sticky CRC error bits
     input crc_err_reset, // reset of sticky CRC errors
     output [3:0] df_state_out
@@ -74,7 +75,6 @@ module coldata_deframer_single #(parameter NUM = 0)
     
     reg valid14;
     reg valid12;
-    reg [1:0] crc_err;
     
     genvar gi;
     // deframe from parallel storage
@@ -226,22 +226,6 @@ module coldata_deframer_single #(parameter NUM = 0)
     
     wire dfifo_empty = 0;
 
-//    deframer_fifo dfifo 
-//    (
-//        .rst    (1'b0),                  // input wire rst
-//        .wr_clk (clk62p5),            // input wire wr_clk
-//        .rd_clk (rxclk2x),            // input wire rd_clk
-//        .din    ({rx_k[0], rx_data[7:0], rx_k[1], rx_data[15:8]}),                  // input wire [17 : 0] din
-//        .wr_en  (1'b1),    // write everything
-//        .rd_en  (1'b1),    //(!dfifo_empty),  // read whenever there's data
-//        .dout   ({rx_k0, rx_byte0}),                // output wire [8 : 0] dout
-//        .full   (),                // output wire full
-//        .empty  (dfifo_empty),              // output wire empty
-//        .valid  (dfifo_valid),              // output wire valid
-//        .wr_rst_busy (),  // output wire wr_rst_busy
-//        .rd_rst_busy ()  // output wire rd_rst_busy
-//    );
-    
     (* ASYNC_REG = "TRUE" *) reg [17:0] rsh;
     reg clk62p5_ff;
     reg [3:0] clk62p5_r;
@@ -282,11 +266,11 @@ module coldata_deframer_single #(parameter NUM = 0)
     // alignment shifter
     // entire parallel frame + valid flags + time stamp
     // not very efficient in terms of resources, but we're OK so far
-    dyn_shift #(.SELWIDTH(6), .BW (FR14_BITS+2+16)) ds  
+    dyn_shift #(.SELWIDTH(8), .BW (FR14_BITS+2+16)) ds  
     (
         .CLK (rxclk2x), 
         .CE  ('b1), 
-        .SEL ({align8[4:0], 1'b1}), // value of 0 gives delay of 1
+        .SEL ({align8[6:0], 1'b1}), // value of 0 gives delay of 1
         .SI  ({time16,   valid14,   valid12,   parallel_frame  }), 
         .DO  ({time16_a, valid14_a, valid12_a, parallel_frame_a})
     );

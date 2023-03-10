@@ -11,6 +11,7 @@ module coldata_deframer
     output [15:0] valid14,
     output [15:0] valid12,
     output [1:0]  crc_err [15:0],
+    output [1:0]  crc_err_sticky [15:0],
     output [7:0]  align8 [15:0],
     input align_en,
     input crc_err_reset,
@@ -49,7 +50,8 @@ module coldata_deframer
                 .align8           (align8 [gi]     ),
                 .align_en         (align_en),
                 
-                .crc_err_sticky   (crc_err  [gi]),
+                .crc_err          (crc_err  [gi]),
+                .crc_err_sticky   (crc_err_sticky  [gi]),
                 .crc_err_reset    (crc_err_reset),
                 .df_state_out     (df_state_out[gi])
             );

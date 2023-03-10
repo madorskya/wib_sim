@@ -305,6 +305,7 @@ module wib_top
     wire mon_adc_start;
     wire [15:0] mon_adc_val [3:0];
     wire [1:0]  crc_err [15:0];
+    wire [1:0]  crc_err_sticky [15:0];
     wire crc_err_reset;
     wire mon_adc_busy;
     wire cmd_bit_idle     ;
@@ -441,10 +442,10 @@ module wib_top
     assign `STATUS_BITS(12, 0, 32) = {align8[11], align8[10], align8[ 9], align8[ 8]}; // 0xA00C00B0
     assign `STATUS_BITS(13, 0, 32) = {align8[15], align8[14], align8[13], align8[12]}; // 0xA00C00B4
 
-    assign `STATUS_BITS(14, 0, 32) = {crc_err[15], crc_err[14], crc_err[13], crc_err[12], 
-                                      crc_err[11], crc_err[10], crc_err[9],  crc_err[8], 
-                                      crc_err[7],  crc_err[6],  crc_err[5],  crc_err[4], 
-                                      crc_err[3],  crc_err[2],  crc_err[1],  crc_err[0]}; // 0xA00C00B8
+    assign `STATUS_BITS(14, 0, 32) = {crc_err_sticky[15], crc_err_sticky[14], crc_err_sticky[13], crc_err_sticky[12], 
+                                      crc_err_sticky[11], crc_err_sticky[10], crc_err_sticky[9],  crc_err_sticky[8], 
+                                      crc_err_sticky[7],  crc_err_sticky[6],  crc_err_sticky[5],  crc_err_sticky[4], 
+                                      crc_err_sticky[3],  crc_err_sticky[2],  crc_err_sticky[1],  crc_err_sticky[0]}; // 0xA00C00B8
     
     assign `STATUS_BITS(15, 0, 32) = 32'hbabeface;   // 0xA00C00BC
 
@@ -602,6 +603,7 @@ module wib_top
         .valid14          (valid14 ),
         .valid12          (valid12 ),
         .crc_err          (crc_err ),
+        .crc_err_sticky   (crc_err_sticky ),
         .align8           (align8  ),
         .align_en         (align_en),
         .crc_err_reset    (crc_err_reset),
@@ -619,6 +621,7 @@ module wib_top
         .time16               (time16),
         .valid14              (valid14 ),
         .valid12              (valid12 ),
+        .crc_err              (crc_err ),
         .rxclk2x              (clk125),
         .link_mask            (link_mask   ),           // this input allows to disable some links in case they are broken
         .daq_stream           (daq_stream  ),           // data to felix

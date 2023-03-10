@@ -27,7 +27,7 @@ module frame_builder_single #(parameter NUM = 0)
     input        ready, 
     input [3:0]  psr_cal, 
     input        ws, 
-    input [15:0] flex,
+    input [15:0] flex, // unused now, replaced with crc_err
     input raw_channel_map
 );
 
@@ -199,7 +199,8 @@ module frame_builder_single #(parameter NUM = 0)
     assign header_k[5] = 4'b0000;
 
     
-    assign trailer  [0] = {context_fld, ready, psr_cal, ws, 1'b0, flex};
+    assign trailer  [0] = {context_fld, ready, psr_cal, ws, 1'b0, 
+                            crc_err[7], crc_err[6], crc_err[5], crc_err[4], crc_err[3], crc_err[2], crc_err[1], crc_err[0]};
     assign trailer_k[0] = 4'b0000;
     
     assign trailer  [1] = {4'b0, crc_20, 8'hdc};
