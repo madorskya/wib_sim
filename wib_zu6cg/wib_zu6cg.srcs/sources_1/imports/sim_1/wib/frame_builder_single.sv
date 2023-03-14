@@ -91,7 +91,6 @@ module frame_builder_single #
         HEAD0,
         HEAD1,
         HEAD2,
-        HEAD3,
         DATA
     } fb_state_t;
 
@@ -106,7 +105,7 @@ module frame_builder_single #
     
     rq_state_t rq_state = DAQ_WAIT;
 
-    wire [63:0] header [3:0];
+    wire [63:0] header [2:0];
     reg [6:0] data_cnt;
 
     // various fields assigned temporarily
@@ -122,26 +121,24 @@ module frame_builder_single #
 
     assign version = 6'h5; // DAQ readout version with mapping for mono FEMB and DEIMOS
 
-    assign header [0][5:0  ] = version; // Version     
-    assign header [0][11:6 ] = det_id; // Det ID     
-    assign header [0][21:12] = crate_id; // Crate      
-    assign header [0][25:22] = bp_slot_addr; // Slot       
-    assign header [0][31:26] = link; // Link       
-    assign header [0][34:32] = NUM[2:0]; // Channel    
-    assign header [0][36:35] = {|crc_err[1], |crc_err[0]}; // CRC error  
-    assign header [0][38:37] = ~link_mask; // Link valid 
-    assign header [0][39   ] = si5344_lol; // LOL        
-    assign header [0][40   ] = ws; // WIB sync                    ### TBD ###   
-    assign header [0][42:41] = 2'b11; // FEMB sync                ### TBD ###
-    assign header [0][43   ] = 1'b0; // Pulser                    ### TBD ###     
-    assign header [0][44   ] = psr_cal; // Calibration
-    assign header [0][45   ] = ready; // Ready      
-    assign header [0][53:46] = context_fld; // Context    
-    assign header [0][63:54] = 0; // Reserved   
+    assign header[0] = timestamp_reclocked;
 
-    assign header  [1] = 64'h0; // reserved
-    assign header  [2] = timestamp_reclocked;
-    assign header  [3] = {time16_reclocked[1], time16_reclocked[0]};
+    assign header[1][15:0]  = time16_reclocked[0]       ; // COLDATA Link 0 time stamp
+    assign header[1][31:16] = time16_reclocked[1]       ; // COLDATA Link 1 time stamp
+    assign header[1][34:33] = {|crc_err[1], |crc_err[0]}; // CRC error                
+    assign header[1][36:35] = ~link_mask                ; // Link valid               
+    assign header[1][37]    = si5344_lol                ; // Loss of Lock             
+    assign header[1][38]    = ws                        ; // WIB sync    ### TBD ###              
+    assign header[1][40:39] = 2'b11                     ; // FEMB sync   ### TBD ###              
+    assign header[1][41]    = 1'b0                      ; // Pulser      ### TBD ###              
+    assign header[1][42]    = psr_cal                   ; // Calibration              
+    assign header[1][43]    = ready                     ; // Ready                    
+    assign header[1][51:44] = context_fld               ; // Context                  
+    assign header[1][55:52] = version                   ; // Version                  
+    assign header[1][63:56] = NUM[2:0]                  ; // Channel ID               
+    assign header[1][32]    = 1'b0;                     ; // Reserved                 
+
+    assign header[2] = 64'h0; // reserved
 
 
     // DAQ request FSM
@@ -269,14 +266,6 @@ module frame_builder_single #
             HEAD2:
             begin
                 ddi_d = header[2];
-                ddi_d_valid = 1'b1;
-                ddi_d_last  = 1'b0;
-                fb_state = HEAD3;
-            end
-            
-            HEAD3:
-            begin
-                ddi_d = header[3];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
                 fb_state = DATA;

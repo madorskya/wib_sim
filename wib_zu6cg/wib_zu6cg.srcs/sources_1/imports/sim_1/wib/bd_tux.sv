@@ -63,12 +63,12 @@ module bd_tux
     input [7:0]  ddi_d_last,
     input [7:0]  ddi_d_valid,
         
-    input  deimos_clk_n,
-    input  deimos_clk_p,
-    input  deimos_rxn,
-    input  deimos_rxp,
-    output deimos_txn,
-    output deimos_txp
+    input        hermes_refclk_n,
+    input        hermes_refclk_p,
+    input  [1:0] hermes_rxn,
+    input  [1:0] hermes_rxp,
+    output [1:0] hermes_txn,
+    output [1:0] hermes_txp
 );
     
     design_1 design_1_i
@@ -173,12 +173,16 @@ module bd_tux
         .ddi7_d_last         (ddi_d_last [7]),
         .ddi7_d_valid        (ddi_d_valid[7]),
         
-        .deimos_clk_clk_n    (deimos_clk_n),
-        .deimos_clk_clk_p    (deimos_clk_p),
-        .deimos_rxn          (deimos_rxn),
-        .deimos_rxp          (deimos_rxp),
-        .deimos_txn          (deimos_txn),
-        .deimos_txp          (deimos_txp)
+        .hermes_refclk_clk_n (hermes_refclk_n),
+        .hermes_refclk_clk_p (hermes_refclk_p),
+        .hermes0_rxn         (hermes_rxn[0]),
+        .hermes0_rxp         (hermes_rxp[0]),
+        .hermes0_txn         (hermes_txn[0]),
+        .hermes0_txp         (hermes_txp[0]),
+        .hermes1_rxn         (hermes_rxn[1]),
+        .hermes1_rxp         (hermes_rxp[1]),
+        .hermes1_txn         (hermes_txn[1]),
+        .hermes1_txp         (hermes_txp[1])
         
     );
 

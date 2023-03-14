@@ -59,10 +59,14 @@
         "S_AXI_RRESP": [ { "direction": "out", "size_left": "1", "size_right": "0" } ],
         "S_AXI_RVALID": [ { "direction": "out" } ],
         "S_AXI_RREADY": [ { "direction": "in", "driver_value": "0" } ],
-        "eth_tx_p": [ { "direction": "out" } ],
-        "eth_tx_n": [ { "direction": "out" } ],
-        "eth_rx_p": [ { "direction": "in", "driver_value": "0" } ],
-        "eth_rx_n": [ { "direction": "in", "driver_value": "1" } ],
+        "eth0_tx_p": [ { "direction": "out" } ],
+        "eth0_tx_n": [ { "direction": "out" } ],
+        "eth0_rx_p": [ { "direction": "in", "driver_value": "0" } ],
+        "eth0_rx_n": [ { "direction": "in", "driver_value": "1" } ],
+        "eth1_tx_p": [ { "direction": "out" } ],
+        "eth1_tx_n": [ { "direction": "out" } ],
+        "eth1_rx_p": [ { "direction": "in", "driver_value": "0" } ],
+        "eth1_rx_n": [ { "direction": "in", "driver_value": "1" } ],
         "eth_clk_p": [ { "direction": "in" } ],
         "eth_clk_n": [ { "direction": "in" } ],
         "clk": [ { "direction": "in" } ],
@@ -184,15 +188,26 @@
             "RREADY": [ { "physical_name": "S_AXI_RREADY" } ]
           }
         },
-        "eth": {
+        "eth0": {
           "vlnv": "xilinx.com:interface:sgmii:1.0",
           "abstraction_type": "xilinx.com:interface:sgmii_rtl:1.0",
           "mode": "master",
           "port_maps": {
-            "TXN": [ { "physical_name": "eth_tx_n" } ],
-            "RXN": [ { "physical_name": "eth_rx_n" } ],
-            "TXP": [ { "physical_name": "eth_tx_p" } ],
-            "RXP": [ { "physical_name": "eth_rx_p" } ]
+            "TXN": [ { "physical_name": "eth0_tx_n" } ],
+            "RXN": [ { "physical_name": "eth0_rx_n" } ],
+            "TXP": [ { "physical_name": "eth0_tx_p" } ],
+            "RXP": [ { "physical_name": "eth0_rx_p" } ]
+          }
+        },
+        "eth1": {
+          "vlnv": "xilinx.com:interface:sgmii:1.0",
+          "abstraction_type": "xilinx.com:interface:sgmii_rtl:1.0",
+          "mode": "master",
+          "port_maps": {
+            "TXN": [ { "physical_name": "eth1_tx_n" } ],
+            "RXN": [ { "physical_name": "eth1_rx_n" } ],
+            "TXP": [ { "physical_name": "eth1_tx_p" } ],
+            "RXP": [ { "physical_name": "eth1_rx_p" } ]
           }
         },
         "eth_clk": {
@@ -200,7 +215,7 @@
           "abstraction_type": "xilinx.com:interface:diff_clock_rtl:1.0",
           "mode": "slave",
           "parameters": {
-            "FREQ_HZ": [ { "value": "156.25", "value_src": "constant", "value_permission": "bd_and_user", "usage": "all" } ],
+            "FREQ_HZ": [ { "value": "125", "value_src": "constant", "value_permission": "bd_and_user", "format": "long", "usage": "all" } ],
             "CAN_DEBUG": [ { "value": "false", "value_permission": "bd_and_user", "resolve_type": "generated", "format": "bool", "is_ips_inferred": true, "is_static_object": false } ]
           },
           "port_maps": {

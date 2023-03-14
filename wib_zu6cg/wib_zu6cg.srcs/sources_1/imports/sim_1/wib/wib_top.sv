@@ -45,21 +45,21 @@ module wib_top
     input [15 : 0] gthrxp_in    ,
     
     // from Adrian's FELIX branch
-    // 125MHz MGTREFCLK for FELIX GTH
+    // 125MHz MGTREFCLK for FELIX/HERMES GTH
      input  wire mgtrefclk0_x0y1_p,
      input  wire mgtrefclk0_x0y1_n,
 
-     // Serial data ports for FELIX GTH bank 128 channel 0
+     // Serial data ports for FELIX/HERMES GTH bank 128 channel 0
      input  wire ch0_gthrxn_in,
      input  wire ch0_gthrxp_in,
      output wire ch0_gthtxn_out,
      output wire ch0_gthtxp_out,
 
-//     // Serial data ports for FELIX GTH bank 128 channel 1
-//     input  wire ch1_gthrxn_in,
-//     input  wire ch1_gthrxp_in,
-//     output wire ch1_gthtxn_out,
-//     output wire ch1_gthtxp_out,
+//     // Serial data ports for FELIX/HERMES GTH bank 128 channel 1
+     input  wire ch1_gthrxn_in,
+     input  wire ch1_gthrxp_in,
+     output wire ch1_gthtxn_out,
+     output wire ch1_gthtxp_out,
 
     // I2C busses for onboard devices
     inout si5344_scl, 
@@ -199,57 +199,28 @@ module wib_top
         .diff  (csd_diff)
     );    
     
-    // have to add an input FF for timing data, it's missing in the timing endpoint
-    //always @(posedge ts_rec_d_clk) ts_rec_d = ts_rec_d_ddr [ts_edge_sel];
-    
-    //IDDRE1 #(.DDR_CLK_EDGE ("SAME_EDGE_PIPELINED")) iddr_timing
-    //(
-    //    .Q1 (ts_rec_d_ddr[0]),
-    //    .Q2 (ts_rec_d_ddr[1]),
-    //    .C  (ts_rec_d_clk),
-    //    .CB (~ts_rec_d_clk),
-    //    .D  (ts_rec_d_pad),
-    //    .R  (1'b0)
-    //);    
-
-
-    
     // system 62.5M clock to FEMBs, from timing pt.
     OBUFDS clk_buf_out (.I(clk62p5), .O(femb_clk_fpga_out_p), .OB(femb_clk_fpga_out_n));
 
     wire tx_timing;
     OBUFDS tx_tim_buf_out (.I(tx_timing), .O(tx_timing_p), .OB(tx_timing_n));
     
-    // FELIX GTH buffering
-//    wire mgtrefclk0_x0y1_int;
-//    IBUFDS_GTE4 #(
-//        .REFCLK_EN_TX_PATH  (1'b0),
-//        .REFCLK_HROW_CK_SEL (2'b00),
-//        .REFCLK_ICNTL_RX    (2'b00)
-//    ) IBUFDS_GTE4_MGTREFCLK0_X0Y1_INST (
-//        .I     (mgtrefclk0_x0y1_p),
-//        .IB    (mgtrefclk0_x0y1_n),
-//        .CEB   (1'b0),
-//        .O     (mgtrefclk0_x0y1_int),
-//        .ODIV2 ()
-//    );
-    
     // FELIX channel breakout
     wire [1:0] gthrxn_int;
     assign gthrxn_int[0:0] = ch0_gthrxn_in;
-//    assign gthrxn_int[1:1] = ch1_gthrxn_in;
+    assign gthrxn_int[1:1] = ch1_gthrxn_in;
     
     wire [1:0] gthrxp_int;
     assign gthrxp_int[0:0] = ch0_gthrxp_in;
-//    assign gthrxp_int[1:1] = ch1_gthrxp_in;   
+    assign gthrxp_int[1:1] = ch1_gthrxp_in;   
     
     wire [1:0] gthtxn_int;
     assign gthtxn_int[0:0] = ch0_gthtxn_out;
-//    assign gthtxn_int[1:1] = ch1_gthtxn_out;
+    assign gthtxn_int[1:1] = ch1_gthtxn_out;
     
     wire [1:0] gthtxp_int;
     assign gthtxp_int[0:0] = ch0_gthtxp_out;
-//    assign gthtxp_int[1:1] = ch1_gthtxp_out; 
+    assign gthtxp_int[1:1] = ch1_gthtxp_out; 
 
     genvar gi;
     // swizzle bytes in rx_data for easier viewing in the simulation traces
@@ -536,12 +507,12 @@ module wib_top
         .ddi_d_last         (ddi_d_last  ),
         .ddi_d_valid        (ddi_d_valid ),
         
-        .deimos_clk_n       (mgtrefclk0_x0y1_n),
-        .deimos_clk_p       (mgtrefclk0_x0y1_p),
-        .deimos_rxn         (gthrxn_int),
-        .deimos_rxp         (gthrxp_int),
-        .deimos_txn         (gthtxn_int),
-        .deimos_txp         (gthtxp_int)
+        .hermes_refclk_n    (mgtrefclk0_x0y1_n),
+        .hermes_refclk_p    (mgtrefclk0_x0y1_p),
+        .hermes_rxn         (gthrxn_int),
+        .hermes_rxp         (gthrxp_int),
+        .hermes_txn         (gthtxn_int),
+        .hermes_txp         (gthtxp_int)
     );
 
     // Generate fake output clock

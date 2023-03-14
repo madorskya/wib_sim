@@ -28,13 +28,18 @@ module tx_mux_wib_tux
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI RREADY" *)   input wire S_AXI_RREADY,
         
     
-    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth TXP" *) output eth_tx_p,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth TXN" *) output eth_tx_n,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth RXP" *) input  eth_rx_p,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth RXN" *) input  eth_rx_n,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth0 TXP" *) output eth0_tx_p,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth0 TXN" *) output eth0_tx_n,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth0 RXP" *) input  eth0_rx_p,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth0 RXN" *) input  eth0_rx_n,
+        
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth1 TXP" *) output eth1_tx_p,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth1 TXN" *) output eth1_tx_n,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth1 RXP" *) input  eth1_rx_p,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:sgmii:1.0 eth1 RXN" *) input  eth1_rx_n,
         
     (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 eth_clk CLK_P" *)
-    (* X_INTERFACE_PARAMETER = "FREQ_HZ 156.25" *)                               input eth_clk_p,
+    (* X_INTERFACE_PARAMETER = "FREQ_HZ 125" *)                                  input eth_clk_p,
     (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 eth_clk CLK_N" *) input eth_clk_n,
       
     input        clk, // DUNE base clock
@@ -67,64 +72,70 @@ module tx_mux_wib_tux
     
 );
 
-    deimos_1_1 tmw 
+    hermes_wib_1_0 tmw 
     (
-        .S_AXI_ACLK    (S_AXI_ACLK),    // input wire S_AXI_ACLK
-        .S_AXI_ARESETN (S_AXI_ARESETN), // input wire S_AXI_ARESETN
-        .S_AXI_AWADDR  (S_AXI_AWADDR),  // input wire [7 : 0] S_AXI_AWADDR
-        .S_AXI_AWPROT  (S_AXI_AWPROT),  // input wire [2 : 0] S_AXI_AWPROT
-        .S_AXI_AWVALID (S_AXI_AWVALID), // input wire S_AXI_AWVALID
-        .S_AXI_AWREADY (S_AXI_AWREADY), // output wire S_AXI_AWREADY
-        .S_AXI_WDATA   (S_AXI_WDATA),   // input wire [31 : 0] S_AXI_WDATA
-        .S_AXI_WSTRB   (S_AXI_WSTRB),   // input wire [3 : 0] S_AXI_WSTRB
-        .S_AXI_WVALID  (S_AXI_WVALID),  // input wire S_AXI_WVALID
-        .S_AXI_WREADY  (S_AXI_WREADY),  // output wire S_AXI_WREADY
-        .S_AXI_BRESP   (S_AXI_BRESP),   // output wire [1 : 0] S_AXI_BRESP
-        .S_AXI_BVALID  (S_AXI_BVALID),  // output wire S_AXI_BVALID
-        .S_AXI_BREADY  (S_AXI_BREADY),  // input wire S_AXI_BREADY
-        .S_AXI_ARADDR  (S_AXI_ARADDR),  // input wire [7 : 0] S_AXI_ARADDR
-        .S_AXI_ARPROT  (S_AXI_ARPROT),  // input wire [2 : 0] S_AXI_ARPROT
-        .S_AXI_ARVALID (S_AXI_ARVALID), // input wire S_AXI_ARVALID
-        .S_AXI_ARREADY (S_AXI_ARREADY), // output wire S_AXI_ARREADY
-        .S_AXI_RDATA   (S_AXI_RDATA),   // output wire [31 : 0] S_AXI_RDATA
-        .S_AXI_RRESP   (S_AXI_RRESP),   // output wire [1 : 0] S_AXI_RRESP
-        .S_AXI_RVALID  (S_AXI_RVALID),  // output wire S_AXI_RVALID
-        .S_AXI_RREADY  (S_AXI_RREADY),  // input wire S_AXI_RREADY
-        .eth_rx_p      (eth_rx_p),      // input wire eth_rx_p
-        .eth_rx_n      (eth_rx_n),      // input wire eth_rx_n
-        .eth_tx_p      (eth_tx_p),      // output wire eth_tx_p
-        .eth_tx_n      (eth_tx_n),      // output wire eth_tx_n
-        .eth_tx_dis    (),    // output wire eth_tx_dis
-        .eth_clk_p     (eth_clk_p),     // input wire eth_clk_p
-        .eth_clk_n     (eth_clk_n),     // input wire eth_clk_n
-        .clk           (clk),           // input wire clk
-        .rst           (rst),           // input wire rst
-        .d0            (d0),            
-        .d0_valid      (d0_valid),      
-        .d0_last       (d0_last),       
-        .d1            (d1),            
-        .d1_valid      (d1_valid),      
-        .d1_last       (d1_last),       
-        .d2            (d2),            
-        .d2_valid      (d2_valid),      
-        .d2_last       (d2_last),       
-        .d3            (d3),            
-        .d3_valid      (d3_valid),      
-        .d3_last       (d3_last),       
-        .d4            (d4),            
-        .d4_valid      (d4_valid),      
-        .d4_last       (d4_last),       
-        .d5            (d5),            
-        .d5_valid      (d5_valid),      
-        .d5_last       (d5_last),       
-        .d6            (d6),            
-        .d6_valid      (d6_valid),      
-        .d6_last       (d6_last),       
-        .d7            (d7),            
-        .d7_valid      (d7_valid),      
-        .d7_last       (d7_last)
-                
+        .S_AXI_ACLK(S_AXI_ACLK),        // input wire S_AXI_ACLK
+        .S_AXI_ARESETN(S_AXI_ARESETN),  // input wire S_AXI_ARESETN
+        .S_AXI_AWADDR(S_AXI_AWADDR),    // input wire [15 : 0] S_AXI_AWADDR
+        .S_AXI_AWPROT(S_AXI_AWPROT),    // input wire [2 : 0] S_AXI_AWPROT
+        .S_AXI_AWVALID(S_AXI_AWVALID),  // input wire S_AXI_AWVALID
+        .S_AXI_AWREADY(S_AXI_AWREADY),  // output wire S_AXI_AWREADY
+        .S_AXI_WDATA(S_AXI_WDATA),      // input wire [31 : 0] S_AXI_WDATA
+        .S_AXI_WSTRB(S_AXI_WSTRB),      // input wire [3 : 0] S_AXI_WSTRB
+        .S_AXI_WVALID(S_AXI_WVALID),    // input wire S_AXI_WVALID
+        .S_AXI_WREADY(S_AXI_WREADY),    // output wire S_AXI_WREADY
+        .S_AXI_BRESP(S_AXI_BRESP),      // output wire [1 : 0] S_AXI_BRESP
+        .S_AXI_BVALID(S_AXI_BVALID),    // output wire S_AXI_BVALID
+        .S_AXI_BREADY(S_AXI_BREADY),    // input wire S_AXI_BREADY
+        .S_AXI_ARADDR(S_AXI_ARADDR),    // input wire [15 : 0] S_AXI_ARADDR
+        .S_AXI_ARPROT(S_AXI_ARPROT),    // input wire [2 : 0] S_AXI_ARPROT
+        .S_AXI_ARVALID(S_AXI_ARVALID),  // input wire S_AXI_ARVALID
+        .S_AXI_ARREADY(S_AXI_ARREADY),  // output wire S_AXI_ARREADY
+        .S_AXI_RDATA(S_AXI_RDATA),      // output wire [31 : 0] S_AXI_RDATA
+        .S_AXI_RRESP(S_AXI_RRESP),      // output wire [1 : 0] S_AXI_RRESP
+        .S_AXI_RVALID(S_AXI_RVALID),    // output wire S_AXI_RVALID
+        .S_AXI_RREADY(S_AXI_RREADY),    // input wire S_AXI_RREADY
+        
+        .eth0_rx_p(eth0_rx_p),          // input wire eth0_rx_p
+        .eth0_rx_n(eth0_rx_n),          // input wire eth0_rx_n
+        .eth0_tx_p(eth0_tx_p),          // output wire eth0_tx_p
+        .eth0_tx_n(eth0_tx_n),          // output wire eth0_tx_n
+        .eth0_tx_dis(eth0_tx_dis),      // output wire eth0_tx_dis
+        .eth1_rx_p(eth1_rx_p),          // input wire eth1_rx_p
+        .eth1_rx_n(eth1_rx_n),          // input wire eth1_rx_n
+        .eth1_tx_p(eth1_tx_p),          // output wire eth1_tx_p
+        .eth1_tx_n(eth1_tx_n),          // output wire eth1_tx_n
+        .eth1_tx_dis(eth1_tx_dis),      // output wire eth1_tx_dis
+        .eth_clk_p(eth_clk_p),          // input wire eth_clk_p
+        .eth_clk_n(eth_clk_n),          // input wire eth_clk_n
+        
+        .clk(clk),                      // input wire clk
+        .rst(rst),                      // input wire rst
+        
+        .d0(d0),                        // input wire [63 : 0] d0
+        .d0_valid(d0_valid),            // input wire d0_valid
+        .d0_last(d0_last),              // input wire d0_last
+        .d1(d1),                        // input wire [63 : 0] d1
+        .d1_valid(d1_valid),            // input wire d1_valid
+        .d1_last(d1_last),              // input wire d1_last
+        .d2(d2),                        // input wire [63 : 0] d2
+        .d2_valid(d2_valid),            // input wire d2_valid
+        .d2_last(d2_last),              // input wire d2_last
+        .d3(d3),                        // input wire [63 : 0] d3
+        .d3_valid(d3_valid),            // input wire d3_valid
+        .d3_last(d3_last),              // input wire d3_last
+        .d4(d4),                        // input wire [63 : 0] d4
+        .d4_valid(d4_valid),            // input wire d4_valid
+        .d4_last(d4_last),              // input wire d4_last
+        .d5(d5),                        // input wire [63 : 0] d5
+        .d5_valid(d5_valid),            // input wire d5_valid
+        .d5_last(d5_last),              // input wire d5_last
+        .d6(d6),                        // input wire [63 : 0] d6
+        .d6_valid(d6_valid),            // input wire d6_valid
+        .d6_last(d6_last),              // input wire d6_last
+        .d7(d7),                        // input wire [63 : 0] d7
+        .d7_valid(d7_valid),            // input wire d7_valid
+        .d7_last(d7_last)              // input wire d7_last
     );
-
-
+    
 endmodule

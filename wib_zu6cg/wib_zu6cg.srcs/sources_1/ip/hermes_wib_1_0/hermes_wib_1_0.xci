@@ -1,13 +1,13 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "deimos_1_1",
-    "component_reference": "stfc.ac.uk:user:wib_top:1.1",
-    "ip_revision": "3",
-    "gen_directory": "../../../../wib_zu6cg.gen/sources_1/ip/deimos_1_1",
+    "xci_name": "hermes_wib_1_0",
+    "component_reference": "dune.daq:deimos:hermes_wib:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../wib_zu6cg.gen/sources_1/ip/hermes_wib_1_0",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "deimos_1_1", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "hermes_wib_1_0", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynquplus" } ],
@@ -26,9 +26,9 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "3" } ],
+        "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/deimos_1_1" } ],
+        "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/hermes_wib_1_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
         "SWVERSION": [ { "value": "2022.2" } ],
@@ -58,11 +58,16 @@
         "S_AXI_RRESP": [ { "direction": "out", "size_left": "1", "size_right": "0" } ],
         "S_AXI_RVALID": [ { "direction": "out" } ],
         "S_AXI_RREADY": [ { "direction": "in", "driver_value": "0" } ],
-        "eth_rx_p": [ { "direction": "in" } ],
-        "eth_rx_n": [ { "direction": "in" } ],
-        "eth_tx_p": [ { "direction": "out" } ],
-        "eth_tx_n": [ { "direction": "out" } ],
-        "eth_tx_dis": [ { "direction": "out" } ],
+        "eth0_rx_p": [ { "direction": "in" } ],
+        "eth0_rx_n": [ { "direction": "in" } ],
+        "eth0_tx_p": [ { "direction": "out" } ],
+        "eth0_tx_n": [ { "direction": "out" } ],
+        "eth0_tx_dis": [ { "direction": "out" } ],
+        "eth1_rx_p": [ { "direction": "in" } ],
+        "eth1_rx_n": [ { "direction": "in" } ],
+        "eth1_tx_p": [ { "direction": "out" } ],
+        "eth1_tx_n": [ { "direction": "out" } ],
+        "eth1_tx_dis": [ { "direction": "out" } ],
         "eth_clk_p": [ { "direction": "in" } ],
         "eth_clk_n": [ { "direction": "in" } ],
         "clk": [ { "direction": "in" } ],

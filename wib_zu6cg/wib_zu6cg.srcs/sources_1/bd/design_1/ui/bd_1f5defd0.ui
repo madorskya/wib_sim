@@ -1,14 +1,13 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.883883",
-   "Default View_TopLeft":"1751,-327",
+   "Default View_TopLeft":"-369,-360",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
 preplace port WIB_LED -pg 1 -lvl 4 -x 2730 -y 1950 -defaultsOSRD
 preplace port iic_rtl_0 -pg 1 -lvl 4 -x 2730 -y 2090 -defaultsOSRD
-preplace port deimos_clk -pg 1 -lvl 0 -x -180 -y -300 -defaultsOSRD
-preplace port deimos -pg 1 -lvl 4 -x 2730 -y -170 -defaultsOSRD
+preplace port hermes_refclk -pg 1 -lvl 0 -x -180 -y -300 -defaultsOSRD
 preplace port ddi0 -pg 1 -lvl 0 -x -180 -y -270 -defaultsOSRD
 preplace port ddi6 -pg 1 -lvl 0 -x -180 -y -150 -defaultsOSRD
 preplace port ddi5 -pg 1 -lvl 0 -x -180 -y -170 -defaultsOSRD
@@ -17,6 +16,8 @@ preplace port ddi2 -pg 1 -lvl 0 -x -180 -y -230 -defaultsOSRD
 preplace port ddi3 -pg 1 -lvl 0 -x -180 -y -210 -defaultsOSRD
 preplace port ddi4 -pg 1 -lvl 0 -x -180 -y -190 -defaultsOSRD
 preplace port ddi7 -pg 1 -lvl 0 -x -180 -y -130 -defaultsOSRD
+preplace port hermes0 -pg 1 -lvl 4 -x 2730 -y 70 -defaultsOSRD
+preplace port hermes1 -pg 1 -lvl 4 -x 2730 -y 90 -defaultsOSRD
 preplace port port-id_AXI_CLK_OUT -pg 1 -lvl 4 -x 2730 -y 1600 -defaultsOSRD
 preplace port port-id_daq_spy_full_0 -pg 1 -lvl 4 -x 2730 -y 470 -defaultsOSRD
 preplace port port-id_daq_spy_full_1 -pg 1 -lvl 4 -x 2730 -y 160 -defaultsOSRD
@@ -175,7 +176,8 @@ preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1720 1768n
 preplace netloc ps8_0_axi_periph_M13_AXI 1 2 1 1570 1910n
 preplace netloc ps8_0_axi_periph_M14_AXI 1 2 1 1560 1930n
 preplace netloc ps8_0_axi_periph_M15_AXI 1 2 1 1710 612n
-preplace netloc tx_mux_wib_tux_0_eth 1 3 1 2410J -170n
+preplace netloc tx_mux_wib_tux_0_eth0 1 3 1 N 70
+preplace netloc tx_mux_wib_tux_0_eth1 1 3 1 N 90
 preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_FPD 1 1 1 870 1440n
 levelinfo -pg 1 -180 480 1297 2220 2730
 pagesize -pg 1 -db -bbox -sgen -370 -600 2950 3340
