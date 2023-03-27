@@ -217,7 +217,6 @@ module frame_builder_single #
     end
     
     reg [5:0] tick; // clock tick counter
-    reg tick_reset = 1'b0;
     // formatting FSM
     always @(posedge ts_clk)
     begin
@@ -232,10 +231,13 @@ module frame_builder_single #
             IDLE:
             begin
             
-                if (tick_reset == 1'b1)
+                // tick counter reset when lower timestamp bits == 0
+                // bits [4:0] may not be zeros 
+                if (timestamp_reclocked[20:5] == 16'b0) 
                 begin
-                    tick = 6'b0; // reset tick counter
-                    tick_reset = 1'b0; // remove flag
+                    // don't reset second time in a row since timestamp is changing every two data blocks
+                    if (tick > 6'b1) 
+                        tick = 6'b0; // reset tick counter
                 end
             
                 if (data_ready[2] == 1'b1) // request on
@@ -311,8 +313,6 @@ module frame_builder_single #
         // demetastab the request
         data_ready[3:1] = data_ready[2:0];
         
-        // set flag for tick counter reset when lower timestamp bits == 0 
-        if (timestamp_reclocked[15:0] == 16'b0) tick_reset = 1'b1; 
     end
 
     ila_3 ila_daq_rq 
