@@ -3,7 +3,7 @@
   "ip_inst": {
     "xci_name": "coldata_rx_single",
     "component_reference": "xilinx.com:ip:gtwizard_ultrascale:1.7",
-    "ip_revision": "14",
+    "ip_revision": "15",
     "gen_directory": "../../../../wib_zu6cg.gen/sources_1/ip/coldata_rx_single",
     "parameters": {
       "component_parameters": {
@@ -838,12 +838,12 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
-        "IPREVISION": [ { "value": "14" } ],
+        "IPREVISION": [ { "value": "15" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/coldata_rx_single" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
-        "SWVERSION": [ { "value": "2022.2" } ],
+        "SWVERSION": [ { "value": "2022.2.2" } ],
         "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },

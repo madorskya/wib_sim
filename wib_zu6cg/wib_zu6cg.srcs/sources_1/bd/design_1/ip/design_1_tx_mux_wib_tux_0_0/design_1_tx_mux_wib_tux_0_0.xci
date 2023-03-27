@@ -32,7 +32,7 @@
         "OUTPUTDIR": [ { "value": "../../../../../../wib_zu6cg.gen/sources_1/bd/design_1/ip/design_1_tx_mux_wib_tux_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
-        "SWVERSION": [ { "value": "2022.2" } ],
+        "SWVERSION": [ { "value": "2022.2.2" } ],
         "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
       }
     },
@@ -94,7 +94,8 @@
         "d6_last": [ { "direction": "in", "driver_value": "0" } ],
         "d7": [ { "direction": "in", "size_left": "63", "size_right": "0", "driver_value": "0" } ],
         "d7_valid": [ { "direction": "in", "driver_value": "0" } ],
-        "d7_last": [ { "direction": "in", "driver_value": "0" } ]
+        "d7_last": [ { "direction": "in", "driver_value": "0" } ],
+        "ts": [ { "direction": "in", "size_left": "63", "size_right": "0" } ]
       },
       "interfaces": {
         "S_AXI_ACLK": {

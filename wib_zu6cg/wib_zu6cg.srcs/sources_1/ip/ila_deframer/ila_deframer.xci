@@ -6266,7 +6266,7 @@
         "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/ila_deframer" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
-        "SWVERSION": [ { "value": "2022.2" } ],
+        "SWVERSION": [ { "value": "2022.2.2" } ],
         "SYNTHESISFLOW": [ { "value": "OUT_OF_CONTEXT" } ]
       }
     },

@@ -68,7 +68,9 @@ module tx_mux_wib_tux
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi6 d_last"  *) input        d6_last,
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d"       *) input [63:0] d7,
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_valid" *) input        d7_valid,
-    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last"  *) input        d7_last
+    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last"  *) input        d7_last,
+    
+    input [63:0] ts
     
 );
 
@@ -135,7 +137,9 @@ module tx_mux_wib_tux
         .d6_last(d6_last),              // input wire d6_last
         .d7(d7),                        // input wire [63 : 0] d7
         .d7_valid(d7_valid),            // input wire d7_valid
-        .d7_last(d7_last)              // input wire d7_last
+        .d7_last(d7_last),              // input wire d7_last
+        
+        .ts (ts)
     );
     
 endmodule

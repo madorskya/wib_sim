@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.883883",
-   "Default View_TopLeft":"-369,-360",
+   "Default View_TopLeft":"810,-360",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
@@ -92,7 +92,7 @@ preplace inst ps8_0_axi_periph -pg 1 -lvl 2 -x 1297 -y 1800 -defaultsOSRD
 preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 1 -x 480 -y 1500 -defaultsOSRD
 preplace inst tx_mux_wib_tux_0 -pg 1 -lvl 3 -x 2220 -y 80 -defaultsOSRD
 preplace netloc axi_iic_0_iic2intc_irpt 1 0 4 -150 1370 NJ 1370 1630J 1690 2390
-preplace netloc clk_0_1 1 0 3 NJ -320 NJ -320 1830J
+preplace netloc clk_0_1 1 0 3 NJ -320 NJ -320 1820J
 preplace netloc cmd_act_0_1 1 0 3 NJ 990 NJ 990 1680J
 preplace netloc cmd_adc_reset_0_1 1 0 3 NJ 1040 NJ 1040 1660J
 preplace netloc cmd_edge_0_1 1 0 3 NJ 950 NJ 950 1700J
@@ -125,19 +125,19 @@ preplace netloc daq_spy_0_spy_addr_1 1 3 1 2440J 490n
 preplace netloc daq_spy_1_daq_spy_full 1 3 1 2410J 160n
 preplace netloc daq_spy_1_spy_addr_0 1 3 1 2420J 180n
 preplace netloc daq_spy_full_0 1 3 1 2430J 470n
-preplace netloc daq_spy_reset_0_1 1 0 3 NJ 240 NJ 240 1820J
+preplace netloc daq_spy_reset_0_1 1 0 3 NJ 240 NJ 240 1810J
 preplace netloc dyn_phase_adjust_0_psen 1 2 1 1610 660n
 preplace netloc dyn_phase_adjust_0_psincdec 1 2 1 1760 680n
-preplace netloc i2c_clk_phase_clk_out1 1 2 2 1880 1890 2400
+preplace netloc i2c_clk_phase_clk_out1 1 2 2 1870 1890 2400
 preplace netloc i2c_clk_phase_locked 1 3 1 2410J 1260n
 preplace netloc pdts_endpoint_0_clk 1 0 3 N 750 850 750 1750
 preplace netloc psen_in_0_1 1 0 2 NJ 680 NJ
-preplace netloc rec_time_0_1 1 0 3 NJ 220 NJ 220 1810
+preplace netloc rec_time_0_1 1 0 3 NJ 220 NJ 220 1800
 preplace netloc reg_bank_64_0_reg_rw 1 3 1 2450 1340n
 preplace netloc reg_ro_0_1 1 0 3 -160J 1380 850J 2220 1620J
 preplace netloc reset_0_1 1 0 3 -160J 600 NJ 600 1790J
 preplace netloc reset_0_2 1 0 3 NJ 630 860J 740 1770J
-preplace netloc rst_0_1 1 0 3 NJ -340 NJ -340 1850J
+preplace netloc rst_0_1 1 0 3 NJ -340 NJ -340 1840J
 preplace netloc rst_ps8_0_99M_interconnect_aresetn 1 1 2 890 2240 1500
 preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 1 3 900 2230 1740 1680 2460J
 preplace netloc sda_in_n_0_0_1 1 0 3 NJ 2470 NJ 2470 1540J
@@ -148,8 +148,8 @@ preplace netloc sda_in_p_0_0_1 1 0 3 NJ 2490 NJ 2490 1520J
 preplace netloc sda_in_p_0_1 1 0 3 NJ 1350 NJ 1350 1610J
 preplace netloc sda_in_p_0_1_1 1 0 3 NJ 2540 NJ 2540 1500J
 preplace netloc sda_in_p_0_2_1 1 0 3 NJ 2730 NJ 2730 1480J
-preplace netloc trigger_0_1 1 0 3 NJ 260 NJ 260 1800J
-preplace netloc ts_tstamp_0_1 1 0 3 NJ 590 NJ 590 1780J
+preplace netloc trigger_0_1 1 0 3 NJ 260 NJ 260 1780J
+preplace netloc ts_tstamp_0_1 1 0 3 NJ 590 NJ 590 1880J
 preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 -140 1600 880 2250 1730 1670 2470J
 preplace netloc zynq_ultra_ps_e_0_pl_clk1 1 1 3 860J 1380 1620J 1660 2430J
 preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 1 1 840 1500n
@@ -158,21 +158,21 @@ preplace netloc S00_AXI_2 1 2 1 1550 1790n
 preplace netloc S00_AXI_3 1 2 1 1530 1830n
 preplace netloc axi_gpio_1_GPIO 1 3 1 2550J 1950n
 preplace netloc axi_iic_0_IIC 1 3 1 2560J 2090n
-preplace netloc ddi0_0_1 1 0 3 NJ -270 NJ -270 1880J
-preplace netloc ddi1_0_1 1 0 3 NJ -250 NJ -250 1870J
-preplace netloc ddi2_0_1 1 0 3 NJ -230 NJ -230 1860J
-preplace netloc ddi3_0_1 1 0 3 NJ -210 NJ -210 1840J
+preplace netloc ddi0_0_1 1 0 3 NJ -270 NJ -270 1870J
+preplace netloc ddi1_0_1 1 0 3 NJ -250 NJ -250 1860J
+preplace netloc ddi2_0_1 1 0 3 NJ -230 NJ -230 1850J
+preplace netloc ddi3_0_1 1 0 3 NJ -210 NJ -210 1830J
 preplace netloc ddi4_0_1 1 0 3 NJ -190 NJ -190 1740J
 preplace netloc ddi5_0_1 1 0 3 NJ -170 NJ -170 1730J
 preplace netloc ddi6_0_1 1 0 3 NJ -150 NJ -150 1710J
 preplace netloc ddi7_0_1 1 0 3 NJ -130 NJ -130 1610J
-preplace netloc eth_clk_0_1 1 0 3 NJ -300 NJ -300 1890
+preplace netloc eth_clk_0_1 1 0 3 NJ -300 NJ -300 1880
 preplace netloc ps8_0_axi_periph_M00_AXI 1 2 1 1690 930n
 preplace netloc ps8_0_axi_periph_M01_AXI 1 2 1 1600 1670n
-preplace netloc ps8_0_axi_periph_M02_AXI 1 2 1 1590 -50n
+preplace netloc ps8_0_axi_periph_M02_AXI 1 2 1 1590 -60n
 preplace netloc ps8_0_axi_periph_M03_AXI 1 2 1 1720 1420n
 preplace netloc ps8_0_axi_periph_M11_AXI 1 2 1 1580 1870n
-preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1720 1768n
+preplace netloc ps8_0_axi_periph_M12_AXI 1 2 1 1840 1768n
 preplace netloc ps8_0_axi_periph_M13_AXI 1 2 1 1570 1910n
 preplace netloc ps8_0_axi_periph_M14_AXI 1 2 1 1560 1930n
 preplace netloc ps8_0_axi_periph_M15_AXI 1 2 1 1710 612n
