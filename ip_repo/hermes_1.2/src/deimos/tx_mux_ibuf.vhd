@@ -113,7 +113,7 @@ begin
     end process;
 
     flast <= '1' when ctr = unsigned(ctrl_dlen) - 1 else '0';
-    in_block <= (in_block or (go and not go_d)) and not (last or src_rst) when rising_edge(src_clk);
+    in_block <= (in_block or (go and not go_d)) and not (flast or src_rst) when rising_edge(src_clk);
 
     with ctr select df.d <= 
         ts when X"000",
