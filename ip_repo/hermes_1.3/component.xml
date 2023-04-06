@@ -303,6 +303,9 @@
         <spirit:language>VHDL-2008</spirit:language>
         <spirit:modelName>wib_top</spirit:modelName>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_xilinx_com_ip_axi_bram_ctrl_4_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_xilinx_com_ip_xxv_ethernet_4_1__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
@@ -311,7 +314,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f477322f</spirit:value>
+            <spirit:value>cfa3603f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -322,6 +325,9 @@
         <spirit:language>VHDL-2008</spirit:language>
         <spirit:modelName>wib_top</spirit:modelName>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_axi_bram_ctrl_4_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_xxv_ethernet_4_1__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
@@ -330,7 +336,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f477322f</spirit:value>
+            <spirit:value>cfa3603f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -339,6 +345,9 @@
         <spirit:displayName>Implementation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:implementation</spirit:envIdentifier>
         <spirit:modelName>wib_top</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_implementation_xilinx_com_ip_axi_bram_ctrl_4_1__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_implementation_xilinx_com_ip_xxv_ethernet_4_1__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -1266,6 +1275,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
+        <spirit:name>src/axi4_lite_bram_ctrl_0/axi4_lite_bram_ctrl_0.xci</spirit:name>
+        <spirit:userFileType>xci</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>src/xxv_ethernet_0/xxv_ethernet_0.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
@@ -1331,13 +1345,7 @@
         <spirit:logicalName>ipbus</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/ipbus/ipbus_axi4lite2ipb_nolatch.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-        <spirit:logicalName>ipbus</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/ipbus/ipbus_axi4lite2ipb_wrapper.vhd</spirit:name>
+        <spirit:name>src/ipbus/ipbus_clock_div.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>ipbus</spirit:logicalName>
@@ -1368,6 +1376,36 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>src/ipbus/ipbus_roreg_v.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_trans_decl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor_if.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor_sm.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor_cfg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>ipbus</spirit:logicalName>
@@ -1488,6 +1526,54 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>src/deimos/freq_pkg.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>deimos</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/deimos/ipb_rsts.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>deimos</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_rx_dpram.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_tx_dpram.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_cdc.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_if.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_ram_if.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_axi4_lite_if.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/deimos/ipb_axi4_lite_ctrl.vhd</spirit:name>
         <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>deimos</spirit:logicalName>
@@ -1771,16 +1857,26 @@
       <spirit:file>
         <spirit:name>src/deimos/wib_top.vhd</spirit:name>
         <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
-        <spirit:userFileType>CHECKSUM_a3ffe2dc</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_41a6d98a</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>deimos</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_xilinx_com_ip_axi_bram_ctrl_4_1__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xsi:type="xilinx:componentRefType" xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_bram_ctrl" xilinx:version="4.1">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_xilinx_com_ip_xxv_ethernet_4_1__ref_view_fileset</spirit:name>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xsi:type="xilinx:componentRefType" xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="xxv_ethernet" xilinx:version="4.1">
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="xxv_ethernet" xilinx:version="4.1">
             <xilinx:mode xilinx:name="create_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -1789,6 +1885,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
+        <spirit:name>src/axi4_lite_bram_ctrl_0/axi4_lite_bram_ctrl_0.xci</spirit:name>
+        <spirit:userFileType>xci</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>src/xxv_ethernet_0/xxv_ethernet_0.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
@@ -1854,13 +1955,7 @@
         <spirit:logicalName>ipbus</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>src/ipbus/ipbus_axi4lite2ipb_nolatch.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-        <spirit:logicalName>ipbus</spirit:logicalName>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>src/ipbus/ipbus_axi4lite2ipb_wrapper.vhd</spirit:name>
+        <spirit:name>src/ipbus/ipbus_clock_div.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>ipbus</spirit:logicalName>
@@ -1891,6 +1986,36 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>src/ipbus/ipbus_roreg_v.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_trans_decl.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor_if.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor_sm.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor_cfg.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/transactor.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>ipbus</spirit:logicalName>
@@ -2011,6 +2136,54 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>src/deimos/freq_pkg.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>deimos</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/deimos/ipb_rsts.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>deimos</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_rx_dpram.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_tx_dpram.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_cdc.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_multibuffer_if.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_ram_if.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/ipbus/ipbus_transport_axi4_lite_if.vhd</spirit:name>
+        <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
+        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:logicalName>ipbus</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/deimos/ipb_axi4_lite_ctrl.vhd</spirit:name>
         <spirit:userFileType>vhdlSource-2008</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>deimos</spirit:logicalName>
@@ -2297,6 +2470,16 @@
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:logicalName>deimos</spirit:logicalName>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_axi_bram_ctrl_4_1__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_bram_ctrl" xilinx:version="4.1">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_xxv_ethernet_4_1__ref_view_fileset</spirit:name>
@@ -2320,6 +2503,16 @@
         <spirit:userFileType>xci</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_implementation_xilinx_com_ip_axi_bram_ctrl_4_1__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_bram_ctrl" xilinx:version="4.1">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_implementation_xilinx_com_ip_xxv_ethernet_4_1__ref_view_fileset</spirit:name>
@@ -2388,13 +2581,13 @@
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-04-03T15:15:18Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-04-05T15:46:03Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4c7f869b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="5ff40282"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="86d6c340"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ef132164"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="487286df"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="4e2bacbb"/>
     </xilinx:packagingInfo>

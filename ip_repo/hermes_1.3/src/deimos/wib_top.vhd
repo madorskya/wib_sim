@@ -88,45 +88,45 @@ architecture rtl of wib_top is
 
     signal ipbw: ipb_wbus;
 	signal ipbr: ipb_rbus;
-    signal ipb_rst: std_logic;
+    signal ipb_clk, ipb_rst: std_logic;
+    signal nuke, soft_rst: std_logic;
+    constant C_S_AXI_ADDR_WIDTH: integer := 16;
 
 begin
 
-    bridge: entity ipbus.ipbus_axi4lite2ipb_wrapper
-        generic map(
-            C_S_AXI_ADDR_WIDTH => 16
-        )
-        port map(
-            S_AXI_ACLK     => S_AXI_ACLK,
-            S_AXI_ARESETN  => S_AXI_ARESETN,
-            S_AXI_AWADDR   => S_AXI_AWADDR,
-            S_AXI_AWPROT   => S_AXI_AWPROT,
-            S_AXI_AWVALID  => S_AXI_AWVALID,
-            S_AXI_AWREADY  => S_AXI_AWREADY,
-            S_AXI_WDATA    => S_AXI_WDATA,
-            S_AXI_WSTRB    => S_AXI_WSTRB,
-            S_AXI_WVALID   => S_AXI_WVALID,
-            S_AXI_WREADY   => S_AXI_WREADY,
-            S_AXI_BRESP    => S_AXI_BRESP,
-            S_AXI_BVALID   => S_AXI_BVALID,
-            S_AXI_BREADY   => S_AXI_BREADY,
-            S_AXI_ARADDR   => S_AXI_ARADDR,
-            S_AXI_ARPROT   => S_AXI_ARPROT,
-            S_AXI_ARVALID  => S_AXI_ARVALID,
-            S_AXI_ARREADY  => S_AXI_ARREADY,
-            S_AXI_RDATA    => S_AXI_RDATA,
-            S_AXI_RRESP    => S_AXI_RRESP,
-            S_AXI_RVALID   => S_AXI_RVALID,
-            S_AXI_RREADY   => S_AXI_RREADY,
-            ipb_out_addr   => ipbw.ipb_addr,
-            ipb_out_wdata  => ipbw.ipb_wdata,
-            ipb_out_write  => ipbw.ipb_write,
-            ipb_out_strobe => ipbw.ipb_strobe,
-            ipb_in_ack     => ipbr.ipb_ack,
-            ipb_in_err     => ipbr.ipb_err,
-            ipb_in_rdata   => ipbr.ipb_rdata,
-            ipb_rst        => ipb_rst
-        );
+    ipb_ctrl : entity work.ipb_axi4_lite_ctrl
+        port map (
+            aclk => S_AXI_ACLK,
+            aresetn => S_AXI_ARESETN,
+            axi_in.awaddr(31 downto C_S_AXI_ADDR_WIDTH) => (others => '0'),
+            axi_in.awaddr(C_S_AXI_ADDR_WIDTH - 1 downto 0) => S_AXI_AWADDR,
+            axi_in.awprot => S_AXI_AWPROT,
+            axi_in.awvalid => S_AXI_AWVALID,
+            axi_in.wdata => S_AXI_WDATA,
+            axi_in.wstrb => S_AXI_WSTRB,
+            axi_in.wvalid => S_AXI_WVALID,
+            axi_in.bready => S_AXI_BREADY,
+            axi_in.araddr(31 downto C_S_AXI_ADDR_WIDTH) => (others => '0'),
+            axi_in.araddr(C_S_AXI_ADDR_WIDTH - 1 downto 0) => S_AXI_ARADDR,     
+            axi_in.arprot => S_AXI_ARPROT,
+            axi_in.arvalid => S_AXI_ARVALID,
+            axi_in.rready => S_AXI_RREADY,
+            axi_out.awready => S_AXI_AWREADY,
+            axi_out.wready => S_AXI_WREADY,
+            axi_out.bresp => S_AXI_BRESP,
+            axi_out.bvalid => S_AXI_BVALID,
+            axi_out.arready => S_AXI_ARREADY,
+            axi_out.rdata => S_AXI_RDATA,
+            axi_out.rresp => S_AXI_RRESP,
+            axi_out.rvalid => S_AXI_RVALID,
+
+            ipb_clk => ipb_clk,
+            ipb_rst => ipb_rst,
+            ipb_in => ipbr,
+            ipb_out => ipbw,
+            nuke =>  nuke,
+            soft_rst => soft_rst
+            );
 
     mux: entity work.tx_mux_wib
         generic map(
@@ -135,7 +135,7 @@ begin
             REF_FREQ => f125
         )
         port map(
-            ipb_clk                => S_AXI_ACLK,
+            ipb_clk                => ipb_clk,
             ipb_rst                => ipb_rst,
             ipb_in                 => ipbw,
             ipb_out                => ipbr,
@@ -178,7 +178,10 @@ begin
             d(7).d                 => d7,
             d(7).valid             => d7_valid,
             d(7).last              => d7_last,
-            ts => ts
+            ts => ts,
+            -- Temporary
+            nuke => nuke,
+            soft_rst => soft_rst
         );
 
 end architecture rtl;

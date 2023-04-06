@@ -45,7 +45,10 @@ entity tx_mux_wib is
         clk: in std_logic; -- DUNE base clock
         rst: in std_logic; -- DUNE base clock sync reset
         d: in src_d_array(N_SRC - 1 downto 0); -- Data from sources
-        ts: in std_logic_vector(63 downto 0)
+        ts: in std_logic_vector(63 downto 0);
+        -- Temporary
+        nuke: out std_logic;
+        soft_rst: out std_logic
     );
 
 end entity tx_mux_wib;
@@ -126,6 +129,8 @@ begin
         );
     
     ctrl_sel_mux <= ctrl(0)(1 downto 0);
+    nuke <= ctrl(0)(2);
+    soft_rst <= ctrl(0)(3);
 
 -- Global timeslice block
 
