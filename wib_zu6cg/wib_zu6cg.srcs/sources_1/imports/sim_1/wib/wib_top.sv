@@ -117,7 +117,12 @@ module wib_top
     // DAC source select for FEMBs [3:0]
     output [3:0] dac_src_sel,
     output mon_vs_pulse_sel, // monitor vs pulse select
-    output inj_cal_pulse // inject calibration pulse select
+    output inj_cal_pulse, // inject calibration pulse select
+
+    // calibration DAC
+    output cal_dac_sync,
+    output cal_dac_sclk,
+    output cal_dac_din
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
@@ -281,7 +286,7 @@ module wib_top
     wire cmd_bit_reset    ;
     wire cmd_bit_adc_reset;
     wire cmd_bit_trigger  ;
-
+    wire cal_dac_busy;
     
     // config and status registers mapping
     
@@ -308,6 +313,7 @@ module wib_top
     assign mon_adc_start    = `CONFIG_BITS(1,19, 1); // 0xA00C0004 // monitor ADC conversion start pulse
     assign crc_err_reset    = `CONFIG_BITS(1,20, 1); // 0xA00C0004 // reset of sticky crc error flags
     wire   raw_channel_map  = `CONFIG_BITS(1,21, 1); // 0xA00C0004 // 0=UVX map, 1=raw channel map
+    wire   cal_dac_start    = `CONFIG_BITS(1,22, 1); // 0xA00C0004 // calibration DAC programming start
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
     
@@ -373,6 +379,7 @@ module wib_top
     assign dac_src_sel                        = `CONFIG_BITS(15,  0, 4); // 0xA00C003C
     assign mon_vs_pulse_sel                   = `CONFIG_BITS(15,  4, 1); // 0xA00C003C
     assign inj_cal_pulse                      = `CONFIG_BITS(15,  5, 1); // 0xA00C003C
+    wire [15:0] cal_dac_data                  = `CONFIG_BITS(15, 16,16); // 0xA00C003C
     
 
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
@@ -383,6 +390,7 @@ module wib_top
 
     assign `STATUS_BITS( 3, 0, 8) = {bp_crate_addr, bp_slot_addr}; // 0xA00C008c 
 
+    assign `STATUS_BITS( 4,20,  1) = cal_dac_busy; // 0xA00C0090
     assign `STATUS_BITS( 4,19,  1) = mon_adc_busy; // 0xA00C0090
     assign `STATUS_BITS( 4,18,  1) = adn2814_los;
     assign `STATUS_BITS( 4,17,  1) = adn2814_lol;
@@ -732,6 +740,20 @@ module wib_top
         .mon_adc_val (mon_adc_val),    // measured values
         .busy        (mon_adc_busy)
     );
+
+    calib_dac_spi calib_dac
+    (
+        .cal_dac_sync (cal_dac_sync),
+        .cal_dac_sclk (cal_dac_sclk),
+        .cal_dac_din  (cal_dac_din ),
+        
+        .axi_clk      (axi_clk_out), // system clock
+        .start        (cal_dac_start), // start pulse. FSM starts writing at the rising edge
+        .data         (cal_dac_data), // data to write
+        .busy         (cal_dac_busy) // FSM shifting, wait until this signal drops to 0
+    );
+    
+
 
     always @(*)
     begin
