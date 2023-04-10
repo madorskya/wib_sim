@@ -51,7 +51,7 @@ mask+=(0xffff     0xf         1                1)
 name+=(cal_dac_start cal_dac_data cal_dac_busy)
 addr+=(0xA00C0004    0xA00C003C   0xA00C0090)
 bnum+=(22            16           20)
-mask+=(1             0xffff       1)
+mask+=(1             0xff         1)
 
 #syntax: devreg reg_name [wr_value]
 
