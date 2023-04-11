@@ -210,12 +210,12 @@ set_property PACKAGE_PIN D17 [get_ports rx_timing_sel]
 set_property PACKAGE_PIN E18 [get_ports fp_sfp_sel]
 
 set_property PACKAGE_PIN E17 [get_ports mon_adc_sdo[3]]
-#set_property PACKAGE_PIN D19
+set_property PACKAGE_PIN D19 [get_ports cal_dac_sync]
 set_property PACKAGE_PIN E19 [get_ports clk_in_50mhz]
-#set_property PACKAGE_PIN F18
+set_property PACKAGE_PIN F18 [get_ports cal_dac_sclk]
 set_property PACKAGE_PIN F17 [get_ports flash_scl]
 set_property PACKAGE_PIN G19 [get_ports flash_sda]
-#set_property PACKAGE_PIN G18
+set_property PACKAGE_PIN G18 [get_ports cal_dac_din]
 set_property PACKAGE_PIN K17 [get_ports {bp_io[0]}]
 set_property PACKAGE_PIN L17 [get_ports {bp_io[1]}]
 set_property PACKAGE_PIN K18 [get_ports {bp_io[2]}]
@@ -225,11 +225,14 @@ set_property PACKAGE_PIN J17 [get_ports {bp_io[5]}]
 set_property PACKAGE_PIN H19 [get_ports {bp_io[6]}]
 set_property PACKAGE_PIN H18 [get_ports {bp_io[7]}]
 
-
-
+set_property IOSTANDARD LVCMOS25 [get_ports cal_dac_sync]
+set_property IOSTANDARD LVCMOS25 [get_ports cal_dac_sclk]
+set_property IOSTANDARD LVCMOS25 [get_ports cal_dac_din]
+set_property IOB TRUE [get_ports cal_dac_sync]
+set_property IOB TRUE [get_ports cal_dac_sclk]
+set_property IOB TRUE [get_ports cal_dac_din]
 
 #BANK  49 HD   3.3V
-
 
 set_property PACKAGE_PIN E13 [get_ports {eq_los_brd0_rx[0]}]
 set_property PACKAGE_PIN F13 [get_ports {eq_los_brd0_rx[1]}]
