@@ -7,10 +7,10 @@ addr=(0xA00C0080	0xA00C0080		0xA00C0084	0xA00C0088	0xA00C0088	0xA00C0088	0xA00C0
 bnum=(0				1				0			0			6			12			17			23			27			0				4				0			4			8			12			16			17			18			20			0			0			0			0			0)
 mask=(1				1				0xffff		0x3f		0x3f		0x1f		0x3f		0xf			0x1f		0xf				0xf				0xf			1			1			0xf			1			1			1			0xff 		0xfffff		0xfffff		0xffffffff	0xffffffff	0xffffffff)
 
-name+=(ts_addr		ts_tgrp		ts_srst		i2c_select	fp_sfp_sel	rx_timing_sel	daq_spy_reset0	daq_spy_reset1	PRBS_selection	fb_reset	coldata_rx_reset	)
-addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004	0xA00C0004			)
-bnum+=(0			8			28			0			4			5				6				7				8				12			13					)
-mask+=(0xff			3			1			0xf			1			1				1				1				0xf				1			1					)
+name+=(ts_addr		ts_tgrp		ts_srst		i2c_select	fp_sfp_sel	rx_timing_sel	daq_spy_reset	PRBS_selection	fb_reset	coldata_rx_reset	)
+addr+=(0xA00C0000	0xA00C0000	0xA00C0000	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C0004		0xA00C0004		0xA00C0004	0xA00C0004			)
+bnum+=(0			8			28			0			4			5				6				8				12			13					)
+mask+=(0xff			3			1			0xf			1			1				1				0xf				1			1					)
 
 name+=(coldata_rxbufreset	csd_reset	ts_clk_sel	ps_reset	ps_en_in	mon_adc_start	crc_err_reset)
 addr+=(0xA00C0004			0xA00C0004	0xA00C0004	0xA00C0004	0xA00C0004	0xA00C0004		0xA00C0004   )
