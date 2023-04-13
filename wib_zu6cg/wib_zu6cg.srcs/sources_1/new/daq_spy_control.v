@@ -1,27 +1,42 @@
 `timescale 1ns / 1ps
 module daq_spy_control
 (
-    input [31:0] daq_stream, // data to felix
-    input [3:0]  daq_stream_k, // K symbol flags to felix
-    input [1:0]  daq_data_type, // data type
-    input        daq_clk,
+    input        clk, // DUNE base clock
+    input        rst, // DUNE base clock sync reset
+//    (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ddi0, X_INTERFACE_MODE monitor" *)
+    (* X_INTERFACE_MODE = "monitor" *)
+    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d"       *) input [63:0] d,
+    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d_valid" *) input        d_valid,
+    (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi0 d_last"  *) input        d_last,
     
-    output reg [19:0] bram_addr, // current BRAM address
-    output            bram_clk,
-    output reg [31:0] bram_din,
-    output reg        bram_en,
-    output            bram_rst,
-    output reg [3:0]  bram_we,
+    (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME bram_ctl, MEM_SIZE 262144, MEM_WIDTH 64, MEM_ECC NONE, MASTER_TYPE BRAM_CTRL, READ_WRITE_MODE READ_WRITE" *)
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl EN" *)   input         ena,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl DOUT" *) output [64:0] douta,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl DIN" *)  input  [64:0] dina,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl WE" *)   input  [7:0]  wea,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl ADDR" *) input  [17:0] addra, // current BRAM address
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl CLK" *)  input         clka,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl RST" *)  input         rsta,  
     
-    input [63:0] time_stamp,
-    input clk65p5,
+    output [14:0] bram_addr_mon, // current BRAM address
+
     input reset, // this starts continuous recording
     output reg full,
     output reg [2:0] state,
     
     input trigger, // this stops recording after rec_time
-    input [17:0] rec_time // recording time, in 32-bit words
+    input [14:0] rec_time // recording time, in 64-bit words
 );
+
+
+    reg         bram_en;
+    wire [64:0] bram_dout;
+    reg  [64:0] bram_din;
+    reg  [7:0]  bram_we;
+    reg  [14:0] bram_addr; // current BRAM address
+    wire        bram_clk;
+    wire        bram_rst;  
+    assign bram_addr_mon = bram_addr;
 
     parameter IDLE       = 3'h0;
     parameter IDLE_CHECK = 3'h1;
@@ -41,20 +56,19 @@ module daq_spy_control
     (* async_reg *) reg [2:0] trigger_r;
     
     assign bram_rst = 1'b0;
-    assign bram_clk = daq_clk;
+    assign bram_clk = clk;
     
-    wire [19:0] next_frame_addr = bram_addr + FRAME_LNG;
-    reg  [17:0] rec_cnt; // recording counter
+    reg  [14:0] rec_cnt; // recording counter
     
-    always @(posedge daq_clk)
+    always @(posedge clk)
     begin
         bram_en = 1'b0;
-        bram_we = 4'b0;
+        bram_we = 8'b0;
         full = 1'b0;
         if (reset_r[2] == 1'b1) 
         begin
             state = IDLE;
-            bram_addr = 19'h0 - 19'h4; // so next increment will make it 0
+            bram_addr = 14'h0 - 14'h1; // so next increment will make it 0
         end
         else
         begin
@@ -62,12 +76,12 @@ module daq_spy_control
                 IDLE:
                 begin
 
-                    if (daq_data_type == DT_FIRST)
+                    if (d_last == 1'b1)
                     begin
                         state = RECORD;                        
                     end
                     // this state is reached from reset.
-                    // just wait for start of frame and start recording 
+                    // just wait for end of previous frame and start recording 
                 end
                 
                 RECORD:
@@ -75,12 +89,16 @@ module daq_spy_control
                     if (trigger_r[2] == 1'b1)
                     begin
                         state = LAST;
-                        rec_cnt = 18'b0;
+                        rec_cnt = 15'b0;
                     end
                     // keep recording until trigger comes
-                    bram_addr = bram_addr + 19'h4; // increment BRAM address
-                    bram_we = 4'b1111; // enable BRAM writing
-                    bram_en = 1'b1;
+                    if (d_valid == 1'b1)
+                    begin
+                        bram_din = d;
+                        bram_addr = bram_addr + 14'h1; // increment BRAM address
+                        bram_we = 8'b11111111; // enable BRAM writing
+                        bram_en = 1'b1;
+                    end
                 end
                 
                 LAST: // leftover state name, actually here we record for rec_time time 
@@ -90,10 +108,14 @@ module daq_spy_control
                     begin
                         state = FULL;
                     end
-                    rec_cnt = rec_cnt + 18'h1;
-                    bram_addr = bram_addr + 19'h4; // increment BRAM address
-                    bram_we = 4'b1111; // enable BRAM writing
-                    bram_en = 1'b1;
+                    if (d_valid == 1'b1)
+                    begin
+                        rec_cnt = rec_cnt + 18'h1;
+                        bram_din = d;
+                        bram_addr = bram_addr + 14'h1; // increment BRAM address
+                        bram_we = 8'b11111111; // enable BRAM writing
+                        bram_en = 1'b1;
+                    end
                 end
 
                 FULL: // leftover name, actually means done recording
@@ -107,11 +129,27 @@ module daq_spy_control
                 end
             endcase
         end
-        bram_din = daq_stream_r;
-        daq_stream_r = daq_stream; // compensate for IDLE to RECORD transition
         
         // demetastab reset and trigger
         reset_r   = {reset_r   [1:0], reset  };
         trigger_r = {trigger_r [1:0], trigger};
     end
+
+    blk_mem_spy blk_mem 
+    (
+        .clka  (clka),    // input wire clka
+        .ena   (ena),      // input wire ena
+        .wea   (wea),      // input wire [0 : 0] wea
+        .addra (addra[17:3]),  // input wire [14 : 0] addra
+        .dina  (dina),    // input wire [63 : 0] dina
+        .douta (douta),  // output wire [63 : 0] douta
+        
+        .clkb  (bram_clk),    // input wire clkb
+        .enb   (bram_en),      // input wire enb
+        .web   (bram_we),      // input wire [0 : 0] web
+        .addrb (bram_addr),  // input wire [14 : 0] addrb
+        .dinb  (bram_din),    // input wire [63 : 0] dinb
+        .doutb (bram_dout)  // output wire [63 : 0] doutb
+    );
+
 endmodule

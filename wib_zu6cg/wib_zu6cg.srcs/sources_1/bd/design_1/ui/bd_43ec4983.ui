@@ -1,0 +1,98 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.46662",
+   "Default View_TopLeft":"-2047,-418",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port S_AXI -pg 1 -lvl 0 -x -150 -y -200 -defaultsOSRD
+preplace port ddi0 -pg 1 -lvl 0 -x -150 -y -180 -defaultsOSRD
+preplace port S_AXI1 -pg 1 -lvl 0 -x -150 -y 60 -defaultsOSRD
+preplace port S_AXI2 -pg 1 -lvl 0 -x -150 -y 810 -defaultsOSRD
+preplace port S_AXI3 -pg 1 -lvl 0 -x -150 -y 1810 -defaultsOSRD
+preplace port S_AXI4 -pg 1 -lvl 0 -x -150 -y 1310 -defaultsOSRD
+preplace port S_AXI5 -pg 1 -lvl 0 -x -150 -y 1060 -defaultsOSRD
+preplace port S_AXI6 -pg 1 -lvl 0 -x -150 -y 1560 -defaultsOSRD
+preplace port S_AXI7 -pg 1 -lvl 0 -x -150 -y 310 -defaultsOSRD
+preplace port ddi1 -pg 1 -lvl 0 -x -150 -y 80 -defaultsOSRD
+preplace port ddi3 -pg 1 -lvl 0 -x -150 -y 830 -defaultsOSRD
+preplace port ddi7 -pg 1 -lvl 0 -x -150 -y 1830 -defaultsOSRD
+preplace port ddi5 -pg 1 -lvl 0 -x -150 -y 1330 -defaultsOSRD
+preplace port ddi4 -pg 1 -lvl 0 -x -150 -y 1080 -defaultsOSRD
+preplace port ddi6 -pg 1 -lvl 0 -x -150 -y 1580 -defaultsOSRD
+preplace port ddi2 -pg 1 -lvl 0 -x -150 -y 330 -defaultsOSRD
+preplace port port-id_AXI_CLK_OUT -pg 1 -lvl 0 -x -150 -y -160 -defaultsOSRD
+preplace port port-id_AXI_RSTn -pg 1 -lvl 0 -x -150 -y 850 -defaultsOSRD
+preplace port port-id_ddi_clk -pg 1 -lvl 0 -x -150 -y 1100 -defaultsOSRD
+preplace port port-id_daq_spy_full_0 -pg 1 -lvl 2 -x 400 -y -130 -defaultsOSRD
+preplace port port-id_daq_spy_reset_1 -pg 1 -lvl 0 -x -150 -y 1120 -defaultsOSRD
+preplace port port-id_cmd_bit_trigger -pg 1 -lvl 0 -x -150 -y 1140 -defaultsOSRD
+preplace port port-id_ts_rst -pg 1 -lvl 0 -x -150 -y 1160 -defaultsOSRD
+preplace port port-id_daq_spy_full_3 -pg 1 -lvl 2 -x 400 -y 880 -defaultsOSRD
+preplace port port-id_daq_spy_full_1 -pg 1 -lvl 2 -x 400 -y 130 -defaultsOSRD
+preplace port port-id_daq_spy_full_7 -pg 1 -lvl 2 -x 400 -y 1880 -defaultsOSRD
+preplace port port-id_daq_spy_full_6 -pg 1 -lvl 2 -x 400 -y 1630 -defaultsOSRD
+preplace port port-id_daq_spy_full_5 -pg 1 -lvl 2 -x 400 -y 1380 -defaultsOSRD
+preplace port port-id_daq_spy_full_4 -pg 1 -lvl 2 -x 400 -y 1130 -defaultsOSRD
+preplace port port-id_daq_spy_full_2 -pg 1 -lvl 2 -x 400 -y 380 -defaultsOSRD
+preplace portBus spy_rec_time -pg 1 -lvl 0 -x -150 -y 1850 -defaultsOSRD
+preplace portBus spy_addr_0 -pg 1 -lvl 2 -x 400 -y -110 -defaultsOSRD
+preplace portBus spy_addr_7 -pg 1 -lvl 2 -x 400 -y 1900 -defaultsOSRD
+preplace portBus spy_addr_5 -pg 1 -lvl 2 -x 400 -y 1400 -defaultsOSRD
+preplace portBus spy_addr_4 -pg 1 -lvl 2 -x 400 -y 1150 -defaultsOSRD
+preplace portBus spy_addr_3 -pg 1 -lvl 2 -x 400 -y 900 -defaultsOSRD
+preplace portBus spy_addr_1 -pg 1 -lvl 2 -x 400 -y 150 -defaultsOSRD
+preplace portBus spy_addr_6 -pg 1 -lvl 2 -x 400 -y 1650 -defaultsOSRD
+preplace portBus spy_addr_2 -pg 1 -lvl 2 -x 400 -y 400 -defaultsOSRD
+preplace inst daq_spy_1 -pg 1 -lvl 1 -x 230 -y 140 -defaultsOSRD
+preplace inst daq_spy_3 -pg 1 -lvl 1 -x 230 -y 890 -defaultsOSRD
+preplace inst daq_spy_4 -pg 1 -lvl 1 -x 230 -y 1140 -defaultsOSRD
+preplace inst daq_spy_5 -pg 1 -lvl 1 -x 230 -y 1390 -defaultsOSRD
+preplace inst daq_spy_6 -pg 1 -lvl 1 -x 230 -y 1640 -defaultsOSRD
+preplace inst daq_spy_7 -pg 1 -lvl 1 -x 230 -y 1890 -defaultsOSRD
+preplace inst daq_spy_0 -pg 1 -lvl 1 -x 230 -y -120 -defaultsOSRD
+preplace inst daq_spy_2 -pg 1 -lvl 1 -x 230 -y 390 -defaultsOSRD
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 1 -70 -160n
+preplace netloc rst_ps8_0_99M_peripheral_aresetn 1 0 1 -100 -140n
+preplace netloc clk_0_1 1 0 1 -90 -120n
+preplace netloc daq_spy_1_daq_spy_full 1 1 1 NJ -130
+preplace netloc daq_spy_reset_0_1 1 0 1 -110 -100n
+preplace netloc rec_time_0_1 1 0 1 -80 -80n
+preplace netloc daq_spy_1_spy_addr_0 1 1 1 NJ -110
+preplace netloc trigger_0_1 1 0 1 -130 -60n
+preplace netloc rst_0_1 1 0 1 -120 -40n
+preplace netloc daq_spy_3_daq_spy_full 1 1 1 NJ 880
+preplace netloc daq_spy_7_spy_addr_0 1 1 1 NJ 1900
+preplace netloc daq_spy_1_daq_spy_full1 1 1 1 NJ 130
+preplace netloc daq_spy_5_spy_addr_0 1 1 1 NJ 1400
+preplace netloc daq_spy_4_spy_addr_0 1 1 1 NJ 1150
+preplace netloc daq_spy_3_spy_addr_0 1 1 1 NJ 900
+preplace netloc daq_spy_1_spy_addr_1 1 1 1 NJ 150
+preplace netloc daq_spy_7_daq_spy_full 1 1 1 NJ 1880
+preplace netloc daq_spy_6_daq_spy_full 1 1 1 NJ 1630
+preplace netloc daq_spy_5_daq_spy_full 1 1 1 NJ 1380
+preplace netloc daq_spy_4_daq_spy_full 1 1 1 NJ 1130
+preplace netloc daq_spy_6_spy_addr_0 1 1 1 NJ 1650
+preplace netloc daq_spy_2_spy_addr_0 1 1 1 NJ 400
+preplace netloc daq_spy_2_daq_spy_full 1 1 1 NJ 380
+preplace netloc ps8_0_axi_periph_M15_AXI 1 0 1 NJ -200
+preplace netloc ddi0_0_1 1 0 1 NJ -180
+preplace netloc Conn1 1 0 1 NJ 60
+preplace netloc Conn2 1 0 1 NJ 810
+preplace netloc Conn3 1 0 1 NJ 1810
+preplace netloc Conn4 1 0 1 NJ 1310
+preplace netloc Conn5 1 0 1 NJ 1060
+preplace netloc Conn6 1 0 1 NJ 1560
+preplace netloc Conn7 1 0 1 NJ 310
+preplace netloc Conn8 1 0 1 NJ 80
+preplace netloc Conn9 1 0 1 NJ 830
+preplace netloc Conn10 1 0 1 NJ 1830
+preplace netloc Conn11 1 0 1 NJ 1330
+preplace netloc Conn12 1 0 1 NJ 1080
+preplace netloc Conn13 1 0 1 NJ 1580
+preplace netloc Conn14 1 0 1 NJ 330
+levelinfo -pg 1 -150 230 400
+pagesize -pg 1 -db -bbox -sgen -340 -280 580 2170
+"
+}
+

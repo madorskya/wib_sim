@@ -234,8 +234,8 @@ module wib_top
             assign rx_data_swizzled[gi] = {rx_data[gi][7:0], rx_data[gi][15:8]};
     endgenerate
 
-    wire [1:0] daq_spy_full;
-    wire [1:0] daq_spy_reset;
+    wire [7:0] daq_spy_full;
+    wire       daq_spy_reset;
     
     wire [3:0] ts_stat;
 
@@ -301,7 +301,8 @@ module wib_top
     wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
     assign fp_sfp_sel       = `CONFIG_BITS(1, 4, 1); // 0xA00C0004
     assign rx_timing_sel    = `CONFIG_BITS(1, 5, 1); // 0xA00C0004
-    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 2); // 0xA00C0004
+    assign daq_spy_reset    = `CONFIG_BITS(1, 6, 1); // 0xA00C0004
+    //                      = `CONFIG_BITS(1, 7, 1); // 0xA00C0004 // reserved
     wire [3:0] rx_prbs_sel  = `CONFIG_BITS(1, 8, 4); // 0xA00C0004
     wire fb_reset           = `CONFIG_BITS(1,12, 1); // 0xA00C0004 frame builder reset
     assign coldata_rx_reset = `CONFIG_BITS(1,13, 1); // 0xA00C0004
@@ -352,7 +353,7 @@ module wib_top
     assign context_fld    = `CONFIG_BITS(8,  1,  8); // 0xA00C0020
     wire [5:0] edge_delay = `CONFIG_BITS(8,  9,  6); // 0xA00C0020
     
-    wire [17:0] spy_rec_time     = `CONFIG_BITS(9,  0, 18); // 0xA00C0024;
+    wire [14:0] spy_rec_time     = `CONFIG_BITS(9,  0, 15); // 0xA00C0024;
 
     assign flex                 = `CONFIG_BITS(10,  0, 16); // 0xA00C0028
     assign femb_pulser_in_frame = `CONFIG_BITS(10,  22, 8); // 0xA00C0028
@@ -382,8 +383,9 @@ module wib_top
     wire [15:0] cal_dac_data                  = `CONFIG_BITS(15, 16,16); // 0xA00C003C
     
 
-    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full;   // 0xA00C0080
+    assign `STATUS_BITS( 0, 0,  2) = daq_spy_full[1:0];   // 0xA00C0080
     assign `STATUS_BITS( 0, 2,  1) = ps_locked;
+    assign `STATUS_BITS( 0, 3,  6) = daq_spy_full[7:2];   // 0xA00C0080
     
     assign `STATUS_BITS( 1, 0, 16) = rxprbserr_out;  // 0xA00C0084
     assign `STATUS_BITS( 2, 0, 32) = fw_date;        // 0xA00C0088
@@ -400,10 +402,11 @@ module wib_top
     assign `STATUS_BITS( 4, 4,  1) = ts_rst;
     assign `STATUS_BITS( 4, 0,  4) = ts_stat;
     
-    wire [19:0] spy_addr [1:0];
-    assign `STATUS_BITS( 5, 0, 20) = spy_addr[0]; // 0xA00C0094
-    
-    assign `STATUS_BITS( 6, 0, 20) = spy_addr[1]; // 0xA00C0098
+    wire [14:0] spy_addr [7:0];
+    assign `STATUS_BITS( 5, 0, 15) = spy_addr[0]; // 0xA00C0094
+    assign `STATUS_BITS( 5,16, 15) = spy_addr[1]; // 0xA00C0094
+    assign `STATUS_BITS( 6, 0, 15) = spy_addr[2]; // 0xA00C0098
+    assign `STATUS_BITS( 6,16, 15) = spy_addr[3]; // 0xA00C0098
 
     assign `STATUS_BITS( 7, 0, 16) = csd_diff; // 0xA00C009c
 
@@ -429,6 +432,11 @@ module wib_top
     
     assign `STATUS_BITS(17, 0, 32) = {mon_adc_val[1], mon_adc_val[0]}; // 0xA00C00C4
     assign `STATUS_BITS(18, 0, 32) = {mon_adc_val[3], mon_adc_val[2]}; // 0xA00C00C8
+
+    assign `STATUS_BITS(19, 0, 15) = spy_addr[4]; // 0xA00C00CC
+    assign `STATUS_BITS(19,16, 15) = spy_addr[5]; // 0xA00C00CC
+    assign `STATUS_BITS(20, 0, 15) = spy_addr[6]; // 0xA00C00D0
+    assign `STATUS_BITS(20,16, 15) = spy_addr[7]; // 0xA00C00D0
 
     wire sfp_dis;
     
