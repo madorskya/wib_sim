@@ -296,6 +296,7 @@ module wib_top
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
 
     wire [15:0] tp_addr     = `CONFIG_BITS(0, 0,16); // 0xA00C0000 timing endpoint address
+    wire [1:0]  prio_enc_descramble = `CONFIG_BITS(0, 16, 2); // 0xA00C0000 select option for version of PTB/PTC (see below)
     wire        tp_srst     = `CONFIG_BITS(0,28, 1); // 0xA00C0000 timing endpoint reset
     
     wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
@@ -768,14 +769,45 @@ module wib_top
         sfp_dis_od = 8'hff;
         sfp_dis_od [bp_slot_addr[2:0]] = sfp_dis; // drive the pin matching the slot number
     end
-
+// register 0xA00C0000[17:16] selects:
+    // 2'b00 -> "new" PTB with PTCv4 (default)
+    // 2'b01 -> "new" PTB with PTCv3B
+    // 2'b10 -> "old" PTB with PTCv3B
+    // 2'b11 -> not a legal value
+    wire [7:0] sfp_dis_od_descrambled;
+    assign sfp_dis_od_descrambled[1] = (prio_enc_descramble==2'b00) ? sfp_dis_od[5] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[0] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[1] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[0] = (prio_enc_descramble==2'b00) ? sfp_dis_od[4] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[1] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[0] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[3] = (prio_enc_descramble==2'b00) ? sfp_dis_od[1] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[2] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[3] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[2] = (prio_enc_descramble==2'b00) ? sfp_dis_od[0] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[3] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[2] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[4] = (prio_enc_descramble==2'b00) ? sfp_dis_od[3] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[4] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[4] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[5] = (prio_enc_descramble==2'b00) ? sfp_dis_od[2] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[5] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[5] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[6] = sfp_dis_od[7]; // SPARE in PTCv3B, will be reassigned in PTCv4
+    assign sfp_dis_od_descrambled[7] = sfp_dis_od[6]; // SPARE in PTCv3B, will be reassigned in PTCv4
     // open-drain buffers for sfp enable signals
    IOBUF bp_io_buf[7:0] 
    (
       .O  (bp_io_o [7:0]),     
       .IO (bp_io[7:0]),
       .I  (1'b0),     
-      .T  (sfp_dis_od[7:0])
+      .T  (sfp_dis_od_descrambled[7:0])
    );
 
 
