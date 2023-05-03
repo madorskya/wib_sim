@@ -152,15 +152,19 @@ architecture struct of udp_core_xml_mm_scalable_top is
     signal udp_chk_sum_zero   : std_logic;
     signal ip_hdr_checksum    : std_logic_vector(15 downto 0);
 
-    signal dropped_mac_count  : std_logic_vector(31 downto 0);
-    signal dropped_ip_count   : std_logic_vector(31 downto 0);
-    signal dropped_port_count : std_logic_vector(31 downto 0);
-    signal udp_count          : std_logic_vector(31 downto 0);
-    signal arp_count          : std_logic_vector(31 downto 0);
-    signal uns_etype_count    : std_logic_vector(31 downto 0);
-    signal ping_count         : std_logic_vector(31 downto 0);
-    signal uns_pro_count      : std_logic_vector(31 downto 0);
+    signal rx_dropped_mac_count  : std_logic_vector(31 downto 0);
+    signal rx_dropped_ip_count   : std_logic_vector(31 downto 0);
+    signal rx_dropped_port_count : std_logic_vector(31 downto 0);
+    signal rx_udp_count          : std_logic_vector(31 downto 0);
+    signal rx_arp_count          : std_logic_vector(31 downto 0);
+    signal rx_uns_etype_count    : std_logic_vector(31 downto 0);
+    signal rx_ping_count         : std_logic_vector(31 downto 0);
+    signal rx_uns_pro_count      : std_logic_vector(31 downto 0);
 
+    signal tx_udp_count     : std_logic_vector(31 downto 0); 
+    signal tx_arp_count     : std_logic_vector(31 downto 0);
+    signal tx_ping_count    : std_logic_vector(31 downto 0);
+    
     signal ping_dst_mac_addr : std_logic_vector(47 downto 0);
     signal ping_dst_ip_addr  : std_logic_vector(31 downto 0);
     signal ping_dst_addr_en  : std_logic;
@@ -333,14 +337,14 @@ begin
             ping_dst_mac_addr_out  => ping_dst_mac_addr,
             ping_dst_ip_addr_out   => ping_dst_ip_addr,
             ping_dst_addr_en_out   => ping_dst_addr_en,
-            udp_count              => udp_count,
-            arp_count              => arp_count,
-            uns_etype_count        => uns_etype_count,
-            ping_count             => ping_count,
-            uns_pro_count          => uns_pro_count,
-            dropped_mac_count      => dropped_mac_count,
-            dropped_ip_count       => dropped_ip_count,
-            dropped_port_count     => dropped_port_count
+            udp_count              => rx_udp_count,
+            arp_count              => rx_arp_count,
+            uns_etype_count        => rx_uns_etype_count,
+            ping_count             => rx_ping_count,
+            uns_pro_count          => rx_uns_pro_count,
+            dropped_mac_count      => rx_dropped_mac_count,
+            dropped_ip_count       => rx_dropped_ip_count,
+            dropped_port_count     => rx_dropped_port_count
         );
 
     udp_out_pipe_inst : entity udp_core_lib.udp_axi4s_pipe
@@ -421,9 +425,11 @@ begin
             ip_ident_count        => ip_ident_count,
             ip_flag_frag          => ip_flag_frag,
             ip_time_to_live       => ip_time_to_live,
-            ip_protocol           => ip_protocol
-        );
-
+            ip_protocol           => ip_protocol, 
+            tx_udp_count          => tx_udp_count, 
+            tx_arp_count          => tx_arp_count,
+            tx_ping_count         => tx_ping_count
+       );
     -- -----------------------------------------------------------------------------
     -- The following signals to records are used to integrate the script generated
     -- code into the existing VHDL.
@@ -461,13 +467,20 @@ begin
     fxd_pkt_sze        <= udp_core_settings_control_regs.control.fixed_pkt_size;
     udp_chk_sum_zero   <= udp_core_settings_control_regs.control.udp_checksum_zero;
 
-    --Counts for debugging
-    udp_core_settings_status_regs.udp_count          <= udp_count;
-    udp_core_settings_status_regs.arp_count          <= arp_count;
-    udp_core_settings_status_regs.uns_etype_count    <= uns_etype_count;
-    udp_core_settings_status_regs.ping_count         <= ping_count;
-    udp_core_settings_status_regs.uns_pro_count      <= uns_pro_count;
-    udp_core_settings_status_regs.dropped_mac_count  <= dropped_mac_count;
-    udp_core_settings_status_regs.dropped_ip_count   <= dropped_ip_count;
-    udp_core_settings_status_regs.dropped_port_count <= dropped_port_count;
+    --Rx counters for debugging
+    udp_core_settings_status_regs.rx_udp_count          <= rx_udp_count;
+    udp_core_settings_status_regs.rx_arp_count          <= rx_arp_count;
+    udp_core_settings_status_regs.rx_uns_etype_count    <= rx_uns_etype_count;
+    udp_core_settings_status_regs.rx_ping_count         <= rx_ping_count;
+    udp_core_settings_status_regs.rx_uns_pro_count      <= rx_uns_pro_count;
+    udp_core_settings_status_regs.rx_dropped_mac_count  <= rx_dropped_mac_count;
+    udp_core_settings_status_regs.rx_dropped_ip_count   <= rx_dropped_ip_count;
+    udp_core_settings_status_regs.rx_dropped_port_count <= rx_dropped_port_count;
+    
+    --Tx counters for debugging
+    udp_core_settings_status_regs.tx_udp_count          <= tx_udp_count;
+    udp_core_settings_status_regs.tx_arp_count          <= tx_arp_count;
+    udp_core_settings_status_regs.tx_ping_count         <= tx_ping_count;
+
+    
 end architecture struct;

@@ -96,7 +96,10 @@ entity tx_path_top is
         ipv4_axi4s_s_aclk     : in std_logic    := '0';                  --! Uns IPV4 Packet Tx In Clk
         ipv4_axi4s_s_areset_n : in std_logic    := '0';                  --! Uns IPV4 Packet Tx In Reset
         ipv4_axis_s_mosi      : in t_axi4s_mosi := c_axi4s_mosi_default; --! Axi4s External IPV4 Data
-        ipv4_axis_s_miso      : out t_axi4s_miso                         --! Axi4s External IPV4 Backpressure
+        ipv4_axis_s_miso      : out t_axi4s_miso;                         --! Axi4s External IPV4 Backpressure
+        tx_udp_count          : out std_logic_vector(31 downto 0);
+        tx_arp_count          : out std_logic_vector(31 downto 0);
+        tx_ping_count         : out std_logic_vector(31 downto 0) 
     );
 end entity tx_path_top;
 
@@ -144,6 +147,7 @@ architecture behavioral of tx_path_top is
     signal ping_done                                  : std_logic;
     signal arbitrator_rdy                             : std_logic := '0';
     signal finished                                   : std_logic;
+	signal prev_finished                              : std_logic;
     signal ping_dst_mac                               : std_logic_vector(47 downto 0);
     signal ip_ping_length                             : std_logic_vector(15 downto 0);
     signal udp_start_data                             : std_logic;
@@ -186,7 +190,14 @@ architecture behavioral of tx_path_top is
     signal lut_mode_en                                : std_logic;
     signal udp_axi4s_s_mosi_reg                       : t_axi4s_mosi;
     signal udp_axi4s_s_miso_reg                       : t_axi4s_miso;
+    
+    signal udp_count, arp_count, ping_count             : std_logic_vector(31 downto 0);
 
+    attribute mark_debug: boolean;
+	attribute mark_debug of prev_finished: signal is True;
+	attribute mark_debug of udp_count, arp_count, ping_count: signal is True;
+	attribute mark_debug of type_frame: signal is True; 
+	
 begin
 
     -- Double Register Control Signals from Slow Clk domain
@@ -597,4 +608,40 @@ begin
         end if;
     end process;
 
+    tx_packet_counters: process (tx_path_clk)
+    variable udp_count_int, arp_count_int, ping_count_int	:  unsigned(31 downto 0);
+    begin
+        if rising_edge(tx_path_clk) then
+            prev_finished <= finished;
+
+            if tx_path_rst_s_n = '0' then
+                udp_count       <= (others=>'0');
+                arp_count       <= (others=>'0');
+                ping_count      <= (others=>'0');
+                udp_count_int   := (others=>'0');
+                arp_count_int   := (others=>'0');
+                ping_count_int  := (others=>'0');
+            else
+                if finished= '1' and prev_finished = '0' then
+                    if type_frame = "0000" then -- UDP
+                        udp_count_int := udp_count_int + 1;
+                        udp_count <= std_logic_vector(udp_count_int);
+                    end if;
+                    if type_frame = "0001" then --arp
+                        arp_count_int := arp_count_int + 1;
+                        arp_count <= std_logic_vector(arp_count_int);
+                    end if;
+                    if type_frame = "0010" then --ping
+                        ping_count_int := ping_count_int + 1;
+                        ping_count <= std_logic_vector(ping_count_int);
+                    end if; 
+                end if;
+            end if;
+	   end if;
+    end process;
+    
+    tx_udp_count  <= udp_count;
+    tx_arp_count  <= arp_count;
+    tx_ping_count <= ping_count;
+    
 end architecture behavioral;

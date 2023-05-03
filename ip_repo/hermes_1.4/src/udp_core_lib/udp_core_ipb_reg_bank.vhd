@@ -18,7 +18,8 @@ entity udp_core_ipb_reg_bank is
         N_ARP_ENTRY_REG : natural := 256;
 
         N_NZ_REG_UDP_SET  : natural := 15;
-        N_PCOUNT_REG      : natural := 8;
+        N_RX_P_COUNT_REG  : natural := 8;
+        N_TX_P_COUNT_REG  : natural := 3;
         N_NZ_STAT_REG     : natural := 2;
 
         ADDR_WIDTH      : positive := 8;
@@ -81,9 +82,10 @@ begin
 
     udp_core_settings : entity udp_core_lib.udp_core_settings_ipb_reg_bank
     generic map(
-        N_NZ_CTRL_REG => N_NZ_REG_UDP_SET,
-        N_PCOUNT_REG  => N_PCOUNT_REG,
-        N_NZ_STAT_REG => N_NZ_STAT_REG
+        N_NZ_CTRL_REG       => N_NZ_REG_UDP_SET,
+        N_RX_P_COUNT_REG    => N_RX_P_COUNT_REG,
+        N_TX_P_COUNT_REG    => N_TX_P_COUNT_REG,
+        N_NZ_STAT_REG       => N_NZ_STAT_REG
     )
     port map(
         clk         => clk,
