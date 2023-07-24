@@ -67,6 +67,8 @@ architecture rtl of tx_mux_ibuf is
     signal cts: std_logic_vector(63 downto 0);
     signal first, tinc, rinc, oinc: std_logic;
     signal vctr, tctr, rctr, octr: unsigned(63 downto 0);
+    signal update_hwm, update_lwm, update_lhwm, update_llwm: std_logic;
+    signal samp_d: std_logic;
 
     attribute mark_debug: boolean;
     attribute mark_debug of rx_state, d, lfifo_we, lfifo_d, rx_ctr, fifo_we, lfifo_full, fifo_full, oflow, tx_state, txw, last: signal is true;
@@ -160,7 +162,7 @@ begin
     process(src_clk)
     begin
         if rising_edge(src_clk) then
-            if di.last = '1' then
+            if src_rst = '1' or di.last = '1' then
                 rx_ctr <= to_unsigned(1, rx_ctr'length);
             elsif fifo_we = '1' then
                 rx_ctr <= rx_ctr + 1;
@@ -243,17 +245,49 @@ begin
 
 -- HWM / LWM for FIFOs
 
+
+    update_hwm <= '1' when unsigned(hwm) > unsigned(fifo_c);
+    update_lwm <= '1' when unsigned(lwm) > unsigned(fifo_c);
+    update_lhwm <= '1' when unsigned(lhwm) > unsigned(lfifo_c);
+    update_llwm <= '1' when unsigned(llwm) > unsigned(lfifo_c);
+
     process(src_clk)
     begin
         if rising_edge(src_clk) then
-            if src_rst = '1' or samp = '1' then
-                hwm <= fifo_c;
-                lwm <= fifo_c;
-                lhwm <= lfifo_c;
-                llwm <= lfifo_c;
-            end if;
-            if samp = '1' then
-                stat(1) <= lhwm & llwm & hwm & lwm;
+            if src_rst = '1' then
+                hwm <= (others => '0');
+                lwm <= (others => '0');
+                lhwm <= (others => '0');
+                llwm <= (others => '0');
+                samp_d <= '0';
+            else
+                samp_d <= samp;
+                if samp = '1' and samp_d = '0' then
+                    hwm <= fifo_c;
+                    lwm <= fifo_c;
+                    lhwm <= lfifo_c;
+                    llwm <= lfifo_c;
+                else 
+                    -- Update HWM 
+                    if update_hwm = '1' then
+                        hwm <= fifo_c;
+                    end if;
+                    -- Update LWM 
+                    if update_lwm = '1' then
+                        lwm <= fifo_c;
+                    end if;
+                    -- Update HWM 
+                    if update_lhwm = '1' then
+                        lhwm <= lfifo_c;
+                    end if;
+                    -- Update LWM 
+                    if update_llwm = '1' then
+                        llwm <= lfifo_c;
+                    end if;
+                end if;
+                if samp = '1' then
+                    stat(1) <= lhwm & llwm & hwm & lwm;
+                end if;
             end if;
         end if;
     end process;

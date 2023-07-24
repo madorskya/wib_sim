@@ -314,7 +314,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0d1f16d8</spirit:value>
+            <spirit:value>260b510a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -336,7 +336,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0d1f16d8</spirit:value>
+            <spirit:value>260b510a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2581,13 +2581,13 @@
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-04-13T11:36:03Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-07-23T11:26:31Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4c7f869b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="5ff40282"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="da227dd1"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="7a26442c"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="487286df"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="4e2bacbb"/>
     </xilinx:packagingInfo>
