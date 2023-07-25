@@ -74,7 +74,7 @@ module tx_mux_wib_tux
     
 );
 
-    hermes_wib_1_5 tmw 
+    hermes_wib_1_6 tmw 
     (
         .S_AXI_ACLK(S_AXI_ACLK),        // input wire S_AXI_ACLK
         .S_AXI_ARESETN(S_AXI_ARESETN),  // input wire S_AXI_ARESETN
