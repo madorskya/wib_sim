@@ -43,13 +43,14 @@ end entity tx_mux_ibuf;
 architecture rtl of tx_mux_ibuf is
 
     signal ctrl: ipb_reg_v(0 downto 0);
-    signal stat: ipb_reg_v(11 downto 0);
+    signal stat: ipb_reg_v(15 downto 0);
     signal ctrl_fake_en: std_logic;
     signal ctrl_dlen: std_logic_vector(11 downto 0);
     signal ctrl_rate_rdx: std_logic_vector(5 downto 0);
     signal ctr: unsigned(11 downto 0);
     signal flast, in_block, go, go_d: std_logic;
-    signal df, di: src_d;
+    signal di_last_d: std_logic;
+    signal df, di, ds: src_d;
     type rx_state_t is (ST_INIT, ST_DISC, ST_RUN);
     signal rx_state: rx_state_t;
     signal lfifo_busy_rx, fifo_busy_rx, lfifo_full, fifo_full, lfifo_we, fifo_we: std_logic;
@@ -67,7 +68,8 @@ architecture rtl of tx_mux_ibuf is
     signal cts: std_logic_vector(63 downto 0);
     signal first, tinc, rinc, oinc: std_logic;
     signal vctr, tctr, rctr, octr: unsigned(63 downto 0);
-    signal samp_d: std_logic;
+    signal llinc, lnvinc: std_logic;
+    signal llctr, lnvctr: unsigned(63 downto 0);
 
     attribute mark_debug: boolean;
     attribute mark_debug of rx_state, d, lfifo_we, lfifo_d, rx_ctr, fifo_we, lfifo_full, fifo_full, oflow, tx_state, txw, last: signal is true;
@@ -79,7 +81,7 @@ begin
     csr: entity ipbus.ipbus_ctrlreg_v
         generic map(
             N_CTRL => 1,
-            N_STAT => 12
+            N_STAT => 16
         )
         port map(
             clk => ipb_clk,
@@ -118,7 +120,7 @@ begin
 
     with ctr select df.d <= 
         ts when X"000",
-        0x"DEADBEEFCAFEF00D" when X"001",
+        X"DEADBEEFCAFEF00D" when X"001",
         X"0000000000000" & std_logic_vector(ctr) when others;
 
     df.valid <= in_block or (go and not go_d);
@@ -127,6 +129,15 @@ begin
 -- Input switch
 
     di <= d when ctrl_fake_en = '0' else df;
+
+
+-- Input 
+    di_last_d <= di.last when rising_edge(src_clk);
+
+    -- Make ds safe
+    ds.last <= (not di_last_d and di.last) and di.valid;
+    ds.valid <= di.valid;
+    ds.d <= di.d;
 
 -- Input SM
 
@@ -252,33 +263,30 @@ begin
                 lwm <= (others => '0');
                 lhwm <= (others => '0');
                 llwm <= (others => '0');
-                samp_d <= '0';
             else
-                samp_d <= samp;
                 if samp = '1' then
                     stat(1) <= lhwm & llwm & hwm & lwm;
-                    if samp_d = '0' then
+                    --if samp_d = '0' then
+                    hwm <= fifo_c;
+                    lwm <= fifo_c;
+                    lhwm <= lfifo_c;
+                    llwm <= lfifo_c;
+                else
+                    -- Update HWM 
+                    if unsigned(fifo_c) > unsigned(hwm) then
                         hwm <= fifo_c;
+                    end if;
+                    -- Update LWM 
+                    if unsigned(fifo_c) < unsigned(lwm) then
                         lwm <= fifo_c;
+                    end if;
+                    -- Update HWM 
+                    if unsigned(lfifo_c) > unsigned(lhwm) then
                         lhwm <= lfifo_c;
+                    end if;
+                    -- Update LWM 
+                    if unsigned(lfifo_c) < unsigned(llwm) then
                         llwm <= lfifo_c;
-                    else 
-                        -- Update HWM 
-                        if unsigned(fifo_c) > unsigned(hwm) then
-                            hwm <= fifo_c;
-                        end if;
-                        -- Update LWM 
-                        if unsigned(fifo_c) < unsigned(lwm) then
-                            lwm <= fifo_c;
-                        end if;
-                        -- Update HWM 
-                        if unsigned(lfifo_c) > unsigned(lhwm) then
-                            lhwm <= lfifo_c;
-                        end if;
-                        -- Update LWM 
-                        if unsigned(lfifo_c) < unsigned(llwm) then
-                            llwm <= lfifo_c;
-                        end if;
                     end if;
                 end if;
             end if;
@@ -308,6 +316,11 @@ begin
     rinc <= di.last and not rx_run;
     oinc <= oflow and rx_run;
 
+    -- If last is longer than a clock cycle, it's and error
+    llinc <= di_last_d and di.last;
+    -- And invalid last is an error
+    lnvinc <= di.last and not di.valid;
+
     process(src_clk)
     begin
         if rising_edge(src_clk) then
@@ -316,13 +329,19 @@ begin
                 tctr <= (others => '0');
                 rctr <= (others => '0');
                 octr <= (others => '0');
+                llctr <= (others => '0');
+                lnvctr <= (others => '0');
+
             elsif samp = '1' then
-                stat(11 downto 4) <= (
+                stat(15 downto 4) <= (
+                    std_logic_vector(lnvctr(63 downto 32)), std_logic_vector(lnvctr(31 downto 0)),
+                    std_logic_vector(llctr(63 downto 32)), std_logic_vector(llctr(31 downto 0)),
                     std_logic_vector(octr(63 downto 32)), std_logic_vector(octr(31 downto 0)),
                     std_logic_vector(rctr(63 downto 32)), std_logic_vector(rctr(31 downto 0)),
                     std_logic_vector(tctr(63 downto 32)), std_logic_vector(tctr(31 downto 0)),
                     std_logic_vector(vctr(63 downto 32)), std_logic_vector(vctr(31 downto 0))
                     );
+
                 if tinc = '0' then
                     vctr <= (others => '0');
                     tctr <= (others => '0');
@@ -330,27 +349,54 @@ begin
                     vctr <= (rx_ctr'length - 1 downto 0 => rx_ctr, others => '0');
                     tctr <= to_unsigned(1, tctr'length);
                 end if;
+                
                 if rinc = '0' then
                     rctr <= (others => '0');
                 else
                     rctr <= to_unsigned(1, rctr'length);
                 end if;
+                
                 if oinc = '0' then
                     octr <= (others => '0');
                 else
                     octr <= to_unsigned(1, octr'length);
-                end if;               
+                end if;
+
+                if llinc = '0' then
+                    llctr <= (others => '0');
+                else
+                    llctr <= to_unsigned(1, llctr'length);
+                end if;
+
+                if lnvinc = '0' then
+                    lnvctr <= (others => '0');
+                else
+                    lnvctr <= to_unsigned(1, lnvctr'length);
+                end if;
+
             else
+    
                 if tinc = '1' then
                     vctr <= vctr + rx_ctr;
                     tctr <= tctr + 1;
                 end if;
+                
                 if rinc = '1' then
                     rctr <= rctr + 1;
                 end if;
+                
                 if oinc = '1' then
                     octr <= octr + 1;
-                end if;               
+                end if;
+
+                if llinc = '1' then
+                    llctr <= llctr + 1;
+                end if;
+
+                if lnvinc = '1' then
+                    lnvctr <= lnvctr + 1;
+                end if;
+
             end if;
         end if;
     end process;

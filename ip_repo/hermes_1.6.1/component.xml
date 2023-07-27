@@ -3,7 +3,7 @@
   <spirit:vendor>dune.daq</spirit:vendor>
   <spirit:library>deimos</spirit:library>
   <spirit:name>hermes_wib</spirit:name>
-  <spirit:version>1.0</spirit:version>
+  <spirit:version>1.6</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
       <spirit:name>S_AXI</spirit:name>
@@ -314,7 +314,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>112e4b3b</spirit:value>
+            <spirit:value>3acfeed2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -336,7 +336,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>112e4b3b</spirit:value>
+            <spirit:value>3acfeed2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2527,18 +2527,18 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/hermes_wib_v1_0.tcl</spirit:name>
+        <spirit:name>xgui/hermes_wib_v1_6.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_f92e9879</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>hermes_wib_v1_0</spirit:description>
+  <spirit:description>Hermes WIB IPCore</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">hermes_wib_v1_0</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">hermes_wib_v1_6</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -2573,7 +2573,7 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>hermes_wib_v1_0</xilinx:displayName>
+      <xilinx:displayName>Hermes WIB IPCore</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
@@ -2581,13 +2581,13 @@
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-07-25T05:23:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-07-26T21:36:23Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4c7f869b"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="5ff40282"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="cc7b402b"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="1db0663f"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="487286df"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="4e2bacbb"/>
     </xilinx:packagingInfo>

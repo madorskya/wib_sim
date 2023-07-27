@@ -75,6 +75,7 @@ module coldata_deframer_single #(parameter NUM = 0)
     
     reg valid14;
     reg valid12;
+    reg frame_bad;
     
     genvar gi;
     // deframe from parallel storage
@@ -100,6 +101,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             begin
                 parallel_frame = 0;
                 time8 = 8'h0;
+                frame_bad = 1'b0;
                 // wait for header
                 if (rx_k0 == 1'b1 && rx_byte0 == SYM_IDLE) // header starts
                     df_state = HEAD;        
@@ -109,12 +111,15 @@ module coldata_deframer_single #(parameter NUM = 0)
             begin
                 if (rx_k0 == 1'b1 && rx_byte0 == SYM_FR14) // FRAME 14 marker
                     df_state = TI14;
-
-                if (rx_k0 == 1'b1 && rx_byte0 == SYM_FR12) // FRAME 12 marker
+                else if (rx_k0 == 1'b1 && rx_byte0 == SYM_FR12) // FRAME 12 marker
                     df_state = TI12;
-
-                if (rx_k0 == 1'b1 && rx_byte0 == SYM_FRDD) // FRAME DD marker
+                else if (rx_k0 == 1'b1 && rx_byte0 == SYM_FRDD) // FRAME DD marker
                     df_state = TI12; // same decoder as Frame 12
+                else
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             TI14:
@@ -127,6 +132,11 @@ module coldata_deframer_single #(parameter NUM = 0)
 `endif                
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             TI12: 
@@ -139,6 +149,11 @@ module coldata_deframer_single #(parameter NUM = 0)
 `endif                
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             TI14_2:
@@ -147,6 +162,11 @@ module coldata_deframer_single #(parameter NUM = 0)
                 df_state = FR14;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             TI12_2: 
@@ -155,6 +175,11 @@ module coldata_deframer_single #(parameter NUM = 0)
                 df_state = FR12;
                 byte_cnt = 8'h0;
                 crc = '{8'h0, 8'h0};
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             FR14:
@@ -164,10 +189,14 @@ module coldata_deframer_single #(parameter NUM = 0)
                 crc [byte_cnt >= ADC_BYTES_14] += rx_byte0; // update CRC for corresponding ADC
                 byte_cnt++;
 
-                if (rx_k0 == 1'b1) // K symbol out of place, invalid frame
-                    df_state = IDLE;
                 if (byte_cnt == FR14_BYTE_COUNT) // done receiving data, go to CRC
                     df_state = CRC0_14;    
+
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             FR12: 
@@ -177,16 +206,25 @@ module coldata_deframer_single #(parameter NUM = 0)
                 crc [byte_cnt >= ADC_BYTES_12] += rx_byte0; // update CRC for corresponding ADC
                 byte_cnt++;
 
-                if (rx_k0 == 1'b1) // K symbol out of place, invalid frame
-                    df_state = IDLE;
                 if (byte_cnt == FR12_BYTE_COUNT) // done receiving data, go to CRC
                     df_state = CRC0_12;    
+
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             CRC0_14:
             begin
                 crc_err[0] = crc[0] != rx_byte0;
                 df_state = CRC1_14;
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             CRC1_14:
@@ -194,6 +232,11 @@ module coldata_deframer_single #(parameter NUM = 0)
                 crc_err[1] = crc[1] != rx_byte0;
                 time16 = time16_prelim; // output time stamp synchronously with valid flag
                 valid14 = 1'b1; // frame 14 data is ready for pick up
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    frame_bad = 1'b1;
+                    valid14 = 1'b0;
+                end
                 df_state = IDLE;
             end
             
@@ -201,6 +244,11 @@ module coldata_deframer_single #(parameter NUM = 0)
             begin
                 crc_err[0] = crc[0] != rx_byte0;
                 df_state = CRC1_12;
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    df_state = IDLE;
+                    frame_bad = 1'b1;
+                end
             end
             
             CRC1_12:
@@ -209,6 +257,11 @@ module coldata_deframer_single #(parameter NUM = 0)
                 time16 = time16_prelim; // output time stamp synchronously with valid flag
                 valid12 = 1'b1; // frame 12 data is ready for pick up
                 df_state = IDLE;
+                if (rx_k0 == 1'b1) // unexpected K symbol, corrupted frame
+                begin
+                    frame_bad = 1'b1;
+                    valid12 = 1'b0;
+                end
             end
             
             default:
@@ -218,7 +271,7 @@ module coldata_deframer_single #(parameter NUM = 0)
             
         endcase
         
-        crc_err_sticky |= crc_err;
+        crc_err_sticky |= crc_err | frame_bad; // sticky bits also signal that the frame corrupted
         if (crc_err_reset == 1'b1) crc_err_sticky = 2'b0;
         
       end

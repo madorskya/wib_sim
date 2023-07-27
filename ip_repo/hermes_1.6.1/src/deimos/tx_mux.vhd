@@ -61,7 +61,7 @@ architecture rtl of tx_mux is
     signal q: src_d_array(N_SRC - 1 downto 0);
     signal re, err_buf: std_logic_vector(N_SRC - 1 downto 0);
     signal err_mux: std_logic;
-
+    
 begin
 
     fabric: entity ipbus.ipbus_fabric_sel
