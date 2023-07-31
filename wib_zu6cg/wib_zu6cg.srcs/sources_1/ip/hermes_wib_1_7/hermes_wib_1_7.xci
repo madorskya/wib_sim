@@ -1,13 +1,13 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "hermes_wib_1_6_1",
-    "component_reference": "dune.daq:deimos:hermes_wib:1.6",
+    "xci_name": "hermes_wib_1_7",
+    "component_reference": "dune.daq:deimos:hermes_wib:1.7",
     "ip_revision": "1",
-    "gen_directory": "../../../../wib_zu6cg.gen/sources_1/ip/hermes_wib_1_6_1",
+    "gen_directory": "../../../../wib_zu6cg.gen/sources_1/ip/hermes_wib_1_7",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "hermes_wib_1_6_1", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "hermes_wib_1_7", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynquplus" } ],
@@ -28,7 +28,7 @@
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/hermes_wib_1_6_1" } ],
+        "OUTPUTDIR": [ { "value": "../../../../wib_zu6cg.gen/sources_1/ip/hermes_wib_1_7" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
         "SWVERSION": [ { "value": "2022.2.2" } ],
