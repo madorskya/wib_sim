@@ -197,14 +197,14 @@ SI5342_SDA_iobuf:       component IOBUF  port map (IO => SI5342_SDA,I => SI5342_
 QSFP_SCL_iobuf:         component IOBUF  port map (IO => QSFP_SCL,I => iic_rtl_0_scl_o,O => QSFP_SCL_i,T => iic_rtl_0_scl_t );
 QSFP_SDA_iobuf:         component IOBUF  port map (IO => QSFP_SDA,I => QSFP_SDA_o,O => QSFP_SDA_i,T => iic_rtl_0_sda_t );	
 
-PL_FEMB_PWR_SCL_iobuf:  component IOBUF  port map (IO => PL_FEMB_PWR_SCL,I => iic_rtl_0_scl_o,O => PL_FEMB_PWR_SCL_i,T => iic_rtl_0_scl_t );
-PL_FEMB_PWR_SDA_iobuf:  component IOBUF  port map (IO => PL_FEMB_PWR_SDA,I => PL_FEMB_PWR_SDA_o,O => PL_FEMB_PWR_SDA_i,T => iic_rtl_0_sda_t );	
+--PL_FEMB_PWR_SCL_iobuf:  component IOBUF  port map (IO => PL_FEMB_PWR_SCL,I => iic_rtl_0_scl_o,O => PL_FEMB_PWR_SCL_i,T => iic_rtl_0_scl_t );
+--PL_FEMB_PWR_SDA_iobuf:  component IOBUF  port map (IO => PL_FEMB_PWR_SDA,I => PL_FEMB_PWR_SDA_o,O => PL_FEMB_PWR_SDA_i,T => iic_rtl_0_sda_t );	
 
 PL_FEMB_EN_SCL_iobuf:   component IOBUF  port map (IO => PL_FEMB_EN_SCL,I => iic_rtl_0_scl_o,O => PL_FEMB_EN_SCL_i,T => iic_rtl_0_scl_t );
 PL_FEMB_EN_SDA_iobuf:   component IOBUF  port map (IO => PL_FEMB_EN_SDA,I => PL_FEMB_EN_SDA_o,O => PL_FEMB_EN_SDA_i,T => iic_rtl_0_sda_t );	
     
-SENSOR_I2C_SCL_iobuf:   component IOBUF  port map (IO => SENSOR_I2C_SCL,I => iic_rtl_0_scl_o,O => SENSOR_I2C_SCL_i,T => iic_rtl_0_scl_t );
-SENSOR_I2C_SDA_iobuf:   component IOBUF  port map (IO => SENSOR_I2C_SDA,I => SENSOR_I2C_SDA_o,O => SENSOR_I2C_SDA_i,T => iic_rtl_0_sda_t );	
+--SENSOR_I2C_SCL_iobuf:   component IOBUF  port map (IO => SENSOR_I2C_SCL,I => iic_rtl_0_scl_o,O => SENSOR_I2C_SCL_i,T => iic_rtl_0_scl_t );
+--SENSOR_I2C_SDA_iobuf:   component IOBUF  port map (IO => SENSOR_I2C_SDA,I => SENSOR_I2C_SDA_o,O => SENSOR_I2C_SDA_i,T => iic_rtl_0_sda_t );	
 
 PL_FEMB_PWR2_SCL_iobuf: component IOBUF  port map (IO => PL_FEMB_PWR2_SCL,I => iic_rtl_0_scl_o, O => PL_FEMB_PWR2_SCL_i,T => iic_rtl_0_scl_t );
 PL_FEMB_PWR2_SDA_iobuf: component IOBUF  port map (IO => PL_FEMB_PWR2_SDA,I => PL_FEMB_PWR2_SDA_o,O => PL_FEMB_PWR2_SDA_i,T => iic_rtl_0_sda_t );	

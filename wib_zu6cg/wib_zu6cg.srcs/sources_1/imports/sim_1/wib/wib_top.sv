@@ -716,14 +716,14 @@ module wib_top
         .QSFP_SCL         (qsfp_scl),     
         .QSFP_SDA         (qsfp_sda), 
         
-        .PL_FEMB_PWR_SCL  (pl_femb_pwr_scl), 
-        .PL_FEMB_PWR_SDA  (pl_femb_pwr_sda), 
+//        .PL_FEMB_PWR_SCL  (pl_femb_pwr_scl), 
+//        .PL_FEMB_PWR_SDA  (pl_femb_pwr_sda), 
         
         .PL_FEMB_EN_SCL   (pl_femb_en_scl), 
         .PL_FEMB_EN_SDA   (pl_femb_en_sda), 
         
-        .SENSOR_I2C_SCL   (sensor_i2c_scl), 
-        .SENSOR_I2C_SDA   (sensor_i2c_sda), 
+//        .SENSOR_I2C_SCL   (sensor_i2c_scl), 
+//        .SENSOR_I2C_SDA   (sensor_i2c_sda), 
         
         .PL_FEMB_PWR2_SCL (pl_femb_pwr2_scl), 
         .PL_FEMB_PWR2_SDA (pl_femb_pwr2_sda), 
@@ -737,7 +737,25 @@ module wib_top
         .ADN2814_SCL      (adn2814_scl),   
         .ADN2814_SDA      (adn2814_sda) 
     );
-
+    
+    ptc_i2c_wormhole ptc_wh
+    (
+        .ptc_scl_io  (bp_io[7] ),
+        .ptc_sda_io  (bp_io[6] ),
+        .bus0_scl_io (pl_femb_pwr_scl),
+        .bus0_sda_io (pl_femb_pwr_sda),
+        .bus1_scl_io (sensor_i2c_scl),
+        .bus1_sda_io (sensor_i2c_sda),
+        
+        .slot        (bp_slot_addr[2:0]),
+        .crate_id    (bp_crate_addr),
+        
+        .ptc_busy    (),
+        
+        .axi_clk     (axi_clk_out),
+        .clk_10M     (lemo_io[0] ) // 10M clock from PS
+    );
+    
     mon_adc_spi mon_adc
     (
         .adc_sck     (mon_adc_sck),
@@ -802,12 +820,12 @@ module wib_top
     assign sfp_dis_od_descrambled[6] = sfp_dis_od[7]; // SPARE in PTCv3B, will be reassigned in PTCv4
     assign sfp_dis_od_descrambled[7] = sfp_dis_od[6]; // SPARE in PTCv3B, will be reassigned in PTCv4
     // open-drain buffers for sfp enable signals
-   IOBUF bp_io_buf[7:0] 
+   IOBUF bp_io_buf[5:0] 
    (
-      .O  (bp_io_o [7:0]),     
-      .IO (bp_io[7:0]),
+      .O  (bp_io_o [5:0]),     
+      .IO (bp_io[5:0]),
       .I  (1'b0),     
-      .T  (sfp_dis_od_descrambled[7:0])
+      .T  (sfp_dis_od_descrambled[5:0])
    );
 
 

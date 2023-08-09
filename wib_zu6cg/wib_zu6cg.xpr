@@ -354,6 +354,41 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/imports/rtl/wib_i2cSlave_define.v">
+        <FileInfo SFType="VHeader">
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+          <Attr Name="IsVisible" Val="1"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/imports/rtl/wib_i2cSlave.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/imports/rtl/wib_i2cSlaveTop.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/imports/rtl/wib_registerInterface.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/imports/rtl/wib_serialInterface.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/sim_1/wib/bd_tux.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../wib_sim/wib_sim.srcs/sim_1/wib/bd_tux.sv"/>
@@ -440,7 +475,21 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/new/i2c_follower.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/mon_adc_spi.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../apex/i2c/apex_z7_wib_i2c_sm/apex_z7_wib_i2c_sm.srcs/sources_1/new/ptc_i2c_wormhole.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
