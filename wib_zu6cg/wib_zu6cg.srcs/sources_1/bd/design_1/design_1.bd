@@ -8574,13 +8574,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -8870,13 +8870,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -9166,13 +9166,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -9462,13 +9462,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -9758,13 +9758,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -10054,13 +10054,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -10350,13 +10350,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {
@@ -10646,13 +10646,13 @@
                       "DOUT": {
                         "physical_name": "douta",
                         "direction": "O",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "DIN": {
                         "physical_name": "dina",
                         "direction": "I",
-                        "left": "64",
+                        "left": "63",
                         "right": "0"
                       },
                       "WE": {

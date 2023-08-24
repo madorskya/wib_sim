@@ -317,7 +317,7 @@ module wib_top
     wire   raw_channel_map  = `CONFIG_BITS(1,21, 1); // 0xA00C0004 // 0=UVX map, 1=raw channel map
     wire   cal_dac_start    = `CONFIG_BITS(1,22, 1); // 0xA00C0004 // calibration DAC programming start
     
-    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
+    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case they are broken
     
     assign ts_edge_sel         = `CONFIG_BITS(3,  0,  1); // 0xA00C000c timing data clock edge selection
     wire   fake_time_stamp_en  = `CONFIG_BITS(3,  1,  1); // 0xA00C000C

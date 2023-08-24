@@ -11,8 +11,8 @@ module daq_spy_control
     
     (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME bram_ctl, MEM_SIZE 262144, MEM_WIDTH 64, MEM_ECC NONE, MASTER_TYPE BRAM_CTRL, READ_WRITE_MODE READ_WRITE" *)
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl EN" *)   input         ena,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl DOUT" *) output [64:0] douta,
-    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl DIN" *)  input  [64:0] dina,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl DOUT" *) output [63:0] douta,
+    (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl DIN" *)  input  [63:0] dina,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl WE" *)   input  [7:0]  wea,
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl ADDR" *) input  [17:0] addra, // current BRAM address
     (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 bram_ctl CLK" *)  input         clka,
@@ -30,8 +30,8 @@ module daq_spy_control
 
 
     reg         bram_en;
-    wire [64:0] bram_dout;
-    reg  [64:0] bram_din;
+    wire [63:0] bram_dout;
+    reg  [63:0] bram_din;
     reg  [7:0]  bram_we;
     reg  [14:0] bram_addr; // current BRAM address
     wire        bram_clk;
@@ -68,7 +68,7 @@ module daq_spy_control
         if (reset_r[2] == 1'b1) 
         begin
             state = IDLE;
-            bram_addr = 14'h0 - 14'h1; // so next increment will make it 0
+            bram_addr = 15'b111_1111_1111_1111; // so next increment will make it 0
         end
         else
         begin
@@ -95,7 +95,7 @@ module daq_spy_control
                     if (d_valid == 1'b1)
                     begin
                         bram_din = d;
-                        bram_addr = bram_addr + 14'h1; // increment BRAM address
+                        bram_addr = bram_addr + 15'h1; // increment BRAM address
                         bram_we = 8'b11111111; // enable BRAM writing
                         bram_en = 1'b1;
                     end
@@ -112,7 +112,7 @@ module daq_spy_control
                     begin
                         rec_cnt = rec_cnt + 18'h1;
                         bram_din = d;
-                        bram_addr = bram_addr + 14'h1; // increment BRAM address
+                        bram_addr = bram_addr + 15'h1; // increment BRAM address
                         bram_we = 8'b11111111; // enable BRAM writing
                         bram_en = 1'b1;
                     end
