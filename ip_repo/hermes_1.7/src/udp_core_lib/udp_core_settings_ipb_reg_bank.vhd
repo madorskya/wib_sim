@@ -13,9 +13,10 @@ use ipbus.ipbus_reg_types.all;
 
 entity udp_core_settings_ipb_reg_bank is
     generic(
-        N_NZ_CTRL_REG   : natural := 15;
-        N_PCOUNT_REG    : natural := 8;
-        N_NZ_STAT_REG   : natural := 2
+        N_NZ_CTRL_REG       : natural := 15;
+        N_RX_P_COUNT_REG    : natural := 8;
+        N_TX_P_COUNT_REG    : natural := 3;
+        N_NZ_STAT_REG       : natural := 2
     );
     port(
         clk         : in std_logic;
@@ -31,9 +32,10 @@ architecture rtl of udp_core_settings_ipb_reg_bank is
     signal ipbw: ipb_wbus_array(N_SLAVES - 1 downto 0);
     signal ipbr: ipb_rbus_array(N_SLAVES - 1 downto 0);
 
-    signal q_nz     :ipb_reg_v(N_NZ_CTRL_REG-1 downto 0);
-    signal d_pcount :ipb_reg_v(N_PCOUNT_REG-1 downto 0);
-    signal d_id     :ipb_reg_v(N_NZ_STAT_REG-1 downto 0);
+    signal q_nz         :ipb_reg_v(N_NZ_CTRL_REG-1 downto 0);
+    signal d_rx_p_count :ipb_reg_v(N_RX_P_COUNT_REG-1 downto 0);
+    signal d_tx_p_count :ipb_reg_v(N_TX_P_COUNT_REG-1 downto 0);
+    signal d_id         :ipb_reg_v(N_NZ_STAT_REG-1 downto 0);
 
     signal debug_dst_ip_addr    : std_logic_vector(15 downto 0);
     signal debug_src_ip_addr    : std_logic_vector(15 downto 0);
@@ -141,28 +143,28 @@ begin
 
     -- udp_count, ping_count, arp_count, uns_etype_count, uns_pro_count,
     -- dropped_mac_count, dropped_ip_count, dropped_port_count
-    p_counter_stat_bank : entity ipbus.ipbus_ctrlreg_v
+    rx_p_counter_stat_bank : entity ipbus.ipbus_ctrlreg_v
     generic map(
         N_CTRL => 0,
-        N_STAT => N_PCOUNT_REG,
+        N_STAT => N_RX_P_COUNT_REG,
         SWAP_ORDER => false
     )
     port map(
         clk         => clk,
         reset       => rst,
-        ipbus_in    => ipbw(N_SLV_PACKET_COUNTERS),
-        ipbus_out   => ipbr(N_SLV_PACKET_COUNTERS),
-        d           => d_pcount
+        ipbus_in    => ipbw(N_SLV_RX_PACKET_COUNTERS),
+        ipbus_out   => ipbr(N_SLV_RX_PACKET_COUNTERS),
+        d           => d_rx_p_count
     );
     -- Breaking out record structure for packet counters.
-    d_pcount(0) <= udp_core_settings_in.udp_count;
-    d_pcount(1) <= udp_core_settings_in.ping_count;
-    d_pcount(2) <= udp_core_settings_in.arp_count;
-    d_pcount(3) <= udp_core_settings_in.uns_etype_count;
-    d_pcount(4) <= udp_core_settings_in.uns_pro_count;
-    d_pcount(5) <= udp_core_settings_in.dropped_mac_count;
-    d_pcount(6) <= udp_core_settings_in.dropped_ip_count;
-    d_pcount(7) <= udp_core_settings_in.dropped_port_count;
+    d_rx_p_count(0) <= udp_core_settings_in.rx_udp_count;
+    d_rx_p_count(1) <= udp_core_settings_in.rx_ping_count;
+    d_rx_p_count(2) <= udp_core_settings_in.rx_arp_count;
+    d_rx_p_count(3) <= udp_core_settings_in.rx_uns_etype_count;
+    d_rx_p_count(4) <= udp_core_settings_in.rx_uns_pro_count;
+    d_rx_p_count(5) <= udp_core_settings_in.rx_dropped_mac_count;
+    d_rx_p_count(6) <= udp_core_settings_in.rx_dropped_ip_count;
+    d_rx_p_count(7) <= udp_core_settings_in.rx_dropped_port_count;
 
     -- ip_id, udp_core_id
     id_stat_bank : entity udp_core_lib.ipbus_statreg_bank
@@ -179,4 +181,25 @@ begin
     -- Breaking out record structure for ID register.
     d_id(0) <= udp_core_settings_in.ip_id;
     d_id(1) <= udp_core_settings_in.udp_core_id;
+    
+    -- udp_count, ping_count, arp_count, uns_etype_count, uns_pro_count,
+    -- dropped_mac_count, dropped_ip_count, dropped_port_count
+    tx_p_counter_stat_bank : entity ipbus.ipbus_ctrlreg_v
+    generic map(
+        N_CTRL => 0,
+        N_STAT => N_TX_P_COUNT_REG,
+        SWAP_ORDER => false
+    )
+    port map(
+        clk         => clk,
+        reset       => rst,
+        ipbus_in    => ipbw(N_SLV_TX_PACKET_COUNTERS),
+        ipbus_out   => ipbr(N_SLV_TX_PACKET_COUNTERS),
+        d           => d_tx_p_count
+    );
+    -- Breaking out record structure for packet counters.
+    d_tx_p_count(0) <= udp_core_settings_in.tx_udp_count;
+    d_tx_p_count(1) <= udp_core_settings_in.tx_ping_count;
+    d_tx_p_count(2) <= udp_core_settings_in.tx_arp_count;
+
 end rtl;

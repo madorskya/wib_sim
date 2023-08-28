@@ -296,6 +296,7 @@ module wib_top
 `define STATUS_BITS(a,b,n) status_reg[((a)*32+(b))+:(n)]
 
     wire [15:0] tp_addr     = `CONFIG_BITS(0, 0,16); // 0xA00C0000 timing endpoint address
+    wire [1:0]  prio_enc_descramble = `CONFIG_BITS(0, 16, 2); // 0xA00C0000 select option for version of PTB/PTC (see below)
     wire        tp_srst     = `CONFIG_BITS(0,28, 1); // 0xA00C0000 timing endpoint reset
     
     wire [3:0] i2c_select   = `CONFIG_BITS(1, 0, 4); // 0xA00C0004 i2c chain selector, see I2C_CONTROL module below
@@ -316,7 +317,7 @@ module wib_top
     wire   raw_channel_map  = `CONFIG_BITS(1,21, 1); // 0xA00C0004 // 0=UVX map, 1=raw channel map
     wire   cal_dac_start    = `CONFIG_BITS(1,22, 1); // 0xA00C0004 // calibration DAC programming start
     
-    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case the are broken
+    wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case they are broken
     
     assign ts_edge_sel         = `CONFIG_BITS(3,  0,  1); // 0xA00C000c timing data clock edge selection
     wire   fake_time_stamp_en  = `CONFIG_BITS(3,  1,  1); // 0xA00C000C
@@ -715,14 +716,14 @@ module wib_top
         .QSFP_SCL         (qsfp_scl),     
         .QSFP_SDA         (qsfp_sda), 
         
-        .PL_FEMB_PWR_SCL  (pl_femb_pwr_scl), 
-        .PL_FEMB_PWR_SDA  (pl_femb_pwr_sda), 
+//        .PL_FEMB_PWR_SCL  (pl_femb_pwr_scl), 
+//        .PL_FEMB_PWR_SDA  (pl_femb_pwr_sda), 
         
         .PL_FEMB_EN_SCL   (pl_femb_en_scl), 
         .PL_FEMB_EN_SDA   (pl_femb_en_sda), 
         
-        .SENSOR_I2C_SCL   (sensor_i2c_scl), 
-        .SENSOR_I2C_SDA   (sensor_i2c_sda), 
+//        .SENSOR_I2C_SCL   (sensor_i2c_scl), 
+//        .SENSOR_I2C_SDA   (sensor_i2c_sda), 
         
         .PL_FEMB_PWR2_SCL (pl_femb_pwr2_scl), 
         .PL_FEMB_PWR2_SDA (pl_femb_pwr2_sda), 
@@ -736,7 +737,25 @@ module wib_top
         .ADN2814_SCL      (adn2814_scl),   
         .ADN2814_SDA      (adn2814_sda) 
     );
-
+    
+    ptc_i2c_wormhole ptc_wh
+    (
+        .ptc_scl_io  (bp_io[7] ),
+        .ptc_sda_io  (bp_io[6] ),
+        .bus0_scl_io (pl_femb_pwr_scl),
+        .bus0_sda_io (pl_femb_pwr_sda),
+        .bus1_scl_io (sensor_i2c_scl),
+        .bus1_sda_io (sensor_i2c_sda),
+        
+        .slot        (bp_slot_addr[2:0]),
+        .crate_id    (bp_crate_addr),
+        
+        .ptc_busy    (),
+        
+        .axi_clk     (axi_clk_out),
+        .clk_10M     (lemo_io[0] ) // 10M clock from PS
+    );
+    
     mon_adc_spi mon_adc
     (
         .adc_sck     (mon_adc_sck),
@@ -768,14 +787,45 @@ module wib_top
         sfp_dis_od = 8'hff;
         sfp_dis_od [bp_slot_addr[2:0]] = sfp_dis; // drive the pin matching the slot number
     end
-
+// register 0xA00C0000[17:16] selects:
+    // 2'b00 -> "new" PTB with PTCv4 (default)
+    // 2'b01 -> "new" PTB with PTCv3B
+    // 2'b10 -> "old" PTB with PTCv3B
+    // 2'b11 -> not a legal value
+    wire [7:0] sfp_dis_od_descrambled;
+    assign sfp_dis_od_descrambled[1] = (prio_enc_descramble==2'b00) ? sfp_dis_od[5] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[0] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[1] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[0] = (prio_enc_descramble==2'b00) ? sfp_dis_od[4] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[1] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[0] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[3] = (prio_enc_descramble==2'b00) ? sfp_dis_od[1] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[2] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[3] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[2] = (prio_enc_descramble==2'b00) ? sfp_dis_od[0] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[3] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[2] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[4] = (prio_enc_descramble==2'b00) ? sfp_dis_od[3] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[4] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[4] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[5] = (prio_enc_descramble==2'b00) ? sfp_dis_od[2] : 
+                                       (prio_enc_descramble==2'b01) ? sfp_dis_od[5] :
+                                       (prio_enc_descramble==2'b10) ? sfp_dis_od[5] :
+                                                                     1'b1 ;
+    assign sfp_dis_od_descrambled[6] = sfp_dis_od[7]; // SPARE in PTCv3B, will be reassigned in PTCv4
+    assign sfp_dis_od_descrambled[7] = sfp_dis_od[6]; // SPARE in PTCv3B, will be reassigned in PTCv4
     // open-drain buffers for sfp enable signals
-   IOBUF bp_io_buf[7:0] 
+   IOBUF bp_io_buf[5:0] 
    (
-      .O  (bp_io_o [7:0]),     
-      .IO (bp_io[7:0]),
+      .O  (bp_io_o [5:0]),     
+      .IO (bp_io[5:0]),
       .I  (1'b0),     
-      .T  (sfp_dis_od[7:0])
+      .T  (sfp_dis_od_descrambled[5:0])
    );
 
 

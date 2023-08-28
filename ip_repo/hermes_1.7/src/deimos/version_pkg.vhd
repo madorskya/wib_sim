@@ -17,7 +17,7 @@ use ieee.numeric_std.all;
 package version_pkg is
     constant C_VMAJOR_INT  : natural                       := 0;
     constant C_VMINOR_INT  : natural                       := 9;
-    constant C_VPATCH_INT  : natural                       := 1;
+    constant C_VPATCH_INT  : natural                       := 2;
     constant C_VMAJOR_HEX  : std_logic_vector(7 downto 0)  := std_logic_vector(to_unsigned(C_VMAJOR_INT, 8));
     constant C_VMINOR_HEX  : std_logic_vector(7 downto 0)  := std_logic_vector(to_unsigned(C_VMINOR_INT, 8));
     constant C_VPATCH_HEX  : std_logic_vector(7 downto 0)  := std_logic_vector(to_unsigned(C_VPATCH_INT, 8));
