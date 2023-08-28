@@ -122,7 +122,11 @@ module wib_top
     // calibration DAC
     output cal_dac_sync,
     output cal_dac_sclk,
-    output cal_dac_din
+    output cal_dac_din,
+    // calibration pulse output
+    output [3:0] cal_pulse,
+
+    input VP, VN// Dedicated and Hardwired Analog Input Pair
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
@@ -316,6 +320,7 @@ module wib_top
     assign crc_err_reset    = `CONFIG_BITS(1,20, 1); // 0xA00C0004 // reset of sticky crc error flags
     wire   raw_channel_map  = `CONFIG_BITS(1,21, 1); // 0xA00C0004 // 0=UVX map, 1=raw channel map
     wire   cal_dac_start    = `CONFIG_BITS(1,22, 1); // 0xA00C0004 // calibration DAC programming start
+    wire   smon_reset       = `CONFIG_BITS(1,23, 1); // 0xA00C0004 // system monitor reset
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case they are broken
     
@@ -381,8 +386,12 @@ module wib_top
     assign dac_src_sel                        = `CONFIG_BITS(15,  0, 4); // 0xA00C003C
     assign mon_vs_pulse_sel                   = `CONFIG_BITS(15,  4, 1); // 0xA00C003C
     assign inj_cal_pulse                      = `CONFIG_BITS(15,  5, 1); // 0xA00C003C
+    wire [4:0]  cp_phase                      = `CONFIG_BITS(15,  6, 5); // 0xA00C003C 
+    wire [3:0]  cp_femb_en                    = `CONFIG_BITS(15, 11, 4); // 0xA00C003C 
     wire [15:0] cal_dac_data                  = `CONFIG_BITS(15, 16,16); // 0xA00C003C
-    
+
+    wire [20:0] cp_period     = `CONFIG_BITS(16,  0, 21); // 0xA00C0040  
+    wire [26:0] cp_high_time  = `CONFIG_BITS(17,  0, 27); // 0xA00C0044 
 
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full[1:0];   // 0xA00C0080
     assign `STATUS_BITS( 0, 2,  1) = ps_locked;
@@ -438,6 +447,15 @@ module wib_top
     assign `STATUS_BITS(19,16, 15) = spy_addr[5]; // 0xA00C00CC
     assign `STATUS_BITS(20, 0, 15) = spy_addr[6]; // 0xA00C00D0
     assign `STATUS_BITS(20,16, 15) = spy_addr[7]; // 0xA00C00D0
+
+    wire [15:0] MEASURED_TEMP, MEASURED_VCCINT; 
+    wire [15:0] MEASURED_VCCAUX, MEASURED_VCCBRAM;
+
+    assign `STATUS_BITS(21, 0, 16) = MEASURED_TEMP;    // 0xA00C00D4
+    assign `STATUS_BITS(21,16, 16) = MEASURED_VCCINT;  // 0xA00C00D4
+    assign `STATUS_BITS(22, 0, 16) = MEASURED_VCCAUX;  // 0xA00C00D8
+    assign `STATUS_BITS(22,16, 16) = MEASURED_VCCBRAM; // 0xA00C00D8
+
 
     wire sfp_dis;
     
@@ -738,6 +756,11 @@ module wib_top
         .ADN2814_SDA      (adn2814_sda) 
     );
     
+    wire smon_sclk_in = 1;     // Buffer output
+    wire smon_sclk_ts;      // 3-state enable input, high=input, low=output
+    wire smon_sda_in = 1;     // Buffer output
+    wire smon_sda_ts;      // 3-state enable input, high=input, low=output
+    
     ptc_i2c_wormhole ptc_wh
     (
         .ptc_scl_io  (bp_io[7] ),
@@ -780,7 +803,35 @@ module wib_top
         .busy         (cal_dac_busy) // FSM shifting, wait until this signal drops to 0
     );
     
+    calibration_pulser
+    (
+        .clk       (clk62p5), 
+        .adc_edge  (cmd_bit_edge), // ADC EDGE command that resets 2 MHz clock
+        .period    (cp_period   ), // cal pulse period in 2 MHz clock periods
+        .phase     (cp_phase    ), // phase relative to 2 MHz clock (), in 62.5M clock periods
+        .high_time (cp_high_time), // high pulse time (), in 62.5M clock periods 
+        .femb_en   (cp_femb_en  ), // enable pulses on FEMBs
+        .cal_pulse (cal_pulse   )
+    );
 
+    sys_monitor sys_mon 
+    (
+        .DCLK (axi_clk_out),  // Clock input for DRP
+        .RESET (smon_reset),
+        .VP (VP), 
+        .VN (VN),// Dedicated and Hardwired Analog Input Pair
+        
+        .i2c_sclk_in (smon_sclk_in),     // Buffer output
+        .i2c_sclk_ts (smon_sclk_ts),      // 3-state enable input (), high=input (), low=output
+        .i2c_sda_in  (smon_sda_in ),     // Buffer output
+        .i2c_sda_ts  (smon_sda_ts ),      // 3-state enable input (), high=input (), low=output
+        
+        .MEASURED_TEMP    (MEASURED_TEMP   ), 
+        .MEASURED_VCCINT  (MEASURED_VCCINT ), 
+        .MEASURED_VCCAUX  (MEASURED_VCCAUX ), 
+        .MEASURED_VCCBRAM (MEASURED_VCCBRAM)
+    
+    );     
 
     always @(*)
     begin
@@ -832,8 +883,8 @@ module wib_top
     // misc_io[ 7:0] = connector P2 pins 15,13,11,9,7,5,3,1
     // misc_io[15:8] = connector P1 pins 15,13,11,9,7,5,3,1
     // test points
-    assign misc_io[1:0]  = rx_k[0];
-    assign misc_io[3:2]  = rx_k[1];
+    assign misc_io[1:0]  = cal_pulse[1:0];
+    assign misc_io[3:2]  = cal_pulse[3:2];
     assign misc_io[5:4]  = rx_k[2];
     assign misc_io[7:6]  = rx_k[3];
     assign misc_io[11:8] = valid12[3:0];
