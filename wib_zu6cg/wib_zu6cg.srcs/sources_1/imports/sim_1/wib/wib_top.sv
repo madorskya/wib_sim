@@ -803,7 +803,7 @@ module wib_top
         .busy         (cal_dac_busy) // FSM shifting, wait until this signal drops to 0
     );
     
-    calibration_pulser
+    calibration_pulser cal_pulser
     (
         .clk       (clk62p5), 
         .adc_edge  (cmd_bit_edge), // ADC EDGE command that resets 2 MHz clock
@@ -811,7 +811,8 @@ module wib_top
         .phase     (cp_phase    ), // phase relative to 2 MHz clock (), in 62.5M clock periods
         .high_time (cp_high_time), // high pulse time (), in 62.5M clock periods 
         .femb_en   (cp_femb_en  ), // enable pulses on FEMBs
-        .cal_pulse (cal_pulse   )
+        .cal_pulse (cal_pulse   ),
+        .cal_pulse_mon (cal_pulse_mon)
     );
 
     sys_monitor sys_mon 
@@ -883,11 +884,9 @@ module wib_top
     // misc_io[ 7:0] = connector P2 pins 15,13,11,9,7,5,3,1
     // misc_io[15:8] = connector P1 pins 15,13,11,9,7,5,3,1
     // test points
-    assign misc_io[1:0]  = cal_pulse[1:0];
-    assign misc_io[3:2]  = cal_pulse[3:2];
-    assign misc_io[5:4]  = rx_k[2];
-    assign misc_io[7:6]  = rx_k[3];
-    assign misc_io[11:8] = valid12[3:0];
+    assign misc_io[3:0]  = cal_pulse_mon;
+    assign misc_io[8:4]  = cal_pulser.adc_clk_phase;
+
     assign misc_io[13]   = ts_rec_d_pad;
     assign misc_io[14]   = clk125;
     assign misc_io[15]   = clk62p5;

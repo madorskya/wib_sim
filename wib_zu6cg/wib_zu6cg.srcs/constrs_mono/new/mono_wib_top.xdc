@@ -334,7 +334,11 @@ set_property PACKAGE_PIN AB3 [get_ports {cal_pulse[1]}]
 set_property PACKAGE_PIN AA5 [get_ports {cal_pulse[2]}]
 set_property PACKAGE_PIN AC8 [get_ports {cal_pulse[3]}]
 set_property IOSTANDARD LVCMOS18 [get_ports cal_pulse[*]]
-
+set_property IOB TRUE [get_ports cal_pulse[*]]
+set_property IOB TRUE [get_ports misc_io[0]]
+set_property IOB TRUE [get_ports misc_io[1]]
+set_property IOB TRUE [get_ports misc_io[2]]
+set_property IOB TRUE [get_ports misc_io[3]]
 
 #BANK  65 HD   1.8V
 
