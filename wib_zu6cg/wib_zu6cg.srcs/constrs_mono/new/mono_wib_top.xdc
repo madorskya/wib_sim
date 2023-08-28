@@ -329,6 +329,17 @@ set_property PACKAGE_PIN AM11 [get_ports temp_s3_alert]
 set_property PACKAGE_PIN AP9 [get_ports pl_femb_pwr3_scl]
 set_property PACKAGE_PIN AN9 [get_ports pl_femb_pwr3_sda]
 
+set_property PACKAGE_PIN AH3 [get_ports {cal_pulse[0]}]
+set_property PACKAGE_PIN AB3 [get_ports {cal_pulse[1]}]
+set_property PACKAGE_PIN AA5 [get_ports {cal_pulse[2]}]
+set_property PACKAGE_PIN AC8 [get_ports {cal_pulse[3]}]
+set_property IOSTANDARD LVCMOS18 [get_ports cal_pulse[*]]
+set_property IOB TRUE [get_ports cal_pulse[*]]
+set_property IOB TRUE [get_ports misc_io[0]]
+set_property IOB TRUE [get_ports misc_io[1]]
+set_property IOB TRUE [get_ports misc_io[2]]
+set_property IOB TRUE [get_ports misc_io[3]]
+
 #BANK  65 HD   1.8V
 
 
@@ -539,7 +550,7 @@ set_property IOSTANDARD LVCMOS25 [get_ports {bp_io[4]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {bp_io[5]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {bp_io[6]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {bp_io[7]}]
-// pullups for PTC I2C pins
+# pullups for PTC I2C pins
 set_property PULLUP true     [get_ports {bp_io[6]}]
 set_property PULLUP true     [get_ports {bp_io[7]}]
 set_property IOSTANDARD LVCMOS25 [get_ports cal_dac_sync]
@@ -761,6 +772,8 @@ set_property LOC G27 [get_ports gtrefclk00p_in[0]]
 set_property LOC L8  [get_ports gtrefclk00p_in[1]]
 set_property LOC G8  [get_ports gtrefclk00p_in[2]]
 set_property LOC C8  [get_ports gtrefclk00p_in[3]]
+
+set_property IOSTANDARD ANALOG [get_ports {VP}]
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
 

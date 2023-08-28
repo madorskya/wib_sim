@@ -546,13 +546,13 @@ FF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380
         "PSU__USB0__PERIPHERAL__ENABLE": [ { "value": "0", "value_src": "user", "resolve_type": "user", "usage": "all" } ],
         "PSU__USB0__PERIPHERAL__IO": [ { "value": "<Select>", "value_src": "user", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "PSU__USB0__RESET__ENABLE": [ { "value": "0", "value_src": "user", "resolve_type": "user", "usage": "all" } ],
-        "PSU__USB0__RESET__IO": [ { "value": "<Select>", "resolve_type": "user", "enabled": false, "usage": "all" } ],
+        "PSU__USB0__RESET__IO": [ { "value": "<Select>", "resolve_type": "user", "usage": "all" } ],
         "PSU__USB__RESET__MODE": [ { "value": "<Select>", "value_src": "user", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "PSU__USB__RESET__POLARITY": [ { "value": "<Select>", "value_src": "user", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "PSU__USB1__PERIPHERAL__ENABLE": [ { "value": "0", "value_src": "user", "resolve_type": "user", "usage": "all" } ],
         "PSU__USB1__PERIPHERAL__IO": [ { "value": "<Select>", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "PSU__USB1__RESET__ENABLE": [ { "value": "0", "value_src": "user", "resolve_type": "user", "usage": "all" } ],
-        "PSU__USB1__RESET__IO": [ { "value": "<Select>", "resolve_type": "user", "enabled": false, "usage": "all" } ],
+        "PSU__USB1__RESET__IO": [ { "value": "<Select>", "resolve_type": "user", "usage": "all" } ],
         "PSU__USB3_0__PERIPHERAL__ENABLE": [ { "value": "0", "value_src": "user", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "PSU__USB3_0__PERIPHERAL__IO": [ { "value": "<Select>", "value_src": "user", "resolve_type": "user", "enabled": false, "usage": "all" } ],
         "PSU__USB3_1__PERIPHERAL__ENABLE": [ { "value": "0", "value_src": "user", "resolve_type": "user", "enabled": false, "usage": "all" } ],
@@ -1606,7 +1606,7 @@ FF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380
         "PSU__IRQ_P2F_APU_REGS__INT": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__IRQ_P2F__INTF_PPD_CCI__INT": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__IRQ_P2F__INTF_FPD_SMMU__INT": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "PSU__NUM_F2P0__INTR__INPUTS": [ { "value": "1", "value_src": "propagated", "value_permission": "bd", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "PSU__NUM_F2P0__INTR__INPUTS": [ { "value": "2", "value_src": "propagated", "value_permission": "bd", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__NUM_F2P1__INTR__INPUTS": [ { "value": "1", "value_permission": "bd", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ],
         "PSU__NUM_FABRIC_RESETS": [ { "value": "1", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PSU__GPIO_EMIO_WIDTH": [ { "value": "1", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -1738,7 +1738,7 @@ FF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380
         "C_USE_DEBUG_TEST": [ { "value": "0", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
         "C_SD0_INTERNAL_BUS_WIDTH": [ { "value": "5", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
         "C_SD1_INTERNAL_BUS_WIDTH": [ { "value": "4", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
-        "C_NUM_F2P_0_INTR_INPUTS": [ { "value": "1", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
+        "C_NUM_F2P_0_INTR_INPUTS": [ { "value": "2", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
         "C_NUM_F2P_1_INTR_INPUTS": [ { "value": "1", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
         "C_EMIO_GPIO_WIDTH": [ { "value": "1", "resolve_type": "dependent", "format": "long", "usage": "all" } ],
         "C_NUM_FABRIC_RESETS": [ { "value": "1", "resolve_type": "dependent", "format": "long", "usage": "all" } ]
@@ -1812,7 +1812,7 @@ FF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380
         "maxigp0_awqos": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
         "maxigp0_arqos": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
         "emio_enet0_enet_tsu_timer_cnt": [ { "direction": "out", "size_left": "93", "size_right": "0" } ],
-        "pl_ps_irq0": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0" } ],
+        "pl_ps_irq0": [ { "direction": "in", "size_left": "1", "size_right": "0", "driver_value": "0" } ],
         "pl_resetn0": [ { "direction": "out", "driver_value": "0" } ],
         "pl_clk0": [ { "direction": "out" } ],
         "pl_clk1": [ { "direction": "out" } ]
@@ -1921,8 +1921,8 @@ FF;1|FPD;AFI_4;FD3A0000;FD3AFFFF;1|FPD;AFI_3;FD390000;FD39FFFF;1|FPD;AFI_2;FD380
           "abstraction_type": "xilinx.com:signal:interrupt_rtl:1.0",
           "mode": "slave",
           "parameters": {
-            "SENSITIVITY": [ { "value": "LEVEL_HIGH", "value_src": "constant_prop", "value_permission": "bd", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
-            "PortWidth": [ { "value": "1", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ]
+            "SENSITIVITY": [ { "value": "LEVEL_HIGH:LEVEL_HIGH", "value_src": "ip_propagated", "value_permission": "bd", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
+            "PortWidth": [ { "value": "2", "value_src": "ip_propagated", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ]
           },
           "port_maps": {
             "INTERRUPT": [ { "physical_name": "pl_ps_irq0" } ]
