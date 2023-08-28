@@ -43,15 +43,20 @@ addr+=(0xA00C00A8 0xA00C00AC 0xA00C00B0 0xA00C00B4 0xA00C00B8 0xA00C00C4 0xA00C0
 bnum+=(0          0          0          0          0          0          16         0          16)
 mask+=(0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffffffff 0xffff     0xffff     0xffff     0xffff)
 
-name+=(cds_diff   dac_src_sel mon_vs_pulse_sel inj_cal_pulse) 
-addr+=(0xA00C009C 0xA00C003C  0xA00C003C       0xA00C003C)
-bnum+=(0          0           4                5)
-mask+=(0xffff     0xf         1                1)
+name+=(cds_diff   dac_src_sel mon_vs_pulse_sel inj_cal_pulse cp_phase   cp_femb_en cp_period  cp_high_time) 
+addr+=(0xA00C009C 0xA00C003C  0xA00C003C       0xA00C003C    0xA00C003C 0xA00C003C 0xA00C0040 0xA00C0044  )
+bnum+=(0          0           4                5             6          10         0          0           )
+mask+=(0xffff     0xf         1                1             0x1f       0xf        0x1fffff   0x7ffffff   )
 
 name+=(cal_dac_start cal_dac_data cal_dac_busy)
 addr+=(0xA00C0004    0xA00C003C   0xA00C0090)
 bnum+=(22            16           20)
 mask+=(1             0xffff       1)
+
+name+=(sm_temp    sm_vccint  sm_vccaux  sm_vccbram)
+addr+=(0xA00C00D4 0xA00C00D4 0xA00C00D8 0xA00C00D8)
+bnum+=(0          16         0          16        )
+mask+=(0xffff     0xffff     0xffff     0xffff    )
 
 #syntax: devreg reg_name [wr_value]
 
