@@ -803,6 +803,8 @@ module wib_top
         .busy         (cal_dac_busy) // FSM shifting, wait until this signal drops to 0
     );
     
+    wire [3:0] cal_pulse_mon;
+
     calibration_pulser cal_pulser
     (
         .clk       (clk62p5), 
