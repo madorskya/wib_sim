@@ -53,7 +53,7 @@ module daq_spy_control
     
     reg [31:0] daq_stream_r;
     (* async_reg *) reg [2:0] reset_r;
-    (* async_reg *) reg [2:0] trigger_r;
+    (* async_reg *) reg [4:0] trigger_r;
     
     assign bram_rst = 1'b0;
     assign bram_clk = clk;
@@ -86,7 +86,7 @@ module daq_spy_control
                 
                 RECORD:
                 begin
-                    if (trigger_r[2] == 1'b1)
+                    if (trigger_r[4:3] == 2'b01) // looking for rising edge of trigger
                     begin
                         state = LAST;
                         rec_cnt = 15'b0;
@@ -132,7 +132,7 @@ module daq_spy_control
         
         // demetastab reset and trigger
         reset_r   = {reset_r   [1:0], reset  };
-        trigger_r = {trigger_r [1:0], trigger};
+        trigger_r = {trigger_r [3:0], trigger};
     end
 
     blk_mem_spy blk_mem 

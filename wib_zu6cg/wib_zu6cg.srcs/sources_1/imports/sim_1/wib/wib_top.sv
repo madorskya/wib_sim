@@ -111,7 +111,8 @@ module wib_top
     output      mon_adc_cs,
     
     // front panel LEMO
-    output [1:0] lemo_io,
+    output lemo_io_0,
+    input  lemo_io_1,
     output [1:0] lemo_dir,
     
     // DAC source select for FEMBs [3:0]
@@ -133,8 +134,7 @@ module wib_top
     assign femb_clk_sel = 1'b1; // select FPGA clk permanently
     assign femb_cmd_sel = 1'b0; // select FPGA command permanently
     assign si5344_oe = 1'b0;
-    assign lemo_dir = 2'b11; // bit 0 = output (10M clock), bit 1 = output, unused
-    assign lemo_io[1] = 1'b0; // ground unused LEMO output to prevent oscillations of the buffer
+    assign lemo_dir = 2'b01; // bit 0 = output (10M clock), bit 1 = input, trigger
      
     wire         coldata_rx_reset; // common reset for all circiuts
     wire [0 : 0] reset_rx_done_out   ; 
@@ -321,6 +321,8 @@ module wib_top
     wire   raw_channel_map  = `CONFIG_BITS(1,21, 1); // 0xA00C0004 // 0=UVX map, 1=raw channel map
     wire   cal_dac_start    = `CONFIG_BITS(1,22, 1); // 0xA00C0004 // calibration DAC programming start
     wire   smon_reset       = `CONFIG_BITS(1,23, 1); // 0xA00C0004 // system monitor reset
+    wire   hermes_reset     = `CONFIG_BITS(1,24, 1); // 0xA00C0004 // manual hermes  reset
+    wire   p11_enable       = `CONFIG_BITS(1,25, 1); // 0xA00C0004 // enable P11 connector input
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case they are broken
     
@@ -499,7 +501,8 @@ module wib_top
         
          // timing point signals
         .ts_clk             (clk62p5   ), // this is 62.5 M clock for WIB logic
-        .ts_rst             (~ts_rdy   ), // ts_rst does not work for some reason, using ~ts_rdy instead
+        // ts_rst is used for hermes reset. Controlled by TS ready when TS is selected, otherwise manual reset
+        .ts_rst             (((~ts_rdy) & (~ts_clk_sel)) | hermes_reset), // ts_rst does not work for some reason, using ~ts_rdy instead
         .ts_tstamp          (ts_tstamp ),
         
         .axi_clk_out        (axi_clk_out),
@@ -526,13 +529,13 @@ module wib_top
         .cmd_bit_act        (cmd_bit_act      ),
         .cmd_bit_reset      (cmd_bit_reset    ),
         .cmd_bit_adc_reset  (cmd_bit_adc_reset),
-        .cmd_bit_trigger    (cmd_bit_trigger  ),
+        .cmd_bit_trigger    (cmd_bit_trigger | (lemo_io_1 & p11_enable) ), // spy memory trigger from DTS command or from P11 LEMO input
         
         .ps_reset           (ps_reset ),
         .ps_en_in           (ps_en_in ),
         .ps_locked          (ps_locked),
         
-        .pl_clk_10M         (lemo_io[0]),
+        .pl_clk_10M         (lemo_io_0),
         .sda_in_out         (sda_in_out),
         .sda_out_out        (sda_out_out),
         .scl_out            (scl_out),
@@ -776,7 +779,7 @@ module wib_top
         .ptc_busy    (),
         
         .axi_clk     (axi_clk_out),
-        .clk_10M     (lemo_io[0] ) // 10M clock from PS
+        .clk_10M     (lemo_io_0 ) // 10M clock from PS
     );
     
     mon_adc_spi mon_adc

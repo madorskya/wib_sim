@@ -119,66 +119,6 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0.xci">
-          <Proxy FileSetName="design_1_coldata_fast_cmd_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_0/design_1_util_ds_buf_0_0.xci">
-          <Proxy FileSetName="design_1_util_ds_buf_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_1/design_1_coldata_i2c_0_1.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1.xci">
-          <Proxy FileSetName="design_1_util_ds_buf_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_2/design_1_coldata_i2c_0_2.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_2/design_1_util_ds_buf_0_2.xci">
-          <Proxy FileSetName="design_1_util_ds_buf_0_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_3/design_1_coldata_i2c_0_3.xci">
-          <Proxy FileSetName="design_1_coldata_i2c_0_3"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_3/design_1_util_ds_buf_0_3.xci">
-          <Proxy FileSetName="design_1_util_ds_buf_0_3"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0.xci">
-          <Proxy FileSetName="design_1_debug_bridge_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_1_0/design_1_debug_bridge_1_0.xci">
-          <Proxy FileSetName="design_1_debug_bridge_1_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_dyn_phase_adjust_0_0/design_1_dyn_phase_adjust_0_0.xci">
-          <Proxy FileSetName="design_1_dyn_phase_adjust_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_reg_bank_64_0_0/design_1_reg_bank_64_0_0.xci">
-          <Proxy FileSetName="design_1_reg_bank_64_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0.xci">
-          <Proxy FileSetName="design_1_rst_ps8_0_99M_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_gpio_1_0/design_1_axi_gpio_1_0.xci">
-          <Proxy FileSetName="design_1_axi_gpio_1_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_iic_0_0/design_1_axi_iic_0_0.xci">
-          <Proxy FileSetName="design_1_axi_iic_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_i2c_clk_phase_0/design_1_i2c_clk_phase_0.xci">
-          <Proxy FileSetName="design_1_i2c_clk_phase_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci">
-          <Proxy FileSetName="design_1_zynq_ultra_ps_e_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_2/design_1_axi_bram_ctrl_0_2.xci">
-          <Proxy FileSetName="design_1_axi_bram_ctrl_0_2"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_2/design_1_daq_spy_control_0_2.xci">
-          <Proxy FileSetName="design_1_daq_spy_control_0_2"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_4/design_1_axi_bram_ctrl_0_4.xci">
           <Proxy FileSetName="design_1_axi_bram_ctrl_0_4"/>
         </CompFileExtendedInfo>
@@ -224,11 +164,65 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_tx_mux_wib_tux_0_0/design_1_tx_mux_wib_tux_0_0.xci">
           <Proxy FileSetName="design_1_tx_mux_wib_tux_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0412_xsdbm_0.xci">
-          <Proxy FileSetName="bd_0412_xsdbm_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_zynq_ultra_ps_e_0_0/design_1_zynq_ultra_ps_e_0_0.xci">
+          <Proxy FileSetName="design_1_zynq_ultra_ps_e_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0412_lut_buffer_0.xci">
-          <Proxy FileSetName="bd_0412_lut_buffer_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_bram_ctrl_0_2/design_1_axi_bram_ctrl_0_2.xci">
+          <Proxy FileSetName="design_1_axi_bram_ctrl_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_daq_spy_control_0_2/design_1_daq_spy_control_0_2.xci">
+          <Proxy FileSetName="design_1_daq_spy_control_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_i2c_clk_phase_0/design_1_i2c_clk_phase_0.xci">
+          <Proxy FileSetName="design_1_i2c_clk_phase_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_iic_0_0/design_1_axi_iic_0_0.xci">
+          <Proxy FileSetName="design_1_axi_iic_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_axi_gpio_1_0/design_1_axi_gpio_1_0.xci">
+          <Proxy FileSetName="design_1_axi_gpio_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_rst_ps8_0_99M_0/design_1_rst_ps8_0_99M_0.xci">
+          <Proxy FileSetName="design_1_rst_ps8_0_99M_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_reg_bank_64_0_0/design_1_reg_bank_64_0_0.xci">
+          <Proxy FileSetName="design_1_reg_bank_64_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_dyn_phase_adjust_0_0/design_1_dyn_phase_adjust_0_0.xci">
+          <Proxy FileSetName="design_1_dyn_phase_adjust_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_1_0/design_1_debug_bridge_1_0.xci">
+          <Proxy FileSetName="design_1_debug_bridge_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_debug_bridge_0_0/design_1_debug_bridge_0_0.xci">
+          <Proxy FileSetName="design_1_debug_bridge_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_fast_cmd_0_0/design_1_coldata_fast_cmd_0_0.xci">
+          <Proxy FileSetName="design_1_coldata_fast_cmd_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_0/design_1_coldata_i2c_0_0.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_0/design_1_util_ds_buf_0_0.xci">
+          <Proxy FileSetName="design_1_util_ds_buf_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_1/design_1_coldata_i2c_0_1.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_1/design_1_util_ds_buf_0_1.xci">
+          <Proxy FileSetName="design_1_util_ds_buf_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_2/design_1_coldata_i2c_0_2.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_2/design_1_util_ds_buf_0_2.xci">
+          <Proxy FileSetName="design_1_util_ds_buf_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_coldata_i2c_0_3/design_1_coldata_i2c_0_3.xci">
+          <Proxy FileSetName="design_1_coldata_i2c_0_3"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_util_ds_buf_0_3/design_1_util_ds_buf_0_3.xci">
+          <Proxy FileSetName="design_1_util_ds_buf_0_3"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_c443_axi_jtag_0.xci">
           <Proxy FileSetName="bd_c443_axi_jtag_0"/>
@@ -239,8 +233,11 @@
         <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_2/bd_c443_bs_switch_1_0.xci">
           <Proxy FileSetName="bd_c443_bs_switch_1_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_tier2_xbar_2_0/design_1_tier2_xbar_2_0.xci">
-          <Proxy FileSetName="design_1_tier2_xbar_2_0"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_0/bd_0412_xsdbm_0.xci">
+          <Proxy FileSetName="bd_0412_xsdbm_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/ip_1/bd_0412_lut_buffer_0.xci">
+          <Proxy FileSetName="bd_0412_lut_buffer_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/new/pdts_endpoint_wrapper.v">
@@ -1476,9 +1473,31 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="design_1_daq_spy_control_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_daq_spy_control_0_2" RelGenDir="$PGENDIR/design_1_daq_spy_control_0_2">
+    <FileSet Name="sys_manager" Type="BlockSrcs" RelSrcDir="$PSRCDIR/sys_manager" RelGenDir="$PGENDIR/sys_manager">
+      <File Path="$PSRCDIR/sources_1/ip/sys_manager/sys_manager.xci">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
-        <Option Name="TopModule" Val="design_1_daq_spy_control_0_2"/>
+        <Option Name="TopModule" Val="sys_manager"/>
+        <Option Name="dataflowViewerSettings" Val="min_width=16"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="ila_cal_pulse" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ila_cal_pulse" RelGenDir="$PGENDIR/ila_cal_pulse">
+      <File Path="$PSRCDIR/sources_1/ip/ila_cal_pulse/ila_cal_pulse.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <Config>
+        <Option Name="TopModule" Val="ila_cal_pulse"/>
         <Option Name="dataflowViewerSettings" Val="min_width=16"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
@@ -1532,38 +1551,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="sys_manager" Type="BlockSrcs" RelSrcDir="$PSRCDIR/sys_manager" RelGenDir="$PGENDIR/sys_manager">
-      <File Path="$PSRCDIR/sources_1/ip/sys_manager/sys_manager.xci">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
+    <FileSet Name="design_1_daq_spy_control_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_daq_spy_control_0_2" RelGenDir="$PGENDIR/design_1_daq_spy_control_0_2">
       <Config>
-        <Option Name="TopModule" Val="sys_manager"/>
-        <Option Name="dataflowViewerSettings" Val="min_width=16"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="design_1_tier2_xbar_2_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_1_tier2_xbar_2_0" RelGenDir="$PGENDIR/design_1_tier2_xbar_2_0">
-      <Config>
-        <Option Name="TopModule" Val="design_1_tier2_xbar_2_0"/>
-        <Option Name="dataflowViewerSettings" Val="min_width=16"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="ila_cal_pulse" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ila_cal_pulse" RelGenDir="$PGENDIR/ila_cal_pulse">
-      <File Path="$PSRCDIR/sources_1/ip/ila_cal_pulse/ila_cal_pulse.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <Config>
-        <Option Name="TopModule" Val="ila_cal_pulse"/>
+        <Option Name="TopModule" Val="design_1_daq_spy_control_0_2"/>
         <Option Name="dataflowViewerSettings" Val="min_width=16"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
@@ -2001,11 +1991,19 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_daq_spy_control_0_2_synth_1" Type="Ft3:Synth" SrcSet="design_1_daq_spy_control_0_2" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_daq_spy_control_0_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_daq_spy_control_0_2_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_synth_1">
+    <Run Id="sys_manager_synth_1" Type="Ft3:Synth" SrcSet="sys_manager" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="sys_manager" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/sys_manager_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/sys_manager_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/sys_manager_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2022"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="ila_cal_pulse_synth_1" Type="Ft3:Synth" SrcSet="ila_cal_pulse" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="ila_cal_pulse" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ila_cal_pulse_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -2097,31 +2095,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="sys_manager_synth_1" Type="Ft3:Synth" SrcSet="sys_manager" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="sys_manager" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/sys_manager_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/sys_manager_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/sys_manager_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2022"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_tier2_xbar_2_0_synth_1" Type="Ft3:Synth" SrcSet="design_1_tier2_xbar_2_0" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_tier2_xbar_2_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_tier2_xbar_2_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_tier2_xbar_2_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_tier2_xbar_2_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2022"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="ila_cal_pulse_synth_1" Type="Ft3:Synth" SrcSet="ila_cal_pulse" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="ila_cal_pulse" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ila_cal_pulse_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_synth_1">
+    <Run Id="design_1_daq_spy_control_0_2_synth_1" Type="Ft3:Synth" SrcSet="design_1_daq_spy_control_0_2" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_daq_spy_control_0_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/design_1_daq_spy_control_0_2_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -2814,11 +2788,26 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="design_1_daq_spy_control_0_2_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_daq_spy_control_0_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_daq_spy_control_0_2_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_impl_1">
+    <Run Id="sys_manager_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="sys_manager" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="sys_manager_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/sys_manager_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/sys_manager_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="ila_cal_pulse_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="ila_cal_pulse" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ila_cal_pulse_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -2966,45 +2955,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="sys_manager_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="sys_manager" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="sys_manager_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/sys_manager_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/sys_manager_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="design_1_tier2_xbar_2_0_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_tier2_xbar_2_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_tier2_xbar_2_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_tier2_xbar_2_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_tier2_xbar_2_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="ila_cal_pulse_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="ila_cal_pulse" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ila_cal_pulse_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/ila_cal_pulse_impl_1">
+    <Run Id="design_1_daq_spy_control_0_2_impl_1" Type="Ft2:EntireDesign" Part="xczu6cg-ffvb1156-1-e" ConstrsSet="design_1_daq_spy_control_0_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_1_daq_spy_control_0_2_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/design_1_daq_spy_control_0_2_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
           <Desc>Default settings for Implementation.</Desc>

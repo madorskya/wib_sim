@@ -307,8 +307,8 @@ set_property PULLUP true     [get_ports {bp_slot_addr[*]}]
 set_property PACKAGE_PIN AK7 [get_ports core_clk2_n]
 set_property PACKAGE_PIN AK8 [get_ports core_clk2_p]
 
-set_property PACKAGE_PIN AM5 [get_ports {lemo_io[0]}]
-set_property PACKAGE_PIN AM6 [get_ports {lemo_io[1]}]
+set_property PACKAGE_PIN AM5 [get_ports {lemo_io_0}]
+set_property PACKAGE_PIN AM6 [get_ports {lemo_io_1}]
 set_property PACKAGE_PIN AP4 [get_ports {lemo_dir[0]}]
 set_property PACKAGE_PIN AP5 [get_ports {lemo_dir[1]}]
 
@@ -631,8 +631,8 @@ set_property IOSTANDARD LVCMOS25 [get_ports {bp_slot_addr[1]}]
 set_property IOSTANDARD LVDS [get_ports core_clk2_n]
 set_property IOSTANDARD LVDS [get_ports core_clk2_p]
 
-set_property IOSTANDARD LVCMOS18 [get_ports {lemo_io[0]}]
-set_property IOSTANDARD LVCMOS18 [get_ports {lemo_io[1]}]
+set_property IOSTANDARD LVCMOS18 [get_ports {lemo_io_0}]
+set_property IOSTANDARD LVCMOS18 [get_ports {lemo_io_1}]
 set_property IOSTANDARD LVCMOS18 [get_ports {lemo_dir[0]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {lemo_dir[1]}]
 
