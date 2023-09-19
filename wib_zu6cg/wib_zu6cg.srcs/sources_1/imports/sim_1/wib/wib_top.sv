@@ -535,7 +535,7 @@ module wib_top
         .ps_en_in           (ps_en_in ),
         .ps_locked          (ps_locked),
         
-        .pl_clk_10M         (lemo_io_0),
+        .pl_clk_10M         (), //(lemo_io_0),
         .sda_in_out         (sda_in_out),
         .sda_out_out        (sda_out_out),
         .scl_out            (scl_out),
@@ -558,6 +558,7 @@ module wib_top
     (
         .clk_out1 (gen_clk),
         .clk_out2 (gen_clk2x),             
+        .clk_out3 (lemo_io_0), // 10 Mhz clock             
         .reset    (1'b0),
         .locked   (),
         .clk_in1  (ts_rec_d_clk_pll)
