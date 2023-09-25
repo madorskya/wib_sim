@@ -330,7 +330,7 @@ set_property PACKAGE_PIN AP9 [get_ports pl_femb_pwr3_scl]
 set_property PACKAGE_PIN AN9 [get_ports pl_femb_pwr3_sda]
 
 set_property PACKAGE_PIN AH3 [get_ports {cal_pulse[0]}]
-set_property PACKAGE_PIN AB3 [get_ports {cal_pulse[1]}]
+set_property PACKAGE_PIN AC3 [get_ports {cal_pulse[1]}]
 set_property PACKAGE_PIN AA5 [get_ports {cal_pulse[2]}]
 set_property PACKAGE_PIN AC8 [get_ports {cal_pulse[3]}]
 set_property IOSTANDARD LVCMOS18 [get_ports cal_pulse[*]]
