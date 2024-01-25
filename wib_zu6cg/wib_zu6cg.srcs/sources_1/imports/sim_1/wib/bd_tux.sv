@@ -68,7 +68,11 @@ module bd_tux
     input  [1:0] hermes_rxn,
     input  [1:0] hermes_rxp,
     output [1:0] hermes_txn,
-    output [1:0] hermes_txp
+    output [1:0] hermes_txp,
+
+    input [47:0] ext_mac_addr [1:0],// 48 bit vector for MAC addresses of the UDP cores.
+    input [31:0] ext_ip_addr  [1:0],// 32 bit vector for IP addresses of the UDP cores.
+    input [15:0] ext_port_addr[1:0]// 16 bit port addresses
 );
     
     design_1 design_1_i
@@ -193,7 +197,15 @@ module bd_tux
         .hermes1_rxn         (hermes_rxn[1]),
         .hermes1_rxp         (hermes_rxp[1]),
         .hermes1_txn         (hermes_txn[1]),
-        .hermes1_txp         (hermes_txp[1])
+        .hermes1_txp         (hermes_txp[1]),
+        
+        .ext_mac_addr_0  (ext_mac_addr [0]),// 48 bit vector for MAC address of the first UDP core.
+        .ext_ip_addr_0   (ext_ip_addr  [0]),// 32 bit vector for IP address of the first UDP core.
+        .ext_port_addr_0 (ext_port_addr[0]),// 16 bit port address
+        .ext_mac_addr_1  (ext_mac_addr [1]),
+        .ext_ip_addr_1   (ext_ip_addr  [1]),
+        .ext_port_addr_1 (ext_port_addr[1])
+        
         
     );
 

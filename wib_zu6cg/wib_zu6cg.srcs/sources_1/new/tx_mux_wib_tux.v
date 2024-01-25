@@ -70,11 +70,19 @@ module tx_mux_wib_tux
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_valid" *) input        d7_valid,
     (* X_INTERFACE_INFO = "UF:user:deimos_data_input:1.0 ddi7 d_last"  *) input        d7_last,
     
-    input [63:0] ts
+    input [63:0] ts,
+    
+    input [47:0] ext_mac_addr_0 ,// 48 bit vector for MAC address of the first UDP core.
+    input [31:0] ext_ip_addr_0  ,// 32 bit vector for IP address of the first UDP core.
+    input [15:0] ext_port_addr_0,// 16 bit port address
+    input [47:0] ext_mac_addr_1 ,
+    input [31:0] ext_ip_addr_1  ,
+    input [15:0] ext_port_addr_1
+
     
 );
 
-    hermes_wib_1_7 tmw 
+    hermes_wib_1_9 tmw 
     (
         .S_AXI_ACLK(S_AXI_ACLK),        // input wire S_AXI_ACLK
         .S_AXI_ARESETN(S_AXI_ARESETN),  // input wire S_AXI_ARESETN
@@ -139,7 +147,14 @@ module tx_mux_wib_tux
         .d7_valid(d7_valid),            // input wire d7_valid
         .d7_last(d7_last),              // input wire d7_last
         
-        .ts (ts)
+        .ts (ts),
+        
+        .ext_mac_addr_0  (ext_mac_addr_0 ),// 48 bit vector for MAC address of the first UDP core.
+        .ext_ip_addr_0   (ext_ip_addr_0  ),// 32 bit vector for IP address of the first UDP core.
+        .ext_port_addr_0 (ext_port_addr_0),// 16 bit port address
+        .ext_mac_addr_1  (ext_mac_addr_1 ),
+        .ext_ip_addr_1   (ext_ip_addr_1  ),
+        .ext_port_addr_1 (ext_port_addr_1)
     );
     
 endmodule

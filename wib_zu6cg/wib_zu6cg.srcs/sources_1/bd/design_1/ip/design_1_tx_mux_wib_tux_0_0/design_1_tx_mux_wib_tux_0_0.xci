@@ -95,7 +95,13 @@
         "d7": [ { "direction": "in", "size_left": "63", "size_right": "0", "driver_value": "0" } ],
         "d7_valid": [ { "direction": "in", "driver_value": "0" } ],
         "d7_last": [ { "direction": "in", "driver_value": "0" } ],
-        "ts": [ { "direction": "in", "size_left": "63", "size_right": "0" } ]
+        "ts": [ { "direction": "in", "size_left": "63", "size_right": "0" } ],
+        "ext_mac_addr_0": [ { "direction": "in", "size_left": "47", "size_right": "0" } ],
+        "ext_ip_addr_0": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "ext_port_addr_0": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
+        "ext_mac_addr_1": [ { "direction": "in", "size_left": "47", "size_right": "0" } ],
+        "ext_ip_addr_1": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "ext_port_addr_1": [ { "direction": "in", "size_left": "15", "size_right": "0" } ]
       },
       "interfaces": {
         "S_AXI_ACLK": {

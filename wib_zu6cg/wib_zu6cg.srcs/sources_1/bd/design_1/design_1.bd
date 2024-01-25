@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xD4730B57F0007729",
+      "boundary_crc": "0x73A053CF69A41E36",
       "device": "xczu6cg-ffvb1156-1-e",
       "gen_directory": "../../../../wib_zu6cg.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -148,8 +148,8 @@
           "daq_spy_control_0": ""
         }
       },
-      "tx_mux_wib_tux_0": "",
-      "xlconcat_0": ""
+      "xlconcat_0": "",
+      "tx_mux_wib_tux_0": ""
     },
     "interface_ports": {
       "WIB_LED": {
@@ -837,6 +837,36 @@
       },
       "daq_spy_full_2": {
         "direction": "O"
+      },
+      "ext_port_addr_0": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
+      },
+      "ext_mac_addr_0": {
+        "direction": "I",
+        "left": "47",
+        "right": "0"
+      },
+      "ext_mac_addr_1": {
+        "direction": "I",
+        "left": "47",
+        "right": "0"
+      },
+      "ext_ip_addr_1": {
+        "direction": "I",
+        "left": "31",
+        "right": "0"
+      },
+      "ext_ip_addr_0": {
+        "direction": "I",
+        "left": "31",
+        "right": "0"
+      },
+      "ext_port_addr_1": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
       }
     },
     "components": {
@@ -11201,6 +11231,12 @@
           }
         }
       },
+      "xlconcat_0": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "design_1_xlconcat_0_0",
+        "xci_path": "ip/design_1_xlconcat_0_0/design_1_xlconcat_0_0.xci",
+        "inst_hier_path": "xlconcat_0"
+      },
       "tx_mux_wib_tux_0": {
         "vlnv": "xilinx.com:module_ref:tx_mux_wib_tux:1.0",
         "xci_name": "design_1_tx_mux_wib_tux_0_0",
@@ -11751,14 +11787,38 @@
             "direction": "I",
             "left": "63",
             "right": "0"
+          },
+          "ext_mac_addr_0": {
+            "direction": "I",
+            "left": "47",
+            "right": "0"
+          },
+          "ext_ip_addr_0": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "ext_port_addr_0": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "ext_mac_addr_1": {
+            "direction": "I",
+            "left": "47",
+            "right": "0"
+          },
+          "ext_ip_addr_1": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "ext_port_addr_1": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
           }
         }
-      },
-      "xlconcat_0": {
-        "vlnv": "xilinx.com:ip:xlconcat:2.1",
-        "xci_name": "design_1_xlconcat_0_0",
-        "xci_path": "ip/design_1_xlconcat_0_0/design_1_xlconcat_0_0.xci",
-        "inst_hier_path": "xlconcat_0"
       }
     },
     "interface_nets": {
@@ -12259,6 +12319,42 @@
           "i2c_clk_phase/psincdec"
         ]
       },
+      "ext_ip_addr_0_0_1": {
+        "ports": [
+          "ext_ip_addr_0",
+          "tx_mux_wib_tux_0/ext_ip_addr_0"
+        ]
+      },
+      "ext_ip_addr_1_0_1": {
+        "ports": [
+          "ext_ip_addr_1",
+          "tx_mux_wib_tux_0/ext_ip_addr_1"
+        ]
+      },
+      "ext_mac_addr_0_0_1": {
+        "ports": [
+          "ext_mac_addr_0",
+          "tx_mux_wib_tux_0/ext_mac_addr_0"
+        ]
+      },
+      "ext_mac_addr_1_0_1": {
+        "ports": [
+          "ext_mac_addr_1",
+          "tx_mux_wib_tux_0/ext_mac_addr_1"
+        ]
+      },
+      "ext_port_addr_0_0_1": {
+        "ports": [
+          "ext_port_addr_0",
+          "tx_mux_wib_tux_0/ext_port_addr_0"
+        ]
+      },
+      "ext_port_addr_1_0_1": {
+        "ports": [
+          "ext_port_addr_1",
+          "tx_mux_wib_tux_0/ext_port_addr_1"
+        ]
+      },
       "i2c_clk_phase_clk_out1": {
         "ports": [
           "i2c_clk_phase/clk_out1",
@@ -12359,8 +12455,8 @@
           "daq_spy_all/AXI_RSTn",
           "ps8_0_axi_periph/M16_ARESETN",
           "ps8_0_axi_periph/M17_ARESETN",
-          "tx_mux_wib_tux_0/S_AXI_ARESETN",
-          "ps8_0_axi_periph/M18_ARESETN"
+          "ps8_0_axi_periph/M18_ARESETN",
+          "tx_mux_wib_tux_0/S_AXI_ARESETN"
         ]
       },
       "sda_in_n_0_0_1": {
@@ -12465,8 +12561,8 @@
           "daq_spy_all/AXI_CLK_OUT",
           "ps8_0_axi_periph/M16_ACLK",
           "ps8_0_axi_periph/M17_ACLK",
-          "tx_mux_wib_tux_0/S_AXI_ACLK",
-          "ps8_0_axi_periph/M18_ACLK"
+          "ps8_0_axi_periph/M18_ACLK",
+          "tx_mux_wib_tux_0/S_AXI_ACLK"
         ]
       },
       "zynq_ultra_ps_e_0_pl_clk1": {

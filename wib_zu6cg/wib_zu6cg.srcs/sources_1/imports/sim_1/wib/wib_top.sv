@@ -291,6 +291,10 @@ module wib_top
     wire cmd_bit_adc_reset;
     wire cmd_bit_trigger  ;
     wire cal_dac_busy;
+    wire [47:0] ext_mac_addr [1:0]; // 48 bit vector for MAC addresses of the UDP cores.
+    wire [31:0] ext_ip_addr  [1:0]; // 32 bit vector for IP addresses of the UDP cores.
+    wire [15:0] ext_port_addr[1:0]; // 16 bit port addresses
+    
     
     // config and status registers mapping
     
@@ -394,6 +398,16 @@ module wib_top
 
     wire [20:0] cp_period     = `CONFIG_BITS(16,  0, 21); // 0xA00C0040  
     wire [26:0] cp_high_time  = `CONFIG_BITS(17,  0, 27); // 0xA00C0044 
+
+    assign ext_mac_addr [0][31: 0] = `CONFIG_BITS(18,  0, 32); // 0xA00C0048 
+    assign ext_mac_addr [0][47:32] = `CONFIG_BITS(19,  0, 16); // 0xA00C004C 
+    assign ext_port_addr[0]        = `CONFIG_BITS(19, 16, 16); // 0xA00C004C 
+    assign ext_ip_addr  [0]        = `CONFIG_BITS(20,  0, 32); // 0xA00C0050 
+    
+    assign ext_mac_addr [1][31: 0] = `CONFIG_BITS(21,  0, 32); // 0xA00C0054 
+    assign ext_mac_addr [1][47:32] = `CONFIG_BITS(22,  0, 16); // 0xA00C0058 
+    assign ext_port_addr[1]        = `CONFIG_BITS(22, 16, 16); // 0xA00C0058 
+    assign ext_ip_addr  [1]        = `CONFIG_BITS(23,  0, 32); // 0xA00C005C 
 
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full[1:0];   // 0xA00C0080
     assign `STATUS_BITS( 0, 2,  1) = ps_locked;
@@ -550,7 +564,12 @@ module wib_top
         .hermes_rxn         (gthrxn_int),
         .hermes_rxp         (gthrxp_int),
         .hermes_txn         (gthtxn_int),
-        .hermes_txp         (gthtxp_int)
+        .hermes_txp         (gthtxp_int),
+        
+        .ext_mac_addr  (ext_mac_addr ),
+        .ext_ip_addr   (ext_ip_addr  ),
+        .ext_port_addr (ext_port_addr)
+        
     );
 
     // Generate fake output clock
