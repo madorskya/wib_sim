@@ -32,6 +32,7 @@ entity pdts_ep_core is
 		rst: in std_logic; -- Base clock reset (clk domain)
 		phase: out std_logic_vector(11 downto 0); -- Fine deskew setting
 		phase_done: in std_logic := '0'; -- Fine deskew done flag
+		cdr_rst: out std_logic; -- CDR reset signal
 		locked: in std_logic := '1'; -- CDR lock input
 		d: in std_logic; -- Timing input (clk domain)
 		q: out std_logic; -- Timing output (clk domain)
@@ -58,6 +59,10 @@ architecture rtl of pdts_ep_core is
 	signal ts_stb: std_logic;
 	signal tstamp_i: std_logic_vector(63 downto 0);
 
+	attribute MARK_DEBUG: string;
+	attribute MARK_DEBUG of txenb, rst, rrst, trst, resync, locked, rx_en, d, q: signal is "TRUE";
+	attribute MARK_DEBUG of ctrl_out, ctrl_in, ctrl_w, ctrl_r: signal is "TRUE";
+
 begin
 
 -- Control state machine
@@ -73,6 +78,7 @@ begin
 			sys_rst => sys_rst,
 			clk => clk,
 			rst => rst,
+			cdr_rst => cdr_rst,
 			cdr_locked => locked,
 			rx_en => rx_en,
 			rx_rdy => rx_rdy,
@@ -172,7 +178,7 @@ begin
 	tx: entity work.pdts_tx
 		port map(
 			clk => clk,
-			rst => trst,
+			rst => rst,
 			stb => stb,
 			scmd_in => scmd_tx_w,
 			scmd_out => scmd_tx_r,

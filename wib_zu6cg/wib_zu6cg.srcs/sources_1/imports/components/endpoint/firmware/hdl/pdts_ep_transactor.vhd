@@ -40,6 +40,9 @@ architecture rtl of pdts_ep_transactor is
 	signal timeout, last: std_logic;
 	signal tctr: unsigned(7 downto 0);
 
+--	attribute MARK_DEBUG: string;
+--	attribute MARK_DEBUG of state, timeout, rx_i, rx_o, tx_o, tx_i: signal is "TRUE";
+
 begin
 
 	-- State machine

@@ -17,6 +17,7 @@ entity pdts_endpoint is
 		SCLK_FREQ: real; -- Frequency (MHz) of the system clock
 		USE_EXT_PLL: boolean := false; -- Use external PLL or clock source
 		EXT_PLL_DIV: positive := 2; -- External PLL division ratio
+		BUFG_IN_DATAPATH : boolean := false; -- add a BUFG in path to MMCM
 		FORCE_TX: boolean := false; -- Turn on transmit permanently
 		SKIP_FREQ: boolean := false; -- Skip the frequency check step (e.g. for simulation)
 		EXT_ADDR: boolean := true; -- Skip the address setting step
@@ -63,16 +64,19 @@ begin
 	rxcdr: entity work.pdts_ep_cdr
 		generic map(
 			USE_EXT_PLL => USE_EXT_PLL,
-			EXT_PLL_DIV => EXT_PLL_DIV
+			EXT_PLL_DIV => EXT_PLL_DIV,
+                        BUFG_IN_DATAPATH => BUFG_IN_DATAPATH
 		)
 		port map(
 			d => rxd,
+			los => los,
 			rclko => pll_clko,
 			rclki => pll_clki,
 			clko => clki,
 			clko4x => clk4xi,
 			clko2x => clk2xi,
 			rsto => rsti,
+			cdr_rst => cdr_rst,
 			q => d,
 			locked => cdr_locked,
 			phase => phase,
@@ -103,12 +107,13 @@ begin
 --			sys_ctrl_in => sys_ctrl_in,
 --			sys_ctrl_out => sys_ctrl_out,
 			sys_stat => sys_stat,
-			ctrl_out => open,
-			ctrl_in => PDTS_CMI_NULL,
+			ctrl_out => ctrl_out,
+			ctrl_in => ctrl_in,
 			clk => clki,
 			rst => rsti,
 			phase => phase,
 			phase_done => phase_done,
+			cdr_rst => cdr_rst,
 			locked => cdr_locked,
 			d => d,
 			q => q,
@@ -123,6 +128,7 @@ begin
 
 	txmod: entity work.pdts_mod
 		port map(
+                        clk  => clki,
 			clk4x => clk4xi,
 			rst => rsti,
 			d => q,

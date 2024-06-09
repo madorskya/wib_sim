@@ -35,8 +35,8 @@ architecture rtl of pdts_rx_phy is
 	signal ectr: unsigned(TIMEOUT_W - 1 downto 0); -- Sets number of decoded words needed for lock
 	signal c, stb, lock, dec_en, cerr, derr, eok: std_logic;
 	
-	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of d, dd, w, c, sctr, lock, stb, lctr, cctr, dec_en, q, k, cerr, derr, ectr, eok: signal is "TRUE";
+--	attribute MARK_DEBUG: string;
+--	attribute MARK_DEBUG of rst, c, sctr, lock, eok: signal is "TRUE";
 
 begin
 

@@ -60,9 +60,7 @@ begin
 			scmd => scmd,
 			acmd_o => acmd_out,
 			acmd_i => acmd_in,
-			err => err
+			rdy => rdy
 		);
-
-	rdy <= locked and not err;
 	
 end rtl;

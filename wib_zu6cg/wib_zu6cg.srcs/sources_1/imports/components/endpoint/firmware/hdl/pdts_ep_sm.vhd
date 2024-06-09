@@ -23,17 +23,18 @@ entity pdts_ep_sm is
 		sys_rst: in std_logic; -- System reset (sys_clk domain)
 		clk: in std_logic; -- Base clock input
 		rst: in std_logic; -- Base clock domain reset
-		cdr_locked: in std_logic; -- CDR status
-		rx_en: out std_logic; -- RX enable signal (in case external clock path ready before sys_rst goes low)
-		rx_rdy: in std_logic; -- RX block ready signal
-		addr_done: in std_logic; -- Address set flag
-		deskew_done: in std_logic; -- Deskew set flag
-		pkt_err: in std_logic; -- Packet processing error flag
-		resync: in std_logic; -- Resync request
-		reset: in std_logic; -- Hard reset
-		reg_rst: out std_logic; -- Register file reset
-		tsrdy: in std_logic; -- Timestamp ready
-		ready: out std_logic; -- Output ready signal
+		cdr_rst: out std_logic; -- CDR reset (clk domain)
+		cdr_locked: in std_logic; -- CDR status (clk domain)
+		rx_en: out std_logic; -- RX enable signal (clk domain)
+		rx_rdy: in std_logic; -- RX block ready signal (clk domain)
+		addr_done: in std_logic; -- Address set flag (clk domain)
+		deskew_done: in std_logic; -- Deskew set flag (clk domain)
+		pkt_err: in std_logic; -- Packet processing error flag (clk domain)
+		resync: in std_logic; -- Resync request (clk domain)
+		reset: in std_logic; -- Hard reset (clk domain)
+		reg_rst: out std_logic; -- Register file reset (clk domain)
+		tsrdy: in std_logic; -- Timestamp ready (clk domain)
+		ready: out std_logic; -- Output ready signal (clk domain)
 		stat: out std_logic_vector(3 downto 0) -- Status output (sys_clk domain)
 	);
 
@@ -47,11 +48,10 @@ architecture rtl of pdts_ep_sm is
 	signal clk_lock, t, td: std_logic;
 	signal rctr: unsigned(7 downto 0);
 	signal sctr, cctr: unsigned(15 downto 0);
-	signal rdy, rx_en_i, reg_rst_i: std_logic;
+	signal rdy, rx_en_i, srst_i, srst: std_logic;
 
 	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of state, resync_i, reset_i, clk_ok, cdr_ok, rx_ok, ts_ok, pkt_err_i, rdy, rx_en_i: signal is "TRUE";
-
+	attribute MARK_DEBUG of state, resync_i, reset_i, clk_ok, cdr_ok, rx_ok, ts_ok, pkt_err_i, rdy, rx_en_i, srst_i: signal is "TRUE";
 
 begin
 
@@ -83,7 +83,7 @@ begin
 					elsif cdr_ok = '1' then
 						state <= ST_W_RX;
 					end if;
--- Wait for RX block to lock - from this point we go to error if there are problems
+-- Wait for RX block to lock - after this point we go to error if there are problems
 				when ST_W_RX =>
 					if clk_ok = '0' or cdr_ok = '0' then
 						state <= ST_W_CLK;
@@ -248,7 +248,7 @@ begin
 
 	rdy <= '1' when state = ST_READY else '0';
 	rx_en_i <= '0' when state = ST_RESET or state = ST_W_CLK or state = ST_W_FREQ or state = ST_W_CDR else '1';
-	reg_rst_i <= '1' when state = ST_RESET else '0';
+	srst_i <= '1' when state = ST_RESET or state = ST_W_CLK else '0';
 	
 	sync_clk: entity work.pdts_synchro
 		generic map(
@@ -259,10 +259,13 @@ begin
 			clks => clk,
 			d(0) => rdy,
 			d(1) => rx_en_i,
-			d(2) => reg_rst_i,
+			d(2) => srst_i,
 			q(0) => ready,
 			q(1) => rx_en,
-			q(2) => reg_rst
-		);	
-	
+			q(2) => srst
+		);
+
+	cdr_rst <= srst;
+	reg_rst <= srst;
+
 end rtl;

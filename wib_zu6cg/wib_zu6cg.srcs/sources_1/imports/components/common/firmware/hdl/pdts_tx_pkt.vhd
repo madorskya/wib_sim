@@ -22,6 +22,7 @@ entity pdts_tx_pkt is
 		acmd_out: out pdts_cmd_r; -- async command out
 		q: out std_logic_vector(7 downto 0); -- data output
 		k: out std_logic; -- kchar output
+		stbo: out std_logic; -- strobe output to phy
 		err: out std_logic
 	);
 
@@ -179,6 +180,7 @@ begin
 	
 	q <= q_s when smode = '1' else q_a;
 	k <= '1' when (smode = '1' and spctr = 0) or (smode = '0' and state = ST_K) else '0';
+	stbo <= '1' when sctr = 0 else '0'; -- Free-running strobe to allow continued output during rx resync
 	err <= '1' when state = ST_E else '0';
 	
 end rtl;

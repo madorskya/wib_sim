@@ -53,8 +53,8 @@ architecture rtl of pdts_ep_regfile is
 	signal ts_cyc: std_logic;
 	signal tstamp_i: std_logic_vector(63 downto 0);
 
-	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of resync, reset, txenb, addr_done, deskew_done: signal is "TRUE";
+--	attribute MARK_DEBUG: string;
+--	attribute MARK_DEBUG of resync, reset, txenb, addr_done, deskew_done, ctrl_in, cyc: signal is "TRUE";
 
 begin
 

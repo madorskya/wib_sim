@@ -29,7 +29,7 @@ end pdts_tx;
 architecture rtl of pdts_tx is
 
 	signal txd: std_logic_vector(7 downto 0);
-	signal k: std_logic;
+	signal k, stbi: std_logic;
 	signal acmdw_v: pdts_cmd_w_array(1 downto 0);
 	signal acmdr_v: pdts_cmd_r_array(1 downto 0);
 	signal acmdw: pdts_cmd_w;
@@ -78,6 +78,7 @@ begin
 			acmd_out => acmdr,
 			q => txd,
 			k => k,
+			stbo => stbi,
 			err => err
 		);
 		
@@ -87,7 +88,7 @@ begin
 		port map(
 			clk => clk,
 			rst => rst,
-			stb => stb,
+			stb => stbi,
 			d => txd,
 			k => k,
 			q => q

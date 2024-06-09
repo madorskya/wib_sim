@@ -10,7 +10,7 @@ use ieee.numeric_std.all;
 
 package pdts_defs is
 
-	constant PDTS_VERSION: std_logic_vector(31 downto 0) := X"00070000"; -- Version number
+	constant PDTS_VERSION: std_logic_vector(31 downto 0) := X"00070300"; -- Version number
 
 -- L1 constants (encoding layer)
 	
@@ -58,5 +58,7 @@ package pdts_defs is
 
 	type pdts_cmd_r_array is array(natural range <>) of pdts_cmd_r;
 	constant PDTS_CMD_R_NULL: pdts_cmd_r := (rdy => '0');
-	
+
+	type tstamp_array is array (natural range <>) of std_logic_vector(63 downto 0);
+
 end pdts_defs;

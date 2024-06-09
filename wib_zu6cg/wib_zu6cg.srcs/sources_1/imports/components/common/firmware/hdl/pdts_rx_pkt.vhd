@@ -22,7 +22,7 @@ entity pdts_rx_pkt is
 		scmd: out pdts_cmd_w;
 		acmd_o: out pdts_cmd_w;
 		acmd_i: in pdts_cmd_r;
-		err: out std_logic -- error flag
+		rdy: out std_logic -- ready flag
 	);
 
 end pdts_rx_pkt;
@@ -40,6 +40,10 @@ architecture rtl of pdts_rx_pkt is
 	signal valid, issue, pend: std_logic;
 	signal ada, adb, adc: std_logic_vector(7 downto 0);
 	signal a_match_d, avalid, alast: std_logic;
+
+--	attribute MARK_DEBUG: string;
+--	attribute MARK_DEBUG of rst, state, scmd: signal is "TRUE";
+
 
 begin
 
@@ -116,7 +120,8 @@ begin
 			elsif sa = '1' and actr < 2 then
 				if d = X"ff" then
 					a_bcast(to_integer(actr)) <= '1';
-				elsif d = addr(8 * to_integer(actr) + 7 downto 8 * to_integer(actr)) then
+				end if;
+				if d = addr(8 * to_integer(actr) + 7 downto 8 * to_integer(actr)) then
 					a_ucast(to_integer(actr)) <= '1';
 				end if;
 			end if;
@@ -145,7 +150,7 @@ begin
 		(acmd_i.rdy = '0' and avalid = '1') -- Packet arrival when buffer is already in use
 		else '0';
 
-	err <= '1' when state = ERRS else '0';
+	rdy <= '0' when state = START or state = ERRS else '1';
 		
 -- Sync command outputs
 
@@ -175,11 +180,13 @@ begin
 	
 	process(clk) -- Two-char delay to allow for address check
 	begin
-		if rising_edge(clk) and sa = '1' and state = ASYNC then
-			ada <= d;
-			adb <= ada;
-			adc <= adb;
-			a_match_d <= a_match;
+		if rising_edge(clk) then
+			if sa = '1' and state = ASYNC then
+				ada <= d;
+				adb <= ada;
+				adc <= adb;
+				a_match_d <= a_match;
+			end if;
 		end if;
 	end process;
 

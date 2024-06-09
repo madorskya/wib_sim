@@ -14,13 +14,14 @@ use unisim.VComponents.all;
 
 entity pdts_cdr_sampler is
 	port(
-		clk: in std_logic;
-		clk4x: in std_logic;
-		rst: in std_logic;
-		d: in std_logic;
-		q: out std_logic;
-		locked: out std_logic;
-		dbg: out std_logic_vector(7 downto 0)
+		clk: in std_logic; -- Base clock
+		clk4x: in std_logic; -- Sample clock
+		rst: in std_logic; -- Sync rst (clk domain)
+		resync: in std_logic; -- Resync input (clk domain)
+		d: in std_logic; -- Data in
+		q: out std_logic; -- Data out
+		locked: out std_logic; -- Locked flag (clk domain)
+		dbg: out std_logic_vector(11 downto 0) -- Phase, validity and error flags (clk domain)
 	);
 
 end pdts_cdr_sampler;
@@ -30,40 +31,39 @@ architecture rtl of pdts_cdr_sampler is
 	signal da, db, dd, di: std_logic;
 	signal cctr: unsigned(1 downto 0);
 	signal dctr, bctr: unsigned(15 downto 0);
-	signal tc, good: std_logic;
+	signal tc, good, err_i: std_logic;
 	signal sctr: unsigned(2 downto 0);
 	signal patt: std_logic_vector(1 downto 0);
 	signal p, locked_i: std_logic;
-	
+	signal valid: std_logic_vector(7 downto 0);
+
 	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of tc, good, patt, sctr, bctr, dctr, locked_i, p: signal is "TRUE";
+	attribute MARK_DEBUG of rst, resync, tc, good, locked_i, patt, sctr, p, err_i, q, valid: signal is "TRUE";
 
 begin
 
 -- Oversampler
 
-	iff: IDDRE1
+	iff: IDDR
 		generic map(
 			DDR_CLK_EDGE => "SAME_EDGE_PIPELINED",
-			IS_CB_INVERTED => '1'
---			SRTYPE => "ASYNC" -- Needed for forward compatibility with ultrascale
+			SRTYPE => "ASYNC" -- Needed for forward compatibility with ultrascale
 		)
 		port map(
 			d => d,
 			c => clk4x,
-			cb => clk4x,
---			ce => '1',
+			ce => '1',
 			q1 => da,
 			q2 => db,
-			r => '0'
---			s => '0'
+			r => '0',
+			s => '0'
 		);
 		
 	process(clk4x)
 	begin
 		if rising_edge(clk4x) then
 			if rst = '1' then
-				cctr <= "11";
+				cctr <= "01";
 			else
 				cctr <= cctr + 1;
 			end if;
@@ -99,22 +99,28 @@ begin
 	process(clk)
 	begin
 		if rising_edge(clk) then
-			if rst = '1' or (tc = '1' and locked_i = '1' and good = '0') then
+			if rst = '1' or resync = '1' then
 				patt <= "00";
 				sctr <= "111";
 				locked_i <= '0';
+				err_i <= '0';
 				p <= '0';
 			elsif tc = '1' then
-				dbg(to_integer(sctr)) <= good;
-				if sctr = "000" then
-					p <= '1';
-				end if;
-				if locked_i = '0' then
-					if patt = "01" and good = '1' and p = '1' then
-						locked_i <= '1';
-					else
-						sctr <= sctr - 1;
-						patt <= patt(0) & good;		
+				if locked_i = '1' and good = '0' then
+					locked_i <= '0';
+					err_i <= '1';
+				elsif err_i = '0' then
+					valid(to_integer(sctr)) <= good;
+					if sctr = "000" then
+						p <= '1';
+					end if;
+					if locked_i = '0' then
+						if patt = "01" and good = '1' and p = '1' then
+							locked_i <= '1';
+						else
+							sctr <= sctr - 1;
+							patt <= patt(0) & good;		
+						end if;
 					end if;
 				end if;
 			end if;
@@ -122,5 +128,6 @@ begin
 	end process;
 	
 	locked <= locked_i;
+	dbg <= valid & err_i & std_logic_vector(sctr);
 	
 end rtl;
