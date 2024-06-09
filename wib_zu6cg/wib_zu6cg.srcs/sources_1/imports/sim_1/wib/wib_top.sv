@@ -127,7 +127,9 @@ module wib_top
     // calibration pulse output
     output [3:0] cal_pulse,
 
-    input VP, VN// Dedicated and Hardwired Analog Input Pair
+    input VP, VN,// Dedicated and Hardwired Analog Input Pair
+    
+    output [7:0] wib_led
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
@@ -329,6 +331,7 @@ module wib_top
     wire   p11_enable       = `CONFIG_BITS(1,25, 1); // 0xA00C0004 // enable P11 connector input
     
     wire [15:0] link_mask   = `CONFIG_BITS(2, 0, 16); // 0xA00C0008 this input allows to disable some links in case they are broken
+    assign wib_led          = ~`CONFIG_BITS(2, 16, 8); // 0xA00C0008 Front panel LEDs
     
     assign ts_edge_sel         = `CONFIG_BITS(3,  0,  1); // 0xA00C000c timing data clock edge selection
     wire   fake_time_stamp_en  = `CONFIG_BITS(3,  1,  1); // 0xA00C000C
