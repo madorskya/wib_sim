@@ -297,6 +297,11 @@ module wib_top
     wire [31:0] ext_ip_addr  [1:0]; // 32 bit vector for IP addresses of the UDP cores.
     wire [15:0] ext_port_addr[1:0]; // 16 bit port addresses
     
+    wire sfp_dis;
+    
+    reg [7:0] sfp_dis_od;
+    wire [7:0] sfp_dis_od_descrambled;
+    wire [7:0] bp_io_o;    
     
     // config and status registers mapping
     
@@ -474,12 +479,13 @@ module wib_top
     assign `STATUS_BITS(21,16, 16) = MEASURED_VCCINT;  // 0xA00C00D4
     assign `STATUS_BITS(22, 0, 16) = MEASURED_VCCAUX;  // 0xA00C00D8
     assign `STATUS_BITS(22,16, 16) = MEASURED_VCCBRAM; // 0xA00C00D8
-
-
-    wire sfp_dis;
     
-    reg [7:0] sfp_dis_od;
-    wire [7:0] bp_io_o;    
+    assign `STATUS_BITS(23, 0, 8) = sfp_dis_od; // 0xA00C00DC
+    assign `STATUS_BITS(23, 8, 8) = sfp_dis_od_descrambled;
+    assign `STATUS_BITS(23,16, 8) = bp_io_o;
+    assign `STATUS_BITS(23,24, 1) = sfp_dis;
+
+
     
     wire [1:0] felix_rxbyteisaligned_out;
     wire [1:0] felix_rxbyterealign_out;
@@ -872,7 +878,6 @@ module wib_top
     // 2'b01 -> "new" PTB with PTCv3B
     // 2'b10 -> "old" PTB with PTCv3B
     // 2'b11 -> not a legal value
-    wire [7:0] sfp_dis_od_descrambled;
     assign sfp_dis_od_descrambled[1] = (prio_enc_descramble==2'b00) ? sfp_dis_od[5] : 
                                        (prio_enc_descramble==2'b01) ? sfp_dis_od[0] :
                                        (prio_enc_descramble==2'b10) ? sfp_dis_od[1] :
