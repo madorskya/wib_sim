@@ -129,7 +129,8 @@ module wib_top
 
     input VP, VN,// Dedicated and Hardwired Analog Input Pair
     
-    output [7:0] wib_led
+    output [7:0] wib_led,
+    output tx_timing_disable // disable tx for the front panel SFP
 );
 
     assign mgt_clk_sel = 1'b0; // select recovered clk permanently
@@ -298,6 +299,8 @@ module wib_top
     wire [15:0] ext_port_addr[1:0]; // 16 bit port addresses
     
     wire sfp_dis;
+    assign tx_timing_disable = sfp_dis; // send SFP disable to front panel SFP
+    // it is also routed to backplane
     
     reg [7:0] sfp_dis_od;
     wire [7:0] sfp_dis_od_descrambled;
