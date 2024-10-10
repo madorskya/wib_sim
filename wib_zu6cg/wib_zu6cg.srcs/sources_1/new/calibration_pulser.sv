@@ -8,7 +8,8 @@ module calibration_pulser
     input  [26:0] high_time, // high pulse time, in 62.5M clock periods 
     input  [3:0]  femb_en, // enable pulses on FEMBs
     output reg [3:0] cal_pulse,
-    output reg [3:0] cal_pulse_mon
+    output reg [3:0] cal_pulse_mon,
+    output reg pulse_r
 );
 
     reg [4:0] adc_clk_phase; // ADC clock follower
@@ -33,10 +34,11 @@ module calibration_pulser
             else period_cnt++; // increment period counter
         end
         
+        pulse_r = pulse; 
         pulse = high_cnt < high_time; // common pulse signal
         cal_pulse     = cp;
         cal_pulse_mon = cp;
-        cp = femb_en & {4{pulse}}; // apply enables 
+        cp = femb_en & {4{pulse}}; // apply enables
         high_cnt++; 
     end
 

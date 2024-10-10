@@ -305,6 +305,8 @@ module wib_top
     reg [7:0] sfp_dis_od;
     wire [7:0] sfp_dis_od_descrambled;
     wire [7:0] bp_io_o;    
+    wire pulse_r;
+    wire inj_cal_pulse_sw;
     
     // config and status registers mapping
     
@@ -402,9 +404,11 @@ module wib_top
     
     assign dac_src_sel                        = `CONFIG_BITS(15,  0, 4); // 0xA00C003C
     assign mon_vs_pulse_sel                   = `CONFIG_BITS(15,  4, 1); // 0xA00C003C
-    assign inj_cal_pulse                      = `CONFIG_BITS(15,  5, 1); // 0xA00C003C
+    assign inj_cal_pulse = inj_cal_pulse_sw == 1 ? pulse_r : 
+                                                `CONFIG_BITS(15,  5, 1); // 0xA00C003C
     wire [4:0]  cp_phase                      = `CONFIG_BITS(15,  6, 5); // 0xA00C003C 
     wire [3:0]  cp_femb_en                    = `CONFIG_BITS(15, 11, 4); // 0xA00C003C 
+    assign inj_cal_pulse_sw                   = `CONFIG_BITS(15, 15, 1); // 0xA00C003C
     wire [15:0] cal_dac_data                  = `CONFIG_BITS(15, 16,16); // 0xA00C003C
 
     wire [20:0] cp_period     = `CONFIG_BITS(16,  0, 21); // 0xA00C0040  
@@ -848,8 +852,9 @@ module wib_top
         .phase     (cp_phase    ), // phase relative to 2 MHz clock (), in 62.5M clock periods
         .high_time (cp_high_time), // high pulse time (), in 62.5M clock periods 
         .femb_en   (cp_femb_en  ), // enable pulses on FEMBs
-        .cal_pulse (cal_pulse   ),
-        .cal_pulse_mon (cal_pulse_mon)
+        .cal_pulse (cal_pulse   ), // calpulse outputs to pins
+        .cal_pulse_mon (cal_pulse_mon), // calpulse monitors for test points
+        .pulse_r   (pulse_r) // pulse output for U91 CAL_PUL_GEN pin 
     );
 
     sys_monitor sys_mon 
