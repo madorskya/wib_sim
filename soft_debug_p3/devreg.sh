@@ -58,6 +58,11 @@ addr+=(0xA00C00D4 0xA00C00D4 0xA00C00D8 0xA00C00D8)
 bnum+=(0          16         0          16        )
 mask+=(0xffff     0xffff     0xffff     0xffff    )
 
+name+=(prio_enc_descramble wib_led    sfp_dis_od sfp_dis_od_descrambled bp_io_o    sfp_dis)
+addr+=(0xA00C0000          0xA00C0008 0xA00C00DC 0xA00C00DC             0xA00C00DC 0xA00C00DC) 
+bnum+=(16                  16         0          8                      16         24)
+mask+=(0x3                 0xff       0xff       0xff                   0xff       1)       
+
 #syntax: devreg reg_name [wr_value]
 
 if [ $1 ]
