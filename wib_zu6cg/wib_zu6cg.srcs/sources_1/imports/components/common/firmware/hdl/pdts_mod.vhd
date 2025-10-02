@@ -34,7 +34,6 @@ architecture rtl of pdts_mod is
 
     signal dcsk_pattern : std_logic_vector(3 downto 0);
     signal fifo_empty : std_logic;
-    signal dummy: std_logic_vector(2 downto 0);
 begin
 
 process (clk)
@@ -57,7 +56,7 @@ dcsk_mod_fifo: entity work.dcsk_mod_fifo
     din    => dcsk_pattern,
     wr_en  => '1',
     rd_en  => not fifo_empty,
-    dout   => dummy & q, -- Maq
+    dout   => q,
     full   => open,
     empty  => fifo_empty,
     wr_rst_busy => open,

@@ -913,6 +913,7 @@ module wib_top
     assign sfp_dis_od_descrambled[6] = sfp_dis_od[7]; // SPARE in PTCv3B, will be reassigned in PTCv4
     assign sfp_dis_od_descrambled[7] = sfp_dis_od[6]; // SPARE in PTCv3B, will be reassigned in PTCv4
     // open-drain buffers for sfp enable signals
+
    IOBUF bp_io_buf[5:0] 
    (
       .O  (bp_io_o [5:0]),     
@@ -920,7 +921,6 @@ module wib_top
       .I  (1'b0),     
       .T  (sfp_dis_od_descrambled[5:0])
    );
-
 
     // misc_io[ 7:0] = connector P2 pins 15,13,11,9,7,5,3,1
     // misc_io[15:8] = connector P1 pins 15,13,11,9,7,5,3,1
