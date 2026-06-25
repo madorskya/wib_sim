@@ -33,7 +33,8 @@ module frame_builder
     input [3:0]  psr_cal, 
     input        ws, 
     input [15:0] flex,
-    input raw_channel_map
+    input raw_channel_map,
+    input [7:0] extra_headers
 );
 
     reg [63:0] tstamp_deframed;
@@ -73,7 +74,8 @@ module frame_builder
                 .psr_cal              (psr_cal [gi/2] ), 
                 .ws                   (ws         ), 
                 .flex                 (flex       ),
-                .raw_channel_map      (raw_channel_map)
+                .raw_channel_map      (raw_channel_map),
+                .extra_headers        (extra_headers)
             );
         end
     endgenerate

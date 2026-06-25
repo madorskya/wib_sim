@@ -424,6 +424,9 @@ module wib_top
     assign ext_port_addr[1]        = `CONFIG_BITS(22, 16, 16); // 0xA00C0058 
     assign ext_ip_addr  [1]        = `CONFIG_BITS(23,  0, 32); // 0xA00C005C 
 
+    wire [7:0] extra_headers       = `CONFIG_BITS(24,  0, 8); // 0xA00C0060 
+
+
     assign `STATUS_BITS( 0, 0,  2) = daq_spy_full[1:0];   // 0xA00C0080
     assign `STATUS_BITS( 0, 2,  1) = ps_locked;
     assign `STATUS_BITS( 0, 3,  6) = daq_spy_full[7:2];   // 0xA00C0080
@@ -696,7 +699,8 @@ module wib_top
         .psr_cal              (psr_cal    ), 
         .ws                   (ws         ), 
         .flex                 (flex       ),
-        .raw_channel_map      (raw_channel_map)
+        .raw_channel_map      (raw_channel_map),
+        .extra_headers        (extra_headers)
     );    
 
     timing_endpoint_dcsk timing_i

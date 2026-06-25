@@ -34,7 +34,8 @@ module frame_builder_single #
     input        psr_cal, 
     input        ws, 
     input [15:0] flex,
-    input raw_channel_map
+    input raw_channel_map,
+    input [7:0] extra_headers // count of extra header words (test only)
 );
 
     localparam NADCS = NLINKS * 2; // 2 ADCs per link
@@ -119,7 +120,8 @@ module frame_builder_single #
     reg [7:0] time16_mismatch;
     wire [5:0] version; 
 
-    assign version = 6'h5; // DAQ readout version with mapping for mono FEMB and DEIMOS
+    assign version = (extra_headers == 8'b0) ? 6'h5 : 6'h6; // DAQ readout version with mapping for mono FEMB and DEIMOS
+    // with extra header words the version becomes = 6
 
     assign header[0] = timestamp_reclocked;
 
@@ -138,8 +140,9 @@ module frame_builder_single #
     assign header[1][63:56] = NUM[2:0]                  ; // Channel ID               
     assign header[1][32]    = 1'b0;                     ; // Reserved                 
 
-    assign header[2] = 64'h0; // reserved
+    assign header[2] = {56'h0, extra_headers}; //64'h0; // reserved
 
+    reg [7:0] extra_header_cnt; // extra header words counter, tests only
 
     // DAQ request FSM
     always @(posedge rxclk2x)
@@ -270,6 +273,7 @@ module frame_builder_single #
                 ddi_d = header[1];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
+                extra_header_cnt = extra_headers;
                 fb_state = HEAD2;
             end
             
@@ -278,7 +282,14 @@ module frame_builder_single #
                 ddi_d = header[2];
                 ddi_d_valid = 1'b1;
                 ddi_d_last  = 1'b0;
-                fb_state = DATA;
+                if (extra_header_cnt == 8'b0)
+                begin
+                    fb_state = DATA;
+                end
+                else
+                begin
+                    extra_header_cnt --; // stay in HEAD2
+                end
             end
             
             DATA:
