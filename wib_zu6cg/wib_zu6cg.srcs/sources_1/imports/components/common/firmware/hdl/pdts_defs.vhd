@@ -10,7 +10,7 @@ use ieee.numeric_std.all;
 
 package pdts_defs is
 
-	constant PDTS_VERSION: std_logic_vector(31 downto 0) := X"00070300"; -- Version number
+	constant PDTS_VERSION: std_logic_vector(31 downto 0) := X"00070800"; -- Version number
 
 -- L1 constants (encoding layer)
 	

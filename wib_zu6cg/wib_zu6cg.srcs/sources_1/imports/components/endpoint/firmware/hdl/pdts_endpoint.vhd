@@ -17,7 +17,6 @@ entity pdts_endpoint is
 		SCLK_FREQ: real; -- Frequency (MHz) of the system clock
 		USE_EXT_PLL: boolean := false; -- Use external PLL or clock source
 		EXT_PLL_DIV: positive := 2; -- External PLL division ratio
-		BUFG_IN_DATAPATH : boolean := false; -- add a BUFG in path to MMCM
 		FORCE_TX: boolean := false; -- Turn on transmit permanently
 		SKIP_FREQ: boolean := false; -- Skip the frequency check step (e.g. for simulation)
 		EXT_ADDR: boolean := true; -- Skip the address setting step
@@ -53,9 +52,12 @@ end pdts_endpoint;
 
 architecture rtl of pdts_endpoint is
 
-	signal cdr_rst, clk_sel, clki, clk4xi, clk2xi, d, cdr_locked, rsti, q: std_logic;
+	signal clk_lock, clk_rst, cdr_rst, phase_stb, clk_sel, clki, clk4xi, clk2xi, d, cdr_locked, rsti, q: std_logic;
 	signal phase: std_logic_vector(11 downto 0);
 	signal phase_done: std_logic;
+	
+	--attribute MARK_DEBUG: string;
+    --attribute MARK_DEBUG of d , rxd , cdr_locked: signal is "TRUE";
 
 begin
 
@@ -64,26 +66,28 @@ begin
 	rxcdr: entity work.pdts_ep_cdr
 		generic map(
 			USE_EXT_PLL => USE_EXT_PLL,
-			EXT_PLL_DIV => EXT_PLL_DIV,
-                        BUFG_IN_DATAPATH => BUFG_IN_DATAPATH
+			EXT_PLL_DIV => EXT_PLL_DIV
 		)
 		port map(
 			d => rxd,
 			los => los,
 			rclko => pll_clko,
 			rclki => pll_clki,
+			clk_rst => clk_rst,
+			clk_lock => clk_lock,
+			cdr_rst => cdr_rst,
 			clko => clki,
 			clko4x => clk4xi,
 			clko2x => clk2xi,
 			rsto => rsti,
-			cdr_rst => cdr_rst,
 			q => d,
 			locked => cdr_locked,
 			phase => phase,
+			phase_stb => phase_stb,
 			phase_done => phase_done,
 			dbg => open
 		);
-		
+
 	clk <= clki;
 	rst <= rsti;
 	clk4x <= clk4xi;
@@ -112,7 +116,10 @@ begin
 			clk => clki,
 			rst => rsti,
 			phase => phase,
+			phase_stb => phase_stb,
 			phase_done => phase_done,
+			clk_rst => clk_rst,
+			clk_lock => clk_lock,
 			cdr_rst => cdr_rst,
 			locked => cdr_locked,
 			d => d,
@@ -128,7 +135,6 @@ begin
 
 	txmod: entity work.pdts_mod
 		port map(
-                        clk  => clki,
 			clk4x => clk4xi,
 			rst => rsti,
 			d => q,

@@ -23,7 +23,9 @@ entity pdts_ep_sm is
 		sys_rst: in std_logic; -- System reset (sys_clk domain)
 		clk: in std_logic; -- Base clock input
 		rst: in std_logic; -- Base clock domain reset
-		cdr_rst: out std_logic; -- CDR reset (clk domain)
+		clk_rst: out std_logic; -- CDR PLL reset (sys_clk domain)
+		clk_lock: in std_logic; -- CDR PLL locked
+		cdr_rst: out std_logic; -- CDR reset (sys_clk domain)
 		cdr_locked: in std_logic; -- CDR status (clk domain)
 		rx_en: out std_logic; -- RX enable signal (clk domain)
 		rx_rdy: in std_logic; -- RX block ready signal (clk domain)
@@ -43,15 +45,21 @@ end pdts_ep_sm;
 architecture rtl of pdts_ep_sm is
 
 	type state_t is (ST_RESET, ST_W_CLK, ST_W_FREQ, ST_W_CDR, ST_W_RX, ST_W_ADDR, ST_W_DESKEW, ST_W_TS, ST_READY, ST_ERR_P, ST_ERR_R, ST_ERR_T, ST_ERR_X);
-	signal state: state_t;
-	signal reset_i, resync_i, clk_ok, f_ok, cdr_ok, rx_ok, ts_ok, pkt_err_i: std_logic;
-	signal clk_lock, t, td: std_logic;
+	signal state: state_t := ST_RESET;
+	signal reset_i, resync_i, clk_ok_a, clk_ok, f_ok, cdr_ok, rx_ok, ts_ok, pkt_err_i: std_logic;
+	signal t, td: std_logic;
 	signal rctr: unsigned(7 downto 0);
 	signal sctr, cctr: unsigned(15 downto 0);
 	signal rdy, rx_en_i, srst_i, srst: std_logic;
+	signal clk_rst_done: std_logic := '1';
 
-	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of state, resync_i, reset_i, clk_ok, cdr_ok, rx_ok, ts_ok, pkt_err_i, rdy, rx_en_i, srst_i: signal is "TRUE";
+	attribute ASYNC_REG: string;
+	attribute ASYNC_REG of clk_ok_a, clk_ok: signal is "yes";
+
+	--attribute MARK_DEBUG: string;
+	--attribute MARK_DEBUG of state, clk_ok, cdr_ok, rx_ok, ts_ok, rdy,
+	--resync_i, sys_rst, reset_i, pkt_err_i, rx_en_i, srst_i, clk_rst_done, clk_rst
+	--: signal is "TRUE";
 
 begin
 
@@ -63,7 +71,9 @@ begin
 			else
 				case state is
 				when ST_RESET =>
-					state <= ST_W_CLK;
+					if clk_rst_done = '1' then
+						state <= ST_W_CLK;
+					end if;
 -- Wait for internal PLL lock
 				when ST_W_CLK =>
 					if clk_ok = '1' then
@@ -85,8 +95,10 @@ begin
 					end if;
 -- Wait for RX block to lock - after this point we go to error if there are problems
 				when ST_W_RX =>
-					if clk_ok = '0' or cdr_ok = '0' then
+					if clk_ok = '0' then
 						state <= ST_W_CLK;
+					elsif cdr_ok = '0' then
+						state <= ST_W_CDR;
 					elsif rx_ok = '1' then
 						state <= ST_W_ADDR;
 					end if;
@@ -97,11 +109,7 @@ begin
 					elsif rx_ok = '0' then
 						state <= ST_ERR_R;
 					elsif addr_done = '1' then
-						if deskew_done = '1' then
-							state <= ST_W_TS;
-						else
-							state <= ST_W_DESKEW;
-						end if;
+						state <= ST_W_DESKEW;
 					end if;
 -- Wait for phase adjustment; can leave this state only through a resync
 				when ST_W_DESKEW =>
@@ -111,6 +119,8 @@ begin
 						state <= ST_ERR_P;
 					elsif rx_ok = '0' then
 						state <= ST_ERR_R;
+					elsif deskew_done = '1' then
+						state <= ST_W_TS;
 					end if;
 -- Wait for timestamp
 				when ST_W_TS =>
@@ -148,25 +158,25 @@ begin
 
 -- Status signals into sclk domain
 
-	clk_lock <= not rst;
+	-- do not sync. PLL lock signal using PLL clock (no clock when PLL is in reset)
+	clk_ok_a <= clk_lock when rising_edge(sys_clk); -- CDC; different clocks
+	clk_ok <= clk_ok_a when rising_edge(sys_clk); -- Synchroniser FF
 
 	sync_sys_clk: entity work.pdts_synchro
 		generic map(
-			N => 5
+			N => 4
 		)
 		port map(
 			clk => clk,
 			clks => sys_clk,
-			d(0) => clk_lock,
-			d(1) => cdr_locked,
-			d(2) => rx_rdy,
-			d(3) => tsrdy,
-			d(4) => pkt_err,
-			q(0) => clk_ok,
-			q(1) => cdr_ok,
-			q(2) => rx_ok,
-			q(3) => ts_ok,
-			q(4) => pkt_err_i
+			d(0) => cdr_locked,
+			d(1) => rx_rdy,
+			d(2) => tsrdy,
+			d(3) => pkt_err,
+			q(0) => cdr_ok,
+			q(1) => rx_ok,
+			q(2) => ts_ok,
+			q(3) => pkt_err_i
 		);
 
 	sync_sys_clk_p: entity work.pdts_synchro_pulse
@@ -249,7 +259,7 @@ begin
 	rdy <= '1' when state = ST_READY else '0';
 	rx_en_i <= '0' when state = ST_RESET or state = ST_W_CLK or state = ST_W_FREQ or state = ST_W_CDR else '1';
 	srst_i <= '1' when state = ST_RESET or state = ST_W_CLK else '0';
-	
+
 	sync_clk: entity work.pdts_synchro
 		generic map(
 			N => 3
@@ -267,5 +277,22 @@ begin
 
 	cdr_rst <= srst;
 	reg_rst <= srst;
+
+	process(sys_clk)
+	begin
+		if rising_edge(sys_clk) then
+
+			if sys_rst = '1' or reset_i = '1' then
+				clk_rst_done <= '0';
+				clk_rst <= '1';
+			else
+				clk_rst <= '0';
+				if clk_rst_done = '0' and clk_ok = '0' then
+					clk_rst_done <= '1';
+				end if;
+			end if;
+
+		end if;
+	end process;
 
 end rtl;

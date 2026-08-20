@@ -53,8 +53,8 @@ architecture rtl of pdts_ep_regfile is
 	signal ts_cyc: std_logic;
 	signal tstamp_i: std_logic_vector(63 downto 0);
 
---	attribute MARK_DEBUG: string;
---	attribute MARK_DEBUG of resync, reset, txenb, addr_done, deskew_done, ctrl_in, cyc: signal is "TRUE";
+	--attribute MARK_DEBUG: string;
+	--attribute MARK_DEBUG of resync, reset, txenb, addr_done, deskew_done, phase : signal is "TRUE";
 
 begin
 
@@ -102,6 +102,7 @@ begin
 				elsif ctrl_in.d = X"04" then -- cmd 4, resync
 					delay <= reg_w(2)(3 downto 0);
 					resync <= '1';
+					ddone <= '0';
 				elsif ctrl_in.d = X"05" then -- cmd 5, reset
 					reset <= '1';
 				end if;

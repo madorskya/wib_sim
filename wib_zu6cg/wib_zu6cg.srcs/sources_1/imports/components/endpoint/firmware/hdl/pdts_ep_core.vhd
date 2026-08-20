@@ -31,8 +31,11 @@ entity pdts_ep_core is
 		clk: in std_logic; -- Base clock
 		rst: in std_logic; -- Base clock reset (clk domain)
 		phase: out std_logic_vector(11 downto 0); -- Fine deskew setting
+		phase_stb: out std_logic; -- Apply phase marker
 		phase_done: in std_logic := '0'; -- Fine deskew done flag
-		cdr_rst: out std_logic; -- CDR reset signal
+		clk_rst: out std_logic; -- CDR PLL reset (sys_clk domain)
+		clk_lock: in std_logic; -- CDR PLL locked
+		cdr_rst: out std_logic; -- CDR reset signal (sys_clk)
 		locked: in std_logic := '1'; -- CDR lock input
 		d: in std_logic; -- Timing input (clk domain)
 		q: out std_logic; -- Timing output (clk domain)
@@ -59,9 +62,9 @@ architecture rtl of pdts_ep_core is
 	signal ts_stb: std_logic;
 	signal tstamp_i: std_logic_vector(63 downto 0);
 
-	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of txenb, rst, rrst, trst, resync, locked, rx_en, d, q: signal is "TRUE";
-	attribute MARK_DEBUG of ctrl_out, ctrl_in, ctrl_w, ctrl_r: signal is "TRUE";
+	--attribute MARK_DEBUG: string;
+	--attribute MARK_DEBUG of txenb, rst, rrst, trst, resync, locked, rx_en, d, q: signal is "TRUE";
+	--attribute MARK_DEBUG of ctrl_out, ctrl_in, ctrl_w, ctrl_r: signal is "TRUE";
 
 begin
 
@@ -78,6 +81,8 @@ begin
 			sys_rst => sys_rst,
 			clk => clk,
 			rst => rst,
+			clk_rst => clk_rst,
+			clk_lock => clk_lock,
 			cdr_rst => cdr_rst,
 			cdr_locked => locked,
 			rx_en => rx_en,
@@ -92,8 +97,9 @@ begin
 			ready => ready,
 			stat => stati
 		);
-		
+
 	sys_stat <= stati;
+	phase_stb <= resync;
 
 -- Receive
 

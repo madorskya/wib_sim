@@ -37,8 +37,8 @@ architecture rtl of pdts_cdr_sampler is
 	signal p, locked_i: std_logic;
 	signal valid: std_logic_vector(7 downto 0);
 
-	attribute MARK_DEBUG: string;
-	attribute MARK_DEBUG of rst, resync, tc, good, locked_i, patt, sctr, p, err_i, q, valid: signal is "TRUE";
+	--attribute MARK_DEBUG: string;
+	--attribute MARK_DEBUG of rst, resync, tc, good, locked_i, patt, sctr, p, err_i, q, valid: signal is "TRUE";
 
 begin
 

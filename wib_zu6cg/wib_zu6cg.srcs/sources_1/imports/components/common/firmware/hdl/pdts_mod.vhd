@@ -1,66 +1,46 @@
-----------------------------------------------------------------------------------
--- Company: University of Breistol
--- Engineer: David Cussans
--- 
--- Create Date: 08/18/2023 02:32:46 PM
--- Design Name: 
--- Module Name: pdts_mod - Behavioral
--- Project Name: 
--- Target Devices: Xilinx 7 series
--- Tool Versions: Vivado 2022.2
--- Description: Takes NRZ data and produces DCSK data
--- 
--- Dependencies: dcsk_mod_fifo
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
+-- pdts_mod
+--
+-- Line interface for 'no CDR' pulse width modulation - tx side
+--
+-- Dave Newbold, December 2021
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
 
 entity pdts_mod is
-    Port ( clk : in STD_LOGIC;   -- NRZ clock domain
-           clk4x : in STD_LOGIC; -- 4x NRZ clock (25/75% DCSK)
-           rst : in STD_LOGIC;
-           d : in STD_LOGIC;
-           q : out STD_LOGIC);
+	port(
+		clk4x: in std_logic;
+		rst: in std_logic; -- Needs to be in the clk1x domain
+		d: in std_logic;
+		q: out std_logic
+	);
+
 end pdts_mod;
 
 architecture rtl of pdts_mod is
 
-    signal dcsk_pattern : std_logic_vector(3 downto 0);
-    signal fifo_empty : std_logic;
+	signal cctr: unsigned(1 downto 0) := "00";
+	signal patt: std_logic_vector(3 downto 0);
+
 begin
 
-process (clk)
-begin
-   if rising_edge(clk) then
-      if d = '0' then
-         dcsk_pattern <= "1000";
-      else
-         dcsk_pattern <= "1110";
-      end if;
-   end if;
-end process;
+-- Cycle counter
 
--- Instantiate a 4-bit / 1-bit FIFO
-dcsk_mod_fifo: entity work.dcsk_mod_fifo
-  PORT map (
-    rst    => rst,
-    wr_clk => clk,
-    rd_clk => clk4x,
-    din    => dcsk_pattern,
-    wr_en  => '1',
-    rd_en  => not fifo_empty,
-    dout   => q,
-    full   => open,
-    empty  => fifo_empty,
-    wr_rst_busy => open,
-    rd_rst_busy => open
-  );
-  
+	process(clk4x)
+	begin
+		if rising_edge(clk4x) then
+			if rst = '1' then
+				cctr <= "11";
+			else
+				cctr <= cctr + 1;
+			end if;
+		end if;
+	end process;
+
+-- Modulator
+
+	patt <= "0001" when d = '0' else "0111";
+	q <= patt(to_integer(cctr)) when rising_edge(clk4x);
 end rtl;
